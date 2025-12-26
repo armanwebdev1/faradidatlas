@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "صفحه اصلی",
+    "about": "درباره ما",
+    "products": "محصولات",
+    "careers": "فرصت های شغلی",
+    "faq": "سوالات متکرر",
+    "contact": "تماس با ما"
+  },
+  "common": {
+    "viewMore": "مشاهده بیشتر",
+    "learnMore": "بیشتر بدانید",
+    "contactSales": "تماس با فروش",
+    "downloadCatalog": "دانلود کاتالوگ",
+    "exploreProducts": "کاوش محصولات"
+  }
+}

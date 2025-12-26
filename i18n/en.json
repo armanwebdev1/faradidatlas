@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "products": "Products",
+    "careers": "Careers",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "common": {
+    "viewMore": "View More",
+    "learnMore": "Learn More",
+    "contactSales": "Contact Sales",
+    "downloadCatalog": "Download Catalog",
+    "exploreProducts": "Explore Products"
+  }
+}
