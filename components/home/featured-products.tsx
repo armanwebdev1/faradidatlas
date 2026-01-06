@@ -15,8 +15,7 @@ const products = {
       name: "Premium Saffron",
       origin: "Iran, Khorasan",
       grade: "Grade A",
-      image:
-        "https://images.unsplash.com/photo-1599599810694-b3627db32322?w=500&h=500&fit=crop",
+      image: "/featured1.jpg",
       description:
         "Hand-picked saffron threads with exceptional color and aroma.",
     },
@@ -25,8 +24,7 @@ const products = {
       name: "Organic Dates",
       origin: "Iran, Yazd",
       grade: "Premium",
-      image:
-        "https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=500&h=500&fit=crop",
+      image: "/featured2.png",
       description:
         "Sweet, succulent dates perfect for retail and food production.",
     },
@@ -35,8 +33,7 @@ const products = {
       name: "Pistachios",
       origin: "Iran, Rafsanjan",
       grade: "Grade A",
-      image:
-        "https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=500&h=500&fit=crop",
+      image: "/featured3.jpg",
       description:
         "Roasted and salted pistachios with premium quality control.",
     },
@@ -45,8 +42,7 @@ const products = {
       name: "Dried Herbs",
       origin: "Iran, Various",
       grade: "Certified",
-      image:
-        "https://images.unsplash.com/photo-1599599810694-b3627db32322?w=500&h=500&fit=crop",
+      image: "/featured4.jpg",
       description:
         "Aromatic dried herbs and spices for culinary and industrial use.",
     },
