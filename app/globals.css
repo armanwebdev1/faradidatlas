@@ -4,55 +4,54 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Primary: Deep Navy - Trust anchor */
-  --primary: #0f0140;
-  --primary-light: #1a0d52;
+  /* Updated to ultra-premium luxury palette */
+  /* Primary: Deep charcoal/black - sophisticated anchor */
+  --primary: oklch(0.205 0 0);
+  --primary-light: #2d2d2d;
   --primary-text: #ffffff;
 
-  /* Accent: Indigo - Links, highlights */
-  --accent: #150259;
-  --accent-light: #2d1480;
+  /* Accent: Rich gold - premium luxury highlight */
+  --accent: oklch(0.97 0 0);
+  --accent-light: #dcc5a0;
 
-  /* Warm accent colors for food & energy indicators */
-  --accent-warm-red: #e63946;
-  --accent-warm-orange: #f77f00;
-  --accent-warm-gold: #d4af37;
+  /* Secondary warm accents */
+  --accent-warm-red: #a84a3a;
+  --accent-warm-orange: #b8654d;
+  --accent-warm-gold: #c9a961;
 
-  /* Neutral: Lilac-gray - Secondary text, dividers */
-  --neutral: #8981a6;
-  --neutral-light: #b4afc7;
+  /* Neutral: Warm grays */
+  --neutral: #7a7a7a;
+  --neutral-light: #a8a8a8;
 
-  /* Background: Porcelain light */
-  --background: #f2f2f2;
-  --background-dark: #e8e8e8;
+  /* Background: Premium cream */
+  --background-dark: #ede9e1;
 
-  /* Near-black blue - Hero overlays, footer */
-  --dark-overlay: #010326;
+  /* Overlays */
+  --dark-overlay: #000000;
 
   /* White */
   --white: #ffffff;
 
   /* Semantic tokens */
-  --foreground: #0f0140;
-  --card: #ffffff;
-  --card-foreground: #0f0140;
-  --popover: #ffffff;
-  --popover-foreground: #0f0140;
-  --secondary: #8981a6;
-  --secondary-foreground: #0f0140;
-  --muted: #e8e8e8;
-  --muted-foreground: #8981a6;
-  --destructive: #ef4444;
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: #ffffff;
-  --border: #d4d4d8;
-  --input: #ffffff;
-  --ring: #150259;
-  --chart-1: #0f0140;
-  --chart-2: #150259;
-  --chart-3: #8981a6;
-  --chart-4: #b4afc7;
-  --chart-5: #d4d4d8;
-  --radius: 0.375rem;
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -61,30 +60,47 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
 }
 
 .dark {
-  --background: #0a0620;
-  --foreground: #ffffff;
-  --card: #1a1635;
-  --card-foreground: #ffffff;
-  --primary: #e0d5ff;
-  --secondary: #b4afc7;
-  --muted: #2d2649;
-  --muted-foreground: #9391a3;
-  --border: #3d3952;
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --secondary: oklch(0.269 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --border: oklch(1 0 0 / 10%);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
 }
 
 @theme inline {
-  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   --font-sans: "Inter", sans-serif;
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-text);
@@ -121,6 +137,17 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --font-sans: var(--font-sans), "Shabnam", sans-serif;
+  --font-serif: var(--font-serif), "Estedad", serif;
+  --font-hero: "Playfair Display", "Estedad", serif;
+  --font-body: var(--font-sans), "Shabnam", sans-serif;
+  --font-label: "Satoshi", "Shabnam", sans-serif;
 }
 
 @layer base {
@@ -131,34 +158,61 @@
     @apply bg-background text-foreground;
   }
 
+  /* Updated text accessibility - darkened muted foreground and enhanced contrast for better readability */
   h1,
   .text-5xl {
-    @apply text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight;
+    @apply text-5xl md:text-7xl lg:text-8xl font-bold leading-tight tracking-tight text-foreground;
   }
 
   h2,
   .text-4xl {
-    @apply text-4xl md:text-5xl font-bold leading-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground;
   }
 
   h3,
   .text-3xl {
-    @apply text-3xl md:text-4xl font-semibold leading-snug;
+    @apply text-3xl md:text-4xl font-semibold leading-snug text-foreground;
   }
 
   h4,
   .text-2xl {
-    @apply text-2xl md:text-3xl font-semibold;
+    @apply text-2xl md:text-3xl font-semibold text-foreground;
   }
 
   p,
   body {
-    @apply text-base md:text-lg leading-relaxed;
+    @apply text-base md:text-lg leading-relaxed text-foreground/85;
   }
 
   small,
   .text-sm {
-    @apply text-sm leading-relaxed text-muted-foreground;
+    @apply text-sm leading-relaxed text-foreground/75;
+  }
+
+  /* Applied new typography specifications for titles, headings, and body */
+  h1,
+  .hero-title {
+    @apply font-hero font-semibold tracking-[-0.01em] leading-[1.1] text-foreground;
+    font-size: clamp(52px, 8vw, 64px);
+  }
+
+  h2,
+  .section-title {
+    @apply font-hero font-semibold tracking-[-0.005em] leading-[1.25] text-foreground;
+    font-size: clamp(36px, 5vw, 44px);
+  }
+
+  .subtitle,
+  .category-label {
+    @apply font-label font-medium leading-[1.35] text-accent-warm-gold uppercase tracking-[0.1em];
+    font-size: clamp(20px, 3vw, 24px);
+  }
+
+  p,
+  body,
+  .body-text {
+    @apply font-body font-normal leading-[1.6] text-foreground/75;
+    font-size: 16px;
   }
 }
 
@@ -174,4 +228,174 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Premium animation utilities */
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(135deg, #1a1a1a 0%, #c9a961 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .luxury-glow {
+    box-shadow: 0 0 60px rgba(201, 169, 97, 0.15),
+      0 0 20px rgba(201, 169, 97, 0.1);
+  }
+
+  .premium-backdrop {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Enhanced carousel animations */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .animate-shimmer {
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-in-up {
+    animation: slideInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes glow-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(201, 169, 97, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(201, 169, 97, 0.8);
+    }
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  /* Add premium CTA animation utilities */
+  .group:hover .group-hover\:scale-x-100 {
+    transform: scaleX(1);
+  }
+
+  /* Premium button hover effect */
+  .cta-button-fill {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-button-fill::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: -1;
+  }
+
+  .cta-button-fill:hover::before {
+    transform: scaleX(1);
+  }
+
+  /* Elegant line animation for heading underline */
+  .line-accent {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .line-accent::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, currentColor, transparent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .line-accent:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* Refactored premium buttons to use standard CSS for complex states to fix concatenation error */
+  .premium-btn-primary {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--foreground);
+    color: var(--background);
+    transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .premium-btn-primary:hover {
+    box-shadow: 0 0 30px rgba(201, 169, 97, 0.3);
+    transform: scale(1.02);
+  }
+
+  .premium-btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .premium-btn-outline {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--foreground) 20%, transparent);
+    background-color: transparent;
+    color: var(--foreground);
+    transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .premium-btn-outline:hover {
+    border-color: var(--foreground);
+    background-color: var(--foreground);
+    color: var(--background);
+    transform: scale(1.02);
+  }
+
+  .premium-btn-outline:active {
+    transform: scale(0.98);
+  }
+
+  /* Added GSAP reveal utilities for text animations */
+  .text-reveal-mask {
+    overflow: hidden;
+    display: block;
+  }
+
+  .text-reveal-item {
+    display: block;
+  }
 }

@@ -1,41 +1,194 @@
-import Link from "next/link"
-import type { Language } from "@/lib/i18n"
+import Link from "next/link";
+import type { Language } from "@/lib/i18n";
 
 interface CTASectionProps {
-  lang: Language
+  lang: Language;
 }
 
 export function CTASection({ lang }: CTASectionProps) {
-  const isRTL = lang === "fa"
+  const isRTL = lang === "fa";
 
   return (
-    <section className="py-24 px-6 bg-dark-overlay text-white">
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-5xl font-bold mb-6">
-          {lang === "en" ? "Ready to Partner With Us?" : "آماده‌ی همکاری با ما هستید؟"}
-        </h2>
-        <p className="text-xl text-gray-300 mb-12 leading-relaxed">
-          {lang === "en"
-            ? "Connect with our B2B team to discuss private labeling, bulk orders, or exclusive partnerships."
-            : "با تیم B2B ما در ارتباط برای بحث درباره علامت‌گذاری خصوصی، سفارشات انبوه یا مشارکت‌های منحصر به فرد"}
-        </p>
+    <section className="relative py-12 md:py-20 px-6 overflow-hidden bg-[#faf9f6]">
+      {/* Updated background and simplified decorative elements for a cleaner, high-end look */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-1/4 w-px h-64 bg-gradient-to-b from-[#c9a961]/20 to-transparent" />
+        <div className="absolute top-1/2 right-1/2 w-[800px] h-[800px] rounded-full bg-[#c9a961]/5 blur-[120px]" />
+      </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href={`/${lang}/contact`}
-            className="px-8 py-3 bg-accent-warm-orange hover:bg-accent-warm-red text-white font-semibold rounded transition-colors"
+      <div className="relative max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <p
+            className="category-label text-[#c9a961]"
+            style={{
+              fontFamily:
+                lang === "en"
+                  ? "Satoshi, var(--font-label)"
+                  : "Shabnam, var(--font-label)",
+              fontSize: "clamp(12px, 2vw, 16px)",
+            }}
           >
-            {lang === "en" ? "Contact Sales" : "تماس با فروش"}
-          </Link>
-          <a
-            href="#"
-            download
-            className="px-8 py-3 border-2 border-white hover:bg-white hover:text-dark-overlay text-white font-semibold rounded transition-colors"
+            {lang === "en" ? "Exclusive Sourcing" : "تامین انحصاری"}
+          </p>
+        </div>
+
+        {/* Revamped top part with split layout: Image left, Text/Buttons right */}
+        <div
+          className={`flex flex-col lg:flex-row items-stretch gap-12 lg:gap-20 mb-20 ${
+            isRTL ? "lg:flex-row-reverse" : ""
+          }`}
+        >
+          {/* Image Part */}
+          <div className="flex-1 lg:w-1/2">
+            <div className="relative group overflow-hidden rounded-2xl shadow-2xl h-full min-h-[400px]">
+              <img
+                src="/premium-business-partnership-and-global-logistics.jpg"
+                alt="Partnership"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-2xl" />
+            </div>
+          </div>
+
+          {/* Text & Buttons Part */}
+          <div
+            className={`flex-1 lg:w-1/2 flex flex-col justify-center py-4 lg:py-8 text-center ${
+              isRTL ? "lg:text-right" : "lg:text-left"
+            }`}
           >
-            {lang === "en" ? "Download Catalog" : "دانلود کاتالوگ"}
-          </a>
+            <h2
+              className="section-title mb-8"
+              style={{
+                fontFamily:
+                  lang === "en"
+                    ? "var(--font-hero)"
+                    : "Estedad, var(--font-hero)",
+                fontSize: "clamp(40px, 6vw, 56px)",
+              }}
+            >
+              {lang === "en" ? (
+                <>
+                  Optimal <span className="italic font-light">growth</span>{" "}
+                  meets exquisite design
+                </>
+              ) : (
+                "رشد بهینه با طراحی نفیس"
+              )}
+            </h2>
+
+            <p
+              className="body-text text-foreground/70 max-w-xl mb-12 font-light"
+              style={{
+                fontFamily:
+                  lang === "en"
+                    ? "var(--font-body)"
+                    : "Shabnam, var(--font-body)",
+                fontSize: "clamp(16px, 2vw, 20px)",
+              }}
+            >
+              {lang === "en"
+                ? "Experience a partnership that transforms your supply chain into a functional work of art with our custom global solutions."
+                : "مشارکتی را تجربه کنید که زنجیره تأمین شما را با راهکارهای جهانی سفارشی ما به یک اثر هنری کاربردی تبدیل می‌کند."}
+            </p>
+
+            <div
+              className={`flex flex-col sm:flex-row gap-4 ${
+                isRTL ? "sm:justify-start" : "sm:justify-start"
+              }`}
+            >
+              <Link
+                href={`/${lang}/contact`}
+                className="premium-btn-primary group relative overflow-hidden h-14 w-full sm:w-56 flex items-center justify-center font-bold rounded-full transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(201,169,97,0.4)]"
+              >
+                <span className="relative z-10 text-white transition-colors duration-500">
+                  {lang === "en" ? "Get Started" : "شروع کنید"}
+                </span>
+                <div className="absolute inset-0 bg-[#1a1a1a] transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#c9a961] to-[#a84a3a] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </Link>
+
+              <Link
+                href={`/${lang}/about`}
+                className="premium-btn-outline group relative overflow-hidden h-14 w-full sm:w-56 flex items-center justify-center font-bold rounded-full border border-black/10 transition-all duration-500 hover:border-[#c9a961]"
+              >
+                <span className="relative z-10 transition-colors duration-500 group-hover:text-[#c9a961]">
+                  {lang === "en" ? "Learn More" : "بیشتر بدانید"}
+                </span>
+                <div className="absolute inset-0 bg-white group-hover:bg-[#faf9f6] transition-colors duration-500" />
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom part remains unchanged structure-wise but with slightly updated styles */}
+        <div className="relative pt-16 border-t border-black/5">
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="w-8 h-8 border border-[#c9a961] rounded-full flex items-center justify-center bg-background">
+              <span className="text-xs bg-gradient-to-r from-[#1a1a1a] to-[#a84a3a] bg-clip-text text-transparent">
+                +
+              </span>
+            </div>
+          </div>
+
+          <div className="text-center max-w-3xl mx-auto">
+            <p
+              className="text-xs md:text-sm text-foreground/50 font-semibold uppercase tracking-widest mb-4 md:mb-6 letter-spacing"
+              style={{
+                fontFamily:
+                  lang === "en"
+                    ? "Satoshi, var(--font-label)"
+                    : "Shabnam, var(--font-label)",
+              }}
+            >
+              {lang === "en" ? "Trusted Partnership" : "مشارکت معتبر"}
+            </p>
+
+            <p
+              className="body-text text-foreground/65 font-light"
+              style={{
+                fontFamily:
+                  lang === "en"
+                    ? "var(--font-body)"
+                    : "Shabnam, var(--font-body)",
+                fontSize: "clamp(16px, 2vw, 18px)",
+              }}
+            >
+              {lang === "en"
+                ? "Hundreds of international importers and retailers partner with us for reliability, quality assurance, and specialized B2B support that drives sustainable growth."
+                : "صدها واردکننده و فروشنده بین‌المللی برای قابلیت اعتماد، اطمینان کیفیت و پشتیبانی تخصصی B2B که رشد پایدار را تعزیز می‌کند، با ما مشارکت دارند."}
+            </p>
+
+            <div className="mt-8 md:mt-10 flex justify-center gap-8 md:gap-12 text-foreground/20">
+              <div className="text-center group cursor-default">
+                <p className="text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-[#1a1a1a] to-[#c9a961] bg-clip-text text-transparent transition-all duration-500 group-hover:from-[#c9a961] group-hover:to-[#a84a3a]">
+                  150+
+                </p>
+                <p className="text-xs md:text-sm uppercase tracking-wider text-foreground/50 transition-colors duration-500 group-hover:text-[#c9a961]">
+                  {lang === "en" ? "Partners" : "همکاران"}
+                </p>
+              </div>
+              <div className="w-px bg-gradient-to-b from-transparent via-[#c9a961] to-transparent" />
+              <div className="text-center group cursor-default">
+                <p className="text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-[#1a1a1a] to-[#b8654d] bg-clip-text text-transparent transition-all duration-500 group-hover:from-[#b8654d] group-hover:to-[#a84a3a]">
+                  50+
+                </p>
+                <p className="text-xs md:text-sm uppercase tracking-wider text-foreground/50 transition-colors duration-500 group-hover:text-[#b8654d]">
+                  {lang === "en" ? "Countries" : "کشورها"}
+                </p>
+              </div>
+              <div className="w-px bg-gradient-to-b from-transparent via-[#c9a961] to-transparent" />
+              <div className="text-center group cursor-default">
+                <p className="text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-[#1a1a1a] to-[#c9a961] bg-clip-text text-transparent transition-all duration-500 group-hover:from-[#a84a3a] group-hover:to-[#c9a961]">
+                  20y
+                </p>
+                <p className="text-xs md:text-sm uppercase tracking-wider text-foreground/50 transition-colors duration-500 group-hover:text-[#a84a3a]">
+                  {lang === "en" ? "Experience" : "تجربه"}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
