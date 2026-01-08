@@ -54,33 +54,19 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
   const marketList = lang === "en" ? markets.en : markets.fa;
 
   return (
-    <section id="markets" className="relative overflow-hidden">
-      <div className="relative py-16 px-6 bg-muted">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent opacity-3 rounded-full blur-3xl animate-pulse" />
-          <div
-            className="absolute bottom-20 right-1/4 w-80 h-80 bg-accent opacity-2 rounded-full blur-3xl animate-pulse"
-            style={{ animationDelay: "1.5s" }}
-          />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="inline-block mb-6">
-              <div className="h-1 w-24 bg-accent mx-auto mb-6 relative overflow-hidden rounded-full">
-                <div className="h-full w-full bg-gradient-to-r from-accent via-accent-warm-gold to-accent animate-shimmer" />
-              </div>
+    <section
+      id="markets"
+      className="relative overflow-hidden bg-gradient-to-b from-slate-100/70 via-slate-50/50 to-slate-100/70"
+    >
+      {/* Markets Section */}
+      <div className="relative py-20 md:py-28 px-6">
+        <div className="relative max-w-6xl mx-auto">
+          <div className="text-center mb-20">
+            <div className="mb-8 inline-block">
+              <div className="h-px w-16 bg-accent-warm-gold mx-auto" />
             </div>
 
-            <h2
-              className="section-title mb-8"
-              style={{
-                fontFamily:
-                  lang === "en"
-                    ? "var(--font-hero)"
-                    : "Estedad, var(--font-hero)",
-              }}
-            >
+            <h2 className="section-title mb-6 text-foreground">
               <span
                 className="inline-block animate-fade-in-up"
                 style={{ animationDelay: "0.1s" }}
@@ -88,7 +74,7 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
                 {lang === "en" ? "Global" : "حضور"}
               </span>
               <span
-                className="inline-block ml-4 animate-fade-in-up"
+                className="inline-block ml-3 md:ml-4 text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold to-accent-warm-orange animate-fade-in-up"
                 style={{ animationDelay: "0.2s" }}
               >
                 {lang === "en" ? "Presence" : "جهانی"}
@@ -96,15 +82,8 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
             </h2>
 
             <p
-              className="body-text text-foreground/70 max-w-3xl mx-auto animate-fade-in-up"
-              style={{
-                animationDelay: "0.3s",
-                fontFamily:
-                  lang === "en"
-                    ? "var(--font-body)"
-                    : "Shabnam, var(--font-body)",
-                fontSize: "clamp(16px, 2vw, 18px)",
-              }}
+              className="body-text max-w-2xl mx-auto text-foreground/70 animate-fade-in-up"
+              style={{ animationDelay: "0.3s" }}
             >
               {lang === "en"
                 ? "Serving international importers and retailers across four continents with uncompromising quality and trusted partnerships"
@@ -112,48 +91,32 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-4">
             {marketList.map((market, idx) => (
               <div
                 key={idx}
-                className="group relative h-full animate-slide-in-up overflow-hidden"
+                className="group relative animate-fade-in-up overflow-hidden"
                 style={{ animationDelay: `${idx * 100}ms` }}
               >
-                <div className="relative h-full p-8 bg-white border border-border rounded-xl transition-all duration-300 group-hover:border-foreground/30 group-hover:shadow-lg">
-                  <div className="relative mb-8">
-                    <div className="text-7xl md:text-6xl font-bold text-accent/10 absolute top-0 right-0">
+                <div
+                  className="relative p-8 md:p-10 border border-border/50 rounded-lg transition-all duration-500 ease-out group-hover:border-accent-warm-gold/60 group-hover:shadow-xl"
+                  style={{
+                    backgroundColor: "hsl(var(--card) / 0.8)",
+                  }}
+                >
+                  <div className="mb-8 relative">
+                    <div className="text-4xl md:text-5xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold to-accent-warm-orange">
                       {market.percentage}
-                    </div>
-                    <div className="relative z-10">
-                      <div className="text-2xl font-bold text-accent">
-                        {market.percentage}
-                      </div>
                     </div>
                   </div>
 
-                  <div className="relative mb-4">
-                    <h3
-                      className="text-2xl font-semibold text-primary tracking-tight leading-[1.3]"
-                      style={{
-                        fontFamily:
-                          lang === "en"
-                            ? "var(--font-hero)"
-                            : "Estedad, var(--font-hero)",
-                      }}
-                    >
+                  <div className="mb-4 pb-4 border-b border-border/30">
+                    <h3 className="text-xl md:text-2xl font-semibold text-foreground leading-tight">
                       {market.region}
                     </h3>
                   </div>
 
-                  <p
-                    className="text-sm text-foreground/75 leading-[1.6]"
-                    style={{
-                      fontFamily:
-                        lang === "en"
-                          ? "var(--font-body)"
-                          : "Shabnam, var(--font-body)",
-                    }}
-                  >
+                  <p className="body-text text-foreground/60">
                     {market.countries}
                   </p>
                 </div>
@@ -163,273 +126,87 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
         </div>
       </div>
 
-      <div className="relative py-16 px-6 bg-white">
-        <div className="relative max-w-7xl mx-auto">
-          <div className="relative pt-0 border-t-0">
-            <div className="text-center mb-10">
-              <span
-                className="category-label text-accent-warm-gold mb-6 inline-block"
-                style={{
-                  fontFamily:
-                    lang === "en"
-                      ? "Satoshi, var(--font-label)"
-                      : "Shabnam, var(--font-label)",
-                  fontSize: "clamp(12px, 2vw, 16px)",
-                }}
-              >
-                {lang === "en" ? "Quality Assurance" : "تضمین کیفیت"}
-              </span>
-              <h3
-                className="section-title mb-8"
-                style={{
-                  fontFamily:
-                    lang === "en"
-                      ? "var(--font-hero)"
-                      : "Estedad, var(--font-hero)",
-                }}
-              >
-                {lang === "en" ? "Certified Standards" : "استانداردهای معتبر"}
-              </h3>
-              <p
-                className="body-text text-foreground/70 max-w-3xl mx-auto"
-                style={{
-                  fontFamily:
-                    lang === "en"
-                      ? "var(--font-body)"
-                      : "Shabnam, var(--font-body)",
-                  fontSize: "clamp(16px, 2vw, 18px)",
-                }}
-              >
-                {lang === "en"
-                  ? "International certifications and rigorous quality protocols ensuring excellence in every product"
-                  : "گواهی‌های بین‌المللی و پروتکل‌های کیفی دقیق که تعالی را در هر محصول تضمین می‌کنند"}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                {
-                  label: "ISO 22000",
-                  description:
-                    lang === "en"
-                      ? "Food Safety Management"
-                      : "مدیریت ایمنی مواد غذایی",
-                },
-                {
-                  label: "HACCP",
-                  description:
-                    lang === "en" ? "Hazard Analysis" : "تجزیه و تحلیل خطرات",
-                },
-                {
-                  label: "FSSC 22000",
-                  description:
-                    lang === "en"
-                      ? "Food Safety Certification"
-                      : "گواهی ایمنی مواد غذایی",
-                },
-                {
-                  label: "Halal",
-                  description:
-                    lang === "en"
-                      ? "Certified Halal Products"
-                      : "محصولات معتبر حلال",
-                },
-              ].map((cert, idx) => (
-                <div
-                  key={idx}
-                  className="group relative h-full animate-slide-in-up overflow-hidden"
-                  style={{ animationDelay: `${idx * 100}ms` }}
-                >
-                  <div className="relative h-full p-8 bg-gradient-to-br from-muted/50 to-white border border-border rounded-xl transition-all duration-300 group-hover:border-foreground/20 group-hover:shadow-md text-center">
-                    <div className="mb-4">
-                      <h4
-                        className="text-2xl md:text-3xl font-bold text-foreground tracking-tight leading-[1.3]"
-                        style={{
-                          fontFamily:
-                            lang === "en"
-                              ? "var(--font-hero)"
-                              : "Estedad, var(--font-hero)",
-                        }}
-                      >
-                        {cert.label}
-                      </h4>
-                    </div>
-
-                    <p
-                      className="text-sm md:text-base text-foreground/75 leading-[1.6]"
-                      style={{
-                        fontFamily:
-                          lang === "en"
-                            ? "var(--font-body)"
-                            : "Shabnam, var(--font-body)",
-                      }}
-                    >
-                      {cert.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="relative py-16 px-6 bg-muted/40">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/2 right-1/3 w-96 h-96 bg-accent opacity-2 rounded-full blur-3xl" />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto">
-          <div className="text-center mb-10">
+      {/* Certifications Section */}
+      <div className="relative py-20 md:py-28 px-6 border-t border-border/30">
+        <div className="relative max-w-6xl mx-auto">
+          <div className="text-center mb-20">
             <span
-              className="category-label text-accent-warm-gold mb-6 inline-block"
+              className="inline-block mb-6 px-4 py-2 text-xs md:text-sm font-semibold tracking-widest uppercase text-accent-warm-gold/80 border-b border-accent-warm-gold/30 pb-0"
               style={{
                 fontFamily:
                   lang === "en"
-                    ? "Satoshi, var(--font-label)"
+                    ? "var(--font-label)"
                     : "Shabnam, var(--font-label)",
-                fontSize: "clamp(12px, 2vw, 16px)",
               }}
             >
-              {lang === "en" ? "Global Leadership" : "رهبری جهانی"}
+              {lang === "en" ? "Quality Assurance" : "تضمین کیفیت"}
             </span>
-            <h2
-              className="section-title mb-8"
-              style={{
-                fontFamily:
-                  lang === "en"
-                    ? "var(--font-hero)"
-                    : "Estedad, var(--font-hero)",
-              }}
-            >
-              {lang === "en" ? "International" : "بین‌المللی"}{" "}
-              <span className="relative">
-                {lang === "en" ? "Excellence" : "تعالی"}
-                <span className="absolute bottom-2 left-0 right-0 h-1 bg-accent/40 rounded-full blur-sm" />
+
+            <h3 className="section-title mt-8 mb-6 text-foreground">
+              {lang === "en" ? "Certified" : "معتبر"}{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold to-accent-warm-orange">
+                {lang === "en" ? "Standards" : "استانداردها"}
               </span>
-            </h2>
-            <p
-              className="body-text text-foreground/70 max-w-3xl mx-auto"
-              style={{
-                fontFamily:
-                  lang === "en"
-                    ? "var(--font-body)"
-                    : "Shabnam, var(--font-body)",
-                fontSize: "clamp(16px, 2vw, 18px)",
-              }}
-            >
+            </h3>
+
+            <p className="body-text max-w-2xl mx-auto text-foreground/70">
               {lang === "en"
-                ? "With operations spanning four continents and a commitment to the highest global standards, we deliver premium quality products to discerning partners worldwide."
-                : "با عملیات در چهار قاره و تعهد به بالاترین استانداردهای جهانی، ما محصولات با کیفیت برتر را به شرکای منتخب در سراسر جهان تحویل می‌دهیم."}
+                ? "International certifications and rigorous quality protocols ensuring excellence in every product"
+                : "گواهی‌های بین‌المللی و پروتکل‌های کیفی دقیق که تعالی را در هر محصول تضمین می‌کنند"}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                metric: "4",
-                label: lang === "en" ? "Continents" : "قاره‌ها",
+                label: "ISO 22000",
                 description:
                   lang === "en"
-                    ? "Global reach and presence"
-                    : "دسترسی و حضور جهانی",
+                    ? "Food Safety Management"
+                    : "مدیریت ایمنی مواد غذایی",
               },
               {
-                metric: "50+",
-                label: lang === "en" ? "Countries" : "کشورها",
+                label: "HACCP",
                 description:
-                  lang === "en"
-                    ? "Serving international markets"
-                    : "ارائه خدمات به بازارهای بین‌المللی",
+                  lang === "en" ? "Hazard Analysis" : "تجزیه و تحلیل خطرات",
               },
               {
-                metric: "100%",
-                label: lang === "en" ? "Certified" : "معتبر‌شده",
+                label: "FSSC 22000",
                 description:
                   lang === "en"
-                    ? "ISO and international standards"
-                    : "استانداردهای ISO و بین‌المللی",
+                    ? "Food Safety Certification"
+                    : "گواهی ایمنی مواد غذایی",
               },
               {
-                metric: "20+",
-                label: lang === "en" ? "Years" : "سال",
+                label: "Halal",
                 description:
                   lang === "en"
-                    ? "Industry expertise and trust"
-                    : "تخصص صنعتی و اعتماد",
+                    ? "Certified Halal Products"
+                    : "محصولات معتبر حلال",
               },
-            ].map((item, idx) => (
+            ].map((cert, idx) => (
               <div
                 key={idx}
-                className="relative group animate-slide-in-up overflow-hidden"
+                className="group relative animate-fade-in-up"
                 style={{ animationDelay: `${idx * 100}ms` }}
               >
-                <div className="relative p-8 bg-white border border-border rounded-2xl transition-all duration-300 group-hover:border-foreground/30 group-hover:shadow-lg text-center h-full flex flex-col justify-center items-center">
+                <div
+                  className="relative p-8 md:p-10 border border-border/50 rounded-lg transition-all duration-500 ease-out group-hover:border-accent-warm-gold/60 group-hover:shadow-xl text-center flex flex-col justify-center items-center h-full"
+                  style={{
+                    backgroundColor: "hsl(var(--card) / 0.8)",
+                  }}
+                >
                   <div className="mb-6">
-                    <p className="font-serif text-5xl md:text-6xl font-bold text-accent">
-                      {item.metric}
-                    </p>
+                    <h4 className="text-3xl md:text-4xl font-serif font-bold text-accent-warm-gold group-hover:text-accent-warm-orange transition-colors duration-500">
+                      {cert.label}
+                    </h4>
                   </div>
-                  <div className="mb-3">
-                    <h3
-                      className="text-xl md:text-2xl font-bold text-foreground tracking-tight leading-[1.3]"
-                      style={{
-                        fontFamily:
-                          lang === "en"
-                            ? "var(--font-hero)"
-                            : "Estedad, var(--font-hero)",
-                      }}
-                    >
-                      {item.label}
-                    </h3>
-                  </div>
-                  <p
-                    className="text-sm md:text-base text-foreground/75 leading-[1.6]"
-                    style={{
-                      fontFamily:
-                        lang === "en"
-                          ? "var(--font-body)"
-                          : "Shabnam, var(--font-body)",
-                    }}
-                  >
-                    {item.description}
+                  <p className="body-text text-foreground/60">
+                    {cert.description}
                   </p>
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="mt-12 pt-8">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
-              <p
-                className="text-sm md:text-base text-muted-foreground font-medium tracking-widest uppercase px-4"
-                style={{
-                  fontFamily:
-                    lang === "en"
-                      ? "Satoshi, var(--font-label)"
-                      : "Shabnam, var(--font-label)",
-                }}
-              >
-                {lang === "en" ? "Trusted Globally" : "مورد اعتماد جهانی"}
-              </p>
-              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
-            </div>
-
-            <p
-              className="text-center body-text text-foreground max-w-4xl mx-auto animate-fade-in-up"
-              style={{
-                fontFamily:
-                  lang === "en"
-                    ? "var(--font-body)"
-                    : "Shabnam, var(--font-body)",
-                fontSize: "clamp(16px, 2vw, 18px)",
-              }}
-            >
-              {lang === "en"
-                ? "Across Europe, the Middle East, Asia, and the Americas, our unwavering commitment to excellence and quality standards has established lasting partnerships with the world's most discerning importers and retailers."
-                : "در سراسر اروپا، خاورمیانه، آسیا و آمریکا، تعهد بدون تزلزل ما به تعالی و استانداردهای کیفیت روابط طولانی‌مدتی را با واردکنندگان و فروشندگان منتخب جهان ایجاد کرده است."}
-            </p>
           </div>
         </div>
       </div>
@@ -438,7 +215,7 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
         @keyframes fadeInUp {
           from {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(16px);
           }
           to {
             opacity: 1;
@@ -448,16 +225,6 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
         .animate-fade-in-up {
           animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
           opacity: 0;
-        }
-        .section-title {
-          font-size: clamp(2rem, 5vw, 3rem);
-          line-height: 1.1;
-        }
-        .body-text {
-          font-size: clamp(1rem, 3vw, 1.125rem);
-        }
-        .category-label {
-          font-weight: 600;
         }
       `}</style>
     </section>
