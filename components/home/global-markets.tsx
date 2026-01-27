@@ -59,13 +59,9 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
       className="relative overflow-hidden bg-gradient-to-b from-slate-100/70 via-slate-50/50 to-slate-100/70"
     >
       {/* Markets Section */}
-      <div className="relative py-20 md:py-28 px-6">
+      <div className="relative py-12 md:py-16 px-6">
         <div className="relative max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <div className="mb-8 inline-block">
-              <div className="h-px w-16 bg-accent-warm-gold mx-auto" />
-            </div>
-
+          <div className="text-center mb-14">
             <h2 className="section-title mb-6 text-foreground">
               <span
                 className="inline-block animate-fade-in-up"
@@ -104,8 +100,8 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
                     backgroundColor: "hsl(var(--card) / 0.8)",
                   }}
                 >
-                  <div className="mb-8 relative">
-                    <div className="text-4xl md:text-5xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold to-accent-warm-orange">
+                  <div className="mb-6 relative">
+                    <div className="text-4xl md:text-5xl font-sans font-bold text-accent-warm-gold">
                       {market.percentage}
                     </div>
                   </div>
