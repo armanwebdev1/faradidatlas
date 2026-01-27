@@ -213,7 +213,7 @@ export function Header({ lang }: HeaderProps) {
                     {item.label}
                   </span>
                   <span
-                    className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-opacity duration-200 ${
+                    className={`absolute bottom-0 left-0 right-0 h-1 bg-primary transition-opacity duration-200 ${
                       active ? "opacity-100" : "opacity-0"
                     }`}
                   />

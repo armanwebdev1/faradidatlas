@@ -133,6 +133,15 @@ export function Hero({ lang }: HeroProps) {
     };
   }, [currentSlide]);
 
+  // Auto-slide effect
+  useEffect(() => {
+    const autoSlideInterval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 6000); // Auto-advance every 6 seconds
+
+    return () => clearInterval(autoSlideInterval);
+  }, []);
+
   const slide = slides[currentSlide];
 
   return (
