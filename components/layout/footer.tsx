@@ -40,22 +40,23 @@ export function Footer({ lang }: FooterProps) {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-16 lg:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-16">
-          {/* Brand section */}
-          <div className="lg:col-span-1 flex flex-col justify-between">
-            <div className="mb-8">
-              <h3 className="text-2xl lg:text-3xl font-bold mb-4 tracking-tight">
-                <span className="bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
-                  FaraDid
-                </span>
-              </h3>
-              <p className="text-sm text-white/70 leading-relaxed font-light">
-                Global premium food trading with international standards and
-                certified excellence.
-              </p>
-            </div>
-            <div className="flex gap-4 items-center">
+      <div className="relative z-10 w-full px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24">
+        <div className="container-wide">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-10 mb-12 sm:mb-16">
+            {/* Brand section */}
+            <div className="lg:col-span-1 flex flex-col justify-between">
+              <div className="mb-8">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 tracking-tight">
+                  <span className="bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
+                    FaraDid
+                  </span>
+                </h3>
+                <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-light">
+                  Global premium food trading with international standards and
+                  certified excellence.
+                </p>
+              </div>
+              <div className="flex gap-3 sm:gap-4 items-center">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
@@ -72,10 +73,10 @@ export function Footer({ lang }: FooterProps) {
             </div>
           </div>
 
-          {/* Navigation sections */}
+          {/* Navigation sections - responsive */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-widest mb-6 text-accent/90">
-              Navigation
+            <h4 className="text-xs font-semibold uppercase tracking-widest mb-4 sm:mb-6 text-accent/90">
+              {lang === "en" ? "Navigation" : "ناوبری"}
             </h4>
             <ul className="space-y-4">
               <li>

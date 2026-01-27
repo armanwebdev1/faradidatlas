@@ -112,40 +112,40 @@ export function Header({ lang }: HeaderProps) {
           isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
-        {/* Row 1: Logo, Search (centered), Language Dropdown */}
+        {/* Row 1: Logo, Search (centered on desktop), Language Dropdown */}
         <div className="relative backdrop-blur-md bg-white/80 border-b border-border/30">
-          <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            {/* Logo */}
+          <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
+            {/* Logo - Mobile Friendly */}
             <Link
               href={`/${lang}`}
-              className="text-xl font-bold tracking-tight text-primary hover:text-primary/80 transition-colors shrink-0"
+              className="text-lg sm:text-xl font-bold tracking-tight text-primary hover:text-primary/80 transition-colors shrink-0"
             >
               FaraDid
             </Link>
 
-            {/* Centered Search Box */}
-            <div className="flex-1 flex justify-center px-4">
+            {/* Centered Search Box - Hidden on mobile, visible on desktop */}
+            <div className="hidden md:flex flex-1 justify-center px-4">
               <div className="relative w-full max-w-md">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5 pointer-events-none" />
                 <input
                   type="search"
-                  placeholder="Search..."
-                  className="pl-12 pr-4 py-2.5 text-sm border border-border/50 rounded-full bg-white/50 text-foreground placeholder-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/50 w-full transition-all hover:border-border/70"
-                  aria-label="Search"
+                  placeholder={lang === "en" ? "Search..." : "جستجو..."}
+                  className="pl-12 pr-4 py-2 text-sm border border-border/50 rounded-full bg-white/50 text-foreground placeholder-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/50 w-full transition-all hover:border-border/70"
+                  aria-label={lang === "en" ? "Search" : "جستجو"}
                 />
               </div>
             </div>
 
-            {/* Language Dropdown */}
+            {/* Language Dropdown - Responsive */}
             <div className="relative shrink-0" ref={langRef}>
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                aria-label="Select language"
+                aria-label={lang === "en" ? "Select language" : "انتخاب زبان"}
                 aria-expanded={isLangOpen}
-                className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-primary/5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-primary/5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/30"
               >
-                <span className="text-lg">{lang === "en" ? "🇺🇸" : "🇮🇷"}</span>
-                <span className="text-sm font-medium text-foreground">
+                <span className="text-base sm:text-lg">{lang === "en" ? "🇺🇸" : "🇮🇷"}</span>
+                <span className="hidden sm:inline text-sm font-medium text-foreground">
                   {lang === "en" ? "English" : "فارسی"}
                 </span>
                 <ChevronDown
@@ -182,9 +182,9 @@ export function Header({ lang }: HeaderProps) {
           </div>
         </div>
 
-        {/* Row 2: Navigation Links */}
+        {/* Row 2: Navigation Links - Desktop Only */}
         <nav className="relative z-30 backdrop-blur-md bg-white/70 hidden lg:block border-b border-border/30">
-          <div className="max-w-7xl mx-auto px-6 h-12 flex items-center justify-center gap-8">
+          <div className="w-full px-6 h-12 flex items-center justify-center gap-4 lg:gap-8">
             {navItems.map((item) => {
               const active = isActive(item.href);
               const { Icon } = item;
@@ -226,7 +226,8 @@ export function Header({ lang }: HeaderProps) {
 
       {isLangOpen && (
         <div
-          className="fixed top-16 right-6 w-48 bg-white/95 backdrop-blur-md border border-border/20 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+          dir={dir}
+          className={`fixed top-16 ${isRTL ? "left-4 sm:left-6" : "right-4 sm:right-6"} w-44 sm:w-48 bg-white/95 backdrop-blur-md border border-border/20 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200`}
           role="menu"
         >
           {/* Subtle gradient header */}
@@ -275,7 +276,38 @@ export function Header({ lang }: HeaderProps) {
         </div>
       )}
 
-      <div className="h-28 lg:h-28" />
+      {/* Mobile Menu - Full Screen Overlay */}
+      {isOpen && (
+        <div className="fixed inset-0 top-16 z-30 lg:hidden bg-white/95 backdrop-blur-md border-b border-border/30 animate-in fade-in slide-in-from-top-8 duration-200">
+          <nav className="flex flex-col space-y-1 p-4">
+            {navItems.map((item) => {
+              const active = isActive(item.href);
+              const { Icon } = item;
+              return (
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                    active
+                      ? "bg-primary/10 text-primary font-semibold"
+                      : "text-foreground hover:bg-muted/50"
+                  }`}
+                >
+                  <Icon
+                    size={20}
+                    className={active ? "scale-110" : ""}
+                  />
+                  <span>{item.label}</span>
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+      )}
+
+      {/* Header spacing - responsive */}
+      <div className="h-16 sm:h-16 md:h-28" />
     </>
   );
 }
