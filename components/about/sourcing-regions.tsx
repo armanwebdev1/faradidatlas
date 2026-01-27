@@ -1,6 +1,7 @@
 "use client"
 
 import type { Language } from "@/lib/i18n"
+import { useEffect, useRef } from "react"
 
 interface SourcingRegionsProps {
   lang: Language
@@ -12,21 +13,25 @@ const regions = {
       name: "Khorasan",
       specialty: "Saffron, Premium Nuts",
       description: "High-altitude farming with ideal climate for saffron cultivation",
+      icon: "🏔️"
     },
     {
       name: "Yazd",
       specialty: "Dates, Dried Fruits",
       description: "Desert oasis with centuries of date cultivation expertise",
+      icon: "🏜️"
     },
     {
       name: "Rafsanjan",
       specialty: "Pistachios, Tree Nuts",
       description: "World-renowned pistachio region with superior quality",
+      icon: "🌳"
     },
     {
       name: "Various Regions",
       specialty: "Herbs, Spices",
       description: "Diverse producers ensuring product variety and consistency",
+      icon: "🌿"
     },
   ],
   fa: [
@@ -34,47 +39,78 @@ const regions = {
       name: "خراسان",
       specialty: "زعفران، آجیل‌های پرمیوم",
       description: "کشاورزی در ارتفاع‌های بالا با آب‌وهوای مناسب برای کشت زعفران",
+      icon: "🏔️"
     },
     {
       name: "یزد",
       specialty: "خرما، میوه‌های خشک",
       description: "واحه صحرایی با تجربه چند قرنی در کشت خرما",
+      icon: "🏜️"
     },
     {
       name: "رفسنجان",
       specialty: "فستق، آجیل‌های درختی",
       description: "منطقه جهان‌شهری فستق با کیفیت برتر",
+      icon: "🌳"
     },
     {
       name: "منطقه‌های مختلف",
       specialty: "گیاهان، ادویه‌جات",
       description: "تولیدکنندگان متنوع که تنوع و پایداری محصول را تضمین می‌کنند",
+      icon: "🌿"
     },
   ],
 }
 
 export function SourcingRegions({ lang }: SourcingRegionsProps) {
   const regionList = lang === "en" ? regions.en : regions.fa
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const elements = containerRef.current?.querySelectorAll('.card-animate')
+    elements?.forEach((el, index) => {
+      (el as HTMLElement).style.animationDelay = `${index * 0.1}s`
+      (el as HTMLElement).classList.add('animate-fade-in-up')
+    })
+  }, [])
 
   return (
-    <section className="py-24 px-6 bg-background">
+    <section className="relative py-32 px-6 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+      {/* Decorative gradient */}
+      <div className="absolute top-20 right-10 w-80 h-80 bg-gradient-to-br from-amber-100/20 to-transparent rounded-full blur-3xl -z-10" />
+      
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-5xl font-bold text-primary text-center mb-4">Sourcing Regions</h2>
-        <p className="text-xl text-neutral text-center mb-16 max-w-2xl mx-auto">
-          {lang === "en"
-            ? "Direct partnerships with premium producers in Iran's most renowned agricultural regions"
-            : "مشارکت‌های مستقیم با تولیدکنندگان برتر در معروف‌ترین مناطق کشاورزی ایران"}
-        </p>
+        <div className="text-center mb-20">
+          <h2 className="text-5xl md:text-6xl font-bold text-primary mb-6 tracking-tight">
+            {lang === "en" ? "Sourcing Regions" : "مناطق تأمین"}
+          </h2>
+          <div className="divider-premium w-24 h-1 mx-auto mb-8" />
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+            {lang === "en"
+              ? "Direct partnerships with premium producers in Iran's most renowned agricultural regions"
+              : "مشارکت‌های مستقیم با تولیدکنندگان برتر در معروف‌ترین مناطق کشاورزی ایران"}
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" ref={containerRef}>
           {regionList.map((region, idx) => (
             <div
               key={idx}
-              className="p-8 bg-white rounded-lg border border-border hover:border-primary transition-all duration-300 hover:shadow-md"
+              className="card-animate group relative p-8 bg-white rounded-xl border border-gray-200 hover:border-amber-300 hover:shadow-xl transition-all duration-500 cursor-pointer overflow-hidden"
             >
-              <h3 className="text-2xl font-bold text-primary mb-2">{region.name}</h3>
-              <p className="text-sm font-semibold text-accent mb-4">{region.specialty}</p>
-              <p className="text-sm text-neutral leading-relaxed">{region.description}</p>
+              {/* Hover gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+              
+              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                {region.icon}
+              </div>
+              
+              <h3 className="text-xl font-bold text-primary mb-2">{region.name}</h3>
+              <p className="text-sm font-semibold text-amber-700 mb-3">{region.specialty}</p>
+              <p className="text-sm text-gray-600 leading-relaxed">{region.description}</p>
+
+              {/* Bottom accent line */}
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-amber-300 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
           ))}
         </div>

@@ -30,36 +30,50 @@ export default function ProductsPage() {
       <Header lang={lang} />
       <main>
         {/* Hero */}
-        <section className="py-12 px-6 bg-background">
+        <section className="relative py-24 px-6 bg-gradient-to-b from-white via-white to-gray-50 overflow-hidden">
+          {/* Decorative elements */}
+          <div className="absolute top-10 right-0 w-96 h-96 bg-gradient-to-bl from-amber-100/20 to-transparent rounded-full blur-3xl -z-10" />
+          
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold text-primary mb-4">
+            <div className="mb-6 inline-block px-4 py-2 bg-amber-100/50 rounded-full border border-amber-200/50">
+              <span className="text-sm font-semibold text-primary">
+                {lang === "en" ? "Premium Selection" : "انتخاب برتر"}
+              </span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold text-primary mb-6 tracking-tight">
               {lang === "en" ? "Our Products" : "محصولات ما"}
             </h1>
-            <p className="text-lg text-neutral max-w-2xl">
+            <div className="divider-premium w-24 h-1 mb-8" />
+            <p className="text-lg text-gray-700 max-w-2xl leading-relaxed">
               {lang === "en"
-                ? "Browse our complete catalog of premium food products, all certified for international export."
-                : "کاتالوگ کامل محصولات غذایی برتر ما را مرور کنید، همه‌ی آنها برای صادرات بین‌المللی معتبر هستند."}
+                ? "Browse our complete catalog of premium food products, all certified for international export with exceptional quality standards."
+                : "کاتالوگ کامل محصولات غذایی برتر ما را مرور کنید، همه‌ی آنها برای صادرات بین‌المللی معتبر و با استانداردهای کیفیتی استثنایی هستند."}
             </p>
           </div>
         </section>
 
         {/* Products */}
-        <section className="py-16 px-6">
+        <section className="py-24 px-6 bg-white">
           <div className="max-w-7xl mx-auto">
             {/* Controls */}
-            <div className="flex flex-col lg:flex-row gap-8 mb-12">
-              <div className="lg:w-64 flex-shrink-0">
-                <Filters lang={lang} products={products} onFilter={handleFilter} />
+            <div className="flex flex-col lg:flex-row gap-12 mb-16">
+              <div className="lg:w-72 flex-shrink-0">
+                <div className="sticky top-32">
+                  <h3 className="text-lg font-semibold text-primary mb-6">
+                    {lang === "en" ? "Filters" : "فیلترها"}
+                  </h3>
+                  <Filters lang={lang} products={products} onFilter={handleFilter} />
+                </div>
               </div>
 
               <div className="flex-1">
                 {/* Sorting */}
-                <div className="mb-8 flex justify-between items-start">
+                <div className="mb-12 flex flex-col md:flex-row md:justify-between md:items-end gap-6">
                   <div>
-                    <h2 className="text-2xl font-bold text-primary mb-2">
+                    <h2 className="text-3xl font-bold text-primary mb-3">
                       {sortedProducts.length} {lang === "en" ? "Products" : "محصول"}
                     </h2>
-                    <p className="text-sm text-neutral">
+                    <p className="text-gray-600">
                       {lang === "en"
                         ? "All products are certified and ready for export"
                         : "تمام محصولات معتبر و آماده صادرات هستند"}
@@ -70,14 +84,16 @@ export default function ProductsPage() {
 
                 {/* Grid */}
                 {sortedProducts.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {sortedProducts.map((product) => (
-                      <ProductCard key={product.id} product={product} lang={lang} />
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {sortedProducts.map((product, idx) => (
+                      <div key={product.id} className="animate-fade-in-up" style={{ animationDelay: `${idx * 0.1}s` }}>
+                        <ProductCard product={product} lang={lang} />
+                      </div>
                     ))}
                   </div>
                 ) : (
-                  <div className="text-center py-16">
-                    <p className="text-lg text-neutral">{lang === "en" ? "No products found" : "محصولی پیدا نشد"}</p>
+                  <div className="text-center py-20">
+                    <p className="text-lg text-gray-600">{lang === "en" ? "No products found" : "محصولی پیدا نشد"}</p>
                   </div>
                 )}
               </div>
