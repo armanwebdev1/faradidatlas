@@ -19,7 +19,7 @@ const products: Product[] = [
     id: 1,
     name: "Heritage Spice Blend",
     category: "Premium Spices",
-    image: "/premium-spice-blend-package.jpg",
+    image: "/featured1.jpg",
     description:
       "Carefully curated blend of the finest spices from around the world",
   },
@@ -27,7 +27,7 @@ const products: Product[] = [
     id: 2,
     name: "Golden Olive Oil",
     category: "Specialty Oils",
-    image: "/premium-olive-oil-bottle.jpg",
+    image: "/featured2.jpg",
     description:
       "Cold-pressed extra virgin olive oil from Mediterranean estates",
   },
@@ -35,7 +35,7 @@ const products: Product[] = [
     id: 3,
     name: "Artisan Coffee Selection",
     category: "Premium Coffee",
-    image: "/luxury-coffee-beans-package.jpg",
+    image: "/featured3.jpg",
     description:
       "Single-origin, hand-roasted coffee beans from exclusive plantations",
   },
@@ -43,7 +43,7 @@ const products: Product[] = [
     id: 4,
     name: "Saffron Reserve",
     category: "Precious Ingredients",
-    image: "/premium-saffron-packaging.jpg",
+    image: "/featured4.jpg",
     description:
       "Premium grade saffron threads sourced directly from renowned producers",
   },
@@ -51,7 +51,7 @@ const products: Product[] = [
     id: 5,
     name: "Pure Vanilla Extract",
     category: "Gourmet Essentials",
-    image: "/vanilla-extract-luxury-bottle.jpg",
+    image: "/featured5.jpg",
     description:
       "Madagascar vanilla beans processed to perfection for culinary excellence",
   },

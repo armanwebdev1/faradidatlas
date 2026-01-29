@@ -59,13 +59,9 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
       className="relative overflow-hidden bg-gradient-to-b from-slate-100/70 via-slate-50/50 to-slate-100/70"
     >
       {/* Markets Section */}
-      <div className="relative py-20 md:py-28 px-6">
+      <div className="relative py-12 md:py-16 px-6">
         <div className="relative max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <div className="mb-8 inline-block">
-              <div className="h-px w-16 bg-accent-warm-gold mx-auto" />
-            </div>
-
+          <div className="text-center mb-14">
             <h2 className="section-title mb-6 text-foreground">
               <span
                 className="inline-block animate-fade-in-up"
@@ -104,8 +100,8 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
                     backgroundColor: "hsl(var(--card) / 0.8)",
                   }}
                 >
-                  <div className="mb-8 relative">
-                    <div className="text-4xl md:text-5xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold to-accent-warm-orange">
+                  <div className="mb-6 relative">
+                    <div className="text-4xl md:text-5xl font-sans font-bold text-accent-warm-gold">
                       {market.percentage}
                     </div>
                   </div>
@@ -118,91 +114,6 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
 
                   <p className="body-text text-foreground/60">
                     {market.countries}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Certifications Section */}
-      <div className="relative py-20 md:py-28 px-6 border-t border-border/30">
-        <div className="relative max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <span
-              className="inline-block mb-6 px-4 py-2 text-xs md:text-sm font-semibold tracking-widest uppercase text-accent-warm-gold/80 border-b border-accent-warm-gold/30 pb-0"
-              style={{
-                fontFamily:
-                  lang === "en"
-                    ? "var(--font-label)"
-                    : "Shabnam, var(--font-label)",
-              }}
-            >
-              {lang === "en" ? "Quality Assurance" : "تضمین کیفیت"}
-            </span>
-
-            <h3 className="section-title mt-8 mb-6 text-foreground">
-              {lang === "en" ? "Certified" : "معتبر"}{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold to-accent-warm-orange">
-                {lang === "en" ? "Standards" : "استانداردها"}
-              </span>
-            </h3>
-
-            <p className="body-text max-w-2xl mx-auto text-foreground/70">
-              {lang === "en"
-                ? "International certifications and rigorous quality protocols ensuring excellence in every product"
-                : "گواهی‌های بین‌المللی و پروتکل‌های کیفی دقیق که تعالی را در هر محصول تضمین می‌کنند"}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                label: "ISO 22000",
-                description:
-                  lang === "en"
-                    ? "Food Safety Management"
-                    : "مدیریت ایمنی مواد غذایی",
-              },
-              {
-                label: "HACCP",
-                description:
-                  lang === "en" ? "Hazard Analysis" : "تجزیه و تحلیل خطرات",
-              },
-              {
-                label: "FSSC 22000",
-                description:
-                  lang === "en"
-                    ? "Food Safety Certification"
-                    : "گواهی ایمنی مواد غذایی",
-              },
-              {
-                label: "Halal",
-                description:
-                  lang === "en"
-                    ? "Certified Halal Products"
-                    : "محصولات معتبر حلال",
-              },
-            ].map((cert, idx) => (
-              <div
-                key={idx}
-                className="group relative animate-fade-in-up"
-                style={{ animationDelay: `${idx * 100}ms` }}
-              >
-                <div
-                  className="relative p-8 md:p-10 border border-border/50 rounded-lg transition-all duration-500 ease-out group-hover:border-accent-warm-gold/60 group-hover:shadow-xl text-center flex flex-col justify-center items-center h-full"
-                  style={{
-                    backgroundColor: "hsl(var(--card) / 0.8)",
-                  }}
-                >
-                  <div className="mb-6">
-                    <h4 className="text-3xl md:text-4xl font-serif font-bold text-accent-warm-gold group-hover:text-accent-warm-orange transition-colors duration-500">
-                      {cert.label}
-                    </h4>
-                  </div>
-                  <p className="body-text text-foreground/60">
-                    {cert.description}
                   </p>
                 </div>
               </div>

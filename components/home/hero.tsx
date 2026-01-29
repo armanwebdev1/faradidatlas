@@ -9,12 +9,10 @@ interface HeroProps {
   lang: Language;
 }
 
-// Sample slide data with image URLs
-// Sample slide data with local image URLs
 const slides = [
   {
     id: 1,
-    image: "/1.jpg", // or /1.png depending on your file extension
+    image: "/1.jpg",
     title: { en: "Premium Global Foods", fa: "غذاهای اول درجه جهانی" },
     subtitle: { en: "Exceptional Quality", fa: "کیفیت برتر" },
     description: {
@@ -46,31 +44,25 @@ const slides = [
 
 export function Hero({ lang }: HeroProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
+
   const containerRef = useRef<HTMLDivElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
   const titleLine1Ref = useRef<HTMLSpanElement>(null);
   const titleLine2Ref = useRef<HTMLSpanElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
+
   const isRTL = lang === "fa";
 
-  // Handle slide transitions
   const goToSlide = (index: number) => {
     setCurrentSlide((index + slides.length) % slides.length);
   };
 
-  const nextSlide = () => {
-    goToSlide(currentSlide + 1);
-  };
+  const nextSlide = () => goToSlide(currentSlide + 1);
+  const prevSlide = () => goToSlide(currentSlide - 1);
 
-  const prevSlide = () => {
-    goToSlide(currentSlide - 1);
-  };
-
-  // GSAP animation for text content
   useEffect(() => {
     const timeline = gsap.timeline();
 
-    // Reset and animate on slide change
     gsap.set(
       [
         subtitleRef.current,
@@ -78,22 +70,15 @@ export function Hero({ lang }: HeroProps) {
         titleLine2Ref.current,
         descriptionRef.current,
       ],
-      {
-        opacity: 0,
-        y: 60,
-      }
+      { opacity: 0, y: 60 },
     );
 
-    timeline.to(
-      subtitleRef.current,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.9,
-        ease: "cubic-bezier(0.22, 1, 0.36, 1)",
-      },
-      0.1
-    );
+    timeline.to(subtitleRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 0.9,
+      ease: "cubic-bezier(0.22, 1, 0.36, 1)",
+    });
 
     timeline.to(
       titleLine1Ref.current,
@@ -103,7 +88,7 @@ export function Hero({ lang }: HeroProps) {
         duration: 1,
         ease: "cubic-bezier(0.22, 1, 0.36, 1)",
       },
-      0.3
+      0.2,
     );
 
     timeline.to(
@@ -114,7 +99,7 @@ export function Hero({ lang }: HeroProps) {
         duration: 1,
         ease: "cubic-bezier(0.22, 1, 0.36, 1)",
       },
-      0.5
+      0.4,
     );
 
     timeline.to(
@@ -125,7 +110,7 @@ export function Hero({ lang }: HeroProps) {
         duration: 1,
         ease: "cubic-bezier(0.22, 1, 0.36, 1)",
       },
-      0.7
+      0.6,
     );
 
     return () => {
@@ -133,11 +118,20 @@ export function Hero({ lang }: HeroProps) {
     };
   }, [currentSlide]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const slide = slides[currentSlide];
 
   return (
     <div
       ref={containerRef}
+      dir={isRTL ? "rtl" : "ltr"}
       className="relative h-screen w-full overflow-hidden bg-neutral-900"
     >
       <div className="relative h-full w-full">
@@ -160,54 +154,44 @@ export function Hero({ lang }: HeroProps) {
 
       <button
         onClick={prevSlide}
-        className={`absolute top-1/2 -translate-y-1/2 z-20 group transition-all duration-300 ${
+        aria-label="Previous slide"
+        className={`absolute top-1/2 -translate-y-1/2 z-20 ${
           isRTL ? "right-8" : "left-8"
         }`}
-        aria-label="Previous slide"
       >
-        <div className="p-3 rounded-full bg-white/10 backdrop-blur-sm group-hover:bg-white/20 transition-all duration-300">
-          <MdChevronLeft
-            size={28}
-            className="text-white group-hover:scale-110 transition-transform"
-          />
+        <div className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition">
+          <MdChevronLeft size={28} className="text-white" />
         </div>
       </button>
 
       <button
         onClick={nextSlide}
-        className={`absolute top-1/2 -translate-y-1/2 z-20 group transition-all duration-300 ${
+        aria-label="Next slide"
+        className={`absolute top-1/2 -translate-y-1/2 z-20 ${
           isRTL ? "left-8" : "right-8"
         }`}
-        aria-label="Next slide"
       >
-        <div className="p-3 rounded-full bg-white/10 backdrop-blur-sm group-hover:bg-white/20 transition-all duration-300">
-          <MdChevronRight
-            size={28}
-            className="text-white group-hover:scale-110 transition-transform"
-          />
+        <div className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition">
+          <MdChevronRight size={28} className="text-white" />
         </div>
       </button>
 
-      <div
-        className={`absolute bottom-0 left-0 right-0 z-10 ${
-          isRTL ? "text-right" : "text-left"
-        }`}
-      >
+      <div className="absolute bottom-0 inset-x-0 z-10">
         <div
           className={`max-w-5xl px-8 md:px-32 pb-20 md:pb-28 ${
-            isRTL ? "mr-auto" : "ml-0"
+            isRTL ? "mr-auto text-right" : "ml-auto text-left"
           }`}
         >
           <p
             ref={subtitleRef}
-            className="subtitle text-accent-warm-gold mb-6 font-label font-medium tracking-[0.2em] uppercase"
+            className="mb-6 font-label font-medium tracking-[0.2em] uppercase text-accent-warm-gold"
             style={{ fontSize: "clamp(14px, 2.5vw, 20px)" }}
           >
             {slide.subtitle[lang]}
           </p>
 
           <h1
-            className="hero-title font-hero mb-8"
+            className="mb-8 font-hero text-white"
             style={{
               fontFamily:
                 lang === "en"
@@ -215,23 +199,17 @@ export function Hero({ lang }: HeroProps) {
                   : "Estedad, var(--font-hero)",
             }}
           >
-            <span
-              ref={titleLine1Ref}
-              className="text-reveal-item block text-white"
-            >
+            <span ref={titleLine1Ref} className="block">
               {slide.title[lang].split(" ")[0]}
             </span>
-            <span
-              ref={titleLine2Ref}
-              className="text-reveal-item block text-white"
-            >
+            <span ref={titleLine2Ref} className="block">
               {slide.title[lang].split(" ").slice(1).join(" ")}
             </span>
           </h1>
 
           <p
             ref={descriptionRef}
-            className="body-text text-white/85 max-w-2xl leading-[1.6] mb-10"
+            className="mb-10 max-w-2xl leading-[1.6] text-white/85"
             style={{
               fontSize: "clamp(16px, 2vw, 18px)",
               fontFamily:
@@ -243,17 +221,17 @@ export function Hero({ lang }: HeroProps) {
             {slide.description[lang]}
           </p>
 
-          <div className="flex gap-2">
+          <div className={`flex gap-2 ${isRTL ? "flex-row-reverse" : ""}`}>
             {slides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
+                aria-label={`Go to slide ${index + 1}`}
                 className={`h-1 transition-all duration-500 ${
                   index === currentSlide
                     ? "w-12 bg-white"
                     : "w-6 bg-white/40 hover:bg-white/60"
                 }`}
-                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>
