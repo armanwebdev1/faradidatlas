@@ -48,8 +48,8 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
     <div dir={lang === "fa" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
-        {/* Breadcrumb */}
-        <nav className="max-w-7xl mx-auto px-6 py-4 text-sm text-neutral">
+        {/* Breadcrumb - responsive */}
+        <nav className="container-wide px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm text-neutral">
           <Link href={`/${lang}`} className="hover:text-primary">
             {lang === "en" ? "Home" : "خانه"}
           </Link>
@@ -58,92 +58,99 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
             {lang === "en" ? "Products" : "محصولات"}
           </Link>
           {" / "}
-          <span className="text-foreground font-medium">{name}</span>
+          <span className="text-foreground font-medium line-clamp-1">{name}</span>
         </nav>
 
-        {/* Content */}
-        <section className="py-16 px-6">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Image */}
-            <div className="relative aspect-square bg-background rounded-lg overflow-hidden border border-border">
-              <Image src={product.image || "/placeholder.svg"} alt={name} fill className="object-cover" />
+        {/* Content - responsive grid */}
+        <section className="space-responsive px-4 sm:px-6">
+          <div className="container-wide grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            {/* Image - responsive aspect ratio */}
+            <div className="relative aspect-square sm:aspect-auto sm:h-96 md:h-full bg-background rounded-lg overflow-hidden border border-gray-200">
+              <Image 
+                src={product.image || "/placeholder.svg"} 
+                alt={name} 
+                fill 
+                className="object-cover"
+                priority
+              />
             </div>
 
-            {/* Info */}
-            <div>
-              <h1 className="text-5xl font-bold text-primary mb-4">{name}</h1>
-              <p className="text-xl text-neutral mb-6">{description}</p>
+            {/* Info - responsive typography and spacing */}
+            <div className="flex flex-col">
+              <h1 className="text-responsive-title text-primary mb-3 sm:mb-4 leading-tight">{name}</h1>
+              <p className="text-responsive-body text-gray-700 mb-6 sm:mb-8 leading-relaxed">{description}</p>
 
-              {/* Key specs */}
-              <div className="grid grid-cols-2 gap-6 mb-8 p-6 bg-background rounded-lg border border-border">
+              {/* Key specs - responsive grid */}
+              <div className="grid grid-cols-2 gap-3 sm:gap-6 mb-8 sm:mb-10 p-4 sm:p-6 bg-gray-50 rounded-lg border border-gray-200">
                 <div>
-                  <p className="text-xs font-medium text-neutral uppercase mb-2">{lang === "en" ? "Origin" : "منشأ"}</p>
-                  <p className="text-lg font-semibold text-primary">{product.origin}</p>
+                  <p className="text-xs font-medium text-gray-600 uppercase mb-1 sm:mb-2">{lang === "en" ? "Origin" : "منشأ"}</p>
+                  <p className="text-base sm:text-lg font-semibold text-primary">{product.origin}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-neutral uppercase mb-2">{lang === "en" ? "Grade" : "درجه"}</p>
-                  <p className="text-lg font-semibold text-primary">{product.grade}</p>
+                  <p className="text-xs font-medium text-gray-600 uppercase mb-1 sm:mb-2">{lang === "en" ? "Grade" : "درجه"}</p>
+                  <p className="text-base sm:text-lg font-semibold text-primary">{product.grade}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-neutral uppercase mb-2">
+                  <p className="text-xs font-medium text-gray-600 uppercase mb-1 sm:mb-2">
                     {lang === "en" ? "Shelf Life" : "مدت نگهداری"}
                   </p>
-                  <p className="text-lg font-semibold text-primary">{product.shelf_life}</p>
+                  <p className="text-base sm:text-lg font-semibold text-primary">{product.shelf_life}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-neutral uppercase mb-2">
+                  <p className="text-xs font-medium text-gray-600 uppercase mb-1 sm:mb-2">
                     {lang === "en" ? "Minimum Order" : "حداقل سفارش"}
                   </p>
-                  <p className="text-lg font-semibold text-primary">{product.minOrder}</p>
+                  <p className="text-base sm:text-lg font-semibold text-primary">{product.minOrder}</p>
                 </div>
               </div>
 
+              {/* Certifications - responsive */}
               <div className="mb-8">
-                <h3 className="text-lg font-semibold text-primary mb-4">
+                <h3 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">
                   {lang === "en" ? "Certifications" : "تصدیق‌ها"}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {product.certifications.map((cert) => (
-                    <span key={cert} className="px-4 py-2 bg-accent-warm-gold text-white text-xs font-medium rounded">
+                    <span key={cert} className="px-3 sm:px-4 py-1.5 sm:py-2 bg-amber-600 text-white text-xs sm:text-sm font-medium rounded-full">
                       {cert}
                     </span>
                   ))}
                 </div>
               </div>
 
-              {/* Packaging */}
+              {/* Packaging - responsive */}
               <div className="mb-8">
-                <h3 className="text-lg font-semibold text-primary mb-4">
+                <h3 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">
                   {lang === "en" ? "Packaging Options" : "گزینه‌های بسته‌بندی"}
                 </h3>
-                <ul className="space-y-2">
+                <ul className="space-y-2 sm:space-y-3">
                   {product.packagingOptions.map((option) => (
-                    <li key={option} className="flex items-center gap-3 text-foreground">
-                      <span className="w-2 h-2 bg-accent-warm-orange rounded-full" />
+                    <li key={option} className="flex items-center gap-3 text-foreground text-sm sm:text-base">
+                      <span className="w-2 h-2 flex-shrink-0 bg-amber-600 rounded-full" />
                       {option}
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* CTA */}
-              <div className="flex gap-4">
+              {/* CTA - responsive stack on mobile */}
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link
                   href={`/${lang}/contact?product=${product.id}`}
-                  className="flex-1 px-6 py-3 bg-accent-warm-orange text-white font-semibold rounded hover:bg-accent-warm-red transition-colors text-center"
+                  className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-amber-600 text-white font-semibold rounded-lg hover:bg-amber-700 transition-colors text-center text-sm sm:text-base"
                 >
                   {lang === "en" ? "Request Quote" : "درخواست قیمت"}
                 </Link>
                 <Link
                   href={`/${lang}/products`}
-                  className="flex-1 px-6 py-3 border-2 border-primary text-primary font-semibold rounded hover:bg-background transition-colors text-center"
+                  className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-gray-50 transition-colors text-center text-sm sm:text-base"
                 >
                   {lang === "en" ? "Back to Catalog" : "بازگشت به کاتالوگ"}
                 </Link>
               </div>
 
-              {/* Download spec sheet */}
-              <button className="w-full mt-4 px-6 py-3 bg-white border-2 border-accent-warm-gold text-accent-warm-gold font-semibold rounded hover:bg-accent-warm-gold/10 transition-colors">
+              {/* Download spec sheet - responsive */}
+              <button className="w-full mt-4 sm:mt-6 px-4 sm:px-6 py-2.5 sm:py-3 bg-white border-2 border-amber-600 text-amber-600 font-semibold rounded-lg hover:bg-amber-50 transition-colors text-sm sm:text-base">
                 {lang === "en" ? "Download Spec Sheet (PDF)" : "دانلود برگه مشخصات"}
               </button>
             </div>

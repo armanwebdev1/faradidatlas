@@ -44,8 +44,10 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
     <div dir={lang === "fa" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
-        <section className="py-16 px-6 max-w-4xl mx-auto">
-          <JobDetail job={job} lang={lang} />
+        <section className="space-responsive px-4 sm:px-6">
+          <div className="container-compact">
+            <JobDetail job={job} lang={lang} />
+          </div>
         </section>
       </main>
       <Footer lang={lang} />

@@ -92,59 +92,69 @@ export function FeaturedProducts({ lang }: FeaturedProductsProps) {
   const productList = lang === "en" ? products.en : products.fa;
 
   return (
-    <section id="products" className="py-32 px-6 bg-background/50">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold text-primary mb-4">
-            Signature Products
+    <section id="products" className="space-responsive px-4 sm:px-6 bg-background/50">
+      <div className="container-wide">
+        {/* Section heading - responsive */}
+        <div className="text-center mb-10 sm:mb-16">
+          <h2 className="text-responsive-title text-primary mb-3 sm:mb-4">
+            {lang === "en" ? "Signature Products" : "محصولات امضاء‌شده"}
           </h2>
-          <p className="text-lg text-neutral max-w-2xl mx-auto">
+          <p className="text-responsive-body text-gray-700 max-w-2xl mx-auto leading-relaxed">
             {lang === "en"
               ? "Explore our most sought-after products, sourced directly from premium producers"
               : "محصولات پر تقاضای ما را بررسی کنید که مستقیماً از تولیدکنندگان برتر تامین می‌شوند"}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Products grid - responsive with improved touch targets */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {productList.map((product) => (
-            <div
+            <Link
               key={product.id}
-              className="group bg-white rounded-2xl overflow-hidden border border-border/30 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-black/10"
+              href={`/${lang}/products/${product.id}`}
+              className="group bg-white rounded-lg sm:rounded-2xl overflow-hidden border border-gray-200 hover:border-amber-400 transition-all duration-500 hover:shadow-xl flex flex-col h-full"
             >
-              <div className="relative aspect-square bg-gray-200 overflow-hidden">
+              {/* Image - responsive aspect ratio */}
+              <div className="relative aspect-square sm:aspect-square bg-gray-200 overflow-hidden flex-shrink-0">
                 <Image
                   src={product.image || "/placeholder.svg"}
                   alt={product.name}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute top-4 right-4 bg-accent text-white px-4 py-2 rounded-full text-xs font-semibold">
+                {/* Grade badge - responsive positioning */}
+                <div className="absolute top-2 sm:top-3 right-2 sm:right-3 bg-amber-600 text-white px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-semibold">
                   {product.grade}
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-primary mb-2">
+
+              {/* Content - responsive padding */}
+              <div className="p-4 sm:p-5 md:p-6 flex flex-col flex-grow">
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold text-primary mb-1.5 sm:mb-2 group-hover:text-amber-700 transition-colors line-clamp-2">
                   {product.name}
                 </h3>
-                <p className="text-sm text-neutral mb-4">{product.origin}</p>
-                <p className="text-sm text-foreground leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-amber-700 mb-3 sm:mb-4 font-medium">{product.origin}</p>
+                <p className="text-xs sm:text-sm text-gray-700 leading-relaxed mb-4 sm:mb-6 flex-grow">
                   {product.description}
                 </p>
-                <Link
-                  href={`/${lang}/products/${product.id}`}
-                  className="inline-block text-sm font-semibold text-accent hover:text-accent-warm-orange transition-colors duration-300"
-                >
-                  {lang === "en" ? "View Details →" : "مشاهده جزئیات →"}
-                </Link>
+
+                {/* Call to action - responsive */}
+                <span className="inline-flex items-center text-xs sm:text-sm font-semibold text-amber-600 group-hover:text-amber-700 transition-colors gap-1.5">
+                  {lang === "en" ? "View Details" : "مشاهده جزئیات"}
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
-        <div className="text-center mt-16">
+        {/* CTA Button - responsive and touch-friendly */}
+        <div className="text-center mt-10 sm:mt-14 md:mt-16">
           <Link
             href={`/${lang}/products`}
-            className="inline-block px-10 py-4 bg-primary text-white font-semibold rounded-full hover:bg-accent transition-all duration-300 hover:shadow-lg hover:shadow-accent/30"
+            className="inline-block px-6 sm:px-10 py-3 sm:py-4 bg-primary text-white font-semibold text-sm sm:text-base rounded-full hover:bg-amber-700 transition-all duration-300 hover:shadow-lg hover:shadow-amber-600/30 active:scale-95"
           >
             {lang === "en" ? "Explore All Products" : "مشاهده تمام محصولات"}
           </Link>
