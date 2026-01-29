@@ -198,51 +198,66 @@ export function Hero({ lang }: HeroProps) {
       </button>
 
       <div
-        className={`absolute bottom-0 left-0 right-0 z-10 ${
-          isRTL ? "text-right" : "text-left"
-        }`}
+        dir={isRTL ? "rtl" : "ltr"}
+        className="absolute bottom-0 left-0 right-0 z-10"
       >
         <div
-          className={`max-w-5xl px-8 md:px-32 pb-20 md:pb-28 ${
-            isRTL ? "mr-auto" : "ml-0"
-          }`}
+          className={`max-w-5xl ${
+            isRTL ? "mr-0 md:mr-auto" : "ml-0 md:ml-auto"
+          } px-6 sm:px-8 md:px-12 lg:px-32 pb-16 sm:pb-20 md:pb-28`}
         >
+          {/* Subtitle - Language-specific positioning */}
           <p
             ref={subtitleRef}
-            className="subtitle text-accent-warm-gold mb-6 font-label font-medium tracking-[0.2em] uppercase"
-            style={{ fontSize: "clamp(14px, 2.5vw, 20px)" }}
+            className={`subtitle text-accent-warm-gold mb-4 sm:mb-6 font-label font-medium tracking-[0.2em] uppercase ${
+              isRTL ? "text-right" : "text-left"
+            }`}
+            style={{ fontSize: "clamp(12px, 2.5vw, 20px)" }}
           >
             {slide.subtitle[lang]}
           </p>
 
+          {/* Hero Title - Responsive and directional */}
           <h1
-            className="hero-title font-hero mb-8"
+            className={`hero-title font-hero mb-6 sm:mb-8 ${
+              isRTL ? "text-right" : "text-left"
+            }`}
             style={{
               fontFamily:
                 lang === "en"
                   ? "var(--font-hero)"
                   : "Estedad, var(--font-hero)",
+              lineHeight: "1.2",
             }}
           >
             <span
               ref={titleLine1Ref}
               className="text-reveal-item block text-white"
+              style={{ fontSize: "clamp(2.5rem, 8vw, 5rem)" }}
             >
-              {slide.title[lang].split(" ")[0]}
+              {lang === "en"
+                ? slide.title[lang].split(" ")[0]
+                : slide.title[lang].split(" ")[0]}
             </span>
             <span
               ref={titleLine2Ref}
               className="text-reveal-item block text-white"
+              style={{ fontSize: "clamp(2.5rem, 8vw, 5rem)" }}
             >
-              {slide.title[lang].split(" ").slice(1).join(" ")}
+              {lang === "en"
+                ? slide.title[lang].split(" ").slice(1).join(" ")
+                : slide.title[lang].split(" ").slice(1).join(" ")}
             </span>
           </h1>
 
+          {/* Description - Responsive text with language support */}
           <p
             ref={descriptionRef}
-            className="body-text text-white/85 max-w-2xl leading-[1.6] mb-10"
+            className={`body-text text-white/85 max-w-2xl leading-relaxed mb-8 sm:mb-10 ${
+              isRTL ? "text-right" : "text-left"
+            }`}
             style={{
-              fontSize: "clamp(16px, 2vw, 18px)",
+              fontSize: "clamp(14px, 2vw, 18px)",
               fontFamily:
                 lang === "en"
                   ? "var(--font-body)"
@@ -252,15 +267,16 @@ export function Hero({ lang }: HeroProps) {
             {slide.description[lang]}
           </p>
 
-          <div className="flex gap-2">
+          {/* Slide indicators - Responsive layout */}
+          <div className={`flex gap-2 ${isRTL ? "justify-end" : "justify-start"}`}>
             {slides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={`h-1 transition-all duration-500 ${
                   index === currentSlide
-                    ? "w-12 bg-white"
-                    : "w-6 bg-white/40 hover:bg-white/60"
+                    ? "w-10 sm:w-12 bg-white"
+                    : "w-5 sm:w-6 bg-white/40 hover:bg-white/60"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
