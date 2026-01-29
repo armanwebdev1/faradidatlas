@@ -29,22 +29,22 @@ export default function ProductsPage() {
     <div dir={lang === "fa" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
-        {/* Hero */}
-        <section className="relative py-24 px-6 bg-gradient-to-b from-white via-white to-gray-50 overflow-hidden">
-          {/* Decorative elements */}
-          <div className="absolute top-10 right-0 w-96 h-96 bg-gradient-to-bl from-amber-100/20 to-transparent rounded-full blur-3xl -z-10" />
+        {/* Hero - responsive layout */}
+        <section className="relative space-responsive px-4 sm:px-6 bg-gradient-to-b from-white via-white to-gray-50 overflow-hidden">
+          {/* Decorative elements - responsive sizing */}
+          <div className="absolute top-5 sm:top-10 right-0 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-gradient-to-bl from-amber-100/20 to-transparent rounded-full blur-3xl -z-10" />
           
-          <div className="max-w-7xl mx-auto">
-            <div className="mb-6 inline-block px-4 py-2 bg-amber-100/50 rounded-full border border-amber-200/50">
-              <span className="text-sm font-semibold text-primary">
+          <div className="container-wide">
+            <div className="mb-4 sm:mb-6 inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-amber-100/50 rounded-full border border-amber-200/50">
+              <span className="text-xs sm:text-sm font-semibold text-primary">
                 {lang === "en" ? "Premium Selection" : "انتخاب برتر"}
               </span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-primary mb-6 tracking-tight">
+            <h1 className="text-responsive-hero text-primary mb-4 sm:mb-6 tracking-tight">
               {lang === "en" ? "Our Products" : "محصولات ما"}
             </h1>
-            <div className="divider-premium w-24 h-1 mb-8" />
-            <p className="text-lg text-gray-700 max-w-2xl leading-relaxed">
+            <div className="divider-premium w-16 sm:w-20 md:w-24 h-1 mb-6 sm:mb-8" />
+            <p className="text-responsive-body text-gray-700 max-w-2xl leading-relaxed">
               {lang === "en"
                 ? "Browse our complete catalog of premium food products, all certified for international export with exceptional quality standards."
                 : "کاتالوگ کامل محصولات غذایی برتر ما را مرور کنید، همه‌ی آنها برای صادرات بین‌المللی معتبر و با استانداردهای کیفیتی استثنایی هستند."}
@@ -52,28 +52,30 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        {/* Products */}
-        <section className="py-24 px-6 bg-white">
-          <div className="max-w-7xl mx-auto">
-            {/* Controls */}
-            <div className="flex flex-col lg:flex-row gap-12 mb-16">
-              <div className="lg:w-72 flex-shrink-0">
-                <div className="sticky top-32">
-                  <h3 className="text-lg font-semibold text-primary mb-6">
+        {/* Products - responsive grid layout */}
+        <section className="space-responsive px-4 sm:px-6 bg-white">
+          <div className="container-wide">
+            {/* Controls - responsive flex direction */}
+            <div className="flex flex-col lg:flex-row gap-6 md:gap-8 lg:gap-12 mb-10 md:mb-16">
+              {/* Filters sidebar - responsive */}
+              <div className="lg:w-64 xl:w-72 flex-shrink-0">
+                <div className="lg:sticky lg:top-32">
+                  <h3 className="text-base sm:text-lg font-semibold text-primary mb-4 sm:mb-6">
                     {lang === "en" ? "Filters" : "فیلترها"}
                   </h3>
                   <Filters lang={lang} products={products} onFilter={handleFilter} />
                 </div>
               </div>
 
-              <div className="flex-1">
-                {/* Sorting */}
-                <div className="mb-12 flex flex-col md:flex-row md:justify-between md:items-end gap-6">
+              {/* Main content - responsive */}
+              <div className="flex-1 min-w-0">
+                {/* Sorting - responsive stacking */}
+                <div className="mb-8 md:mb-12 flex flex-col md:flex-row md:justify-between md:items-end gap-4 md:gap-6">
                   <div>
-                    <h2 className="text-3xl font-bold text-primary mb-3">
+                    <h2 className="text-responsive-section text-primary mb-2 sm:mb-3">
                       {sortedProducts.length} {lang === "en" ? "Products" : "محصول"}
                     </h2>
-                    <p className="text-gray-600">
+                    <p className="text-xs sm:text-sm text-gray-600">
                       {lang === "en"
                         ? "All products are certified and ready for export"
                         : "تمام محصولات معتبر و آماده صادرات هستند"}
@@ -82,9 +84,9 @@ export default function ProductsPage() {
                   <Sorting lang={lang} products={filteredProducts} onSort={handleSort} />
                 </div>
 
-                {/* Grid */}
+                {/* Grid - responsive columns */}
                 {sortedProducts.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                     {sortedProducts.map((product, idx) => (
                       <div key={product.id} className="animate-fade-in-up" style={{ animationDelay: `${idx * 0.1}s` }}>
                         <ProductCard product={product} lang={lang} />
@@ -92,8 +94,8 @@ export default function ProductsPage() {
                     ))}
                   </div>
                 ) : (
-                  <div className="text-center py-20">
-                    <p className="text-lg text-gray-600">{lang === "en" ? "No products found" : "محصولی پیدا نشد"}</p>
+                  <div className="text-center py-12 md:py-20">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-600">{lang === "en" ? "No products found" : "محصولی پیدا نشد"}</p>
                   </div>
                 )}
               </div>

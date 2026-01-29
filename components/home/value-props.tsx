@@ -168,16 +168,17 @@ export function ValueProps({ lang }: ValuePropsProps) {
   return (
     <section
       ref={containerRef}
-      className="py-16 md:py-24 px-6 bg-white relative overflow-hidden"
+      className="space-responsive px-4 sm:px-6 bg-white relative overflow-hidden"
     >
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-accent-warm-gold/5 to-accent-warm-orange/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-accent/5 to-accent-warm-red/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Decorative elements - responsive sizing */}
+      <div className="absolute top-0 right-0 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-gradient-to-br from-accent-warm-gold/5 to-accent-warm-orange/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-gradient-to-tr from-accent/5 to-accent-warm-red/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16">
+      <div className="container-wide relative z-10">
+        <div className="text-center mb-10 sm:mb-16">
           <p
             ref={labelRef}
-            className="category-label text-accent-warm-gold mb-6"
+            className="category-label text-accent-warm-gold mb-4 sm:mb-6 text-xs sm:text-sm md:text-base"
             style={{
               fontFamily:
                 lang === "en"
@@ -186,11 +187,11 @@ export function ValueProps({ lang }: ValuePropsProps) {
               fontSize: "clamp(12px, 2vw, 16px)",
             }}
           >
-            Why Choose Us
+            {lang === "en" ? "Why Choose Us" : "چرا ما را انتخاب کنید"}
           </p>
           <h2
             ref={titleRef}
-            className="section-title mb-8"
+            className="text-responsive-title md:text-5xl lg:text-6xl mb-4 sm:mb-6 md:mb-8 leading-tight"
             style={{
               fontFamily:
                 lang === "en"
@@ -204,13 +205,13 @@ export function ValueProps({ lang }: ValuePropsProps) {
           </h2>
           <p
             ref={subtitleRef}
-            className="body-text text-foreground/70 max-w-3xl mx-auto"
+            className="text-responsive-body text-gray-700 max-w-3xl mx-auto leading-relaxed"
             style={{
               fontFamily:
                 lang === "en"
                   ? "var(--font-body)"
                   : "Shabnam, var(--font-body)",
-              fontSize: "clamp(16px, 2vw, 18px)",
+              fontSize: "clamp(14px, 2vw, 18px)",
             }}
           >
             {lang === "en"
@@ -233,18 +234,20 @@ export function ValueProps({ lang }: ValuePropsProps) {
                     ref={(el) => {
                       itemsRef.current[idx] = el;
                     }}
-                    className={`flex-shrink-0 w-full sm:w-96 p-8 md:p-10 rounded-3xl border-2 ${item.borderColor} bg-gradient-to-br ${item.color} backdrop-blur-sm hover:shadow-2xl hover:shadow-accent-warm-gold/20 transition-all duration-500 group cursor-default`}
+                    className={`flex-shrink-0 w-full sm:w-80 md:w-96 p-5 sm:p-6 md:p-8 lg:p-10 rounded-2xl sm:rounded-3xl border-2 ${item.borderColor} bg-gradient-to-br ${item.color} backdrop-blur-sm hover:shadow-2xl hover:shadow-accent-warm-gold/20 transition-all duration-500 group cursor-default`}
                   >
-                    <div className="mb-8 inline-flex p-4 rounded-2xl bg-gradient-to-br from-white/40 to-white/20 backdrop-blur-sm group-hover:from-white/60 group-hover:to-white/40 transition-all duration-300">
+                    {/* Icon box - responsive sizing */}
+                    <div className="mb-5 sm:mb-6 md:mb-8 inline-flex p-2.5 sm:p-3 md:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white/40 to-white/20 backdrop-blur-sm group-hover:from-white/60 group-hover:to-white/40 transition-all duration-300">
                       <IconComponent
-                        size={32}
-                        className="text-primary group-hover:scale-110 transition-transform duration-300"
+                        size={24}
+                        className="text-primary group-hover:scale-110 transition-transform duration-300 sm:w-8 sm:h-8 md:w-8 md:h-8"
                         strokeWidth={1.5}
                       />
                     </div>
 
+                    {/* Title - responsive typography */}
                     <h3
-                      className="text-2xl md:text-3xl font-semibold text-primary mb-4 group-hover:text-accent-warm-gold transition-colors duration-300 tracking-tight leading-[1.3]"
+                      className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-primary mb-3 sm:mb-4 group-hover:text-accent-warm-gold transition-colors duration-300 tracking-tight leading-tight"
                       style={{
                         fontFamily:
                           lang === "en"
@@ -254,8 +257,10 @@ export function ValueProps({ lang }: ValuePropsProps) {
                     >
                       {item.title}
                     </h3>
+                    
+                    {/* Description - responsive text */}
                     <p
-                      className="text-sm md:text-base text-foreground/75 leading-[1.6] group-hover:text-foreground/85 transition-colors duration-300"
+                      className="text-xs sm:text-sm md:text-base text-foreground/75 leading-relaxed group-hover:text-foreground/85 transition-colors duration-300"
                       style={{
                         fontFamily:
                           lang === "en"
