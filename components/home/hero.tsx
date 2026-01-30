@@ -131,6 +131,7 @@ export function Hero({ lang }: HeroProps) {
   return (
     <div
       ref={containerRef}
+      dir={isRTL ? "rtl" : "ltr"}
       className="relative h-screen w-full overflow-hidden bg-neutral-900"
     >
       <div className="relative h-full w-full">
@@ -177,18 +178,14 @@ export function Hero({ lang }: HeroProps) {
 
       <div className="absolute bottom-0 inset-x-0 z-10">
         <div
-          className={`max-w-5xl px-8 sm:px-12 md:px-16 lg:pl-32 lg:pr-8 pb-20 md:pb-28 ${
+          className={`max-w-5xl px-8 md:px-12 lg:px-16 pb-20 md:pb-28 ${
             isRTL ? "text-right" : "text-left"
           }`}
-          dir={isRTL ? "rtl" : "ltr"}
         >
           <p
             ref={subtitleRef}
             className="mb-6 font-label font-medium tracking-[0.2em] uppercase text-accent-warm-gold"
-            style={{ 
-              fontSize: "clamp(14px, 2.5vw, 20px)",
-              textAlign: isRTL ? "right" : "left"
-            }}
+            style={{ fontSize: "clamp(14px, 2.5vw, 20px)" }}
           >
             {slide.subtitle[lang]}
           </p>
@@ -200,7 +197,6 @@ export function Hero({ lang }: HeroProps) {
                 lang === "en"
                   ? "var(--font-hero)"
                   : "Estedad, var(--font-hero)",
-              textAlign: isRTL ? "right" : "left",
             }}
           >
             <span ref={titleLine1Ref} className="block">
@@ -220,7 +216,6 @@ export function Hero({ lang }: HeroProps) {
                 lang === "en"
                   ? "var(--font-body)"
                   : "Shabnam, var(--font-body)",
-              textAlign: isRTL ? "right" : "left",
             }}
           >
             {slide.description[lang]}
