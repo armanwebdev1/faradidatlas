@@ -177,7 +177,7 @@ export function Hero({ lang }: HeroProps) {
 
       <div className="absolute bottom-0 inset-x-0 z-10">
         <div
-          className={`max-w-5xl px-8 md:px-12 lg:px-16 pb-20 md:pb-28 ${
+          className={`max-w-5xl mx-auto md:ml-32 lg:ml-40 px-8 md:px-12 lg:px-16 pb-20 md:pb-28 ${
             isRTL ? "text-right" : "text-left"
           }`}
           dir={isRTL ? "rtl" : "ltr"}
@@ -185,7 +185,10 @@ export function Hero({ lang }: HeroProps) {
           <p
             ref={subtitleRef}
             className="mb-6 font-label font-medium tracking-[0.2em] uppercase text-accent-warm-gold"
-            style={{ fontSize: "clamp(14px, 2.5vw, 20px)" }}
+            style={{ 
+              fontSize: "clamp(14px, 2.5vw, 20px)",
+              textAlign: isRTL ? "right" : "left"
+            }}
           >
             {slide.subtitle[lang]}
           </p>
