@@ -177,7 +177,7 @@ export function Hero({ lang }: HeroProps) {
 
       <div className="absolute bottom-0 inset-x-0 z-10">
         <div
-          className={`max-w-5xl px-8 md:px-12 lg:px-20 pb-20 md:pb-28 ${
+          className={`max-w-5xl px-8 sm:px-12 md:px-16 lg:pl-32 lg:pr-8 pb-20 md:pb-28 ${
             isRTL ? "text-right" : "text-left"
           }`}
           dir={isRTL ? "rtl" : "ltr"}
