@@ -23,6 +23,239 @@ export function AboutHero({ lang }: AboutHeroProps) {
 
   return (
     <>
+      {/* Premium Hero Section - Enhanced */}
+      <section className="relative h-screen w-full overflow-hidden bg-primary">
+        <div className="absolute inset-0">
+          <Image
+            src="/about-hero-bg.jpg"
+            alt="Premium food products"
+            fill
+            className="object-cover opacity-90"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-primary/95" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+        </div>
+
+        <div
+          className="relative h-full w-full flex flex-col justify-center items-start"
+          ref={containerRef}
+        >
+          <div
+            className={`max-w-6xl px-8 sm:px-12 md:px-16 lg:px-32 ${isRTL ? "text-right" : "text-left"}`}
+          >
+            {/* Founding Year */}
+            <div className="animate-fade-in-up mb-8">
+              <span className="inline-block px-4 py-2 bg-accent-warm-gold/25 backdrop-blur-md rounded-full text-sm font-bold text-accent-warm-gold border border-accent-warm-gold/50 tracking-widest">
+                {lang === "en" ? "SINCE 1998" : "از سال ۱۳۷۷"}
+              </span>
+            </div>
+
+            {/* Main Title */}
+            <h1
+              className="text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-8 leading-tight tracking-tight font-hero max-w-5xl"
+              style={{
+                fontFamily:
+                  lang === "en" ? "var(--font-hero)" : "Estedad, var(--font-hero)",
+                textAlign: isRTL ? "right" : "left",
+              }}
+            >
+              {lang === "en" ? "Faradi Atlas" : "فارادی اطلس"}
+            </h1>
+
+            {/* Subtitle */}
+            <p
+              className="text-2xl md:text-3xl text-white/95 max-w-3xl leading-relaxed font-light mb-12"
+              style={{
+                fontFamily:
+                  lang === "en" ? "var(--font-body)" : "Shabnam, var(--font-body)",
+                textAlign: isRTL ? "right" : "left",
+              }}
+            >
+              {lang === "en"
+                ? "Pioneering Excellence in Global Food Trading"
+                : "پیشگام برتری در تجارت جهانی غذایی"}
+            </p>
+
+            {/* CTA */}
+            <button className="animate-fade-in-up px-8 py-4 bg-accent-warm-gold text-primary font-bold text-lg hover:bg-accent-warm-gold/90 transition-all duration-300 hover:shadow-xl hover:shadow-accent-warm-gold/30 rounded-lg">
+              {lang === "en" ? "Explore Our Story" : "داستان ما را کاوش کنید"}
+            </button>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <svg
+            className="w-6 h-6 text-white/60"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
+          </svg>
+        </div>
+      </section>
+
+      {/* Story Section - Premium Layout */}
+      <section className="relative py-24 md:py-32 px-4 sm:px-6 bg-white overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-accent-warm-gold/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-accent-warm-gold/3 rounded-full blur-3xl" />
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Image */}
+            <div className={`animate-fade-in-up ${isRTL ? "lg:order-2" : ""}`}>
+              <div className="relative h-96 md:h-[600px] rounded-3xl overflow-hidden shadow-2xl group">
+                <Image
+                  src="/about-story.jpg"
+                  alt="Iranian agricultural heritage"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-1000"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent" />
+              </div>
+            </div>
+
+            {/* Text Content */}
+            <div
+              className={`space-y-8 animate-fade-in-up ${isRTL ? "lg:order-1" : ""}`}
+            >
+              {/* Eyebrow */}
+              <div>
+                <span className="text-xs font-bold tracking-widest text-accent-warm-gold uppercase">
+                  {lang === "en" ? "Our Story" : "داستان ما"}
+                </span>
+              </div>
+
+              {/* Title */}
+              <h2
+                className="text-5xl md:text-6xl font-bold text-primary leading-tight tracking-tight font-hero"
+                style={{ textAlign: isRTL ? "right" : "left" }}
+              >
+                {lang === "en"
+                  ? "Built on Trust & Quality"
+                  : "بنا بر اعتماد و کیفیت"}
+              </h2>
+
+              {/* Content */}
+              <div className="space-y-6">
+                <p
+                  className="text-lg text-gray-700 leading-relaxed"
+                  style={{ textAlign: isRTL ? "right" : "left" }}
+                >
+                  {lang === "en"
+                    ? "Founded in 1998 with a simple yet powerful vision: the world's finest food products deserve trustworthy partners who understand quality, heritage, and responsibility."
+                    : "تأسیس‌شده در سال ۱۳۷۷ با یک دیدگاه ساده اما قدرتمند: بهترین محصولات غذایی جهان شایسته شرکایی هستند که کیفیت، میراث و مسئولیت را درک کنند."}
+                </p>
+
+                <p
+                  className="text-lg text-gray-700 leading-relaxed"
+                  style={{ textAlign: isRTL ? "right" : "left" }}
+                >
+                  {lang === "en"
+                    ? "For over 25 years, we've cultivated deep relationships with the finest producers across Iran and beyond, building a reputation built on transparency, integrity, and an unwavering commitment to excellence."
+                    : "برای بیش از ۲۵ سال، ما روابط عمیق با بهترین تولیدکنندگان در سراسر ایران و فراتر ایجاد کرده‌ایم و شهرتی ساخته‌ایم که بر شفافیت، صداقت و تعهد بی‌تزلزل به برتری استوار است."}
+                </p>
+
+                {/* CTA Button */}
+                <div className="pt-6">
+                  <button className="px-8 py-4 bg-primary text-white font-bold hover:bg-primary/90 transition-all duration-300 rounded-lg shadow-lg hover:shadow-xl hover:shadow-primary/30">
+                    {lang === "en" ? "Learn More" : "بیشتر بخوانید"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Impact Statistics - Premium Grid */}
+      <section className="relative py-24 md:py-32 px-4 sm:px-6 bg-primary overflow-hidden">
+        {/* Background elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-accent-warm-gold/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent-warm-gold/5 rounded-full blur-3xl" />
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+              {lang === "en" ? "Our Impact" : "تاثیر ما"}
+            </h2>
+            <div className="w-24 h-1 bg-accent-warm-gold mx-auto" />
+          </div>
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            {[
+              {
+                number: "25+",
+                label: lang === "en" ? "Years of Excellence" : "سال برتری",
+                description:
+                  lang === "en"
+                    ? "Trusted partnerships since 1998"
+                    : "شرکای قابل اعتماد از سال ۱۳۷۷",
+              },
+              {
+                number: "40+",
+                label: lang === "en" ? "Countries Served" : "کشور سرویس‌شده",
+                description:
+                  lang === "en"
+                    ? "Global reach with local expertise"
+                    : "دسترسی جهانی با تخصص محلی",
+              },
+              {
+                number: "100%",
+                label: lang === "en" ? "Quality Commitment" : "تعهد کیفیت",
+                description:
+                  lang === "en"
+                    ? "Zero compromise on standards"
+                    : "بدون سازش در استانداردها",
+              },
+            ].map((stat, idx) => (
+              <div
+                key={idx}
+                className="group text-center animate-fade-in-up p-8 rounded-2xl hover:bg-white/10 transition-all duration-500 backdrop-blur-sm"
+                style={{ animationDelay: `${idx * 0.1}s` }}
+              >
+                <div className="text-6xl md:text-7xl font-bold text-accent-warm-gold mb-4 group-hover:scale-110 transition-transform duration-300">
+                  {stat.number}
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-accent-warm-gold transition-colors">
+                  {stat.label}
+                </h3>
+                <p className="text-white/75 text-sm md:text-base leading-relaxed">
+                  {stat.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+export function AboutHero({ lang }: AboutHeroProps) {
+  const isRTL = lang === "fa";
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const elements = containerRef.current?.querySelectorAll(
+      ".animate-fade-in-up",
+    );
+    elements?.forEach((el, index) => {
+      (el as HTMLElement).style.animationDelay = `${index * 0.15}s`;
+    });
+  }, []);
+
+  return (
+    <>
       {/* Premium Image Hero Section */}
       <section className="relative h-screen w-full overflow-hidden bg-neutral-950">
         <div className="absolute inset-0">
@@ -135,7 +368,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
                 >
                   {lang === "en"
                     ? "For over 25 years, we've cultivated deep relationships with the finest producers across Iran and beyond, building a reputation built on transparency, integrity, and an unwavering commitment to excellence."
-                    : "برای بیش از ۲۵ سال، ما روابط عمیق با بهترین تولیدکنندگان در سراسر ایران و فراتر ایجاد کرده‌ایم و شهرتی ساخته‌ایم که بر شفافیت، صداقت و تعهد بی‌تزلزل به برتری استوار است."}
+                    : "برای بیش از ۲۵ سال، ما روابط عمیق با بهترین تولیدکنندگان در سراسر ایران و فراتر ایجاد کرده‌ایم و شهرتی ساخته‌ایم که بر شفافیت، صداقت و تعهد بی��تزلزل به برتری استوار است."}
                 </p>
 
                 <div className="pt-4">
