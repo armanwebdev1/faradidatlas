@@ -79,10 +79,13 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
           </button>
         </div>
 
-        {/* Offerings Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Offerings Grid - Staggered layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 items-start">
           {offers.map((offer, idx) => (
-            <div key={idx} className="group">
+            <div 
+              key={idx} 
+              className={`group ${idx === 1 ? "lg:mt-16" : ""}`}
+            >
               {/* Image */}
               <div className="relative h-48 md:h-52 overflow-hidden rounded-lg mb-5">
                 <Image
