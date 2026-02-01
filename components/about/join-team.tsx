@@ -9,8 +9,11 @@ interface JoinTeamProps {
 
 export function JoinTeam({ lang }: JoinTeamProps) {
   return (
-    <section className="relative py-12 md:py-16 px-4 sm:px-6 bg-gray-100 overflow-hidden">
-      <div className="max-w-6xl mx-auto">
+    <section className="relative py-16 md:py-24 px-4 sm:px-6 bg-white overflow-hidden">
+      {/* Top divider line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gray-200" />
+      
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           {/* Left - Heading */}
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight">
