@@ -3,7 +3,6 @@ import { Footer } from "@/components/layout/footer";
 import { AboutHero } from "@/components/about/hero";
 import { GetConnected } from "@/components/about/get-connected";
 import { WhatWeOffer } from "@/components/about/what-we-offer";
-import { HeritageTimeline } from "@/components/about/heritage-timeline";
 import { TeamShowcase } from "@/components/about/team-showcase";
 import { JoinTeam } from "@/components/about/join-team";
 import type { Language } from "@/lib/i18n";
@@ -28,7 +27,6 @@ export default async function AboutPage({ params }: AboutPageProps) {
         <AboutHero lang={lang} />
         <GetConnected lang={lang} />
         <WhatWeOffer lang={lang} />
-        <HeritageTimeline lang={lang} />
         <TeamShowcase lang={lang} />
         <JoinTeam lang={lang} />
       </main>
