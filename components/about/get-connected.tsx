@@ -11,55 +11,53 @@ export function GetConnected({ lang }: GetConnectedProps) {
   const isRTL = lang === "fa";
 
   return (
-    <section className="relative bg-background overflow-hidden">
-      {/* Full-width Image */}
-      <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px]">
-        <Image
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80"
-          alt="Modern commercial buildings"
-          fill
-          className="object-cover"
-          priority
-        />
+    <section className="relative bg-white overflow-hidden">
+      {/* Full-width Image - matching hero style */}
+      <div className="w-full px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
+            <Image
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80"
+              alt="Modern commercial buildings"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        </div>
       </div>
 
       {/* Content Section */}
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 py-16 md:py-24">
-        <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 ${isRTL ? "lg:flex-row-reverse" : ""}`}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left - Heading */}
-          <div className={`lg:col-span-4 ${isRTL ? "lg:order-2" : ""}`}>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground leading-tight tracking-tight">
-              {lang === "en"
-                ? "Read our story to get connected"
-                : "داستان ما را بخوانید تا متصل شوید"}
-            </h2>
-          </div>
+          <h2 className="text-4xl md:text-5xl font-bold font-hero text-primary leading-tight tracking-tight">
+            {lang === "en"
+              ? "Read our story to get connected"
+              : "داستان ما را بخوانید تا متصل شوید"}
+          </h2>
 
-          {/* Right - Body Content */}
-          <div className={`lg:col-span-8 space-y-6 ${isRTL ? "lg:order-1" : ""}`}>
-            <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
-              {lang === "en" ? (
-                <>
-                  <span className="font-semibold text-foreground">
-                    Owned and run by a group of commercial property experts, we provide property consultancy services for owners, occupiers, investors, developers and financial advisors of property and associated assets.
-                  </span>
-                </>
-              ) : (
-                <span className="font-semibold text-foreground">
-                  متعلق به گروهی از متخصصان املاک تجاری و اداره می‌شود، ما خدمات مشاوره‌ای املاک را برای مالکان، ساکنان، سرمایه‌گذاران، توسعه‌دهندگان و مشاوران مالی املاک و دارایی‌های مرتبط ارائه می‌دهیم.
-                </span>
-              )}
+          {/* Right - Body Content - FORCE LTR FOR ENGLISH */}
+          <div
+            dir={lang === "en" ? "ltr" : "rtl"}
+            className={`space-y-6 ${lang === "en" ? "text-left" : "text-right"}`}
+            style={lang === "en" ? { unicodeBidi: "plaintext" } : undefined}
+          >
+            <p className="text-base md:text-lg font-semibold text-gray-900 leading-relaxed max-w-xl">
+              {lang === "en"
+                ? "Owned and run by a group of commercial property experts, we provide property consultancy services for owners, occupiers, investors, developers and financial advisors of property and associated assets."
+                : "متعلق به گروهی از متخصصان املاک تجاری و اداره می‌شود، ما خدمات مشاوره‌ای املاک را برای مالکان، ساکنان، سرمایه‌گذاران، توسعه‌دهندگان و مشاوران مالی املاک و دارایی‌های مرتبط ارائه می‌دهیم."}
             </p>
 
-            <p className="text-base md:text-lg text-foreground/70 leading-relaxed">
+            <p className="text-sm md:text-base text-gray-700 leading-relaxed max-w-xl">
               {lang === "en"
                 ? "Operating from offices in Birmingham, Bristol, Exeter, Leeds, London, Manchester, Newcastle, Teesside and York we combine our knowledge and skills to provide complete property advice, ultimately making you and your business more successful. The property industry continues to transform through influences in technology, culture and economy and we're excited to be a part of the journey, making an impact where we can, and adapting when we need to."
                 : "با فعالیت از دفاتر در بیرمنگام، بریستول، اکستر، لیدز، لندن، منچستر، نیوکاسل، تیساید و یورک، ما دانش و مهارت‌های خود را ترکیب می‌کنیم تا مشاوره کامل املاک ارائه دهیم و در نهایت شما و کسب‌وکارتان را موفق‌تر کنیم. صنعت املاک از طریق تأثیرات در فناوری، فرهنگ و اقتصاد به تحول خود ادامه می‌دهد و ما هیجان‌زده هستیم که بخشی از این سفر باشیم."}
             </p>
 
             {/* Quote Block with Accent Border */}
-            <div className={`${isRTL ? "border-r-2 pr-6" : "border-l-2 pl-6"} border-accent-warm-gold mt-8`}>
-              <p className="text-base md:text-lg text-foreground/80 leading-relaxed italic">
+            <div className={`${lang === "en" ? "border-l-2 pl-6" : "border-r-2 pr-6"} border-accent-warm-gold mt-8`}>
+              <p className="text-sm md:text-base text-gray-700 leading-relaxed italic max-w-xl">
                 {lang === "en"
                   ? "Some 14 years later, their businesses had survived through the wars, experienced international success and acquired several other businesses, and in 2007 the two merged to become the name we are today."
                   : "حدود ۱۴ سال بعد، کسب‌وکارهای آن‌ها از جنگ‌ها جان سالم به در بردند، موفقیت بین‌المللی را تجربه کردند و چندین کسب‌وکار دیگر را به دست آوردند، و در سال ۲۰۰۷ این دو ادغام شدند تا نامی شوند که امروز هستیم."}
