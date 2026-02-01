@@ -101,11 +101,11 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
                 </div>
 
                 {/* Content */}
-                <div dir="ltr" className="text-left">
-                  <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2 leading-snug">
+                <div dir="ltr" className="text-left" style={{ direction: "ltr", textAlign: "left" }}>
+                  <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2 leading-snug text-left" style={{ direction: "ltr", textAlign: "left" }}>
                     {offer.title}
                   </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">
+                  <p className="text-sm text-gray-600 leading-relaxed text-left" style={{ direction: "ltr", textAlign: "left" }}>
                     {offer.description}
                   </p>
                 </div>
