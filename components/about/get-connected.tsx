@@ -12,73 +12,66 @@ export function GetConnected({ lang }: GetConnectedProps) {
 
   return (
     <section className="relative py-24 md:py-32 px-4 sm:px-6 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left - Images Grid */}
-          <div className={`animate-fade-in-up ${isRTL ? "lg:order-2" : ""}`}>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
-                <Image
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80"
-                  alt="Property showcase 1"
-                  fill
-                  className="object-cover hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-              <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
-                <Image
-                  src="https://images.unsplash.com/photo-1486525891917-3b627cbf3d3c?w=400&q=80"
-                  alt="Property showcase 2"
-                  fill
-                  className="object-cover hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-              <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
-                <Image
-                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80"
-                  alt="Property showcase 3"
-                  fill
-                  className="object-cover hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-              <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
-                <Image
-                  src="https://images.unsplash.com/photo-1493857671505-72967e2e2760?w=400&q=80"
-                  alt="Property showcase 4"
-                  fill
-                  className="object-cover hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-            </div>
+      <div className="max-w-7xl mx-auto space-y-12">
+        {/* Top Image - Full Width */}
+        <div className="animate-fade-in-up">
+          <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
+            <Image
+              src="https://images.unsplash.com/photo-1486525891917-3b627cbf3d3c?w=1200&q=80"
+              alt="Building showcase"
+              fill
+              className="object-cover hover:scale-105 transition-transform duration-700"
+            />
           </div>
+        </div>
 
-          {/* Right - Text Content */}
-          <div
-            className={`space-y-8 animate-fade-in-up ${
-              isRTL ? "lg:order-1" : ""
-            }`}
-          >
-            <h2 className="text-5xl md:text-6xl font-bold text-primary leading-tight tracking-tight font-hero">
+        {/* Bottom Content - Two Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+          {/* Left - Heading */}
+          <div className={`flex flex-col justify-start ${isRTL ? "lg:order-2" : ""}`}>
+            <h2 className={`text-4xl md:text-5xl font-bold text-primary leading-tight tracking-tight font-hero ${
+              isRTL ? "text-right" : "text-left"
+            }`}>
               {lang === "en"
                 ? "Read our story to get connected"
                 : "داستان ما را بخوانید تا متصل شوید"}
             </h2>
+          </div>
 
-            <p className="text-lg text-gray-700 leading-relaxed">
+          {/* Right - Text Content and Quote */}
+          <div
+            className={`lg:col-span-2 space-y-6 animate-fade-in-up ${
+              isRTL ? "lg:order-1" : ""
+            }`}
+          >
+            <p className={`text-base md:text-lg text-gray-700 leading-relaxed ${
+              isRTL ? "text-right" : "text-left"
+            }`}>
               {lang === "en"
-                ? "Owned and run by a group of extremely accomplished property experts, we provide property consultancy services for retailers, investors, developers and financial advisors of property and associated assets."
-                : "صاحب و اداره‌شده توسط گروهی از متخصصین ملک بسیار توانمند، ما خدمات مشاوره‌ای املاک را برای خرده‌فروشان، سرمایه‌گذاران، توسعه‌دهندگان و مشاوران مالی ملک ارائه می‌دهیم."}
+                ? "Owned and run by a group of commercial property experts, we provide property consultancy services for retailers, investors, developers and financial advisors of property and associated assets."
+                : "صاحب و اداره‌شده توسط گروهی از متخصصین ملک تجاری، ما خدمات مشاوره‌ای املاک را برای خرده‌فروشان، سرمایه‌گذاران، توسعه‌دهندگان و مشاوران مالی ملک ارائه می‌دهیم."}
             </p>
 
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className={`text-base md:text-lg text-gray-700 leading-relaxed ${
+              isRTL ? "text-right" : "text-left"
+            }`}>
               {lang === "en"
-                ? "Based on our exposure & experience, extensive research and use of the sophisticated tools & latest technologies & practices, we provide our clients with comprehensive, objective and unbiased recommendations on key areas of property development."
-                : "براساس تجربه ما، تحقیقات گسترده و استفاده از ابزارهای پیشرفته و فن‌آوری‌های جدید، ما به مشتریان خود توصیه‌های جامع و بدون طرفداری ارائه می‌دهیم."}
+                ? "Operating from offices in Birmingham, Bristol, Exeter, Leeds, London, Manchester, Newcastle, Teesside and York we combine our knowledge and business more successful. The property industry continues to transform through influences in technology, culture and economy and we're excited to be a part of the journey, making an impact where we can, and adapting when we need to."
+                : "بر اساس تجربه ما، تحقیقات گسترده و استفاده از ابزارهای پیشرفته و فن‌آوری‌های جدید، ما به مشتریان خود توصیه‌های جامع و بدون طرفداری ارائه می‌دهیم."}
             </p>
 
-            <button className="px-8 py-4 bg-accent-warm-gold text-primary font-bold hover:bg-accent-warm-gold/90 transition-all duration-300 hover:shadow-xl hover:shadow-accent-warm-gold/30 rounded-lg inline-block">
-              {lang === "en" ? "Connect With Us" : "با ما متصل شوید"}
-            </button>
+            {/* Quote Section */}
+            <div className={`border-l-4 border-blue-500 pl-6 py-4 bg-gray-50 ${
+              isRTL ? "border-l-0 border-r-4 pr-6 pl-0" : ""
+            }`}>
+              <p className={`text-base italic text-gray-700 leading-relaxed ${
+                isRTL ? "text-right" : "text-left"
+              }`}>
+                {lang === "en"
+                  ? "Some 14 years later, their businesses had survived through the worst, experienced international success and acquired several other businesses, and in 2007 the two emerged to become the name we are today."
+                  : "چهارده سال بعد، کسب‌وکارهای آنها از بدترین شرایط سالم بیرون آمدند، موفقیت بین‌المللی را تجربه کردند و چندین کسب‌وکار دیگر را کسب کردند."}
+              </p>
+            </div>
           </div>
         </div>
       </div>
