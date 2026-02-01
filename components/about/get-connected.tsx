@@ -28,7 +28,15 @@ export function GetConnected({ lang }: GetConnectedProps) {
         {/* Bottom Content - Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left - Heading */}
-          <div className={`flex flex-col justify-start`}>
+          <div 
+            className="flex flex-col justify-start"
+            dir="ltr"
+            style={{
+              direction: "ltr",
+              textAlign: "left",
+              unicodeBidi: "plaintext"
+            }}
+          >
             <h2 className="text-4xl md:text-5xl font-bold text-primary leading-tight tracking-tight font-hero text-left">
               {lang === "en"
                 ? "Read our story to get connected"
