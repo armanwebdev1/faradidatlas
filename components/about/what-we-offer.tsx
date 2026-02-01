@@ -91,7 +91,7 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
                 className={`group ${offsetClass}`}
               >
                 {/* Image */}
-                <div className="relative h-48 md:h-52 overflow-hidden rounded-2xl mb-5">
+                <div className="relative h-48 md:h-52 overflow-hidden rounded-2xl mb-5 shadow-lg">
                   <Image
                     src={offer.image}
                     alt={offer.title}
