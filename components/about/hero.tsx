@@ -22,150 +22,144 @@ export function AboutHero({ lang }: AboutHeroProps) {
   }, []);
 
   return (
-    <>
-      {/* Hero Section */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-white">
-        <div className="relative w-full px-4 sm:px-6 pt-20 pb-16 md:py-24 lg:py-32">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              {/* Left Content */}
-              <div
-                ref={containerRef}
-                className={`space-y-8 animate-fade-in-up ${
-                  isRTL ? "lg:order-2" : ""
-                }`}
-              >
-                <div>
-                  <span className="inline-block px-4 py-2 bg-accent-warm-gold/15 rounded-full text-xs font-bold text-accent-warm-gold mb-6 uppercase tracking-widest">
-                    {lang === "en" ? "About Faradid" : "درباره فارادید"}
-                  </span>
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-primary leading-tight tracking-tight font-hero mb-6">
-                    {lang === "en"
-                      ? "We focuses on the development of retail-oriented properties that strategically position retailers and reward investors."
-                      : "ما بر توسعه ملک‌های تجاری متمرکز هستیم که استراتژیک‌الانه خرده‌فروشان را قرار می‌دهند و سرمایه‌گذاران را پاداش می‌دهند."}
-                  </h1>
-                </div>
+    <section
+      className="relative w-full overflow-hidden bg-white"
+      dir={isRTL ? "rtl" : "ltr"}
+    >
+      <div className="w-full px-4 sm:px-6 pt-16 md:pt-20 pb-16">
+        <div className="max-w-6xl mx-auto space-y-20">
+          {/* Headline */}
+          <div ref={containerRef} className="text-center animate-fade-in-up">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-8 max-w-4xl mx-auto">
+              {lang === "en"
+                ? "We focuses on the development of retail-oriented properties that strategically position retailers and reward investors."
+                : "ما بر توسعه ملک‌های تجاری متمرکز هستیم که استراتژیک‌الانه خرده‌فروشان را قرار می‌دهند و سرمایه‌گذاران را پاداش می‌دهند."}
+            </h1>
+            <button className="px-8 py-4 bg-accent-warm-gold text-primary font-bold rounded-lg hover:shadow-xl transition">
+              {lang === "en" ? "Contact Us" : "تماس با ما"}
+            </button>
+          </div>
 
-                <button className="px-8 py-4 bg-accent-warm-gold text-primary font-bold hover:bg-accent-warm-gold/90 transition-all duration-300 hover:shadow-xl hover:shadow-accent-warm-gold/30 rounded-lg inline-block">
-                  {lang === "en" ? "Get in Touch" : "تماس بگیرید"}
-                </button>
-              </div>
-
-              {/* Right Image */}
-              <div
-                className={`animate-fade-in-up ${isRTL ? "lg:order-1" : ""}`}
-              >
-                <div className="relative h-96 md:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
-                  <Image
-                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
-                    alt="Modern retail property"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </div>
+          {/* Image */}
+          <div className="animate-fade-in-up">
+            <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80"
+                alt="Retail property"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Get to Know Us Section */}
-      <section className="relative py-24 md:py-32 px-4 sm:px-6 bg-gray-50 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            {/* Left - Text Content */}
-            <div className={`animate-fade-in-up ${isRTL ? "lg:order-2" : ""}`}>
-              <h2 className="text-5xl md:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-8">
-                {lang === "en"
-                  ? "Get to know us more"
-                  : "بیشتر درباره ما بدانید"}
-              </h2>
+          {/* Intro */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <h2 className="text-4xl md:text-5xl font-bold font-hero max-w-2/3 text-primary animate-fade-in-up">
+              {lang === "en" ? "Get to know us more" : "بیشتر درباره ما بدانید"}
+            </h2>
 
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
+            {/* FORCE LTR FOR ENGLISH */}
+            <div
+              dir={lang === "en" ? "ltr" : "rtl"}
+              className={`space-y-6 animate-fade-in-up ${
+                lang === "en" ? "text-left" : "text-right"
+              }`}
+              style={lang === "en" ? { unicodeBidi: "plaintext" } : undefined}
+            >
+              <p className="text-base md:text-lg font-semibold text-gray-900 leading-relaxed max-w-xl">
                 {lang === "en"
-                  ? "Owned and run by a group of extremely accomplished property experts, we provide property consultancy services for retailers, investors, developers and financial advisors of property and associated assets."
-                  : "صاحب و اداره‌شده توسط گروهی از متخصصین ملک بسیار توانمند، ما خدمات مشاوره‌ای املاک را برای خرده‌فروشان، سرمایه‌گذاران، توسعه‌دهندگان و مشاوران مالی ملک و دارایی‌های مرتبط ارائه می‌دهیم."}
+                  ? "Owned and run by a group of commercial property experts, we provide property consultancy services for owners, occupiers, investors, developers and financial advisors of property and associated assets."
+                  : "صاحب و اداره‌شده توسط گروهی از متخصصان املاک تجاری، ما خدمات مشاوره املاک را برای مالکان، بهره‌برداران، سرمایه‌گذاران، توسعه‌دهندگان و مشاوران مالی ارائه می‌دهیم."}
               </p>
 
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              <p className="text-sm md:text-base text-gray-700 leading-relaxed max-w-xl">
                 {lang === "en"
-                  ? "Headquartered in Pakistan and having presence in 14+ countries, we serve a diverse range of institutional and private clients. We execute our duties with utmost honesty and integrity in all matters."
-                  : "مستقر در پاکستان و حضور در ۱۴+ کشور، ما طیف متنوعی از کلاینت‌های نهادی و خصوصی را خدمت می‌رسانیم. ما وظایف خود را با راستی و صداقت کامل در تمام مسائل انجام می‌دهیم."}
-              </p>
-
-              <p className="text-lg text-gray-700 leading-relaxed">
-                {lang === "en"
-                  ? "We are one of the most rapidly growing internationally styled professional and consultancy practices within South Asia and GCC region with an ever-growing team of respected property and financial professionals."
-                  : "ما یکی از سریع‌ترین رشد‌کننده‌های بین‌المللی در منطقه جنوب آسیا و خلیج فارس هستیم با تیمی رو به رشد از متخصصان ملک و مالی معتبر."}
+                  ? "Operating from offices in Birmingham, Bristol, Exeter, Leeds, London, Manchester, Newcastle, Teesside and York we combine our knowledge and skills to provide complete property advice, ultimately making you and your business more successful. The property industry continues to transform through influences in technology, culture and economy and we are excited to be a part of the journey, making an impact where we can, and adapting where needed."
+                  : "ما با فعالیت از دفاتر خود در شهرهای مختلف، دانش و مهارت‌های خود را برای ارائه مشاوره جامع ملکی ترکیب می‌کنیم و به موفقیت بیشتر شما و کسب‌وکارتان کمک می‌کنیم."}
               </p>
             </div>
+          </div>
 
-            {/* Right - Team Member Card & Stats */}
-            <div
-              className={`space-y-8 animate-fade-in-up ${
-                isRTL ? "lg:order-1" : ""
-              }`}
-            >
-              {/* Team Member Card */}
-              <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-200">
-                <div className="flex gap-4 mb-4">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
-                    <Image
-                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&q=80"
-                      alt="Team member"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-primary text-lg">
-                      {lang === "en" ? "Founder & CEO" : "بنیانگذار و مدیرعامل"}
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      {lang === "en"
-                        ? "25+ Years in Property"
-                        : "۲۵+ سال تجربه"}
-                    </p>
-                  </div>
-                </div>
-                <p className="text-gray-700 leading-relaxed text-sm">
-                  {lang === "en"
-                    ? '"Our goal is to provide house for the people who live in tight budget could to places. We tries to cut off that travel expenses and increase the budget."'
-                    : '"هدف ما فراهم کردن خانه برای افرادی است که تو بودجه محدود می‌توانند به جاهای مختلف رفتند. ما سعی می‌کنیم هزینه‌های سفر را کاهش دهیم و بودجه را افزایش دهیم."'}
+          {/* Founder */}
+          <div className="animate-fade-in-up grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* CEO */}
+            <div className="flex gap-4 items-center">
+              <div className="relative w-14 h-14 rounded-full overflow-hidden">
+                <Image
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&q=80"
+                  alt="CEO"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-primary uppercase tracking-wide">
+                  {lang === "en" ? "Founder & CEO" : "بنیانگذار و مدیرعامل"}
+                </p>
+                <p className="text-sm text-gray-600">
+                  {lang === "en" ? "Daniel Redcliff" : "دنیل ردکلیف"}
                 </p>
               </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-4">
-                <div className="text-center">
-                  <p className="text-3xl md:text-4xl font-bold text-accent-warm-gold mb-2">
-                    8.93%
-                  </p>
-                  <p className="text-xs md:text-sm text-gray-600">
-                    {lang === "en" ? "Growth Rate" : "نرخ رشد"}
-                  </p>
-                </div>
-                <div className="text-center">
-                  <p className="text-3xl md:text-4xl font-bold text-accent-warm-gold mb-2">
-                    12.6K
-                  </p>
-                  <p className="text-xs md:text-sm text-gray-600">
-                    {lang === "en" ? "Happy Clients" : "مشتریان راضی"}
-                  </p>
-                </div>
-                <div className="text-center">
-                  <p className="text-3xl md:text-4xl font-bold text-accent-warm-gold mb-2">
-                    16+
-                  </p>
-                  <p className="text-xs md:text-sm text-gray-600">
-                    {lang === "en" ? "Countries" : "کشورها"}
-                  </p>
-                </div>
-              </div>
             </div>
+
+            {/* Quote */}
+            <blockquote className="text-2xl md:text-3xl font-bold text-primary leading-tight max-w-xl">
+              {lang === "en"
+                ? "“Our goal is to provide house for the people who are in a tight budget could not afford to check houses from places to places. We tries to cut off that travel expenses and motivate them to increase the budget.”"
+                : "«هدف ما فراهم کردن خانه برای افرادی است که بودجه محدودی دارند و نمی‌توانند برای بازدید از خانه‌ها سفر کنند.»"}
+            </blockquote>
+          </div>
+
+          {/* Stats */}
+          <div className="animate-fade-in-up grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+            <Stat
+              value="8.93%"
+              labelEn="Profit return rate"
+              labelFa="نرخ بازده سود"
+              lang={lang}
+            />
+            <Stat
+              value="12.6K"
+              labelEn="Listed property"
+              labelFa="ملک موجود"
+              lang={lang}
+            />
+            <Stat
+              value="16+"
+              labelEn="Operational area"
+              labelFa="منطقه فعالیت"
+              lang={lang}
+            />
+            <Stat
+              value="12+"
+              labelEn="Awards won"
+              labelFa="جوایز کسب شده"
+              lang={lang}
+            />
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
+  );
+}
+
+function Stat({
+  value,
+  labelEn,
+  labelFa,
+  lang,
+}: {
+  value: string;
+  labelEn: string;
+  labelFa: string;
+  lang: Language;
+}) {
+  return (
+    <div>
+      <p className="text-3xl font-bold text-primary">{value}</p>
+      <p className="text-xs text-gray-600">
+        {lang === "en" ? labelEn : labelFa}
+      </p>
+    </div>
   );
 }
