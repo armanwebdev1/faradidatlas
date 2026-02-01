@@ -183,18 +183,6 @@ export function TeamShowcase({ lang }: TeamShowcaseProps) {
             </div>
           ))}
         </div>
-
-        {/* CTA Section */}
-        <div className="mt-20 text-center animate-fade-in-up">
-          <p className="text-lg text-gray-600 mb-8">
-            {lang === "en"
-              ? "Interested in joining our team?"
-              : "علاقه‌مند به پیوستن به تیم ما؟"}
-          </p>
-          <button className="px-8 py-4 bg-accent-warm-gold text-primary font-bold hover:bg-accent-warm-gold/90 transition-all duration-300 hover:shadow-xl hover:shadow-accent-warm-gold/30 rounded-lg inline-block">
-            {lang === "en" ? "Explore Careers" : "فرصت‌های شغلی"}
-          </button>
-        </div>
       </div>
     </section>
   );
