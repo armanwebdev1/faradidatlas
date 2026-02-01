@@ -61,8 +61,12 @@ export function AboutHero({ lang }: AboutHeroProps) {
             {/* FORCE LTR FOR ENGLISH */}
             <div
               dir="ltr"
-              className="space-y-6 animate-fade-in-up text-left"
-              style={{ unicodeBidi: "plaintext" }}
+              className="space-y-6 animate-fade-in-up"
+              style={{ 
+                unicodeBidi: "plaintext",
+                direction: "ltr",
+                textAlign: "left"
+              }}
             >
               <p className="text-base md:text-lg font-semibold text-gray-900 leading-relaxed max-w-xl">
                 {lang === "en"
