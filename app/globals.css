@@ -311,6 +311,14 @@
   text-align: right;
 }
 
+/* Override RTL rules for nested LTR elements */
+[dir="rtl"] [dir="ltr"],
+[dir="rtl"] [dir="ltr"] * {
+  direction: ltr !important;
+  text-align: left !important;
+  unicode-bidi: plaintext !important;
+}
+
 /* RTL flex reversals */
 [dir="rtl"] .flex-row {
   flex-direction: row-reverse;
