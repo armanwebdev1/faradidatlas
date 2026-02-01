@@ -11,74 +11,60 @@ export function GetConnected({ lang }: GetConnectedProps) {
   const isRTL = lang === "fa";
 
   return (
-    <section className="relative py-24 md:py-32 px-4 sm:px-6 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left - Images Grid */}
-          <div className={`animate-fade-in-up ${isRTL ? "lg:order-2" : ""}`}>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
-                <Image
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80"
-                  alt="Property showcase 1"
-                  fill
-                  className="object-cover hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-              <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
-                <Image
-                  src="https://images.unsplash.com/photo-1486525891917-3b627cbf3d3c?w=400&q=80"
-                  alt="Property showcase 2"
-                  fill
-                  className="object-cover hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-              <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
-                <Image
-                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80"
-                  alt="Property showcase 3"
-                  fill
-                  className="object-cover hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-              <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
-                <Image
-                  src="https://images.unsplash.com/photo-1493857671505-72967e2e2760?w=400&q=80"
-                  alt="Property showcase 4"
-                  fill
-                  className="object-cover hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-            </div>
-          </div>
+    <section className="relative bg-background overflow-hidden">
+      {/* Full-width Image */}
+      <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px]">
+        <Image
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80"
+          alt="Modern commercial buildings"
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
 
-          {/* Right - Text Content */}
-          <div
-            className={`space-y-8 animate-fade-in-up ${
-              isRTL ? "lg:order-1" : ""
-            }`}
-          >
-            <h2 className="text-5xl md:text-6xl font-bold text-primary leading-tight tracking-tight font-hero">
+      {/* Content Section */}
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 py-16 md:py-24">
+        <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 ${isRTL ? "lg:flex-row-reverse" : ""}`}>
+          {/* Left - Heading */}
+          <div className={`lg:col-span-4 ${isRTL ? "lg:order-2" : ""}`}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground leading-tight tracking-tight">
               {lang === "en"
                 ? "Read our story to get connected"
                 : "داستان ما را بخوانید تا متصل شوید"}
             </h2>
+          </div>
 
-            <p className="text-lg text-gray-700 leading-relaxed">
-              {lang === "en"
-                ? "Owned and run by a group of extremely accomplished property experts, we provide property consultancy services for retailers, investors, developers and financial advisors of property and associated assets."
-                : "صاحب و اداره‌شده توسط گروهی از متخصصین ملک بسیار توانمند، ما خدمات مشاوره‌ای املاک را برای خرده‌فروشان، سرمایه‌گذاران، توسعه‌دهندگان و مشاوران مالی ملک ارائه می‌دهیم."}
+          {/* Right - Body Content */}
+          <div className={`lg:col-span-8 space-y-6 ${isRTL ? "lg:order-1" : ""}`}>
+            <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
+              {lang === "en" ? (
+                <>
+                  <span className="font-semibold text-foreground">
+                    Owned and run by a group of commercial property experts, we provide property consultancy services for owners, occupiers, investors, developers and financial advisors of property and associated assets.
+                  </span>
+                </>
+              ) : (
+                <span className="font-semibold text-foreground">
+                  متعلق به گروهی از متخصصان املاک تجاری و اداره می‌شود، ما خدمات مشاوره‌ای املاک را برای مالکان، ساکنان، سرمایه‌گذاران، توسعه‌دهندگان و مشاوران مالی املاک و دارایی‌های مرتبط ارائه می‌دهیم.
+                </span>
+              )}
             </p>
 
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-base md:text-lg text-foreground/70 leading-relaxed">
               {lang === "en"
-                ? "Based on our exposure & experience, extensive research and use of the sophisticated tools & latest technologies & practices, we provide our clients with comprehensive, objective and unbiased recommendations on key areas of property development."
-                : "براساس تجربه ما، تحقیقات گسترده و استفاده از ابزارهای پیشرفته و فن‌آوری‌های جدید، ما به مشتریان خود توصیه‌های جامع و بدون طرفداری ارائه می‌دهیم."}
+                ? "Operating from offices in Birmingham, Bristol, Exeter, Leeds, London, Manchester, Newcastle, Teesside and York we combine our knowledge and skills to provide complete property advice, ultimately making you and your business more successful. The property industry continues to transform through influences in technology, culture and economy and we're excited to be a part of the journey, making an impact where we can, and adapting when we need to."
+                : "با فعالیت از دفاتر در بیرمنگام، بریستول، اکستر، لیدز، لندن، منچستر، نیوکاسل، تیساید و یورک، ما دانش و مهارت‌های خود را ترکیب می‌کنیم تا مشاوره کامل املاک ارائه دهیم و در نهایت شما و کسب‌وکارتان را موفق‌تر کنیم. صنعت املاک از طریق تأثیرات در فناوری، فرهنگ و اقتصاد به تحول خود ادامه می‌دهد و ما هیجان‌زده هستیم که بخشی از این سفر باشیم."}
             </p>
 
-            <button className="px-8 py-4 bg-accent-warm-gold text-primary font-bold hover:bg-accent-warm-gold/90 transition-all duration-300 hover:shadow-xl hover:shadow-accent-warm-gold/30 rounded-lg inline-block">
-              {lang === "en" ? "Connect With Us" : "با ما متصل شوید"}
-            </button>
+            {/* Quote Block with Accent Border */}
+            <div className={`${isRTL ? "border-r-2 pr-6" : "border-l-2 pl-6"} border-accent-warm-gold mt-8`}>
+              <p className="text-base md:text-lg text-foreground/80 leading-relaxed italic">
+                {lang === "en"
+                  ? "Some 14 years later, their businesses had survived through the wars, experienced international success and acquired several other businesses, and in 2007 the two merged to become the name we are today."
+                  : "حدود ۱۴ سال بعد، کسب‌وکارهای آن‌ها از جنگ‌ها جان سالم به در بردند، موفقیت بین‌المللی را تجربه کردند و چندین کسب‌وکار دیگر را به دست آوردند، و در سال ۲۰۰۷ این دو ادغام شدند تا نامی شوند که امروز هستیم."}
+              </p>
+            </div>
           </div>
         </div>
       </div>
