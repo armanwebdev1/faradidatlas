@@ -26,47 +26,41 @@ export function GetConnected({ lang }: GetConnectedProps) {
         </div>
 
         {/* Bottom Content - Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left - Heading */}
-          <div className={`flex flex-col justify-start ${isRTL ? "lg:order-2" : ""}`}>
-            <h2 className={`text-4xl md:text-5xl font-bold text-primary leading-tight tracking-tight font-hero ${
-              isRTL ? "text-right" : "text-left"
-            }`}>
+          <div className={`flex flex-col justify-start`}>
+            <h2 className="text-4xl md:text-5xl font-bold text-primary leading-tight tracking-tight font-hero text-left">
               {lang === "en"
                 ? "Read our story to get connected"
                 : "داستان ما را بخوانید تا متصل شوید"}
             </h2>
           </div>
 
-          {/* Right - Text Content and Quote */}
+          {/* Right - Text Content */}
           <div
-            className={`lg:col-span-2 space-y-6 animate-fade-in-up ${
-              isRTL ? "lg:order-1" : ""
-            }`}
+            className="space-y-4 animate-fade-in-up"
+            dir="ltr"
+            style={{
+              direction: "ltr",
+              textAlign: "left",
+              unicodeBidi: "plaintext"
+            }}
           >
-            <p className={`text-base md:text-lg text-gray-700 leading-relaxed ${
-              isRTL ? "text-right" : "text-left"
-            }`}>
+            <p className="text-base md:text-lg text-gray-700 leading-relaxed">
               {lang === "en"
                 ? "Owned and run by a group of commercial property experts, we provide property consultancy services for retailers, investors, developers and financial advisors of property and associated assets."
                 : "صاحب و اداره‌شده توسط گروهی از متخصصین ملک تجاری، ما خدمات مشاوره‌ای املاک را برای خرده‌فروشان، سرمایه‌گذاران، توسعه‌دهندگان و مشاوران مالی ملک ارائه می‌دهیم."}
             </p>
 
-            <p className={`text-base md:text-lg text-gray-700 leading-relaxed ${
-              isRTL ? "text-right" : "text-left"
-            }`}>
+            <p className="text-base md:text-lg text-gray-700 leading-relaxed">
               {lang === "en"
                 ? "Operating from offices in Birmingham, Bristol, Exeter, Leeds, London, Manchester, Newcastle, Teesside and York we combine our knowledge and business more successful. The property industry continues to transform through influences in technology, culture and economy and we're excited to be a part of the journey, making an impact where we can, and adapting when we need to."
                 : "بر اساس تجربه ما، تحقیقات گسترده و استفاده از ابزارهای پیشرفته و فن‌آوری‌های جدید، ما به مشتریان خود توصیه‌های جامع و بدون طرفداری ارائه می‌دهیم."}
             </p>
 
             {/* Quote Section */}
-            <div className={`border-l-4 border-blue-500 pl-6 py-4 bg-gray-50 ${
-              isRTL ? "border-l-0 border-r-4 pr-6 pl-0" : ""
-            }`}>
-              <p className={`text-base italic text-gray-700 leading-relaxed ${
-                isRTL ? "text-right" : "text-left"
-              }`}>
+            <div className="border-l-4 border-blue-500 pl-6 py-4 bg-gray-50">
+              <p className="text-base italic text-gray-700 leading-relaxed">
                 {lang === "en"
                   ? "Some 14 years later, their businesses had survived through the worst, experienced international success and acquired several other businesses, and in 2007 the two emerged to become the name we are today."
                   : "چهارده سال بعد، کسب‌وکارهای آنها از بدترین شرایط سالم بیرون آمدند، موفقیت بین‌المللی را تجربه کردند و چندین کسب‌وکار دیگر را کسب کردند."}
