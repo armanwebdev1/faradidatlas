@@ -70,40 +70,45 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
           </p>
         </div>
 
-        {/* Offerings Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {offers.map((offer, idx) => (
-            <div
-              key={idx}
-              className="group animate-fade-in-up"
-              style={{ animationDelay: `${idx * 0.1}s` }}
-            >
-              <div className="relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 border border-gray-200 hover:border-accent-warm-gold h-full flex flex-col">
-                {/* Image */}
-                <div className="relative h-64 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
-                  <Image
-                    src={offer.image}
-                    alt={offer.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                </div>
+        {/* Offerings Grid - Staggered Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+          {offers.map((offer, idx) => {
+            // Staggered offset: leftmost (idx=0) highest, rightmost (idx=2) lowest
+            const offsetClass =
+              idx === 0 ? "lg:mt-0" : idx === 1 ? "lg:mt-12" : "lg:mt-24";
+            return (
+              <div
+                key={idx}
+                className={`group animate-fade-in-up ${offsetClass}`}
+                style={{ animationDelay: `${idx * 0.1}s` }}
+              >
+                <div className="relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 border border-gray-200 hover:border-accent-warm-gold h-full flex flex-col">
+                  {/* Image */}
+                  <div className="relative h-64 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+                    <Image
+                      src={offer.image}
+                      alt={offer.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                  </div>
 
-                {/* Content */}
-                <div className="p-8 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-accent-warm-gold transition-colors">
-                    {offer.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed flex-grow">
-                    {offer.description}
-                  </p>
-                </div>
+                  {/* Content */}
+                  <div className="p-8 flex flex-col flex-grow">
+                    <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-accent-warm-gold transition-colors">
+                      {offer.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed flex-grow">
+                      {offer.description}
+                    </p>
+                  </div>
 
-                {/* Bottom accent line */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent-warm-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {/* Bottom accent line */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent-warm-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* CTA Button */}
