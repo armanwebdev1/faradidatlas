@@ -79,34 +79,39 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
           </button>
         </div>
 
-        {/* Offerings Grid - Staggered layout */}
+        {/* Offerings Grid - Descending staggered layout (left highest, right lowest) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 items-start">
-          {offers.map((offer, idx) => (
-            <div 
-              key={idx} 
-              className={`group ${idx === 1 ? "lg:mt-16" : ""}`}
-            >
-              {/* Image */}
-              <div className="relative h-48 md:h-52 overflow-hidden rounded-lg mb-5">
-                <Image
-                  src={offer.image}
-                  alt={offer.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
+          {offers.map((offer, idx) => {
+            // Descending offset: first card = 0, second card = mt-12, third card = mt-24
+            const offsetClass = idx === 0 ? "" : idx === 1 ? "lg:mt-12" : "lg:mt-24";
+            
+            return (
+              <div 
+                key={idx} 
+                className={`group ${offsetClass}`}
+              >
+                {/* Image */}
+                <div className="relative h-48 md:h-52 overflow-hidden rounded-2xl mb-5">
+                  <Image
+                    src={offer.image}
+                    alt={offer.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
 
-              {/* Content */}
-              <div dir="ltr" className="text-left">
-                <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2 leading-snug">
-                  {offer.title}
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {offer.description}
-                </p>
+                {/* Content */}
+                <div dir="ltr" className="text-left">
+                  <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2 leading-snug">
+                    {offer.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    {offer.description}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
