@@ -305,9 +305,7 @@
   text-align: left;
 }
 
-[dir="ltr"] .text-left {
-  text-align: right;
-}
+
 
 /* RTL flex reversals */
 [dir="rtl"] .flex-row {
