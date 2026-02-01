@@ -299,16 +299,10 @@
   text-align: right;
 }
 
-[dir="ltr"] .text-right {
-  text-align: left;
-}
+/* LTR should maintain normal text alignment - no inversion needed */
 
 [dir="rtl"] .text-right {
   text-align: left;
-}
-
-[dir="ltr"] .text-left {
-  text-align: right;
 }
 
 /* RTL flex reversals */
