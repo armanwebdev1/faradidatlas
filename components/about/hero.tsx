@@ -60,19 +60,16 @@ export function AboutHero({ lang }: AboutHeroProps) {
 
             {/* FORCE LTR FOR ENGLISH */}
             <div
-              dir={lang === "en" ? "ltr" : "rtl"}
-              className={`space-y-6 animate-fade-in-up ${
-                lang === "en" ? "text-left" : "text-right"
-              }`}
-              style={lang === "en" ? { unicodeBidi: "plaintext" } : undefined}
+              dir="ltr"
+              className="space-y-6 animate-fade-in-up text-left"
             >
-              <p className="text-base md:text-lg font-semibold text-gray-900 leading-relaxed max-w-xl">
+              <p className="text-base md:text-lg font-semibold text-gray-900 leading-relaxed max-w-xl text-left">
                 {lang === "en"
                   ? "Owned and run by a group of commercial property experts, we provide property consultancy services for owners, occupiers, investors, developers and financial advisors of property and associated assets."
                   : "صاحب و اداره‌شده توسط گروهی از متخصصان املاک تجاری، ما خدمات مشاوره املاک را برای مالکان، بهره‌برداران، سرمایه‌گذاران، توسعه‌دهندگان و مشاوران مالی ارائه می‌دهیم."}
               </p>
 
-              <p className="text-sm md:text-base text-gray-700 leading-relaxed max-w-xl">
+              <p className="text-sm md:text-base text-gray-700 leading-relaxed max-w-xl text-left">
                 {lang === "en"
                   ? "Operating from offices in Birmingham, Bristol, Exeter, Leeds, London, Manchester, Newcastle, Teesside and York we combine our knowledge and skills to provide complete property advice, ultimately making you and your business more successful. The property industry continues to transform through influences in technology, culture and economy and we are excited to be a part of the journey, making an impact where we can, and adapting where needed."
                   : "ما با فعالیت از دفاتر خود در شهرهای مختلف، دانش و مهارت‌های خود را برای ارائه مشاوره جامع ملکی ترکیب می‌کنیم و به موفقیت بیشتر شما و کسب‌وکارتان کمک می‌کنیم."}
