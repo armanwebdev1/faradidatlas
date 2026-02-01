@@ -24,120 +24,144 @@ export function AboutHero({ lang }: AboutHeroProps) {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-screen w-full overflow-hidden bg-primary">
-        <div className="absolute inset-0">
-          <Image
-            src="/about-hero-bg.jpg"
-            alt="Premium food products"
-            fill
-            className="object-cover opacity-90"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-primary/95" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
-        </div>
+      <section className="relative min-h-screen w-full overflow-hidden bg-white">
+        <div className="relative w-full px-4 sm:px-6 pt-20 pb-16 md:py-24 lg:py-32">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              {/* Left Content */}
+              <div
+                ref={containerRef}
+                className={`space-y-8 animate-fade-in-up ${
+                  isRTL ? "lg:order-2" : ""
+                }`}
+              >
+                <div>
+                  <span className="inline-block px-4 py-2 bg-accent-warm-gold/15 rounded-full text-xs font-bold text-accent-warm-gold mb-6 uppercase tracking-widest">
+                    {lang === "en" ? "About Faradid" : "درباره فارادید"}
+                  </span>
+                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-primary leading-tight tracking-tight font-hero mb-6">
+                    {lang === "en"
+                      ? "We focuses on the development of retail-oriented properties that strategically position retailers and reward investors."
+                      : "ما بر توسعه ملک‌های تجاری متمرکز هستیم که استراتژیک‌الانه خرده‌فروشان را قرار می‌دهند و سرمایه‌گذاران را پاداش می‌دهند."}
+                  </h1>
+                </div>
 
-        <div
-          ref={containerRef}
-          className="relative h-full w-full flex flex-col justify-center items-start"
-        >
-          <div
-            className={`max-w-6xl px-8 sm:px-12 md:px-16 lg:px-32 ${
-              isRTL ? "text-right" : "text-left"
-            }`}
-          >
-            <div className="animate-fade-in-up mb-8">
-              <span className="inline-block px-4 py-2 bg-accent-warm-gold/25 backdrop-blur-md rounded-full text-sm font-bold text-accent-warm-gold border border-accent-warm-gold/50 tracking-widest">
-                {lang === "en" ? "SINCE 1998" : "از سال ۱۳۷۷"}
-              </span>
+                <button className="px-8 py-4 bg-accent-warm-gold text-primary font-bold hover:bg-accent-warm-gold/90 transition-all duration-300 hover:shadow-xl hover:shadow-accent-warm-gold/30 rounded-lg inline-block">
+                  {lang === "en" ? "Get in Touch" : "تماس بگیرید"}
+                </button>
+              </div>
+
+              {/* Right Image */}
+              <div
+                className={`animate-fade-in-up ${isRTL ? "lg:order-1" : ""}`}
+              >
+                <div className="relative h-96 md:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
+                    alt="Modern retail property"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
             </div>
-
-            <h1
-              className="text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-8 leading-tight tracking-tight font-hero max-w-5xl"
-              style={{
-                fontFamily:
-                  lang === "en"
-                    ? "var(--font-hero)"
-                    : "Estedad, var(--font-hero)",
-              }}
-            >
-              {lang === "en" ? "Faradi Atlas" : "فارادی اطلس"}
-            </h1>
-
-            <p
-              className="text-2xl md:text-3xl text-white/95 max-w-3xl leading-relaxed font-light mb-12"
-              style={{
-                fontFamily:
-                  lang === "en"
-                    ? "var(--font-body)"
-                    : "Shabnam, var(--font-body)",
-              }}
-            >
-              {lang === "en"
-                ? "Pioneering Excellence in Global Food Trading"
-                : "پیشگام برتری در تجارت جهانی غذایی"}
-            </p>
-
-            <button className="animate-fade-in-up px-8 py-4 bg-accent-warm-gold text-primary font-bold text-lg hover:bg-accent-warm-gold/90 transition-all duration-300 hover:shadow-xl hover:shadow-accent-warm-gold/30 rounded-lg">
-              {lang === "en" ? "Explore Our Story" : "داستان ما را کاوش کنید"}
-            </button>
           </div>
-        </div>
-
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <svg
-            className="w-6 h-6 text-white/60"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
         </div>
       </section>
 
-      {/* Story Section */}
-      <section className="relative py-24 md:py-32 px-4 sm:px-6 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      {/* Get to Know Us Section */}
+      <section className="relative py-24 md:py-32 px-4 sm:px-6 bg-gray-50 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            {/* Left - Text Content */}
             <div className={`animate-fade-in-up ${isRTL ? "lg:order-2" : ""}`}>
-              <div className="relative h-96 md:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
-                <Image
-                  src="/about-story.jpg"
-                  alt="Iranian agricultural heritage"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+              <h2 className="text-5xl md:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-8">
+                {lang === "en"
+                  ? "Get to know us more"
+                  : "بیشتر درباره ما بدانید"}
+              </h2>
+
+              <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                {lang === "en"
+                  ? "Owned and run by a group of extremely accomplished property experts, we provide property consultancy services for retailers, investors, developers and financial advisors of property and associated assets."
+                  : "صاحب و اداره‌شده توسط گروهی از متخصصین ملک بسیار توانمند، ما خدمات مشاوره‌ای املاک را برای خرده‌فروشان، سرمایه‌گذاران، توسعه‌دهندگان و مشاوران مالی ملک و دارایی‌های مرتبط ارائه می‌دهیم."}
+              </p>
+
+              <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                {lang === "en"
+                  ? "Headquartered in Pakistan and having presence in 14+ countries, we serve a diverse range of institutional and private clients. We execute our duties with utmost honesty and integrity in all matters."
+                  : "مستقر در پاکستان و حضور در ۱۴+ کشور، ما طیف متنوعی از کلاینت‌های نهادی و خصوصی را خدمت می‌رسانیم. ما وظایف خود را با راستی و صداقت کامل در تمام مسائل انجام می‌دهیم."}
+              </p>
+
+              <p className="text-lg text-gray-700 leading-relaxed">
+                {lang === "en"
+                  ? "We are one of the most rapidly growing internationally styled professional and consultancy practices within South Asia and GCC region with an ever-growing team of respected property and financial professionals."
+                  : "ما یکی از سریع‌ترین رشد‌کننده‌های بین‌المللی در منطقه جنوب آسیا و خلیج فارس هستیم با تیمی رو به رشد از متخصصان ملک و مالی معتبر."}
+              </p>
             </div>
 
+            {/* Right - Team Member Card & Stats */}
             <div
               className={`space-y-8 animate-fade-in-up ${
                 isRTL ? "lg:order-1" : ""
               }`}
             >
-              <h2 className="text-5xl md:text-6xl font-bold text-primary leading-tight tracking-tight font-hero">
-                {lang === "en"
-                  ? "Built on Trust & Quality"
-                  : "بنا بر اعتماد و کیفیت"}
-              </h2>
+              {/* Team Member Card */}
+              <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-200">
+                <div className="flex gap-4 mb-4">
+                  <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+                    <Image
+                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&q=80"
+                      alt="Team member"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-primary text-lg">
+                      {lang === "en" ? "Founder & CEO" : "بنیانگذار و مدیرعامل"}
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      {lang === "en"
+                        ? "25+ Years in Property"
+                        : "۲۵+ سال تجربه"}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  {lang === "en"
+                    ? '"Our goal is to provide house for the people who live in tight budget could to places. We tries to cut off that travel expenses and increase the budget."'
+                    : '"هدف ما فراهم کردن خانه برای افرادی است که تو بودجه محدود می‌توانند به جاهای مختلف رفتند. ما سعی می‌کنیم هزینه‌های سفر را کاهش دهیم و بودجه را افزایش دهیم."'}
+                </p>
+              </div>
 
-              <p className="text-lg text-gray-700 leading-relaxed">
-                {lang === "en"
-                  ? "Founded in 1998 with a simple yet powerful vision: the world's finest food products deserve trustworthy partners who understand quality, heritage, and responsibility."
-                  : "تأسیس‌شده در سال ۱۳۷۷ با یک دیدگاه ساده اما قدرتمند: بهترین محصولات غذایی جهان شایسته شرکایی هستند که کیفیت، میراث و مسئولیت را درک کنند."}
-              </p>
-
-              <p className="text-lg text-gray-700 leading-relaxed">
-                {lang === "en"
-                  ? "For over 25 years, we've cultivated deep relationships with the finest producers across Iran and beyond, building a reputation built on transparency, integrity, and an unwavering commitment to excellence."
-                  : "برای بیش از ۲۵ سال، ما روابط عمیق با بهترین تولیدکنندگان در سراسر ایران و فراتر ایجاد کرده‌ایم و شهرتی ساخته‌ایم که بر شفافیت، صداقت و تعهد بی‌تزلزل به برتری استوار است."}
-              </p>
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-4">
+                <div className="text-center">
+                  <p className="text-3xl md:text-4xl font-bold text-accent-warm-gold mb-2">
+                    8.93%
+                  </p>
+                  <p className="text-xs md:text-sm text-gray-600">
+                    {lang === "en" ? "Growth Rate" : "نرخ رشد"}
+                  </p>
+                </div>
+                <div className="text-center">
+                  <p className="text-3xl md:text-4xl font-bold text-accent-warm-gold mb-2">
+                    12.6K
+                  </p>
+                  <p className="text-xs md:text-sm text-gray-600">
+                    {lang === "en" ? "Happy Clients" : "مشتریان راضی"}
+                  </p>
+                </div>
+                <div className="text-center">
+                  <p className="text-3xl md:text-4xl font-bold text-accent-warm-gold mb-2">
+                    16+
+                  </p>
+                  <p className="text-xs md:text-sm text-gray-600">
+                    {lang === "en" ? "Countries" : "کشورها"}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
