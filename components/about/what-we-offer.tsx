@@ -12,105 +12,98 @@ const offerings = {
     {
       image:
         "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80",
-      title: "A leading RPS Property Traders",
+      title: "A leading SME property finding industry",
       description:
-        "Expert property trading solutions tailored for modern markets",
+        "Get the latest update on the current property market and value your asset with it.",
     },
     {
       image:
         "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80",
-      title: "An approx-estate alternative of the market",
-      description: "Comprehensive market analysis and pricing strategies",
+      title: "An approachable alternative in the market",
+      description:
+        "Our strategy is simple: attract the customer with the right price and authenticity.",
     },
     {
       image:
-        "https://images.unsplash.com/photo-1486525891917-3b627cbf3d3c?w=400&q=80",
-      title: "Provide different reality of property",
-      description: "Transparent insights into the property market dynamics",
+        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&q=80",
+      title: "Provide different verity of properties",
+      description:
+        "Our verity is beyond anyone's thinking. Check out our property listing to get an idea.",
     },
   ],
   fa: [
     {
       image:
         "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80",
-      title: "یک تاجر ملک RPS پیشرو",
-      description: "راه‌حل‌های تجارت ملک متخصص برای بازارهای مدرن",
+      title: "یک صنعت پیشرو در یافتن املاک SME",
+      description:
+        "آخرین به‌روزرسانی‌ها درباره بازار فعلی املاک را دریافت کنید و دارایی خود را ارزیابی کنید.",
     },
     {
       image:
         "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80",
-      title: "جایگزین تقریبی بازار",
-      description: "تجزیه و تحلیل جامع بازار و استراتژی‌های قیمت‌گذاری",
+      title: "جایگزینی قابل دسترس در بازار",
+      description:
+        "استراتژی ما ساده است: جذب مشتری با قیمت مناسب و اصالت.",
     },
     {
       image:
-        "https://images.unsplash.com/photo-1486525891917-3b627cbf3d3c?w=400&q=80",
-      title: "بواقع‌گرایی مختلف ملک",
-      description: "بینش شفاف در دینامیک بازار ملک",
+        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&q=80",
+      title: "ارائه تنوع مختلف از املاک",
+      description:
+        "تنوع ما فراتر از تصور هر کسی است. لیست املاک ما را بررسی کنید.",
     },
   ],
 };
 
 export function WhatWeOffer({ lang }: WhatWeOfferProps) {
   const offers = lang === "en" ? offerings.en : offerings.fa;
-  const isRTL = lang === "fa";
 
   return (
-    <section className="relative py-24 md:py-32 px-4 sm:px-6 bg-gray-50 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-5xl md:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-8">
-            {lang === "en" ? "What we offer" : "چه چیزی ارائه می‌دهیم"}
-          </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            {lang === "en"
-              ? "Comprehensive property solutions designed for success"
-              : "راه‌حل‌های ملکی جامع برای موفقیت"}
-          </p>
+    <section className="relative py-16 md:py-24 px-4 sm:px-6 bg-white overflow-hidden">
+      <div className="max-w-6xl mx-auto">
+        {/* Section Header - Row layout with title left, button right */}
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-12">
+          <div className="max-w-md">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-3">
+              {lang === "en" ? "What we offer" : "چه چیزی ارائه می‌دهیم"}
+            </h2>
+            <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+              {lang === "en"
+                ? "For us, getting the right corporate responsibility, accreditations and office network in place"
+                : "برای ما، داشتن مسئولیت شرکتی صحیح، اعتبارنامه‌ها و شبکه دفاتر مهم است"}
+            </p>
+          </div>
+          <button className="px-6 py-3 bg-teal-600 text-white text-sm font-medium hover:bg-teal-700 transition-colors duration-300 rounded-md whitespace-nowrap self-start">
+            {lang === "en" ? "Explore Properties" : "کاوش املاک"}
+          </button>
         </div>
 
         {/* Offerings Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {offers.map((offer, idx) => (
-            <div
-              key={idx}
-              className="group animate-fade-in-up"
-              style={{ animationDelay: `${idx * 0.1}s` }}
-            >
-              <div className="relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 border border-gray-200 hover:border-accent-warm-gold h-full flex flex-col">
-                {/* Image */}
-                <div className="relative h-64 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
-                  <Image
-                    src={offer.image}
-                    alt={offer.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                </div>
+            <div key={idx} className="group">
+              {/* Image */}
+              <div className="relative h-48 md:h-52 overflow-hidden rounded-lg mb-5">
+                <Image
+                  src={offer.image}
+                  alt={offer.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
 
-                {/* Content */}
-                <div className="p-8 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-accent-warm-gold transition-colors">
-                    {offer.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed flex-grow">
-                    {offer.description}
-                  </p>
-                </div>
-
-                {/* Bottom accent line */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent-warm-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              {/* Content */}
+              <div dir="ltr" className="text-left">
+                <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2 leading-snug">
+                  {offer.title}
+                </h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  {offer.description}
+                </p>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* CTA Button */}
-        <div className="text-center mt-16 animate-fade-in-up">
-          <button className="px-8 py-4 bg-accent-warm-gold text-primary font-bold hover:bg-accent-warm-gold/90 transition-all duration-300 hover:shadow-xl hover:shadow-accent-warm-gold/30 rounded-lg inline-block">
-            {lang === "en" ? "Explore Services" : "خدمات را کاوش کنید"}
-          </button>
         </div>
       </div>
     </section>
