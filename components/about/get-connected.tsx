@@ -8,8 +8,6 @@ interface GetConnectedProps {
 }
 
 export function GetConnected({ lang }: GetConnectedProps) {
-  const isRTL = lang === "fa";
-
   return (
     <section className="relative bg-white overflow-hidden">
       {/* Full-width Image - matching hero style */}
