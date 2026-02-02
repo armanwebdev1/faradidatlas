@@ -10,77 +10,94 @@ interface ProductCardProps {
 
 export function ProductCard({ product, lang }: ProductCardProps) {
   const name = lang === "en" ? product.nameEn : product.nameFa;
+  const desc = lang === "en" ? product.descriptionEn : product.descriptionFa;
+  const isRTL = lang === "fa";
 
   return (
     <Link href={`/${lang}/products/${product.id}`}>
-      <div className="group relative h-full bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-amber-300 hover:shadow-2xl transition-all duration-500 cursor-pointer">
-        {/* Hover background effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+      <div className="group relative h-full bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-accent-warm-gold/60 transition-all duration-500 hover:shadow-lg hover:-translate-y-1 cursor-pointer">
+        {/* Subtle overlay on hover */}
+        <div className="absolute inset-0 bg-gradient-to-br from-accent-warm-gold/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
 
         {/* Image Container */}
-        <div className="relative aspect-square bg-gray-100 overflow-hidden border-b border-gray-200 group-hover:border-amber-200">
+        <div className="relative aspect-square bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
           <Image
             src={product.image || "/placeholder.svg"}
             alt={name}
             fill
-            className="object-cover group-hover:scale-110 transition-transform duration-500"
+            className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
           />
 
-          {/* Grade Badge - responsive sizing */}
-          <div className="absolute top-2 sm:top-3 md:top-4 right-2 sm:right-3 md:right-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-amber-400 to-amber-500 text-white text-xs font-bold rounded-md sm:rounded-lg shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300 backdrop-blur-sm">
+          {/* Premium overlay on hover */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+          {/* Badge - Top Corner */}
+          <div
+            className={`absolute top-3 sm:top-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-accent-warm-gold text-primary text-xs sm:text-sm font-semibold rounded-lg shadow-md group-hover:shadow-lg transition-all duration-300 ${isRTL ? "left-3 sm:left-4" : "right-3 sm:right-4"}`}
+          >
             {product.grade}
           </div>
 
           {/* Availability overlay */}
           {!product.available && (
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center">
-              <span className="text-white font-semibold text-lg">
+            <div className="absolute inset-0 bg-white/70 backdrop-blur-sm flex items-center justify-center">
+              <span className="text-primary font-semibold text-sm sm:text-base">
                 {lang === "en" ? "Unavailable" : "موجود نیست"}
               </span>
             </div>
           )}
         </div>
 
-        {/* Content - responsive padding */}
-        <div className="p-4 sm:p-5 md:p-6 flex flex-col h-full">
-          <h3 className="text-base sm:text-lg font-bold text-primary mb-1 sm:mb-2 group-hover:text-amber-700 transition-colors line-clamp-2">
-            {name}
-          </h3>
-
-          <p className="text-xs sm:text-sm font-semibold text-amber-700 mb-3 sm:mb-4">
+        {/* Content Section - Compact */}
+        <div className="p-4 sm:p-5 space-y-2 sm:space-y-2.5 flex flex-col">
+          {/* Category/Origin */}
+          <p className="text-xs text-accent-warm-gold uppercase tracking-widest font-semibold">
             {product.origin}
           </p>
 
-          <p className="text-xs sm:text-sm text-gray-700 leading-relaxed mb-4 sm:mb-5 line-clamp-3 flex-grow">
-            {lang === "en" ? product.descriptionEn : product.descriptionFa}
+          {/* Product Name */}
+          <h3 className="text-sm sm:text-base text-primary font-bold group-hover:text-accent-warm-gold transition-colors duration-300 leading-tight line-clamp-2">
+            {name}
+          </h3>
+
+          {/* Description */}
+          <p className="text-xs text-gray-700 leading-snug line-clamp-2">
+            {desc}
           </p>
 
-          {/* Certifications badges - responsive */}
-          <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-5">
-            {product.certifications.slice(0, 2).map((cert) => (
-              <span
-                key={cert}
-                className="inline-block text-xs px-2.5 sm:px-3 py-1 sm:py-1.5 bg-amber-100 text-amber-700 rounded-full font-semibold hover:bg-amber-200 transition-colors"
-              >
-                {cert}
-              </span>
-            ))}
-            {product.certifications.length > 2 && (
-              <span className="inline-block text-xs px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gray-100 text-gray-700 rounded-full font-semibold">
-                +{product.certifications.length - 2}
-              </span>
-            )}
-          </div>
+          {/* Certifications - Small badges */}
+          {product.certifications.length > 0 && (
+            <div className="flex flex-wrap gap-1 pt-1 sm:pt-1.5">
+              {product.certifications.slice(0, 2).map((cert) => (
+                <span
+                  key={cert}
+                  className="inline-block text-xs px-2 py-0.5 bg-accent-warm-gold/15 text-accent-warm-gold rounded-full font-medium border border-accent-warm-gold/30 group-hover:bg-accent-warm-gold/25 transition-all duration-300"
+                >
+                  {cert}
+                </span>
+              ))}
+              {product.certifications.length > 2 && (
+                <span className="inline-block text-xs px-2 py-0.5 bg-gray-100 text-gray-700 rounded-full font-medium group-hover:bg-gray-200 transition-colors">
+                  +{product.certifications.length - 2}
+                </span>
+              )}
+            </div>
+          )}
 
-          {/* Bottom section - responsive */}
-          <div className="pt-3 sm:pt-4 border-t border-gray-200 group-hover:border-amber-200 transition-colors flex justify-between items-center">
-            <span className="text-xs font-semibold text-gray-600 group-hover:text-amber-700 transition-colors">
+          {/* Divider */}
+          <div className="my-1.5 sm:my-2 h-px bg-gray-200 group-hover:bg-accent-warm-gold/30 transition-colors duration-300" />
+
+          {/* Bottom Info */}
+          <div className="flex justify-between items-center">
+            <span className="text-xs text-gray-600 font-medium">
               {product.minOrder}
             </span>
-            <span className="text-xs font-bold text-amber-700 group-hover:text-amber-900 transition-colors flex items-center gap-1">
-              {lang === "en" ? "View" : "مشاهده"}
+            <span
+              className={`text-xs font-semibold text-accent-warm-gold group-hover:text-accent-warm-gold/80 transition-colors duration-300 flex items-center gap-1 ${isRTL ? "flex-row-reverse" : ""}`}
+            >
+              <span>{lang === "en" ? "View" : "مشاهده"}</span>
               <svg
-                className="w-3 sm:w-4 h-3 sm:h-4 group-hover:translate-x-1 transition-transform"
+                className={`w-3.5 h-3.5 transition-transform duration-300 ${isRTL ? "-scale-x-100 group-hover:-translate-x-1" : "group-hover:translate-x-1"}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

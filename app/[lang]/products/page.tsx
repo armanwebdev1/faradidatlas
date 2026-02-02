@@ -9,10 +9,12 @@ import { ProductCard } from "@/components/products/product-card";
 import { products } from "@/components/products/product-data";
 import type { Language } from "@/lib/i18n";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 
 export default function ProductsPage() {
   const params = useParams();
   const lang = (params.lang as Language) || "en";
+  const isRTL = lang === "fa";
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [sortedProducts, setSortedProducts] = useState(products);
 
@@ -26,41 +28,55 @@ export default function ProductsPage() {
   };
 
   return (
-    <div dir={lang === "fa" ? "rtl" : "ltr"}>
+    <div dir={isRTL ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
-        {/* Hero */}
-        <section className="relative py-24 px-6 bg-gradient-to-b from-white via-white to-gray-50 overflow-hidden">
-          {/* Decorative elements */}
-          <div className="absolute top-10 right-0 w-96 h-96 bg-gradient-to-bl from-amber-100/20 to-transparent rounded-full blur-3xl -z-10" />
+        {/* Hero Section with Overlay Content */}
+        <section className="w-full h-48 sm:h-56 md:h-64 relative overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+          <Image
+            src="https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=1600&h=400&fit=crop"
+            alt="Premium products showcase"
+            fill
+            className="object-cover"
+            priority
+          />
 
-          <div className="max-w-7xl mx-auto">
-            <div className="mb-6 inline-block px-4 py-2 bg-amber-100/50 rounded-full border border-amber-200/50">
-              <span className="text-sm font-semibold text-primary">
-                {lang === "en" ? "Premium Selection" : "انتخاب برتر"}
-              </span>
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+
+          {/* Overlay Content */}
+          <div className="absolute inset-0 px-4 sm:px-6 py-8 sm:py-10 md:py-12 flex items-center">
+            <div className="max-w-7xl w-full mx-auto">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6 sm:gap-8">
+                {/* Left - Heading */}
+                <div className="flex-1">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight font-hero">
+                    {lang === "en" ? "Our Products" : "محصولات ما"}
+                  </h1>
+                </div>
+
+                {/* Right - Description */}
+                <div className="flex-1">
+                  <p className="text-sm sm:text-base text-white/90 leading-relaxed max-w-md">
+                    {lang === "en"
+                      ? "Discover our curated collection of premium products, all certified and ready for export"
+                      : "مجموعه برگزیده‌شده‌ی محصولات برتر ما را کاوش کنید، همه آنها معتبر و آماده صادرات"}
+                  </p>
+                </div>
+              </div>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-primary mb-6 tracking-tight">
-              {lang === "en" ? "Our Products" : "محصولات ما"}
-            </h1>
-            <div className="divider-premium w-24 h-1 mb-8" />
-            <p className="text-lg text-gray-700 max-w-2xl leading-relaxed">
-              {lang === "en"
-                ? "Browse our complete catalog of premium food products, all certified for international export with exceptional quality standards."
-                : "کاتالوگ کامل محصولات غذایی برتر ما را مرور کنید، همه‌ی آنها برای صادرات بین‌المللی معتبر و با استانداردهای کیفیتی استثنایی هستند."}
-            </p>
           </div>
         </section>
 
-        {/* Products */}
-        <section className="py-24 px-6 bg-white">
+        {/* Products Section with Sidebar */}
+        <section className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-gradient-to-b from-white to-gray-50">
           <div className="max-w-7xl mx-auto">
-            {/* Controls */}
-            <div className="flex flex-col lg:flex-row gap-12 mb-16">
-              <div className="lg:w-72 flex-shrink-0">
+            <div className="flex flex-col lg:flex-row gap-10 md:gap-14 lg:gap-16">
+              {/* Filters Sidebar */}
+              <div className="lg:w-64 flex-shrink-0">
                 <div className="sticky top-32">
-                  <h3 className="text-lg font-semibold text-primary mb-6">
-                    {lang === "en" ? "Filters" : "فیلترها"}
+                  <h3 className="text-sm font-bold text-primary mb-8 uppercase tracking-widest">
+                    {lang === "en" ? "Filter" : "فیلتر"}
                   </h3>
                   <Filters
                     lang={lang}
@@ -70,20 +86,13 @@ export default function ProductsPage() {
                 </div>
               </div>
 
+              {/* Products Grid */}
               <div className="flex-1">
-                {/* Sorting */}
-                <div className="mb-12 flex flex-col md:flex-row md:justify-between md:items-end gap-6">
-                  <div>
-                    <h2 className="text-3xl font-bold text-primary mb-3">
-                      {sortedProducts.length}{" "}
-                      {lang === "en" ? "Products" : "محصول"}
-                    </h2>
-                    <p className="text-gray-600">
-                      {lang === "en"
-                        ? "All products are certified and ready for export"
-                        : "تمام محصولات معتبر و آماده صادرات هستند"}
-                    </p>
-                  </div>
+                {/* Sorting Header */}
+                <div className="mb-10 sm:mb-12 flex justify-between items-center">
+                  <span className="text-xs sm:text-sm font-semibold text-gray-700 uppercase tracking-wide">
+                    {lang === "en" ? "Best Seller" : "پرفروش‌ترین"}
+                  </span>
                   <Sorting
                     lang={lang}
                     products={filteredProducts}
@@ -91,22 +100,22 @@ export default function ProductsPage() {
                   />
                 </div>
 
-                {/* Grid */}
+                {/* Products Grid */}
                 {sortedProducts.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
                     {sortedProducts.map((product, idx) => (
                       <div
                         key={product.id}
                         className="animate-fade-in-up"
-                        style={{ animationDelay: `${idx * 0.1}s` }}
+                        style={{ animationDelay: `${idx * 0.08}s` }}
                       >
                         <ProductCard product={product} lang={lang} />
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <div className="text-center py-20">
-                    <p className="text-lg text-gray-600">
+                  <div className="text-center py-20 md:py-28">
+                    <p className="text-base sm:text-lg text-gray-600">
                       {lang === "en" ? "No products found" : "محصولی پیدا نشد"}
                     </p>
                   </div>
