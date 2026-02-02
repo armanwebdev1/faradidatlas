@@ -31,43 +31,38 @@ export default function ProductsPage() {
     <div dir={isRTL ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
-        {/* Small Hero Image */}
-        <section className="w-full h-32 sm:h-40 md:h-48 relative overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+        {/* Hero Section with Overlay Content */}
+        <section className="w-full h-48 sm:h-56 md:h-64 relative overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
           <Image
             src="https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=1600&h=400&fit=crop"
             alt="Premium products showcase"
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-700"
+            className="object-cover"
             priority
           />
-        </section>
 
-        {/* Page Header Section */}
-        <section className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-white">
-          <div className="max-w-7xl mx-auto">
-            <div className="space-y-6 sm:space-y-8">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-6">
-                <div className="space-y-2">
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary tracking-tight font-hero">
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+
+          {/* Overlay Content */}
+          <div className="absolute inset-0 px-4 sm:px-6 py-8 sm:py-10 md:py-12 flex items-center">
+            <div className="max-w-7xl w-full mx-auto">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6 sm:gap-8">
+                {/* Left - Heading */}
+                <div className="flex-1">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight font-hero">
                     {lang === "en" ? "Our Products" : "محصولات ما"}
                   </h1>
-                  <p className="text-sm sm:text-base text-gray-600">
+                </div>
+
+                {/* Right - Description */}
+                <div className="flex-1">
+                  <p className="text-sm sm:text-base text-white/90 leading-relaxed max-w-md">
                     {lang === "en"
                       ? "Discover our curated collection of premium products, all certified and ready for export"
                       : "مجموعه برگزیده‌شده‌ی محصولات برتر ما را کاوش کنید، همه آنها معتبر و آماده صادرات"}
                   </p>
                 </div>
-                <div className="flex items-center gap-2 sm:gap-4 text-sm sm:text-base">
-                  <span className="text-primary font-semibold">{sortedProducts.length}</span>
-                  <span className="text-gray-600">
-                    {lang === "en" ? "Products" : "محصول"}
-                  </span>
-                </div>
-              </div>
-
-              {/* Accent Divider */}
-              <div className="flex justify-start">
-                <div className="w-16 h-1 bg-gradient-to-r from-accent-warm-gold to-accent-warm-gold/40" />
               </div>
             </div>
           </div>
