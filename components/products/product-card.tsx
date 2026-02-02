@@ -10,29 +10,36 @@ interface ProductCardProps {
 
 export function ProductCard({ product, lang }: ProductCardProps) {
   const name = lang === "en" ? product.nameEn : product.nameFa;
+  const desc = lang === "en" ? product.descriptionEn : product.descriptionFa;
   const isRTL = lang === "fa";
 
   return (
     <Link href={`/${lang}/products/${product.id}`}>
-      <div className="group cursor-pointer">
+      <div className="group relative h-full bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-accent-warm-gold/60 transition-all duration-500 hover:shadow-lg hover:-translate-y-1 cursor-pointer">
+        {/* Subtle overlay on hover */}
+        <div className="absolute inset-0 bg-gradient-to-br from-accent-warm-gold/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+
         {/* Image Container */}
-        <div className="relative aspect-square bg-gray-100 overflow-hidden mb-4 sm:mb-5">
+        <div className="relative aspect-square bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
           <Image
             src={product.image || "/placeholder.svg"}
             alt={name}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+            className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
           />
 
+          {/* Premium overlay on hover */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
           {/* Badge - Top Corner */}
-          <div className={`absolute top-3 sm:top-4 px-2.5 sm:px-3 py-1 sm:py-1.5 bg-accent-warm-gold/90 text-primary text-xs sm:text-xs font-light rounded-sm transition-all duration-300 ${isRTL ? 'left-3 sm:left-4' : 'right-3 sm:right-4'}`}>
+          <div className={`absolute top-3 sm:top-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-accent-warm-gold text-primary text-xs sm:text-sm font-semibold rounded-lg shadow-md group-hover:shadow-lg transition-all duration-300 ${isRTL ? 'left-3 sm:left-4' : 'right-3 sm:right-4'}`}>
             {product.grade}
           </div>
 
           {/* Availability overlay */}
           {!product.available && (
-            <div className="absolute inset-0 bg-white/60 flex items-center justify-center">
-              <span className="text-primary font-light text-sm">
+            <div className="absolute inset-0 bg-white/70 backdrop-blur-sm flex items-center justify-center">
+              <span className="text-primary font-semibold text-sm sm:text-base">
                 {lang === "en" ? "Unavailable" : "موجود نیست"}
               </span>
             </div>
@@ -40,32 +47,65 @@ export function ProductCard({ product, lang }: ProductCardProps) {
         </div>
 
         {/* Content Section */}
-        <div className="space-y-2 sm:space-y-2.5">
-          {/* Category/Origin - Light text */}
-          <p className="text-xs text-gray-500 uppercase tracking-wide font-light">
+        <div className="p-5 sm:p-6 md:p-7 space-y-3 sm:space-y-4 flex flex-col h-full">
+          {/* Category/Origin */}
+          <p className="text-xs sm:text-xs text-accent-warm-gold uppercase tracking-widest font-semibold">
             {product.origin}
           </p>
 
-          {/* Product Name - Main heading */}
-          <h3 className="text-sm sm:text-base text-primary font-light group-hover:text-gray-700 transition-colors duration-300 leading-tight line-clamp-2">
+          {/* Product Name */}
+          <h3 className="text-base sm:text-lg text-primary font-bold group-hover:text-accent-warm-gold transition-colors duration-300 leading-snug line-clamp-2">
             {name}
           </h3>
 
-          {/* Rating - if needed */}
-          <div className="flex items-center gap-2 pt-1">
-            <div className="flex text-accent-warm-gold">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-xs">★</span>
-              ))}
-            </div>
-            <span className="text-xs text-gray-600 font-light">(5.0)</span>
-          </div>
+          {/* Description */}
+          <p className="text-xs sm:text-sm text-gray-700 leading-relaxed line-clamp-2 flex-grow">
+            {desc}
+          </p>
 
-          {/* Price placeholder - can show price range */}
-          <div className="pt-2 sm:pt-3">
-            <p className="text-sm sm:text-base text-primary font-light">
-              {lang === "en" ? "Premium Grade" : "درجه برتر"}
-            </p>
+          {/* Certifications - Small badges */}
+          {product.certifications.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 pt-2 sm:pt-3">
+              {product.certifications.slice(0, 3).map((cert) => (
+                <span
+                  key={cert}
+                  className="inline-block text-xs px-2.5 py-1 bg-accent-warm-gold/15 text-accent-warm-gold rounded-full font-medium border border-accent-warm-gold/30 group-hover:bg-accent-warm-gold/25 transition-all duration-300"
+                >
+                  {cert}
+                </span>
+              ))}
+              {product.certifications.length > 3 && (
+                <span className="inline-block text-xs px-2.5 py-1 bg-gray-100 text-gray-700 rounded-full font-medium group-hover:bg-gray-200 transition-colors">
+                  +{product.certifications.length - 3}
+                </span>
+              )}
+            </div>
+          )}
+
+          {/* Divider */}
+          <div className="my-2 sm:my-3 h-px bg-gray-200 group-hover:bg-accent-warm-gold/30 transition-colors duration-300" />
+
+          {/* Bottom Info */}
+          <div className="flex justify-between items-center">
+            <span className="text-xs text-gray-600 font-medium">
+              {product.minOrder}
+            </span>
+            <span className={`text-xs font-semibold text-accent-warm-gold group-hover:text-accent-warm-gold/80 transition-colors duration-300 flex items-center gap-1.5 ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <span>{lang === "en" ? "View" : "مشاهده"}</span>
+              <svg
+                className={`w-4 h-4 transition-transform duration-300 ${isRTL ? '-scale-x-100 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </span>
           </div>
         </div>
       </div>

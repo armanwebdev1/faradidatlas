@@ -37,45 +37,50 @@ export default function ProductsPage() {
             src="https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=1600&h=400&fit=crop"
             alt="Premium products showcase"
             fill
-            className="object-cover"
+            className="object-cover group-hover:scale-105 transition-transform duration-700"
             priority
           />
         </section>
 
-        {/* Minimal Page Header */}
-        <section className="px-4 sm:px-6 py-8 sm:py-10 md:py-12 bg-white">
+        {/* Page Header Section */}
+        <section className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-white">
           <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-6 sm:gap-8">
-              <div>
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-light text-primary tracking-tight mb-2">
-                  {lang === "en" ? "Products" : "محصولات"}
-                </h1>
-                <p className="text-sm sm:text-base text-gray-600 font-light">
-                  {lang === "en"
-                    ? "All products are certified and ready for export"
-                    : "تمام محصولات معتبر و آماده صادرات هستند"}
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                <div className="flex items-center gap-3 text-sm">
-                  <span className="text-gray-600">{sortedProducts.length}</span>
+            <div className="space-y-6 sm:space-y-8">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-6">
+                <div className="space-y-2">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary tracking-tight font-hero">
+                    {lang === "en" ? "Our Products" : "محصولات ما"}
+                  </h1>
+                  <p className="text-sm sm:text-base text-gray-600">
+                    {lang === "en"
+                      ? "Discover our curated collection of premium products, all certified and ready for export"
+                      : "مجموعه برگزیده‌شده‌ی محصولات برتر ما را کاوش کنید، همه آنها معتبر و آماده صادرات"}
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 sm:gap-4 text-sm sm:text-base">
+                  <span className="text-primary font-semibold">{sortedProducts.length}</span>
                   <span className="text-gray-600">
-                    {lang === "en" ? "Result" : "نتیجه"}
+                    {lang === "en" ? "Products" : "محصول"}
                   </span>
                 </div>
+              </div>
+
+              {/* Accent Divider */}
+              <div className="flex justify-start">
+                <div className="w-16 h-1 bg-gradient-to-r from-accent-warm-gold to-accent-warm-gold/40" />
               </div>
             </div>
           </div>
         </section>
 
         {/* Products Section with Sidebar */}
-        <section className="px-4 sm:px-6 py-8 sm:py-12 md:py-16 bg-white border-t border-gray-100">
+        <section className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-gradient-to-b from-white to-gray-50">
           <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col lg:flex-row gap-8 md:gap-12">
+            <div className="flex flex-col lg:flex-row gap-10 md:gap-14 lg:gap-16">
               {/* Filters Sidebar */}
-              <div className="lg:w-56 flex-shrink-0">
+              <div className="lg:w-64 flex-shrink-0">
                 <div className="sticky top-32">
-                  <h3 className="text-sm font-semibold text-primary mb-6 uppercase tracking-wide">
+                  <h3 className="text-sm font-bold text-primary mb-8 uppercase tracking-widest">
                     {lang === "en" ? "Filter" : "فیلتر"}
                   </h3>
                   <Filters
@@ -89,8 +94,8 @@ export default function ProductsPage() {
               {/* Products Grid */}
               <div className="flex-1">
                 {/* Sorting Header */}
-                <div className="mb-8 sm:mb-10 flex justify-between items-center">
-                  <span className="text-xs sm:text-sm font-medium text-gray-700 uppercase tracking-wide">
+                <div className="mb-10 sm:mb-12 flex justify-between items-center">
+                  <span className="text-xs sm:text-sm font-semibold text-gray-700 uppercase tracking-wide">
                     {lang === "en" ? "Best Seller" : "پرفروش‌ترین"}
                   </span>
                   <Sorting
@@ -102,20 +107,20 @@ export default function ProductsPage() {
 
                 {/* Products Grid */}
                 {sortedProducts.length > 0 ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
                     {sortedProducts.map((product, idx) => (
                       <div
                         key={product.id}
                         className="animate-fade-in-up"
-                        style={{ animationDelay: `${idx * 0.06}s` }}
+                        style={{ animationDelay: `${idx * 0.08}s` }}
                       >
                         <ProductCard product={product} lang={lang} />
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <div className="text-center py-16 md:py-24">
-                    <p className="text-sm sm:text-base text-gray-600">
+                  <div className="text-center py-20 md:py-28">
+                    <p className="text-base sm:text-lg text-gray-600">
                       {lang === "en" ? "No products found" : "محصولی پیدا نشد"}
                     </p>
                   </div>
