@@ -128,34 +128,43 @@ const team = {
 
 export function TeamShowcase({ lang }: TeamShowcaseProps) {
   const teamList = lang === "en" ? team.en : team.fa;
+  const isRTL = lang === "fa";
 
   return (
-    <section className="relative py-24 md:py-32 px-4 sm:px-6 bg-white overflow-hidden">
+    <section
+      className="relative py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 bg-gradient-to-b from-white to-gray-50 overflow-hidden"
+      dir={isRTL ? "rtl" : "ltr"}
+    >
       <div className="max-w-7xl mx-auto relative z-10">
+        {/* Accent divider */}
+        <div className="flex justify-center mb-12 sm:mb-16 md:mb-20">
+          <div className="w-16 h-1 bg-gradient-to-r from-transparent via-accent-warm-gold to-transparent opacity-60" />
+        </div>
+
         {/* Section Header */}
-        <div className="text-center mb-20 animate-fade-in-up">
-          <span className="inline-block px-4 py-2 bg-accent-warm-gold/15 rounded-full text-xs font-bold text-accent-warm-gold mb-6 uppercase tracking-widest">
+        <div className="text-center mb-12 sm:mb-16 md:mb-20 animate-fade-in-up">
+          <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-accent-warm-gold/15 rounded-full text-xs font-bold text-accent-warm-gold mb-4 sm:mb-6 uppercase tracking-widest">
             {lang === "en" ? "Our Team" : "تیم ما"}
           </span>
-          <h2 className="text-5xl md:text-6xl font-bold text-primary mb-6 tracking-tight font-hero">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-4 sm:mb-6 tracking-tight font-hero text-balance">
             {lang === "en"
               ? "Our amazing team who works for you"
               : "تیم شگفت‌انگیز ما که برای شما کار می‌کند"}
           </h2>
-          <div className="w-24 h-1 bg-accent-warm-gold mx-auto" />
+          <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-transparent via-accent-warm-gold to-transparent mx-auto opacity-80" />
         </div>
 
         {/* Team Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
           {teamList.map((member, idx) => (
             <div
               key={idx}
               className="group animate-fade-in-up"
               style={{ animationDelay: `${idx * 0.05}s` }}
             >
-              <div className="relative bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-accent-warm-gold hover:shadow-2xl transition-all duration-500">
+              <div className="relative bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-gray-200 hover:border-accent-warm-gold hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 flex flex-col h-full">
                 {/* Image Container */}
-                <div className="relative h-72 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+                <div className="relative h-60 sm:h-72 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
                   <Image
                     src={member.image}
                     alt={member.name}
@@ -167,14 +176,14 @@ export function TeamShowcase({ lang }: TeamShowcaseProps) {
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-accent-warm-gold transition-colors">
+                <div className="p-4 sm:p-5 md:p-6 flex flex-col flex-grow">
+                  <h3 className="text-base sm:text-lg font-bold text-primary mb-1 group-hover:text-accent-warm-gold transition-colors duration-300">
                     {member.name}
                   </h3>
-                  <p className="text-xs font-bold text-accent-warm-gold mb-2 uppercase tracking-widest">
+                  <p className="text-xs font-bold text-accent-warm-gold mb-2 sm:mb-3 uppercase tracking-widest">
                     {member.role}
                   </p>
-                  <p className="text-sm text-gray-600">{member.bio}</p>
+                  <p className="text-xs sm:text-sm text-gray-600 flex-grow">{member.bio}</p>
                 </div>
 
                 {/* Bottom accent line */}
