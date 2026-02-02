@@ -46,54 +46,54 @@ export function ProductCard({ product, lang }: ProductCardProps) {
           )}
         </div>
 
-        {/* Content Section */}
-        <div className="p-5 sm:p-6 md:p-7 space-y-3 sm:space-y-4 flex flex-col h-full">
+        {/* Content Section - Compact */}
+        <div className="p-4 sm:p-5 space-y-2 sm:space-y-2.5 flex flex-col">
           {/* Category/Origin */}
-          <p className="text-xs sm:text-xs text-accent-warm-gold uppercase tracking-widest font-semibold">
+          <p className="text-xs text-accent-warm-gold uppercase tracking-widest font-semibold">
             {product.origin}
           </p>
 
           {/* Product Name */}
-          <h3 className="text-base sm:text-lg text-primary font-bold group-hover:text-accent-warm-gold transition-colors duration-300 leading-snug line-clamp-2">
+          <h3 className="text-sm sm:text-base text-primary font-bold group-hover:text-accent-warm-gold transition-colors duration-300 leading-tight line-clamp-2">
             {name}
           </h3>
 
           {/* Description */}
-          <p className="text-xs sm:text-sm text-gray-700 leading-relaxed line-clamp-2 flex-grow">
+          <p className="text-xs text-gray-700 leading-snug line-clamp-2">
             {desc}
           </p>
 
           {/* Certifications - Small badges */}
           {product.certifications.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 pt-2 sm:pt-3">
-              {product.certifications.slice(0, 3).map((cert) => (
+            <div className="flex flex-wrap gap-1 pt-1 sm:pt-1.5">
+              {product.certifications.slice(0, 2).map((cert) => (
                 <span
                   key={cert}
-                  className="inline-block text-xs px-2.5 py-1 bg-accent-warm-gold/15 text-accent-warm-gold rounded-full font-medium border border-accent-warm-gold/30 group-hover:bg-accent-warm-gold/25 transition-all duration-300"
+                  className="inline-block text-xs px-2 py-0.5 bg-accent-warm-gold/15 text-accent-warm-gold rounded-full font-medium border border-accent-warm-gold/30 group-hover:bg-accent-warm-gold/25 transition-all duration-300"
                 >
                   {cert}
                 </span>
               ))}
-              {product.certifications.length > 3 && (
-                <span className="inline-block text-xs px-2.5 py-1 bg-gray-100 text-gray-700 rounded-full font-medium group-hover:bg-gray-200 transition-colors">
-                  +{product.certifications.length - 3}
+              {product.certifications.length > 2 && (
+                <span className="inline-block text-xs px-2 py-0.5 bg-gray-100 text-gray-700 rounded-full font-medium group-hover:bg-gray-200 transition-colors">
+                  +{product.certifications.length - 2}
                 </span>
               )}
             </div>
           )}
 
           {/* Divider */}
-          <div className="my-2 sm:my-3 h-px bg-gray-200 group-hover:bg-accent-warm-gold/30 transition-colors duration-300" />
+          <div className="my-1.5 sm:my-2 h-px bg-gray-200 group-hover:bg-accent-warm-gold/30 transition-colors duration-300" />
 
           {/* Bottom Info */}
           <div className="flex justify-between items-center">
             <span className="text-xs text-gray-600 font-medium">
               {product.minOrder}
             </span>
-            <span className={`text-xs font-semibold text-accent-warm-gold group-hover:text-accent-warm-gold/80 transition-colors duration-300 flex items-center gap-1.5 ${isRTL ? 'flex-row-reverse' : ''}`}>
+            <span className={`text-xs font-semibold text-accent-warm-gold group-hover:text-accent-warm-gold/80 transition-colors duration-300 flex items-center gap-1 ${isRTL ? 'flex-row-reverse' : ''}`}>
               <span>{lang === "en" ? "View" : "مشاهده"}</span>
               <svg
-                className={`w-4 h-4 transition-transform duration-300 ${isRTL ? '-scale-x-100 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}
+                className={`w-3.5 h-3.5 transition-transform duration-300 ${isRTL ? '-scale-x-100 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
