@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { FAQAccordion } from "@/components/faq/faq-accordion";
 import { FAQFilter } from "@/components/faq/faq-filter";
+import { FAQHero } from "@/components/faq/faq-hero";
 import { faqs } from "@/components/faq/faq-data";
 import type { Language } from "@/lib/i18n";
 import { useParams } from "next/navigation";
@@ -18,28 +19,7 @@ export default function FAQPage() {
     <div dir={lang === "fa" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
-        {/* Hero */}
-        <section className="relative py-24 px-6 bg-gradient-to-b from-white via-white to-gray-50 overflow-hidden">
-          {/* Decorative elements */}
-          <div className="absolute top-20 right-0 w-96 h-96 bg-gradient-to-bl from-amber-100/20 to-transparent rounded-full blur-3xl -z-10" />
-
-          <div className="max-w-4xl mx-auto">
-            <div className="mb-6 inline-block px-4 py-2 bg-amber-100/50 rounded-full border border-amber-200/50">
-              <span className="text-sm font-semibold text-primary">
-                {lang === "en" ? "Help Center" : "مرکز کمک"}
-              </span>
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-primary mb-6 tracking-tight">
-              {lang === "en" ? "Frequently Asked Questions" : "سوالات متکرر"}
-            </h1>
-            <div className="divider-premium w-24 h-1 mb-8" />
-            <p className="text-lg text-gray-700 leading-relaxed">
-              {lang === "en"
-                ? "Find answers to common questions about sourcing, certifications, logistics, and private labeling."
-                : "پاسخ‌های سوالات متکرر درباره تامین، تصدیق‌ها، لجستیک و علامت‌گذاری خصوصی را بیابید."}
-            </p>
-          </div>
-        </section>
+        <FAQHero lang={lang} />
 
         {/* FAQ Content */}
         <section className="py-24 px-6 bg-white">
@@ -49,14 +29,7 @@ export default function FAQPage() {
 
             {/* Accordion */}
             {filteredFaqs.length > 0 ? (
-              <>
-                <p className="text-sm font-semibold text-gray-600 mb-8">
-                  {lang === "en" ? "Showing" : "نمایش"}{" "}
-                  <span className="text-primary">{filteredFaqs.length}</span>{" "}
-                  {lang === "en" ? "questions" : "سوال"}
-                </p>
-                <FAQAccordion items={filteredFaqs} lang={lang} />
-              </>
+              <FAQAccordion items={filteredFaqs} lang={lang} />
             ) : (
               <div className="text-center py-16">
                 <p className="text-lg text-gray-600">
@@ -66,10 +39,7 @@ export default function FAQPage() {
             )}
 
             {/* CTA Section */}
-            <div className="relative mt-20 p-12 bg-gradient-to-br from-white to-gray-50 rounded-2xl border-2 border-amber-200 text-center overflow-hidden shadow-lg">
-              {/* Top accent line */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-300 via-amber-400 to-transparent" />
-
+            <div className="relative mt-20 p-12 bg-gradient-to-br from-white to-gray-50 rounded-2xl border-2 border-amber-200 text-center overflow-hidden shadow-lg animate-fade-in-up">
               <h2 className="text-3xl font-bold text-primary mb-4 tracking-tight">
                 {lang === "en"
                   ? "Didn't find your answer?"

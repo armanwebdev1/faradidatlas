@@ -1,48 +1,81 @@
-"use client"
+"use client";
 
-import type { Language } from "@/lib/i18n"
-import { faqCategories } from "./faq-data"
-import type { FAQItem } from "./faq-data"
+import { useEffect, useMemo, useState } from "react";
+import type { Language } from "@/lib/i18n";
+import type { FAQItem } from "./faq-data";
+import { faqCategories } from "./faq-data";
+
+type CategoryKey = keyof typeof faqCategories;
+type FilterKey = "all" | CategoryKey;
 
 interface FAQFilterProps {
-  items: FAQItem[]
-  lang: Language
-  onFilter: (filtered: FAQItem[]) => void
+  items: FAQItem[];
+  lang: Language;
+  onFilter: (items: FAQItem[]) => void;
 }
 
-type CategoryKey = keyof typeof faqCategories
+function getAvailableCategories(items: FAQItem[]) {
+  const available = new Set(items.map((item) => item.category));
+  return (Object.keys(faqCategories) as CategoryKey[]).filter((key) =>
+    available.has(key),
+  );
+}
 
 export function FAQFilter({ items, lang, onFilter }: FAQFilterProps) {
-  const categories: CategoryKey[] = ["sourcing", "moq", "lead-time", "certifications", "logistics", "private-label"]
+  const [active, setActive] = useState<FilterKey>("all");
+  const categories = useMemo(() => getAvailableCategories(items), [items]);
 
-  const handleFilter = (category: CategoryKey | null) => {
-    if (!category) {
-      onFilter(items)
-    } else {
-      onFilter(items.filter((item) => item.category === category))
+  useEffect(() => {
+    if (active === "all") {
+      onFilter(items);
+      return;
     }
-  }
+
+    onFilter(items.filter((item) => item.category === active));
+  }, [active, items, onFilter]);
+
+  const allLabel = lang === "en" ? "All topics" : "همه موضوعات";
 
   return (
-    <div className="flex flex-wrap gap-3 mb-8">
-      <button
-        onClick={() => handleFilter(null)}
-        className="px-4 py-2 bg-primary text-white rounded text-sm font-medium hover:bg-accent transition-colors"
-      >
-        {lang === "en" ? "All" : "همه"}
-      </button>
-      {categories.map((cat) => {
-        const label = faqCategories[cat][lang]
-        return (
-          <button
-            key={cat}
-            onClick={() => handleFilter(cat)}
-            className="px-4 py-2 bg-background border border-border text-foreground rounded text-sm font-medium hover:border-primary transition-colors"
-          >
-            {label}
-          </button>
-        )
-      })}
+    <div className="mb-12 flex flex-wrap justify-center gap-3 sm:gap-4 animate-fade-in-up">
+      <FilterChip
+        label={allLabel}
+        isActive={active === "all"}
+        onClick={() => setActive("all")}
+      />
+      {categories.map((category) => (
+        <FilterChip
+          key={category}
+          label={lang === "en" ? faqCategories[category].en : faqCategories[category].fa}
+          isActive={active === category}
+          onClick={() => setActive(category)}
+        />
+      ))}
     </div>
-  )
+  );
+}
+
+function FilterChip({
+  label,
+  isActive,
+  onClick,
+}: {
+  label: string;
+  isActive: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={isActive}
+      className={`px-5 sm:px-6 py-2.5 text-xs sm:text-sm font-semibold rounded-full border transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20 ${
+        isActive
+          ? "bg-primary text-white border-primary shadow-md"
+          : "bg-white/80 text-foreground/70 border-foreground/10 hover:text-foreground hover:border-foreground/20 hover:shadow-sm"
+      }`}
+    >
+      {label}
+    </button>
+  );
 }
