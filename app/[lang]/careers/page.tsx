@@ -21,124 +21,110 @@ export default async function CareersPage({ params }: CareersPageProps) {
     <div dir={lang === "fa" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
-        {/* Modern Hero Section with Dynamic Background */}
-        <section className="relative min-h-screen sm:min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-          {/* Animated background elements */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent-warm-gold/10 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent-warm-orange/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
-            <div className="absolute top-1/3 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "2s" }} />
+        {/* Hero Section with Large Imagery */}
+        <section className="relative h-screen w-full overflow-hidden bg-neutral-950">
+          {/* Hero Image Background with Overlay */}
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: "url('/featured1.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/75 to-slate-900/40" />
           </div>
 
-          <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28 md:py-32 lg:py-40 text-center">
-            <div className="mb-6 sm:mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent-warm-gold/30 bg-gradient-to-r from-accent-warm-gold/10 to-transparent">
-              <span className="w-2 h-2 rounded-full bg-accent-warm-gold animate-pulse" />
-              <span
-                className="text-xs sm:text-sm font-medium text-accent-warm-gold uppercase tracking-wider"
-                style={{
-                  fontFamily:
-                    lang === "en"
-                      ? "var(--font-body)"
-                      : "Shabnam, var(--font-body)",
-                }}
-              >
-                {lang === "en" ? "We're Hiring" : "در حال استخدام"}
-              </span>
-            </div>
-
-            <h1
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 sm:mb-8 leading-tight tracking-tight"
-              style={{
-                fontFamily:
-                  lang === "en"
-                    ? "var(--font-hero)"
-                    : "Estedad, var(--font-hero)",
-                fontWeight: "700",
-                letterSpacing: "-0.02em",
-              }}
-            >
-              {lang === "en" ? (
-                <>
-                  Build Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold via-accent-warm-orange to-accent-warm-gold">Future</span> With Us
-                </>
-              ) : (
-                <>
-                  آینده خود را با ما <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold via-accent-warm-orange to-accent-warm-gold">بسازید</span>
-                </>
-              )}
-            </h1>
-
-            <p
-              className="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-10 sm:mb-12"
-              style={{
-                fontFamily:
-                  lang === "en"
-                    ? "var(--font-body)"
-                    : "Shabnam, var(--font-body)",
-                fontWeight: "400",
-              }}
-            >
-              {lang === "en"
-                ? "Join a global team of innovators, leaders, and changemakers. We're building the future of specialty goods sourcing with integrity, excellence, and a commitment to making a difference."
-                : "به یک تیم جهانی از نوآوران، رهبران و تغییرگران بپیوندید. ما آینده تامین کالاهای تخصصی را با درستکاری، تعالی و تعهد به ایجاد تفاوت می‌سازیم."}
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
-              <button
-                className="px-8 sm:px-10 py-3 sm:py-4 bg-gradient-to-r from-accent-warm-gold to-accent-warm-orange text-slate-900 font-semibold rounded-lg hover:shadow-xl hover:shadow-accent-warm-gold/40 transition-all duration-300 text-sm sm:text-base"
-                style={{
-                  fontFamily:
-                    lang === "en"
-                      ? "var(--font-body)"
-                      : "Shabnam, var(--font-body)",
-                }}
-              >
-                {lang === "en" ? "Explore Opportunities" : "کاوش فرصت‌ها"}
-              </button>
-              <button
-                className="px-8 sm:px-10 py-3 sm:py-4 border border-slate-600 text-white font-semibold rounded-lg hover:border-accent-warm-gold/60 hover:bg-slate-800/50 transition-all duration-300 text-sm sm:text-base"
-                style={{
-                  fontFamily:
-                    lang === "en"
-                      ? "var(--font-body)"
-                      : "Shabnam, var(--font-body)",
-                }}
-              >
-                {lang === "en" ? "Learn About Us" : "درباره ما"}
-              </button>
-            </div>
-
-            {/* Stats row */}
-            <div className="mt-16 sm:mt-20 pt-10 sm:pt-12 border-t border-slate-700/50 flex flex-col sm:flex-row gap-8 sm:gap-12 justify-center text-left">
-              <div>
-                <div className="text-2xl sm:text-3xl font-bold text-white mb-1">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold to-accent-warm-orange">150+</span>
-                </div>
-                <p className="text-sm sm:text-base text-slate-400">
-                  {lang === "en" ? "Team Members" : "اعضای تیم"}
-                </p>
+          {/* Content */}
+          <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6">
+            <div className="max-w-4xl text-center">
+              {/* Badge */}
+              <div className="mb-6 sm:mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent-warm-gold/40 bg-gradient-to-r from-accent-warm-gold/15 to-transparent backdrop-blur-sm">
+                <span className="w-2 h-2 rounded-full bg-accent-warm-gold animate-pulse" />
+                <span
+                  className="text-xs sm:text-sm font-semibold text-accent-warm-gold uppercase tracking-widest"
+                  style={{
+                    fontFamily:
+                      lang === "en"
+                        ? "var(--font-body)"
+                        : "Shabnam, var(--font-body)",
+                  }}
+                >
+                  {lang === "en" ? "Join Our Team" : "به تیم ما بپیوندید"}
+                </span>
               </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-bold text-white mb-1">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold to-accent-warm-orange">50+</span>
-                </div>
-                <p className="text-sm sm:text-base text-slate-400">
-                  {lang === "en" ? "Countries" : "کشورها"}
-                </p>
-              </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-bold text-white mb-1">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold to-accent-warm-orange">20y</span>
-                </div>
-                <p className="text-sm sm:text-base text-slate-400">
-                  {lang === "en" ? "Experience" : "تجربه"}
-                </p>
+
+              {/* Main Heading */}
+              <h1
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 sm:mb-8 leading-tight tracking-tight"
+                style={{
+                  fontFamily:
+                    lang === "en"
+                      ? "var(--font-hero)"
+                      : "Estedad, var(--font-hero)",
+                  fontWeight: "700",
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                {lang === "en" ? (
+                  <>
+                    Create <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold via-accent-warm-orange to-accent-warm-gold">Opportunities</span>
+                  </>
+                ) : (
+                  <>
+                    فرصت‌های <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold via-accent-warm-orange to-accent-warm-gold">جدید</span>
+                  </>
+                )}
+              </h1>
+
+              {/* Subheading */}
+              <p
+                className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-10 sm:mb-12"
+                style={{
+                  fontFamily:
+                    lang === "en"
+                      ? "var(--font-body)"
+                      : "Shabnam, var(--font-body)",
+                  fontWeight: "400",
+                }}
+              >
+                {lang === "en"
+                  ? "Join a global team transforming specialty goods sourcing with innovation, integrity, and impact."
+                  : "به تیم جهانی بپیوندید که با نوآوری، درستکاری و تأثیر، تامین کالاهای تخصصی را متحول می‌کند."}
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+                <button
+                  className="px-8 sm:px-12 py-3 sm:py-4 bg-gradient-to-r from-accent-warm-gold to-accent-warm-orange text-slate-900 font-semibold rounded-xl hover:shadow-2xl hover:shadow-accent-warm-gold/50 transition-all duration-300 text-sm sm:text-base"
+                  style={{
+                    fontFamily:
+                      lang === "en"
+                        ? "var(--font-body)"
+                        : "Shabnam, var(--font-body)",
+                    fontWeight: "600",
+                  }}
+                >
+                  {lang === "en" ? "View Open Positions" : "موقعیت‌های باز"}
+                </button>
+                <button
+                  className="px-8 sm:px-12 py-3 sm:py-4 border-2 border-white/40 text-white font-semibold rounded-xl hover:border-accent-warm-gold/60 hover:bg-white/10 backdrop-blur-sm transition-all duration-300 text-sm sm:text-base"
+                  style={{
+                    fontFamily:
+                      lang === "en"
+                        ? "var(--font-body)"
+                        : "Shabnam, var(--font-body)",
+                    fontWeight: "600",
+                  }}
+                >
+                  {lang === "en" ? "Our Culture" : "فرهنگ ما"}
+                </button>
               </div>
             </div>
           </div>
 
-          {/* Bottom gradient fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+          {/* Bottom gradient fade to next section */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none" />
         </section>
 
         {/* Modern Culture Section */}
@@ -300,114 +286,7 @@ export default async function CareersPage({ params }: CareersPageProps) {
           </div>
         </section>
 
-        {/* Team Spotlight Section */}
-        <section className="relative py-16 sm:py-20 md:py-28 lg:py-32 px-4 sm:px-6 bg-gradient-to-b from-slate-50 to-white overflow-hidden">
-          <div className="max-w-6xl mx-auto relative z-10">
-            <div className="text-center mb-14 sm:mb-18 md:mb-24">
-              <h2
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight tracking-tight"
-                style={{
-                  fontFamily:
-                    lang === "en"
-                      ? "var(--font-hero)"
-                      : "Estedad, var(--font-hero)",
-                  fontWeight: "700",
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                {lang === "en" ? "Meet Our Team" : "تیم ما را بشناسید"}
-              </h2>
-              <p
-                className="text-base sm:text-lg text-foreground/70 max-w-3xl mx-auto"
-                style={{
-                  fontFamily:
-                    lang === "en"
-                      ? "var(--font-body)"
-                      : "Shabnam, var(--font-body)",
-                  fontSize: "clamp(14px, 2vw, 18px)",
-                  fontWeight: "400",
-                }}
-              >
-                {lang === "en"
-                  ? "Talented individuals from around the world, united by a passion for excellence."
-                  : "افراد توانمند از سراسر جهان که با اشتیاق برای تعالی یکجا شده‌اند."}
-              </p>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
-              {[
-                {
-                  name: lang === "en" ? "Sarah Chen" : "سارا چن",
-                  role: lang === "en" ? "Supply Chain Director" : "مدیر زنجیره تامین",
-                  bio: lang === "en" 
-                    ? "Leading global sourcing operations with 12 years of experience in premium goods supply chain."
-                    : "هدایت عملیات تامین جهانی با ۱۲ سال تجربه در زنجیره تامین کالاهای برتر.",
-                  color: "from-accent-warm-gold/30",
-                },
-                {
-                  name: lang === "en" ? "Mohamed Khatib" : "محمد خطیب",
-                  role: lang === "en" ? "Quality Assurance Manager" : "مدیر تضمین کیفیت",
-                  bio: lang === "en" 
-                    ? "Ensuring excellence in every product through rigorous quality standards and innovation."
-                    : "تضمین تعالی در هر محصول از طریق استانداردهای کیفیت و نوآوری دقیق.",
-                  color: "from-accent-warm-orange/30",
-                },
-                {
-                  name: lang === "en" ? "Elena Rodriguez" : "النا رودریگز",
-                  role: lang === "en" ? "Business Development Lead" : "رهبر توسعه تجاری",
-                  bio: lang === "en" 
-                    ? "Building partnerships across continents to expand our global footprint."
-                    : "ایجاد مراتب اعتماد در سراسر قاره‌ها برای توسعه حضور جهانی ما.",
-                  color: "from-accent/30",
-                },
-                {
-                  name: lang === "en" ? "Raj Patel" : "راج پاتل",
-                  role: lang === "en" ? "Operations Manager" : "مدیر عملیات",
-                  bio: lang === "en" 
-                    ? "Optimizing processes and driving efficiency across our regional centers."
-                    : "بهینه‌سازی فرآیندها و افزایش کارایی در سراسر مراکز منطقه‌ای ما.",
-                  color: "from-accent-warm-red/30",
-                },
-              ].map((member, idx) => (
-                <div
-                  key={idx}
-                  className={`group relative rounded-2xl border border-foreground/8 bg-gradient-to-br ${member.color} backdrop-blur-md p-6 sm:p-8 transition-all duration-500 hover:border-foreground/15 hover:shadow-xl`}
-                >
-                  <div className="mb-6">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-slate-300 to-slate-200 mb-4" />
-                    <h3
-                      className="text-lg sm:text-xl font-semibold text-foreground mb-2"
-                      style={{
-                        fontFamily:
-                          lang === "en"
-                            ? "var(--font-hero)"
-                            : "Estedad, var(--font-hero)",
-                        fontWeight: "600",
-                      }}
-                    >
-                      {member.name}
-                    </h3>
-                    <p className="text-sm sm:text-base font-medium text-accent-warm-gold">
-                      {member.role}
-                    </p>
-                  </div>
-                  <p
-                    className="text-sm sm:text-base text-foreground/75 leading-relaxed"
-                    style={{
-                      fontFamily:
-                        lang === "en"
-                          ? "var(--font-body)"
-                          : "Shabnam, var(--font-body)",
-                      fontWeight: "400",
-                    }}
-                  >
-                    {member.bio}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
       </main>
       <Footer lang={lang} />
     </div>
