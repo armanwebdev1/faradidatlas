@@ -106,34 +106,24 @@ export function SignatureProducts() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-12 animate-fade-in">
-          <span
-            className="category-label text-accent-warm-gold mb-6 inline-block"
-            style={{
-              fontFamily: "Satoshi, var(--font-label)",
-              fontSize: "clamp(12px, 2vw, 16px)",
-            }}
-          >
-            Curated Excellence
-          </span>
+        {/* Section Header - Cleaner without yellow label */}
+        <div className="text-center mb-10 sm:mb-12 md:mb-14 animate-fade-in">
           <h2
-            className="section-title mb-8"
+            className="text-4xl sm:text-5xl md:text-6xl font-semibold text-foreground mb-5 sm:mb-6 md:mb-8 leading-tight"
             style={{
               fontFamily: "var(--font-hero)",
+              fontWeight: "600",
+              letterSpacing: "-0.01em",
             }}
           >
-            Signature{" "}
-            <span className="relative">
-              Products
-              <span className="absolute bottom-2 left-0 right-0 h-1 bg-accent/40 rounded-full blur-sm" />
-            </span>
+            Signature Products
           </h2>
           <p
-            className="body-text text-foreground/70 max-w-2xl mx-auto mb-8"
+            className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto mb-8"
             style={{
               fontFamily: "var(--font-body)",
-              fontSize: "clamp(16px, 2vw, 18px)",
+              fontSize: "clamp(14px, 2vw, 17px)",
+              fontWeight: "400",
             }}
           >
             Discover our handpicked collection of premium products, each
@@ -143,7 +133,10 @@ export function SignatureProducts() {
           {/* Explore All Products button */}
           <button
             onClick={() => router.push(`/${lang}/products`)}
-            className="inline-flex items-center gap-2 px-6 md:px-8 py-3 md:py-4 border-2 border-foreground hover:border-accent hover:text-accent text-foreground rounded-full font-hero text-base md:text-lg font-semibold tracking-tight transition-all duration-300 hover:bg-foreground/5"
+            className="inline-flex items-center gap-2 px-6 sm:px-7 md:px-8 py-2.5 sm:py-3 md:py-3.5 border border-foreground/20 hover:border-foreground/40 text-foreground hover:text-foreground rounded-full text-sm sm:text-base md:text-base font-medium tracking-tight transition-all duration-300 hover:bg-foreground/5"
+            style={{
+              fontFamily: "var(--font-body)",
+            }}
           >
             Explore All Products
           </button>
@@ -151,8 +144,8 @@ export function SignatureProducts() {
 
         {/* Carousel Container */}
         <div className="relative">
-          {/* Main Carousel */}
-          <div className="relative h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden rounded-3xl">
+          {/* Main Carousel - Reduced height for better proportions */}
+          <div className="relative h-80 sm:h-96 md:h-[480px] lg:h-[540px] overflow-hidden rounded-2xl sm:rounded-3xl">
             {products.map((product, index) => (
               <div
                 key={product.id}
@@ -181,7 +174,7 @@ export function SignatureProducts() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
                 </button>
 
-                <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12 lg:p-16 pointer-events-none">
+                <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-7 md:p-10 lg:p-12 pointer-events-none">
                   <div
                     className={`transition-all duration-700 transform ${
                       index === currentIndex
@@ -192,10 +185,10 @@ export function SignatureProducts() {
                     <span className="text-accent text-xs md:text-sm font-medium tracking-widest uppercase">
                       {product.category}
                     </span>
-                    <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white my-4 leading-tight">
+                    <h3 className="font-hero text-2xl sm:text-3xl md:text-4xl font-semibold text-white my-3 sm:my-4 leading-tight">
                       {product.name}
                     </h3>
-                    <p className="text-gray-200 text-base md:text-lg leading-relaxed max-w-2xl">
+                    <p className="text-gray-200 text-sm sm:text-base md:text-base leading-relaxed max-w-2xl">
                       {product.description}
                     </p>
                   </div>
@@ -225,31 +218,34 @@ export function SignatureProducts() {
             </Button>
           </div>
 
-          <div className="flex justify-center gap-2 mt-6 md:mt-8">
+          <div className="flex justify-center gap-2 mt-5 sm:mt-6 md:mt-8">
             {products.map((_, index) => (
               <button
                 key={index}
                 onClick={() => handleNavigation(index)}
                 className={`transition-all duration-500 rounded-full ${
                   index === currentIndex
-                    ? "w-10 md:w-12 h-2 md:h-2.5 bg-accent"
-                    : "w-2 md:w-2.5 h-2 md:h-2.5 bg-muted-foreground/40 hover:bg-muted-foreground/60"
+                    ? "w-8 sm:w-10 md:w-12 h-2 bg-foreground"
+                    : "w-2 h-2 bg-foreground/25 hover:bg-foreground/40"
                 }`}
                 aria-label={`Go to product ${index + 1}`}
               />
             ))}
           </div>
 
-          <div className="flex items-center justify-center gap-3 mt-4 md:mt-6">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mt-4 sm:mt-5">
             <Button
               variant="outline"
               size="sm"
               onClick={() => setIsAutoplay(!isAutoplay)}
-              className="text-xs md:text-sm rounded-full border-muted-foreground/40 hover:border-accent hover:text-accent transition-colors"
+              className="text-xs sm:text-sm rounded-full border-foreground/20 hover:border-foreground/40 text-foreground hover:text-foreground transition-colors"
+              style={{
+                fontFamily: "var(--font-body)",
+              }}
             >
               {isAutoplay ? "Pause" : "Play"}
             </Button>
-            <span className="text-xs md:text-sm text-muted-foreground">
+            <span className="text-xs sm:text-sm text-foreground/60">
               {currentIndex + 1} / {products.length}
             </span>
           </div>
