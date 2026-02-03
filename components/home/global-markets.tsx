@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import type { Language } from "@/lib/i18n";
 
 interface GlobalMarketsProps {
@@ -11,43 +12,89 @@ const markets = {
     {
       region: "European Union",
       countries: "France, Germany, Italy, Spain",
-      percentage: "28%",
+      percentage: 28,
     },
     {
       region: "Middle East & GCC",
       countries: "Saudi Arabia, UAE, Qatar",
-      percentage: "22%",
+      percentage: 22,
     },
     {
       region: "Asian Markets",
       countries: "Japan, South Korea, China",
-      percentage: "31%",
+      percentage: 31,
     },
-    { region: "Americas", countries: "USA, Canada, Brazil", percentage: "19%" },
+    { region: "Americas", countries: "USA, Canada, Brazil", percentage: 19 },
   ],
   fa: [
     {
       region: "اتحادیه اروپا",
       countries: "فرانسه، آلمان، ایتالیا، اسپانیا",
-      percentage: "28%",
+      percentage: 28,
     },
     {
       region: "خاورمیانه و کشورهای خلیج فارس",
       countries: "عربستان سعودی، امارات، قطر",
-      percentage: "22%",
+      percentage: 22,
     },
     {
       region: "بازارهای آسیایی",
       countries: "ژاپن، کره جنوبی، چین",
-      percentage: "31%",
+      percentage: 31,
     },
     {
       region: "آمریکا",
       countries: "ایالات متحده، کانادا، برزیل",
-      percentage: "19%",
+      percentage: 19,
     },
   ],
 };
+
+// Animated counter component
+function CountUpPercentage({ target }: { target: number }) {
+  const [count, setCount] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          const duration = 1.2; // 1.2 seconds for smooth count-up
+          const steps = 60; // 60 frames for smooth animation
+          const increment = target / steps;
+          let current = 0;
+
+          const interval = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              setCount(target);
+              clearInterval(interval);
+            } else {
+              setCount(Math.floor(current));
+            }
+          }, (duration * 1000) / steps);
+
+          return () => clearInterval(interval);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [target]);
+
+  return (
+    <div ref={containerRef} className="text-4xl md:text-5xl font-sans font-bold text-accent-warm-gold">
+      {count}%
+    </div>
+  );
+}
 
 export function GlobalMarkets({ lang }: GlobalMarketsProps) {
   const isRTL = lang === "fa";
@@ -101,9 +148,7 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
                   }}
                 >
                   <div className="mb-6 relative">
-                    <div className="text-4xl md:text-5xl font-sans font-bold text-accent-warm-gold">
-                      {market.percentage}
-                    </div>
+                    <CountUpPercentage target={market.percentage} />
                   </div>
 
                   <div className="mb-4 pb-4 border-b border-border/30">

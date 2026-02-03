@@ -1,8 +1,58 @@
+"use client";
+
 import Link from "next/link";
 import type { Language } from "@/lib/i18n";
+import { useEffect, useRef, useState } from "react";
 
 interface CTASectionProps {
   lang: Language;
+}
+
+// Animated counter component for statistics
+function CountUpNumber({ target, suffix = "" }: { target: number; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          const duration = 1.2; // 1.2 seconds for smooth count-up
+          const steps = 60; // 60 frames for smooth animation
+          const increment = target / steps;
+          let current = 0;
+
+          const interval = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              setCount(target);
+              clearInterval(interval);
+            } else {
+              setCount(Math.floor(current));
+            }
+          }, (duration * 1000) / steps);
+
+          return () => clearInterval(interval);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [target]);
+
+  return (
+    <div ref={containerRef} className="text-2xl sm:text-3xl md:text-4xl font-bold">
+      {count}
+      {suffix}
+    </div>
+  );
 }
 
 export function CTASection({ lang }: CTASectionProps) {
@@ -163,9 +213,9 @@ export function CTASection({ lang }: CTASectionProps) {
             <div className="mt-6 sm:mt-8 md:mt-10 flex justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 text-foreground/20 flex-wrap sm:flex-nowrap">
               {/* Partners stat */}
               <div className="text-center group cursor-default flex-1 sm:flex-none min-w-max">
-                <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1.5 sm:mb-2 bg-gradient-to-r from-[#1a1a1a] to-[#c9a961] bg-clip-text text-transparent transition-all duration-500 group-hover:from-[#c9a961] group-hover:to-[#a84a3a]">
-                  150+
-                </p>
+                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-[#1a1a1a] to-[#c9a961] bg-clip-text text-transparent transition-all duration-500 group-hover:from-[#c9a961] group-hover:to-[#a84a3a]">
+                  <CountUpNumber target={150} suffix="+" />
+                </div>
                 <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50 transition-colors duration-500 group-hover:text-[#c9a961]">
                   {lang === "en" ? "Partners" : "همکاران"}
                 </p>
@@ -176,9 +226,9 @@ export function CTASection({ lang }: CTASectionProps) {
 
               {/* Countries stat */}
               <div className="text-center group cursor-default flex-1 sm:flex-none min-w-max">
-                <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1.5 sm:mb-2 bg-gradient-to-r from-[#1a1a1a] to-[#b8654d] bg-clip-text text-transparent transition-all duration-500 group-hover:from-[#b8654d] group-hover:to-[#a84a3a]">
-                  50+
-                </p>
+                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-[#1a1a1a] to-[#b8654d] bg-clip-text text-transparent transition-all duration-500 group-hover:from-[#b8654d] group-hover:to-[#a84a3a]">
+                  <CountUpNumber target={50} suffix="+" />
+                </div>
                 <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50 transition-colors duration-500 group-hover:text-[#b8654d]">
                   {lang === "en" ? "Countries" : "کشورها"}
                 </p>
@@ -189,9 +239,9 @@ export function CTASection({ lang }: CTASectionProps) {
 
               {/* Experience stat */}
               <div className="text-center group cursor-default flex-1 sm:flex-none min-w-max">
-                <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1.5 sm:mb-2 bg-gradient-to-r from-[#1a1a1a] to-[#c9a961] bg-clip-text text-transparent transition-all duration-500 group-hover:from-[#a84a3a] group-hover:to-[#c9a961]">
-                  20y
-                </p>
+                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-[#1a1a1a] to-[#c9a961] bg-clip-text text-transparent transition-all duration-500 group-hover:from-[#a84a3a] group-hover:to-[#c9a961]">
+                  <CountUpNumber target={20} suffix="y" />
+                </div>
                 <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50 transition-colors duration-500 group-hover:text-[#a84a3a]">
                   {lang === "en" ? "Experience" : "تجربه"}
                 </p>
