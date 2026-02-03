@@ -19,32 +19,28 @@ const valueItems = {
       title: "Global Sourcing",
       description:
         "Direct partnerships with premium producers across 15+ countries",
-      color: "from-accent-warm-gold/20 to-accent-warm-orange/10",
-      borderColor: "border-accent-warm-gold/40",
+      accentColor: "accent-warm-gold",
     },
     {
       icon: CheckCircle,
       title: "Quality Control",
       description:
         "Rigorous testing at every stage: harvest, processing, packaging, shipping",
-      color: "from-accent-warm-red/20 to-accent-warm-orange/10",
-      borderColor: "border-accent-warm-red/40",
+      accentColor: "accent-warm-red",
     },
     {
       icon: Tag,
       title: "Private Labeling",
       description:
         "White-label solutions with flexible MOQs and custom packaging",
-      color: "from-accent/20 to-accent-warm-gold/10",
-      borderColor: "border-accent/40",
+      accentColor: "accent",
     },
     {
       icon: Package,
       title: "Export Ready",
       description:
         "All products certified for international export with full documentation",
-      color: "from-accent-warm-orange/20 to-accent-warm-red/10",
-      borderColor: "border-accent-warm-orange/40",
+      accentColor: "accent-warm-orange",
     },
   ],
   fa: [
@@ -52,31 +48,27 @@ const valueItems = {
       icon: Globe,
       title: "تامین بین‌المللی",
       description: "همکاری مستقیم با تولیدکنندگان برتر در بیش از ۱۵ کشور",
-      color: "from-accent-warm-gold/20 to-accent-warm-orange/10",
-      borderColor: "border-accent-warm-gold/40",
+      accentColor: "accent-warm-gold",
     },
     {
       icon: CheckCircle,
       title: "کنترل کیفیت",
       description:
         "آزمایش دقیق در هر مرحله: برداشت، فرآوری، بسته‌بندی، حمل‌ونقل",
-      color: "from-accent-warm-red/20 to-accent-warm-orange/10",
-      borderColor: "border-accent-warm-red/40",
+      accentColor: "accent-warm-red",
     },
     {
       icon: Tag,
       title: "علامت‌گذاری خصوصی",
       description:
         "راه‌حل‌های برچسب سفید با حداقل سفارش انعطاف‌پذیر و بسته‌بندی سفارشی",
-      color: "from-accent/20 to-accent-warm-gold/10",
-      borderColor: "border-accent/40",
+      accentColor: "accent",
     },
     {
       icon: Package,
       title: "آماده صادرات",
       description: "تمام محصولات معتبر برای صادرات بین‌المللی با اسناد کامل",
-      color: "from-accent-warm-orange/20 to-accent-warm-red/10",
-      borderColor: "border-accent-warm-orange/40",
+      accentColor: "accent-warm-orange",
     },
   ],
 };
@@ -87,14 +79,13 @@ export function ValueProps({ lang }: ValuePropsProps) {
   const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const labelRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     if (!carouselRef.current) return;
 
     const carousel = carouselRef.current;
     const itemWidth = carousel.children[0]?.getBoundingClientRect().width || 0;
-    const gap = 32;
+    const gap = 24;
     const itemWithGap = itemWidth + gap;
     const totalWidth = itemWithGap * 4;
 
@@ -107,8 +98,8 @@ export function ValueProps({ lang }: ValuePropsProps) {
     const timeline = gsap.timeline({ repeat: -1 });
     timeline.to(carousel, {
       x: -totalWidth,
-      duration: 30,
-      ease: "none",
+      duration: 40,
+      ease: "linear",
     });
 
     const handleResize = () => {
@@ -123,8 +114,8 @@ export function ValueProps({ lang }: ValuePropsProps) {
       const newTimeline = gsap.timeline({ repeat: -1 });
       newTimeline.to(carousel, {
         x: -newTotalWidth,
-        duration: 30,
-        ease: "none",
+        duration: 40,
+        ease: "linear",
       });
     };
 
@@ -139,7 +130,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    gsap.set([labelRef.current, titleRef.current, subtitleRef.current], {
+    gsap.set([titleRef.current, subtitleRef.current], {
       opacity: 0,
       y: 40,
     });
@@ -154,9 +145,8 @@ export function ValueProps({ lang }: ValuePropsProps) {
     });
 
     headerTimeline
-      .to(labelRef.current, { opacity: 1, y: 0, duration: 0.8 }, 0)
-      .to(titleRef.current, { opacity: 1, y: 0, duration: 0.8 }, 0.2)
-      .to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.8 }, 0.4);
+      .to(titleRef.current, { opacity: 1, y: 0, duration: 0.8 }, 0)
+      .to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.8 }, 0.2);
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
@@ -170,33 +160,23 @@ export function ValueProps({ lang }: ValuePropsProps) {
       ref={containerRef}
       className="space-responsive px-4 sm:px-6 bg-white relative overflow-hidden"
     >
-      {/* Decorative elements - responsive sizing */}
-      <div className="absolute top-0 right-0 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-gradient-to-br from-accent-warm-gold/5 to-accent-warm-orange/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-gradient-to-tr from-accent/5 to-accent-warm-red/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Subtle decorative gradient elements */}
+      <div className="absolute top-20 right-0 w-96 h-96 bg-gradient-to-br from-accent-warm-gold/3 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-accent/2 to-transparent rounded-full blur-3xl pointer-events-none" />
 
       <div className="container-wide relative z-10">
-        <div className="text-center mb-10 sm:mb-16">
-          <p
-            ref={labelRef}
-            className="category-label text-accent-warm-gold mb-4 sm:mb-6 text-xs sm:text-sm md:text-base"
-            style={{
-              fontFamily:
-                lang === "en"
-                  ? "Satoshi, var(--font-label)"
-                  : "Shabnam, var(--font-label)",
-              fontSize: "clamp(12px, 2vw, 16px)",
-            }}
-          >
-            {lang === "en" ? "Why Choose Us" : "چرا ما را انتخاب کنید"}
-          </p>
+        {/* Premium Section Header - No yellow label */}
+        <div className="text-center mb-12 sm:mb-16 md:mb-20">
           <h2
             ref={titleRef}
-            className="text-responsive-title md:text-5xl lg:text-6xl mb-4 sm:mb-6 md:mb-8 leading-tight"
+            className="text-responsive-title md:text-5xl lg:text-6xl mb-5 sm:mb-7 md:mb-8 leading-tight text-foreground"
             style={{
               fontFamily:
                 lang === "en"
                   ? "var(--font-hero)"
                   : "Estedad, var(--font-hero)",
+              fontWeight: "600",
+              letterSpacing: "-0.01em",
             }}
           >
             {lang === "en"
@@ -205,27 +185,30 @@ export function ValueProps({ lang }: ValuePropsProps) {
           </h2>
           <p
             ref={subtitleRef}
-            className="text-responsive-body text-gray-700 max-w-3xl mx-auto leading-relaxed"
+            className="text-responsive-body text-foreground/70 max-w-2xl mx-auto leading-relaxed"
             style={{
               fontFamily:
                 lang === "en"
                   ? "var(--font-body)"
                   : "Shabnam, var(--font-body)",
-              fontSize: "clamp(14px, 2vw, 18px)",
+              fontSize: "clamp(14px, 2vw, 17px)",
+              fontWeight: "400",
             }}
           >
             {lang === "en"
-              ? "Trusted by distributors and retailers worldwide for premium sourcing, rigorous quality control, and reliable partnerships that drive growth"
-              : "توسط توزیع‌کنندگان و فروشندگان جهانی برای تامین برتر، کنترل کیفیت دقیق و مشارکت‌های قابل‌اعتمادی که رشد را تسهیل می‌کنند"}
+              ? "Trusted by distributors and retailers worldwide for premium sourcing, rigorous quality control, and reliable partnerships"
+              : "توسط توزیع‌کنندگان و فروشندگان جهانی برای تامین برتر، کنترل کیفیت دقیق و مشارکت‌های قابل‌اعتماد"}
           </p>
         </div>
 
+        {/* Premium Carousel Container */}
         <div className="relative">
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white via-white/40 to-transparent z-20 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white via-white/40 to-transparent z-20 pointer-events-none" />
+          {/* Gradient fade overlays - smoother and more elegant */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-gradient-to-r from-white via-white/50 to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-gradient-to-l from-white via-white/50 to-transparent z-20 pointer-events-none" />
 
-          <div className="overflow-hidden">
-            <div ref={carouselRef} className="flex gap-8 w-max">
+          <div className="overflow-hidden rounded-2xl">
+            <div ref={carouselRef} className="flex gap-6 sm:gap-8 w-max py-2">
               {items.map((item, idx) => {
                 const IconComponent = item.icon;
                 return (
@@ -234,42 +217,66 @@ export function ValueProps({ lang }: ValuePropsProps) {
                     ref={(el) => {
                       itemsRef.current[idx] = el;
                     }}
-                    className={`flex-shrink-0 w-full sm:w-80 md:w-96 p-5 sm:p-6 md:p-8 lg:p-10 rounded-2xl sm:rounded-3xl border-2 ${item.borderColor} bg-gradient-to-br ${item.color} backdrop-blur-sm hover:shadow-2xl hover:shadow-accent-warm-gold/20 transition-all duration-500 group cursor-default`}
+                    className="flex-shrink-0 w-80 sm:w-96 md:w-[28rem] group"
                   >
-                    {/* Icon box - responsive sizing */}
-                    <div className="mb-5 sm:mb-6 md:mb-8 inline-flex p-2.5 sm:p-3 md:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white/40 to-white/20 backdrop-blur-sm group-hover:from-white/60 group-hover:to-white/40 transition-all duration-300">
-                      <IconComponent
-                        size={24}
-                        className="text-primary group-hover:scale-110 transition-transform duration-300 sm:w-8 sm:h-8 md:w-8 md:h-8"
-                        strokeWidth={1.5}
-                      />
+                    {/* Premium Card with minimalist design */}
+                    <div className="h-full flex flex-col p-6 sm:p-8 rounded-2xl border border-foreground/8 bg-gradient-to-br from-foreground/[0.02] to-foreground/[0.01] backdrop-blur-md transition-all duration-500 hover:border-foreground/15 hover:bg-gradient-to-br hover:from-foreground/[0.05] hover:to-foreground/[0.02]">
+                      {/* Icon Container with accent underline */}
+                      <div className="relative mb-6 sm:mb-8 inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20">
+                        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-foreground/8 to-foreground/4 group-hover:from-foreground/12 group-hover:to-foreground/6 transition-all duration-500" />
+                        <IconComponent
+                          size={32}
+                          className="relative text-foreground group-hover:scale-110 transition-transform duration-500 sm:w-10 sm:h-10"
+                          strokeWidth={1.2}
+                        />
+                        {/* Accent line below icon */}
+                        <div
+                          className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-1 w-8 sm:w-10 rounded-full group-hover:w-12 sm:group-hover:w-14 transition-all duration-500 opacity-0 group-hover:opacity-100`}
+                          style={{
+                            backgroundColor: `var(--${item.accentColor})`,
+                          }}
+                        />
+                      </div>
+
+                      {/* Title with premium typography */}
+                      <h3
+                        className="text-xl sm:text-2xl md:text-2xl font-semibold text-foreground mb-3 sm:mb-4 tracking-tight leading-snug"
+                        style={{
+                          fontFamily:
+                            lang === "en"
+                              ? "var(--font-hero)"
+                              : "Estedad, var(--font-hero)",
+                          fontWeight: "600",
+                        }}
+                      >
+                        {item.title}
+                      </h3>
+
+                      {/* Description with refined typography */}
+                      <p
+                        className="text-sm sm:text-base text-foreground/65 leading-relaxed flex-grow group-hover:text-foreground/75 transition-colors duration-500"
+                        style={{
+                          fontFamily:
+                            lang === "en"
+                              ? "var(--font-body)"
+                              : "Shabnam, var(--font-body)",
+                          fontWeight: "400",
+                          lineHeight: "1.65",
+                        }}
+                      >
+                        {item.description}
+                      </p>
+
+                      {/* Accent dot in bottom right */}
+                      <div className="flex justify-end mt-6 sm:mt-8">
+                        <div
+                          className="w-2 h-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500"
+                          style={{
+                            backgroundColor: `var(--${item.accentColor})`,
+                          }}
+                        />
+                      </div>
                     </div>
-
-                    {/* Title - responsive typography */}
-                    <h3
-                      className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-primary mb-3 sm:mb-4 group-hover:text-accent-warm-gold transition-colors duration-300 tracking-tight leading-tight"
-                      style={{
-                        fontFamily:
-                          lang === "en"
-                            ? "var(--font-hero)"
-                            : "Estedad, var(--font-hero)",
-                      }}
-                    >
-                      {item.title}
-                    </h3>
-
-                    {/* Description - responsive text */}
-                    <p
-                      className="text-xs sm:text-sm md:text-base text-foreground/75 leading-relaxed group-hover:text-foreground/85 transition-colors duration-300"
-                      style={{
-                        fontFamily:
-                          lang === "en"
-                            ? "var(--font-body)"
-                            : "Shabnam, var(--font-body)",
-                      }}
-                    >
-                      {item.description}
-                    </p>
                   </div>
                 );
               })}
