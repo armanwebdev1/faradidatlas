@@ -63,8 +63,8 @@ export function SignatureProducts() {
   const lang = params.lang as string;
   const isRTL = lang === "fa";
   const textShiftClass = isRTL
-    ? "-translate-x-2 sm:-translate-x-3 md:-translate-x-4 -translate-y-2 sm:-translate-y-3 md:-translate-y-4"
-    : "translate-x-2 sm:translate-x-3 md:translate-x-4 -translate-y-2 sm:-translate-y-3 md:-translate-y-4";
+    ? "-translate-x-4 sm:-translate-x-6 md:-translate-x-8 -translate-y-4 sm:-translate-y-6 md:-translate-y-8"
+    : "translate-x-4 sm:translate-x-6 md:translate-x-8 -translate-y-4 sm:-translate-y-6 md:-translate-y-8";
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoplay, setIsAutoplay] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
