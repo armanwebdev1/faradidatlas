@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -16,6 +16,7 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
   );
   const [activeIndex, setActiveIndex] = useState(0);
   const stripRef = useRef<HTMLDivElement>(null);
+  const thumbRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   if (gallery.length === 0) {
     return null;
@@ -24,10 +25,23 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
   const activeImage = gallery[Math.min(activeIndex, gallery.length - 1)];
   const canNavigate = gallery.length > 1;
 
-  const scrollStrip = (direction: "prev" | "next") => {
-    if (!stripRef.current) return;
-    const delta = direction === "prev" ? -180 : 180;
-    stripRef.current.scrollBy({ left: delta, behavior: "smooth" });
+  useEffect(() => {
+    const current = thumbRefs.current[activeIndex];
+    current?.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest",
+    });
+  }, [activeIndex]);
+
+  const goToPrev = () => {
+    if (!canNavigate) return;
+    setActiveIndex((prev) => (prev - 1 + gallery.length) % gallery.length);
+  };
+
+  const goToNext = () => {
+    if (!canNavigate) return;
+    setActiveIndex((prev) => (prev + 1) % gallery.length);
   };
 
   return (
@@ -45,9 +59,9 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
       <div className="relative">
         <button
           type="button"
-          onClick={() => scrollStrip("prev")}
+          onClick={goToPrev}
           disabled={!canNavigate}
-          aria-label="Scroll thumbnails left"
+          aria-label="Previous image"
           className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md ${
             canNavigate
               ? "hover:-translate-y-[52%]"
@@ -69,6 +83,9 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
                 key={`${image}-${index}`}
                 type="button"
                 onClick={() => setActiveIndex(index)}
+                ref={(el) => {
+                  thumbRefs.current[index] = el;
+                }}
                 aria-pressed={isActive}
                 aria-current={isActive ? "true" : "false"}
                 className={`relative h-20 w-20 sm:h-24 sm:w-24 flex-shrink-0 snap-start rounded-2xl overflow-hidden border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${
@@ -88,9 +105,9 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
 
         <button
           type="button"
-          onClick={() => scrollStrip("next")}
+          onClick={goToNext}
           disabled={!canNavigate}
-          aria-label="Scroll thumbnails right"
+          aria-label="Next image"
           className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md ${
             canNavigate
               ? "hover:-translate-y-[52%]"
