@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/footer";
 import { JobDetail } from "@/components/careers/job-detail";
 import { jobs } from "@/components/careers/job-data";
 import type { Language } from "@/lib/i18n";
+import Link from "next/link";
 
 interface JobDetailPageProps {
   params: Promise<{
@@ -40,12 +41,44 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
     );
   }
 
+  const title = lang === "en" ? job.titleEn : job.titleFa;
+
   return (
     <div dir={lang === "fa" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
-        <section className="space-responsive px-4 sm:px-6">
-          <div className="container-compact">
+        {/* Breadcrumb */}
+        <nav
+          aria-label="Breadcrumb"
+          className="container-wide px-4 sm:px-6 pt-6 sm:pt-8"
+        >
+          <div className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-white/80 px-4 py-2 text-xs sm:text-sm text-foreground/70 shadow-sm backdrop-blur">
+            <Link
+              href={`/${lang}`}
+              className="line-accent transition-colors hover:text-primary"
+            >
+              {lang === "en" ? "Home" : "خانه"}
+            </Link>
+            <span className="text-foreground/30" aria-hidden="true">
+              •
+            </span>
+            <Link
+              href={`/${lang}/careers`}
+              className="line-accent transition-colors hover:text-primary"
+            >
+              {lang === "en" ? "Careers" : "فرصت‌های شغلی"}
+            </Link>
+            <span className="text-foreground/30" aria-hidden="true">
+              •
+            </span>
+            <span className="text-foreground font-medium line-clamp-1">
+              {title}
+            </span>
+          </div>
+        </nav>
+
+        <section className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-white via-white to-gray-50/60">
+          <div className="container-wide">
             <JobDetail job={job} lang={lang} />
           </div>
         </section>
