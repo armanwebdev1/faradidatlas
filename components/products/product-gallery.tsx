@@ -46,10 +46,7 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
   return (
     <div className="space-y-4 sm:space-y-5">
       <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-[5/4] max-h-[520px] lg:max-h-[560px] bg-white/80 rounded-3xl overflow-hidden border border-foreground/10 shadow-[0_30px_80px_-60px_rgba(15,15,15,0.45)]">
-        <div
-          key={activeImage}
-          className="absolute inset-0 motion-safe:animate-scale-reveal"
-        >
+        <div key={activeImage} className="absolute inset-0 image-swap">
           <Image
             src={activeImage}
             alt={alt}
@@ -64,12 +61,12 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
         <button
           type="button"
           onClick={goToPrev}
-          disabled={!canNavigate}
           aria-label="Previous image"
+          aria-disabled={!canNavigate}
           className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
             canNavigate
               ? "hover:-translate-y-[52%]"
-              : "cursor-not-allowed opacity-40"
+              : "cursor-not-allowed opacity-40 pointer-events-none"
           }`}
         >
           <ChevronLeft className="h-5 w-5 mx-auto" />
@@ -109,17 +106,40 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
         <button
           type="button"
           onClick={goToNext}
-          disabled={!canNavigate}
           aria-label="Next image"
+          aria-disabled={!canNavigate}
           className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
             canNavigate
               ? "hover:-translate-y-[52%]"
-              : "cursor-not-allowed opacity-40"
+              : "cursor-not-allowed opacity-40 pointer-events-none"
           }`}
         >
           <ChevronRight className="h-5 w-5 mx-auto" />
         </button>
       </div>
+
+      <style jsx>{`
+        @keyframes imageSwap {
+          0% {
+            opacity: 0;
+            transform: scale(0.985);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        .image-swap {
+          animation: imageSwap 0.45s ease;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .image-swap {
+            animation: none;
+          }
+        }
+      `}</style>
     </div>
   );
 }
