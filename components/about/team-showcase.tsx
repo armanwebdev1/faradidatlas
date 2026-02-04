@@ -164,10 +164,7 @@ export function TeamShowcase({ lang }: TeamShowcaseProps) {
     >
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div
-          className="text-center mb-20 opacity-0 translate-y-6"
-          data-animate
-        >
+        <div className="text-center mb-20">
           <span className="inline-block px-4 py-2 bg-accent-warm-gold/15 rounded-full text-xs font-bold text-accent-warm-gold mb-6 uppercase tracking-widest">
             {lang === "en" ? "Our Team" : "تیم ما"}
           </span>

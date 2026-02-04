@@ -90,10 +90,7 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div
-          className="text-center mb-16 opacity-0 translate-y-6"
-          data-animate
-        >
+        <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-8">
             {lang === "en" ? "What we offer" : "چه چیزی ارائه می‌دهیم"}
           </h2>
@@ -144,10 +141,7 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
         </div>
 
         {/* CTA Button */}
-        <div
-          className="text-center mt-16 opacity-0 translate-y-6"
-          data-animate
-        >
+        <div className="text-center mt-16">
           <button className="px-8 py-4 bg-accent-warm-gold text-primary font-bold hover:bg-accent-warm-gold/90 transition-all duration-300 hover:shadow-xl hover:shadow-accent-warm-gold/30 rounded-lg inline-block">
             {lang === "en" ? "Explore Services" : "خدمات را کاوش کنید"}
           </button>

@@ -11,20 +11,8 @@ interface AboutHeroProps {
 export function AboutHero({ lang }: AboutHeroProps) {
   const isRTL = lang === "fa";
   const headlineRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const introRef = useRef<HTMLDivElement>(null);
-  const founderRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const groups = [
-      headlineRef.current,
-      imageRef.current,
-      introRef.current,
-      founderRef.current,
-      statsRef.current,
-    ];
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -38,12 +26,10 @@ export function AboutHero({ lang }: AboutHeroProps) {
       { threshold: 0.2 },
     );
 
-    groups.forEach((group) => {
-      const elements = group?.querySelectorAll("[data-animate]");
-      elements?.forEach((el, index) => {
-        (el as HTMLElement).style.animationDelay = `${index * 0.12}s`;
-        observer.observe(el);
-      });
+    const elements = headlineRef.current?.querySelectorAll("[data-animate]");
+    elements?.forEach((el, index) => {
+      (el as HTMLElement).style.animationDelay = `${index * 0.12}s`;
+      observer.observe(el);
     });
 
     return () => observer.disconnect();
@@ -81,11 +67,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
           </div>
 
           {/* Image */}
-          <div
-            ref={imageRef}
-            className="opacity-0 translate-y-6"
-            data-animate
-          >
+          <div>
             <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80"
@@ -97,11 +79,8 @@ export function AboutHero({ lang }: AboutHeroProps) {
           </div>
 
           {/* Intro */}
-          <div ref={introRef} className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <h2
-              className="text-4xl md:text-5xl font-bold font-hero max-w-2/3 text-primary opacity-0 translate-y-6"
-              data-animate
-            >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <h2 className="text-4xl md:text-5xl font-bold font-hero max-w-2/3 text-primary">
               {lang === "en" ? "Get to know us more" : "بیشتر درباره ما بدانید"}
             </h2>
 
@@ -115,19 +94,13 @@ export function AboutHero({ lang }: AboutHeroProps) {
                 textAlign: "left",
               }}
             >
-              <p
-                className="text-base md:text-lg font-semibold text-gray-900 leading-relaxed max-w-xl opacity-0 translate-y-6"
-                data-animate
-              >
+              <p className="text-base md:text-lg font-semibold text-gray-900 leading-relaxed max-w-xl">
                 {lang === "en"
                   ? "Owned and run by a group of commercial property experts, we provide property consultancy services for owners, occupiers, investors, developers and financial advisors of property and associated assets."
                   : "صاحب و اداره‌شده توسط گروهی از متخصصان املاک تجاری، ما خدمات مشاوره املاک را برای مالکان، بهره‌برداران، سرمایه‌گذاران، توسعه‌دهندگان و مشاوران مالی ارائه می‌دهیم."}
               </p>
 
-              <p
-                className="text-sm md:text-base text-gray-700 leading-relaxed max-w-xl opacity-0 translate-y-6"
-                data-animate
-              >
+              <p className="text-sm md:text-base text-gray-700 leading-relaxed max-w-xl">
                 {lang === "en"
                   ? "Operating from offices in Birmingham, Bristol, Exeter, Leeds, London, Manchester, Newcastle, Teesside and York we combine our knowledge and skills to provide complete property advice, ultimately making you and your business more successful. The property industry continues to transform through influences in technology, culture and economy and we are excited to be a part of the journey, making an impact where we can, and adapting where needed."
                   : "ما با فعالیت از دفاتر خود در شهرهای مختلف، دانش و مهارت‌های خود را برای ارائه مشاوره جامع ملکی ترکیب می‌کنیم و به موفقیت بیشتر شما و کسب‌وکارتان کمک می‌کنیم."}
@@ -136,12 +109,9 @@ export function AboutHero({ lang }: AboutHeroProps) {
           </div>
 
           {/* Founder */}
-          <div ref={founderRef} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* CEO */}
-            <div
-              className="flex gap-4 items-center opacity-0 translate-y-6"
-              data-animate
-            >
+            <div className="flex gap-4 items-center">
               <div className="relative w-14 h-14 rounded-full overflow-hidden">
                 <Image
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&q=80"
@@ -161,10 +131,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
             </div>
 
             {/* Quote */}
-            <blockquote
-              className="text-2xl md:text-3xl font-bold text-primary leading-tight max-w-xl opacity-0 translate-y-6"
-              data-animate
-            >
+            <blockquote className="text-2xl md:text-3xl font-bold text-primary leading-tight max-w-xl">
               {lang === "en"
                 ? "“Our goal is to provide house for the people who are in a tight budget could not afford to check houses from places to places. We tries to cut off that travel expenses and motivate them to increase the budget.”"
                 : "«هدف ما فراهم کردن خانه برای افرادی است که بودجه محدودی دارند و نمی‌توانند برای بازدید از خانه‌ها سفر کنند.»"}
@@ -172,7 +139,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
           </div>
 
           {/* Stats */}
-          <div ref={statsRef} className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
             <Stat
               value={8.93}
               suffix="%"
@@ -288,7 +255,7 @@ function Stat({
   lang: Language;
 }) {
   return (
-    <div className="opacity-0 translate-y-6" data-animate>
+    <div>
       <CountUpValue target={value} suffix={suffix} decimals={decimals} />
       <p className="text-xs text-gray-600">
         {lang === "en" ? labelEn : labelFa}

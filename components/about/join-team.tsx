@@ -1,7 +1,6 @@
 "use client";
 
 import type { Language } from "@/lib/i18n";
-import { useEffect, useRef } from "react";
 import Link from "next/link";
 
 interface JoinTeamProps {
@@ -9,43 +8,15 @@ interface JoinTeamProps {
 }
 
 export function JoinTeam({ lang }: JoinTeamProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const elements = containerRef.current?.querySelectorAll("[data-animate]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const el = entry.target as HTMLElement;
-          el.classList.add("animate-fade-in-up");
-          el.classList.remove("opacity-0", "translate-y-6");
-          observer.unobserve(el);
-        });
-      },
-      { threshold: 0.2 },
-    );
-
-    elements?.forEach((el, index) => {
-      (el as HTMLElement).style.animationDelay = `${index * 0.12}s`;
-      observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section className="relative py-16 md:py-24 px-4 sm:px-6 bg-white overflow-hidden">
       {/* Top divider line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gray-200" />
 
-      <div ref={containerRef} className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           {/* Left - Heading */}
-          <h2
-            className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight opacity-0 translate-y-6"
-            data-animate
-          >
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight">
             {lang === "en" ? "Join our team" : "به تیم ما بپیوندید"}
           </h2>
 
@@ -56,8 +27,7 @@ export function JoinTeam({ lang }: JoinTeamProps) {
             style={{ direction: "ltr", textAlign: "left" }}
           >
             <p
-              className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 text-left opacity-0 translate-y-6"
-              data-animate
+              className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 text-left"
               style={{ direction: "ltr", textAlign: "left" }}
             >
               {lang === "en"
@@ -67,8 +37,7 @@ export function JoinTeam({ lang }: JoinTeamProps) {
 
             <Link
               href={`/${lang}/careers`}
-              className="inline-flex items-center text-teal-600 hover:text-teal-700 font-medium transition-colors text-left opacity-0 translate-y-6"
-              data-animate
+              className="inline-flex items-center text-teal-600 hover:text-teal-700 font-medium transition-colors text-left"
               style={{ direction: "ltr", textAlign: "left" }}
             >
               {lang === "en"
