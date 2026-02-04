@@ -714,20 +714,6 @@ html {
     will-change: transform, opacity;
   }
 
-  @keyframes heroKenBurns {
-    0% {
-      transform: scale(1);
-    }
-    100% {
-      transform: scale(1.05);
-    }
-  }
-
-  .hero-kenburns {
-    animation: heroKenBurns 12s ease-out infinite alternate;
-    will-change: transform;
-  }
-
   /* Float animation for subtle movement */
   @keyframes float {
     0%,

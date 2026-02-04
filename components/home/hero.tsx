@@ -46,6 +46,7 @@ export function Hero({ lang }: HeroProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const containerRef = useRef<HTMLDivElement>(null);
+  const slideRefs = useRef<Array<HTMLDivElement | null>>([]);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const titleLine1Ref = useRef<HTMLSpanElement>(null);
   const titleLine2Ref = useRef<HTMLSpanElement>(null);
@@ -53,8 +54,8 @@ export function Hero({ lang }: HeroProps) {
 
   const isRTL = lang === "fa";
   const textShiftClass = isRTL
-    ? "-translate-x-2 sm:-translate-x-3 md:-translate-x-4"
-    : "translate-x-2 sm:translate-x-3 md:translate-x-4";
+    ? "-translate-x-4 sm:-translate-x-6 md:-translate-x-8"
+    : "translate-x-4 sm:translate-x-6 md:translate-x-8";
 
   const goToSlide = (index: number) => {
     setCurrentSlide((index + slides.length) % slides.length);
@@ -64,7 +65,15 @@ export function Hero({ lang }: HeroProps) {
   const prevSlide = () => goToSlide(currentSlide - 1);
 
   useEffect(() => {
-    const timeline = gsap.timeline();
+    const reduceMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const timeline = gsap.timeline({
+      defaults: { ease: "cubic-bezier(0.22, 1, 0.36, 1)" },
+    });
+
+    const activeSlide = slideRefs.current[currentSlide];
 
     gsap.set(
       [
@@ -76,12 +85,19 @@ export function Hero({ lang }: HeroProps) {
       { opacity: 0, y: 60 },
     );
 
+    if (activeSlide) {
+      gsap.set(activeSlide, { scale: reduceMotion ? 1 : 1.04 });
+    }
+
     timeline.to(subtitleRef.current, {
       opacity: 1,
       y: 0,
       duration: 0.9,
-      ease: "cubic-bezier(0.22, 1, 0.36, 1)",
     });
+
+    if (activeSlide && !reduceMotion) {
+      timeline.to(activeSlide, { scale: 1, duration: 1.4 }, 0);
+    }
 
     timeline.to(
       titleLine1Ref.current,
@@ -89,7 +105,6 @@ export function Hero({ lang }: HeroProps) {
         opacity: 1,
         y: 0,
         duration: 1,
-        ease: "cubic-bezier(0.22, 1, 0.36, 1)",
       },
       0.2,
     );
@@ -100,7 +115,6 @@ export function Hero({ lang }: HeroProps) {
         opacity: 1,
         y: 0,
         duration: 1,
-        ease: "cubic-bezier(0.22, 1, 0.36, 1)",
       },
       0.4,
     );
@@ -111,7 +125,6 @@ export function Hero({ lang }: HeroProps) {
         opacity: 1,
         y: 0,
         duration: 1,
-        ease: "cubic-bezier(0.22, 1, 0.36, 1)",
       },
       0.6,
     );
@@ -140,8 +153,11 @@ export function Hero({ lang }: HeroProps) {
         {slides.map((s, index) => (
           <div
             key={s.id}
+            ref={(el) => {
+              slideRefs.current[index] = el;
+            }}
             className={`absolute inset-0 transition-opacity duration-700 ${
-              index === currentSlide ? "opacity-100 hero-kenburns" : "opacity-0"
+              index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
             style={{
               backgroundImage: `url(${s.image})`,
