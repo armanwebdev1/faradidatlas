@@ -217,21 +217,21 @@ export function ValueProps({ lang }: ValuePropsProps) {
                     ref={(el) => {
                       itemsRef.current[idx] = el;
                     }}
-                    className="flex-shrink-0 w-80 sm:w-96 md:w-[28rem]"
+                    className="flex-shrink-0 w-80 sm:w-96 md:w-[28rem] group"
                   >
                     {/* Premium Card with minimalist design */}
-                    <div className="h-full flex flex-col p-6 sm:p-8 rounded-2xl border border-foreground/8 bg-gradient-to-br from-foreground/[0.02] to-foreground/[0.01] backdrop-blur-md transition-colors duration-500 hover:bg-gradient-to-br hover:from-foreground/[0.05] hover:to-foreground/[0.02]">
+                    <div className="h-full flex flex-col p-6 sm:p-8 rounded-2xl border border-foreground/8 bg-gradient-to-br from-foreground/[0.02] to-foreground/[0.01] backdrop-blur-md transition-all duration-500 hover:border-foreground/15 hover:bg-gradient-to-br hover:from-foreground/[0.05] hover:to-foreground/[0.02]">
                       {/* Icon Container with accent underline */}
                       <div className="relative mb-6 sm:mb-8 inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20">
-                        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-foreground/8 to-foreground/4" />
+                        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-foreground/8 to-foreground/4 group-hover:from-foreground/12 group-hover:to-foreground/6 transition-all duration-500" />
                         <IconComponent
                           size={32}
-                          className="relative text-foreground sm:w-10 sm:h-10"
+                          className="relative text-foreground group-hover:scale-110 transition-transform duration-500 sm:w-10 sm:h-10"
                           strokeWidth={1.2}
                         />
                         {/* Accent line below icon */}
                         <div
-                          className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-1 w-8 sm:w-10 rounded-full`}
+                          className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-1 w-8 sm:w-10 rounded-full group-hover:w-12 sm:group-hover:w-14 transition-all duration-500 opacity-0 group-hover:opacity-100`}
                           style={{
                             backgroundColor: `var(--${item.accentColor})`,
                           }}
@@ -254,7 +254,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
 
                       {/* Description with refined typography */}
                       <p
-                        className="text-sm sm:text-base text-foreground/65 leading-relaxed flex-grow"
+                        className="text-sm sm:text-base text-foreground/65 leading-relaxed flex-grow group-hover:text-foreground/75 transition-colors duration-500"
                         style={{
                           fontFamily:
                             lang === "en"
@@ -270,7 +270,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
                       {/* Accent dot in bottom right */}
                       <div className="flex justify-end mt-6 sm:mt-8">
                         <div
-                          className="w-2 h-2 rounded-full"
+                          className="w-2 h-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500"
                           style={{
                             backgroundColor: `var(--${item.accentColor})`,
                           }}
