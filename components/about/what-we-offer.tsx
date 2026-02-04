@@ -1,6 +1,7 @@
 "use client";
 
 import type { Language } from "@/lib/i18n";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 
 interface WhatWeOfferProps {
@@ -54,12 +55,45 @@ const offerings = {
 export function WhatWeOffer({ lang }: WhatWeOfferProps) {
   const offers = lang === "en" ? offerings.en : offerings.fa;
   const isRTL = lang === "fa";
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const elements = containerRef.current?.querySelectorAll("[data-animate]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          el.classList.add("animate-fade-in-up");
+          el.classList.remove("opacity-0", "translate-y-6");
+          observer.unobserve(el);
+        });
+      },
+      { threshold: 0.2 },
+    );
+
+    elements?.forEach((el, index) => {
+      const element = el as HTMLElement;
+      if (!element.style.animationDelay) {
+        element.style.animationDelay = `${index * 0.12}s`;
+      }
+      observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="relative py-24 md:py-32 px-4 sm:px-6 bg-gray-50 overflow-hidden">
+    <section
+      ref={containerRef}
+      className="relative py-24 md:py-32 px-4 sm:px-6 bg-gray-50 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
+        <div
+          className="text-center mb-16 opacity-0 translate-y-6"
+          data-animate
+        >
           <h2 className="text-5xl md:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-8">
             {lang === "en" ? "What we offer" : "چه چیزی ارائه می‌دهیم"}
           </h2>
@@ -79,7 +113,8 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
             return (
               <div
                 key={idx}
-                className={`group animate-fade-in-up ${offsetClass}`}
+                className={`group ${offsetClass} opacity-0 translate-y-6`}
+                data-animate
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
                 <div className="relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 border border-gray-200 hover:border-accent-warm-gold h-full flex flex-col">
@@ -102,9 +137,6 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
                       {offer.description}
                     </p>
                   </div>
-
-                  {/* Bottom accent line */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent-warm-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               </div>
             );
@@ -112,7 +144,10 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
         </div>
 
         {/* CTA Button */}
-        <div className="text-center mt-16 animate-fade-in-up">
+        <div
+          className="text-center mt-16 opacity-0 translate-y-6"
+          data-animate
+        >
           <button className="px-8 py-4 bg-accent-warm-gold text-primary font-bold hover:bg-accent-warm-gold/90 transition-all duration-300 hover:shadow-xl hover:shadow-accent-warm-gold/30 rounded-lg inline-block">
             {lang === "en" ? "Explore Services" : "خدمات را کاوش کنید"}
           </button>

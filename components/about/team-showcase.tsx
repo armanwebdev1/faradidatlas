@@ -1,6 +1,7 @@
 "use client";
 
 import type { Language } from "@/lib/i18n";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 
 interface TeamShowcaseProps {
@@ -128,12 +129,45 @@ const team = {
 
 export function TeamShowcase({ lang }: TeamShowcaseProps) {
   const teamList = lang === "en" ? team.en : team.fa;
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const elements = containerRef.current?.querySelectorAll("[data-animate]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          el.classList.add("animate-fade-in-up");
+          el.classList.remove("opacity-0", "translate-y-6");
+          observer.unobserve(el);
+        });
+      },
+      { threshold: 0.2 },
+    );
+
+    elements?.forEach((el, index) => {
+      const element = el as HTMLElement;
+      if (!element.style.animationDelay) {
+        element.style.animationDelay = `${index * 0.12}s`;
+      }
+      observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="relative py-24 md:py-32 px-4 sm:px-6 bg-white overflow-hidden">
+    <section
+      ref={containerRef}
+      className="relative py-24 md:py-32 px-4 sm:px-6 bg-white overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-20 animate-fade-in-up">
+        <div
+          className="text-center mb-20 opacity-0 translate-y-6"
+          data-animate
+        >
           <span className="inline-block px-4 py-2 bg-accent-warm-gold/15 rounded-full text-xs font-bold text-accent-warm-gold mb-6 uppercase tracking-widest">
             {lang === "en" ? "Our Team" : "تیم ما"}
           </span>
@@ -150,7 +184,8 @@ export function TeamShowcase({ lang }: TeamShowcaseProps) {
           {teamList.map((member, idx) => (
             <div
               key={idx}
-              className="group animate-fade-in-up"
+              className="group opacity-0 translate-y-6"
+              data-animate
               style={{ animationDelay: `${idx * 0.05}s` }}
             >
               <div className="relative bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-accent-warm-gold hover:shadow-2xl transition-all duration-500">
@@ -176,9 +211,6 @@ export function TeamShowcase({ lang }: TeamShowcaseProps) {
                   </p>
                   <p className="text-sm text-gray-600">{member.bio}</p>
                 </div>
-
-                {/* Bottom accent line */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent-warm-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             </div>
           ))}
