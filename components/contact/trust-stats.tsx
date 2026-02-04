@@ -71,7 +71,6 @@ function TrustStatCard({ stat, start, index }: TrustStatCardProps) {
 
   return (
     <div className="group relative overflow-hidden rounded-2xl border border-foreground/10 bg-white/90 px-5 py-6 sm:px-6 sm:py-7 shadow-[0_25px_70px_-55px_rgba(15,23,42,0.35)] backdrop-blur transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_40px_90px_-60px_rgba(15,23,42,0.45)]">
-      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-500 via-cyan-300 to-amber-200 opacity-70" />
       <div className="relative">
         <p className="text-3xl sm:text-4xl font-semibold text-primary tracking-tight">
           {formattedValue}

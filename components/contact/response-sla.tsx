@@ -64,15 +64,15 @@ export function ResponseSLA({ lang }: ResponseSLAProps) {
   const data = lang === "en" ? content.en : content.fa
 
   return (
-    <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 px-6 py-12 sm:px-10 sm:py-14 lg:px-12 text-white shadow-[0_50px_120px_-80px_rgba(15,23,42,0.9)]">
-      <div className="pointer-events-none absolute -top-28 -right-24 h-64 w-64 rounded-full bg-cyan-300/15 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 left-0 h-48 w-48 rounded-full bg-blue-500/20 blur-3xl" />
+    <div className="relative overflow-hidden rounded-3xl border border-foreground/10 bg-white px-6 py-12 sm:px-10 sm:py-14 lg:px-12 text-foreground shadow-[0_50px_120px_-90px_rgba(15,23,42,0.35)]">
+      <div className="pointer-events-none absolute -top-28 -right-24 h-64 w-64 rounded-full bg-slate-200/40 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 left-0 h-48 w-48 rounded-full bg-slate-100/70 blur-3xl" />
 
       <div className="relative">
-        <h3 className="text-3xl sm:text-4xl font-semibold text-center tracking-tight">
+        <h3 className="text-3xl sm:text-4xl font-semibold text-center tracking-tight text-primary">
           {data.title}
         </h3>
-        <p className="mt-4 text-center text-white/70 max-w-2xl mx-auto text-sm sm:text-base">
+        <p className="mt-4 text-center text-foreground/70 max-w-2xl mx-auto text-sm sm:text-base">
           {data.description}
         </p>
 
@@ -80,15 +80,15 @@ export function ResponseSLA({ lang }: ResponseSLAProps) {
           {data.slas.map((sla, idx) => (
             <div
               key={idx}
-              className="rounded-2xl border border-white/15 bg-white/10 px-5 py-6 sm:px-6 sm:py-7 backdrop-blur-sm shadow-[0_20px_60px_-45px_rgba(15,23,42,0.6)]"
+              className="rounded-2xl border border-foreground/10 bg-white/90 px-5 py-6 sm:px-6 sm:py-7 shadow-[0_20px_60px_-45px_rgba(15,23,42,0.25)]"
             >
-              <h4 className="text-base sm:text-lg font-semibold text-white">
+              <h4 className="text-base sm:text-lg font-semibold text-foreground">
                 {sla.title}
               </h4>
-              <p className="mt-2 text-sm font-semibold text-cyan-100/90">
+              <p className="mt-2 text-sm font-semibold text-primary/80">
                 {sla.timeline}
               </p>
-              <p className="mt-3 text-xs sm:text-sm text-white/65 leading-relaxed">
+              <p className="mt-3 text-xs sm:text-sm text-foreground/65 leading-relaxed">
                 {sla.description}
               </p>
             </div>

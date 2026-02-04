@@ -26,34 +26,6 @@ export default async function ContactPage({ params }: ContactPageProps) {
       <main>
         <ContactHero lang={lang} />
 
-        {/* Main Content - responsive grid */}
-        <section
-          id="contact-form"
-          className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-white via-gray-50/70 to-white"
-        >
-          <div className="container-wide grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
-            {/* Form */}
-            <div className="lg:col-span-2">
-              <ContactForm lang={lang} />
-            </div>
-
-            {/* Office Info - responsive sticky */}
-            <div id="contact-offices" className="lg:sticky lg:top-32">
-              <h2 className="text-responsive-section text-primary mb-6 sm:mb-8 animate-fade-in-up">
-                {lang === "en" ? "Our Offices" : "دفاتر ما"}
-              </h2>
-              <OfficeInfo lang={lang} />
-            </div>
-          </div>
-        </section>
-
-        {/* Response SLA - responsive */}
-        <section className="space-responsive px-4 sm:px-6 bg-white">
-          <div className="container-wide">
-            <ResponseSLA lang={lang} />
-          </div>
-        </section>
-
         {/* Certifications Trust Section - responsive */}
         <section className="relative space-responsive px-4 sm:px-6 bg-gradient-to-b from-white via-slate-50/80 to-white overflow-hidden">
           {/* Decorative elements - responsive sizing */}
@@ -110,6 +82,35 @@ export default async function ContactPage({ params }: ContactPageProps) {
             </div>
           </div>
         </section>
+
+        {/* Main Content - responsive grid */}
+        <section
+          id="contact-form"
+          className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-white via-gray-50/70 to-white"
+        >
+          <div className="container-wide grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
+            {/* Form */}
+            <div className="lg:col-span-2">
+              <ContactForm lang={lang} />
+            </div>
+
+            {/* Office Info - responsive sticky */}
+            <div id="contact-offices" className="lg:sticky lg:top-32">
+              <h2 className="text-responsive-section text-primary mb-6 sm:mb-8 animate-fade-in-up">
+                {lang === "en" ? "Our Offices" : "دفاتر ما"}
+              </h2>
+              <OfficeInfo lang={lang} />
+            </div>
+          </div>
+        </section>
+
+        {/* Response SLA - responsive */}
+        <section className="space-responsive px-4 sm:px-6 bg-white">
+          <div className="container-wide">
+            <ResponseSLA lang={lang} />
+          </div>
+        </section>
+
       </main>
       <Footer lang={lang} />
     </div>
