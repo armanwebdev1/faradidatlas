@@ -61,6 +61,10 @@ export function SignatureProducts() {
   const router = useRouter();
   const params = useParams();
   const lang = params.lang as string;
+  const isRTL = lang === "fa";
+  const textShiftClass = isRTL
+    ? "-translate-x-2 sm:-translate-x-3 md:-translate-x-4 -translate-y-2 sm:-translate-y-3 md:-translate-y-4"
+    : "translate-x-2 sm:translate-x-3 md:translate-x-4 -translate-y-2 sm:-translate-y-3 md:-translate-y-4";
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoplay, setIsAutoplay] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -171,10 +175,10 @@ export function SignatureProducts() {
                     priority={index === currentIndex}
                   />
                   {/* Overlay Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/90" />
                 </button>
 
-                <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-7 md:p-10 lg:p-12 pointer-events-none">
+                <div className={`absolute inset-0 flex flex-col justify-end p-5 sm:p-7 md:p-10 lg:p-12 pointer-events-none transform-gpu ${textShiftClass}`}>
                   <div
                     className={`transition-all duration-700 transform ${
                       index === currentIndex
@@ -195,27 +199,26 @@ export function SignatureProducts() {
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 md:px-8 pointer-events-none z-20">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={goToPrevious}
-              className="pointer-events-auto h-12 w-12 md:h-14 md:w-14 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 border border-white/20 flex items-center justify-center"
-              aria-label="Previous product"
-            >
-              <ChevronLeft className="h-6 w-6 md:h-7 md:w-7" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={goToNext}
-              className="pointer-events-auto h-12 w-12 md:h-14 md:w-14 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 border border-white/20 flex items-center justify-center"
-              aria-label="Next product"
-            >
-              <ChevronRight className="h-6 w-6 md:h-7 md:w-7" />
-            </Button>
+            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-between px-4 md:px-8 pointer-events-none z-20">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={goToPrevious}
+                className="pointer-events-auto h-12 w-12 md:h-14 md:w-14 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 border border-white/20 flex items-center justify-center"
+                aria-label="Previous product"
+              >
+                <ChevronLeft className="h-6 w-6 md:h-7 md:w-7" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={goToNext}
+                className="pointer-events-auto h-12 w-12 md:h-14 md:w-14 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 border border-white/20 flex items-center justify-center"
+                aria-label="Next product"
+              >
+                <ChevronRight className="h-6 w-6 md:h-7 md:w-7" />
+              </Button>
+            </div>
           </div>
 
           <div className="flex justify-center gap-2 mt-5 sm:mt-6 md:mt-8">
