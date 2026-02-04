@@ -229,13 +229,6 @@ export function ValueProps({ lang }: ValuePropsProps) {
                           className="relative text-foreground sm:w-10 sm:h-10"
                           strokeWidth={1.2}
                         />
-                        {/* Accent line below icon */}
-                        <div
-                          className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-1 w-8 sm:w-10 rounded-full`}
-                          style={{
-                            backgroundColor: `var(--${item.accentColor})`,
-                          }}
-                        />
                       </div>
 
                       {/* Title with premium typography */}
@@ -267,15 +260,6 @@ export function ValueProps({ lang }: ValuePropsProps) {
                         {item.description}
                       </p>
 
-                      {/* Accent dot in bottom right */}
-                      <div className="flex justify-end mt-6 sm:mt-8">
-                        <div
-                          className="w-2 h-2 rounded-full"
-                          style={{
-                            backgroundColor: `var(--${item.accentColor})`,
-                          }}
-                        />
-                      </div>
                     </div>
                   </div>
                 );
