@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { products } from "@/components/products/product-data";
+import { ProductGallery } from "@/components/products/product-gallery";
 import type { Language } from "@/lib/i18n";
 import Link from "next/link";
 
@@ -46,51 +46,68 @@ export default async function ProductDetailPage({
   const name = lang === "en" ? product.nameEn : product.nameFa;
   const description =
     lang === "en" ? product.descriptionEn : product.descriptionFa;
+  const gallery =
+    product.images && product.images.length > 0
+      ? product.images
+      : [product.image];
 
   return (
     <div dir={lang === "fa" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
-        {/* Breadcrumb - responsive */}
-        <nav className="container-wide px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm text-neutral">
-          <Link href={`/${lang}`} className="hover:text-primary">
-            {lang === "en" ? "Home" : "خانه"}
-          </Link>
-          {" / "}
-          <Link href={`/${lang}/products`} className="hover:text-primary">
-            {lang === "en" ? "Products" : "محصولات"}
-          </Link>
-          {" / "}
-          <span className="text-foreground font-medium line-clamp-1">
-            {name}
-          </span>
+        {/* Breadcrumb */}
+        <nav
+          aria-label="Breadcrumb"
+          className="container-wide px-4 sm:px-6 pt-6 sm:pt-8"
+        >
+          <div className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-white/80 px-4 py-2 text-xs sm:text-sm text-foreground/70 shadow-sm backdrop-blur">
+            <Link
+              href={`/${lang}`}
+              className="line-accent transition-colors hover:text-primary"
+            >
+              {lang === "en" ? "Home" : "خانه"}
+            </Link>
+            <span className="text-foreground/30" aria-hidden="true">
+              ?
+            </span>
+            <Link
+              href={`/${lang}/products`}
+              className="line-accent transition-colors hover:text-primary"
+            >
+              {lang === "en" ? "Products" : "محصولات"}
+            </Link>
+            <span className="text-foreground/30" aria-hidden="true">
+              ?
+            </span>
+            <span className="text-foreground font-medium line-clamp-1">
+              {name}
+            </span>
+          </div>
         </nav>
 
         {/* Content - responsive grid */}
-        <section className="space-responsive px-4 sm:px-6">
-          <div className="container-wide grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-            {/* Image - responsive aspect ratio */}
-            <div className="relative aspect-square sm:aspect-auto sm:h-96 md:h-full bg-background rounded-lg overflow-hidden border border-gray-200">
-              <Image
-                src={product.image || "/placeholder.svg"}
-                alt={name}
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
+        <section className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-white via-white to-gray-50/60">
+          <div className="container-wide grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-10 lg:gap-16 items-start">
+            {/* Gallery */}
+            <ProductGallery images={gallery} alt={name} />
 
             {/* Info - responsive typography and spacing */}
-            <div className="flex flex-col">
-              <h1 className="text-responsive-title text-primary mb-3 sm:mb-4 leading-tight">
+            <div className="flex flex-col rounded-3xl border border-foreground/10 bg-white/85 p-6 sm:p-8 shadow-[0_35px_80px_-60px_rgba(10,10,10,0.5)] backdrop-blur">
+              <h1
+                className="text-3xl sm:text-4xl md:text-5xl font-semibold text-primary tracking-tight font-hero leading-tight motion-safe:animate-fade-in-up"
+                style={{ animationDelay: "0.05s" }}
+              >
                 {name}
               </h1>
-              <p className="text-responsive-body text-gray-700 mb-6 sm:mb-8 leading-relaxed">
+              <p
+                className="mt-4 text-sm sm:text-base text-foreground/70 leading-relaxed motion-safe:animate-fade-in-up"
+                style={{ animationDelay: "0.12s" }}
+              >
                 {description}
               </p>
 
               {/* Key specs - responsive grid */}
-              <div className="grid grid-cols-2 gap-3 sm:gap-6 mb-8 sm:mb-10 p-4 sm:p-6 bg-gray-50 rounded-lg border border-gray-200">
+              <div className="grid grid-cols-2 gap-3 sm:gap-6 mt-6 mb-8 sm:mb-10 p-4 sm:p-6 bg-gray-50/80 rounded-2xl border border-foreground/10">
                 <div>
                   <p className="text-xs font-medium text-gray-600 uppercase mb-1 sm:mb-2">
                     {lang === "en" ? "Origin" : "منشأ"}
@@ -134,7 +151,7 @@ export default async function ProductDetailPage({
                   {product.certifications.map((cert) => (
                     <span
                       key={cert}
-                      className="px-3 sm:px-4 py-1.5 sm:py-2 bg-amber-600 text-white text-xs sm:text-sm font-medium rounded-full"
+                      className="px-3 sm:px-4 py-1.5 sm:py-2 bg-accent-warm-gold text-primary text-xs sm:text-sm font-semibold rounded-full shadow-sm"
                     >
                       {cert}
                     </span>
@@ -153,7 +170,7 @@ export default async function ProductDetailPage({
                       key={option}
                       className="flex items-center gap-3 text-foreground text-sm sm:text-base"
                     >
-                      <span className="w-2 h-2 flex-shrink-0 bg-amber-600 rounded-full" />
+                      <span className="w-2 h-2 flex-shrink-0 bg-accent-warm-gold rounded-full" />
                       {option}
                     </li>
                   ))}
@@ -164,20 +181,20 @@ export default async function ProductDetailPage({
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link
                   href={`/${lang}/contact?product=${product.id}`}
-                  className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-amber-600 text-white font-semibold rounded-lg hover:bg-amber-700 transition-colors text-center text-sm sm:text-base"
+                  className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-accent-warm-gold text-primary font-semibold rounded-full hover:bg-accent-warm-gold/90 transition-colors text-center text-sm sm:text-base shadow-sm hover:shadow-md"
                 >
                   {lang === "en" ? "Request Quote" : "درخواست قیمت"}
                 </Link>
                 <Link
                   href={`/${lang}/products`}
-                  className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-gray-50 transition-colors text-center text-sm sm:text-base"
+                  className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 border border-primary/30 text-primary font-semibold rounded-full hover:bg-gray-50 transition-colors text-center text-sm sm:text-base"
                 >
                   {lang === "en" ? "Back to Catalog" : "بازگشت به کاتالوگ"}
                 </Link>
               </div>
 
               {/* Download spec sheet - responsive */}
-              <button className="w-full mt-4 sm:mt-6 px-4 sm:px-6 py-2.5 sm:py-3 bg-white border-2 border-amber-600 text-amber-600 font-semibold rounded-lg hover:bg-amber-50 transition-colors text-sm sm:text-base">
+              <button className="w-full mt-4 sm:mt-6 px-4 sm:px-6 py-2.5 sm:py-3 bg-white border border-accent-warm-gold/60 text-accent-warm-gold font-semibold rounded-full hover:bg-amber-50 transition-colors text-sm sm:text-base">
                 {lang === "en"
                   ? "Download Spec Sheet (PDF)"
                   : "دانلود برگه مشخصات"}

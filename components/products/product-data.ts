@@ -12,6 +12,7 @@ export interface Product {
   shelf_life: string
   minOrder: string
   image: string
+  images: string[]
   priceRange: string
   available: boolean
 }
@@ -31,6 +32,12 @@ export const products: Product[] = [
     shelf_life: "2 years (sealed, cool storage)",
     minOrder: "5kg minimum",
     image: "https://images.unsplash.com/photo-1599599810694-b3627db32322?w=600&h=600&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1599599810694-b3627db32322?w=1200&h=1400&fit=crop",
+      "/featured4.jpg",
+      "/featured1.jpg",
+      "/featured5.jpg",
+    ],
     priceRange: "$12-18 per gram (market dependent)",
     available: true,
   },
@@ -48,6 +55,11 @@ export const products: Product[] = [
     shelf_life: "18 months",
     minOrder: "10kg",
     image: "https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=600&h=600&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=1200&h=1400&fit=crop",
+      "/featured2.jpg",
+      "/featured3.jpg",
+    ],
     priceRange: "$4-6 per kg",
     available: true,
   },
@@ -65,6 +77,10 @@ export const products: Product[] = [
     shelf_life: "12 months",
     minOrder: "5kg",
     image: "https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=600&h=600&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=1200&h=1400&fit=crop",
+      "/featured1.jpg",
+    ],
     priceRange: "$8-12 per kg",
     available: true,
   },
@@ -82,6 +98,12 @@ export const products: Product[] = [
     shelf_life: "24 months",
     minOrder: "5kg",
     image: "https://images.unsplash.com/photo-1599599810694-b3627db32322?w=600&h=600&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1599599810694-b3627db32322?w=1200&h=1400&fit=crop",
+      "/featured3.jpg",
+      "/featured5.jpg",
+      "/featured2.jpg",
+    ],
     priceRange: "$5-7 per kg",
     available: true,
   },
@@ -99,6 +121,10 @@ export const products: Product[] = [
     shelf_life: "24 months",
     minOrder: "5kg",
     image: "https://images.unsplash.com/photo-1599599810694-b3627db32322?w=600&h=600&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1599599810694-b3627db32322?w=1200&h=1400&fit=crop",
+      "/featured4.jpg",
+    ],
     priceRange: "$6-9 per kg",
     available: true,
   },
@@ -116,6 +142,12 @@ export const products: Product[] = [
     shelf_life: "12 months",
     minOrder: "10kg",
     image: "https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=600&h=600&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=1200&h=1400&fit=crop",
+      "/featured1.jpg",
+      "/featured2.jpg",
+      "/featured3.jpg",
+    ],
     priceRange: "$7-11 per kg",
     available: true,
   },
