@@ -74,7 +74,6 @@ export function CTASection({ lang }: CTASectionProps) {
     <section className="relative space-responsive px-4 sm:px-6 overflow-hidden bg-[#faf9f6]">
       {/* Updated background and simplified decorative elements - responsive sizing */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-1/4 w-px h-40 sm:h-64 bg-gradient-to-b from-[#c9a961]/20 to-transparent" />
         <div className="absolute top-1/2 right-1/2 w-96 sm:w-[500px] md:w-[800px] h-96 sm:h-[500px] md:h-[800px] rounded-full bg-[#c9a961]/5 blur-[80px] md:blur-[120px]" />
       </div>
 
