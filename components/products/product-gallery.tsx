@@ -15,7 +15,6 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
     [images],
   );
   const [activeIndex, setActiveIndex] = useState(0);
-  const stripRef = useRef<HTMLDivElement>(null);
   const thumbRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   if (gallery.length === 0) {
@@ -46,14 +45,19 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
 
   return (
     <div className="space-y-4 sm:space-y-5">
-      <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-[5/4] max-h-[520px] lg:max-h-[560px] bg-white/80 rounded-3xl overflow-hidden border border-foreground/10 shadow-[0_30px_80px_-60px_rgba(15,15,15,0.45)] motion-safe:animate-scale-reveal">
-        <Image
-          src={activeImage}
-          alt={alt}
-          fill
-          className="object-cover"
-          priority
-        />
+      <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-[5/4] max-h-[520px] lg:max-h-[560px] bg-white/80 rounded-3xl overflow-hidden border border-foreground/10 shadow-[0_30px_80px_-60px_rgba(15,15,15,0.45)]">
+        <div
+          key={activeImage}
+          className="absolute inset-0 motion-safe:animate-scale-reveal"
+        >
+          <Image
+            src={activeImage}
+            alt={alt}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
       </div>
 
       <div className="relative">
@@ -62,7 +66,7 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
           onClick={goToPrev}
           disabled={!canNavigate}
           aria-label="Previous image"
-          className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md ${
+          className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
             canNavigate
               ? "hover:-translate-y-[52%]"
               : "cursor-not-allowed opacity-40"
@@ -72,7 +76,6 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
         </button>
 
         <div
-          ref={stripRef}
           className="flex items-center justify-center gap-3 sm:gap-4 overflow-x-auto px-10 pb-1 scroll-smooth snap-x snap-mandatory"
           aria-label="Product image gallery"
         >
@@ -108,7 +111,7 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
           onClick={goToNext}
           disabled={!canNavigate}
           aria-label="Next image"
-          className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md ${
+          className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
             canNavigate
               ? "hover:-translate-y-[52%]"
               : "cursor-not-allowed opacity-40"
