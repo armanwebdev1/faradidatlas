@@ -30,11 +30,11 @@ export function JobDetail({ job, lang }: JobDetailProps) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-10 lg:gap-16 items-start">
-      <div className="space-y-8 sm:space-y-10">
-        <div
-          className="rounded-3xl border border-foreground/10 bg-white/85 p-6 sm:p-8 shadow-[0_35px_80px_-60px_rgba(10,10,10,0.5)] backdrop-blur motion-safe:animate-fade-in-up"
-          style={{ animationDelay: "0.05s" }}
-        >
+      <div
+        className="rounded-3xl border border-foreground/10 bg-white/85 p-6 sm:p-8 shadow-[0_35px_80px_-60px_rgba(10,10,10,0.5)] backdrop-blur motion-safe:animate-fade-in-up"
+        style={{ animationDelay: "0.05s" }}
+      >
+        <div>
           <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-accent-warm-gold">
             {lang === "en" ? "Career Opportunity" : "فرصت شغلی"}
           </p>
@@ -63,10 +63,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
           </p>
         </div>
 
-        <section
-          className="rounded-3xl border border-foreground/10 bg-white/85 p-6 sm:p-8 shadow-[0_25px_70px_-60px_rgba(10,10,10,0.45)] motion-safe:animate-fade-in-up"
-          style={{ animationDelay: "0.12s" }}
-        >
+        <section className="mt-8 sm:mt-10 pt-8 sm:pt-10 border-t border-foreground/10">
           <h2
             className="text-2xl sm:text-3xl font-semibold text-foreground mb-6 tracking-tight"
             style={{
@@ -98,10 +95,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
           </ul>
         </section>
 
-        <section
-          className="rounded-3xl border border-foreground/10 bg-white/85 p-6 sm:p-8 shadow-[0_25px_70px_-60px_rgba(10,10,10,0.45)] motion-safe:animate-fade-in-up"
-          style={{ animationDelay: "0.18s" }}
-        >
+        <section className="mt-8 sm:mt-10 pt-8 sm:pt-10 border-t border-foreground/10">
           <h2
             className="text-2xl sm:text-3xl font-semibold text-foreground mb-6 tracking-tight"
             style={{
@@ -135,10 +129,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
           </ul>
         </section>
 
-        <section
-          className="rounded-3xl border border-accent-warm-gold/20 bg-gradient-to-br from-accent-warm-gold/8 via-white/70 to-white p-6 sm:p-8 shadow-[0_25px_70px_-60px_rgba(10,10,10,0.45)] motion-safe:animate-fade-in-up"
-          style={{ animationDelay: "0.24s" }}
-        >
+        <section className="mt-8 sm:mt-10 pt-8 sm:pt-10 border-t border-foreground/10">
           <h2
             className="text-2xl sm:text-3xl font-semibold text-foreground mb-6 tracking-tight"
             style={{
