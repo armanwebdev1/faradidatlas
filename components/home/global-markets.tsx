@@ -155,15 +155,15 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-4 items-stretch">
             {marketList.map((market, idx) => (
               <div
                 key={idx}
-                className="group relative animate-fade-in-up overflow-hidden"
+                className="group relative animate-fade-in-up overflow-hidden h-full"
                 style={{ animationDelay: `${idx * 100}ms` }}
               >
                 <div
-                  className="relative p-6 sm:p-8 md:p-10 border border-border/30 rounded-2xl sm:rounded-2xl transition-all duration-500 ease-out group-hover:border-accent-warm-gold/50 group-hover:shadow-lg hover:bg-gradient-to-br hover:from-foreground/[0.02] hover:to-foreground/[0.01]"
+                  className="relative h-full p-6 sm:p-8 md:p-10 border border-border/30 rounded-2xl sm:rounded-2xl transition-all duration-500 ease-out group-hover:border-accent-warm-gold/50 group-hover:shadow-lg hover:bg-gradient-to-br hover:from-foreground/[0.02] hover:to-foreground/[0.01] flex flex-col"
                   style={{
                     backgroundColor: "hsl(var(--card) / 0.5)",
                   }}
