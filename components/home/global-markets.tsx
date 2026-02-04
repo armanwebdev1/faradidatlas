@@ -159,7 +159,7 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
             {marketList.map((market, idx) => (
               <div
                 key={idx}
-                className="group relative animate-fade-in-up overflow-hidden h-full"
+                className="group relative animate-fade-in-up h-full"
                 style={{ animationDelay: `${idx * 100}ms` }}
               >
                 <div
