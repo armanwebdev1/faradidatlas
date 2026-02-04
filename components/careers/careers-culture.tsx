@@ -92,7 +92,7 @@ export function CareersCulture({ lang }: CareersCultureProps) {
         defaults: { ease: "cubic-bezier(0.22, 1, 0.36, 1)" },
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 70%",
+          start: "top 85%",
         },
       });
 
