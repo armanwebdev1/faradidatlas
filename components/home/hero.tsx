@@ -52,6 +52,9 @@ export function Hero({ lang }: HeroProps) {
   const descriptionRef = useRef<HTMLParagraphElement>(null);
 
   const isRTL = lang === "fa";
+  const textShiftClass = isRTL
+    ? "-translate-x-2 sm:-translate-x-3 md:-translate-x-4"
+    : "translate-x-2 sm:translate-x-3 md:translate-x-4";
 
   const goToSlide = (index: number) => {
     setCurrentSlide((index + slides.length) % slides.length);
@@ -138,7 +141,7 @@ export function Hero({ lang }: HeroProps) {
           <div
             key={s.id}
             className={`absolute inset-0 transition-opacity duration-700 ${
-              index === currentSlide ? "opacity-100" : "opacity-0"
+              index === currentSlide ? "opacity-100 hero-kenburns" : "opacity-0"
             }`}
             style={{
               backgroundImage: `url(${s.image})`,
@@ -154,7 +157,7 @@ export function Hero({ lang }: HeroProps) {
       <button
         onClick={prevSlide}
         aria-label="Previous slide"
-        className={`absolute top-1/2 -translate-y-1/2 z-20 ${
+        className={`absolute top-1/2 -translate-y-1/2 z-30 ${
           isRTL ? "right-8" : "left-8"
         }`}
       >
@@ -166,7 +169,7 @@ export function Hero({ lang }: HeroProps) {
       <button
         onClick={nextSlide}
         aria-label="Next slide"
-        className={`absolute top-1/2 -translate-y-1/2 z-20 ${
+        className={`absolute top-1/2 -translate-y-1/2 z-30 ${
           isRTL ? "left-8" : "right-8"
         }`}
       >
@@ -175,11 +178,18 @@ export function Hero({ lang }: HeroProps) {
         </div>
       </button>
 
-      <div className="absolute bottom-0 inset-x-0 z-10">
+      <div
+        className="absolute inset-0 z-10 pointer-events-none"
+        aria-hidden="true"
+      >
+        <div className="hero-premium-sheen" />
+      </div>
+
+      <div className="absolute bottom-0 inset-x-0 z-20">
         <div
-          className={`max-w-5xl px-8 md:px-12 lg:px-20 pb-20 md:pb-28 ${
+          className={`max-w-5xl px-8 md:px-12 lg:px-20 pb-20 md:pb-28 transform-gpu transition-transform duration-700 ${
             isRTL ? "text-right" : "text-left"
-          }`}
+          } ${textShiftClass}`}
           dir={isRTL ? "rtl" : "ltr"}
         >
           <p
