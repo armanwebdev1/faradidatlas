@@ -4,6 +4,7 @@ import { ContactForm } from "@/components/contact/contact-form";
 import { OfficeInfo } from "@/components/contact/office-info";
 import { ResponseSLA } from "@/components/contact/response-sla";
 import { ContactHero } from "@/components/contact/contact-hero";
+import { TrustStats } from "@/components/contact/trust-stats";
 import type { Language } from "@/lib/i18n";
 
 interface ContactPageProps {
@@ -54,57 +55,58 @@ export default async function ContactPage({ params }: ContactPageProps) {
         </section>
 
         {/* Certifications Trust Section - responsive */}
-        <section className="relative space-responsive px-4 sm:px-6 bg-gradient-to-b from-white via-gray-50/80 to-white overflow-hidden">
+        <section className="relative space-responsive px-4 sm:px-6 bg-gradient-to-b from-white via-slate-50/80 to-white overflow-hidden">
           {/* Decorative elements - responsive sizing */}
-          <div className="absolute top-5 sm:top-10 left-0 sm:left-10 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-gradient-to-br from-amber-100/20 to-transparent rounded-full blur-3xl -z-10" />
+          <div className="absolute top-6 sm:top-10 left-0 sm:left-10 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-gradient-to-br from-blue-200/20 to-transparent rounded-full blur-3xl -z-10" />
 
-          <div className="container-wide text-center">
-            <h2 className="text-responsive-title md:text-responsive-hero text-primary mb-4 sm:mb-6 tracking-tight animate-fade-in-up">
-              {lang === "en"
-                ? "Your Partner You Can Trust"
-                : "شریک قابل‌اعتماد شما"}
-            </h2>
-            <div className="divider-premium w-16 sm:w-20 md:w-24 h-1 mx-auto mb-10 sm:mb-12 md:mb-16 animate-fade-in-up" />
+          <div className="container-wide">
+            <div className="relative overflow-hidden rounded-3xl border border-foreground/10 bg-white/90 p-6 sm:p-8 lg:p-12 shadow-[0_60px_120px_-90px_rgba(15,23,42,0.45)]">
+              <div className="pointer-events-none absolute -top-32 -right-24 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl" />
+              <div className="pointer-events-none absolute bottom-0 left-0 h-56 w-56 rounded-full bg-amber-200/15 blur-3xl" />
 
-            {/* Trust metrics - responsive grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-              {[
-                {
-                  num: "25+",
-                  label:
-                    lang === "en" ? "Years in Business" : "سال در کسب‌وکار",
-                },
-                {
-                  num: "40+",
-                  label:
-                    lang === "en" ? "Countries Served" : "کشورهای خدمات شده",
-                },
-                {
-                  num: "4",
-                  label:
-                    lang === "en" ? "Major Certifications" : "تصدیق‌های اصلی",
-                },
-                {
-                  num: "100%",
-                  label: lang === "en" ? "Quality Commitment" : "تعهد کیفی",
-                },
-              ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="group relative p-4 sm:p-6 md:p-8 bg-white/80 rounded-2xl border border-foreground/10 hover:border-amber-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-500 animate-fade-in-up"
-                  style={{ animationDelay: `${idx * 0.1}s` }}
-                >
-                  {/* Hover background */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-amber-50/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl -z-10" />
+              <div className="relative text-center">
+                <h2 className="text-responsive-title md:text-responsive-hero text-primary mb-4 sm:mb-6 tracking-tight animate-fade-in-up">
+                  {lang === "en"
+                    ? "Your Partner You Can Trust"
+                    : "شریک قابل‌اعتماد شما"}
+                </h2>
+                <div className="divider-premium w-16 sm:w-20 md:w-24 h-1 mx-auto animate-fade-in-up" />
+              </div>
 
-                  <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary group-hover:text-amber-700 transition-colors mb-1 sm:mb-2">
-                    {item.num}
-                  </p>
-                  <p className="text-xs sm:text-sm font-semibold text-foreground/70 group-hover:text-amber-700 transition-colors leading-snug">
-                    {item.label}
-                  </p>
-                </div>
-              ))}
+              <div className="mt-10 sm:mt-12 md:mt-14">
+                <TrustStats
+                  stats={[
+                    {
+                      value: 25,
+                      suffix: "+",
+                      label:
+                        lang === "en"
+                          ? "Years in Business"
+                          : "سال در کسب‌وکار",
+                    },
+                    {
+                      value: 40,
+                      suffix: "+",
+                      label:
+                        lang === "en"
+                          ? "Countries Served"
+                          : "کشورهای خدمات شده",
+                    },
+                    {
+                      value: 4,
+                      label:
+                        lang === "en"
+                          ? "Major Certifications"
+                          : "تصدیق‌های اصلی",
+                    },
+                    {
+                      value: 100,
+                      suffix: "%",
+                      label: lang === "en" ? "Quality Commitment" : "تعهد کیفی",
+                    },
+                  ]}
+                />
+              </div>
             </div>
           </div>
         </section>
