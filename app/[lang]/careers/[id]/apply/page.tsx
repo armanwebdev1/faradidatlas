@@ -106,27 +106,21 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
     <div dir={lang === "fa" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
-        <section className="relative overflow-hidden bg-neutral-950 text-white">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/featured3.jpg')" }}
-          />
-          <div
-            className={`absolute inset-0 ${
-              isRTL
-                ? "bg-gradient-to-l from-black/85 via-black/70 to-black/20"
-                : "bg-gradient-to-r from-black/85 via-black/70 to-black/20"
-            }`}
-          />
-          <div className="hero-premium-sheen" />
-          <div className="relative z-10 px-4 sm:px-6">
-            <div className="container-full py-16 sm:py-20 lg:py-24">
-              <div className={`max-w-3xl ${isRTL ? "text-right" : "text-left"}`}>
-                <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.35em] text-accent-warm-gold">
+        <section
+          className="relative w-full overflow-hidden bg-white"
+          dir={isRTL ? "rtl" : "ltr"}
+        >
+          <div className="absolute -top-20 right-[-10%] h-72 w-72 sm:h-96 sm:w-96 rounded-full bg-gradient-to-br from-amber-200/35 via-white to-transparent blur-3xl" />
+          <div className="absolute bottom-0 left-[-5%] h-64 w-64 sm:h-80 sm:w-80 rounded-full bg-gradient-to-tr from-gray-100 via-white to-transparent blur-3xl" />
+
+          <div className="w-full px-4 sm:px-6 pt-16 md:pt-20 pb-12">
+            <div className="max-w-6xl mx-auto space-y-10 md:space-y-12">
+              <div className="text-center">
+                <p className="mb-4 text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-accent-warm-gold animate-fade-in-up">
                   {copy.tag}
                 </p>
                 <h1
-                  className="mt-4 text-3xl sm:text-4xl md:text-5xl font-semibold text-white leading-tight tracking-tight"
+                  className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-5 animate-fade-in-up"
                   style={{
                     fontFamily:
                       lang === "en"
@@ -137,7 +131,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
                   {copy.title} {jobTitle}
                 </h1>
                 <p
-                  className="mt-4 text-sm sm:text-base text-white/80 leading-relaxed"
+                  className="text-base md:text-lg text-foreground/70 leading-relaxed max-w-3xl mx-auto animate-fade-in-up"
                   style={{
                     fontFamily:
                       lang === "en"
@@ -148,38 +142,40 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
                   {copy.subtitle}
                 </p>
 
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs sm:text-sm">
-                    <span className="text-white/50 uppercase tracking-[0.2em] text-[10px] sm:text-xs">
+                <div className="mt-6 flex flex-wrap justify-center gap-3 animate-fade-in-up">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-white px-4 py-2 text-xs sm:text-sm">
+                    <span className="text-foreground/50 uppercase tracking-[0.2em] text-[10px] sm:text-xs">
                       {copy.meta.department}
                     </span>
                     <span className="h-1 w-1 rounded-full bg-accent-warm-gold" />
-                    <span className="font-semibold text-white/90">{job.department}</span>
+                    <span className="font-semibold text-foreground/80">
+                      {job.department}
+                    </span>
                   </div>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs sm:text-sm">
-                    <span className="text-white/50 uppercase tracking-[0.2em] text-[10px] sm:text-xs">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-white px-4 py-2 text-xs sm:text-sm">
+                    <span className="text-foreground/50 uppercase tracking-[0.2em] text-[10px] sm:text-xs">
                       {copy.meta.location}
                     </span>
                     <span className="h-1 w-1 rounded-full bg-accent-warm-gold" />
-                    <span className="font-semibold text-white/90">{job.location}</span>
+                    <span className="font-semibold text-foreground/80">
+                      {job.location}
+                    </span>
                   </div>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs sm:text-sm">
-                    <span className="text-white/50 uppercase tracking-[0.2em] text-[10px] sm:text-xs">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-white px-4 py-2 text-xs sm:text-sm">
+                    <span className="text-foreground/50 uppercase tracking-[0.2em] text-[10px] sm:text-xs">
                       {copy.meta.type}
                     </span>
                     <span className="h-1 w-1 rounded-full bg-accent-warm-gold" />
-                    <span className="font-semibold text-white/90">{typeLabel}</span>
+                    <span className="font-semibold text-foreground/80">
+                      {typeLabel}
+                    </span>
                   </div>
                 </div>
 
-                <div
-                  className={`mt-8 flex flex-wrap items-center gap-4 ${
-                    isRTL ? "flex-row-reverse" : ""
-                  }`}
-                >
+                <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up">
                   <Link
                     href={`/${lang}/careers/${job.id}`}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2 text-xs sm:text-sm font-semibold text-white transition-all duration-300 hover:border-accent-warm-gold/70 hover:bg-white/10"
+                    className="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm sm:text-base font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
                     style={{
                       fontFamily:
                         lang === "en"
@@ -187,25 +183,12 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
                           : "Shabnam, var(--font-body)",
                     }}
                   >
-                    <span>{copy.back}</span>
-                    <svg
-                      className={`h-4 w-4 ${isRTL ? "rotate-180" : ""}`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2.5}
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                      />
-                    </svg>
+                    {copy.back}
                   </Link>
-                  <span className="text-xs sm:text-sm text-white/60">
-                    {copy.timeHint}
-                  </span>
                 </div>
+                <p className="mt-4 text-xs sm:text-sm text-foreground/60 animate-fade-in-up">
+                  {copy.timeHint}
+                </p>
               </div>
             </div>
           </div>
