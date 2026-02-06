@@ -288,9 +288,7 @@ export function Header({ lang }: HeaderProps) {
             <div className="hidden md:flex flex-1 justify-center px-4">
               <div ref={searchRef} className="relative w-full max-w-md">
                 <Search
-                  className={`absolute top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5 pointer-events-none ${
-                    isRTL ? "right-4" : "left-4"
-                  }`}
+                  className="absolute top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5 pointer-events-none left-4"
                 />
                 <input
                   type="search"
@@ -302,9 +300,7 @@ export function Header({ lang }: HeaderProps) {
                   onFocus={() => setIsSearchOpen(true)}
                   onKeyDown={handleSearchKeyDown}
                   placeholder={lang === "en" ? "Search..." : "?????..."}
-                  className={`py-2 text-sm border border-border/50 rounded-full bg-background/60 text-foreground placeholder-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/50 w-full transition-all hover:border-border/70 ${
-                    isRTL ? "pr-12 pl-4 text-right" : "pl-12 pr-4 text-left"
-                  }`}
+                  className="py-2 text-sm border border-border/50 rounded-full bg-background/60 text-foreground placeholder-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/50 w-full transition-all hover:border-border/70 pl-12 pr-4 text-left"
                   aria-label={lang === "en" ? "Search" : "?????"}
                   aria-expanded={isSearchOpen && query.trim().length > 0}
                   aria-controls="header-search-results"
@@ -530,7 +526,7 @@ export function Header({ lang }: HeaderProps) {
       {isLangOpen && (
         <div
           dir={dir}
-          className={`fixed top-16 ${isRTL ? "left-4 sm:left-6" : "right-4 sm:right-6"} w-44 sm:w-48 bg-background/95 backdrop-blur-md border border-border/20 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200`}
+          className="fixed top-16 right-4 sm:right-6 w-44 sm:w-48 bg-background/95 backdrop-blur-md border border-border/20 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200"
           role="menu"
         >
           {/* Subtle gradient header */}

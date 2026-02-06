@@ -413,6 +413,20 @@
   padding-left: 2rem;
 }
 
+[dir="rtl"] .pl-12 {
+  padding-left: 0;
+  padding-right: 3rem;
+}
+
+[dir="rtl"] .pr-12 {
+  padding-right: 0;
+  padding-left: 3rem;
+}
+
+[dir="rtl"] .pl-12.pr-4 {
+  padding-left: 1rem;
+}
+
 /* RTL text alignment */
 [dir="rtl"] .text-left {
   text-align: right;
