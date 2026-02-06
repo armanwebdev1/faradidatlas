@@ -203,9 +203,7 @@ export function Hero({ lang }: HeroProps) {
 
       <div className="absolute bottom-0 inset-x-0 z-20">
         <div
-          className={`max-w-5xl px-8 md:px-12 lg:px-20 pb-20 md:pb-28 transform-gpu transition-transform duration-700 ${
-            isRTL ? "text-right" : "text-left"
-          } ${textShiftClass}`}
+          className={`max-w-5xl px-8 md:px-12 lg:px-20 pb-20 md:pb-28 transform-gpu transition-transform duration-700 text-left ${textShiftClass}`}
           dir={isRTL ? "rtl" : "ltr"}
         >
           <p ref={subtitleRef} className="eyebrow mb-6 text-accent-warm-gold">
