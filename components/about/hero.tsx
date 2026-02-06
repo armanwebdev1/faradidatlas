@@ -84,14 +84,14 @@ export function AboutHero({ lang }: AboutHeroProps) {
               {lang === "en" ? "Get to know us more" : "بیشتر درباره ما بدانید"}
             </h2>
 
-            {/* FORCE LTR FOR ENGLISH */}
+            {/* Keep English LTR, Persian RTL */}
             <div
-              dir="ltr"
+              dir={isRTL ? "rtl" : "ltr"}
               className="space-y-6"
               style={{
                 unicodeBidi: "plaintext",
-                direction: "ltr",
-                textAlign: "left",
+                direction: isRTL ? "rtl" : "ltr",
+                textAlign: isRTL ? "right" : "left",
               }}
             >
               <p className="text-base md:text-lg font-semibold text-foreground leading-relaxed max-w-xl">
