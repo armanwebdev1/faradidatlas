@@ -229,7 +229,7 @@ export function Footer({ lang }: FooterProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="text-center md:text-start">
               <p className="text-xs text-white/60 leading-relaxed font-light">
-                &copy; 2025 FaraDid Foods. All rights reserved. |{" "}
+                &copy; 2026 Faradid Atlas Foods. All rights reserved. |{" "}
                 <span className="text-accent/80">ISO 22000</span> |{" "}
                 <span className="text-accent/80">HACCP Certified</span>
               </p>
