@@ -178,7 +178,7 @@ export function Footer({ lang }: FooterProps) {
                 </li>
                 <li>
                   <a
-                    href="mailto:sales@faraded.com"
+                    href="mailto:sales@faradidatlas.com"
                     className="text-sm text-white/70 hover:text-accent transition-colors duration-300 relative group"
                   >
                     <span className="relative">
@@ -197,11 +197,11 @@ export function Footer({ lang }: FooterProps) {
               </h4>
               <div className="space-y-4">
                 <a
-                  href="mailto:sales@faraded.com"
+                  href="mailto:sales@faradidatlas.com"
                   className="flex items-start gap-3 text-sm text-white/70 hover:text-accent transition-colors duration-300 group"
                 >
                   <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-                  <span className="break-all">sales@faraded.com</span>
+                  <span className="break-all">sales@faradidatlas.com</span>
                 </a>
                 <a
                   href="tel:+98123456789"
