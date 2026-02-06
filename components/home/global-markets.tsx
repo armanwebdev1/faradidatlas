@@ -157,8 +157,6 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
             ))}
           </div>
         </div>
-      </div>
-
     </section>
   );
 }
