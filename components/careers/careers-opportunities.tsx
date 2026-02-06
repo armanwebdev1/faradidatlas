@@ -79,10 +79,10 @@ export function CareersOpportunities({
     <section
       id="open-roles"
       ref={sectionRef}
-      className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-white"
+      className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-neutral-100"
     >
       <div className="container-wide">
-        <div className="mb-10 sm:mb-12 md:mb-14">
+        <div className="mb-10 sm:mb-12 md:mb-14 text-center">
           <h2
             ref={titleRef}
             className="text-4xl sm:text-5xl md:text-6xl font-semibold text-foreground mb-5 sm:mb-6 tracking-tight"
@@ -99,7 +99,7 @@ export function CareersOpportunities({
           </h2>
           <p
             ref={subtitleRef}
-            className="text-base sm:text-lg text-foreground/70 max-w-3xl"
+            className="text-base sm:text-lg text-foreground/70 max-w-3xl mx-auto"
             style={{
               fontFamily:
                 lang === "en"
