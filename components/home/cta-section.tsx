@@ -71,7 +71,7 @@ export function CTASection({ lang }: CTASectionProps) {
   const isRTL = lang === "fa";
 
   return (
-    <section className="section relative overflow-hidden bg-background-alt">
+    <section className="section relative overflow-hidden bg-background-alt animate-fade-in-up">
       {/* Updated background and simplified decorative elements - responsive sizing */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 right-1/2 w-96 sm:w-[500px] md:w-[800px] h-96 sm:h-[500px] md:h-[800px] rounded-full bg-accent/5 blur-[80px] md:blur-[120px]" />

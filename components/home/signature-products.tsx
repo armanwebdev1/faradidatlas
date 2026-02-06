@@ -102,7 +102,7 @@ export function SignatureProducts() {
   };
 
   return (
-    <section className="section relative w-full overflow-hidden bg-gradient-to-b from-background via-background to-muted/20">
+    <section className="section relative w-full overflow-hidden bg-gradient-to-b from-background via-background to-muted/20 animate-fade-in-up">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-accent/5 rounded-full blur-3xl" />

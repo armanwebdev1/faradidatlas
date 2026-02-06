@@ -107,7 +107,10 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
   const marketList = lang === "en" ? markets.en : markets.fa;
 
   return (
-    <section id="markets" className="section relative overflow-hidden bg-surface">
+    <section
+      id="markets"
+      className="section relative overflow-hidden bg-surface animate-fade-in-up"
+    >
       {/* Markets Section */}
       <div className="relative container-wide">
           <div className="text-center mb-14 sm:mb-16 md:mb-20">

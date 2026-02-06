@@ -158,7 +158,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
   return (
     <section
       ref={containerRef}
-      className="section bg-surface relative overflow-hidden"
+      className="section bg-surface relative overflow-hidden animate-fade-in-up"
     >
       {/* Subtle decorative gradient elements */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-gradient-to-br from-accent-warm-gold/3 to-transparent rounded-full blur-3xl pointer-events-none" />
