@@ -266,9 +266,16 @@ export function Header({ lang }: HeaderProps) {
             {/* Logo - Mobile Friendly */}
             <Link
               href={`/${lang}`}
-              className="text-lg sm:text-xl font-bold tracking-tight text-primary hover:text-primary/80 transition-colors shrink-0"
+              className="group relative flex flex-col leading-[0.9] px-2 py-1 rounded-lg text-primary transition-all duration-300 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
             >
-              FaraDid
+              <span className="relative z-10 text-[11px] sm:text-xs font-medium tracking-[0.24em] text-muted-foreground/90 transition-colors duration-300 group-hover:text-primary/70">
+                Faradid
+              </span>
+              <span className="relative z-10 text-lg sm:text-xl font-semibold tracking-[0.12em] text-primary transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:via-primary/80 group-hover:to-accent">
+                Atlas
+              </span>
+              <span className="pointer-events-none absolute inset-0 z-0 rounded-lg bg-gradient-to-r from-primary/0 via-primary/10 to-accent/10 opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-100" />
+              <span className="pointer-events-none absolute -bottom-1 left-2 right-2 z-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </Link>
 
             {/* Centered Search Box - Hidden on mobile, visible on desktop */}
