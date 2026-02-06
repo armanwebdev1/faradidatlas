@@ -268,10 +268,16 @@ export function Header({ lang }: HeaderProps) {
               href={`/${lang}`}
               className="group relative flex flex-col leading-[0.9] px-2 py-1 rounded-lg text-primary transition-all duration-300 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
             >
-              <span className="relative z-10 text-[11px] sm:text-xs font-medium tracking-[0.24em] text-muted-foreground/90 transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:via-primary/80 group-hover:to-accent">
-                Faradid
+              <span className="relative z-10 inline-block text-xl sm:text-2xl font-bold tracking-[0.18em] text-primary">
+                <span className="relative z-10">Faradid</span>
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/80 to-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                >
+                  Faradid
+                </span>
               </span>
-              <span className="relative z-10 text-lg sm:text-xl font-semibold tracking-[0.12em] text-primary transition-colors duration-300 group-hover:text-primary/90">
+              <span className="relative z-10 text-[11px] sm:text-xs font-medium tracking-[0.24em] text-muted-foreground/90 transition-colors duration-300 group-hover:text-primary/80">
                 Atlas
               </span>
               <span className="pointer-events-none absolute inset-0 z-0 rounded-lg bg-gradient-to-r from-primary/0 via-primary/10 to-accent/10 opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-100" />
