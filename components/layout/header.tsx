@@ -325,10 +325,10 @@ export function Header({ lang }: HeaderProps) {
                                     setQuery("");
                                     setActiveIndex(-1);
                                   }}
-                                  className={`block rounded-xl px-3 py-2 shadow-[0_3px_8px_rgba(0,0,0,0.12)] transition-colors ${
+                                  className={`block rounded-xl px-3 py-2 transition-colors ${
                                     activeIndex === item.index
                                       ? "bg-muted/60 text-foreground"
-                                      : "hover:bg-muted/40 hover:shadow-[0_10px_24px_rgba(0,0,0,0.16)]"
+                                      : "hover:bg-muted/40"
                                   }`}
                                 >
                                   <p className="text-sm font-semibold text-foreground line-clamp-1">
@@ -361,10 +361,10 @@ export function Header({ lang }: HeaderProps) {
                                     setQuery("");
                                     setActiveIndex(-1);
                                   }}
-                                  className={`block rounded-xl px-3 py-2 shadow-[0_3px_8px_rgba(0,0,0,0.12)] transition-colors ${
+                                  className={`block rounded-xl px-3 py-2 transition-colors ${
                                     activeIndex === item.index
                                       ? "bg-muted/60 text-foreground"
-                                      : "hover:bg-muted/40 hover:shadow-[0_10px_24px_rgba(0,0,0,0.16)]"
+                                      : "hover:bg-muted/40"
                                   }`}
                                 >
                                   <p className="text-sm font-semibold text-foreground line-clamp-1">
@@ -397,10 +397,10 @@ export function Header({ lang }: HeaderProps) {
                                     setQuery("");
                                     setActiveIndex(-1);
                                   }}
-                                  className={`block rounded-xl px-3 py-2 shadow-[0_3px_8px_rgba(0,0,0,0.12)] transition-colors ${
+                                  className={`block rounded-xl px-3 py-2 transition-colors ${
                                     activeIndex === item.index
                                       ? "bg-muted/60 text-foreground"
-                                      : "hover:bg-muted/40 hover:shadow-[0_10px_24px_rgba(0,0,0,0.16)]"
+                                      : "hover:bg-muted/40"
                                   }`}
                                 >
                                   <p className="text-sm font-semibold text-foreground line-clamp-1">
