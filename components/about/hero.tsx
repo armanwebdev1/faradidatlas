@@ -40,7 +40,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
       className="section-hero relative w-full overflow-hidden bg-background"
       dir={isRTL ? "rtl" : "ltr"}
     >
-      <div className="container-wide">
+      <div className="container-full">
         <div className="space-y-20">
           {/* Headline */}
           <div ref={headlineRef} className="text-center">
@@ -51,7 +51,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
               {lang === "en" ? "About Us" : "درباره ما"}
             </p>
             <h1
-              className="text-responsive-hero text-primary mb-8 max-w-4xl mx-auto opacity-0 translate-y-6"
+              className="text-responsive-hero text-primary mb-8 max-w-5xl mx-auto opacity-0 translate-y-6"
               data-animate
             >
               {lang === "en"
