@@ -261,7 +261,7 @@ export function Header({ lang }: HeaderProps) {
         }`}
       >
         {/* Row 1: Logo, Search (centered on desktop), Language Dropdown */}
-        <div className="relative backdrop-blur-md bg-background/80 border-b border-border/30">
+        <div className="relative z-40 backdrop-blur-md bg-background/80 border-b border-border/30">
           <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
             {/* Logo - Mobile Friendly */}
             <Link
