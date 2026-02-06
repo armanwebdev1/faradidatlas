@@ -69,9 +69,40 @@ function CountUpNumber({
 
 export function CTASection({ lang }: CTASectionProps) {
   const isRTL = lang === "fa";
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const reduceMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduceMotion) {
+      section.classList.remove("opacity-0", "translate-y-6");
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting) return;
+        section.classList.add("animate-fade-in-up");
+        section.classList.remove("opacity-0", "translate-y-6");
+        observer.unobserve(section);
+      },
+      { threshold: 0.2 },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="section relative overflow-hidden bg-background-alt animate-fade-in-up">
+    <section
+      ref={sectionRef}
+      className="section relative overflow-hidden bg-background-alt opacity-0 translate-y-6"
+    >
       {/* Updated background and simplified decorative elements - responsive sizing */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 right-1/2 w-96 sm:w-[500px] md:w-[800px] h-96 sm:h-[500px] md:h-[800px] rounded-full bg-accent/5 blur-[80px] md:blur-[120px]" />

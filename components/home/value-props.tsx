@@ -81,6 +81,33 @@ export function ValueProps({ lang }: ValuePropsProps) {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
+    const section = containerRef.current;
+    if (!section) return;
+
+    const reduceMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduceMotion) {
+      section.classList.remove("opacity-0", "translate-y-6");
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting) return;
+        section.classList.add("animate-fade-in-up");
+        section.classList.remove("opacity-0", "translate-y-6");
+        observer.unobserve(section);
+      },
+      { threshold: 0.2 },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     if (!carouselRef.current) return;
 
     const carousel = carouselRef.current;
@@ -158,7 +185,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
   return (
     <section
       ref={containerRef}
-      className="section bg-surface relative overflow-hidden animate-fade-in-up"
+      className="section bg-surface relative overflow-hidden opacity-0 translate-y-6"
     >
       {/* Subtle decorative gradient elements */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-gradient-to-br from-accent-warm-gold/3 to-transparent rounded-full blur-3xl pointer-events-none" />

@@ -105,11 +105,40 @@ function CountUpPercentage({ target }: { target: number }) {
 export function GlobalMarkets({ lang }: GlobalMarketsProps) {
   const isRTL = lang === "fa";
   const marketList = lang === "en" ? markets.en : markets.fa;
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const reduceMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduceMotion) {
+      section.classList.remove("opacity-0", "translate-y-6");
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting) return;
+        section.classList.add("animate-fade-in-up");
+        section.classList.remove("opacity-0", "translate-y-6");
+        observer.unobserve(section);
+      },
+      { threshold: 0.2 },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section
       id="markets"
-      className="section relative overflow-hidden bg-surface animate-fade-in-up"
+      ref={sectionRef}
+      className="section relative overflow-hidden bg-surface opacity-0 translate-y-6"
     >
       {/* Markets Section */}
       <div className="relative container-wide">

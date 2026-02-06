@@ -69,6 +69,34 @@ export function SignatureProducts() {
   const [isAutoplay, setIsAutoplay] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const autoplayRef = useRef<NodeJS.Timeout>();
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const reduceMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduceMotion) {
+      section.classList.remove("opacity-0", "translate-y-6");
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting) return;
+        section.classList.add("animate-fade-in-up");
+        section.classList.remove("opacity-0", "translate-y-6");
+        observer.unobserve(section);
+      },
+      { threshold: 0.2 },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!isAutoplay) return;
@@ -102,7 +130,10 @@ export function SignatureProducts() {
   };
 
   return (
-    <section className="section relative w-full overflow-hidden bg-gradient-to-b from-background via-background to-muted/20 animate-fade-in-up">
+    <section
+      ref={sectionRef}
+      className="section relative w-full overflow-hidden bg-gradient-to-b from-background via-background to-muted/20 opacity-0 translate-y-6"
+    >
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-accent/5 rounded-full blur-3xl" />
