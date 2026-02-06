@@ -165,8 +165,11 @@ export function ValueProps({ lang }: ValuePropsProps) {
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-accent/2 to-transparent rounded-full blur-3xl pointer-events-none" />
 
       <div className="container-wide relative z-10">
-        {/* Premium Section Header - No yellow label */}
+        {/* Premium Section Header */}
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
+          <p className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6">
+            {lang === "en" ? "Why FaraDid" : "چرا فرادید"}
+          </p>
           <h2
             ref={titleRef}
             className="text-responsive-title mb-5 sm:mb-7 md:mb-8 text-foreground"

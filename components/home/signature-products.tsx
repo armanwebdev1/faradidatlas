@@ -110,8 +110,11 @@ export function SignatureProducts() {
       </div>
 
       <div className="relative z-10 container-wide">
-        {/* Section Header - Cleaner without yellow label */}
+        {/* Section Header */}
         <div className="text-center mb-10 sm:mb-12 md:mb-14 animate-fade-in">
+          <p className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6">
+            {lang === "en" ? "Signature Collection" : "مجموعه برگزیده"}
+          </p>
           <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 md:mb-8">
             Signature Products
           </h2>

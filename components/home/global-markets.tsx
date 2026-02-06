@@ -111,6 +111,9 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
       {/* Markets Section */}
       <div className="relative container-wide">
           <div className="text-center mb-14 sm:mb-16 md:mb-20">
+            <p className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6">
+              {lang === "en" ? "Global Markets" : "بازارهای جهانی"}
+            </p>
             <h2
               className="text-responsive-title text-foreground mb-5 sm:mb-6 md:mb-8 animate-fade-in-up"
             >
