@@ -79,7 +79,7 @@ export function CareersOpportunities({
     <section
       id="open-roles"
       ref={sectionRef}
-      className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-neutral-100"
+      className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-secondary/50"
     >
       <div className="container-wide">
         <div className="mb-10 sm:mb-12 md:mb-14 text-center">

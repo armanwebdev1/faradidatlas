@@ -185,9 +185,9 @@ export function TeamShowcase({ lang }: TeamShowcaseProps) {
               data-animate
               style={{ animationDelay: `${idx * 0.05}s` }}
             >
-              <div className="relative bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-accent-warm-gold hover:shadow-2xl transition-all duration-500">
+              <div className="relative bg-white rounded-2xl overflow-hidden border border-border hover:border-accent-warm-gold hover:shadow-2xl transition-all duration-500">
                 {/* Image Container */}
-                <div className="relative h-72 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+                <div className="relative h-72 overflow-hidden bg-gradient-to-br from-secondary/40 to-secondary/60">
                   <Image
                     src={member.image}
                     alt={member.name}
@@ -206,7 +206,7 @@ export function TeamShowcase({ lang }: TeamShowcaseProps) {
                   <p className="text-xs font-bold text-accent-warm-gold mb-2 uppercase tracking-widest">
                     {member.role}
                   </p>
-                  <p className="text-sm text-gray-600">{member.bio}</p>
+                  <p className="text-sm text-muted-foreground">{member.bio}</p>
                 </div>
               </div>
             </div>

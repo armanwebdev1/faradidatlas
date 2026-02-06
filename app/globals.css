@@ -4,30 +4,30 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Premium 2026 Design System - Ultra-Modern Aesthetic */
-  /* Primary: Deep space black - sophisticated anchor */
-  --primary: #0a0a0a;
-  --primary-light: #1a1a1a;
-  --primary-text: #ffffff;
+  /* 2026 Corporate Portfolio Palette */
+  /* Ink Charcoal */
+  --primary: #1e2327;
+  --primary-light: #2a3136;
+  --primary-text: #f7f5f1;
 
-  /* Accent: Luminous platinum - premium modern highlight */
-  --accent: #e8e8e8;
-  --accent-light: #f5f5f5;
+  /* Harvest Amber */
+  --accent: #e6a36f;
+  --accent-light: #f1dcc9;
 
-  /* Secondary accents for depth */
-  --accent-warm-red: #d4574a;
-  --accent-warm-orange: #d97948;
-  --accent-warm-gold: #d4af37;
+  /* Signature + depth accents */
+  --accent-warm-red: #3d2e24;
+  --accent-warm-orange: #e6a36f;
+  --accent-warm-gold: #e6a36f;
 
-  /* Neutral: Cool grays for modern feel */
-  --neutral: #6b7280;
-  --neutral-light: #9ca3af;
+  /* Neutral stack */
+  --neutral: #5e6a61;
+  --neutral-light: #cfcbc4;
 
-  /* Background: Clean white with depth */
-  --background-dark: #f9f9f9;
+  /* Background */
+  --background-dark: #cfcbc4;
 
   /* Overlays */
-  --dark-overlay: #000000;
+  --dark-overlay: #1e2327;
 
   /* White */
   --white: #ffffff;
@@ -37,18 +37,18 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --secondary: #f0f0f0;
-  --secondary-foreground: #0a0a0a;
-  --muted: #e5e7eb;
-  --muted-foreground: #6b7280;
+  --secondary: #cfcbc4;
+  --secondary-foreground: #1e2327;
+  --muted: #e7e3dc;
+  --muted-foreground: #5e6a61;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: #ffffff;
-  --border: #e5e7eb;
-  --input: #f3f4f6;
-  --ring: #0a0a0a;
-  --chart-1: #0a0a0a;
-  --chart-2: #d4af37;
-  --chart-3: #6b7280;
+  --border: #d6d1c9;
+  --input: #f1eeea;
+  --ring: #1e2327;
+  --chart-1: #1e2327;
+  --chart-2: #e6a36f;
+  --chart-3: #5e6a61;
   --chart-4: #ec4899;
   --chart-5: #8b5cf6;
   --radius: 0.625rem;
@@ -60,10 +60,11 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --background: #ffffff;
-  --foreground: #0a0a0a;
+  --primary-foreground: #f7f5f1;
+  --accent-foreground: #1e2327;
+  --background: #f7f5f1;
+  --foreground: #1e2327;
+  --depth: #3d2e24;
 }
 
 .dark {
@@ -125,6 +126,7 @@
   --color-accent-warm-red: var(--accent-warm-red);
   --color-accent-warm-orange: var(--accent-warm-orange);
   --color-accent-warm-gold: var(--accent-warm-gold);
+  --color-depth: var(--depth);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

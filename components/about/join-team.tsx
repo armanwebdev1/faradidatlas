@@ -9,14 +9,14 @@ interface JoinTeamProps {
 
 export function JoinTeam({ lang }: JoinTeamProps) {
   return (
-    <section className="relative py-16 md:py-24 px-4 sm:px-6 bg-white overflow-hidden">
+    <section className="relative py-16 md:py-24 px-4 sm:px-6 bg-background overflow-hidden">
       {/* Top divider line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gray-200" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-border" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           {/* Left - Heading */}
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight tracking-tight">
             {lang === "en" ? "Join our team" : "به تیم ما بپیوندید"}
           </h2>
 
@@ -27,7 +27,7 @@ export function JoinTeam({ lang }: JoinTeamProps) {
             style={{ direction: "ltr", textAlign: "left" }}
           >
             <p
-              className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 text-left"
+              className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4 text-left"
               style={{ direction: "ltr", textAlign: "left" }}
             >
               {lang === "en"
@@ -37,7 +37,7 @@ export function JoinTeam({ lang }: JoinTeamProps) {
 
             <Link
               href={`/${lang}/careers`}
-              className="inline-flex items-center text-teal-600 hover:text-teal-700 font-medium transition-colors text-left"
+              className="inline-flex items-center text-foreground hover:text-accent font-medium transition-colors text-left"
               style={{ direction: "ltr", textAlign: "left" }}
             >
               {lang === "en"

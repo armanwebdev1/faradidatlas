@@ -86,7 +86,7 @@ export default async function ProductDetailPage({
         </nav>
 
         {/* Content - responsive grid */}
-        <section className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-white via-white to-gray-50/60">
+        <section className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-background via-background to-secondary/30">
           <div className="container-wide grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-10 lg:gap-16 items-start">
             {/* Gallery */}
             <ProductGallery images={gallery} alt={name} />
@@ -107,9 +107,9 @@ export default async function ProductDetailPage({
               </p>
 
               {/* Key specs - responsive grid */}
-              <div className="grid grid-cols-2 gap-3 sm:gap-6 mt-6 mb-8 sm:mb-10 p-4 sm:p-6 bg-gray-50/80 rounded-2xl border border-foreground/10">
+              <div className="grid grid-cols-2 gap-3 sm:gap-6 mt-6 mb-8 sm:mb-10 p-4 sm:p-6 bg-secondary/30 rounded-2xl border border-foreground/10">
                 <div>
-                  <p className="text-xs font-medium text-gray-600 uppercase mb-1 sm:mb-2">
+                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
                     {lang === "en" ? "Origin" : "منشأ"}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
@@ -117,7 +117,7 @@ export default async function ProductDetailPage({
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-gray-600 uppercase mb-1 sm:mb-2">
+                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
                     {lang === "en" ? "Grade" : "درجه"}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
@@ -125,7 +125,7 @@ export default async function ProductDetailPage({
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-gray-600 uppercase mb-1 sm:mb-2">
+                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
                     {lang === "en" ? "Shelf Life" : "مدت نگهداری"}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
@@ -133,7 +133,7 @@ export default async function ProductDetailPage({
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-gray-600 uppercase mb-1 sm:mb-2">
+                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
                     {lang === "en" ? "Minimum Order" : "حداقل سفارش"}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
@@ -181,20 +181,20 @@ export default async function ProductDetailPage({
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link
                   href={`/${lang}/contact?product=${product.id}`}
-                  className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-accent-warm-gold text-primary font-semibold rounded-full hover:bg-accent-warm-gold/90 transition-colors text-center text-sm sm:text-base shadow-sm hover:shadow-md"
+                  className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-primary/90 transition-colors text-center text-sm sm:text-base shadow-sm hover:shadow-md"
                 >
                   {lang === "en" ? "Request Quote" : "درخواست قیمت"}
                 </Link>
                 <Link
                   href={`/${lang}/products`}
-                  className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 border border-primary/30 text-primary font-semibold rounded-full hover:bg-gray-50 transition-colors text-center text-sm sm:text-base"
+                  className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 border border-primary/30 text-primary font-semibold rounded-full hover:bg-background transition-colors text-center text-sm sm:text-base"
                 >
                   {lang === "en" ? "Back to Catalog" : "بازگشت به کاتالوگ"}
                 </Link>
               </div>
 
               {/* Download spec sheet - responsive */}
-              <button className="w-full mt-4 sm:mt-6 px-4 sm:px-6 py-2.5 sm:py-3 bg-white border border-accent-warm-gold/60 text-accent-warm-gold font-semibold rounded-full hover:bg-amber-50 transition-colors text-sm sm:text-base">
+              <button className="w-full mt-4 sm:mt-6 px-4 sm:px-6 py-2.5 sm:py-3 bg-white border border-foreground/20 text-foreground font-semibold rounded-full hover:bg-background transition-colors text-sm sm:text-base">
                 {lang === "en"
                   ? "Download Spec Sheet (PDF)"
                   : "دانلود برگه مشخصات"}

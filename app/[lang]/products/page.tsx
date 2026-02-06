@@ -32,7 +32,7 @@ export default function ProductsPage() {
       <Header lang={lang} />
       <main>
         {/* Hero Section with Overlay Content */}
-        <section className="w-full h-48 sm:h-56 md:h-64 relative overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+        <section className="w-full h-48 sm:h-56 md:h-64 relative overflow-hidden bg-gradient-to-br from-secondary/40 to-secondary/60">
           <Image
             src="https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=1600&h=400&fit=crop"
             alt="Premium products showcase"
@@ -69,7 +69,7 @@ export default function ProductsPage() {
         </section>
 
         {/* Products Section with Sidebar */}
-        <section className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-gradient-to-b from-white to-gray-50">
+        <section className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-gradient-to-b from-background to-secondary/30">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col lg:flex-row gap-10 md:gap-14 lg:gap-16">
               {/* Filters Sidebar */}
@@ -90,7 +90,7 @@ export default function ProductsPage() {
               <div className="flex-1">
                 {/* Sorting Header */}
                 <div className="mb-10 sm:mb-12 flex justify-between items-center">
-                  <span className="text-xs sm:text-sm font-semibold text-gray-700 uppercase tracking-wide">
+                  <span className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wide">
                     {lang === "en" ? "Best Seller" : "پرفروش‌ترین"}
                   </span>
                   <Sorting
@@ -115,7 +115,7 @@ export default function ProductsPage() {
                   </div>
                 ) : (
                   <div className="text-center py-20 md:py-28">
-                    <p className="text-base sm:text-lg text-gray-600">
+                    <p className="text-base sm:text-lg text-muted-foreground">
                       {lang === "en" ? "No products found" : "محصولی پیدا نشد"}
                     </p>
                   </div>

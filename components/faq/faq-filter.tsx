@@ -71,7 +71,7 @@ function FilterChip({
       aria-pressed={isActive}
       className={`px-5 sm:px-6 py-2.5 text-xs sm:text-sm font-semibold rounded-full border transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20 ${
         isActive
-          ? "bg-primary text-white border-primary shadow-md"
+          ? "bg-primary text-primary-foreground border-primary shadow-md"
           : "bg-white/80 text-foreground/70 border-foreground/10 hover:text-foreground hover:border-foreground/20 hover:shadow-sm"
       }`}
     >

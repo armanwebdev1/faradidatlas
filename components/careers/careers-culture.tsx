@@ -121,7 +121,7 @@ export function CareersCulture({ lang }: CareersCultureProps) {
     <section
       id="culture"
       ref={sectionRef}
-      className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-white overflow-hidden"
+      className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-background overflow-hidden"
     >
       <div className="absolute top-20 right-0 w-80 h-80 bg-gradient-to-br from-accent-warm-gold/10 to-transparent rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-72 h-72 bg-gradient-to-tr from-accent/5 to-transparent rounded-full blur-3xl pointer-events-none" />

@@ -113,7 +113,7 @@ export function Header({ lang }: HeaderProps) {
         }`}
       >
         {/* Row 1: Logo, Search (centered on desktop), Language Dropdown */}
-        <div className="relative backdrop-blur-md bg-white/80 border-b border-border/30">
+        <div className="relative backdrop-blur-md bg-background/80 border-b border-border/30">
           <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
             {/* Logo - Mobile Friendly */}
             <Link
@@ -130,7 +130,7 @@ export function Header({ lang }: HeaderProps) {
                 <input
                   type="search"
                   placeholder={lang === "en" ? "Search..." : "جستجو..."}
-                  className="pl-12 pr-4 py-2 text-sm border border-border/50 rounded-full bg-white/50 text-foreground placeholder-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/50 w-full transition-all hover:border-border/70"
+                  className="pl-12 pr-4 py-2 text-sm border border-border/50 rounded-full bg-background/60 text-foreground placeholder-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/50 w-full transition-all hover:border-border/70"
                   aria-label={lang === "en" ? "Search" : "جستجو"}
                 />
               </div>
@@ -185,7 +185,7 @@ export function Header({ lang }: HeaderProps) {
         </div>
 
         {/* Row 2: Navigation Links - Desktop Only */}
-        <nav className="relative z-30 backdrop-blur-md bg-white/70 hidden lg:block border-b border-border/30">
+        <nav className="relative z-30 backdrop-blur-md bg-background/70 hidden lg:block border-b border-border/30">
           <div className="w-full px-6 h-12 flex items-center justify-center gap-4 lg:gap-8">
             {navItems.map((item) => {
               const active = isActive(item.href);
@@ -229,7 +229,7 @@ export function Header({ lang }: HeaderProps) {
       {isLangOpen && (
         <div
           dir={dir}
-          className={`fixed top-16 ${isRTL ? "left-4 sm:left-6" : "right-4 sm:right-6"} w-44 sm:w-48 bg-white/95 backdrop-blur-md border border-border/20 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200`}
+          className={`fixed top-16 ${isRTL ? "left-4 sm:left-6" : "right-4 sm:right-6"} w-44 sm:w-48 bg-background/95 backdrop-blur-md border border-border/20 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200`}
           role="menu"
         >
           {/* Subtle gradient header */}
@@ -280,7 +280,7 @@ export function Header({ lang }: HeaderProps) {
 
       {/* Mobile Menu - Full Screen Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 top-16 z-30 lg:hidden bg-white/95 backdrop-blur-md border-b border-border/30 animate-in fade-in slide-in-from-top-8 duration-200">
+        <div className="fixed inset-0 top-16 z-30 lg:hidden bg-background/95 backdrop-blur-md border-b border-border/30 animate-in fade-in slide-in-from-top-8 duration-200">
           <nav className="flex flex-col space-y-1 p-4">
             {navItems.map((item) => {
               const active = isActive(item.href);

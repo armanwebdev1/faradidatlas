@@ -86,7 +86,7 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
   return (
     <section
       ref={containerRef}
-      className="relative py-24 md:py-32 px-4 sm:px-6 bg-gray-50 overflow-hidden"
+      className="relative py-24 md:py-32 px-4 sm:px-6 bg-background overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
@@ -94,7 +94,7 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
           <h2 className="text-5xl md:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-8">
             {lang === "en" ? "What we offer" : "چه چیزی ارائه می‌دهیم"}
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             {lang === "en"
               ? "Comprehensive property solutions designed for success"
               : "راه‌حل‌های ملکی جامع برای موفقیت"}
@@ -114,9 +114,9 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
                 data-animate
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
-                <div className="relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 border border-gray-200 hover:border-accent-warm-gold h-full flex flex-col">
+                <div className="relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 border border-border hover:border-accent-warm-gold h-full flex flex-col">
                   {/* Image */}
-                  <div className="relative h-64 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+                  <div className="relative h-64 overflow-hidden bg-gradient-to-br from-secondary/40 to-secondary/60">
                     <Image
                       src={offer.image}
                       alt={offer.title}
@@ -130,7 +130,7 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
                     <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-accent-warm-gold transition-colors">
                       {offer.title}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed flex-grow">
+                    <p className="text-muted-foreground leading-relaxed flex-grow">
                       {offer.description}
                     </p>
                   </div>
@@ -142,7 +142,7 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
 
         {/* CTA Button */}
         <div className="text-center mt-16">
-          <button className="px-8 py-4 bg-accent-warm-gold text-primary font-bold hover:bg-accent-warm-gold/90 transition-all duration-300 hover:shadow-xl hover:shadow-accent-warm-gold/30 rounded-lg inline-block">
+          <button className="px-8 py-4 bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all duration-300 hover:shadow-xl hover:shadow-foreground/10 rounded-lg inline-block">
             {lang === "en" ? "Explore Services" : "خدمات را کاوش کنید"}
           </button>
         </div>

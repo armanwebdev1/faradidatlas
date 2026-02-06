@@ -139,7 +139,7 @@ export function CTASection({ lang }: CTASectionProps) {
 
             {/* Body text - responsive */}
             <p
-              className="text-responsive-body text-gray-700 max-w-xl mb-6 sm:mb-8 md:mb-10 lg:mb-12 font-light leading-relaxed"
+              className="text-responsive-body text-muted-foreground max-w-xl mb-6 sm:mb-8 md:mb-10 lg:mb-12 font-light leading-relaxed"
               style={{
                 fontFamily:
                   lang === "en"
@@ -206,7 +206,7 @@ export function CTASection({ lang }: CTASectionProps) {
 
             {/* Description - responsive */}
             <p
-              className="text-responsive-body text-gray-700 font-light leading-relaxed px-2 sm:px-0"
+              className="text-responsive-body text-muted-foreground font-light leading-relaxed px-2 sm:px-0"
               style={{
                 fontFamily:
                   lang === "en"

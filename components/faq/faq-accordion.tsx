@@ -24,8 +24,8 @@ export function FAQAccordion({ items, lang }: FAQAccordionProps) {
             key={item.id}
             className={`group rounded-2xl border overflow-hidden shadow-sm transition-all duration-300 animate-fade-in-up ${
               isOpen
-                ? "border-amber-200 bg-amber-50/40 shadow-md"
-                : "border-gray-200 bg-white/80 hover:border-amber-300 hover:shadow-lg"
+                ? "border-accent/30 bg-accent/10 shadow-md"
+                : "border-border bg-white/80 hover:border-accent/40 hover:shadow-lg"
             }`}
             style={{ animationDelay: `${index * 0.06}s` }}
           >
@@ -39,7 +39,7 @@ export function FAQAccordion({ items, lang }: FAQAccordionProps) {
                 {question}
               </h3>
               <svg
-                className={`w-5 h-5 sm:w-6 sm:h-6 text-amber-600 flex-shrink-0 transition-transform duration-300 ${
+                className={`w-5 h-5 sm:w-6 sm:h-6 text-accent flex-shrink-0 transition-transform duration-300 ${
                   isOpen ? "rotate-180" : ""
                 }`}
                 fill="none"
@@ -65,7 +65,7 @@ export function FAQAccordion({ items, lang }: FAQAccordionProps) {
               <div className="overflow-hidden">
                 <div
                   id={`faq-answer-${item.id}`}
-                  className="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base leading-relaxed text-foreground/75 border-t border-amber-100/60"
+                  className="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base leading-relaxed text-foreground/75 border-t border-accent/20"
                 >
                   {answer}
                 </div>

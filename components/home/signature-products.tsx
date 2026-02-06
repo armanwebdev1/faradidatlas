@@ -192,7 +192,7 @@ export function SignatureProducts() {
                     <h3 className="font-hero text-2xl sm:text-3xl md:text-4xl font-semibold text-white my-3 sm:my-4 leading-tight">
                       {product.name}
                     </h3>
-                    <p className="text-gray-200 text-sm sm:text-base md:text-base leading-relaxed max-w-2xl">
+                    <p className="text-primary-foreground/80 text-sm sm:text-base md:text-base leading-relaxed max-w-2xl">
                       {product.description}
                     </p>
                   </div>

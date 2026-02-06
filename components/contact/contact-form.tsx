@@ -63,7 +63,7 @@ export function ContactForm({ lang }: ContactFormProps) {
       onSubmit={handleSubmit}
       className="relative isolate overflow-hidden rounded-3xl border border-foreground/10 bg-white/90 p-6 sm:p-8 md:p-10 shadow-[0_35px_80px_-60px_rgba(10,10,10,0.5)] animate-fade-in-up"
     >
-      <div className="pointer-events-none absolute -top-24 right-0 h-40 w-40 rounded-full bg-gradient-to-br from-amber-200/40 via-white to-transparent blur-3xl -z-10" />
+      <div className="pointer-events-none absolute -top-24 right-0 h-40 w-40 rounded-full bg-gradient-to-br from-accent/25 via-white to-transparent blur-3xl -z-10" />
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-hero text-primary mb-3">
         {lang === "en" ? "B2B Inquiry Form" : "فرم درخواست B2B"}
       </h2>
@@ -298,7 +298,7 @@ export function ContactForm({ lang }: ContactFormProps) {
       {/* Submit - responsive */}
       <button
         type="submit"
-        className="w-full px-4 sm:px-6 py-3 bg-primary text-white font-semibold text-sm sm:text-base rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 mb-4"
+        className="w-full px-4 sm:px-6 py-3 bg-primary text-primary-foreground font-semibold text-sm sm:text-base rounded-full transition-all duration-300 hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 mb-4"
       >
         {lang === "en" ? "Send Inquiry" : "ارسال درخواست"}
       </button>

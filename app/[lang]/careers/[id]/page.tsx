@@ -77,7 +77,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
           </div>
         </nav>
 
-        <section className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-white via-white to-gray-50/60">
+        <section className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-background via-background to-secondary/30">
           <div className="container-wide">
             <JobDetail job={job} lang={lang} />
           </div>

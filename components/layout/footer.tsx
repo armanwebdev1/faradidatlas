@@ -32,7 +32,7 @@ export function Footer({ lang }: FooterProps) {
   return (
     <footer
       dir={dir}
-      className="relative bg-gradient-to-b from-primary to-primary/95 text-white overflow-hidden"
+      className="relative bg-gradient-to-b from-depth to-depth/95 text-white overflow-hidden"
     >
       {/* Background blobs */}
       <div className="absolute inset-0 opacity-30 pointer-events-none">

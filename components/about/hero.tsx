@@ -37,7 +37,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-white"
+      className="relative w-full overflow-hidden bg-background"
       dir={isRTL ? "rtl" : "ltr"}
     >
       <div className="w-full px-4 sm:px-6 pt-16 md:pt-20 pb-16">
@@ -59,7 +59,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
                 : "ما بر توسعه ملک‌های تجاری متمرکز هستیم که استراتژیک‌الانه خرده‌فروشان را قرار می‌دهند و سرمایه‌گذاران را پاداش می‌دهند."}
             </h1>
             <button
-              className="px-8 py-4 bg-accent-warm-gold text-primary font-bold rounded-lg hover:shadow-xl transition opacity-0 translate-y-6"
+              className="px-8 py-4 bg-primary text-primary-foreground font-bold rounded-lg hover:bg-primary/90 hover:shadow-xl transition opacity-0 translate-y-6"
               data-animate
             >
               {lang === "en" ? "Contact Us" : "تماس با ما"}
@@ -94,13 +94,13 @@ export function AboutHero({ lang }: AboutHeroProps) {
                 textAlign: "left",
               }}
             >
-              <p className="text-base md:text-lg font-semibold text-gray-900 leading-relaxed max-w-xl">
+              <p className="text-base md:text-lg font-semibold text-foreground leading-relaxed max-w-xl">
                 {lang === "en"
                   ? "Owned and run by a group of commercial property experts, we provide property consultancy services for owners, occupiers, investors, developers and financial advisors of property and associated assets."
                   : "صاحب و اداره‌شده توسط گروهی از متخصصان املاک تجاری، ما خدمات مشاوره املاک را برای مالکان، بهره‌برداران، سرمایه‌گذاران، توسعه‌دهندگان و مشاوران مالی ارائه می‌دهیم."}
               </p>
 
-              <p className="text-sm md:text-base text-gray-700 leading-relaxed max-w-xl">
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-xl">
                 {lang === "en"
                   ? "Operating from offices in Birmingham, Bristol, Exeter, Leeds, London, Manchester, Newcastle, Teesside and York we combine our knowledge and skills to provide complete property advice, ultimately making you and your business more successful. The property industry continues to transform through influences in technology, culture and economy and we are excited to be a part of the journey, making an impact where we can, and adapting where needed."
                   : "ما با فعالیت از دفاتر خود در شهرهای مختلف، دانش و مهارت‌های خود را برای ارائه مشاوره جامع ملکی ترکیب می‌کنیم و به موفقیت بیشتر شما و کسب‌وکارتان کمک می‌کنیم."}
@@ -124,7 +124,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
                 <p className="text-xs font-semibold text-primary uppercase tracking-wide">
                   {lang === "en" ? "Founder & CEO" : "بنیانگذار و مدیرعامل"}
                 </p>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-muted-foreground">
                   {lang === "en" ? "Daniel Redcliff" : "دنیل ردکلیف"}
                 </p>
               </div>
@@ -257,7 +257,7 @@ function Stat({
   return (
     <div>
       <CountUpValue target={value} suffix={suffix} decimals={decimals} />
-      <p className="text-xs text-gray-600">
+      <p className="text-xs text-muted-foreground">
         {lang === "en" ? labelEn : labelFa}
       </p>
     </div>

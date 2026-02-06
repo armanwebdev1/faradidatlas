@@ -15,12 +15,12 @@ export function ProductCard({ product, lang }: ProductCardProps) {
 
   return (
     <Link href={`/${lang}/products/${product.id}`}>
-      <div className="group relative h-full bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-accent-warm-gold/60 transition-all duration-500 hover:shadow-lg hover:-translate-y-1 cursor-pointer">
+      <div className="group relative h-full bg-white rounded-2xl overflow-hidden border border-border hover:border-accent-warm-gold/60 transition-all duration-500 hover:shadow-lg hover:-translate-y-1 cursor-pointer">
         {/* Subtle overlay on hover */}
         <div className="absolute inset-0 bg-gradient-to-br from-accent-warm-gold/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
 
         {/* Image Container */}
-        <div className="relative aspect-square bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+        <div className="relative aspect-square bg-gradient-to-br from-secondary/40 to-secondary/60 overflow-hidden">
           <Image
             src={product.image || "/placeholder.svg"}
             alt={name}
@@ -61,7 +61,7 @@ export function ProductCard({ product, lang }: ProductCardProps) {
           </h3>
 
           {/* Description */}
-          <p className="text-xs text-gray-700 leading-snug line-clamp-2">
+          <p className="text-xs text-muted-foreground leading-snug line-clamp-2">
             {desc}
           </p>
 
@@ -77,7 +77,7 @@ export function ProductCard({ product, lang }: ProductCardProps) {
                 </span>
               ))}
               {product.certifications.length > 2 && (
-                <span className="inline-block text-xs px-2 py-0.5 bg-gray-100 text-gray-700 rounded-full font-medium group-hover:bg-gray-200 transition-colors">
+                <span className="inline-block text-xs px-2 py-0.5 bg-secondary/40 text-muted-foreground rounded-full font-medium group-hover:bg-secondary/60 transition-colors">
                   +{product.certifications.length - 2}
                 </span>
               )}
@@ -85,11 +85,11 @@ export function ProductCard({ product, lang }: ProductCardProps) {
           )}
 
           {/* Divider */}
-          <div className="my-1.5 sm:my-2 h-px bg-gray-200 group-hover:bg-accent-warm-gold/30 transition-colors duration-300" />
+          <div className="my-1.5 sm:my-2 h-px bg-border group-hover:bg-accent-warm-gold/30 transition-colors duration-300" />
 
           {/* Bottom Info */}
           <div className="flex justify-between items-center">
-            <span className="text-xs text-gray-600 font-medium">
+            <span className="text-xs text-muted-foreground font-medium">
               {product.minOrder}
             </span>
             <span

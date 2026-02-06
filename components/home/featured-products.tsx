@@ -102,7 +102,7 @@ export function FeaturedProducts({ lang }: FeaturedProductsProps) {
           <h2 className="text-responsive-title text-primary mb-3 sm:mb-4">
             {lang === "en" ? "Signature Products" : "محصولات امضاء‌شده"}
           </h2>
-          <p className="text-responsive-body text-gray-700 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-responsive-body text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             {lang === "en"
               ? "Explore our most sought-after products, sourced directly from premium producers"
               : "محصولات پر تقاضای ما را بررسی کنید که مستقیماً از تولیدکنندگان برتر تامین می‌شوند"}
@@ -115,10 +115,10 @@ export function FeaturedProducts({ lang }: FeaturedProductsProps) {
             <Link
               key={product.id}
               href={`/${lang}/products/${product.id}`}
-              className="group bg-white rounded-lg sm:rounded-2xl overflow-hidden border border-gray-200 hover:border-amber-400 transition-all duration-500 hover:shadow-xl flex flex-col h-full"
+              className="group bg-white rounded-lg sm:rounded-2xl overflow-hidden border border-border hover:border-accent/50 transition-all duration-500 hover:shadow-xl flex flex-col h-full"
             >
               {/* Image - responsive aspect ratio */}
-              <div className="relative aspect-square sm:aspect-square bg-gray-200 overflow-hidden flex-shrink-0">
+              <div className="relative aspect-square sm:aspect-square bg-secondary/30 overflow-hidden flex-shrink-0">
                 <Image
                   src={product.image || "/placeholder.svg"}
                   alt={product.name}
@@ -126,25 +126,25 @@ export function FeaturedProducts({ lang }: FeaturedProductsProps) {
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 {/* Grade badge - responsive positioning */}
-                <div className="absolute top-2 sm:top-3 right-2 sm:right-3 bg-amber-600 text-white px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-semibold">
+                <div className="absolute top-2 sm:top-3 right-2 sm:right-3 bg-accent text-primary px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-semibold shadow-sm">
                   {product.grade}
                 </div>
               </div>
 
               {/* Content - responsive padding */}
               <div className="p-4 sm:p-5 md:p-6 flex flex-col flex-grow">
-                <h3 className="text-sm sm:text-base md:text-lg font-semibold text-primary mb-1.5 sm:mb-2 group-hover:text-amber-700 transition-colors line-clamp-2">
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold text-primary mb-1.5 sm:mb-2 group-hover:text-accent transition-colors line-clamp-2">
                   {product.name}
                 </h3>
-                <p className="text-xs sm:text-sm text-amber-700 mb-3 sm:mb-4 font-medium">
+                <p className="text-xs sm:text-sm text-accent mb-3 sm:mb-4 font-medium">
                   {product.origin}
                 </p>
-                <p className="text-xs sm:text-sm text-gray-700 leading-relaxed mb-4 sm:mb-6 flex-grow">
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-4 sm:mb-6 flex-grow">
                   {product.description}
                 </p>
 
                 {/* Call to action - responsive */}
-                <span className="inline-flex items-center text-xs sm:text-sm font-semibold text-amber-600 group-hover:text-amber-700 transition-colors gap-1.5">
+                <span className="inline-flex items-center text-xs sm:text-sm font-semibold text-accent group-hover:text-accent/80 transition-colors gap-1.5">
                   {lang === "en" ? "View Details" : "مشاهده جزئیات"}
                   <svg
                     className="w-4 h-4 group-hover:translate-x-1 transition-transform"
@@ -169,7 +169,7 @@ export function FeaturedProducts({ lang }: FeaturedProductsProps) {
         <div className="text-center mt-10 sm:mt-14 md:mt-16">
           <Link
             href={`/${lang}/products`}
-            className="inline-block px-6 sm:px-10 py-3 sm:py-4 bg-primary text-white font-semibold text-sm sm:text-base rounded-full hover:bg-amber-700 transition-all duration-300 hover:shadow-lg hover:shadow-amber-600/30 active:scale-95"
+            className="inline-block px-6 sm:px-10 py-3 sm:py-4 bg-primary text-primary-foreground font-semibold text-sm sm:text-base rounded-full hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-foreground/10 active:scale-95"
           >
             {lang === "en" ? "Explore All Products" : "مشاهده تمام محصولات"}
           </Link>

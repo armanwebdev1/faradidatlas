@@ -37,11 +37,11 @@ export function ContactHero({ lang }: ContactHeroProps) {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-white"
+      className="relative w-full overflow-hidden bg-background"
       dir={isRTL ? "rtl" : "ltr"}
     >
-      <div className="absolute -top-16 right-[-10%] w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-br from-amber-200/35 via-white to-transparent blur-3xl" />
-      <div className="absolute bottom-0 left-[-5%] w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-tr from-gray-100 via-white to-transparent blur-3xl" />
+      <div className="absolute -top-16 right-[-10%] w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-br from-accent/25 via-white to-transparent blur-3xl" />
+      <div className="absolute bottom-0 left-[-5%] w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-tr from-secondary/40 via-white to-transparent blur-3xl" />
 
       <div className="w-full px-4 sm:px-6 pt-16 md:pt-20 pb-12">
         <div className="max-w-6xl mx-auto space-y-8 md:space-y-10">
@@ -62,7 +62,7 @@ export function ContactHero({ lang }: ContactHeroProps) {
             <div className="mt-6 flex flex-wrap justify-center gap-3 animate-fade-in-up">
               <a
                 href="#contact-form"
-                className="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm sm:text-base font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+                className="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm sm:text-base font-semibold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
               >
                 {lang === "en" ? "Start an Inquiry" : "شروع درخواست"}
               </a>

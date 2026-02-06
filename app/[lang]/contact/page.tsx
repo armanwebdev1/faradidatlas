@@ -29,7 +29,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
         {/* Main Content - responsive grid */}
         <section
           id="contact-form"
-          className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-white via-gray-50/70 to-white"
+          className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-background via-secondary/20 to-background"
         >
           <div className="container-wide grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
             {/* Form */}
@@ -48,7 +48,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
         </section>
 
         {/* Response SLA - responsive */}
-        <section className="space-responsive px-4 sm:px-6 bg-white">
+        <section className="space-responsive px-4 sm:px-6 bg-background">
           <div className="container-wide">
             <ResponseSLA lang={lang} />
           </div>

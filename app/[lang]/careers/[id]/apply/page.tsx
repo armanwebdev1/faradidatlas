@@ -107,11 +107,11 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
       <Header lang={lang} />
       <main>
         <section
-          className="relative w-full overflow-hidden bg-white"
+          className="relative w-full overflow-hidden bg-background"
           dir={isRTL ? "rtl" : "ltr"}
         >
-          <div className="absolute -top-20 right-[-10%] h-72 w-72 sm:h-96 sm:w-96 rounded-full bg-gradient-to-br from-amber-200/35 via-white to-transparent blur-3xl" />
-          <div className="absolute bottom-0 left-[-5%] h-64 w-64 sm:h-80 sm:w-80 rounded-full bg-gradient-to-tr from-gray-100 via-white to-transparent blur-3xl" />
+          <div className="absolute -top-20 right-[-10%] h-72 w-72 sm:h-96 sm:w-96 rounded-full bg-gradient-to-br from-accent/25 via-white to-transparent blur-3xl" />
+          <div className="absolute bottom-0 left-[-5%] h-64 w-64 sm:h-80 sm:w-80 rounded-full bg-gradient-to-tr from-secondary/40 via-white to-transparent blur-3xl" />
 
           <div className="w-full px-4 sm:px-6 pt-16 md:pt-20 pb-12">
             <div className="max-w-6xl mx-auto space-y-10 md:space-y-12">
@@ -175,7 +175,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
                 <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up">
                   <Link
                     href={`/${lang}/careers/${job.id}`}
-                    className="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm sm:text-base font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+                    className="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm sm:text-base font-semibold text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg"
                     style={{
                       fontFamily:
                         lang === "en"
@@ -194,7 +194,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
           </div>
         </section>
 
-        <section className="relative px-4 sm:px-6 py-12 sm:py-16 lg:py-20 bg-white">
+        <section className="relative px-4 sm:px-6 py-12 sm:py-16 lg:py-20 bg-background">
           <div className="absolute -top-10 right-0 h-72 w-72 rounded-full bg-gradient-to-br from-accent-warm-gold/10 to-transparent blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 h-72 w-72 rounded-full bg-gradient-to-tr from-foreground/5 to-transparent blur-3xl pointer-events-none" />
 

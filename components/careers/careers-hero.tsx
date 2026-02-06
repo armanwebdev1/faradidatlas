@@ -119,7 +119,7 @@ export function CareersHero({ lang }: CareersHeroProps) {
             >
               <a
                 href="#open-roles"
-                className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-accent-warm-gold to-accent-warm-orange px-8 py-3 text-sm sm:text-base font-semibold text-slate-900 transition-all duration-300 hover:shadow-2xl hover:shadow-accent-warm-gold/40"
+                className="inline-flex items-center justify-center rounded-xl bg-primary px-8 py-3 text-sm sm:text-base font-semibold text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:shadow-2xl hover:shadow-foreground/10 border border-white/10"
                 style={{
                   fontFamily:
                     lang === "en"
@@ -132,7 +132,7 @@ export function CareersHero({ lang }: CareersHeroProps) {
               </a>
               <a
                 href="#culture"
-                className="inline-flex items-center justify-center rounded-xl border border-white/30 px-8 py-3 text-sm sm:text-base font-semibold text-white transition-all duration-300 hover:border-accent-warm-gold/60 hover:bg-white/10"
+                className="inline-flex items-center justify-center rounded-xl border border-white/30 px-8 py-3 text-sm sm:text-base font-semibold text-white transition-all duration-300 hover:border-white/60 hover:bg-white/10"
                 style={{
                   fontFamily:
                     lang === "en"

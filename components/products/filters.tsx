@@ -140,7 +140,7 @@ export function Filters({ lang, products, onFilter }: FiltersProps) {
       {/* Apply */}
       <button
         onClick={applyFilters}
-        className="w-full px-4 py-2 bg-primary text-white font-medium rounded hover:bg-accent transition-colors text-sm"
+        className="w-full px-4 py-2 bg-primary text-primary-foreground font-medium rounded hover:bg-primary/90 transition-colors text-sm"
       >
         {lang === "en" ? "Apply Filters" : "اعمال فیلترها"}
       </button>
