@@ -208,7 +208,10 @@ export function CTASection({ lang }: CTASectionProps) {
               {/* Experience stat */}
               <div className="text-center group cursor-default flex-1 sm:flex-none min-w-max">
                 <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent transition-all duration-500 group-hover:from-accent-warm-copper group-hover:to-accent">
-                  <CountUpNumber target={20} suffix="y" />
+                  <CountUpNumber
+                    target={20}
+                    suffix={lang === "en" ? "y" : " سال"}
+                  />
                 </div>
                 <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50 transition-colors duration-500 group-hover:text-accent-warm-copper">
                   {lang === "en" ? "Experience" : "تجربه"}
