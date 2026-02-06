@@ -113,9 +113,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
 
     const carousel = carouselRef.current;
     const direction = isRTL ? 1 : -1;
-    const existingClones = carousel.querySelectorAll(
-      "[data-clone='true']",
-    );
+    const existingClones = carousel.querySelectorAll("[data-clone='true']");
     existingClones.forEach((node) => node.remove());
     const itemWidth = carousel.children[0]?.getBoundingClientRect().width || 0;
     const gap = 24;
@@ -211,7 +209,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
         {/* Premium Section Header */}
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
           <p className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6">
-            {lang === "en" ? "Why FaraDid" : "چرا فرادید"}
+            {lang === "en" ? "Why FaraDid" : "چرا فرادید اطلس؟"}
           </p>
           <h2
             ref={titleRef}
@@ -276,7 +274,6 @@ export function ValueProps({ lang }: ValuePropsProps) {
                       <p className="text-sm sm:text-base text-foreground/65 leading-relaxed flex-grow">
                         {item.description}
                       </p>
-
                     </div>
                   </div>
                 );

@@ -6,62 +6,78 @@ import { useRouter, useParams } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+type LocalizedText = {
+  en: string;
+  fa: string;
+};
+
 interface Product {
   id: number;
-  name: string;
-  category: string;
+  name: LocalizedText;
+  category: LocalizedText;
   image: string;
-  description: string;
+  description: LocalizedText;
 }
 
 const products: Product[] = [
   {
     id: 1,
-    name: "Heritage Spice Blend",
-    category: "Premium Spices",
+    name: { en: "Heritage Spice Blend", fa: "ترکیب ادویه اصیل" },
+    category: { en: "Premium Spices", fa: "ادویه‌های ممتاز" },
     image: "/featured1.jpg",
-    description:
-      "Carefully curated blend of the finest spices from around the world",
+    description: {
+      en: "Carefully curated blend of the finest spices from around the world",
+      fa: "ترکیبی دقیق از بهترین ادویه‌های سراسر جهان",
+    },
   },
   {
     id: 2,
-    name: "Golden Olive Oil",
-    category: "Specialty Oils",
+    name: { en: "Golden Olive Oil", fa: "روغن زیتون طلایی" },
+    category: { en: "Specialty Oils", fa: "روغن‌های ویژه" },
     image: "/featured2.jpg",
-    description:
-      "Cold-pressed extra virgin olive oil from Mediterranean estates",
+    description: {
+      en: "Cold-pressed extra virgin olive oil from Mediterranean estates",
+      fa: "روغن زیتون فرابکر سرد‌فشار از باغ‌های مدیترانه‌ای",
+    },
   },
   {
     id: 3,
-    name: "Artisan Coffee Selection",
-    category: "Premium Coffee",
+    name: { en: "Artisan Coffee Selection", fa: "گزینش قهوه هنرمندانه" },
+    category: { en: "Premium Coffee", fa: "قهوه ممتاز" },
     image: "/featured3.jpg",
-    description:
-      "Single-origin, hand-roasted coffee beans from exclusive plantations",
+    description: {
+      en: "Single-origin, hand-roasted coffee beans from exclusive plantations",
+      fa: "دانه‌های قهوه تک‌خاستگاه، برشته‌کاری دستی از مزارع منتخب",
+    },
   },
   {
     id: 4,
-    name: "Saffron Reserve",
-    category: "Precious Ingredients",
+    name: { en: "Saffron Reserve", fa: "ذخیره زعفران" },
+    category: { en: "Precious Ingredients", fa: "مواد اولیه نفیس" },
     image: "/featured4.jpg",
-    description:
-      "Premium grade saffron threads sourced directly from renowned producers",
+    description: {
+      en: "Premium grade saffron threads sourced directly from renowned producers",
+      fa: "رشته‌های زعفران درجه ممتاز، تهیه‌شده مستقیم از تولیدکنندگان نامدار",
+    },
   },
   {
     id: 5,
-    name: "Pure Vanilla Extract",
-    category: "Gourmet Essentials",
+    name: { en: "Pure Vanilla Extract", fa: "عصاره وانیل خالص" },
+    category: { en: "Gourmet Essentials", fa: "ملزومات گورمه" },
     image: "/featured5.jpg",
-    description:
-      "Madagascar vanilla beans processed to perfection for culinary excellence",
+    description: {
+      en: "Madagascar vanilla beans processed to perfection for culinary excellence",
+      fa: "دانه‌های وانیل ماداگاسکار با فرآوری دقیق برای برتری آشپزی",
+    },
   },
 ];
 
 export function SignatureProducts() {
   const router = useRouter();
   const params = useParams();
-  const lang = params.lang as string;
+  const lang = (params.lang as "en" | "fa") ?? "en";
   const isRTL = lang === "fa";
+  const t = (value: LocalizedText) => value[lang];
   const textShiftClass = isRTL
     ? "-translate-x-4 sm:-translate-x-6 md:-translate-x-8 -translate-y-4 sm:-translate-y-6 md:-translate-y-8"
     : "translate-x-4 sm:translate-x-6 md:translate-x-8 -translate-y-4 sm:-translate-y-6 md:-translate-y-8";
@@ -147,13 +163,14 @@ export function SignatureProducts() {
             {lang === "en" ? "Signature Collection" : "مجموعه برگزیده"}
           </p>
           <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 md:mb-8">
-            Signature Products
+            {lang === "en" ? "Signature Products" : "محصولات شاخص"}
           </h2>
           <p
             className="text-responsive-body text-foreground/70 max-w-2xl mx-auto mb-8"
           >
-            Discover our handpicked collection of premium products, each
-            selected for exceptional quality and distinctive character
+            {lang === "en"
+              ? "Discover our handpicked collection of premium products, each selected for exceptional quality and distinctive character"
+              : "مجموعه‌ای دست‌چین از محصولات ممتاز ما را کشف کنید که هرکدام برای کیفیت استثنایی و هویت متمایز انتخاب شده‌اند"}
           </p>
 
           {/* Explore All Products button */}
@@ -161,7 +178,7 @@ export function SignatureProducts() {
             onClick={() => router.push(`/${lang}/products`)}
             className="btn btn-outline btn-md"
           >
-            Explore All Products
+            {lang === "en" ? "Explore All Products" : "مشاهده همه محصولات"}
           </button>
         </div>
 
@@ -180,11 +197,15 @@ export function SignatureProducts() {
                 <button
                   onClick={handleProductClick}
                   className="relative h-full w-full bg-muted overflow-hidden text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-                  aria-label={`View ${product.name} details`}
+                  aria-label={
+                    lang === "en"
+                      ? `View ${t(product.name)} details`
+                      : `مشاهده جزئیات ${t(product.name)}`
+                  }
                 >
                   <Image
                     src={product.image || "/placeholder.svg"}
-                    alt={product.name}
+                    alt={t(product.name)}
                     fill
                     className={`object-cover transition-transform duration-700 ${
                       index === currentIndex && !isTransitioning
@@ -206,13 +227,13 @@ export function SignatureProducts() {
                     }`}
                   >
                     <span className="eyebrow text-accent">
-                      {product.category}
+                      {t(product.category)}
                     </span>
                     <h3 className="text-responsive-subheading text-white my-3 sm:my-4">
-                      {product.name}
+                      {t(product.name)}
                     </h3>
                     <p className="text-primary-foreground/80 text-sm sm:text-base md:text-base leading-relaxed max-w-2xl">
-                      {product.description}
+                      {t(product.description)}
                     </p>
                   </div>
                 </div>
@@ -224,7 +245,7 @@ export function SignatureProducts() {
                 size="icon"
                 onClick={goToPrevious}
                 className="pointer-events-auto h-12 w-12 md:h-14 md:w-14 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 border border-white/20 flex items-center justify-center"
-                aria-label="Previous product"
+                aria-label={lang === "en" ? "Previous product" : "محصول قبلی"}
               >
                 <ChevronLeft className="h-6 w-6 md:h-7 md:w-7" />
               </Button>
@@ -233,7 +254,7 @@ export function SignatureProducts() {
                 size="icon"
                 onClick={goToNext}
                 className="pointer-events-auto h-12 w-12 md:h-14 md:w-14 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 border border-white/20 flex items-center justify-center"
-                aria-label="Next product"
+                aria-label={lang === "en" ? "Next product" : "محصول بعدی"}
               >
                 <ChevronRight className="h-6 w-6 md:h-7 md:w-7" />
               </Button>
@@ -250,7 +271,11 @@ export function SignatureProducts() {
                     ? "w-8 sm:w-10 md:w-12 h-2 bg-foreground"
                     : "w-2 h-2 bg-foreground/25 hover:bg-foreground/40"
                 }`}
-                aria-label={`Go to product ${index + 1}`}
+                aria-label={
+                  lang === "en"
+                    ? `Go to product ${index + 1}`
+                    : `رفتن به محصول ${index + 1}`
+                }
               />
             ))}
           </div>
@@ -261,7 +286,7 @@ export function SignatureProducts() {
               size="sm"
               onClick={() => setIsAutoplay(!isAutoplay)}
             >
-              {isAutoplay ? "Pause" : "Play"}
+              {isAutoplay ? (lang === "en" ? "Pause" : "توقف") : lang === "en" ? "Play" : "پخش"}
             </Button>
             <span className="text-xs sm:text-sm text-foreground/60">
               {currentIndex + 1} / {products.length}
