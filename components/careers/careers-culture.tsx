@@ -73,23 +73,19 @@ export function CareersCulture({ lang }: CareersCultureProps) {
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const cards = cardRefs.current.filter(Boolean);
+    const textTargets = [
+      eyebrowRef.current,
+      titleRef.current,
+      subtitleRef.current,
+    ].filter(Boolean);
 
     const ctx = gsap.context(() => {
       if (reduceMotion) {
-        gsap.set(
-          [eyebrowRef.current, titleRef.current, subtitleRef.current, ...cards],
-          {
-            opacity: 1,
-            y: 0,
-          },
-        );
+        gsap.set([...textTargets, ...cards], { opacity: 1, y: 0 });
         return;
       }
 
-      gsap.set([eyebrowRef.current, titleRef.current, subtitleRef.current], {
-        opacity: 0,
-        y: 20,
-      });
+      gsap.set(textTargets, { opacity: 0, y: 40 });
       gsap.set(cards, { opacity: 0, y: 30 });
 
       const timeline = gsap.timeline({
@@ -101,9 +97,11 @@ export function CareersCulture({ lang }: CareersCultureProps) {
       });
 
       timeline
-        .set([eyebrowRef.current, titleRef.current, subtitleRef.current], {
+        .to(textTargets, {
           opacity: 1,
           y: 0,
+          duration: 0.8,
+          stagger: 0.12,
         })
         .to(
           cards,
@@ -112,7 +110,7 @@ export function CareersCulture({ lang }: CareersCultureProps) {
             y: 0,
             duration: 0.45,
           },
-          0,
+          "-=0.2",
         );
     }, sectionRef);
 
