@@ -256,7 +256,7 @@ export function Header({ lang }: HeaderProps) {
     <>
       <header
         dir={dir}
-        className={`fixed top-0 left-0 right-0 z-40 transition-transform duration-300 ${
+        className={`fixed top-0 inset-x-0 z-40 transition-transform duration-300 ${
           isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
@@ -312,7 +312,7 @@ export function Header({ lang }: HeaderProps) {
                   <div
                     id="header-search-results"
                     role="listbox"
-                    className="absolute left-0 right-0 z-50 mt-2 rounded-2xl border border-border/40 bg-background/95 shadow-xl backdrop-blur-xl p-2 max-h-80 overflow-auto"
+                    className="absolute inset-x-0 z-50 mt-2 rounded-2xl border border-border/40 bg-background/95 shadow-xl backdrop-blur-xl p-2 max-h-80 overflow-auto"
                   >
                     {hasResults ? (
                       <div className="space-y-2">
@@ -512,7 +512,7 @@ export function Header({ lang }: HeaderProps) {
                     {item.label}
                   </span>
                   <span
-                    className={`absolute bottom-0 left-0 right-0 h-1 bg-primary rounded-t-md transition-opacity duration-200 ${
+                    className={`absolute bottom-0 inset-x-0 h-1 bg-primary rounded-t-md transition-opacity duration-200 ${
                       active ? "opacity-100" : "opacity-0"
                     }`}
                   />
