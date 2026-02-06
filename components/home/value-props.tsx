@@ -74,6 +74,7 @@ const valueItems = {
 };
 
 export function ValueProps({ lang }: ValuePropsProps) {
+  const isRTL = lang === "fa";
   const containerRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -111,6 +112,11 @@ export function ValueProps({ lang }: ValuePropsProps) {
     if (!carouselRef.current) return;
 
     const carousel = carouselRef.current;
+    const direction = isRTL ? 1 : -1;
+    const existingClones = carousel.querySelectorAll(
+      "[data-clone='true']",
+    );
+    existingClones.forEach((node) => node.remove());
     const itemWidth = carousel.children[0]?.getBoundingClientRect().width || 0;
     const gap = 24;
     const itemWithGap = itemWidth + gap;
@@ -118,13 +124,14 @@ export function ValueProps({ lang }: ValuePropsProps) {
 
     const originalChildren = Array.from(carousel.children);
     originalChildren.forEach((child) => {
-      const clone = child.cloneNode(true);
+      const clone = child.cloneNode(true) as HTMLElement;
+      clone.setAttribute("data-clone", "true");
       carousel.appendChild(clone);
     });
 
-    const timeline = gsap.timeline({ repeat: -1 });
+    let timeline = gsap.timeline({ repeat: -1 });
     timeline.to(carousel, {
-      x: -totalWidth,
+      x: direction * totalWidth,
       duration: 40,
       ease: "linear",
     });
@@ -140,10 +147,11 @@ export function ValueProps({ lang }: ValuePropsProps) {
 
       const newTimeline = gsap.timeline({ repeat: -1 });
       newTimeline.to(carousel, {
-        x: -newTotalWidth,
+        x: direction * newTotalWidth,
         duration: 40,
         ease: "linear",
       });
+      timeline = newTimeline;
     };
 
     window.addEventListener("resize", handleResize);
@@ -151,8 +159,10 @@ export function ValueProps({ lang }: ValuePropsProps) {
     return () => {
       timeline.kill();
       window.removeEventListener("resize", handleResize);
+      const clones = carousel.querySelectorAll("[data-clone='true']");
+      clones.forEach((node) => node.remove());
     };
-  }, []);
+  }, [isRTL]);
 
   useEffect(() => {
     if (!containerRef.current) return;
