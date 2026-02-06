@@ -108,14 +108,22 @@
     }
   },
   "footer": {
+    "navigation": "Navigation",
     "company": "Company",
     "products": "Products",
     "about": "About",
     "careers": "Careers",
     "contact": "Contact",
+    "resources": "Resources",
+    "featuredProducts": "Featured Products",
+    "markets": "Markets",
+    "tagline": "Global premium food trading with international standards and certified excellence.",
+    "address": "Global Trading Operations",
     "legal": "Legal",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
+    "sitemap": "Sitemap",
+    "haccp": "HACCP Certified",
     "copyright": "All rights reserved",
     "followUs": "Follow Us"
   }

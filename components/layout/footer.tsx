@@ -53,8 +53,7 @@ export function Footer({ lang }: FooterProps) {
                   </span>
                 </h3>
                 <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-light">
-                  Global premium food trading with international standards and
-                  certified excellence.
+                  {t.footer.tagline}
                 </p>
               </div>
 
@@ -78,7 +77,7 @@ export function Footer({ lang }: FooterProps) {
             {/* Navigation */}
             <div>
               <h4 className="text-xs font-semibold uppercase tracking-widest mb-4 sm:mb-6 text-accent/90">
-                {lang === "en" ? "Navigation" : "ناوبری"}
+                {t.footer.navigation}
               </h4>
               <ul className="space-y-4">
                 <li>
@@ -87,7 +86,7 @@ export function Footer({ lang }: FooterProps) {
                     className="text-sm text-white/70 hover:text-accent transition-colors duration-300 relative group"
                   >
                     <span className="relative">
-                      Home
+                      {t.nav.home}
                       <span className="absolute bottom-0 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300" />
                     </span>
                   </Link>
@@ -98,7 +97,7 @@ export function Footer({ lang }: FooterProps) {
                     className="text-sm text-white/70 hover:text-accent transition-colors duration-300 relative group"
                   >
                     <span className="relative">
-                      Featured Products
+                      {t.footer.featuredProducts}
                       <span className="absolute bottom-0 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300" />
                     </span>
                   </Link>
@@ -109,7 +108,7 @@ export function Footer({ lang }: FooterProps) {
                     className="text-sm text-white/70 hover:text-accent transition-colors duration-300 relative group"
                   >
                     <span className="relative">
-                      Markets
+                      {t.footer.markets}
                       <span className="absolute bottom-0 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300" />
                     </span>
                   </Link>
@@ -120,7 +119,7 @@ export function Footer({ lang }: FooterProps) {
             {/* Company */}
             <div>
               <h4 className="text-xs font-semibold uppercase tracking-widest mb-6 text-accent/90">
-                Company
+                {t.footer.company}
               </h4>
               <ul className="space-y-4">
                 <li>
@@ -162,7 +161,7 @@ export function Footer({ lang }: FooterProps) {
             {/* Resources */}
             <div>
               <h4 className="text-xs font-semibold uppercase tracking-widest mb-6 text-accent/90">
-                Resources
+                {t.footer.resources}
               </h4>
               <ul className="space-y-4">
                 <li>
@@ -182,7 +181,7 @@ export function Footer({ lang }: FooterProps) {
                     className="text-sm text-white/70 hover:text-accent transition-colors duration-300 relative group"
                   >
                     <span className="relative">
-                      Email
+                      {t.pages.contact.email}
                       <span className="absolute bottom-0 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300" />
                     </span>
                   </a>
@@ -193,7 +192,7 @@ export function Footer({ lang }: FooterProps) {
             {/* Contact */}
             <div>
               <h4 className="text-xs font-semibold uppercase tracking-widest mb-6 text-accent/90">
-                Get in Touch
+                {t.pages.contact.subtitle}
               </h4>
               <div className="space-y-4">
                 <a
@@ -212,7 +211,7 @@ export function Footer({ lang }: FooterProps) {
                 </a>
                 <div className="flex items-start gap-3 text-sm text-white/70">
                   <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                  <span>Global Trading Operations</span>
+                  <span>{t.footer.address}</span>
                 </div>
               </div>
             </div>
@@ -229,9 +228,9 @@ export function Footer({ lang }: FooterProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="text-center md:text-start">
               <p className="text-xs text-white/60 leading-relaxed font-light">
-                &copy; 2026 Faradid Atlas Foods. All rights reserved. |{" "}
+                &copy; 2026 Faradid Atlas Foods. {t.footer.copyright} |{" "}
                 <span className="text-accent/80">ISO 22000</span> |{" "}
-                <span className="text-accent/80">HACCP Certified</span>
+                <span className="text-accent/80">{t.footer.haccp}</span>
               </p>
             </div>
             <div className="text-center md:text-end">
@@ -240,19 +239,19 @@ export function Footer({ lang }: FooterProps) {
                   href="#"
                   className="text-xs text-white/60 hover:text-accent transition-colors duration-300"
                 >
-                  Privacy Policy
+                  {t.footer.privacy}
                 </a>
                 <a
                   href="#"
                   className="text-xs text-white/60 hover:text-accent transition-colors duration-300"
                 >
-                  Terms of Service
+                  {t.footer.terms}
                 </a>
                 <a
                   href="#"
                   className="text-xs text-white/60 hover:text-accent transition-colors duration-300"
                 >
-                  Sitemap
+                  {t.footer.sitemap}
                 </a>
               </div>
             </div>
