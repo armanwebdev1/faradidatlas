@@ -247,7 +247,11 @@ export function SignatureProducts() {
                 className="pointer-events-auto h-12 w-12 md:h-14 md:w-14 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 border border-white/20 flex items-center justify-center"
                 aria-label={lang === "en" ? "Previous product" : "محصول قبلی"}
               >
-                <ChevronLeft className="h-6 w-6 md:h-7 md:w-7" />
+                {isRTL ? (
+                  <ChevronRight className="h-6 w-6 md:h-7 md:w-7" />
+                ) : (
+                  <ChevronLeft className="h-6 w-6 md:h-7 md:w-7" />
+                )}
               </Button>
               <Button
                 variant="ghost"
@@ -256,7 +260,11 @@ export function SignatureProducts() {
                 className="pointer-events-auto h-12 w-12 md:h-14 md:w-14 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 border border-white/20 flex items-center justify-center"
                 aria-label={lang === "en" ? "Next product" : "محصول بعدی"}
               >
-                <ChevronRight className="h-6 w-6 md:h-7 md:w-7" />
+                {isRTL ? (
+                  <ChevronLeft className="h-6 w-6 md:h-7 md:w-7" />
+                ) : (
+                  <ChevronRight className="h-6 w-6 md:h-7 md:w-7" />
+                )}
               </Button>
             </div>
           </div>
