@@ -92,7 +92,7 @@ export function CareersCulture({ lang }: CareersCultureProps) {
         defaults: { ease: "cubic-bezier(0.22, 1, 0.36, 1)" },
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 92%",
+          start: "top 98%",
         },
       });
 
@@ -100,18 +100,16 @@ export function CareersCulture({ lang }: CareersCultureProps) {
         .to([titleRef.current, subtitleRef.current], {
           opacity: 1,
           y: 0,
-          duration: 0.6,
-          stagger: 0.08,
+          duration: 0.45,
         })
         .to(
           cards,
           {
             opacity: 1,
             y: 0,
-            duration: 0.6,
-            stagger: 0.08,
+            duration: 0.45,
           },
-          0.05,
+          0,
         );
     }, sectionRef);
 
