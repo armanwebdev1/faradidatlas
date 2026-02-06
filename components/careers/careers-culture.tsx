@@ -62,6 +62,7 @@ const cultureItems = {
 
 export function CareersCulture({ lang }: CareersCultureProps) {
   const sectionRef = useRef<HTMLElement>(null);
+  const eyebrowRef = useRef<HTMLParagraphElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -75,14 +76,17 @@ export function CareersCulture({ lang }: CareersCultureProps) {
 
     const ctx = gsap.context(() => {
       if (reduceMotion) {
-        gsap.set([titleRef.current, subtitleRef.current, ...cards], {
-          opacity: 1,
-          y: 0,
-        });
+        gsap.set(
+          [eyebrowRef.current, titleRef.current, subtitleRef.current, ...cards],
+          {
+            opacity: 1,
+            y: 0,
+          },
+        );
         return;
       }
 
-      gsap.set([titleRef.current, subtitleRef.current], {
+      gsap.set([eyebrowRef.current, titleRef.current, subtitleRef.current], {
         opacity: 0,
         y: 20,
       });
@@ -97,7 +101,7 @@ export function CareersCulture({ lang }: CareersCultureProps) {
       });
 
       timeline
-        .set([titleRef.current, subtitleRef.current], {
+        .set([eyebrowRef.current, titleRef.current, subtitleRef.current], {
           opacity: 1,
           y: 0,
         })
@@ -128,6 +132,12 @@ export function CareersCulture({ lang }: CareersCultureProps) {
 
       <div className="container-wide relative z-10">
         <div className="text-center mb-10 sm:mb-12 md:mb-14">
+          <p
+            ref={eyebrowRef}
+            className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6"
+          >
+            {lang === "en" ? "Culture" : "فرهنگ سازمانی"}
+          </p>
           <h2
             ref={titleRef}
             className="text-4xl sm:text-5xl md:text-6xl font-semibold text-foreground mb-5 sm:mb-6 tracking-tight"

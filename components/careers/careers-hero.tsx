@@ -12,6 +12,7 @@ export function CareersHero({ lang }: CareersHeroProps) {
   const isRTL = lang === "fa";
   const sectionRef = useRef<HTMLElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
+  const eyebrowRef = useRef<HTMLParagraphElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -22,6 +23,7 @@ export function CareersHero({ lang }: CareersHeroProps) {
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const targets = [
+      eyebrowRef.current,
       titleRef.current,
       subtitleRef.current,
       ctaRef.current,
@@ -75,6 +77,9 @@ export function CareersHero({ lang }: CareersHeroProps) {
             className={`max-w-2xl ${isRTL ? "text-right" : "text-left"}`}
             dir={isRTL ? "rtl" : "ltr"}
           >
+            <p ref={eyebrowRef} className="eyebrow mb-4 text-accent-warm-gold">
+              {lang === "en" ? "Careers" : "فرصت‌های شغلی"}
+            </p>
             <h1
               ref={titleRef}
               className="mb-8 font-hero text-white"
