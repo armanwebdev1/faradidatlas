@@ -23,10 +23,8 @@ export function ContactForm({ lang }: ContactFormProps) {
   });
 
   const [submitted, setSubmitted] = useState(false);
-  const inputBase =
-    "w-full rounded-xl border border-foreground/10 bg-white/90 px-3 sm:px-4 py-2 text-sm text-foreground shadow-sm transition-all duration-300 placeholder:text-foreground/40 focus:border-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/20 hover:border-foreground/20";
-  const labelBase =
-    "block text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-foreground/60 mb-2";
+  const inputBase = "form-input";
+  const labelBase = "form-label mb-2";
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -61,13 +59,13 @@ export function ContactForm({ lang }: ContactFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="relative isolate overflow-hidden rounded-3xl border border-foreground/10 bg-white/90 p-6 sm:p-8 md:p-10 shadow-[0_35px_80px_-60px_rgba(10,10,10,0.5)] animate-fade-in-up"
+      className="form-card relative isolate overflow-hidden animate-fade-in-up"
     >
       <div className="pointer-events-none absolute -top-24 right-0 h-40 w-40 rounded-full bg-gradient-to-br from-accent/25 via-white to-transparent blur-3xl -z-10" />
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-hero text-primary mb-3">
+      <h2 className="text-responsive-section text-primary mb-3">
         {lang === "en" ? "B2B Inquiry Form" : "فرم درخواست B2B"}
       </h2>
-      <p className="text-sm sm:text-base text-foreground/70 mb-6 sm:mb-8 leading-relaxed">
+      <p className="text-responsive-body text-foreground/70 mb-6 sm:mb-8">
         {lang === "en"
           ? "Tell us about your business needs. We'll respond within 24-48 hours."
           : "به ما در مورد نیاز‌های تجاری خود بگویید. ما در ۲۴-۴۸ ساعت پاسخ خواهیم داد."}
@@ -296,10 +294,7 @@ export function ContactForm({ lang }: ContactFormProps) {
       </div>
 
       {/* Submit - responsive */}
-      <button
-        type="submit"
-        className="w-full px-4 sm:px-6 py-3 bg-primary text-primary-foreground font-semibold text-sm sm:text-base rounded-full transition-all duration-300 hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 mb-4"
-      >
+      <button type="submit" className="btn btn-primary btn-lg w-full mb-4">
         {lang === "en" ? "Send Inquiry" : "ارسال درخواست"}
       </button>
 

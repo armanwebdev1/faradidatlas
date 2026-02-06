@@ -102,33 +102,21 @@ export function SignatureProducts() {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-b from-background via-background to-muted/20 py-16 md:py-24">
+    <section className="section relative w-full overflow-hidden bg-gradient-to-b from-background via-background to-muted/20">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-accent/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-accent/3 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div className="relative z-10 container-wide">
         {/* Section Header - Cleaner without yellow label */}
         <div className="text-center mb-10 sm:mb-12 md:mb-14 animate-fade-in">
-          <h2
-            className="text-4xl sm:text-5xl md:text-6xl font-semibold text-foreground mb-5 sm:mb-6 md:mb-8 leading-tight"
-            style={{
-              fontFamily: "var(--font-hero)",
-              fontWeight: "600",
-              letterSpacing: "-0.01em",
-            }}
-          >
+          <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 md:mb-8">
             Signature Products
           </h2>
           <p
-            className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto mb-8"
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "clamp(14px, 2vw, 17px)",
-              fontWeight: "400",
-            }}
+            className="text-responsive-body text-foreground/70 max-w-2xl mx-auto mb-8"
           >
             Discover our handpicked collection of premium products, each
             selected for exceptional quality and distinctive character
@@ -137,10 +125,7 @@ export function SignatureProducts() {
           {/* Explore All Products button */}
           <button
             onClick={() => router.push(`/${lang}/products`)}
-            className="inline-flex items-center gap-2 px-6 sm:px-7 md:px-8 py-2.5 sm:py-3 md:py-3.5 border border-foreground/20 hover:border-foreground/40 text-foreground hover:text-foreground rounded-full text-sm sm:text-base md:text-base font-medium tracking-tight transition-all duration-300 hover:bg-foreground/5"
-            style={{
-              fontFamily: "var(--font-body)",
-            }}
+            className="btn btn-outline btn-md"
           >
             Explore All Products
           </button>
@@ -186,10 +171,10 @@ export function SignatureProducts() {
                         : "translate-y-8 opacity-0"
                     }`}
                   >
-                    <span className="text-accent text-xs md:text-sm font-medium tracking-widest uppercase">
+                    <span className="eyebrow text-accent">
                       {product.category}
                     </span>
-                    <h3 className="font-hero text-2xl sm:text-3xl md:text-4xl font-semibold text-white my-3 sm:my-4 leading-tight">
+                    <h3 className="text-responsive-subheading text-white my-3 sm:my-4">
                       {product.name}
                     </h3>
                     <p className="text-primary-foreground/80 text-sm sm:text-base md:text-base leading-relaxed max-w-2xl">
@@ -241,10 +226,6 @@ export function SignatureProducts() {
               variant="outline"
               size="sm"
               onClick={() => setIsAutoplay(!isAutoplay)}
-              className="text-xs sm:text-sm rounded-full border-foreground/20 hover:border-foreground/40 text-foreground hover:text-foreground transition-colors"
-              style={{
-                fontFamily: "var(--font-body)",
-              }}
             >
               {isAutoplay ? "Pause" : "Play"}
             </Button>

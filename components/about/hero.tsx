@@ -37,21 +37,21 @@ export function AboutHero({ lang }: AboutHeroProps) {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-background"
+      className="section-hero relative w-full overflow-hidden bg-background"
       dir={isRTL ? "rtl" : "ltr"}
     >
-      <div className="w-full px-4 sm:px-6 pt-16 md:pt-20 pb-16">
-        <div className="max-w-6xl mx-auto space-y-20">
+      <div className="container-wide">
+        <div className="space-y-20">
           {/* Headline */}
           <div ref={headlineRef} className="text-center">
             <p
-              className="mb-4 text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-accent-warm-gold opacity-0 translate-y-6"
+              className="eyebrow mb-4 text-accent-warm-gold opacity-0 translate-y-6"
               data-animate
             >
               {lang === "en" ? "About Us" : "درباره ما"}
             </p>
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-8 max-w-4xl mx-auto opacity-0 translate-y-6"
+              className="text-responsive-hero text-primary mb-8 max-w-4xl mx-auto opacity-0 translate-y-6"
               data-animate
             >
               {lang === "en"
@@ -59,7 +59,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
                 : "ما بر توسعه ملک‌های تجاری متمرکز هستیم که استراتژیک‌الانه خرده‌فروشان را قرار می‌دهند و سرمایه‌گذاران را پاداش می‌دهند."}
             </h1>
             <button
-              className="px-8 py-4 bg-primary text-primary-foreground font-bold rounded-lg hover:bg-primary/90 hover:shadow-xl transition opacity-0 translate-y-6"
+              className="btn btn-primary btn-md opacity-0 translate-y-6"
               data-animate
             >
               {lang === "en" ? "Contact Us" : "تماس با ما"}
@@ -80,7 +80,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
 
           {/* Intro */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <h2 className="text-4xl md:text-5xl font-bold font-hero max-w-2/3 text-primary">
+            <h2 className="text-responsive-title text-primary">
               {lang === "en" ? "Get to know us more" : "بیشتر درباره ما بدانید"}
             </h2>
 

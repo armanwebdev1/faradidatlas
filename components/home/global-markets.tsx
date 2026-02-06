@@ -95,12 +95,7 @@ function CountUpPercentage({ target }: { target: number }) {
   return (
     <div
       ref={containerRef}
-      className="text-4xl sm:text-5xl md:text-5xl font-semibold text-accent-warm-gold"
-      style={{
-        fontFamily: "var(--font-hero)",
-        fontWeight: "600",
-        letterSpacing: "-0.01em",
-      }}
+      className="text-responsive-section text-accent-warm-gold"
     >
       {count}%
     </div>
@@ -112,22 +107,12 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
   const marketList = lang === "en" ? markets.en : markets.fa;
 
   return (
-    <section id="markets" className="relative overflow-hidden bg-white">
+    <section id="markets" className="section relative overflow-hidden bg-surface">
       {/* Markets Section */}
-      <div className="relative py-12 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6">
-        <div className="relative max-w-6xl mx-auto">
+      <div className="relative container-wide">
           <div className="text-center mb-14 sm:mb-16 md:mb-20">
             <h2
-              className="text-4xl sm:text-5xl md:text-6xl font-semibold text-foreground mb-5 sm:mb-6 md:mb-8 leading-tight animate-fade-in-up"
-              style={{
-                fontFamily:
-                  lang === "en"
-                    ? "var(--font-hero)"
-                    : "Estedad, var(--font-hero)",
-                fontWeight: "600",
-                letterSpacing: "-0.01em",
-                animationDelay: "0.1s",
-              }}
+              className="text-responsive-title text-foreground mb-5 sm:mb-6 md:mb-8 animate-fade-in-up"
             >
               <span className="inline-block">
                 {lang === "en" ? "Global" : "حضور"}
@@ -138,16 +123,7 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
             </h2>
 
             <p
-              className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto leading-relaxed animate-fade-in-up"
-              style={{
-                fontFamily:
-                  lang === "en"
-                    ? "var(--font-body)"
-                    : "Shabnam, var(--font-body)",
-                fontSize: "clamp(14px, 2vw, 17px)",
-                fontWeight: "400",
-                animationDelay: "0.2s",
-              }}
+              className="text-responsive-body text-foreground/70 max-w-2xl mx-auto animate-fade-in-up"
             >
               {lang === "en"
                 ? "Serving international importers and retailers across four continents with uncompromising quality and trusted partnerships"
@@ -162,41 +138,18 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
                 className="group relative animate-fade-in-up h-full"
                 style={{ animationDelay: `${idx * 100}ms` }}
               >
-                <div
-                  className="relative h-full p-6 sm:p-8 md:p-10 border border-border/30 rounded-2xl sm:rounded-2xl transition-all duration-500 ease-out group-hover:border-accent-warm-gold/50 group-hover:shadow-lg hover:bg-gradient-to-br hover:from-foreground/[0.02] hover:to-foreground/[0.01] flex flex-col"
-                  style={{
-                    backgroundColor: "hsl(var(--card) / 0.5)",
-                  }}
-                >
+                <div className="relative h-full p-6 sm:p-8 md:p-10 border border-border/30 rounded-2xl sm:rounded-2xl bg-card/50 transition-all duration-500 ease-out group-hover:border-accent-warm-gold/50 group-hover:shadow-lg hover:bg-gradient-to-br hover:from-foreground/[0.02] hover:to-foreground/[0.01] flex flex-col">
                   <div className="mb-6 relative">
                     <CountUpPercentage target={market.percentage} />
                   </div>
 
                   <div className="mb-4 pb-4 border-b border-border/30">
-                    <h3
-                      className="text-lg sm:text-xl md:text-xl font-semibold text-foreground leading-snug tracking-tight"
-                      style={{
-                        fontFamily:
-                          lang === "en"
-                            ? "var(--font-hero)"
-                            : "Estedad, var(--font-hero)",
-                        fontWeight: "600",
-                      }}
-                    >
+                    <h3 className="text-responsive-subheading text-foreground">
                       {market.region}
                     </h3>
                   </div>
 
-                  <p
-                    className="text-sm sm:text-base text-foreground/65 leading-relaxed"
-                    style={{
-                      fontFamily:
-                        lang === "en"
-                          ? "var(--font-body)"
-                          : "Shabnam, var(--font-body)",
-                      fontWeight: "400",
-                    }}
-                  >
+                  <p className="text-sm sm:text-base text-foreground/65 leading-relaxed">
                     {market.countries}
                   </p>
                 </div>
@@ -206,22 +159,6 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(16px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in-up {
-          animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-          opacity: 0;
-        }
-      `}</style>
     </section>
   );
 }

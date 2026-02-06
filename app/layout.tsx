@@ -83,18 +83,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${playfair.variable} ${estedad.variable} ${shabnam.variable} ${satoshi.variable}`}
+    >
       <head>
         <meta charSet="utf-8" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=5"
         />
-        <meta name="theme-color" content="#0F0140" />
+        <meta name="theme-color" content="#f7f5f1" />
       </head>
-      <body
-        className={`${geistSans.variable} ${playfair.variable} ${estedad.variable} ${shabnam.variable} ${satoshi.variable} antialiased font-sans`}
-      >
+      <body className="antialiased">
         {children}
         <Analytics />
       </body>

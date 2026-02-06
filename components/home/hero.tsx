@@ -208,26 +208,12 @@ export function Hero({ lang }: HeroProps) {
           } ${textShiftClass}`}
           dir={isRTL ? "rtl" : "ltr"}
         >
-          <p
-            ref={subtitleRef}
-            className="mb-6 font-label font-medium tracking-[0.2em] uppercase text-accent-warm-gold"
-            style={{
-              fontSize: "clamp(14px, 2.5vw, 20px)",
-              textAlign: isRTL ? "right" : "left",
-            }}
-          >
+          <p ref={subtitleRef} className="eyebrow mb-6 text-accent-warm-gold">
             {slide.subtitle[lang]}
           </p>
 
           <h1
-            className="mb-8 font-hero text-white"
-            style={{
-              fontFamily:
-                lang === "en"
-                  ? "var(--font-hero)"
-                  : "Estedad, var(--font-hero)",
-              textAlign: isRTL ? "right" : "left",
-            }}
+            className="mb-8 text-responsive-hero text-white"
           >
             <span ref={titleLine1Ref} className="block">
               {slide.title[lang].split(" ")[0]}
@@ -239,15 +225,7 @@ export function Hero({ lang }: HeroProps) {
 
           <p
             ref={descriptionRef}
-            className="mb-10 max-w-2xl leading-[1.6] text-white/85"
-            style={{
-              fontSize: "clamp(16px, 2vw, 18px)",
-              fontFamily:
-                lang === "en"
-                  ? "var(--font-body)"
-                  : "Shabnam, var(--font-body)",
-              textAlign: isRTL ? "right" : "left",
-            }}
+            className="mb-10 max-w-2xl text-responsive-body text-white/85"
           >
             {slide.description[lang]}
           </p>

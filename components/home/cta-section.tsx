@@ -71,23 +71,16 @@ export function CTASection({ lang }: CTASectionProps) {
   const isRTL = lang === "fa";
 
   return (
-    <section className="relative space-responsive px-4 sm:px-6 overflow-hidden bg-[#faf9f6]">
+    <section className="section relative overflow-hidden bg-background-alt">
       {/* Updated background and simplified decorative elements - responsive sizing */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 right-1/2 w-96 sm:w-[500px] md:w-[800px] h-96 sm:h-[500px] md:h-[800px] rounded-full bg-[#c9a961]/5 blur-[80px] md:blur-[120px]" />
+        <div className="absolute top-1/2 right-1/2 w-96 sm:w-[500px] md:w-[800px] h-96 sm:h-[500px] md:h-[800px] rounded-full bg-accent/5 blur-[80px] md:blur-[120px]" />
       </div>
 
       <div className="relative container-wide">
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <p
-            className="category-label text-[#c9a961] text-xs sm:text-sm md:text-base"
-            style={{
-              fontFamily:
-                lang === "en"
-                  ? "Satoshi, var(--font-label)"
-                  : "Shabnam, var(--font-label)",
-              fontSize: "clamp(11px, 2vw, 16px)",
-            }}
+            className="eyebrow text-accent"
           >
             {lang === "en" ? "Exclusive Sourcing" : "تامین انحصاری"}
           </p>
@@ -117,16 +110,7 @@ export function CTASection({ lang }: CTASectionProps) {
               isRTL ? "lg:text-right" : "lg:text-left"
             }`}
           >
-            <h2
-              className="text-responsive-title lg:text-5xl xl:text-6xl mb-4 sm:mb-6 md:mb-8 leading-tight"
-              style={{
-                fontFamily:
-                  lang === "en"
-                    ? "var(--font-hero)"
-                    : "Estedad, var(--font-hero)",
-                fontSize: "clamp(28px, 6vw, 56px)",
-              }}
-            >
+            <h2 className="text-responsive-title mb-4 sm:mb-6 md:mb-8">
               {lang === "en" ? (
                 <>
                   Optimal <span className="italic font-light">growth</span>{" "}
@@ -139,14 +123,7 @@ export function CTASection({ lang }: CTASectionProps) {
 
             {/* Body text - responsive */}
             <p
-              className="text-responsive-body text-muted-foreground max-w-xl mb-6 sm:mb-8 md:mb-10 lg:mb-12 font-light leading-relaxed"
-              style={{
-                fontFamily:
-                  lang === "en"
-                    ? "var(--font-body)"
-                    : "Shabnam, var(--font-body)",
-                fontSize: "clamp(14px, 2vw, 20px)",
-              }}
+              className="text-responsive-body text-muted-foreground max-w-xl mb-6 sm:mb-8 md:mb-10 lg:mb-12 font-light"
             >
               {lang === "en"
                 ? "Experience a partnership that transforms your supply chain into a functional work of art with our custom global solutions."
@@ -157,34 +134,27 @@ export function CTASection({ lang }: CTASectionProps) {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
               <Link
                 href={`/${lang}/contact`}
-                className="premium-btn-primary group relative overflow-hidden h-11 sm:h-12 md:h-14 px-6 sm:px-8 md:px-10 flex items-center justify-center font-bold rounded-full transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(201,169,97,0.4)] active:scale-95 text-sm md:text-base w-full sm:w-auto"
+                className="btn btn-primary btn-lg w-full sm:w-auto"
               >
-                <span className="relative z-10 text-white transition-colors duration-500">
-                  {lang === "en" ? "Get Started" : "شروع کنید"}
-                </span>
-                <div className="absolute inset-0 bg-[#1a1a1a] transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#c9a961] to-[#a84a3a] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {lang === "en" ? "Get Started" : "???????? ????????"}
               </Link>
 
               <Link
                 href={`/${lang}/about`}
-                className="premium-btn-outline group relative overflow-hidden h-11 sm:h-12 md:h-14 px-6 sm:px-8 md:px-10 flex items-center justify-center font-bold rounded-full border border-black/10 transition-all duration-500 hover:border-[#c9a961] active:scale-95 text-sm md:text-base w-full sm:w-auto"
+                className="btn btn-outline btn-lg w-full sm:w-auto"
               >
-                <span className="relative z-10 transition-colors duration-500 group-hover:text-[#c9a961]">
-                  {lang === "en" ? "Learn More" : "بیشتر بدانید"}
-                </span>
-                <div className="absolute inset-0 bg-white group-hover:bg-[#faf9f6] transition-colors duration-500" />
+                {lang === "en" ? "Learn More" : "?????????? ????????????"}
               </Link>
             </div>
           </div>
         </div>
 
         {/* Bottom part - responsive trust stats */}
-        <div className="relative pt-8 sm:pt-12 md:pt-16 border-t border-black/5">
+        <div className="relative pt-8 sm:pt-12 md:pt-16 border-t border-foreground/10">
           {/* Center decoration - responsive sizing */}
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <div className="w-6 sm:w-8 h-6 sm:h-8 border border-[#c9a961] rounded-full flex items-center justify-center bg-background">
-              <span className="text-xs sm:text-sm bg-gradient-to-r from-[#1a1a1a] to-[#a84a3a] bg-clip-text text-transparent font-bold">
+            <div className="w-6 sm:w-8 h-6 sm:h-8 border border-accent rounded-full flex items-center justify-center bg-background">
+              <span className="text-xs sm:text-sm bg-gradient-to-r from-foreground to-accent-warm-copper bg-clip-text text-transparent font-bold">
                 +
               </span>
             </div>
@@ -193,27 +163,14 @@ export function CTASection({ lang }: CTASectionProps) {
           <div className="text-center max-w-3xl mx-auto">
             {/* Label - responsive */}
             <p
-              className="text-xs md:text-sm text-foreground/50 font-semibold uppercase tracking-widest mb-4 md:mb-6"
-              style={{
-                fontFamily:
-                  lang === "en"
-                    ? "Satoshi, var(--font-label)"
-                    : "Shabnam, var(--font-label)",
-              }}
+              className="eyebrow text-foreground/60 mb-4 md:mb-6"
             >
               {lang === "en" ? "Trusted Partnership" : "مشارکت معتبر"}
             </p>
 
             {/* Description - responsive */}
             <p
-              className="text-responsive-body text-muted-foreground font-light leading-relaxed px-2 sm:px-0"
-              style={{
-                fontFamily:
-                  lang === "en"
-                    ? "var(--font-body)"
-                    : "Shabnam, var(--font-body)",
-                fontSize: "clamp(14px, 2vw, 18px)",
-              }}
+              className="text-responsive-body text-muted-foreground font-light px-2 sm:px-0"
             >
               {lang === "en"
                 ? "Hundreds of international importers and retailers partner with us for reliability, quality assurance, and specialized B2B support that drives sustainable growth."
@@ -224,36 +181,36 @@ export function CTASection({ lang }: CTASectionProps) {
             <div className="mt-6 sm:mt-8 md:mt-10 flex justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 text-foreground/20 flex-wrap sm:flex-nowrap">
               {/* Partners stat */}
               <div className="text-center group cursor-default flex-1 sm:flex-none min-w-max">
-                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-[#1a1a1a] to-[#c9a961] bg-clip-text text-transparent transition-all duration-500 group-hover:from-[#c9a961] group-hover:to-[#a84a3a]">
+                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent transition-all duration-500 group-hover:from-accent group-hover:to-accent-warm-copper">
                   <CountUpNumber target={150} suffix="+" />
                 </div>
-                <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50 transition-colors duration-500 group-hover:text-[#c9a961]">
+                <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50 transition-colors duration-500 group-hover:text-accent">
                   {lang === "en" ? "Partners" : "همکاران"}
                 </p>
               </div>
 
               {/* Divider - hidden on mobile */}
-              <div className="hidden sm:block w-px bg-gradient-to-b from-transparent via-[#c9a961] to-transparent" />
+              <div className="hidden sm:block w-px bg-gradient-to-b from-transparent via-accent to-transparent" />
 
               {/* Countries stat */}
               <div className="text-center group cursor-default flex-1 sm:flex-none min-w-max">
-                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-[#1a1a1a] to-[#b8654d] bg-clip-text text-transparent transition-all duration-500 group-hover:from-[#b8654d] group-hover:to-[#a84a3a]">
+                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent-warm-copper bg-clip-text text-transparent transition-all duration-500 group-hover:from-accent-warm-copper group-hover:to-accent">
                   <CountUpNumber target={50} suffix="+" />
                 </div>
-                <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50 transition-colors duration-500 group-hover:text-[#b8654d]">
+                <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50 transition-colors duration-500 group-hover:text-accent-warm-copper">
                   {lang === "en" ? "Countries" : "کشورها"}
                 </p>
               </div>
 
               {/* Divider - hidden on mobile */}
-              <div className="hidden sm:block w-px bg-gradient-to-b from-transparent via-[#c9a961] to-transparent" />
+              <div className="hidden sm:block w-px bg-gradient-to-b from-transparent via-accent to-transparent" />
 
               {/* Experience stat */}
               <div className="text-center group cursor-default flex-1 sm:flex-none min-w-max">
-                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-[#1a1a1a] to-[#c9a961] bg-clip-text text-transparent transition-all duration-500 group-hover:from-[#a84a3a] group-hover:to-[#c9a961]">
+                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent transition-all duration-500 group-hover:from-accent-warm-copper group-hover:to-accent">
                   <CountUpNumber target={20} suffix="y" />
                 </div>
-                <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50 transition-colors duration-500 group-hover:text-[#a84a3a]">
+                <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50 transition-colors duration-500 group-hover:text-accent-warm-copper">
                   {lang === "en" ? "Experience" : "تجربه"}
                 </p>
               </div>

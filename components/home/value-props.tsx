@@ -158,7 +158,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
   return (
     <section
       ref={containerRef}
-      className="space-responsive px-4 sm:px-6 bg-white relative overflow-hidden"
+      className="section bg-surface relative overflow-hidden"
     >
       {/* Subtle decorative gradient elements */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-gradient-to-br from-accent-warm-gold/3 to-transparent rounded-full blur-3xl pointer-events-none" />
@@ -169,15 +169,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
           <h2
             ref={titleRef}
-            className="text-responsive-title md:text-5xl lg:text-6xl mb-5 sm:mb-7 md:mb-8 leading-tight text-foreground"
-            style={{
-              fontFamily:
-                lang === "en"
-                  ? "var(--font-hero)"
-                  : "Estedad, var(--font-hero)",
-              fontWeight: "600",
-              letterSpacing: "-0.01em",
-            }}
+            className="text-responsive-title mb-5 sm:mb-7 md:mb-8 text-foreground"
           >
             {lang === "en"
               ? "Excellence in Every Partnership"
@@ -185,15 +177,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
           </h2>
           <p
             ref={subtitleRef}
-            className="text-responsive-body text-foreground/70 max-w-2xl mx-auto leading-relaxed"
-            style={{
-              fontFamily:
-                lang === "en"
-                  ? "var(--font-body)"
-                  : "Shabnam, var(--font-body)",
-              fontSize: "clamp(14px, 2vw, 17px)",
-              fontWeight: "400",
-            }}
+            className="text-responsive-body text-foreground/70 max-w-2xl mx-auto"
           >
             {lang === "en"
               ? "Trusted by distributors and retailers worldwide for premium sourcing, rigorous quality control, and reliable partnerships"
@@ -232,31 +216,12 @@ export function ValueProps({ lang }: ValuePropsProps) {
                       </div>
 
                       {/* Title with premium typography */}
-                      <h3
-                        className="text-xl sm:text-2xl md:text-2xl font-semibold text-foreground mb-3 sm:mb-4 tracking-tight leading-snug"
-                        style={{
-                          fontFamily:
-                            lang === "en"
-                              ? "var(--font-hero)"
-                              : "Estedad, var(--font-hero)",
-                          fontWeight: "600",
-                        }}
-                      >
+                      <h3 className="text-responsive-subheading text-foreground mb-3 sm:mb-4">
                         {item.title}
                       </h3>
 
                       {/* Description with refined typography */}
-                      <p
-                        className="text-sm sm:text-base text-foreground/65 leading-relaxed flex-grow"
-                        style={{
-                          fontFamily:
-                            lang === "en"
-                              ? "var(--font-body)"
-                              : "Shabnam, var(--font-body)",
-                          fontWeight: "400",
-                          lineHeight: "1.65",
-                        }}
-                      >
+                      <p className="text-sm sm:text-base text-foreground/65 leading-relaxed flex-grow">
                         {item.description}
                       </p>
 

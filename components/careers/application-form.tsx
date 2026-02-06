@@ -155,10 +155,8 @@ export function ApplicationForm({
           },
         };
 
-  const labelBase =
-    "block text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-foreground/60 mb-2";
-  const inputBase =
-    "w-full rounded-2xl border border-foreground/10 bg-white/90 px-3 sm:px-4 py-2.5 text-sm text-foreground shadow-sm transition-all duration-300 placeholder:text-foreground/40 focus:border-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/20 hover:border-foreground/20";
+  const labelBase = "form-label mb-2";
+  const inputBase = "form-input";
   const errorClass =
     "border-destructive/60 focus:border-destructive/70 focus:ring-destructive/20";
 
@@ -318,7 +316,7 @@ export function ApplicationForm({
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="relative isolate overflow-hidden rounded-3xl border border-foreground/10 bg-white/90 p-6 sm:p-8 md:p-10 shadow-[0_35px_80px_-60px_rgba(10,10,10,0.5)]"
+      className="form-card relative isolate overflow-hidden"
     >
       <div className="pointer-events-none absolute -top-24 right-0 h-48 w-48 rounded-full bg-gradient-to-br from-accent-warm-gold/30 via-white/40 to-transparent blur-3xl -z-10" />
       <div className="pointer-events-none absolute -bottom-20 left-0 h-56 w-56 rounded-full bg-gradient-to-tr from-foreground/5 via-white to-transparent blur-3xl -z-10" />
@@ -327,15 +325,7 @@ export function ApplicationForm({
         <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.35em] text-accent-warm-gold">
           {copy.jobLabel}
         </p>
-        <h2
-          className="mt-3 text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground tracking-tight"
-          style={{
-            fontFamily:
-              lang === "en"
-                ? "var(--font-hero)"
-                : "Estedad, var(--font-hero)",
-          }}
-        >
+        <h2 className="mt-3 text-responsive-section text-foreground tracking-tight">
           {copy.title}
         </h2>
         <p className="mt-3 text-sm sm:text-base text-foreground/70">
@@ -564,10 +554,7 @@ export function ApplicationForm({
         </div>
       </div>
 
-      <button
-        type="submit"
-        className="mt-8 w-full rounded-full bg-foreground px-6 py-3 text-sm sm:text-base font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-accent-warm-gold/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
-      >
+      <button type="submit" className="btn btn-primary btn-lg w-full mt-8">
         {copy.submit}
       </button>
 

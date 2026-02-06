@@ -94,7 +94,7 @@ export function FeaturedProducts({ lang }: FeaturedProductsProps) {
   return (
     <section
       id="products"
-      className="space-responsive px-4 sm:px-6 bg-background/50"
+      className="section bg-background/50"
     >
       <div className="container-wide">
         {/* Section heading - responsive */}
@@ -169,7 +169,7 @@ export function FeaturedProducts({ lang }: FeaturedProductsProps) {
         <div className="text-center mt-10 sm:mt-14 md:mt-16">
           <Link
             href={`/${lang}/products`}
-            className="inline-block px-6 sm:px-10 py-3 sm:py-4 bg-primary text-primary-foreground font-semibold text-sm sm:text-base rounded-full hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-foreground/10 active:scale-95"
+            className="btn btn-primary btn-lg"
           >
             {lang === "en" ? "Explore All Products" : "مشاهده تمام محصولات"}
           </Link>
