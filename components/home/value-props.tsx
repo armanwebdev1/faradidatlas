@@ -188,8 +188,14 @@ export function ValueProps({ lang }: ValuePropsProps) {
       className="section bg-surface relative overflow-hidden opacity-0 translate-y-6"
     >
       {/* Subtle decorative gradient elements */}
-      <div className="absolute top-20 right-0 w-96 h-96 bg-gradient-to-br from-accent-warm-gold/3 to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-accent/2 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div
+        className="absolute top-20 w-96 h-96 bg-gradient-to-br from-accent-warm-gold/3 to-transparent rounded-full blur-3xl pointer-events-none"
+        style={{ right: 0 }}
+      />
+      <div
+        className="absolute bottom-0 w-80 h-80 bg-gradient-to-tr from-accent/2 to-transparent rounded-full blur-3xl pointer-events-none"
+        style={{ left: 0 }}
+      />
 
       <div className="container-wide relative z-10">
         {/* Premium Section Header */}
@@ -218,8 +224,14 @@ export function ValueProps({ lang }: ValuePropsProps) {
         {/* Premium Carousel Container */}
         <div className="relative">
           {/* Gradient fade overlays - smoother and more elegant */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-gradient-to-r from-white via-white/50 to-transparent z-20 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-gradient-to-l from-white via-white/50 to-transparent z-20 pointer-events-none" />
+          <div
+            className="absolute top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-gradient-to-r from-white via-white/50 to-transparent z-20 pointer-events-none"
+            style={{ left: 0 }}
+          />
+          <div
+            className="absolute top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-gradient-to-l from-white via-white/50 to-transparent z-20 pointer-events-none"
+            style={{ right: 0 }}
+          />
 
           <div className="overflow-hidden rounded-2xl">
             <div ref={carouselRef} className="flex gap-6 sm:gap-8 w-max py-2">
