@@ -67,18 +67,14 @@ export default async function ProductDetailPage({
             >
               {lang === "en" ? "Home" : "خانه"}
             </Link>
-            <span className="text-foreground/30" aria-hidden="true">
-              •
-            </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-foreground/30" aria-hidden="true" />
             <Link
               href={`/${lang}/products`}
               className="line-accent transition-colors hover:text-primary"
             >
               {lang === "en" ? "Products" : "محصولات"}
             </Link>
-            <span className="text-foreground/30" aria-hidden="true">
-              •
-            </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-foreground/30" aria-hidden="true" />
             <span className="text-foreground font-medium line-clamp-1">
               {name}
             </span>
