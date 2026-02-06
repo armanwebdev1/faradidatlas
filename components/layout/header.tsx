@@ -1,10 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
+import { useState, useEffect, useRef, useMemo, type KeyboardEvent } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
+import { products } from "@/components/products/product-data";
+import { jobs } from "@/components/careers/job-data";
+import { faqs, faqCategories } from "@/components/faq/faq-data";
 import {
   ChevronDown,
   Home,
@@ -25,9 +28,14 @@ export function Header({ lang }: HeaderProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
   const langRef = useRef<HTMLDivElement>(null);
+  const searchRef = useRef<HTMLDivElement>(null);
 
   const pathname = usePathname();
+  const router = useRouter();
   const t = translations[lang];
   const isRTL = lang === "fa";
   const dir = isRTL ? "rtl" : "ltr";
@@ -59,10 +67,23 @@ export function Header({ lang }: HeaderProps) {
       if (langRef.current && !langRef.current.contains(event.target as Node)) {
         setIsLangOpen(false);
       }
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
+        setIsSearchOpen(false);
+        setActiveIndex(-1);
+      }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  useEffect(() => {
+    setIsSearchOpen(false);
+    setActiveIndex(-1);
+    setQuery("");
+  }, [pathname]);
 
   const isActive = (href: string): boolean => {
     if (pathname === href) return true;
@@ -104,6 +125,133 @@ export function Header({ lang }: HeaderProps) {
     },
   ];
 
+  const normalize = (value: string) => value.toLowerCase().trim();
+
+  const searchResults = useMemo(() => {
+    const q = normalize(query);
+    if (!q) {
+      return { products: [], careers: [], faqs: [] };
+    }
+
+    const match = (value?: string) =>
+      value ? normalize(value).includes(q) : false;
+
+    const productResults = products
+      .filter(
+        (product) =>
+          match(product.nameEn) ||
+          match(product.nameFa) ||
+          match(product.descriptionEn) ||
+          match(product.descriptionFa) ||
+          match(product.origin) ||
+          match(product.grade),
+      )
+      .slice(0, 6)
+      .map((product) => ({
+        id: `product-${product.id}`,
+        type: "product",
+        title: lang === "en" ? product.nameEn : product.nameFa,
+        subtitle: `${product.origin} / ${product.grade}`,
+        href: `/${lang}/products/${product.id}`,
+      }));
+
+    const careerResults = jobs
+      .filter(
+        (job) =>
+          match(job.titleEn) ||
+          match(job.titleFa) ||
+          match(job.descriptionEn) ||
+          match(job.descriptionFa) ||
+          match(job.department) ||
+          match(job.location),
+      )
+      .slice(0, 5)
+      .map((job) => ({
+        id: `career-${job.id}`,
+        type: "career",
+        title: lang === "en" ? job.titleEn : job.titleFa,
+        subtitle: `${job.department} / ${job.location}`,
+        href: `/${lang}/careers/${job.id}`,
+      }));
+
+    const faqResults = faqs
+      .filter(
+        (faq) =>
+          match(faq.questionEn) ||
+          match(faq.questionFa) ||
+          match(faq.answerEn) ||
+          match(faq.answerFa),
+      )
+      .slice(0, 5)
+      .map((faq) => ({
+        id: `faq-${faq.id}`,
+        type: "faq",
+        title: lang === "en" ? faq.questionEn : faq.questionFa,
+        subtitle:
+          faqCategories[faq.category]?.[lang] ||
+          (lang === "en" ? "FAQ" : "سوالات"),
+        href: `/${lang}/faq#faq-${faq.id}`,
+      }));
+
+    return { products: productResults, careers: careerResults, faqs: faqResults };
+  }, [query, lang]);
+
+  const flatResults = useMemo(
+    () => [
+      ...searchResults.products,
+      ...searchResults.careers,
+      ...searchResults.faqs,
+    ],
+    [searchResults],
+  );
+
+  const indexedResults = useMemo(() => {
+    let index = 0;
+    const withIndex = (items: typeof flatResults) =>
+      items.map((item) => ({ ...item, index: index++ }));
+
+    return {
+      products: withIndex(searchResults.products),
+      careers: withIndex(searchResults.careers),
+      faqs: withIndex(searchResults.faqs),
+    };
+  }, [searchResults, flatResults]);
+
+  useEffect(() => {
+    setActiveIndex(-1);
+  }, [query]);
+
+  const hasResults = flatResults.length > 0;
+
+  const handleSearchKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Escape") {
+      setIsSearchOpen(false);
+      setActiveIndex(-1);
+      return;
+    }
+
+    if (!hasResults) return;
+
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      setActiveIndex((prev) => (prev + 1) % flatResults.length);
+    }
+
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+      setActiveIndex((prev) =>
+        prev <= 0 ? flatResults.length - 1 : prev - 1,
+      );
+    }
+
+    if (event.key === "Enter" && activeIndex >= 0) {
+      event.preventDefault();
+      router.push(flatResults[activeIndex].href);
+      setIsSearchOpen(false);
+      setActiveIndex(-1);
+    }
+  };
+
   return (
     <>
       <header
@@ -125,17 +273,157 @@ export function Header({ lang }: HeaderProps) {
 
             {/* Centered Search Box - Hidden on mobile, visible on desktop */}
             <div className="hidden md:flex flex-1 justify-center px-4">
-              <div className="relative w-full max-w-md">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5 pointer-events-none" />
+              <div ref={searchRef} className="relative w-full max-w-md">
+                <Search
+                  className={`absolute top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5 pointer-events-none ${
+                    isRTL ? "right-4" : "left-4"
+                  }`}
+                />
                 <input
                   type="search"
-                  placeholder={lang === "en" ? "Search..." : "جستجو..."}
-                  className="pl-12 pr-4 py-2 text-sm border border-border/50 rounded-full bg-background/60 text-foreground placeholder-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/50 w-full transition-all hover:border-border/70"
-                  aria-label={lang === "en" ? "Search" : "جستجو"}
+                  value={query}
+                  onChange={(event) => {
+                    setQuery(event.target.value);
+                    setIsSearchOpen(true);
+                  }}
+                  onFocus={() => setIsSearchOpen(true)}
+                  onKeyDown={handleSearchKeyDown}
+                  placeholder={lang === "en" ? "Search..." : "?????..."}
+                  className={`py-2 text-sm border border-border/50 rounded-full bg-background/60 text-foreground placeholder-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/50 w-full transition-all hover:border-border/70 ${
+                    isRTL ? "pr-12 pl-4 text-right" : "pl-12 pr-4 text-left"
+                  }`}
+                  aria-label={lang === "en" ? "Search" : "?????"}
+                  aria-expanded={isSearchOpen && query.trim().length > 0}
+                  aria-controls="header-search-results"
+                  role="combobox"
+                  aria-autocomplete="list"
                 />
+
+                {isSearchOpen && query.trim().length > 0 && (
+                  <div
+                    id="header-search-results"
+                    role="listbox"
+                    className="absolute left-0 right-0 mt-2 rounded-2xl border border-border/40 bg-background/95 shadow-xl backdrop-blur-xl p-2 max-h-80 overflow-auto"
+                  >
+                    {hasResults ? (
+                      <div className="space-y-2">
+                        {indexedResults.products.length > 0 && (
+                          <div>
+                            <p className="px-2 pt-2 pb-1 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                              {lang === "en" ? "Products" : "???????"}
+                            </p>
+                            <div className="space-y-1">
+                              {indexedResults.products.map((item) => (
+                                <Link
+                                  key={item.id}
+                                  href={item.href}
+                                  role="option"
+                                  aria-selected={activeIndex === item.index}
+                                  onMouseEnter={() => setActiveIndex(item.index)}
+                                  onClick={() => {
+                                    setIsSearchOpen(false);
+                                    setQuery("");
+                                    setActiveIndex(-1);
+                                  }}
+                                  className={`block rounded-xl px-3 py-2 transition-colors ${
+                                    activeIndex === item.index
+                                      ? "bg-muted/60 text-foreground"
+                                      : "hover:bg-muted/40"
+                                  }`}
+                                >
+                                  <p className="text-sm font-semibold text-foreground line-clamp-1">
+                                    {item.title}
+                                  </p>
+                                  <p className="text-xs text-muted-foreground line-clamp-1">
+                                    {item.subtitle}
+                                  </p>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {indexedResults.careers.length > 0 && (
+                          <div>
+                            <p className="px-2 pt-2 pb-1 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                              {lang === "en" ? "Careers" : "???????? ????"}
+                            </p>
+                            <div className="space-y-1">
+                              {indexedResults.careers.map((item) => (
+                                <Link
+                                  key={item.id}
+                                  href={item.href}
+                                  role="option"
+                                  aria-selected={activeIndex === item.index}
+                                  onMouseEnter={() => setActiveIndex(item.index)}
+                                  onClick={() => {
+                                    setIsSearchOpen(false);
+                                    setQuery("");
+                                    setActiveIndex(-1);
+                                  }}
+                                  className={`block rounded-xl px-3 py-2 transition-colors ${
+                                    activeIndex === item.index
+                                      ? "bg-muted/60 text-foreground"
+                                      : "hover:bg-muted/40"
+                                  }`}
+                                >
+                                  <p className="text-sm font-semibold text-foreground line-clamp-1">
+                                    {item.title}
+                                  </p>
+                                  <p className="text-xs text-muted-foreground line-clamp-1">
+                                    {item.subtitle}
+                                  </p>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {indexedResults.faqs.length > 0 && (
+                          <div>
+                            <p className="px-2 pt-2 pb-1 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                              {lang === "en" ? "FAQ" : "?????? ??????"}
+                            </p>
+                            <div className="space-y-1">
+                              {indexedResults.faqs.map((item) => (
+                                <Link
+                                  key={item.id}
+                                  href={item.href}
+                                  role="option"
+                                  aria-selected={activeIndex === item.index}
+                                  onMouseEnter={() => setActiveIndex(item.index)}
+                                  onClick={() => {
+                                    setIsSearchOpen(false);
+                                    setQuery("");
+                                    setActiveIndex(-1);
+                                  }}
+                                  className={`block rounded-xl px-3 py-2 transition-colors ${
+                                    activeIndex === item.index
+                                      ? "bg-muted/60 text-foreground"
+                                      : "hover:bg-muted/40"
+                                  }`}
+                                >
+                                  <p className="text-sm font-semibold text-foreground line-clamp-1">
+                                    {item.title}
+                                  </p>
+                                  <p className="text-xs text-muted-foreground line-clamp-1">
+                                    {item.subtitle}
+                                  </p>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="px-3 py-4 text-sm text-muted-foreground">
+                        {lang === "en" ? "No results found." : "???????? ???? ???."}
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
-
             {/* Language Dropdown - Responsive */}
             <div className="relative shrink-0" ref={langRef}>
               <button

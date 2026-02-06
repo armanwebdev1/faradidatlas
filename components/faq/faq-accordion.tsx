@@ -22,6 +22,7 @@ export function FAQAccordion({ items, lang }: FAQAccordionProps) {
         return (
           <div
             key={item.id}
+            id={`faq-${item.id}`}
             className={`group rounded-2xl border overflow-hidden shadow-sm transition-all duration-300 animate-fade-in-up ${
               isOpen
                 ? "border-accent/30 bg-accent/10 shadow-md"
