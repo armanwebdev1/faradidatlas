@@ -178,7 +178,11 @@ export function Hero({ lang }: HeroProps) {
         }`}
       >
         <div className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition">
-          <MdChevronLeft size={28} className="text-white" />
+          {isRTL ? (
+            <MdChevronRight size={28} className="text-white" />
+          ) : (
+            <MdChevronLeft size={28} className="text-white" />
+          )}
         </div>
       </button>
 
@@ -190,7 +194,11 @@ export function Hero({ lang }: HeroProps) {
         }`}
       >
         <div className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition">
-          <MdChevronRight size={28} className="text-white" />
+          {isRTL ? (
+            <MdChevronLeft size={28} className="text-white" />
+          ) : (
+            <MdChevronRight size={28} className="text-white" />
+          )}
         </div>
       </button>
 
