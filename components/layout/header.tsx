@@ -303,7 +303,7 @@ export function Header({ lang }: HeaderProps) {
                   <div
                     id="header-search-results"
                     role="listbox"
-                    className="absolute left-0 right-0 mt-2 rounded-2xl border border-border/40 bg-background/95 shadow-xl backdrop-blur-xl p-2 max-h-80 overflow-auto"
+                    className="absolute left-0 right-0 z-50 mt-2 rounded-2xl border border-border/40 bg-background/95 shadow-xl backdrop-blur-xl p-2 max-h-80 overflow-auto"
                   >
                     {hasResults ? (
                       <div className="space-y-2">
