@@ -12,6 +12,9 @@ interface JobListingProps {
 export function JobListing({ job, lang }: JobListingProps) {
   const title = lang === "en" ? job.titleEn : job.titleFa;
   const description = lang === "en" ? job.descriptionEn : job.descriptionFa;
+  const department = lang === "en" ? job.departmentEn : job.departmentFa;
+  const location = lang === "en" ? job.locationEn : job.locationFa;
+  const isRTL = lang === "fa";
 
   const typeLabels = {
     "full-time": { en: "Full-time", fa: "تمام‌وقت" },
@@ -71,7 +74,7 @@ export function JobListing({ job, lang }: JobListingProps) {
                     : "Shabnam, var(--font-body)",
               }}
             >
-              {job.department}
+              {department}
             </span>
           </span>
           <span className="h-1 w-1 rounded-full bg-foreground/20" />
@@ -103,7 +106,7 @@ export function JobListing({ job, lang }: JobListingProps) {
                     : "Shabnam, var(--font-body)",
               }}
             >
-              {job.location}
+              {location}
             </span>
           </span>
         </div>
@@ -121,7 +124,11 @@ export function JobListing({ job, lang }: JobListingProps) {
           {description}
         </p>
 
-        <div className="mt-6 flex items-center justify-between border-t border-foreground/10 pt-4 text-[11px] sm:text-xs uppercase tracking-[0.2em] text-accent-warm-gold">
+        <div
+          className={`mt-6 flex items-center justify-between border-t border-foreground/10 pt-4 text-[11px] sm:text-xs uppercase tracking-[0.2em] text-accent-warm-gold ${
+            isRTL ? "flex-row-reverse" : ""
+          }`}
+        >
           <span
             style={{
               fontFamily:
@@ -133,7 +140,9 @@ export function JobListing({ job, lang }: JobListingProps) {
             {lang === "en" ? "View Position" : "مشاهده موقعیت"}
           </span>
           <svg
-            className="h-4 w-4 text-accent-warm-gold transition-transform duration-300 group-hover:translate-x-1"
+            className={`h-4 w-4 text-accent-warm-gold transition-transform duration-300 ${
+              isRTL ? "-scale-x-100 group-hover:-translate-x-1" : "group-hover:translate-x-1"
+            }`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

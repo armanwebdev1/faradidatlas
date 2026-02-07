@@ -119,7 +119,9 @@ export function CareersHero({ lang }: CareersHeroProps) {
             <div
               ref={ctaRef}
               className={`mt-8 flex flex-col sm:flex-row gap-4 ${
-                isRTL ? "sm:flex-row-reverse" : ""
+                isRTL
+                  ? "sm:flex-row-reverse sm:justify-end items-end"
+                  : "sm:justify-start items-start"
               }`}
             >
               <a

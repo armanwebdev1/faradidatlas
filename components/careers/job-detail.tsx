@@ -12,9 +12,12 @@ interface JobDetailProps {
 export function JobDetail({ job, lang }: JobDetailProps) {
   const title = lang === "en" ? job.titleEn : job.titleFa;
   const description = lang === "en" ? job.descriptionEn : job.descriptionFa;
+  const department = lang === "en" ? job.departmentEn : job.departmentFa;
+  const location = lang === "en" ? job.locationEn : job.locationFa;
   const responsibilities =
     lang === "en" ? job.responsibilitiesEn : job.responsibilitiesFa;
   const requirements = lang === "en" ? job.requirementsEn : job.requirementsFa;
+  const benefits = lang === "en" ? job.benefitsEn : job.benefitsFa;
   const typeLabel =
     job.type === "full-time"
       ? lang === "en"
@@ -142,7 +145,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
             {lang === "en" ? "Benefits" : "مزایا"}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-            {job.benefits.map((benefit, idx) => (
+            {benefits.map((benefit, idx) => (
               <div
                 key={idx}
                 className="rounded-2xl border border-foreground/10 bg-white/80 px-4 py-3 text-center"
@@ -178,7 +181,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
                 {lang === "en" ? "Department" : "بخش"}
               </span>
               <span className="text-sm font-semibold text-foreground">
-                {job.department}
+                {department}
               </span>
             </div>
             <div className="flex items-center justify-between gap-4 border-b border-foreground/5 pb-3">
@@ -186,7 +189,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
                 {lang === "en" ? "Location" : "مکان"}
               </span>
               <span className="text-sm font-semibold text-foreground">
-                {job.location}
+                {location}
               </span>
             </div>
             <div className="flex items-center justify-between gap-4">

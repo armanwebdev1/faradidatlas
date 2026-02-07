@@ -29,6 +29,8 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
   }
 
   const jobTitle = lang === "en" ? job.titleEn : job.titleFa
+  const department = lang === "en" ? job.departmentEn : job.departmentFa
+  const location = lang === "en" ? job.locationEn : job.locationFa
   const isRTL = lang === "fa"
   const typeLabel =
     job.type === "full-time"
@@ -149,7 +151,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
                     </span>
                     <span className="h-1 w-1 rounded-full bg-accent-warm-gold" />
                     <span className="font-semibold text-foreground/80">
-                      {job.department}
+                      {department}
                     </span>
                   </div>
                   <div className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-white px-4 py-2 text-xs sm:text-sm">
@@ -158,7 +160,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
                     </span>
                     <span className="h-1 w-1 rounded-full bg-accent-warm-gold" />
                     <span className="font-semibold text-foreground/80">
-                      {job.location}
+                      {location}
                     </span>
                   </div>
                   <div className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-white px-4 py-2 text-xs sm:text-sm">

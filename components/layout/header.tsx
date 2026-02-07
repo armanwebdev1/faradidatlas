@@ -166,15 +166,19 @@ export function Header({ lang }: HeaderProps) {
           match(job.titleFa) ||
           match(job.descriptionEn) ||
           match(job.descriptionFa) ||
-          match(job.department) ||
-          match(job.location),
+          match(job.departmentEn) ||
+          match(job.departmentFa) ||
+          match(job.locationEn) ||
+          match(job.locationFa),
       )
       .slice(0, 5)
       .map((job) => ({
         id: `career-${job.id}`,
         type: "career",
         title: lang === "en" ? job.titleEn : job.titleFa,
-        subtitle: `${job.department} / ${job.location}`,
+        subtitle: `${lang === "en" ? job.departmentEn : job.departmentFa} / ${
+          lang === "en" ? job.locationEn : job.locationFa
+        }`,
         href: `/${lang}/careers/${job.id}`,
       }));
 

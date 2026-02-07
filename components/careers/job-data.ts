@@ -2,8 +2,10 @@ export interface Job {
   id: number;
   titleEn: string;
   titleFa: string;
-  department: string;
-  location: string;
+  departmentEn: string;
+  departmentFa: string;
+  locationEn: string;
+  locationFa: string;
   type: "full-time" | "part-time" | "contract";
   descriptionEn: string;
   descriptionFa: string;
@@ -11,7 +13,8 @@ export interface Job {
   responsibilitiesFa: string[];
   requirementsEn: string[];
   requirementsFa: string[];
-  benefits: string[];
+  benefitsEn: string[];
+  benefitsFa: string[];
 }
 
 export const jobs: Job[] = [
@@ -19,8 +22,10 @@ export const jobs: Job[] = [
     id: 1,
     titleEn: "Quality Assurance Manager",
     titleFa: "مدیر اطمینان کیفیت",
-    department: "Operations",
-    location: "Tehran",
+    departmentEn: "Operations",
+    departmentFa: "عملیات",
+    locationEn: "Tehran",
+    locationFa: "تهران",
     type: "full-time",
     descriptionEn:
       "Lead our quality control initiatives across all production and sourcing operations.",
@@ -50,19 +55,22 @@ export const jobs: Job[] = [
       "گواهی‌های ISO 22000 و HACCP",
       "تسلط به انگلیسی و فارسی",
     ],
-    benefits: [
+    benefitsEn: [
       "Competitive salary",
       "Health insurance",
       "Training budget",
       "Flexible hours",
     ],
+    benefitsFa: ["حقوق رقابتی", "بیمه درمانی", "بودجه آموزش", "ساعات کاری منعطف"],
   },
   {
     id: 2,
     titleEn: "Export Logistics Coordinator",
     titleFa: "هماهنگ‌کننده لجستیک صادرات",
-    department: "Logistics",
-    location: "Tehran",
+    departmentEn: "Logistics",
+    departmentFa: "لجستیک",
+    locationEn: "Tehran",
+    locationFa: "تهران",
     type: "full-time",
     descriptionEn:
       "Coordinate international shipments, documentation, and customs clearance.",
@@ -91,19 +99,22 @@ export const jobs: Job[] = [
       "آگاهی از کدهای HS و روش‌های حمل‌ونقل",
       "مهارت‌های سازمانی قوی",
     ],
-    benefits: [
+    benefitsEn: [
       "Salary package",
       "Performance bonus",
       "Team events",
       "Career growth",
     ],
+    benefitsFa: ["بسته حقوق و مزایا", "پاداش عملکرد", "رویدادهای تیمی", "رشد شغلی"],
   },
   {
     id: 3,
     titleEn: "B2B Sales Representative",
     titleFa: "نمایندگی فروش B2B",
-    department: "Sales",
-    location: "Tehran / Remote",
+    departmentEn: "Sales",
+    departmentFa: "فروش",
+    locationEn: "Tehran / Remote",
+    locationFa: "تهران / دورکاری",
     type: "full-time",
     descriptionEn:
       "Develop and nurture relationships with international buyers and distributors.",
@@ -132,19 +143,27 @@ export const jobs: Job[] = [
       "مهارت‌های ارتباطی و مذاکره عالی",
       "تسلط به انگلیسی و فارسی",
     ],
-    benefits: [
+    benefitsEn: [
       "Base salary + commission",
       "Car allowance",
       "International travel",
       "Bonus structure",
+    ],
+    benefitsFa: [
+      "حقوق پایه + کمیسیون",
+      "کمک‌هزینه خودرو",
+      "سفرهای بین‌المللی",
+      "ساختار پاداش",
     ],
   },
   {
     id: 4,
     titleEn: "Warehouse Operations Supervisor",
     titleFa: "سرپرست عملیات انبار",
-    department: "Operations",
-    location: "Alborz",
+    departmentEn: "Operations",
+    departmentFa: "عملیات",
+    locationEn: "Alborz",
+    locationFa: "البرز",
     type: "full-time",
     descriptionEn:
       "Manage daily warehouse operations, inventory, and cold chain management.",
@@ -173,11 +192,12 @@ export const jobs: Job[] = [
       "تجربه زنجیره سرد/ایمنی غذایی الزامی",
       "مهارت‌های رهبری و سازمانی",
     ],
-    benefits: [
+    benefitsEn: [
       "Competitive salary",
       "Shift allowance",
       "Health insurance",
       "Staff discounts",
     ],
+    benefitsFa: ["حقوق رقابتی", "حق شیفت", "بیمه درمانی", "تخفیف کارکنان"],
   },
 ];
