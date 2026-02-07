@@ -39,7 +39,14 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6 sm:gap-8">
                 {/* Left - Heading */}
                 <div className="flex-1">
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight font-hero">
+                  <h1
+                    className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight font-hero"
+                    style={{
+                      fontFamily: isRTL
+                        ? "Estedad, var(--font-hero)"
+                        : "var(--font-hero)",
+                    }}
+                  >
                     {lang === "en" ? "Our Products" : "محصولات ما"}
                   </h1>
                 </div>
