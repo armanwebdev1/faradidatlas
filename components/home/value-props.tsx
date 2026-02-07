@@ -209,7 +209,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
         {/* Premium Section Header */}
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
           <p className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6">
-            {lang === "en" ? "Why FaraDid" : "چرا فرادید اطلس؟"}
+            {lang === "en" ? "Why Faradid Atlas" : "چرا فرادید اطلس؟"}
           </p>
           <h2
             ref={titleRef}

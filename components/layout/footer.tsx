@@ -49,7 +49,7 @@ export function Footer({ lang }: FooterProps) {
               <div className="mb-8">
                 <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 tracking-tight">
                   <span className="bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
-                    FaraDid
+                    Faradid Atlas
                   </span>
                 </h3>
                 <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-light">

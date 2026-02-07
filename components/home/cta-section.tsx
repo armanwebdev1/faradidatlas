@@ -93,7 +93,7 @@ export function CTASection({ lang }: CTASectionProps) {
           }`}
         >
           {/* Image Part - responsive sizing */}
-          <div className="flex-1 lg:w-1/2 min-h-64 sm:min-h-80 md:min-h-96 lg:min-h-full">
+          <div className="flex-1 lg:w-1/2 h-64 sm:h-80 md:h-96 lg:h-full">
             <div className="relative group overflow-hidden rounded-lg sm:rounded-2xl shadow-xl md:shadow-2xl h-full">
               <img
                 src="/cta.jpg"
@@ -180,11 +180,11 @@ export function CTASection({ lang }: CTASectionProps) {
             {/* Stats Grid - responsive layout */}
             <div className="mt-6 sm:mt-8 md:mt-10 flex justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 text-foreground/20 flex-wrap sm:flex-nowrap">
               {/* Partners stat */}
-              <div className="text-center group cursor-default flex-1 sm:flex-none min-w-max">
-                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent transition-all duration-500 group-hover:from-accent group-hover:to-accent-warm-copper">
+              <div className="text-center flex-1 sm:flex-none min-w-max">
+                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
                   <CountUpNumber target={150} suffix="+" />
                 </div>
-                <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50 transition-colors duration-500 group-hover:text-accent">
+                <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50">
                   {lang === "en" ? "Partners" : "همکاران"}
                 </p>
               </div>
@@ -193,11 +193,11 @@ export function CTASection({ lang }: CTASectionProps) {
               <div className="hidden sm:block w-px bg-gradient-to-b from-transparent via-accent to-transparent" />
 
               {/* Countries stat */}
-              <div className="text-center group cursor-default flex-1 sm:flex-none min-w-max">
-                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent-warm-copper bg-clip-text text-transparent transition-all duration-500 group-hover:from-accent-warm-copper group-hover:to-accent">
+              <div className="text-center flex-1 sm:flex-none min-w-max">
+                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent-warm-copper bg-clip-text text-transparent">
                   <CountUpNumber target={50} suffix="+" />
                 </div>
-                <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50 transition-colors duration-500 group-hover:text-accent-warm-copper">
+                <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50">
                   {lang === "en" ? "Countries" : "کشورها"}
                 </p>
               </div>
@@ -206,14 +206,14 @@ export function CTASection({ lang }: CTASectionProps) {
               <div className="hidden sm:block w-px bg-gradient-to-b from-transparent via-accent to-transparent" />
 
               {/* Experience stat */}
-              <div className="text-center group cursor-default flex-1 sm:flex-none min-w-max">
-                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent transition-all duration-500 group-hover:from-accent-warm-copper group-hover:to-accent">
+              <div className="text-center flex-1 sm:flex-none min-w-max">
+                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
                   <CountUpNumber
                     target={20}
                     suffix={lang === "en" ? "y" : " سال"}
                   />
                 </div>
-                <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50 transition-colors duration-500 group-hover:text-accent-warm-copper">
+                <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50">
                   {lang === "en" ? "Experience" : "تجربه"}
                 </p>
               </div>
