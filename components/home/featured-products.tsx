@@ -52,7 +52,7 @@ const products = {
       id: 1,
       name: "زعفران پرمیوم",
       origin: "ایران، خراسان",
-      grade: "درجه اول",
+      grade: "درجه یک",
       image:
         "https://images.unsplash.com/photo-1599599810694-b3627db32322?w=500&h=500&fit=crop",
       description: "رشته‌های زعفران دستچین با رنگ و بوی استثنایی.",
@@ -70,7 +70,7 @@ const products = {
       id: 3,
       name: "فستق",
       origin: "ایران، رفسنجان",
-      grade: "درجه اول",
+      grade: "درجه یک",
       image:
         "https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=500&h=500&fit=crop",
       description: "فستق‌های سرخ شده و شور با کنترل کیفیت بسیار خوب.",
@@ -92,10 +92,7 @@ export function FeaturedProducts({ lang }: FeaturedProductsProps) {
   const productList = lang === "en" ? products.en : products.fa;
 
   return (
-    <section
-      id="products"
-      className="section bg-background/50"
-    >
+    <section id="products" className="section bg-background/50">
       <div className="container-wide">
         {/* Section heading - responsive */}
         <div className="text-center mb-10 sm:mb-16">
@@ -167,10 +164,7 @@ export function FeaturedProducts({ lang }: FeaturedProductsProps) {
 
         {/* CTA Button - responsive and touch-friendly */}
         <div className="text-center mt-10 sm:mt-14 md:mt-16">
-          <Link
-            href={`/${lang}/products`}
-            className="btn btn-primary btn-lg"
-          >
+          <Link href={`/${lang}/products`} className="btn btn-primary btn-lg">
             {lang === "en" ? "Explore All Products" : "مشاهده تمام محصولات"}
           </Link>
         </div>

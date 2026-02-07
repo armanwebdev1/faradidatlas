@@ -30,7 +30,10 @@ export function GetConnected({ lang }: GetConnectedProps) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left - Heading */}
-          <h2 className="lg:col-span-5 text-4xl md:text-5xl font-bold font-hero text-primary leading-tight tracking-tight">
+          <h2
+            className="lg:col-span-5 text-4xl md:text-5xl font-bold font-hero text-primary leading-tight tracking-tight"
+            style={{ fontFamily: "var(--font-hero)" }}
+          >
             {lang === "en"
               ? "Read our story to connect your supply chain"
               : "داستان ما"}

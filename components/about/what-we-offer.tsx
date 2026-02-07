@@ -96,7 +96,10 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-8">
+          <h2
+            className="text-5xl md:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-8"
+            style={{ fontFamily: "var(--font-hero)" }}
+          >
             {lang === "en" ? "What we offer" : "چه چیزی ارائه می‌دهیم"}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">

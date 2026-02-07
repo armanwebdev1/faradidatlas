@@ -168,10 +168,14 @@ export function TeamShowcase({ lang }: TeamShowcaseProps) {
           <span className="inline-block px-4 py-2 bg-accent-warm-gold/15 rounded-full text-xs font-bold text-accent-warm-gold mb-6 uppercase tracking-widest">
             {lang === "en" ? "Our Team" : "تیم ما"}
           </span>
-          <h2 className="text-5xl md:text-6xl font-bold text-primary mb-6 tracking-tight font-hero">
-            {lang === "en" ? "Our amazing team who works for you" : "تیم ما"}
+          <h2
+            className="text-5xl md:text-6xl font-bold text-primary mb-6 tracking-tight font-hero"
+            style={{ fontFamily: "var(--font-hero)" }}
+          >
+            {lang === "en"
+              ? "Our amazing team who works for you"
+              : "تیم مجرب ما"}
           </h2>
-          <div className="w-24 h-1 bg-accent-warm-gold mx-auto" />
         </div>
 
         {/* Team Grid */}

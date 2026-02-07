@@ -13,7 +13,7 @@ const slides = [
   {
     id: 1,
     image: "/1.jpg",
-    title: { en: "Premium Global Foods", fa: "غذاهای اول درجه جهانی" },
+    title: { en: "Premium Global Foods", fa: "غذاهای درجه یک جهانی" },
     subtitle: { en: "Exceptional Quality", fa: "کیفیت برتر" },
     description: {
       en: "Trusted global food exporter with premium sourcing, certified quality, and private labeling solutions for discerning partners worldwide.",
@@ -218,9 +218,7 @@ export function Hero({ lang }: HeroProps) {
             {slide.subtitle[lang]}
           </p>
 
-          <h1
-            className="mb-8 text-responsive-hero text-white"
-          >
+          <h1 className="mb-8 text-responsive-hero text-white">
             <span ref={titleLine1Ref} className="block">
               {slide.title[lang].split(" ")[0]}
             </span>
