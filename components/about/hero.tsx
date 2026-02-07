@@ -71,7 +71,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
             <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80"
-                alt="Global trading operations"
+                alt="Tehran"
                 fill
                 className="object-cover"
               />
