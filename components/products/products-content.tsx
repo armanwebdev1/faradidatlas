@@ -33,7 +33,7 @@ export function ProductsContent({ lang, products }: ProductsContentProps) {
           <div className="lg:w-64 flex-shrink-0">
             <div className="sticky top-32">
               <h3 className="text-sm font-bold text-primary mb-8 uppercase tracking-widest">
-                {lang === "en" ? "Filter" : "ÙÛŒÙ„ØªØ±"}
+                {lang === "en" ? "Filter" : "فیلتر"}
               </h3>
               <Filters
                 lang={lang}
@@ -48,7 +48,7 @@ export function ProductsContent({ lang, products }: ProductsContentProps) {
             {/* Sorting Header */}
             <div className="mb-10 sm:mb-12 flex justify-between items-center">
               <span className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wide">
-                {lang === "en" ? "Best Seller" : "Ù¾Ø±ÙØ±ÙˆØ´â€ŒØªØ±ÛŒÙ†"}
+                {lang === "en" ? "Best Seller" : "پرفروش‌ترین"}
               </span>
               <Sorting
                 lang={lang}
@@ -73,7 +73,7 @@ export function ProductsContent({ lang, products }: ProductsContentProps) {
             ) : (
               <div className="text-center py-20 md:py-28">
                 <p className="text-base sm:text-lg text-muted-foreground">
-                  {lang === "en" ? "No products found" : "Ù…Ø­ØµÙˆÙ„ÛŒ Ù¾ÛŒØ¯Ø§ Ù†Ø´Ø¯"}
+                  {lang === "en" ? "No products found" : "محصولی پیدا نشد"}
                 </p>
               </div>
             )}
