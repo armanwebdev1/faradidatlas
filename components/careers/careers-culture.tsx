@@ -21,8 +21,7 @@ const cultureItems = {
     },
     {
       title: "Growth & Learning",
-      description:
-        "Continuous development with training and certifications.",
+      description: "Continuous development with training and certifications.",
       icon: TrendingUp,
     },
     {
@@ -44,7 +43,7 @@ const cultureItems = {
     },
     {
       title: "رشد و یادگیری",
-      description: "توسعه مداوم با برنامه‌های آموزشی و تصدیق‌ها.",
+      description: "توسعه مداوم با برنامه‌های آموزشی و گواهی‌ها.",
       icon: TrendingUp,
     },
     {
@@ -181,7 +180,10 @@ export function CareersCulture({ lang }: CareersCultureProps) {
               >
                 <div className="flex items-center justify-between">
                   <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm">
-                    <Icon className="h-6 w-6 text-foreground" strokeWidth={1.5} />
+                    <Icon
+                      className="h-6 w-6 text-foreground"
+                      strokeWidth={1.5}
+                    />
                   </div>
                 </div>
 

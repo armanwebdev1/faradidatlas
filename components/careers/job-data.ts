@@ -1,17 +1,17 @@
 export interface Job {
-  id: number
-  titleEn: string
-  titleFa: string
-  department: string
-  location: string
-  type: "full-time" | "part-time" | "contract"
-  descriptionEn: string
-  descriptionFa: string
-  responsibilitiesEn: string[]
-  responsibilitiesFa: string[]
-  requirementsEn: string[]
-  requirementsFa: string[]
-  benefits: string[]
+  id: number;
+  titleEn: string;
+  titleFa: string;
+  department: string;
+  location: string;
+  type: "full-time" | "part-time" | "contract";
+  descriptionEn: string;
+  descriptionFa: string;
+  responsibilitiesEn: string[];
+  responsibilitiesFa: string[];
+  requirementsEn: string[];
+  requirementsFa: string[];
+  benefits: string[];
 }
 
 export const jobs: Job[] = [
@@ -22,8 +22,10 @@ export const jobs: Job[] = [
     department: "Operations",
     location: "Tehran",
     type: "full-time",
-    descriptionEn: "Lead our quality control initiatives across all production and sourcing operations.",
-    descriptionFa: "هدایت کنندگان اطمینان کیفیت ما در تمام عملیات تولید و تامین",
+    descriptionEn:
+      "Lead our quality control initiatives across all production and sourcing operations.",
+    descriptionFa:
+      "هدایت کنندگان اطمینان کیفیت ما در تمام عملیات تولید و تامین",
     responsibilitiesEn: [
       "Oversee quality testing protocols and compliance audits",
       "Manage third-party lab partnerships and certifications",
@@ -32,7 +34,7 @@ export const jobs: Job[] = [
     ],
     responsibilitiesFa: [
       "نظارت بر پروتکل‌های آزمایش کیفیت و بازرسی‌های انطباق",
-      "مدیریت مشارکت‌های آزمایشگاه شخص ثالث و تصدیق‌ها",
+      "مدیریت مشارکت‌های آزمایشگاه شخص ثالث و گواهی‌ها",
       "توسعه و پیاده‌سازی سیستم‌های مستندات QC",
       "آموزش اعضای تیم در مورد استانداردهای کیفیت",
     ],
@@ -45,10 +47,15 @@ export const jobs: Job[] = [
     requirementsFa: [
       "درجه کارشناسی در علوم غذایی یا معادل",
       "۵+ سال تجربه QA در صنعت غذایی",
-      "تصدیق‌های ISO 22000 و HACCP",
+      "گواهی‌های ISO 22000 و HACCP",
       "تسلط به انگلیسی و فارسی",
     ],
-    benefits: ["Competitive salary", "Health insurance", "Training budget", "Flexible hours"],
+    benefits: [
+      "Competitive salary",
+      "Health insurance",
+      "Training budget",
+      "Flexible hours",
+    ],
   },
   {
     id: 2,
@@ -57,7 +64,8 @@ export const jobs: Job[] = [
     department: "Logistics",
     location: "Tehran",
     type: "full-time",
-    descriptionEn: "Coordinate international shipments, documentation, and customs clearance.",
+    descriptionEn:
+      "Coordinate international shipments, documentation, and customs clearance.",
     descriptionFa: "هماهنگی حمل‌ونقل بین‌المللی، اسناد و رفع موانع گمرکی",
     responsibilitiesEn: [
       "Manage export documentation and shipping logistics",
@@ -83,7 +91,12 @@ export const jobs: Job[] = [
       "آگاهی از کدهای HS و روش‌های حمل‌ونقل",
       "مهارت‌های سازمانی قوی",
     ],
-    benefits: ["Salary package", "Performance bonus", "Team events", "Career growth"],
+    benefits: [
+      "Salary package",
+      "Performance bonus",
+      "Team events",
+      "Career growth",
+    ],
   },
   {
     id: 3,
@@ -92,7 +105,8 @@ export const jobs: Job[] = [
     department: "Sales",
     location: "Tehran / Remote",
     type: "full-time",
-    descriptionEn: "Develop and nurture relationships with international buyers and distributors.",
+    descriptionEn:
+      "Develop and nurture relationships with international buyers and distributors.",
     descriptionFa: "توسعه و پرورش روابط با خریداران و توزیع‌کنندگان بین‌المللی",
     responsibilitiesEn: [
       "Build and maintain relationships with key buyers",
@@ -118,7 +132,12 @@ export const jobs: Job[] = [
       "مهارت‌های ارتباطی و مذاکره عالی",
       "تسلط به انگلیسی و فارسی",
     ],
-    benefits: ["Base salary + commission", "Car allowance", "International travel", "Bonus structure"],
+    benefits: [
+      "Base salary + commission",
+      "Car allowance",
+      "International travel",
+      "Bonus structure",
+    ],
   },
   {
     id: 4,
@@ -127,7 +146,8 @@ export const jobs: Job[] = [
     department: "Operations",
     location: "Alborz",
     type: "full-time",
-    descriptionEn: "Manage daily warehouse operations, inventory, and cold chain management.",
+    descriptionEn:
+      "Manage daily warehouse operations, inventory, and cold chain management.",
     descriptionFa: "مدیریت عملیات روزانه انبار، موجودی و مدیریت زنجیره سرد",
     responsibilitiesEn: [
       "Oversee receiving, storage, and shipping operations",
@@ -153,6 +173,11 @@ export const jobs: Job[] = [
       "تجربه زنجیره سرد/ایمنی غذایی الزامی",
       "مهارت‌های رهبری و سازمانی",
     ],
-    benefits: ["Competitive salary", "Shift allowance", "Health insurance", "Staff discounts"],
+    benefits: [
+      "Competitive salary",
+      "Shift allowance",
+      "Health insurance",
+      "Staff discounts",
+    ],
   },
-]
+];

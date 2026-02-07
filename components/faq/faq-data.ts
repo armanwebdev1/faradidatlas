@@ -1,10 +1,16 @@
 export interface FAQItem {
-  id: number
-  questionEn: string
-  questionFa: string
-  answerEn: string
-  answerFa: string
-  category: "sourcing" | "moq" | "lead-time" | "certifications" | "logistics" | "private-label"
+  id: number;
+  questionEn: string;
+  questionFa: string;
+  answerEn: string;
+  answerFa: string;
+  category:
+    | "sourcing"
+    | "moq"
+    | "lead-time"
+    | "certifications"
+    | "logistics"
+    | "private-label";
 }
 
 export const faqs: FAQItem[] = [
@@ -45,7 +51,7 @@ export const faqs: FAQItem[] = [
     answerEn:
       "Yes. All our products carry ISO 22000, HACCP, and FSSC 22000 certifications. Many are also Halal certified. We provide complete documentation including Certificates of Analysis, phytosanitary certificates, and health clearances for every shipment.",
     answerFa:
-      "بله. تمام محصولات ما دارای تصدیق‌های ISO 22000، HACCP و FSSC 22000 هستند. بسیاری از آنها نیز معتبر حلال هستند. ما اسناد کاملی از جمله گواهی‌های تجزیه، گواهی‌های فیتوسانیتری و رفع موانع سلامتی برای هر کشتی فراهم می‌کنیم.",
+      "بله. تمام محصولات ما دارای گواهی‌های ISO 22000، HACCP و FSSC 22000 هستند. بسیاری از آنها نیز معتبر حلال هستند. ما اسناد کاملی از جمله گواهی‌های تجزیه، گواهی‌های فیتوسانیتری و رفع موانع سلامتی برای هر کشتی فراهم می‌کنیم.",
     category: "certifications",
   },
   {
@@ -88,13 +94,13 @@ export const faqs: FAQItem[] = [
       "با تیم فروش ما از طریق صفحه تماس تماس بگیرید و محصول مورد علاقه، مقدار مورد نظر، کشور مقصد و زمان‌بندی را اطلاع دهید. ما در ۲۴-۴۸ ساعت پاسخ خواهیم داد.",
     category: "moq",
   },
-]
+];
 
 export const faqCategories = {
   sourcing: { en: "Sourcing", fa: "تامین" },
   moq: { en: "MOQ & Pricing", fa: "MOQ و قیمت‌گذاری" },
   "lead-time": { en: "Lead Times", fa: "مدت زمان تحویل" },
-  certifications: { en: "Quality & Certifications", fa: "کیفیت و تصدیق‌ها" },
+  certifications: { en: "Quality & Certifications", fa: "کیفیت و گواهی‌ها" },
   logistics: { en: "Shipping & Logistics", fa: "حمل‌ونقل و لجستیک" },
   "private-label": { en: "Private Labeling", fa: "علامت‌گذاری خصوصی" },
-}
+};

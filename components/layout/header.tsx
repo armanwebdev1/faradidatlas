@@ -143,15 +143,19 @@ export function Header({ lang }: HeaderProps) {
           match(product.nameFa) ||
           match(product.descriptionEn) ||
           match(product.descriptionFa) ||
-          match(product.origin) ||
-          match(product.grade),
+          match(product.originEn) ||
+          match(product.originFa) ||
+          match(product.gradeEn) ||
+          match(product.gradeFa),
       )
       .slice(0, 6)
       .map((product) => ({
         id: `product-${product.id}`,
         type: "product",
         title: lang === "en" ? product.nameEn : product.nameFa,
-        subtitle: `${product.origin} / ${product.grade}`,
+        subtitle: `${lang === "en" ? product.originEn : product.originFa} / ${
+          lang === "en" ? product.gradeEn : product.gradeFa
+        }`,
         href: `/${lang}/products/${product.id}`,
       }));
 

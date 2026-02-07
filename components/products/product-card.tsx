@@ -11,6 +11,9 @@ interface ProductCardProps {
 export function ProductCard({ product, lang }: ProductCardProps) {
   const name = lang === "en" ? product.nameEn : product.nameFa;
   const desc = lang === "en" ? product.descriptionEn : product.descriptionFa;
+  const origin = lang === "en" ? product.originEn : product.originFa;
+  const grade = lang === "en" ? product.gradeEn : product.gradeFa;
+  const minOrder = lang === "en" ? product.minOrderEn : product.minOrderFa;
   const isRTL = lang === "fa";
 
   return (
@@ -35,7 +38,7 @@ export function ProductCard({ product, lang }: ProductCardProps) {
           <div
             className={`absolute top-3 sm:top-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-accent-warm-gold text-primary text-xs sm:text-sm font-semibold rounded-lg shadow-md group-hover:shadow-lg transition-all duration-300 ${isRTL ? "left-3 sm:left-4" : "right-3 sm:right-4"}`}
           >
-            {product.grade}
+            {grade}
           </div>
 
           {/* Availability overlay */}
@@ -52,7 +55,7 @@ export function ProductCard({ product, lang }: ProductCardProps) {
         <div className="p-4 sm:p-5 space-y-2 sm:space-y-2.5 flex flex-col">
           {/* Category/Origin */}
           <p className="text-xs text-accent-warm-gold uppercase tracking-widest font-semibold">
-            {product.origin}
+            {origin}
           </p>
 
           {/* Product Name */}
@@ -90,7 +93,7 @@ export function ProductCard({ product, lang }: ProductCardProps) {
           {/* Bottom Info */}
           <div className="flex justify-between items-center">
             <span className="text-xs text-muted-foreground font-medium">
-              {product.minOrder}
+              {minOrder}
             </span>
             <span
               className={`text-xs font-semibold text-accent-warm-gold group-hover:text-accent-warm-gold/80 transition-colors duration-300 flex items-center gap-1 ${isRTL ? "flex-row-reverse" : ""}`}

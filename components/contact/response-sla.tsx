@@ -1,7 +1,7 @@
-import type { Language } from "@/lib/i18n"
+import type { Language } from "@/lib/i18n";
 
 interface ResponseSLAProps {
-  lang: Language
+  lang: Language;
 }
 
 export function ResponseSLA({ lang }: ResponseSLAProps) {
@@ -35,7 +35,8 @@ export function ResponseSLA({ lang }: ResponseSLAProps) {
     },
     fa: {
       title: "تعهد ما",
-      description: "ما ارزش وقت شما را می‌دانیم و متعهد به پاسخ سریع به تمام درخواست‌ها هستیم:",
+      description:
+        "ما ارزش وقت شما را می‌دانیم و متعهد به پاسخ سریع به تمام درخواست‌ها هستیم:",
       slas: [
         {
           title: "درخواست‌های ایمیل",
@@ -55,13 +56,13 @@ export function ResponseSLA({ lang }: ResponseSLAProps) {
         {
           title: "مراحل بعدی",
           timeline: "جلسه پیگیری در ۱ هفته",
-          description: "بحث درباره شرایط، تصدیق‌ها و لجستیک",
+          description: "بحث درباره شرایط، گواهی‌ها و لجستیک",
         },
       ],
     },
-  }
+  };
 
-  const data = lang === "en" ? content.en : content.fa
+  const data = lang === "en" ? content.en : content.fa;
 
   return (
     <div className="relative overflow-hidden rounded-3xl border border-foreground/10 bg-white px-6 py-12 sm:px-10 sm:py-14 lg:px-12 text-foreground shadow-[0_50px_120px_-90px_rgba(15,23,42,0.35)]">
@@ -96,5 +97,5 @@ export function ResponseSLA({ lang }: ResponseSLAProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

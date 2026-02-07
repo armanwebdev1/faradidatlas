@@ -3,17 +3,23 @@ export interface Product {
   nameEn: string;
   nameFa: string;
   category: "nuts" | "dried-fruits" | "spices" | "saffron";
-  origin: string;
-  grade: string;
+  originEn: string;
+  originFa: string;
+  gradeEn: string;
+  gradeFa: string;
   descriptionEn: string;
   descriptionFa: string;
-  packagingOptions: string[];
+  packagingOptionsEn: string[];
+  packagingOptionsFa: string[];
   certifications: string[];
-  shelf_life: string;
-  minOrder: string;
+  shelfLifeEn: string;
+  shelfLifeFa: string;
+  minOrderEn: string;
+  minOrderFa: string;
   image: string;
   images: string[];
-  priceRange: string;
+  priceRangeEn: string;
+  priceRangeFa: string;
   available: boolean;
 }
 
@@ -23,15 +29,20 @@ export const products: Product[] = [
     nameEn: "Premium Saffron",
     nameFa: "زعفران درجه یک",
     category: "saffron",
-    origin: "Khorasan",
-    grade: "Grade A - Negin",
+    originEn: "Khorasan",
+    originFa: "خراسان",
+    gradeEn: "Grade A - Negin",
+    gradeFa: "درجه A - نگین",
     descriptionEn:
       "Hand-picked saffron threads with exceptional color (ISO 3632 Grade 1) and unmistakable aroma",
     descriptionFa: "رشته‌های زعفران دستچین با رنگ استثنایی و بوی بی‌نظیر",
-    packagingOptions: ["1kg jars", "5kg tins", "25kg custom"],
+    packagingOptionsEn: ["1kg jars", "5kg tins", "25kg custom"],
+    packagingOptionsFa: ["جار ۱ کیلوگرمی", "قوطی ۵ کیلوگرمی", "۲۵ کیلوگرمی سفارشی"],
     certifications: ["ISO 22000", "HACCP", "Organic", "Halal"],
-    shelf_life: "2 years (sealed, cool storage)",
-    minOrder: "5kg minimum",
+    shelfLifeEn: "2 years (sealed, cool storage)",
+    shelfLifeFa: "۲ سال (پلمپ، نگهداری در محیط خنک)",
+    minOrderEn: "5kg minimum",
+    minOrderFa: "حداقل ۵ کیلوگرم",
     image:
       "https://images.unsplash.com/photo-1599599810694-b3627db32322?w=600&h=600&fit=crop",
     images: [
@@ -40,7 +51,8 @@ export const products: Product[] = [
       "/featured1.jpg",
       "/featured5.jpg",
     ],
-    priceRange: "$12-18 per gram (market dependent)",
+    priceRangeEn: "$12-18 per gram (market dependent)",
+    priceRangeFa: "۱۲–۱۸ دلار به ازای هر گرم (وابسته به بازار)",
     available: true,
   },
   {
@@ -48,15 +60,20 @@ export const products: Product[] = [
     nameEn: "Organic Dates",
     nameFa: "خرما ارگانیک",
     category: "dried-fruits",
-    origin: "Yazd",
-    grade: "Premium",
+    originEn: "Yazd",
+    originFa: "یزد",
+    gradeEn: "Premium",
+    gradeFa: "درجه ممتاز",
     descriptionEn:
       "Sun-dried, seedless dates with natural sweetness. Perfect for retail or ingredient use",
     descriptionFa: "خرماهای خشک‌شده در آفتاب، بدون هسته و با شیرینی طبیعی",
-    packagingOptions: ["1kg bags", "10kg cartons", "Bulk 50kg bags"],
+    packagingOptionsEn: ["1kg bags", "10kg cartons", "Bulk 50kg bags"],
+    packagingOptionsFa: ["کیسه ۱ کیلوگرمی", "کارتن ۱۰ کیلوگرمی", "کیسه فله ۵۰ کیلوگرمی"],
     certifications: ["ISO 22000", "Organic", "Halal"],
-    shelf_life: "18 months",
-    minOrder: "10kg",
+    shelfLifeEn: "18 months",
+    shelfLifeFa: "۱۸ ماه",
+    minOrderEn: "10kg",
+    minOrderFa: "حداقل ۱۰ کیلوگرم",
     image:
       "https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=600&h=600&fit=crop",
     images: [
@@ -64,7 +81,8 @@ export const products: Product[] = [
       "/featured2.jpg",
       "/featured3.jpg",
     ],
-    priceRange: "$4-6 per kg",
+    priceRangeEn: "$4-6 per kg",
+    priceRangeFa: "۴ تا ۶ دلار به ازای هر کیلوگرم",
     available: true,
   },
   {
@@ -72,22 +90,28 @@ export const products: Product[] = [
     nameEn: "Salted Pistachios",
     nameFa: "فستق شور",
     category: "nuts",
-    origin: "Rafsanjan",
-    grade: "Grade A",
+    originEn: "Rafsanjan",
+    originFa: "رفسنجان",
+    gradeEn: "Grade A",
+    gradeFa: "درجه A",
     descriptionEn:
       "Roasted and lightly salted pistachios. Superior flavor and texture",
     descriptionFa: "فستق‌های سرخ‌شده و شور‌شده با طعم و بافت برتر",
-    packagingOptions: ["250g packs", "1kg bags", "Custom bulk"],
+    packagingOptionsEn: ["250g packs", "1kg bags", "Custom bulk"],
+    packagingOptionsFa: ["بسته ۲۵۰ گرمی", "کیسه ۱ کیلوگرمی", "فله سفارشی"],
     certifications: ["ISO 22000", "HACCP", "Halal"],
-    shelf_life: "12 months",
-    minOrder: "5kg",
+    shelfLifeEn: "12 months",
+    shelfLifeFa: "۱۲ ماه",
+    minOrderEn: "5kg",
+    minOrderFa: "حداقل ۵ کیلوگرم",
     image:
       "https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=600&h=600&fit=crop",
     images: [
       "https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=1200&h=1400&fit=crop",
       "/featured1.jpg",
     ],
-    priceRange: "$8-12 per kg",
+    priceRangeEn: "$8-12 per kg",
+    priceRangeFa: "۸ تا ۱۲ دلار به ازای هر کیلوگرم",
     available: true,
   },
   {
@@ -95,15 +119,20 @@ export const products: Product[] = [
     nameEn: "Dried Herbs Mix",
     nameFa: "مخلوط گیاهان خشک",
     category: "spices",
-    origin: "Various",
-    grade: "Certified",
+    originEn: "Various",
+    originFa: "مختلف",
+    gradeEn: "Certified",
+    gradeFa: "دارای گواهی",
     descriptionEn:
       "Traditional blend of dried herbs: oregano, basil, thyme, mint",
     descriptionFa: "مخلوط سنتی گیاهان خشک: اوریگانو، ریحان، آویشن، نعناع",
-    packagingOptions: ["100g jars", "500g packs", "Bulk 10kg"],
+    packagingOptionsEn: ["100g jars", "500g packs", "Bulk 10kg"],
+    packagingOptionsFa: ["جار ۱۰۰ گرمی", "بسته ۵۰۰ گرمی", "فله ۱۰ کیلوگرمی"],
     certifications: ["ISO 22000", "HACCP"],
-    shelf_life: "24 months",
-    minOrder: "5kg",
+    shelfLifeEn: "24 months",
+    shelfLifeFa: "۲۴ ماه",
+    minOrderEn: "5kg",
+    minOrderFa: "حداقل ۵ کیلوگرم",
     image:
       "https://images.unsplash.com/photo-1599599810694-b3627db32322?w=600&h=600&fit=crop",
     images: [
@@ -112,7 +141,8 @@ export const products: Product[] = [
       "/featured5.jpg",
       "/featured2.jpg",
     ],
-    priceRange: "$5-7 per kg",
+    priceRangeEn: "$5-7 per kg",
+    priceRangeFa: "۵ تا ۷ دلار به ازای هر کیلوگرم",
     available: true,
   },
   {
@@ -120,21 +150,27 @@ export const products: Product[] = [
     nameEn: "Whole Black Cumin",
     nameFa: "سیاه دانه کامل",
     category: "spices",
-    origin: "Various",
-    grade: "Premium",
+    originEn: "Various",
+    originFa: "مختلف",
+    gradeEn: "Premium",
+    gradeFa: "درجه ممتاز",
     descriptionEn: "Small black seeds with nutty flavor and health benefits",
     descriptionFa: "دانه‌های سیاه کوچک با طعم بادام‌گونه و فوائد سلامتی",
-    packagingOptions: ["200g jars", "1kg bags", "Bulk"],
+    packagingOptionsEn: ["200g jars", "1kg bags", "Bulk"],
+    packagingOptionsFa: ["جار ۲۰۰ گرمی", "کیسه ۱ کیلوگرمی", "فله"],
     certifications: ["ISO 22000", "Halal"],
-    shelf_life: "24 months",
-    minOrder: "5kg",
+    shelfLifeEn: "24 months",
+    shelfLifeFa: "۲۴ ماه",
+    minOrderEn: "5kg",
+    minOrderFa: "حداقل ۵ کیلوگرم",
     image:
       "https://images.unsplash.com/photo-1599599810694-b3627db32322?w=600&h=600&fit=crop",
     images: [
       "https://images.unsplash.com/photo-1599599810694-b3627db32322?w=1200&h=1400&fit=crop",
       "/featured4.jpg",
     ],
-    priceRange: "$6-9 per kg",
+    priceRangeEn: "$6-9 per kg",
+    priceRangeFa: "۶ تا ۹ دلار به ازای هر کیلوگرم",
     available: true,
   },
   {
@@ -142,15 +178,20 @@ export const products: Product[] = [
     nameEn: "Raw Almonds",
     nameFa: "بادام خام",
     category: "nuts",
-    origin: "California/Iran Blend",
-    grade: "Grade A",
+    originEn: "California/Iran Blend",
+    originFa: "ترکیب کالیفرنیا/ایران",
+    gradeEn: "Grade A",
+    gradeFa: "درجه A",
     descriptionEn:
       "Premium raw almonds, blanched or with skin. High nutritional value",
     descriptionFa: "بادام‌های خام بسیار خوب، پوست‌شده یا با پوست",
-    packagingOptions: ["1kg bags", "5kg tins", "Bulk 25kg"],
+    packagingOptionsEn: ["1kg bags", "5kg tins", "Bulk 25kg"],
+    packagingOptionsFa: ["کیسه ۱ کیلوگرمی", "قوطی ۵ کیلوگرمی", "فله ۲۵ کیلوگرمی"],
     certifications: ["ISO 22000", "Halal"],
-    shelf_life: "12 months",
-    minOrder: "10kg",
+    shelfLifeEn: "12 months",
+    shelfLifeFa: "۱۲ ماه",
+    minOrderEn: "10kg",
+    minOrderFa: "حداقل ۱۰ کیلوگرم",
     image:
       "https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=600&h=600&fit=crop",
     images: [
@@ -159,7 +200,8 @@ export const products: Product[] = [
       "/featured2.jpg",
       "/featured3.jpg",
     ],
-    priceRange: "$7-11 per kg",
+    priceRangeEn: "$7-11 per kg",
+    priceRangeFa: "۷ تا ۱۱ دلار به ازای هر کیلوگرم",
     available: true,
   },
 ];

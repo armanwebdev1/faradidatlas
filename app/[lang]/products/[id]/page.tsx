@@ -46,6 +46,14 @@ export default async function ProductDetailPage({
   const name = lang === "en" ? product.nameEn : product.nameFa;
   const description =
     lang === "en" ? product.descriptionEn : product.descriptionFa;
+  const origin = lang === "en" ? product.originEn : product.originFa;
+  const grade = lang === "en" ? product.gradeEn : product.gradeFa;
+  const shelfLife = lang === "en" ? product.shelfLifeEn : product.shelfLifeFa;
+  const minOrder = lang === "en" ? product.minOrderEn : product.minOrderFa;
+  const packagingOptions =
+    lang === "en"
+      ? product.packagingOptionsEn
+      : product.packagingOptionsFa;
   const gallery =
     product.images && product.images.length > 0
       ? product.images
@@ -67,14 +75,20 @@ export default async function ProductDetailPage({
             >
               {lang === "en" ? "Home" : "خانه"}
             </Link>
-            <span className="h-1.5 w-1.5 rounded-full bg-foreground/30" aria-hidden="true" />
+            <span
+              className="h-1.5 w-1.5 rounded-full bg-foreground/30"
+              aria-hidden="true"
+            />
             <Link
               href={`/${lang}/products`}
               className="line-accent transition-colors hover:text-primary"
             >
               {lang === "en" ? "Products" : "محصولات"}
             </Link>
-            <span className="h-1.5 w-1.5 rounded-full bg-foreground/30" aria-hidden="true" />
+            <span
+              className="h-1.5 w-1.5 rounded-full bg-foreground/30"
+              aria-hidden="true"
+            />
             <span className="text-foreground font-medium line-clamp-1">
               {name}
             </span>
@@ -109,7 +123,7 @@ export default async function ProductDetailPage({
                     {lang === "en" ? "Origin" : "منشأ"}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
-                    {product.origin}
+                    {origin}
                   </p>
                 </div>
                 <div>
@@ -117,7 +131,7 @@ export default async function ProductDetailPage({
                     {lang === "en" ? "Grade" : "درجه"}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
-                    {product.grade}
+                    {grade}
                   </p>
                 </div>
                 <div>
@@ -125,7 +139,7 @@ export default async function ProductDetailPage({
                     {lang === "en" ? "Shelf Life" : "مدت نگهداری"}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
-                    {product.shelf_life}
+                    {shelfLife}
                   </p>
                 </div>
                 <div>
@@ -133,7 +147,7 @@ export default async function ProductDetailPage({
                     {lang === "en" ? "Minimum Order" : "حداقل سفارش"}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
-                    {product.minOrder}
+                    {minOrder}
                   </p>
                 </div>
               </div>
@@ -141,7 +155,7 @@ export default async function ProductDetailPage({
               {/* Certifications - responsive */}
               <div className="mb-8">
                 <h3 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">
-                  {lang === "en" ? "Certifications" : "تصدیق‌ها"}
+                  {lang === "en" ? "Certifications" : "گواهی‌ها"}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {product.certifications.map((cert) => (
@@ -161,7 +175,7 @@ export default async function ProductDetailPage({
                   {lang === "en" ? "Packaging Options" : "گزینه‌های بسته‌بندی"}
                 </h3>
                 <ul className="space-y-2 sm:space-y-3">
-                  {product.packagingOptions.map((option) => (
+                  {packagingOptions.map((option) => (
                     <li
                       key={option}
                       className="flex items-center gap-3 text-foreground text-sm sm:text-base"
