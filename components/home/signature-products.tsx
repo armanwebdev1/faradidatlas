@@ -207,6 +207,7 @@ export function SignatureProducts() {
                     src={product.image || "/placeholder.svg"}
                     alt={t(product.name)}
                     fill
+                    sizes="100vw"
                     className={`object-cover transition-transform duration-700 ${
                       index === currentIndex && !isTransitioning
                         ? "scale-100"

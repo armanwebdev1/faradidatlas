@@ -51,6 +51,7 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
             src={activeImage}
             alt={alt}
             fill
+            sizes="(min-width: 1024px) 52vw, 100vw"
             className="object-cover"
             priority
           />
@@ -94,7 +95,13 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
                     : "border-foreground/10"
                 }`}
               >
-                <Image src={image} alt={alt} fill className="object-cover" />
+                <Image
+                  src={image}
+                  alt={alt}
+                  fill
+                  sizes="(min-width: 640px) 96px, 80px"
+                  className="object-cover"
+                />
                 <span className="sr-only">
                   {`View image ${index + 1}`}
                 </span>

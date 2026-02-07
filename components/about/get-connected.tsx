@@ -1,5 +1,3 @@
-"use client";
-
 import type { Language } from "@/lib/i18n";
 import Image from "next/image";
 
@@ -19,6 +17,7 @@ export function GetConnected({ lang }: GetConnectedProps) {
               src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80"
               alt="Global supply chain operations"
               fill
+              sizes="100vw"
               className="object-cover"
               priority
             />

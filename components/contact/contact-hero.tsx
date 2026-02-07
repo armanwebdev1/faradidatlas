@@ -1,7 +1,5 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import type { Language } from "@/lib/i18n";
+import { StaggeredFade } from "@/components/shared/staggered-fade";
 
 interface ContactHeroProps {
   lang: Language;
@@ -9,16 +7,6 @@ interface ContactHeroProps {
 
 export function ContactHero({ lang }: ContactHeroProps) {
   const isRTL = lang === "fa";
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const elements = containerRef.current?.querySelectorAll(
-      ".animate-fade-in-up",
-    );
-    elements?.forEach((el, index) => {
-      (el as HTMLElement).style.animationDelay = `${index * 0.12}s`;
-    });
-  }, []);
 
   const badges = [
     {
@@ -45,7 +33,7 @@ export function ContactHero({ lang }: ContactHeroProps) {
 
       <div className="container-wide">
         <div className="space-y-8 md:space-y-10">
-          <div ref={containerRef} className="text-center">
+          <StaggeredFade className="text-center">
             <p className="eyebrow mb-4 text-accent-warm-gold animate-fade-in-up">
               {lang === "en" ? "Get in Touch" : "تماس بگیرید"}
             </p>
@@ -73,7 +61,7 @@ export function ContactHero({ lang }: ContactHeroProps) {
                 {lang === "en" ? "View Offices" : "مشاهده دفاتر"}
               </a>
             </div>
-          </div>
+          </StaggeredFade>
 
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4 animate-fade-in-up">
             {badges.map((badge) => (

@@ -1,31 +1,19 @@
-"use client";
-
-import { useState } from "react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { Filters } from "@/components/products/filters";
-import { Sorting } from "@/components/products/sorting";
-import { ProductCard } from "@/components/products/product-card";
+import { ProductsContent } from "@/components/products/products-content";
 import { products } from "@/components/products/product-data";
 import type { Language } from "@/lib/i18n";
-import { useParams } from "next/navigation";
 import Image from "next/image";
 
-export default function ProductsPage() {
-  const params = useParams();
-  const lang = (params.lang as Language) || "en";
+interface ProductsPageProps {
+  params: Promise<{
+    lang: Language;
+  }>;
+}
+
+export default async function ProductsPage({ params }: ProductsPageProps) {
+  const { lang } = await params;
   const isRTL = lang === "fa";
-  const [filteredProducts, setFilteredProducts] = useState(products);
-  const [sortedProducts, setSortedProducts] = useState(products);
-
-  const handleFilter = (filtered: typeof products) => {
-    setFilteredProducts(filtered);
-    setSortedProducts(filtered);
-  };
-
-  const handleSort = (sorted: typeof products) => {
-    setSortedProducts(sorted);
-  };
 
   return (
     <div dir={isRTL ? "rtl" : "ltr"}>
@@ -37,6 +25,7 @@ export default function ProductsPage() {
             src="https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=1600&h=400&fit=crop"
             alt="Premium products showcase"
             fill
+            sizes="100vw"
             className="object-cover"
             priority
           />
@@ -69,61 +58,7 @@ export default function ProductsPage() {
         </section>
 
         {/* Products Section with Sidebar */}
-        <section className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-gradient-to-b from-background to-secondary/30">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col lg:flex-row gap-10 md:gap-14 lg:gap-16">
-              {/* Filters Sidebar */}
-              <div className="lg:w-64 flex-shrink-0">
-                <div className="sticky top-32">
-                  <h3 className="text-sm font-bold text-primary mb-8 uppercase tracking-widest">
-                    {lang === "en" ? "Filter" : "فیلتر"}
-                  </h3>
-                  <Filters
-                    lang={lang}
-                    products={products}
-                    onFilter={handleFilter}
-                  />
-                </div>
-              </div>
-
-              {/* Products Grid */}
-              <div className="flex-1">
-                {/* Sorting Header */}
-                <div className="mb-10 sm:mb-12 flex justify-between items-center">
-                  <span className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wide">
-                    {lang === "en" ? "Best Seller" : "پرفروش‌ترین"}
-                  </span>
-                  <Sorting
-                    lang={lang}
-                    products={filteredProducts}
-                    onSort={handleSort}
-                  />
-                </div>
-
-                {/* Products Grid */}
-                {sortedProducts.length > 0 ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
-                    {sortedProducts.map((product, idx) => (
-                      <div
-                        key={product.id}
-                        className="animate-fade-in-up"
-                        style={{ animationDelay: `${idx * 0.08}s` }}
-                      >
-                        <ProductCard product={product} lang={lang} />
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-20 md:py-28">
-                    <p className="text-base sm:text-lg text-muted-foreground">
-                      {lang === "en" ? "No products found" : "محصولی پیدا نشد"}
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
+        <ProductsContent lang={lang} products={products} />
       </main>
       <Footer lang={lang} />
     </div>

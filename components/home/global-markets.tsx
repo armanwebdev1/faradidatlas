@@ -1,7 +1,6 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
 import type { Language } from "@/lib/i18n";
+import { CountUp } from "@/components/shared/count-up";
+import { RevealSection } from "@/components/shared/reveal-section";
 
 interface GlobalMarketsProps {
   lang: Language;
@@ -50,94 +49,12 @@ const markets = {
   ],
 };
 
-// Animated counter component
-function CountUpPercentage({ target }: { target: number }) {
-  const [count, setCount] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const hasAnimated = useRef(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          const duration = 1.2; // 1.2 seconds for smooth count-up
-          const steps = 60; // 60 frames for smooth animation
-          const increment = target / steps;
-          let current = 0;
-
-          const interval = setInterval(
-            () => {
-              current += increment;
-              if (current >= target) {
-                setCount(target);
-                clearInterval(interval);
-              } else {
-                setCount(Math.floor(current));
-              }
-            },
-            (duration * 1000) / steps,
-          );
-
-          return () => clearInterval(interval);
-        }
-      },
-      { threshold: 0.3 },
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [target]);
-
-  return (
-    <div
-      ref={containerRef}
-      className="text-responsive-section text-accent-warm-gold"
-    >
-      {count}%
-    </div>
-  );
-}
-
 export function GlobalMarkets({ lang }: GlobalMarketsProps) {
-  const isRTL = lang === "fa";
   const marketList = lang === "en" ? markets.en : markets.fa;
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const reduceMotion =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (reduceMotion) {
-      section.classList.remove("opacity-0", "translate-y-6");
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (!entries[0]?.isIntersecting) return;
-        section.classList.add("animate-fade-in-up");
-        section.classList.remove("opacity-0", "translate-y-6");
-        observer.unobserve(section);
-      },
-      { threshold: 0.2 },
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <section
+    <RevealSection
       id="markets"
-      ref={sectionRef}
       className="section relative overflow-hidden bg-surface opacity-0 translate-y-6"
     >
       {/* Markets Section */}
@@ -175,7 +92,11 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
               >
                 <div className="relative h-full p-6 sm:p-8 md:p-10 border border-border/30 rounded-2xl sm:rounded-2xl bg-card/50 transition-all duration-500 ease-out group-hover:border-accent-warm-gold/50 group-hover:shadow-lg hover:bg-gradient-to-br hover:from-foreground/[0.02] hover:to-foreground/[0.01] flex flex-col">
                   <div className="mb-6 relative">
-                    <CountUpPercentage target={market.percentage} />
+                    <CountUp
+                      target={market.percentage}
+                      suffix="%"
+                      className="text-responsive-section text-accent-warm-gold"
+                    />
                   </div>
 
                   <div className="mb-4 pb-4 border-b border-border/30">
@@ -192,6 +113,6 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
             ))}
           </div>
         </div>
-    </section>
+    </RevealSection>
   );
 }

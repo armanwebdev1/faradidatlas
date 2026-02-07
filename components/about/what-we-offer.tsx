@@ -1,8 +1,6 @@
-"use client";
-
 import type { Language } from "@/lib/i18n";
-import { useEffect, useRef } from "react";
 import Image from "next/image";
+import { AnimatedSection } from "./animated-section";
 
 interface WhatWeOfferProps {
   lang: Language;
@@ -59,40 +57,9 @@ const offerings = {
 
 export function WhatWeOffer({ lang }: WhatWeOfferProps) {
   const offers = lang === "en" ? offerings.en : offerings.fa;
-  const isRTL = lang === "fa";
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const elements = containerRef.current?.querySelectorAll("[data-animate]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const el = entry.target as HTMLElement;
-          el.classList.add("animate-fade-in-up");
-          el.classList.remove("opacity-0", "translate-y-6");
-          observer.unobserve(el);
-        });
-      },
-      { threshold: 0.2 },
-    );
-
-    elements?.forEach((el, index) => {
-      const element = el as HTMLElement;
-      if (!element.style.animationDelay) {
-        element.style.animationDelay = `${index * 0.12}s`;
-      }
-      observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <section
-      ref={containerRef}
-      className="relative py-24 md:py-32 px-4 sm:px-6 bg-background overflow-hidden"
-    >
+    <AnimatedSection className="relative py-24 md:py-32 px-4 sm:px-6 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -129,6 +96,7 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
                       src={offer.image}
                       alt={offer.title}
                       fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                       className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                   </div>
@@ -155,6 +123,6 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
           </button>
         </div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

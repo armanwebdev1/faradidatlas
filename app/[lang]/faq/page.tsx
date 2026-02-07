@@ -1,19 +1,18 @@
-"use client";
-
-import { useState } from "react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { FAQAccordion } from "@/components/faq/faq-accordion";
-import { FAQFilter } from "@/components/faq/faq-filter";
 import { FAQHero } from "@/components/faq/faq-hero";
+import { FAQContent } from "@/components/faq/faq-content";
 import { faqs } from "@/components/faq/faq-data";
 import type { Language } from "@/lib/i18n";
-import { useParams } from "next/navigation";
 
-export default function FAQPage() {
-  const params = useParams();
-  const lang = (params.lang as Language) || "en";
-  const [filteredFaqs, setFilteredFaqs] = useState(faqs);
+interface FAQPageProps {
+  params: Promise<{
+    lang: Language;
+  }>;
+}
+
+export default async function FAQPage({ params }: FAQPageProps) {
+  const { lang } = await params;
 
   return (
     <div dir={lang === "fa" ? "rtl" : "ltr"}>
@@ -25,18 +24,7 @@ export default function FAQPage() {
         <section className="py-24 px-6 bg-background">
           <div className="max-w-4xl mx-auto">
             {/* Filters */}
-            <FAQFilter items={faqs} lang={lang} onFilter={setFilteredFaqs} />
-
-            {/* Accordion */}
-            {filteredFaqs.length > 0 ? (
-              <FAQAccordion items={filteredFaqs} lang={lang} />
-            ) : (
-              <div className="text-center py-16">
-                  <p className="text-lg text-muted-foreground">
-                  {lang === "en" ? "No questions found" : "سوالی پیدا نشد"}
-                </p>
-              </div>
-            )}
+            <FAQContent items={faqs} lang={lang} />
 
             {/* CTA Section */}
             <div className="relative mt-20 p-12 bg-gradient-to-br from-background to-secondary/30 rounded-2xl border border-border text-center overflow-hidden shadow-lg animate-fade-in-up">

@@ -1,8 +1,7 @@
-"use client";
-
 import type { Language } from "@/lib/i18n";
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { AnimatedHeadline } from "./animated-headline";
+import { CountUpValue } from "./count-up-value";
 
 interface AboutHeroProps {
   lang: Language;
@@ -10,30 +9,6 @@ interface AboutHeroProps {
 
 export function AboutHero({ lang }: AboutHeroProps) {
   const isRTL = lang === "fa";
-  const headlineRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const el = entry.target as HTMLElement;
-          el.classList.add("animate-fade-in-up");
-          el.classList.remove("opacity-0", "translate-y-6");
-          observer.unobserve(el);
-        });
-      },
-      { threshold: 0.2 },
-    );
-
-    const elements = headlineRef.current?.querySelectorAll("[data-animate]");
-    elements?.forEach((el, index) => {
-      (el as HTMLElement).style.animationDelay = `${index * 0.12}s`;
-      observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section
@@ -43,7 +18,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
       <div className="container-full">
         <div className="space-y-20">
           {/* Headline */}
-          <div ref={headlineRef} className="text-center">
+          <AnimatedHeadline className="text-center">
             <p
               className="eyebrow mb-4 text-accent-warm-gold opacity-0 translate-y-6"
               data-animate
@@ -64,7 +39,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
             >
               {lang === "en" ? "Contact Us" : "تماس با ما"}
             </button>
-          </div>
+          </AnimatedHeadline>
 
           {/* Image */}
           <div>
@@ -73,6 +48,8 @@ export function AboutHero({ lang }: AboutHeroProps) {
                 src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80"
                 alt="Tehran"
                 fill
+                priority
+                sizes="100vw"
                 className="object-cover"
               />
             </div>
@@ -117,6 +94,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&q=80"
                   alt="CEO"
                   fill
+                  sizes="56px"
                   className="object-cover"
                 />
               </div>
@@ -125,7 +103,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
                   {lang === "en" ? "Founder & CEO" : "بنیانگذار و مدیرعامل"}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  {lang === "en" ? "Daniel Redcliff" : "دنیل ردکلیف"}
+                  {lang === "en" ? "Mohsen Ahmadi" : "محسن احمدی"}
                 </p>
               </div>
             </div>
@@ -174,68 +152,6 @@ export function AboutHero({ lang }: AboutHeroProps) {
         </div>
       </div>
     </section>
-  );
-}
-
-function CountUpValue({
-  target,
-  suffix = "",
-  decimals = 0,
-}: {
-  target: number;
-  suffix?: string;
-  decimals?: number;
-}) {
-  const [count, setCount] = useState(0);
-  const containerRef = useRef<HTMLParagraphElement>(null);
-  const hasAnimated = useRef(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          const duration = 1.2;
-          const steps = 60;
-          const increment = target / steps;
-          let current = 0;
-
-          const interval = setInterval(
-            () => {
-              current += increment;
-              if (current >= target) {
-                setCount(target);
-                clearInterval(interval);
-              } else if (decimals > 0) {
-                setCount(Number(current.toFixed(decimals)));
-              } else {
-                setCount(Math.floor(current));
-              }
-            },
-            (duration * 1000) / steps,
-          );
-
-          return () => clearInterval(interval);
-        }
-      },
-      { threshold: 0.3 },
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [target, decimals]);
-
-  const display =
-    decimals > 0 ? count.toFixed(decimals) : Math.round(count).toString();
-
-  return (
-    <p ref={containerRef} className="text-3xl font-bold text-primary">
-      {display}
-      {suffix}
-    </p>
   );
 }
 

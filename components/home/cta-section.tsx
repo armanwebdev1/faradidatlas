@@ -1,70 +1,9 @@
-"use client";
-
 import Link from "next/link";
 import type { Language } from "@/lib/i18n";
-import { useEffect, useRef, useState } from "react";
+import { CountUp } from "@/components/shared/count-up";
 
 interface CTASectionProps {
   lang: Language;
-}
-
-// Animated counter component for statistics
-function CountUpNumber({
-  target,
-  suffix = "",
-}: {
-  target: number;
-  suffix?: string;
-}) {
-  const [count, setCount] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const hasAnimated = useRef(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          const duration = 1.2; // 1.2 seconds for smooth count-up
-          const steps = 60; // 60 frames for smooth animation
-          const increment = target / steps;
-          let current = 0;
-
-          const interval = setInterval(
-            () => {
-              current += increment;
-              if (current >= target) {
-                setCount(target);
-                clearInterval(interval);
-              } else {
-                setCount(Math.floor(current));
-              }
-            },
-            (duration * 1000) / steps,
-          );
-
-          return () => clearInterval(interval);
-        }
-      },
-      { threshold: 0.3 },
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [target]);
-
-  return (
-    <div
-      ref={containerRef}
-      className="text-2xl sm:text-3xl md:text-4xl font-bold"
-    >
-      {count}
-      {suffix}
-    </div>
-  );
 }
 
 export function CTASection({ lang }: CTASectionProps) {
@@ -182,7 +121,11 @@ export function CTASection({ lang }: CTASectionProps) {
               {/* Partners stat */}
               <div className="text-center flex-1 sm:flex-none min-w-max">
                 <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
-                  <CountUpNumber target={150} suffix="+" />
+                  <CountUp
+                    target={150}
+                    suffix="+"
+                    className="text-2xl sm:text-3xl md:text-4xl font-bold"
+                  />
                 </div>
                 <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50">
                   {lang === "en" ? "Partners" : "همکاران"}
@@ -195,7 +138,11 @@ export function CTASection({ lang }: CTASectionProps) {
               {/* Countries stat */}
               <div className="text-center flex-1 sm:flex-none min-w-max">
                 <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent-warm-copper bg-clip-text text-transparent">
-                  <CountUpNumber target={50} suffix="+" />
+                  <CountUp
+                    target={50}
+                    suffix="+"
+                    className="text-2xl sm:text-3xl md:text-4xl font-bold"
+                  />
                 </div>
                 <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50">
                   {lang === "en" ? "Countries" : "کشورها"}
@@ -208,9 +155,10 @@ export function CTASection({ lang }: CTASectionProps) {
               {/* Experience stat */}
               <div className="text-center flex-1 sm:flex-none min-w-max">
                 <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
-                  <CountUpNumber
+                  <CountUp
                     target={20}
                     suffix={lang === "en" ? "y" : " سال"}
+                    className="text-2xl sm:text-3xl md:text-4xl font-bold"
                   />
                 </div>
                 <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50">

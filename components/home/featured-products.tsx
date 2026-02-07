@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import type { Language } from "@/lib/i18n";
@@ -88,7 +86,6 @@ const products = {
 };
 
 export function FeaturedProducts({ lang }: FeaturedProductsProps) {
-  const isRTL = lang === "fa";
   const productList = lang === "en" ? products.en : products.fa;
 
   return (
@@ -120,6 +117,7 @@ export function FeaturedProducts({ lang }: FeaturedProductsProps) {
                   src={product.image || "/placeholder.svg"}
                   alt={product.name}
                   fill
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 {/* Grade badge - responsive positioning */}

@@ -1,8 +1,6 @@
-"use client";
-
 import type { Language } from "@/lib/i18n";
-import { useEffect, useRef } from "react";
 import Image from "next/image";
+import { AnimatedSection } from "./animated-section";
 
 interface TeamShowcaseProps {
   lang: Language;
@@ -129,39 +127,9 @@ const team = {
 
 export function TeamShowcase({ lang }: TeamShowcaseProps) {
   const teamList = lang === "en" ? team.en : team.fa;
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const elements = containerRef.current?.querySelectorAll("[data-animate]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const el = entry.target as HTMLElement;
-          el.classList.add("animate-fade-in-up");
-          el.classList.remove("opacity-0", "translate-y-6");
-          observer.unobserve(el);
-        });
-      },
-      { threshold: 0.2 },
-    );
-
-    elements?.forEach((el, index) => {
-      const element = el as HTMLElement;
-      if (!element.style.animationDelay) {
-        element.style.animationDelay = `${index * 0.12}s`;
-      }
-      observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <section
-      ref={containerRef}
-      className="relative py-24 md:py-32 px-4 sm:px-6 bg-white overflow-hidden"
-    >
+    <AnimatedSection className="relative py-24 md:py-32 px-4 sm:px-6 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-20">
@@ -195,6 +163,7 @@ export function TeamShowcase({ lang }: TeamShowcaseProps) {
                     alt={member.name}
                     width={200}
                     height={288}
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -215,6 +184,6 @@ export function TeamShowcase({ lang }: TeamShowcaseProps) {
           ))}
         </div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }
