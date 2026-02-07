@@ -55,8 +55,8 @@ export function AboutHero({ lang }: AboutHeroProps) {
               data-animate
             >
               {lang === "en"
-                ? "We focuses on the development of retail-oriented properties that strategically position retailers and reward investors."
-                : "ما بر توسعه ملک‌های تجاری متمرکز هستیم که استراتژیک‌الانه خرده‌فروشان را قرار می‌دهند و سرمایه‌گذاران را پاداش می‌دهند."}
+                ? "We build trusted B2B food supply chains that connect premium producers with global buyers."
+                : "ما زنجیره‌های تأمین غذایی B2B قابل‌اعتماد می‌سازیم که تولیدکنندگان ممتاز را به خریداران جهانی متصل می‌کند."}
             </h1>
             <button
               className="btn btn-primary btn-md opacity-0 translate-y-6"
@@ -71,7 +71,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
             <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80"
-                alt="Retail property"
+                alt="Global trading operations"
                 fill
                 className="object-cover"
               />
@@ -96,14 +96,14 @@ export function AboutHero({ lang }: AboutHeroProps) {
             >
               <p className="text-base md:text-lg font-semibold text-foreground leading-relaxed max-w-xl">
                 {lang === "en"
-                  ? "Owned and run by a group of commercial property experts, we provide property consultancy services for owners, occupiers, investors, developers and financial advisors of property and associated assets."
-                  : "صاحب و اداره‌شده توسط گروهی از متخصصان املاک تجاری، ما خدمات مشاوره املاک را برای مالکان، بهره‌برداران، سرمایه‌گذاران، توسعه‌دهندگان و مشاوران مالی ارائه می‌دهیم."}
+                  ? "Led by specialists in sourcing, quality, and export logistics, we provide end-to-end food trading services for importers, distributors, retailers, and foodservice partners."
+                  : "با هدایت متخصصان تأمین، کیفیت و لجستیک صادرات، خدمات تجارت غذایی سرتاسری را برای واردکنندگان، توزیع‌کنندگان، خرده‌فروشان و شرکای خدمات غذایی ارائه می‌دهیم."}
               </p>
 
               <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-xl">
                 {lang === "en"
-                  ? "Operating from offices in Birmingham, Bristol, Exeter, Leeds, London, Manchester, Newcastle, Teesside and York we combine our knowledge and skills to provide complete property advice, ultimately making you and your business more successful. The property industry continues to transform through influences in technology, culture and economy and we are excited to be a part of the journey, making an impact where we can, and adapting where needed."
-                  : "ما با فعالیت از دفاتر خود در شهرهای مختلف، دانش و مهارت‌های خود را برای ارائه مشاوره جامع ملکی ترکیب می‌کنیم و به موفقیت بیشتر شما و کسب‌وکارتان کمک می‌کنیم."}
+                  ? "From producer partnerships to compliance and documentation, our teams manage every step so you can grow with consistency, transparency, and confidence."
+                  : "از مشارکت با تولیدکنندگان تا انطباق و مستندسازی، تیم‌های ما هر مرحله را مدیریت می‌کنند تا با ثبات، شفافیت و اطمینان رشد کنید."}
               </p>
             </div>
           </div>
@@ -133,8 +133,8 @@ export function AboutHero({ lang }: AboutHeroProps) {
             {/* Quote */}
             <blockquote className="text-2xl md:text-3xl font-bold text-primary leading-tight max-w-xl">
               {lang === "en"
-                ? "“Our goal is to provide house for the people who are in a tight budget could not afford to check houses from places to places. We tries to cut off that travel expenses and motivate them to increase the budget.”"
-                : "«هدف ما فراهم کردن خانه برای افرادی است که بودجه محدودی دارند و نمی‌توانند برای بازدید از خانه‌ها سفر کنند.»"}
+                ? "“Our mission is to deliver premium foods with reliable timelines and documentation, so partners can scale confidently.”"
+                : "«ماموریت ما تحویل مواد غذایی ممتاز با زمان‌بندی و مستندسازی قابل‌اعتماد است تا شرکای ما با اطمینان مقیاس بگیرند.»"}
             </blockquote>
           </div>
 
@@ -144,30 +144,30 @@ export function AboutHero({ lang }: AboutHeroProps) {
               value={8.93}
               suffix="%"
               decimals={2}
-              labelEn="Profit return rate"
-              labelFa="نرخ بازده سود"
+              labelEn="Annual export growth"
+              labelFa="رشد سالانه صادرات"
               lang={lang}
             />
             <Stat
               value={12.6}
-              suffix="K"
+              suffix={lang === "en" ? "K" : " هزار"}
               decimals={1}
-              labelEn="Listed property"
-              labelFa="ملک موجود"
+              labelEn="Shipments delivered"
+              labelFa="مرسوله‌های تحویل‌شده"
               lang={lang}
             />
             <Stat
               value={16}
               suffix="+"
-              labelEn="Operational area"
-              labelFa="منطقه فعالیت"
+              labelEn="Countries served"
+              labelFa="کشورهای تحت پوشش"
               lang={lang}
             />
             <Stat
               value={12}
               suffix="+"
-              labelEn="Awards won"
-              labelFa="جوایز کسب شده"
+              labelEn="Quality certifications"
+              labelFa="گواهی‌های کیفیت"
               lang={lang}
             />
           </div>

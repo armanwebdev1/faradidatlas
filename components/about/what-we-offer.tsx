@@ -13,41 +13,46 @@ const offerings = {
     {
       image:
         "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80",
-      title: "A leading RPS Property Traders",
+      title: "Global Sourcing Network",
       description:
-        "Expert property trading solutions tailored for modern markets",
+        "Direct partnerships with vetted farms and processors for consistent supply",
     },
     {
       image:
         "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80",
-      title: "An approx-estate alternative of the market",
-      description: "Comprehensive market analysis and pricing strategies",
+      title: "Quality & Compliance",
+      description:
+        "Multi-stage QA, lab testing, and export documentation aligned to international standards",
     },
     {
       image:
         "https://images.unsplash.com/photo-1486525891917-3b627cbf3d3c?w=400&q=80",
-      title: "Provide different reality of property",
-      description: "Transparent insights into the property market dynamics",
+      title: "Private Label & Packaging",
+      description:
+        "Flexible MOQs, custom packaging, and brand-ready labeling for retailers",
     },
   ],
   fa: [
     {
       image:
         "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80",
-      title: "یک تاجر ملک RPS پیشرو",
-      description: "راه‌حل‌های تجارت ملک متخصص برای بازارهای مدرن",
+      title: "شبکه تأمین جهانی",
+      description:
+        "مشارکت مستقیم با مزارع و فرآوری‌کنندگان ارزیابی‌شده برای تأمین پایدار",
     },
     {
       image:
         "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80",
-      title: "جایگزین تقریبی بازار",
-      description: "تجزیه و تحلیل جامع بازار و استراتژی‌های قیمت‌گذاری",
+      title: "کیفیت و انطباق",
+      description:
+        "کنترل کیفیت چندمرحله‌ای، آزمایش‌های آزمایشگاهی و مستندسازی صادرات مطابق استانداردهای بین‌المللی",
     },
     {
       image:
         "https://images.unsplash.com/photo-1486525891917-3b627cbf3d3c?w=400&q=80",
-      title: "بواقع‌گرایی مختلف ملک",
-      description: "بینش شفاف در دینامیک بازار ملک",
+      title: "برچسب خصوصی و بسته‌بندی",
+      description:
+        "حداقل سفارش انعطاف‌پذیر، بسته‌بندی سفارشی و لیبل آماده برند برای خرده‌فروشان",
     },
   ],
 };
@@ -96,8 +101,8 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             {lang === "en"
-              ? "Comprehensive property solutions designed for success"
-              : "راه‌حل‌های ملکی جامع برای موفقیت"}
+              ? "End-to-end B2B food export services designed for reliable growth"
+              : "خدمات سرتاسری صادرات غذای B2B که برای رشد قابل‌اعتماد طراحی شده‌اند"}
           </p>
         </div>
 

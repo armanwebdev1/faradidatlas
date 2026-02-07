@@ -169,9 +169,7 @@ export function TeamShowcase({ lang }: TeamShowcaseProps) {
             {lang === "en" ? "Our Team" : "تیم ما"}
           </span>
           <h2 className="text-5xl md:text-6xl font-bold text-primary mb-6 tracking-tight font-hero">
-            {lang === "en"
-              ? "Our amazing team who works for you"
-              : "تیم شگفت‌انگیز ما که برای شما کار می‌کند"}
+            {lang === "en" ? "Our amazing team who works for you" : "تیم ما"}
           </h2>
           <div className="w-24 h-1 bg-accent-warm-gold mx-auto" />
         </div>

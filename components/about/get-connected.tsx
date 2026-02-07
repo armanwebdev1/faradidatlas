@@ -8,6 +8,7 @@ interface GetConnectedProps {
 }
 
 export function GetConnected({ lang }: GetConnectedProps) {
+  const isRTL = lang === "fa";
   return (
     <section className="relative bg-background overflow-hidden">
       {/* Full-width Image - matching hero style */}
@@ -16,7 +17,7 @@ export function GetConnected({ lang }: GetConnectedProps) {
           <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
             <Image
               src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80"
-              alt="Modern commercial buildings"
+              alt="Global supply chain operations"
               fill
               className="object-cover"
               priority
@@ -31,30 +32,39 @@ export function GetConnected({ lang }: GetConnectedProps) {
           {/* Left - Heading */}
           <h2 className="lg:col-span-5 text-4xl md:text-5xl font-bold font-hero text-primary leading-tight tracking-tight">
             {lang === "en"
-              ? "Read our story to get connected"
-              : "داستان ما را بخوانید تا متصل شوید"}
+              ? "Read our story to connect your supply chain"
+              : "داستان ما را بخوانید تا زنجیره تأمین خود را متصل کنید"}
           </h2>
 
-          {/* Right - Body Content - FORCE LTR FOR ENGLISH */}
-          <div dir="ltr" className="lg:col-span-7 space-y-6 text-left">
-            <p className="text-base md:text-lg font-semibold text-foreground leading-relaxed text-left">
+          {/* Right - Body Content */}
+          <div
+            dir={isRTL ? "rtl" : "ltr"}
+            className={`lg:col-span-7 space-y-6 ${
+              isRTL ? "text-right" : "text-left"
+            }`}
+          >
+            <p className="text-base md:text-lg font-semibold text-foreground leading-relaxed">
               {lang === "en"
-                ? "Owned and run by a group of commercial property experts, we provide property consultancy services for owners, occupiers, investors, developers and financial advisors of property and associated assets."
-                : "متعلق به گروهی از متخصصان املاک تجاری و اداره می‌شود، ما خدمات مشاوره‌ای املاک را برای مالکان، ساکنان، سرمایه‌گذاران، توسعه‌دهندگان و مشاوران مالی املاک و دارایی‌های مرتبط ارائه می‌دهیم."}
+                ? "Owned and operated by food trading professionals, we deliver sourcing, quality assurance, and export services for international buyers and retail partners."
+                : "متعلق به متخصصان تجارت غذا و توسط آنها اداره می‌شود، ما خدمات تأمین، تضمین کیفیت و صادرات را برای خریداران بین‌المللی و شرکای خرده‌فروشی ارائه می‌دهیم."}
             </p>
 
-            <p className="text-sm md:text-base text-muted-foreground leading-relaxed text-left">
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
               {lang === "en"
-                ? "Operating from offices in Birmingham, Bristol, Exeter, Leeds, London, Manchester, Newcastle, Teesside and York we combine our knowledge and skills to provide complete property advice, ultimately making you and your business more successful. The property industry continues to transform through influences in technology, culture and economy and we're excited to be a part of the journey, making an impact where we can, and adapting when we need to."
-                : "با فعالیت از دفاتر در بیرمنگام، بریستول، اکستر، لیدز، لندن، منچستر، نیوکاسل، تیساید و یورک، ما دانش و مهارت‌های خود را ترکیب می‌کنیم تا مشاوره کامل املاک ارائه دهیم و در نهایت شما و کسب‌وکارتان را موفق‌تر کنیم. صنعت املاک از طریق تأثیرات در فناوری، فرهنگ و اقتصاد به تحول خود ادامه می‌دهد و ما هیجان‌زده هستیم که بخشی از این سفر باشیم."}
+                ? "With teams across sourcing regions and logistics hubs, we combine market insight with rigorous standards to keep your supply steady and compliant."
+                : "با تیم‌هایی در مناطق تأمین و هاب‌های لجستیکی، بینش بازار را با استانداردهای دقیق ترکیب می‌کنیم تا تأمین شما پایدار و منطبق بماند."}
             </p>
 
             {/* Quote Block with Accent Border */}
-            <div className="border-l-2 pl-6 border-accent-warm-gold mt-8">
-              <p className="text-sm md:text-base text-muted-foreground leading-relaxed italic text-left">
+            <div
+              className={`border-accent-warm-gold mt-8 ${
+                isRTL ? "border-r-2 pr-6" : "border-l-2 pl-6"
+              }`}
+            >
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed italic">
                 {lang === "en"
-                  ? "Some 14 years later, their businesses had survived through the wars, experienced international success and acquired several other businesses, and in 2007 the two merged to become the name we are today."
-                  : "حدود ۱۴ سال بعد، کسب‌وکارهای آن‌ها از جنگ‌ها جان سالم به در بردند، موفقیت بین‌المللی را تجربه کردند و چندین کسب‌وکار دیگر را به دست آوردند، و در سال ۲۰۰۷ این دو ادغام شدند تا نامی شوند که امروز هستیم."}
+                  ? "Over the years we expanded our producer network, certifications, and logistics partners to serve customers across continents."
+                  : "در طول سال‌ها شبکه تولیدکنندگان، گواهی‌ها و شرکای لجستیک خود را گسترش دادیم تا به مشتریان در سراسر قاره‌ها خدمت کنیم."}
               </p>
             </div>
           </div>

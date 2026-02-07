@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import type { Language } from "@/lib/i18n"
-import type { Product } from "./product-data"
+import type { Language } from "@/lib/i18n";
+import type { Product } from "./product-data";
 
 interface SortingProps {
-  lang: Language
-  products: Product[]
-  onSort: (sorted: Product[]) => void
+  lang: Language;
+  products: Product[];
+  onSort: (sorted: Product[]) => void;
 }
 
 export function Sorting({ lang, products, onSort }: SortingProps) {
@@ -18,39 +18,39 @@ export function Sorting({ lang, products, onSort }: SortingProps) {
       { value: "name-desc", label: "Name (Z-A)" },
     ],
     fa: [
-      { value: "relevance", label: "ارتباط" },
+      { value: "relevance", label: "مرتبط بودن" },
       { value: "newest", label: "جدیدترین" },
       { value: "name-asc", label: "نام (الف - ی)" },
       { value: "name-desc", label: "نام (ی - الف)" },
     ],
-  }
+  };
 
-  const options = lang === "en" ? sortOptions.en : sortOptions.fa
+  const options = lang === "en" ? sortOptions.en : sortOptions.fa;
 
   const handleSort = (value: string) => {
-    let sorted = [...products]
+    let sorted = [...products];
 
     switch (value) {
       case "name-asc":
         sorted.sort((a, b) => {
-          const aName = lang === "en" ? a.nameEn : a.nameFa
-          const bName = lang === "en" ? b.nameEn : b.nameFa
-          return aName.localeCompare(bName)
-        })
-        break
+          const aName = lang === "en" ? a.nameEn : a.nameFa;
+          const bName = lang === "en" ? b.nameEn : b.nameFa;
+          return aName.localeCompare(bName);
+        });
+        break;
       case "name-desc":
         sorted.sort((a, b) => {
-          const aName = lang === "en" ? a.nameEn : a.nameFa
-          const bName = lang === "en" ? b.nameEn : b.nameFa
-          return bName.localeCompare(aName)
-        })
-        break
+          const aName = lang === "en" ? a.nameEn : a.nameFa;
+          const bName = lang === "en" ? b.nameEn : b.nameFa;
+          return bName.localeCompare(aName);
+        });
+        break;
       default:
-        sorted = products
+        sorted = products;
     }
 
-    onSort(sorted)
-  }
+    onSort(sorted);
+  };
 
   return (
     <div className="flex items-center gap-3">
@@ -68,5 +68,5 @@ export function Sorting({ lang, products, onSort }: SortingProps) {
         ))}
       </select>
     </div>
-  )
+  );
 }

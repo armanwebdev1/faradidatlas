@@ -22,13 +22,21 @@ export function JoinTeam({ lang }: JoinTeamProps) {
 
           {/* Right - Content */}
           <div
-            dir="ltr"
-            className="text-left"
-            style={{ direction: "ltr", textAlign: "left" }}
+            dir={lang === "fa" ? "rtl" : "ltr"}
+            className={lang === "fa" ? "text-right" : "text-left"}
+            style={{
+              direction: lang === "fa" ? "rtl" : "ltr",
+              textAlign: lang === "fa" ? "right" : "left",
+            }}
           >
             <p
-              className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4 text-left"
-              style={{ direction: "ltr", textAlign: "left" }}
+              className={`text-base md:text-lg text-muted-foreground leading-relaxed mb-4 ${
+                lang === "fa" ? "text-right" : "text-left"
+              }`}
+              style={{
+                direction: lang === "fa" ? "rtl" : "ltr",
+                textAlign: lang === "fa" ? "right" : "left",
+              }}
             >
               {lang === "en"
                 ? "We believe it takes great people to make a great product. That's why we hire not only perfect professional fits, but people who embody our company values."
@@ -37,8 +45,13 @@ export function JoinTeam({ lang }: JoinTeamProps) {
 
             <Link
               href={`/${lang}/careers`}
-              className="inline-flex items-center text-foreground hover:text-accent font-medium transition-colors text-left"
-              style={{ direction: "ltr", textAlign: "left" }}
+              className={`inline-flex items-center text-foreground hover:text-accent font-medium transition-colors ${
+                lang === "fa" ? "text-right" : "text-left"
+              }`}
+              style={{
+                direction: lang === "fa" ? "rtl" : "ltr",
+                textAlign: lang === "fa" ? "right" : "left",
+              }}
             >
               {lang === "en"
                 ? "See All Open Position"
