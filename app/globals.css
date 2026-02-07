@@ -543,6 +543,34 @@
   margin-right: 0;
 }
 
+/* RTL Header/Navbar specific fixes */
+[dir="rtl"] header nav {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+[dir="rtl"] header nav > div {
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  padding-inline: 1rem;
+}
+
+/* Ensure proper navigation link alignment in RTL */
+[dir="rtl"] header nav a {
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Remove constraints on nav container for full width */
+[dir="rtl"] header nav {
+  max-width: none;
+}
 
 /* Optimize mobile viewport */
 @viewport {
