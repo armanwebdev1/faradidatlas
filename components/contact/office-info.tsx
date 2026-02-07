@@ -5,11 +5,15 @@ interface OfficeInfoProps {
 }
 
 export function OfficeInfo({ lang }: OfficeInfoProps) {
+  const labelClass =
+    lang === "fa"
+      ? "text-[13px] font-semibold text-neutral uppercase mb-1"
+      : "text-xs font-semibold text-neutral uppercase mb-1";
   const offices = {
     en: [
       {
         city: "Tehran",
-        address: "123 Trade Street, District 1, Tehran",
+        address: "Tehran",
         phone: "+98 (21) 1234-5678",
         whatsapp: "+98 (910) 123-4567",
         email: "sales@premiumfoods.com",
@@ -17,7 +21,7 @@ export function OfficeInfo({ lang }: OfficeInfoProps) {
       },
       {
         city: "Alborz",
-        address: "567 Logistics Avenue, Alborz Province",
+        address: "Alborz",
         phone: "+98 (26) 5678-9012",
         email: "logistics@premiumfoods.com",
         hours: "Saturday - Thursday, 8:00 AM - 5:00 PM",
@@ -58,17 +62,13 @@ export function OfficeInfo({ lang }: OfficeInfoProps) {
           <div className="space-y-4">
             {/* Address */}
             <div>
-              <p className="text-xs font-semibold text-neutral uppercase mb-1">
-                {lang === "en" ? "Address" : "آدرس"}
-              </p>
+              <p className={labelClass}>{lang === "en" ? "Address" : "آدرس"}</p>
               <p className="text-foreground">{office.address}</p>
             </div>
 
             {/* Phone */}
             <div>
-              <p className="text-xs font-semibold text-neutral uppercase mb-1">
-                {lang === "en" ? "Phone" : "تلفن"}
-              </p>
+              <p className={labelClass}>{lang === "en" ? "Phone" : "تلفن"}</p>
               <a
                 href={`tel:${office.phone}`}
                 className="text-primary hover:text-accent transition-colors font-medium"
@@ -80,9 +80,7 @@ export function OfficeInfo({ lang }: OfficeInfoProps) {
             {/* WhatsApp */}
             {office.whatsapp && (
               <div>
-                <p className="text-xs font-semibold text-neutral uppercase mb-1">
-                  WhatsApp
-                </p>
+                <p className={labelClass}>WhatsApp</p>
                 <a
                   href={`https://wa.me/${office.whatsapp.replace(/\D/g, "")}`}
                   target="_blank"
@@ -96,9 +94,7 @@ export function OfficeInfo({ lang }: OfficeInfoProps) {
 
             {/* Email */}
             <div>
-              <p className="text-xs font-semibold text-neutral uppercase mb-1">
-                {lang === "en" ? "Email" : "ایمیل"}
-              </p>
+              <p className={labelClass}>{lang === "en" ? "Email" : "ایمیل"}</p>
               <a
                 href={`mailto:${office.email}`}
                 className="text-primary hover:text-accent transition-colors font-medium"
@@ -109,7 +105,7 @@ export function OfficeInfo({ lang }: OfficeInfoProps) {
 
             {/* Hours */}
             <div>
-              <p className="text-xs font-semibold text-neutral uppercase mb-1">
+              <p className={labelClass}>
                 {lang === "en" ? "Business Hours" : "ساعات کاری"}
               </p>
               <p className="text-foreground">{office.hours}</p>

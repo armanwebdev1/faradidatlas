@@ -462,6 +462,58 @@ export function Header({ lang }: HeaderProps) {
                   }`}
                 />
               </button>
+
+              {isLangOpen && (
+                <div
+                  dir={dir}
+                  className="fixed top-16 right-4 sm:right-6 w-44 sm:w-48 bg-background/95 backdrop-blur-md border border-border/20 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+                  role="menu"
+                >
+                  {/* Subtle gradient header */}
+                  <div className="px-4 py-2 bg-gradient-to-r from-primary/5 to-accent/5 border-b border-border/10">
+                    <p className="text-xs font-semibold text-muted-foreground tracking-wide uppercase">
+                      {isRTL ? "زبان" : "Language"}
+                    </p>
+                  </div>
+
+                  {/* Language options with hover effect */}
+                  <div className="py-2 space-y-1 px-2">
+                    <Link
+                      href={`/en${pathname.replace(/^\/(en|fa)/, "")}`}
+                      onClick={() => setIsLangOpen(false)}
+                      className={`flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 group/item ${
+                        lang === "en"
+                          ? "bg-primary/10 text-primary shadow-sm"
+                          : "text-foreground hover:bg-muted/50"
+                      }`}
+                      role="menuitem"
+                    >
+                      <span className="text-lg">🇺🇸</span>
+                      <span>English</span>
+                      {lang === "en" && (
+                        <div className="ml-auto w-1.5 h-1.5 rounded-full bg-primary"></div>
+                      )}
+                    </Link>
+
+                    <Link
+                      href={`/fa${pathname.replace(/^\/(en|fa)/, "")}`}
+                      onClick={() => setIsLangOpen(false)}
+                      className={`flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 group/item ${
+                        lang === "fa"
+                          ? "bg-primary/10 text-primary shadow-sm"
+                          : "text-foreground hover:bg-muted/50"
+                      }`}
+                      role="menuitem"
+                    >
+                      <span className="text-lg">🇮🇷</span>
+                      <span>فارسی</span>
+                      {lang === "fa" && (
+                        <div className="ml-auto w-1.5 h-1.5 rounded-full bg-primary"></div>
+                      )}
+                    </Link>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Mobile Menu Button */}
@@ -530,58 +582,6 @@ export function Header({ lang }: HeaderProps) {
           </div>
         </nav>
       </header>
-
-      {isLangOpen && (
-        <div
-          dir={dir}
-          className="fixed top-16 right-4 sm:right-6 w-44 sm:w-48 bg-background/95 backdrop-blur-md border border-border/20 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200"
-          role="menu"
-        >
-          {/* Subtle gradient header */}
-          <div className="px-4 py-2 bg-gradient-to-r from-primary/5 to-accent/5 border-b border-border/10">
-            <p className="text-xs font-semibold text-muted-foreground tracking-wide uppercase">
-              {isRTL ? "زبان" : "Language"}
-            </p>
-          </div>
-
-          {/* Language options with hover effect */}
-          <div className="py-2 space-y-1 px-2">
-            <Link
-              href={`/en${pathname.replace(/^\/(en|fa)/, "")}`}
-              onClick={() => setIsLangOpen(false)}
-              className={`flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 group/item ${
-                lang === "en"
-                  ? "bg-primary/10 text-primary shadow-sm"
-                  : "text-foreground hover:bg-muted/50"
-              }`}
-              role="menuitem"
-            >
-              <span className="text-lg">🇺🇸</span>
-              <span>English</span>
-              {lang === "en" && (
-                <div className="ml-auto w-1.5 h-1.5 rounded-full bg-primary"></div>
-              )}
-            </Link>
-
-            <Link
-              href={`/fa${pathname.replace(/^\/(en|fa)/, "")}`}
-              onClick={() => setIsLangOpen(false)}
-              className={`flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 group/item ${
-                lang === "fa"
-                  ? "bg-primary/10 text-primary shadow-sm"
-                  : "text-foreground hover:bg-muted/50"
-              }`}
-              role="menuitem"
-            >
-              <span className="text-lg">🇮🇷</span>
-              <span>فارسی</span>
-              {lang === "fa" && (
-                <div className="ml-auto w-1.5 h-1.5 rounded-full bg-primary"></div>
-              )}
-            </Link>
-          </div>
-        </div>
-      )}
 
       {/* Mobile Menu - Full Screen Overlay */}
       {isOpen && (
