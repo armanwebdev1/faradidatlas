@@ -56,25 +56,62 @@ const satoshi = localFont({
   weight: "300 900",
 });
 
+const siteUrl = "https://faradidatlas.vercl.app";
+const siteName = "faradid atlas";
+const companyName = "Faradid Atlas";
+
 export const metadata: Metadata = {
-  title: "Premium Food Trading & Exports | Your Company",
+  metadataBase: new URL(siteUrl),
+  applicationName: companyName,
+  title: {
+    default: `${companyName} | B2B Food Material Exports`,
+    template: `%s | ${companyName}`,
+  },
   description:
-    "Global food trading company specializing in premium sourcing, private labeling, and B2B exports. Certified quality, international standards.",
+    "Faradid Atlas is a B2B food material export company delivering reliable sourcing, private labeling, and export logistics for global buyers.",
   keywords: [
+    "Faradid Atlas",
+    "B2B food exports",
+    "food material exports",
     "food trading",
-    "food exports",
-    "private labeling",
     "food supplier",
-    "certified food",
+    "private labeling",
+    "bulk ingredients",
+    "export logistics",
+    "global food sourcing",
+    "تجارت مواد غذایی",
+    "صادرات مواد غذایی",
+    "صادرات B2B مواد غذایی",
+    "برندسازی خصوصی",
+    "تامین کننده مواد غذایی",
   ],
-  robots: "index, follow",
+  authors: [{ name: companyName }],
+  creator: companyName,
+  publisher: companyName,
+  robots: { index: true, follow: true },
+  alternates: {
+    languages: {
+      en: "/en",
+      fa: "/fa",
+    },
+  },
   openGraph: {
     type: "website",
+    url: siteUrl,
+    siteName,
+    title: `${companyName} | B2B Food Material Exports`,
+    description:
+      "Faradid Atlas is a B2B food material export company delivering reliable sourcing, private labeling, and export logistics for global buyers.",
     locale: "en_US",
-    url: "https://yourcompany.com",
-    siteName: "Premium Food Traders",
+    alternateLocale: ["fa_IR"],
   },
-  generator: "v0.app",
+  twitter: {
+    card: "summary",
+    title: `${companyName} | B2B Food Material Exports`,
+    description:
+      "Faradid Atlas is a B2B food material export company delivering reliable sourcing, private labeling, and export logistics for global buyers.",
+  },
+  generator: "Next.js",
 };
 
 export default function RootLayout({
