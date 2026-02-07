@@ -32,7 +32,7 @@ export function CTASection({ lang }: CTASectionProps) {
           }`}
         >
           {/* Image Part - responsive sizing */}
-          <div className="flex-1 lg:w-1/2 h-64 sm:h-80 md:h-96 lg:h-full">
+          <div className="flex-1 lg:w-1/2 h-64 sm:h-80 md:h-96 lg:min-h-[26rem]">
             <div className="relative group overflow-hidden rounded-lg sm:rounded-2xl shadow-xl md:shadow-2xl h-full">
               <img
                 src="/cta.jpg"
