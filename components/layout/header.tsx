@@ -482,10 +482,8 @@ export function Header({ lang }: HeaderProps) {
         </div>
 
         {/* Row 2: Navigation Links - Desktop Only */}
-        <nav className="relative z-10 backdrop-blur-md bg-background/70 hidden lg:block border-b border-border/30 w-full">
-          <div className={`w-full px-4 sm:px-6 h-12 flex items-center gap-4 lg:gap-8 ${
-            isRTL ? "justify-between md:justify-center" : "justify-center"
-          }`}>
+        <nav className="relative z-10 backdrop-blur-md bg-background/70 hidden lg:block border-b border-border/30">
+          <div className="w-full px-6 h-12 flex items-center justify-center gap-4 lg:gap-8">
             {navItems.map((item) => {
               const active = isActive(item.href);
               const { Icon } = item;
