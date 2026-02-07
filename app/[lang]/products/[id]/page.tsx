@@ -105,7 +105,13 @@ export default async function ProductDetailPage({
             <div className="flex flex-col rounded-3xl border border-foreground/10 bg-white/85 p-6 sm:p-8 shadow-[0_35px_80px_-60px_rgba(10,10,10,0.5)] backdrop-blur">
               <h1
                 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-primary tracking-tight font-hero leading-tight motion-safe:animate-fade-in-up"
-                style={{ animationDelay: "0.05s" }}
+                style={{
+                  animationDelay: "0.05s",
+                  fontFamily:
+                    lang === "en"
+                      ? "var(--font-hero)"
+                      : "Estedad, var(--font-hero)",
+                }}
               >
                 {name}
               </h1>
