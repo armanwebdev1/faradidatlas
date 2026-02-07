@@ -136,14 +136,14 @@ export function CTASection({ lang }: CTASectionProps) {
                 href={`/${lang}/contact`}
                 className="btn btn-primary btn-lg w-full sm:w-auto"
               >
-                {lang === "en" ? "Get Started" : "???????? ????????"}
+                {lang === "en" ? "Get Started" : "شروع کنید"}
               </Link>
 
               <Link
                 href={`/${lang}/about`}
                 className="btn btn-outline btn-lg w-full sm:w-auto"
               >
-                {lang === "en" ? "Learn More" : "?????????? ????????????"}
+                {lang === "en" ? "Learn More" : "بیشتر بدانید"}
               </Link>
             </div>
           </div>

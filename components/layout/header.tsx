@@ -307,9 +307,9 @@ export function Header({ lang }: HeaderProps) {
                   }}
                   onFocus={() => setIsSearchOpen(true)}
                   onKeyDown={handleSearchKeyDown}
-                  placeholder={lang === "en" ? "Search..." : "?????..."}
+                  placeholder={`${t.common.search}...`}
                   className="py-2 text-sm border border-border/50 rounded-full bg-background/60 text-foreground placeholder-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/50 w-full transition-all hover:border-border/70 pl-12 pr-4 text-left"
-                  aria-label={lang === "en" ? "Search" : "?????"}
+                  aria-label={t.common.search}
                   aria-expanded={isSearchOpen && query.trim().length > 0}
                   aria-controls="header-search-results"
                   role="combobox"
@@ -327,7 +327,7 @@ export function Header({ lang }: HeaderProps) {
                         {indexedResults.products.length > 0 && (
                           <div>
                             <p className="px-2 pt-2 pb-1 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-                              {lang === "en" ? "Products" : "???????"}
+                              {t.nav.products}
                             </p>
                             <div className="space-y-1">
                               {indexedResults.products.map((item) => (
@@ -363,7 +363,7 @@ export function Header({ lang }: HeaderProps) {
                         {indexedResults.careers.length > 0 && (
                           <div>
                             <p className="px-2 pt-2 pb-1 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-                              {lang === "en" ? "Careers" : "???????? ????"}
+                              {t.nav.careers}
                             </p>
                             <div className="space-y-1">
                               {indexedResults.careers.map((item) => (
@@ -399,7 +399,7 @@ export function Header({ lang }: HeaderProps) {
                         {indexedResults.faqs.length > 0 && (
                           <div>
                             <p className="px-2 pt-2 pb-1 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-                              {lang === "en" ? "FAQ" : "?????? ??????"}
+                              {t.nav.faq}
                             </p>
                             <div className="space-y-1">
                               {indexedResults.faqs.map((item) => (
@@ -434,7 +434,7 @@ export function Header({ lang }: HeaderProps) {
                       </div>
                     ) : (
                       <div className="px-3 py-4 text-sm text-muted-foreground">
-                        {lang === "en" ? "No results found." : "???????? ???? ???."}
+                        {t.common.noResults}
                       </div>
                     )}
                   </div>

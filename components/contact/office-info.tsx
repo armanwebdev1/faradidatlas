@@ -1,7 +1,7 @@
-import type { Language } from "@/lib/i18n"
+import type { Language } from "@/lib/i18n";
 
 interface OfficeInfoProps {
-  lang: Language
+  lang: Language;
 }
 
 export function OfficeInfo({ lang }: OfficeInfoProps) {
@@ -26,7 +26,7 @@ export function OfficeInfo({ lang }: OfficeInfoProps) {
     fa: [
       {
         city: "تهران",
-        address: "خیابان تجارت ۱۲۳، منطقه ۱، تهران",
+        address: "تهران",
         phone: "+98 (21) 1234-5678",
         whatsapp: "+98 (910) 123-4567",
         email: "sales@premiumfoods.com",
@@ -34,33 +34,45 @@ export function OfficeInfo({ lang }: OfficeInfoProps) {
       },
       {
         city: "البرز",
-        address: "خیابان لجستیک ۵۶۷، استان البرز",
+        address: "البرز",
         phone: "+98 (26) 5678-9012",
         email: "logistics@premiumfoods.com",
         hours: "شنبه تا پنج‌شنبه، ۸:۰۰ صبح - ۵:۰۰ عصر",
       },
     ],
-  }
+  };
 
-  const officeList = lang === "en" ? offices.en : offices.fa
+  const officeList = lang === "en" ? offices.en : offices.fa;
 
   return (
     <div className="space-y-8">
       {officeList.map((office, idx) => (
-        <div key={idx} className="p-8 bg-background rounded-lg border border-border">
-          <h3 className="text-2xl font-bold text-primary mb-6">{office.city}</h3>
+        <div
+          key={idx}
+          className="p-8 bg-background rounded-lg border border-border"
+        >
+          <h3 className="text-2xl font-bold text-primary mb-6">
+            {office.city}
+          </h3>
 
           <div className="space-y-4">
             {/* Address */}
             <div>
-              <p className="text-xs font-semibold text-neutral uppercase mb-1">{lang === "en" ? "Address" : "آدرس"}</p>
+              <p className="text-xs font-semibold text-neutral uppercase mb-1">
+                {lang === "en" ? "Address" : "آدرس"}
+              </p>
               <p className="text-foreground">{office.address}</p>
             </div>
 
             {/* Phone */}
             <div>
-              <p className="text-xs font-semibold text-neutral uppercase mb-1">{lang === "en" ? "Phone" : "تلفن"}</p>
-              <a href={`tel:${office.phone}`} className="text-primary hover:text-accent transition-colors font-medium">
+              <p className="text-xs font-semibold text-neutral uppercase mb-1">
+                {lang === "en" ? "Phone" : "تلفن"}
+              </p>
+              <a
+                href={`tel:${office.phone}`}
+                className="text-primary hover:text-accent transition-colors font-medium"
+              >
                 {office.phone}
               </a>
             </div>
@@ -68,7 +80,9 @@ export function OfficeInfo({ lang }: OfficeInfoProps) {
             {/* WhatsApp */}
             {office.whatsapp && (
               <div>
-                <p className="text-xs font-semibold text-neutral uppercase mb-1">WhatsApp</p>
+                <p className="text-xs font-semibold text-neutral uppercase mb-1">
+                  WhatsApp
+                </p>
                 <a
                   href={`https://wa.me/${office.whatsapp.replace(/\D/g, "")}`}
                   target="_blank"
@@ -82,7 +96,9 @@ export function OfficeInfo({ lang }: OfficeInfoProps) {
 
             {/* Email */}
             <div>
-              <p className="text-xs font-semibold text-neutral uppercase mb-1">{lang === "en" ? "Email" : "ایمیل"}</p>
+              <p className="text-xs font-semibold text-neutral uppercase mb-1">
+                {lang === "en" ? "Email" : "ایمیل"}
+              </p>
               <a
                 href={`mailto:${office.email}`}
                 className="text-primary hover:text-accent transition-colors font-medium"
@@ -102,5 +118,5 @@ export function OfficeInfo({ lang }: OfficeInfoProps) {
         </div>
       ))}
     </div>
-  )
+  );
 }

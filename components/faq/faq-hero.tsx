@@ -35,7 +35,15 @@ export function FAQHero({ lang }: FAQHeroProps) {
             <p className="mb-4 text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-accent-warm-gold animate-fade-in-up">
               {lang === "en" ? "Help Center" : "مرکز کمک"}
             </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-5 animate-fade-in-up">
+            <h1
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-5 animate-fade-in-up"
+              style={{
+                fontFamily:
+                  lang === "en"
+                    ? "var(--font-hero)"
+                    : "Estedad, var(--font-hero)",
+              }}
+            >
               {lang === "en"
                 ? "Frequently Asked Questions"
                 : "سوالات متداول"}
