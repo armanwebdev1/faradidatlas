@@ -60,7 +60,7 @@ export function GetConnected({ lang }: GetConnectedProps) {
             {/* Quote Block with Accent Border */}
             <div
               className={`border-accent-warm-gold mt-8 ${
-                isRTL ? "border-r-2 pr-6" : "border-l-2 pl-6"
+                isRTL ? "border-r-2 pr-8" : "border-l-2 pl-6"
               }`}
             >
               <p className="text-sm md:text-base text-muted-foreground leading-relaxed italic">
