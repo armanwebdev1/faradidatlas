@@ -208,7 +208,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
           style={{ animationDelay: "0.2s" }}
         >
           <h3
-            className="text-xl sm:text-2xl font-semibold"
+            className="text-xl sm:text-2xl font-semibold text-white"
             style={{
               fontFamily:
                 lang === "en"
