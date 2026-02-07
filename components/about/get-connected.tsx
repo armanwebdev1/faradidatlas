@@ -33,15 +33,17 @@ export function GetConnected({ lang }: GetConnectedProps) {
           <h2 className="lg:col-span-5 text-4xl md:text-5xl font-bold font-hero text-primary leading-tight tracking-tight">
             {lang === "en"
               ? "Read our story to connect your supply chain"
-              : "داستان ما را بخوانید تا زنجیره تأمین خود را متصل کنید"}
+              : "داستان ما"}
           </h2>
 
           {/* Right - Body Content */}
           <div
             dir={isRTL ? "rtl" : "ltr"}
-            className={`lg:col-span-7 space-y-6 ${
-              isRTL ? "text-right" : "text-left"
-            }`}
+            className="lg:col-span-7 space-y-6"
+            style={{
+              direction: isRTL ? "rtl" : "ltr",
+              textAlign: isRTL ? "right" : "left",
+            }}
           >
             <p className="text-base md:text-lg font-semibold text-foreground leading-relaxed">
               {lang === "en"
