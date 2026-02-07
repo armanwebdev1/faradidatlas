@@ -66,12 +66,12 @@ const products = {
     },
     {
       id: 3,
-      name: "فستق",
+      name: "پسته",
       origin: "ایران، رفسنجان",
       grade: "درجه یک",
       image:
         "https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=500&h=500&fit=crop",
-      description: "فستق‌های سرخ شده و شور با کنترل کیفیت بسیار خوب.",
+      description: "پسته‌های سرخ شده و شور با کنترل کیفیت بسیار خوب.",
     },
     {
       id: 4,

@@ -186,7 +186,7 @@ export function ContactForm({ lang }: ContactFormProps) {
             </option>
             <option value="dates">{lang === "en" ? "Dates" : "خرما"}</option>
             <option value="pistachios">
-              {lang === "en" ? "Pistachios" : "فستق"}
+              {lang === "en" ? "Pistachios" : "پسته"}
             </option>
             <option value="almonds">
               {lang === "en" ? "Almonds" : "بادام"}
@@ -309,4 +309,3 @@ export function ContactForm({ lang }: ContactFormProps) {
     </form>
   );
 }
-

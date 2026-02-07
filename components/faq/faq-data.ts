@@ -21,7 +21,7 @@ export const faqs: FAQItem[] = [
     answerEn:
       "We partner directly with premium producers in Iran's most renowned agricultural regions—Khorasan (saffron, nuts), Yazd (dates), and Rafsanjan (pistachios). All partnerships are audited annually to ensure compliance with international quality standards.",
     answerFa:
-      "ما با تولیدکنندگان برتر در معروف‌ترین مناطق کشاورزی ایران—خراسان (زعفران، آجیل)، یزد (خرما) و رفسنجان (فستق) مشارکت داریم. تمام مشارکت‌ها سالانه بازرسی می‌شوند تا انطباق با استانداردهای کیفیت بین‌المللی را تضمین کنند.",
+      "ما با تولیدکنندگان برتر در معروف‌ترین مناطق کشاورزی ایران—خراسان (زعفران، آجیل)، یزد (خرما) و رفسنجان (پسته) مشارکت داریم. تمام مشارکت‌ها سالانه بازرسی می‌شوند تا انطباق با استانداردهای کیفیت بین‌المللی را تضمین کنند.",
     category: "sourcing",
   },
   {
