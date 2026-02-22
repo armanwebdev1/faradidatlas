@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Brand palette */
+  /* Color palette */
   --primary: #1e2327;
   --primary-light: #2a3136;
   --primary-text: #f7f5f1;
@@ -32,7 +32,20 @@
   --surface: #ffffff;
   --surface-muted: #f1eeea;
 
-  /* Semantic tokens */
+  /* Reusable alpha colors */
+  --foreground-5: color-mix(in srgb, var(--foreground) 5%, transparent);
+  --foreground-10: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --foreground-12: color-mix(in srgb, var(--foreground) 12%, transparent);
+  --foreground-20: color-mix(in srgb, var(--foreground) 20%, transparent);
+  --foreground-40: color-mix(in srgb, var(--foreground) 40%, transparent);
+  --foreground-45: color-mix(in srgb, var(--foreground) 45%, transparent);
+  --foreground-60: color-mix(in srgb, var(--foreground) 60%, transparent);
+  --foreground-65: color-mix(in srgb, var(--foreground) 65%, transparent);
+  --foreground-78: color-mix(in srgb, var(--foreground) 78%, transparent);
+  --secondary-70: color-mix(in srgb, var(--secondary) 70%, transparent);
+  --surface-90: color-mix(in srgb, var(--surface) 90%, transparent);
+
+  /* Color tokens */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -117,9 +130,9 @@
 
   /* Scrollbar */
   --scrollbar-size: 10px;
-  --scrollbar-track: rgba(30, 35, 39, 0.08);
-  --scrollbar-thumb: rgba(30, 35, 39, 0.35);
-  --scrollbar-thumb-hover: rgba(30, 35, 39, 0.5);
+  --scrollbar-track: color-mix(in srgb, var(--foreground) 8%, transparent);
+  --scrollbar-thumb: color-mix(in srgb, var(--foreground) 35%, transparent);
+  --scrollbar-thumb-hover: color-mix(in srgb, var(--foreground) 50%, transparent);
 }
 
 .dark {
@@ -154,9 +167,6 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --scrollbar-track: rgba(255, 255, 255, 0.08);
-  --scrollbar-thumb: rgba(255, 255, 255, 0.28);
-  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.45);
 }
 
 @theme inline {
@@ -284,11 +294,11 @@
     font-family: var(--font-body);
     font-size: var(--text-body);
     line-height: 1.65;
-    color: rgb(var(--foreground) / 0.78);
+    color: var(--foreground-78);
   }
   small {
     font-size: var(--text-body-sm);
-    color: rgb(var(--foreground) / 0.65);
+    color: var(--foreground-65);
   }
   a {
     color: inherit;
@@ -344,18 +354,15 @@
     font-family: var(--font-body);
     font-size: var(--text-body-lg);
     line-height: 1.65;
-    color: rgb(var(--foreground) / 0.78);
+    color: var(--foreground-78);
   }
   .text-responsive-caption {
     font-size: var(--text-caption);
-    color: rgb(var(--foreground) / 0.6);
+    color: var(--foreground-60);
   }
 }
 
-/* ============================================
-   RTL/LTR RESPONSIVE SUPPORT
-   Comprehensive bidirectional layout support
-   ============================================ */
+/* RTL/LTR responsive support */
 
 /* Base direction and text alignment */
 [dir="rtl"] {
@@ -383,48 +390,44 @@
 }
 
 /* RTL padding overrides */
-[dir="rtl"] .pl-4 {
+[dir="rtl"] :is(.pl-4, .pl-6, .pl-8, .pl-12) {
   padding-left: 0;
+}
+
+[dir="rtl"] :is(.pr-4, .pr-6, .pr-8, .pr-12) {
+  padding-right: 0;
+}
+
+[dir="rtl"] .pl-4 {
   padding-right: 1rem;
 }
 
 [dir="rtl"] .pr-4 {
-  padding-right: 0;
   padding-left: 1rem;
 }
 
 [dir="rtl"] .pl-6 {
-  padding-left: 0;
   padding-right: 1.5rem;
 }
 
 [dir="rtl"] .pr-6 {
-  padding-right: 0;
   padding-left: 1.5rem;
 }
 
 [dir="rtl"] .pl-8 {
-  padding-left: 0;
   padding-right: 2rem;
 }
 
 [dir="rtl"] .pr-8 {
-  padding-right: 0;
   padding-left: 2rem;
 }
 
 [dir="rtl"] .pl-12 {
-  padding-left: 0;
   padding-right: 3rem;
 }
 
 [dir="rtl"] .pr-12 {
-  padding-right: 0;
   padding-left: 3rem;
-}
-
-[dir="rtl"] .pl-12.pr-4 {
-  padding-left: 1rem;
 }
 
 /* RTL text alignment */
@@ -432,7 +435,7 @@
   text-align: right;
 }
 
-/* LTR should maintain normal text alignment - no inversion needed */
+/* LTR maintains normal text alignment */
 
 [dir="rtl"] .text-right {
   text-align: left;
@@ -448,18 +451,19 @@
 }
 
 /* RTL gap adjustments */
-[dir="rtl"] .gap-x-4 {
+[dir="rtl"] :is(.gap-x-4, .gap-x-6, .gap-x-8) {
   column-gap: 0;
+}
+
+[dir="rtl"] .gap-x-4 {
   row-gap: 1rem;
 }
 
 [dir="rtl"] .gap-x-6 {
-  column-gap: 0;
   row-gap: 1.5rem;
 }
 
 [dir="rtl"] .gap-x-8 {
-  column-gap: 0;
   row-gap: 2rem;
 }
 
@@ -475,33 +479,35 @@
 }
 
 /* RTL absolute positioning */
-[dir="rtl"] .left-0 {
+[dir="rtl"] :is(.left-0, .left-4, .left-6) {
   left: auto;
+}
+
+[dir="rtl"] :is(.right-0, .right-4, .right-6) {
+  right: auto;
+}
+
+[dir="rtl"] .left-0 {
   right: 0;
 }
 
 [dir="rtl"] .right-0 {
-  right: auto;
   left: 0;
 }
 
 [dir="rtl"] .left-4 {
-  left: auto;
   right: 1rem;
 }
 
 [dir="rtl"] .right-4 {
-  right: auto;
   left: 1rem;
 }
 
 [dir="rtl"] .left-6 {
-  left: auto;
   right: 1.5rem;
 }
 
 [dir="rtl"] .right-6 {
-  right: auto;
   left: 1.5rem;
 }
 
@@ -516,33 +522,35 @@
 
 /* RTL responsive padding for mobile */
 @media (max-width: 640px) {
-  [dir="rtl"] .sm\:px-6 {
+  [dir="rtl"] :is(.sm\:px-6, .px-4) {
     padding-left: 0;
+  }
+
+  [dir="rtl"] .sm\:px-6 {
     padding-right: 1.5rem;
   }
 
   [dir="rtl"] .px-4 {
-    padding-left: 0;
     padding-right: 1rem;
   }
 }
 
 /* RTL responsive margin adjustments */
+[dir="rtl"] :is(.space-x-4, .space-x-6, .space-x-8) > * + * {
+  margin-right: 0;
+}
+
 [dir="rtl"] .space-x-4 > * + * {
   margin-left: 1rem;
-  margin-right: 0;
 }
 
 [dir="rtl"] .space-x-6 > * + * {
   margin-left: 1.5rem;
-  margin-right: 0;
 }
 
 [dir="rtl"] .space-x-8 > * + * {
   margin-left: 2rem;
-  margin-right: 0;
 }
-
 
 /* Optimize mobile viewport */
 @viewport {
@@ -550,12 +558,9 @@
   zoom: 1;
 }
 
-/* ============================================
-   RESPONSIVE DESIGN SYSTEM
-   Mobile-First Approach with Tailwind Breakpoints
-   ============================================ */
+/* Responsive design */
 
-/* Responsive Container Utilities */
+/* Container utilities */
 @layer components {
   .container-responsive,
   .container-compact,
@@ -594,7 +599,7 @@
     padding-block: var(--section-y-hero);
   }
 
-  /* Responsive Spacing Utilities */
+  /* Spacing utilities */
   .space-responsive {
     padding-block: var(--section-y);
   }
@@ -607,7 +612,7 @@
     padding-block: clamp(4rem, 8vw, 8rem);
   }
 
-  /* Responsive Grid Utilities */
+  /* Grid utilities */
   .grid-responsive {
     @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8;
   }
@@ -730,7 +735,7 @@
   }
   .btn:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px rgb(30 35 39 / 20%);
+    box-shadow: 0 0 0 3px var(--foreground-20);
   }
   .btn-sm {
     padding: 0.45rem 1rem;
@@ -778,25 +783,25 @@
   .btn-outline {
     background: transparent;
     color: var(--foreground);
-    border: 1px solid rgb(30 35 39 / 20%);
+    border: 1px solid var(--foreground-20);
   }
   .btn-outline:hover {
-    border-color: rgb(30 35 39 / 40%);
-    background: rgb(30 35 39 / 5%);
+    border-color: var(--foreground-40);
+    background: var(--foreground-5);
   }
   .btn-secondary {
     background: var(--secondary);
     color: var(--secondary-foreground);
   }
   .btn-secondary:hover {
-    background: rgb(207 203 196 / 70%);
+    background: var(--secondary-70);
   }
   .btn-ghost {
     background: transparent;
     color: var(--foreground);
   }
   .btn-ghost:hover {
-    background: rgb(30 35 39 / 5%);
+    background: var(--foreground-5);
   }
   .btn-link {
     background: transparent;
@@ -808,22 +813,22 @@
   /* Form Elements */
   .form-card {
     border-radius: calc(var(--radius-xl) + 6px);
-    border: 1px solid rgb(30 35 39 / 10%);
-    background: rgb(255 255 255 / 90%);
+    border: 1px solid var(--foreground-10);
+    background: var(--surface-90);
     padding: clamp(1.5rem, 3vw, 2.5rem);
     box-shadow: var(--shadow-md);
   }
   .form-label {
     @apply block text-xs font-semibold uppercase tracking-[0.25em];
-    color: rgb(30 35 39 / 65%);
+    color: var(--foreground-65);
   }
   .form-input,
   .form-select,
   .form-textarea {
     @apply w-full text-sm;
     border-radius: var(--radius-lg);
-    border: 1px solid rgb(30 35 39 / 10%);
-    background: rgb(255 255 255 / 90%);
+    border: 1px solid var(--foreground-10);
+    background: var(--surface-90);
     padding: 0.6rem 0.9rem;
     color: var(--foreground);
     transition:
@@ -833,18 +838,18 @@
   }
   .form-input::placeholder,
   .form-textarea::placeholder {
-    color: rgb(30 35 39 / 45%);
+    color: var(--foreground-45);
   }
   .form-input:focus,
   .form-select:focus,
   .form-textarea:focus {
     outline: none;
-    border-color: rgb(30 35 39 / 40%);
-    box-shadow: 0 0 0 3px rgb(30 35 39 / 12%);
+    border-color: var(--foreground-40);
+    box-shadow: 0 0 0 3px var(--foreground-12);
   }
   .form-hint {
     font-size: 0.75rem;
-    color: rgb(30 35 39 / 60%);
+    color: var(--foreground-60);
   }
   .form-error {
     font-size: 0.75rem;
@@ -852,7 +857,7 @@
   }
 }
 
-/* Premium animation utilities */
+/* animation utilities */
 @layer utilities {
   /* 2026 Premium Design Utilities */
 
