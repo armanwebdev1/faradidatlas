@@ -132,7 +132,11 @@
   --scrollbar-size: 10px;
   --scrollbar-track: color-mix(in srgb, var(--foreground) 8%, transparent);
   --scrollbar-thumb: color-mix(in srgb, var(--foreground) 35%, transparent);
-  --scrollbar-thumb-hover: color-mix(in srgb, var(--foreground) 50%, transparent);
+  --scrollbar-thumb-hover: color-mix(
+    in srgb,
+    var(--foreground) 50%,
+    transparent
+  );
 }
 
 .dark {
@@ -362,7 +366,7 @@
   }
 }
 
-/* RTL/LTR responsive support */
+/* Rtl/ltr responsive support */
 
 /* Base direction and text alignment */
 [dir="rtl"] {
@@ -378,7 +382,7 @@
   text-align: left;
 }
 
-/* RTL margin and padding overrides */
+/* Rtl overrides */
 [dir="rtl"] .ml-auto {
   margin-left: auto;
   margin-right: 0;
@@ -389,7 +393,7 @@
   margin-left: 0;
 }
 
-/* RTL padding overrides */
+/* Rtl padding */
 [dir="rtl"] :is(.pl-4, .pl-6, .pl-8, .pl-12) {
   padding-left: 0;
 }
@@ -430,18 +434,16 @@
   padding-left: 3rem;
 }
 
-/* RTL text alignment */
+/* Rtl text alignment */
 [dir="rtl"] .text-left {
   text-align: right;
 }
-
-/* LTR maintains normal text alignment */
 
 [dir="rtl"] .text-right {
   text-align: left;
 }
 
-/* RTL flex reversals */
+/* Rtl flex */
 [dir="rtl"] .flex-row {
   flex-direction: row-reverse;
 }
@@ -450,7 +452,7 @@
   flex-direction: row;
 }
 
-/* RTL gap adjustments */
+/* Rtl gap adjustments */
 [dir="rtl"] :is(.gap-x-4, .gap-x-6, .gap-x-8) {
   column-gap: 0;
 }
@@ -467,7 +469,7 @@
   row-gap: 2rem;
 }
 
-/* RTL border positioning */
+/* Rtl border positioning */
 [dir="rtl"] .border-l {
   border-left: none;
   border-right: 1px solid currentColor;
@@ -478,7 +480,7 @@
   border-left: 1px solid currentColor;
 }
 
-/* RTL absolute positioning */
+/* Rtl absolute positioning */
 [dir="rtl"] :is(.left-0, .left-4, .left-6) {
   left: auto;
 }
@@ -511,7 +513,7 @@
   left: 1.5rem;
 }
 
-/* RTL transform origins */
+/* Rtl transform origins */
 [dir="rtl"] .origin-left {
   transform-origin: right;
 }
@@ -520,7 +522,7 @@
   transform-origin: left;
 }
 
-/* RTL responsive padding for mobile */
+/* Rtl responsive padding for mobile */
 @media (max-width: 640px) {
   [dir="rtl"] :is(.sm\:px-6, .px-4) {
     padding-left: 0;
@@ -535,7 +537,7 @@
   }
 }
 
-/* RTL responsive margin adjustments */
+/* Rtl responsive margin adjustments */
 [dir="rtl"] :is(.space-x-4, .space-x-6, .space-x-8) > * + * {
   margin-right: 0;
 }
