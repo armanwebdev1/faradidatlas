@@ -67,8 +67,8 @@ export function ContactForm({ lang }: ContactFormProps) {
       </h2>
       <p className="text-responsive-body text-foreground/70 mb-6 sm:mb-8">
         {lang === "en"
-          ? "Tell us about your business needs. We'll respond within 24-48 hours."
-          : "به ما در مورد نیاز‌های تجاری خود بگویید. ما در ۲۴-۴۸ ساعت پاسخ خواهیم داد."}
+          ? "Tell us about your product needs, destination, and expected volume. We'll respond within 24-48 hours."
+          : "درباره محصول مورد نیاز، مقصد و حجم تقریبی بگویید. ما طی ۲۴ تا ۴۸ ساعت پاسخ می‌دهیم."}
       </p>
 
       {/* Form grid - responsive */}
@@ -181,18 +181,23 @@ export function ContactForm({ lang }: ContactFormProps) {
             <option value="">
               {lang === "en" ? "Select product..." : "محصول را انتخاب کنید..."}
             </option>
-            <option value="saffron">
-              {lang === "en" ? "Saffron" : "زعفران"}
+            <option value="rice">
+              {lang === "en" ? "Rice" : "برنج"}
             </option>
-            <option value="dates">{lang === "en" ? "Dates" : "خرما"}</option>
-            <option value="pistachios">
-              {lang === "en" ? "Pistachios" : "پسته"}
+            <option value="legumes">
+              {lang === "en" ? "Legumes" : "حبوبات"}
             </option>
-            <option value="almonds">
-              {lang === "en" ? "Almonds" : "بادام"}
+            <option value="spices">
+              {lang === "en" ? "Spices" : "ادویه‌جات"}
             </option>
-            <option value="herbs">
-              {lang === "en" ? "Dried Herbs" : "گیاهان خشک"}
+            <option value="nuts">
+              {lang === "en" ? "Nuts" : "آجیل"}
+            </option>
+            <option value="seeds">
+              {lang === "en" ? "Seeds" : "دانه‌ها"}
+            </option>
+            <option value="sugar">
+              {lang === "en" ? "Sugar" : "شکر"}
             </option>
             <option value="multiple">
               {lang === "en" ? "Multiple Products" : "محصولات متعدد"}

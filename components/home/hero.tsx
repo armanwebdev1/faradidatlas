@@ -13,31 +13,31 @@ const slides = [
   {
     id: 1,
     image: "/1.jpg",
-    title: { en: "Premium Global Foods", fa: "غذاهای درجه یک جهانی" },
-    subtitle: { en: "Exceptional Quality", fa: "کیفیت برتر" },
+    title: { en: "Reliable Food Supply", fa: "تامین مطمئن مواد غذایی" },
+    subtitle: { en: "Food Security in Practice", fa: "امنیت غذایی در عمل" },
     description: {
-      en: "Trusted global food exporter with premium sourcing, certified quality, and private labeling solutions for discerning partners worldwide.",
-      fa: "تامین‌کننده معتبر محصولات غذایی صادراتی با استانداردهای بین‌المللی، گواهی‌های کیفیت و تعهد به برتری",
+      en: "Faradid Atlas sources, imports, and distributes essential food products with disciplined quality standards and dependable regional operations.",
+      fa: "فرادید اطلس محصولات غذایی اساسی را با انتخاب دقیق، استانداردهای کیفی منظم و عملیات منطقه‌ای قابل اتکا تامین، وارد و توزیع می‌کند.",
     },
   },
   {
     id: 2,
     image: "/2.jpg",
-    title: { en: "Certified Excellence", fa: "برتری معتمد" },
+    title: { en: "Quality-Led Sourcing", fa: "تامین مبتنی بر کیفیت" },
     subtitle: { en: "International Standards", fa: "استانداردهای بین‌المللی" },
     description: {
-      en: "Meeting and exceeding international quality standards with rigorous testing and compliance procedures across all product categories.",
-      fa: "رعایت و تجاوز از استانداردهای کیفی بین‌المللی با آزمایش‌های سخت‌گیرانه و رویه‌های انطباق در تمام دسته‌های محصول",
+      en: "Rice, legumes, spices, nuts, seeds, and sugar are selected against strict hygiene and quality requirements before entering the supply chain.",
+      fa: "برنج، حبوبات، ادویه‌جات، آجیل، دانه‌ها و شکر پیش از ورود به زنجیره تامین بر اساس الزامات دقیق بهداشتی و کیفی انتخاب می‌شوند.",
     },
   },
   {
     id: 3,
     image: "/3.jpg",
-    title: { en: "Global Distribution", fa: "توزیع جهانی" },
-    subtitle: { en: "Worldwide Reach", fa: "دسترسی جهانی" },
+    title: { en: "Regional Distribution Network", fa: "شبکه توزیع منطقه‌ای" },
+    subtitle: { en: "Iran, UAE & Oman", fa: "ایران، امارات و عمان" },
     description: {
-      en: "Delivering premium products to partners across continents with reliable logistics and uncompromising quality standards.",
-      fa: "تحویل محصولات نخبه به شركاء در سراسر قاره‌ها با لجستیک قابل‌اعتماد و استانداردهای کیفی سازش‌ناپذیر",
+      en: "With offices, branches, and warehouses across key markets, we help wholesalers, retailers, and institutions keep essential supply moving.",
+      fa: "با دفاتر، شعب و انبارها در بازارهای کلیدی، به عمده‌فروشان، خرده‌فروشان و سازمان‌ها کمک می‌کنیم تامین مواد غذایی اساسی پایدار بماند.",
     },
   },
 ];
@@ -143,6 +143,7 @@ export function Hero({ lang }: HeroProps) {
   }, []);
 
   const slide = slides[currentSlide];
+  const titleParts = slide.title[lang].split(" ");
 
   return (
     <div
@@ -172,7 +173,7 @@ export function Hero({ lang }: HeroProps) {
 
       <button
         onClick={prevSlide}
-        aria-label="Previous slide"
+        aria-label={lang === "en" ? "Previous slide" : "اسلاید قبلی"}
         className={`absolute top-1/2 -translate-y-1/2 z-30 ${
           isRTL ? "right-8" : "left-8"
         }`}
@@ -188,7 +189,7 @@ export function Hero({ lang }: HeroProps) {
 
       <button
         onClick={nextSlide}
-        aria-label="Next slide"
+        aria-label={lang === "en" ? "Next slide" : "اسلاید بعدی"}
         className={`absolute top-1/2 -translate-y-1/2 z-30 ${
           isRTL ? "left-8" : "right-8"
         }`}
@@ -220,10 +221,10 @@ export function Hero({ lang }: HeroProps) {
 
           <h1 className="mb-8 text-responsive-hero text-white">
             <span ref={titleLine1Ref} className="block">
-              {slide.title[lang].split(" ")[0]}
+              {titleParts[0]}
             </span>
             <span ref={titleLine2Ref} className="block">
-              {slide.title[lang].split(" ").slice(1).join(" ")}
+              {titleParts.slice(1).join(" ")}
             </span>
           </h1>
 
@@ -239,7 +240,11 @@ export function Hero({ lang }: HeroProps) {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                aria-label={`Go to slide ${index + 1}`}
+                aria-label={
+                  lang === "en"
+                    ? `Go to slide ${index + 1}`
+                    : `رفتن به اسلاید ${index + 1}`
+                }
                 className={`h-1 transition-all duration-500 ${
                   index === currentSlide
                     ? "w-12 bg-white"

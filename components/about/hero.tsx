@@ -1,5 +1,6 @@
 import type { Language } from "@/lib/i18n";
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatedHeadline } from "./animated-headline";
 import { CountUpValue } from "./count-up-value";
 
@@ -17,36 +18,35 @@ export function AboutHero({ lang }: AboutHeroProps) {
     >
       <div className="container-full">
         <div className="space-y-20">
-          {/* Headline */}
           <AnimatedHeadline className="text-center">
             <p
               className="eyebrow mb-4 text-accent-warm-gold opacity-0 translate-y-6"
               data-animate
             >
-              {lang === "en" ? "About Us" : "درباره ما"}
+              {lang === "en" ? "About Faradid Atlas" : "درباره فرادید اطلس"}
             </p>
             <h1
               className="text-responsive-hero text-primary mb-8 max-w-5xl mx-auto opacity-0 translate-y-6"
               data-animate
             >
               {lang === "en"
-                ? "We build trusted B2B food supply chains that connect premium producers with global buyers."
-                : "ما زنجیره‌های تأمین غذایی B2B قابل‌اعتماد می‌سازیم که تولیدکنندگان ممتاز را به خریداران جهانی متصل می‌کند."}
+                ? "We connect reliable global food supply with the essential needs of the Iranian market."
+                : "ما تامین جهانی قابل اتکا را به نیازهای اساسی بازار مواد غذایی ایران متصل می‌کنیم."}
             </h1>
-            <button
+            <Link
+              href={`/${lang}/contact`}
               className="btn btn-primary btn-md opacity-0 translate-y-6"
               data-animate
             >
               {lang === "en" ? "Contact Us" : "تماس با ما"}
-            </button>
+            </Link>
           </AnimatedHeadline>
 
-          {/* Image */}
           <div>
             <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80"
-                alt="Tehran"
+                alt={lang === "en" ? "Faradid Atlas operations" : "عملیات فرادید اطلس"}
                 fill
                 priority
                 sizes="100vw"
@@ -55,13 +55,11 @@ export function AboutHero({ lang }: AboutHeroProps) {
             </div>
           </div>
 
-          {/* Intro */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <h2 className="text-responsive-title text-primary">
-              {lang === "en" ? "Get to know us more" : "بیشتر درباره ما بدانید"}
+              {lang === "en" ? "Food security, made practical" : "امنیت غذایی، در عمل"}
             </h2>
 
-            {/* Keep English LTR, Persian RTL */}
             <div
               dir={isRTL ? "rtl" : "ltr"}
               className="space-y-6"
@@ -73,79 +71,62 @@ export function AboutHero({ lang }: AboutHeroProps) {
             >
               <p className="text-base md:text-lg font-semibold text-foreground leading-relaxed max-w-xl">
                 {lang === "en"
-                  ? "Led by specialists in sourcing, quality, and export logistics, we provide end-to-end food trading services for importers, distributors, retailers, and foodservice partners."
-                  : "با هدایت متخصصان تأمین، کیفیت و لجستیک صادرات، خدمات تجارت غذایی سرتاسری را برای واردکنندگان، توزیع‌کنندگان، خرده‌فروشان و شرکای خدمات غذایی ارائه می‌دهیم."}
+                  ? "Faradid Atlas imports and distributes essential food products including rice, legumes, spices, nuts, seeds, and sugar. Each product is selected carefully against global quality and hygiene standards."
+                  : "فرادید اطلس محصولات غذایی اساسی از جمله برنج، حبوبات، ادویه‌جات، آجیل، دانه‌ها و شکر را وارد و توزیع می‌کند. هر محصول با دقت و بر پایه استانداردهای جهانی کیفیت و بهداشت انتخاب می‌شود."}
               </p>
 
               <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-xl">
                 {lang === "en"
-                  ? "From producer partnerships to compliance and documentation, our teams manage every step so you can grow with consistency, transparency, and confidence."
-                  : "از مشارکت با تولیدکنندگان تا انطباق و مستندسازی، تیم‌های ما هر مرحله را مدیریت می‌کنند تا با ثبات، شفافیت و اطمینان رشد کنید."}
+                  ? "Through supplier relationships, regional offices, branches, and warehouses, we keep supply accessible for retailers, wholesalers, organizations, and foodservice partners."
+                  : "ما با تکیه بر ارتباط با تامین‌کنندگان، دفاتر منطقه‌ای، شعب و انبارها، دسترسی پایدار به کالا را برای خرده‌فروشان، عمده‌فروشان، سازمان‌ها و شرکای خدمات غذایی فراهم می‌کنیم."}
               </p>
             </div>
           </div>
 
-          {/* Founder */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* CEO */}
-            <div className="flex gap-4 items-center">
-              <div className="relative w-14 h-14 rounded-full overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&q=80"
-                  alt="CEO"
-                  fill
-                  sizes="56px"
-                  className="object-cover"
-                />
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-primary uppercase tracking-wide">
-                  {lang === "en" ? "Founder & CEO" : "بنیانگذار و مدیرعامل"}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {lang === "en" ? "Mohsen Ahmadi" : "محسن احمدی"}
-                </p>
-              </div>
+            <div>
+              <p className="text-xs font-semibold text-primary uppercase tracking-wide mb-3">
+                {lang === "en" ? "Mission" : "ماموریت"}
+              </p>
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-xl">
+                {lang === "en"
+                  ? "Our mission is to remove unnecessary intermediaries, protect supply chain continuity, and create lasting value for customers and the wider community."
+                  : "ماموریت ما حذف واسطه‌های غیرضروری، حفظ پایداری زنجیره تامین و خلق ارزش ماندگار برای مشتریان و جامعه است."}
+              </p>
             </div>
 
-            {/* Quote */}
             <blockquote className="text-2xl md:text-3xl font-bold text-primary leading-tight max-w-xl">
               {lang === "en"
-                ? "“Our mission is to deliver premium foods with reliable timelines and documentation, so partners can scale confidently.”"
-                : "«ماموریت ما تحویل مواد غذایی ممتاز با زمان‌بندی و مستندسازی قابل‌اعتماد است تا شرکای ما با اطمینان مقیاس بگیرند.»"}
+                ? "Healthy, quality food should be accessible. That belief guides every sourcing and distribution decision we make."
+                : "دسترسی به غذای سالم و باکیفیت باید ممکن باشد؛ این باور راهنمای تصمیم‌های ما در تامین و توزیع است."}
             </blockquote>
           </div>
 
-          {/* Stats */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
             <Stat
-              value={8.93}
-              suffix="%"
-              decimals={2}
-              labelEn="Annual export growth"
-              labelFa="رشد سالانه صادرات"
-              lang={lang}
-            />
-            <Stat
-              value={12.6}
-              suffix={lang === "en" ? "K" : " هزار"}
-              decimals={1}
-              labelEn="Shipments delivered"
-              labelFa="مرسوله‌های تحویل‌شده"
-              lang={lang}
-            />
-            <Stat
-              value={16}
+              value={10}
               suffix="+"
-              labelEn="Countries served"
-              labelFa="کشورهای تحت پوشش"
+              labelEn="Years of operation"
+              labelFa="سال فعالیت"
               lang={lang}
             />
             <Stat
-              value={12}
+              value={4}
+              labelEn="Rice brands"
+              labelFa="برند برنج"
+              lang={lang}
+            />
+            <Stat
+              value={3}
+              labelEn="Regional markets"
+              labelFa="بازار منطقه‌ای"
+              lang={lang}
+            />
+            <Stat
+              value={20}
               suffix="+"
-              labelEn="Quality certifications"
-              labelFa="گواهی‌های کیفیت"
+              labelEn="Product lines"
+              labelFa="گروه محصول"
               lang={lang}
             />
           </div>

@@ -29,7 +29,6 @@ export function ProductsContent({ lang, products }: ProductsContentProps) {
     <section className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-gradient-to-b from-background to-secondary/30">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-10 md:gap-14 lg:gap-16">
-          {/* Filters Sidebar */}
           <div className="lg:w-64 flex-shrink-0">
             <div className="sticky top-32">
               <h3 className="text-sm font-bold text-primary mb-8 uppercase tracking-widest">
@@ -43,12 +42,10 @@ export function ProductsContent({ lang, products }: ProductsContentProps) {
             </div>
           </div>
 
-          {/* Products Grid */}
           <div className="flex-1">
-            {/* Sorting Header */}
-            <div className="mb-10 sm:mb-12 flex justify-between items-center">
+            <div className="mb-10 sm:mb-12 flex justify-between items-center gap-4">
               <span className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wide">
-                {lang === "en" ? "Best Seller" : "پرفروش‌ترین"}
+                {lang === "en" ? "Core Portfolio" : "سبد اصلی"}
               </span>
               <Sorting
                 lang={lang}
@@ -57,7 +54,6 @@ export function ProductsContent({ lang, products }: ProductsContentProps) {
               />
             </div>
 
-            {/* Products Grid */}
             {sortedProducts.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
                 {sortedProducts.map((product, idx) => (

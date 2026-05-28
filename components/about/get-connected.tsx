@@ -7,15 +7,15 @@ interface GetConnectedProps {
 
 export function GetConnected({ lang }: GetConnectedProps) {
   const isRTL = lang === "fa";
+
   return (
     <section className="relative bg-background overflow-hidden">
-      {/* Full-width Image - matching hero style */}
       <div className="w-full px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
             <Image
               src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80"
-              alt="Global supply chain operations"
+              alt={lang === "en" ? "Regional supply chain operations" : "عملیات زنجیره تامین منطقه‌ای"}
               fill
               sizes="100vw"
               className="object-cover"
@@ -25,20 +25,17 @@ export function GetConnected({ lang }: GetConnectedProps) {
         </div>
       </div>
 
-      {/* Content Section */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Left - Heading */}
           <h2
             className="lg:col-span-5 text-4xl md:text-5xl font-bold font-hero text-primary leading-tight tracking-tight"
             style={{ fontFamily: "var(--font-hero)" }}
           >
             {lang === "en"
-              ? "Read our story to connect your supply chain"
-              : "داستان ما"}
+              ? "A supply network shaped by access and accountability"
+              : "شبکه تامینی بر پایه دسترسی و مسئولیت‌پذیری"}
           </h2>
 
-          {/* Right - Body Content */}
           <div
             dir={isRTL ? "rtl" : "ltr"}
             className="lg:col-span-7 space-y-6"
@@ -49,17 +46,16 @@ export function GetConnected({ lang }: GetConnectedProps) {
           >
             <p className="text-base md:text-lg font-semibold text-foreground leading-relaxed">
               {lang === "en"
-                ? "Owned and operated by food trading professionals, we deliver sourcing, quality assurance, and export services for international buyers and retail partners."
-                : "متعلق به متخصصان تجارت غذا و توسط آنها اداره می‌شود، ما خدمات تأمین، تضمین کیفیت و صادرات را برای خریداران بین‌المللی و شرکای خرده‌فروشی ارائه می‌دهیم."}
+                ? "Our operations span important provinces in Iran, including Tehran, Isfahan, and Shahrekord, alongside regional access through the UAE and Oman."
+                : "عملیات ما در استان‌های مهم ایران از جمله تهران، اصفهان و شهرکرد جریان دارد و از طریق امارات و عمان نیز دسترسی منطقه‌ای ایجاد می‌کند."}
             </p>
 
             <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
               {lang === "en"
-                ? "With teams across sourcing regions and logistics hubs, we combine market insight with rigorous standards to keep your supply steady and compliant."
-                : "با تیم‌هایی در مناطق تأمین و هاب‌های لجستیکی، بینش بازار را با استانداردهای دقیق ترکیب می‌کنیم تا تأمین شما پایدار و منطبق بماند."}
+                ? "This footprint allows us to manage sourcing, storage, and distribution with speed, consistency, and closer visibility across the chain."
+                : "این گستره به ما امکان می‌دهد تامین، نگهداری و توزیع را با سرعت، ثبات و دید دقیق‌تر در سراسر زنجیره مدیریت کنیم."}
             </p>
 
-            {/* Quote Block with Accent Border */}
             <div
               className={`border-accent-warm-gold mt-8 ${
                 isRTL ? "border-r-2 pr-8" : "border-l-2 pl-6"
@@ -67,8 +63,8 @@ export function GetConnected({ lang }: GetConnectedProps) {
             >
               <p className="text-sm md:text-base text-muted-foreground leading-relaxed italic">
                 {lang === "en"
-                  ? "Over the years we expanded our producer network, certifications, and logistics partners to serve customers across continents."
-                  : "در طول سال‌ها شبکه تولیدکنندگان، گواهی‌ها و شرکای لجستیک خود را گسترش دادیم تا به مشتریان در سراسر قاره‌ها خدمت کنیم."}
+                  ? "The goal is simple: keep high-quality essential food products available, fairly priced, and ready for the buyers who depend on them."
+                  : "هدف ساده است: حفظ دسترسی به مواد غذایی اساسی باکیفیت، قیمت‌گذاری منطقی و آمادگی برای خریدارانی که به آن وابسته‌اند."}
               </p>
             </div>
           </div>

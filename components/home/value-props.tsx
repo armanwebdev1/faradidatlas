@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import type { Language } from "@/lib/i18n";
-import { Globe, CheckCircle, Tag, Package } from "lucide-react";
+import { Globe, CheckCircle, Route, Package } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,58 +16,60 @@ const valueItems = {
   en: [
     {
       icon: Globe,
-      title: "Global Sourcing",
+      title: "Direct Global Sourcing",
       description:
-        "Direct partnerships with premium producers across 15+ countries",
+        "First-tier supplier relationships in key food-producing markets, including India and Pakistan.",
       accentColor: "accent-warm-gold",
     },
     {
       icon: CheckCircle,
-      title: "Quality Control",
+      title: "Quality Before Volume",
       description:
-        "Rigorous testing at every stage: harvest, processing, packaging, shipping",
+        "Products are selected against international hygiene and quality standards such as ISO 22000.",
       accentColor: "accent-warm-red",
     },
     {
-      icon: Tag,
-      title: "Private Labeling",
+      icon: Route,
+      title: "Stable Supply Channels",
       description:
-        "White-label solutions with flexible MOQs and custom packaging",
+        "Regional branches, offices, and warehouses support continuous supply for B2B buyers.",
       accentColor: "accent",
     },
     {
       icon: Package,
-      title: "Export Ready",
+      title: "Practical Packaging",
       description:
-        "All products certified for international export with full documentation",
+        "Bulk and retail-ready formats help wholesalers, retailers, institutions, and foodservice teams.",
       accentColor: "accent-warm-orange",
     },
   ],
   fa: [
     {
       icon: Globe,
-      title: "تامین بین‌المللی",
-      description: "همکاری مستقیم با تولیدکنندگان برتر در بیش از ۱۵ کشور",
+      title: "تامین مستقیم جهانی",
+      description:
+        "همکاری با تامین‌کنندگان رده‌اول در بازارهای کلیدی مواد غذایی، از جمله هند و پاکستان.",
       accentColor: "accent-warm-gold",
     },
     {
       icon: CheckCircle,
-      title: "کنترل کیفیت",
+      title: "کیفیت پیش از حجم",
       description:
-        "آزمایش دقیق در هر مرحله: برداشت، فرآوری، بسته‌بندی، حمل‌ونقل",
+        "محصولات بر اساس استانداردهای بین‌المللی کیفیت و بهداشت مانند ISO 22000 انتخاب می‌شوند.",
       accentColor: "accent-warm-red",
     },
     {
-      icon: Tag,
-      title: "علامت‌گذاری خصوصی",
+      icon: Route,
+      title: "کانال تامین پایدار",
       description:
-        "راه‌حل‌های برچسب سفید با حداقل سفارش انعطاف‌پذیر و بسته‌بندی سفارشی",
+        "دفاتر، شعب و انبارهای منطقه‌ای از تامین مستمر برای خریداران B2B پشتیبانی می‌کنند.",
       accentColor: "accent",
     },
     {
       icon: Package,
-      title: "آماده صادرات",
-      description: "تمام محصولات معتبر برای صادرات بین‌المللی با اسناد کامل",
+      title: "بسته‌بندی کاربردی",
+      description:
+        "فرمت‌های فله و آماده فروش برای عمده‌فروشان، خرده‌فروشان، سازمان‌ها و خدمات غذایی.",
       accentColor: "accent-warm-orange",
     },
   ],
@@ -195,7 +197,6 @@ export function ValueProps({ lang }: ValuePropsProps) {
       ref={containerRef}
       className="section bg-surface relative overflow-hidden opacity-0 translate-y-6"
     >
-      {/* Subtle decorative gradient elements */}
       <div
         className="absolute top-20 w-96 h-96 bg-gradient-to-br from-accent-warm-gold/3 to-transparent rounded-full blur-3xl pointer-events-none"
         style={{ right: 0 }}
@@ -206,7 +207,6 @@ export function ValueProps({ lang }: ValuePropsProps) {
       />
 
       <div className="container-wide relative z-10">
-        {/* Premium Section Header */}
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
           <p className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6">
             {lang === "en" ? "Why Faradid Atlas" : "چرا فرادید اطلس؟"}
@@ -216,22 +216,20 @@ export function ValueProps({ lang }: ValuePropsProps) {
             className="text-responsive-title mb-5 sm:mb-7 md:mb-8 text-foreground"
           >
             {lang === "en"
-              ? "Excellence in Every Partnership"
-              : "تعالی در هر مشارکت"}
+              ? "Built for Continuity, Quality, and Trust"
+              : "ساخته‌شده برای استمرار، کیفیت و اعتماد"}
           </h2>
           <p
             ref={subtitleRef}
             className="text-responsive-body text-foreground/70 max-w-2xl mx-auto"
           >
             {lang === "en"
-              ? "Trusted by distributors and retailers worldwide for premium sourcing, rigorous quality control, and reliable partnerships"
-              : "توسط توزیع‌کنندگان و فروشندگان جهانی برای تامین برتر، کنترل کیفیت دقیق و مشارکت‌های قابل‌اعتماد"}
+              ? "Our work is practical: reliable sourcing, fair pricing discipline, clear documentation, and steady access to essential foods."
+              : "کار ما عملی و دقیق است: تامین قابل اتکا، نظم در قیمت‌گذاری، مستندسازی روشن و دسترسی پایدار به مواد غذایی اساسی."}
           </p>
         </div>
 
-        {/* Premium Carousel Container */}
         <div className="relative">
-          {/* Gradient fade overlays - smoother and more elegant */}
           <div
             className="absolute top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-gradient-to-r from-white via-white/50 to-transparent z-20 pointer-events-none"
             style={{ left: 0 }}
@@ -253,9 +251,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
                     }}
                     className="flex-shrink-0 w-80 sm:w-96 md:w-[28rem]"
                   >
-                    {/* Premium Card with minimalist design */}
                     <div className="h-full flex flex-col p-6 sm:p-8 rounded-2xl border border-foreground/8 bg-gradient-to-br from-foreground/[0.02] to-foreground/[0.01] backdrop-blur-md transition-colors duration-500 hover:bg-gradient-to-br hover:from-foreground/[0.05] hover:to-foreground/[0.02]">
-                      {/* Icon Container with accent underline */}
                       <div className="relative mb-6 sm:mb-8 inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20">
                         <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-foreground/8 to-foreground/4" />
                         <IconComponent
@@ -265,12 +261,10 @@ export function ValueProps({ lang }: ValuePropsProps) {
                         />
                       </div>
 
-                      {/* Title with premium typography */}
                       <h3 className="text-responsive-subheading text-foreground mb-3 sm:mb-4">
                         {item.title}
                       </h3>
 
-                      {/* Description with refined typography */}
                       <p className="text-sm sm:text-base text-foreground/65 leading-relaxed flex-grow">
                         {item.description}
                       </p>

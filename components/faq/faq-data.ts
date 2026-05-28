@@ -16,91 +16,91 @@ export interface FAQItem {
 export const faqs: FAQItem[] = [
   {
     id: 1,
-    questionEn: "Where do you source your products?",
-    questionFa: "محصولات شما از کجا تامین می‌شوند؟",
+    questionEn: "What products does Faradid Atlas supply?",
+    questionFa: "فرادید اطلس چه محصولاتی را تامین می‌کند؟",
     answerEn:
-      "We partner directly with premium producers in Iran's most renowned agricultural regions—Khorasan (saffron, nuts), Yazd (dates), and Rafsanjan (pistachios). All partnerships are audited annually to ensure compliance with international quality standards.",
+      "Our core portfolio includes rice, legumes, spices, nuts, seeds, sugar, and other essential food products for B2B buyers, retailers, wholesalers, organizations, and foodservice partners.",
     answerFa:
-      "ما با تولیدکنندگان برتر در معروف‌ترین مناطق کشاورزی ایران—خراسان (زعفران، آجیل)، یزد (خرما) و رفسنجان (پسته) مشارکت داریم. تمام مشارکت‌ها سالانه بازرسی می‌شوند تا انطباق با استانداردهای کیفیت بین‌المللی را تضمین کنند.",
+      "سبد اصلی ما شامل برنج، حبوبات، ادویه‌جات، آجیل، دانه‌ها، شکر و سایر مواد غذایی اساسی برای خریداران B2B، خرده‌فروشان، عمده‌فروشان، سازمان‌ها و شرکای خدمات غذایی است.",
     category: "sourcing",
   },
   {
     id: 2,
-    questionEn: "What are your minimum order quantities (MOQ)?",
-    questionFa: "حداقل سفارش شما چقدر است؟",
+    questionEn: "Where do you source your products from?",
+    questionFa: "محصولات از کجا تامین می‌شوند؟",
     answerEn:
-      "MOQ varies by product. Most products start at 5-10 kg. For private labeling, we accept orders from 5,000 kg upward. Contact our sales team for specific MOQ information on products you're interested in.",
+      "We work with first-tier suppliers in key food-producing markets, especially India and Pakistan, and select products based on quality, hygiene, availability, and commercial fit.",
     answerFa:
-      "MOQ بر اساس محصول متفاوت است. اکثر محصولات از ۵-۱۰ کیلوگرم شروع می‌شوند. برای علامت‌گذاری خصوصی، ما سفارشات از ۵۰۰۰ کیلوگرم به بالا را پذیرش می‌کنیم.",
-    category: "moq",
+      "ما با تامین‌کنندگان رده‌اول در بازارهای کلیدی مواد غذایی، به‌ویژه هند و پاکستان، همکاری می‌کنیم و محصولات را بر اساس کیفیت، بهداشت، دسترسی و تناسب تجاری انتخاب می‌کنیم.",
+    category: "sourcing",
   },
   {
     id: 3,
-    questionEn: "What are typical lead times for orders?",
-    questionFa: "مدت زمان معمول تحویل سفارش چقدر است؟",
+    questionEn: "Do you own or manage rice brands?",
+    questionFa: "آیا برندهای برنج هم در اختیار دارید؟",
     answerEn:
-      "Standard lead time is 4-6 weeks for regular orders, depending on product availability and shipping logistics. Private label orders typically take 8-12 weeks from initial consultation to delivery. Expedited options are available upon request.",
+      "Yes. Faradid Atlas is associated with four recognized rice brands: 21, Mizban, Hayat, and Golbanou. These brands support our rice portfolio across Iran and the wider region.",
     answerFa:
-      "مدت زمان معمول ۴-۶ هفته برای سفارشات معمولی است، بسته به دستیابی محصول و لجستیک حمل‌ونقل. سفارشات علامت‌گذاری خصوصی معمولاً ۸-۱۲ هفته طول می‌کشند. گزینه‌های شتاب‌زده در دسترس هستند.",
-    category: "lead-time",
+      "بله. فرادید اطلس با چهار برند شناخته‌شده برنج یعنی ۲۱، میزبان، حیات و گل‌بانو شناخته می‌شود. این برندها سبد برنج ما را در ایران و منطقه پشتیبانی می‌کنند.",
+    category: "sourcing",
   },
   {
     id: 4,
-    questionEn: "Are all your products certified for international export?",
-    questionFa: "آیا تمام محصولات شما برای صادرات بین‌المللی معتبر هستند؟",
+    questionEn: "How do you manage quality and food safety?",
+    questionFa: "کیفیت و ایمنی غذایی چگونه مدیریت می‌شود؟",
     answerEn:
-      "Yes. All our products carry ISO 22000, HACCP, and FSSC 22000 certifications. Many are also Halal certified. We provide complete documentation including Certificates of Analysis, phytosanitary certificates, and health clearances for every shipment.",
+      "Products are selected and handled according to international quality and hygiene standards, including ISO 22000-led discipline. We focus on quality checks, documentation, storage, and distribution controls.",
     answerFa:
-      "بله. تمام محصولات ما دارای گواهی‌های ISO 22000، HACCP و FSSC 22000 هستند. بسیاری از آنها نیز معتبر حلال هستند. ما اسناد کاملی از جمله گواهی‌های تجزیه، گواهی‌های فیتوسانیتری و رفع موانع سلامتی برای هر کشتی فراهم می‌کنیم.",
+      "محصولات بر اساس استانداردهای بین‌المللی کیفیت و بهداشت، از جمله رویکرد مبتنی بر ISO 22000، انتخاب و مدیریت می‌شوند. کنترل کیفیت، مستندسازی، انبارداری و کنترل توزیع برای ما مهم است.",
     category: "certifications",
   },
   {
     id: 5,
-    questionEn: "How do you ensure product quality and food safety?",
-    questionFa: "چگونه کیفیت محصول و ایمنی غذایی را تضمین می‌کنید؟",
+    questionEn: "How is pricing handled?",
+    questionFa: "قیمت‌گذاری چگونه انجام می‌شود؟",
     answerEn:
-      "Our six-stage quality control process includes producer audits, harvest monitoring, lab testing (third-party), packaging inspection, cold chain management, and complete documentation. Every batch is tested before shipment.",
+      "Pricing depends on product, grade, volume, packaging, origin, and timing. Our approach is based on rational margins and competitive market conditions, so every quote is prepared after reviewing the inquiry.",
     answerFa:
-      "فرایند کنترل کیفیت شش‌مرحله‌ای ما شامل بازرسی تولیدکننده، نظارت بر برداشت، آزمایش آزمایشگاه (شخص ثالث)، بازرسی بسته‌بندی، مدیریت زنجیره سرد و مستندات کامل است.",
-    category: "certifications",
+      "قیمت به محصول، گرید، حجم، بسته‌بندی، مبدا و زمان‌بندی بستگی دارد. رویکرد ما بر حاشیه سود منطقی و شرایط رقابتی بازار است؛ بنابراین هر قیمت پس از بررسی درخواست آماده می‌شود.",
+    category: "moq",
   },
   {
     id: 6,
-    questionEn: "Do you offer private labeling services?",
-    questionFa: "آیا خدمات علامت‌گذاری خصوصی ارائه می‌دهید؟",
+    questionEn: "What regions do you operate in?",
+    questionFa: "در چه مناطقی فعالیت دارید؟",
     answerEn:
-      "Yes. We offer complete white-label solutions with flexible MOQs starting at 5,000 kg, custom packaging design, and quick turnaround (8-12 weeks). Our team handles the entire process from consultation to delivery.",
+      "We operate through offices, branches, and warehouse access in important Iranian locations including Tehran, Isfahan, and Shahrekord, with regional trade access through the UAE and Oman.",
     answerFa:
-      "بله. ما راه‌حل‌های علامت‌گذاری خصوصی کامل را با MOQ انعطاف‌پذیر از ۵۰۰۰ کیلوگرم، طراحی بسته‌بندی سفارشی و بازگشت سریع (۸-۱۲ هفته) ارائه می‌دهیم.",
-    category: "private-label",
-  },
-  {
-    id: 7,
-    questionEn: "What are your shipping and logistics options?",
-    questionFa: "گزینه‌های حمل‌ونقل و لجستیک شما چیست؟",
-    answerEn:
-      "We arrange FCL (Full Container Load), LCL (Less than Container Load), and air freight depending on urgency. All shipments include temperature-controlled containers, tracking, and full documentation. Standard shipping is FOB Tehran.",
-    answerFa:
-      "ما FCL (بار کامل کانتینر)، LCL (کمتر از بار کانتینر) و حمل‌ونقل هوایی را بر اساس فوریت ترتیب می‌دهیم. تمام کشتی‌ها شامل کانتینر‌های کنترل‌شده‌ی دما، پیگیری و اسناد کامل است.",
+      "ما از طریق دفاتر، شعب و دسترسی انباری در نقاط مهم ایران از جمله تهران، اصفهان و شهرکرد فعالیت می‌کنیم و از طریق امارات و عمان نیز دسترسی تجاری منطقه‌ای داریم.",
     category: "logistics",
   },
   {
-    id: 8,
-    questionEn: "How do I request a custom quote?",
-    questionFa: "چگونه قیمت سفارشی درخواست کنم؟",
+    id: 7,
+    questionEn: "How long does a B2B inquiry take?",
+    questionFa: "بررسی یک درخواست B2B چقدر زمان می‌برد؟",
     answerEn:
-      "Contact our sales team via the Contact page with your product of interest, desired quantity, destination country, and timeline. We'll respond within 24-48 hours with a detailed quote, product samples (if applicable), and next steps.",
+      "We usually respond within 24-48 hours. Clear details about product, volume, destination, and timeline help us review supply options and prepare practical next steps faster.",
     answerFa:
-      "با تیم فروش ما از طریق صفحه تماس تماس بگیرید و محصول مورد علاقه، مقدار مورد نظر، کشور مقصد و زمان‌بندی را اطلاع دهید. ما در ۲۴-۴۸ ساعت پاسخ خواهیم داد.",
-    category: "moq",
+      "معمولا طی ۲۴ تا ۴۸ ساعت پاسخ می‌دهیم. اعلام دقیق محصول، حجم، مقصد و زمان‌بندی کمک می‌کند گزینه‌های تامین و گام‌های بعدی سریع‌تر بررسی شوند.",
+    category: "lead-time",
+  },
+  {
+    id: 8,
+    questionEn: "Can you support custom packaging or retail-ready formats?",
+    questionFa: "آیا بسته‌بندی سفارشی یا آماده فروش ارائه می‌کنید؟",
+    answerEn:
+      "Yes, depending on product and order requirements. We can discuss bulk formats, retail-ready packs, and market-specific packaging needs during the inquiry process.",
+    answerFa:
+      "بله، بسته به محصول و شرایط سفارش. در فرآیند بررسی درخواست می‌توانیم درباره فرمت‌های فله، بسته‌بندی آماده فروش و نیازهای اختصاصی بازار گفتگو کنیم.",
+    category: "private-label",
   },
 ];
 
 export const faqCategories = {
-  sourcing: { en: "Sourcing", fa: "تامین" },
-  moq: { en: "MOQ & Pricing", fa: "MOQ و قیمت‌گذاری" },
-  "lead-time": { en: "Lead Times", fa: "مدت زمان تحویل" },
-  certifications: { en: "Quality & Certifications", fa: "کیفیت و گواهی‌ها" },
-  logistics: { en: "Shipping & Logistics", fa: "حمل‌ونقل و لجستیک" },
-  "private-label": { en: "Private Labeling", fa: "علامت‌گذاری خصوصی" },
+  sourcing: { en: "Products & Sourcing", fa: "محصولات و تامین" },
+  moq: { en: "Pricing", fa: "قیمت‌گذاری" },
+  "lead-time": { en: "Response Time", fa: "زمان پاسخ‌گویی" },
+  certifications: { en: "Quality Standards", fa: "استانداردهای کیفیت" },
+  logistics: { en: "Distribution", fa: "توزیع" },
+  "private-label": { en: "Packaging", fa: "بسته‌بندی" },
 };

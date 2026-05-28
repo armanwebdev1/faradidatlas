@@ -19,10 +19,8 @@ export function ProductCard({ product, lang }: ProductCardProps) {
   return (
     <Link href={`/${lang}/products/${product.id}`}>
       <div className="group relative h-full bg-white rounded-2xl overflow-hidden border border-border hover:border-accent-warm-gold/60 transition-all duration-500 hover:shadow-lg hover:-translate-y-1 cursor-pointer">
-        {/* Subtle overlay on hover */}
         <div className="absolute inset-0 bg-gradient-to-br from-accent-warm-gold/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
 
-        {/* Image Container */}
         <div className="relative aspect-square bg-gradient-to-br from-secondary/40 to-secondary/60 overflow-hidden">
           <Image
             src={product.image || "/placeholder.svg"}
@@ -32,44 +30,36 @@ export function ProductCard({ product, lang }: ProductCardProps) {
             className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
           />
 
-          {/* Premium overlay on hover */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-          {/* Badge - Top Corner */}
           <div
             className={`absolute top-3 sm:top-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-accent-warm-gold text-primary text-xs sm:text-sm font-semibold rounded-lg shadow-md group-hover:shadow-lg transition-all duration-300 ${isRTL ? "left-3 sm:left-4" : "right-3 sm:right-4"}`}
           >
             {grade}
           </div>
 
-          {/* Availability overlay */}
           {!product.available && (
             <div className="absolute inset-0 bg-white/70 backdrop-blur-sm flex items-center justify-center">
               <span className="text-primary font-semibold text-sm sm:text-base">
-                {lang === "en" ? "Unavailable" : "موجود نیست"}
+                {lang === "en" ? "Unavailable" : "ناموجود"}
               </span>
             </div>
           )}
         </div>
 
-        {/* Content Section - Compact */}
         <div className="p-4 sm:p-5 space-y-2 sm:space-y-2.5 flex flex-col">
-          {/* Category/Origin */}
           <p className="text-xs text-accent-warm-gold uppercase tracking-widest font-semibold">
             {origin}
           </p>
 
-          {/* Product Name */}
           <h3 className="text-sm sm:text-base text-primary font-bold group-hover:text-accent-warm-gold transition-colors duration-300 leading-tight line-clamp-2">
             {name}
           </h3>
 
-          {/* Description */}
           <p className="text-xs text-muted-foreground leading-snug line-clamp-2">
             {desc}
           </p>
 
-          {/* Certifications - Small badges */}
           {product.certifications.length > 0 && (
             <div className="flex flex-wrap gap-1 pt-1 sm:pt-1.5">
               {product.certifications.slice(0, 2).map((cert) => (
@@ -88,10 +78,8 @@ export function ProductCard({ product, lang }: ProductCardProps) {
             </div>
           )}
 
-          {/* Divider */}
           <div className="my-1.5 sm:my-2 h-px bg-border group-hover:bg-accent-warm-gold/30 transition-colors duration-300" />
 
-          {/* Bottom Info */}
           <div className="flex justify-between items-center">
             <span className="text-xs text-muted-foreground font-medium">
               {minOrder}

@@ -1,187 +1,122 @@
 import type { Language } from "@/lib/i18n";
-import Image from "next/image";
 import { AnimatedSection } from "./animated-section";
+import { BadgeCheck, Leaf, Lightbulb, Scale, ShieldCheck } from "lucide-react";
 
 interface TeamShowcaseProps {
   lang: Language;
 }
 
-const team = {
+const values = {
   en: [
     {
-      name: "Hassan Faradi",
-      role: "Founder & CEO",
-      bio: "25+ years experience",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
+      icon: BadgeCheck,
+      title: "Customer-Centricity",
+      description:
+        "Prompt responses, practical solutions, and long-term relationships built on trust.",
     },
     {
-      name: "Leila Amiri",
-      role: "Head of Operations",
-      bio: "Expert in logistics",
-      image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
+      icon: Leaf,
+      title: "Sustainability",
+      description:
+        "Responsible sourcing, reduced waste, recyclable packaging, and support for local communities.",
     },
     {
-      name: "Mohammad Rahimi",
-      role: "VP Sales",
-      bio: "Global expertise",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
+      icon: Scale,
+      title: "Professional Ethics",
+      description:
+        "Transparent supplier relationships, fair contracts, compliance, and accountable operations.",
     },
     {
-      name: "Sara Nazari",
-      role: "Director of Quality",
-      bio: "Quality assurance",
-      image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
+      icon: Lightbulb,
+      title: "Innovation",
+      description:
+        "New products, digital sales channels, and better traceability across the supply chain.",
     },
     {
-      name: "Ali Shirazi",
-      role: "Operations Manager",
-      bio: "Process excellence",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
-    },
-    {
-      name: "Fatima Karimi",
-      role: "Customer Relations",
-      bio: "Client satisfaction",
-      image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
-    },
-    {
-      name: "Reza Tavassoli",
-      role: "Agricultural Expert",
-      bio: "Sourcing specialist",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
-    },
-    {
-      name: "Maryam Beheshti",
-      role: "Sustainability Officer",
-      bio: "Environmental focus",
-      image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
+      icon: ShieldCheck,
+      title: "Superior Quality",
+      description:
+        "Rigorous control at import, warehousing, and distribution stages to protect brand trust.",
     },
   ],
   fa: [
     {
-      name: "حسن فرادی",
-      role: "بنیانگذار و مدیرعامل",
-      bio: "۲۵+ سال تجربه",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
+      icon: BadgeCheck,
+      title: "مشتری‌مداری",
+      description:
+        "پاسخ‌گویی سریع، راهکارهای کاربردی و روابط بلندمدت بر پایه اعتماد.",
     },
     {
-      name: "لیلا امیری",
-      role: "رئیس عملیات",
-      bio: "متخصص لجستیک",
-      image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
+      icon: Leaf,
+      title: "پایداری",
+      description:
+        "تامین مسئولانه، کاهش ضایعات، بسته‌بندی قابل بازیافت و حمایت از جوامع محلی.",
     },
     {
-      name: "محمد رحیمی",
-      role: "معاون فروش",
-      bio: "تجربه جهانی",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
+      icon: Scale,
+      title: "اخلاق حرفه‌ای",
+      description:
+        "روابط شفاف با تامین‌کنندگان، قراردادهای منصفانه، رعایت مقررات و عملیات پاسخ‌گو.",
     },
     {
-      name: "سارا ناظری",
-      role: "مدیر کیفیت",
-      bio: "تضمین کیفیت",
-      image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
+      icon: Lightbulb,
+      title: "نوآوری",
+      description:
+        "محصولات جدید، کانال‌های فروش دیجیتال و رهگیری بهتر در سراسر زنجیره تامین.",
     },
     {
-      name: "علی شیرازی",
-      role: "مدیر عملیات",
-      bio: "برتری فرایندی",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
-    },
-    {
-      name: "فاطمه کریمی",
-      role: "روابط مشتریان",
-      bio: "رضایت کلاینت",
-      image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
-    },
-    {
-      name: "رضا طواسلی",
-      role: "متخصص کشاورزی",
-      bio: "متخصص تأمین",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
-    },
-    {
-      name: "مریم بهشتی",
-      role: "مسئول پایداری",
-      bio: "تمرکز محیطی",
-      image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
+      icon: ShieldCheck,
+      title: "کیفیت برتر",
+      description:
+        "کنترل دقیق در مراحل واردات، انبارداری و توزیع برای حفظ اعتماد به برند.",
     },
   ],
 };
 
 export function TeamShowcase({ lang }: TeamShowcaseProps) {
-  const teamList = lang === "en" ? team.en : team.fa;
+  const valueList = lang === "en" ? values.en : values.fa;
 
   return (
     <AnimatedSection className="relative py-24 md:py-32 px-4 sm:px-6 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Header */}
         <div className="text-center mb-20">
           <span className="inline-block px-4 py-2 bg-accent-warm-gold/15 rounded-full text-xs font-bold text-accent-warm-gold mb-6 uppercase tracking-widest">
-            {lang === "en" ? "Our Team" : "تیم ما"}
+            {lang === "en" ? "Core Values" : "ارزش‌های بنیادین"}
           </span>
           <h2
             className="text-5xl md:text-6xl font-bold text-primary mb-6 tracking-tight font-hero"
             style={{ fontFamily: "var(--font-hero)" }}
           >
             {lang === "en"
-              ? "Our amazing team who works for you"
-              : "تیم مجرب ما"}
+              ? "The principles behind every decision"
+              : "اصولی که پشت هر تصمیم قرار دارد"}
           </h2>
         </div>
 
-        {/* Team Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {teamList.map((member, idx) => (
-            <div
-              key={idx}
-              className="group opacity-0 translate-y-6"
-              data-animate
-              style={{ animationDelay: `${idx * 0.05}s` }}
-            >
-              <div className="relative bg-white rounded-2xl overflow-hidden border border-border hover:border-accent-warm-gold hover:shadow-2xl transition-all duration-500">
-                {/* Image Container */}
-                <div className="relative h-72 overflow-hidden bg-gradient-to-br from-secondary/40 to-secondary/60">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    width={200}
-                    height={288}
-                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-lg font-bold text-primary mb-1 group-hover:text-accent-warm-gold transition-colors">
-                    {member.name}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
+          {valueList.map((value, idx) => {
+            const Icon = value.icon;
+            return (
+              <div
+                key={idx}
+                className="group opacity-0 translate-y-6"
+                data-animate
+                style={{ animationDelay: `${idx * 0.05}s` }}
+              >
+                <div className="relative bg-white rounded-2xl overflow-hidden border border-border hover:border-accent-warm-gold hover:shadow-2xl transition-all duration-500 h-full p-6">
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-accent-warm-gold/15 text-accent-warm-gold">
+                    <Icon className="h-7 w-7" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-lg font-bold text-primary mb-3 group-hover:text-accent-warm-gold transition-colors">
+                    {value.title}
                   </h3>
-                  <p className="text-xs font-bold text-accent-warm-gold mb-2 uppercase tracking-widest">
-                    {member.role}
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {value.description}
                   </p>
-                  <p className="text-sm text-muted-foreground">{member.bio}</p>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </AnimatedSection>

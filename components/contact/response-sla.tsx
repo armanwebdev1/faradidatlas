@@ -7,56 +7,56 @@ interface ResponseSLAProps {
 export function ResponseSLA({ lang }: ResponseSLAProps) {
   const content = {
     en: {
-      title: "Our Commitment",
+      title: "What Happens Next",
       description:
-        "We value your time and are committed to responding quickly to all inquiries. Here's what to expect:",
+        "We keep the inquiry process direct so buyers can move from need to supply plan quickly.",
       slas: [
         {
-          title: "Email Inquiries",
+          title: "Initial Review",
           timeline: "Response within 24-48 hours",
-          description: "All B2B inquiries receive prompt, detailed responses",
+          description: "We confirm product, volume, destination, and timing.",
         },
         {
-          title: "WhatsApp/Phone",
-          timeline: "Response within 4-6 hours",
-          description: "Direct contact for urgent matters or quick questions",
+          title: "Supply Check",
+          timeline: "Availability review",
+          description: "Our team checks sourcing options, packaging, and documentation needs.",
         },
         {
-          title: "Quote Requests",
-          timeline: "Detailed quote within 48 hours",
-          description: "Includes product samples when applicable",
+          title: "Commercial Terms",
+          timeline: "Quote on request",
+          description: "Pricing is prepared with clear assumptions and practical next steps.",
         },
         {
-          title: "Next Steps",
-          timeline: "Follow-up meeting within 1 week",
-          description: "Discuss terms, certifications, and logistics",
+          title: "Coordination",
+          timeline: "Follow-up meeting",
+          description: "We align delivery, quality expectations, and logistics responsibilities.",
         },
       ],
     },
     fa: {
-      title: "تعهد ما",
+      title: "مراحل بعدی",
       description:
-        "ما ارزش وقت شما را می‌دانیم و متعهد به پاسخ سریع به تمام درخواست‌ها هستیم:",
+        "فرآیند درخواست را مستقیم و روشن نگه می‌داریم تا خریداران سریع‌تر از نیاز به برنامه تامین برسند.",
       slas: [
         {
-          title: "درخواست‌های ایمیل",
-          timeline: "پاسخ در ۲۴-۴۸ ساعت",
-          description: "تمام درخواست‌های B2B با پاسخ‌های دقیق و سریع",
+          title: "بررسی اولیه",
+          timeline: "پاسخ طی ۲۴ تا ۴۸ ساعت",
+          description: "محصول، حجم، مقصد و زمان‌بندی را تایید می‌کنیم.",
         },
         {
-          title: "WhatsApp/تلفن",
-          timeline: "پاسخ در ۴-۶ ساعت",
-          description: "تماس مستقیم برای مسائل فوری یا سوالات سریع",
+          title: "بررسی تامین",
+          timeline: "بررسی موجودی و امکان تامین",
+          description: "گزینه‌های تامین، بسته‌بندی و نیازهای مستندسازی بررسی می‌شود.",
         },
         {
-          title: "درخواست قیمت",
-          timeline: "قیمت دقیق در ۴۸ ساعت",
-          description: "شامل نمونه محصول در صورت لزوم",
+          title: "شرایط تجاری",
+          timeline: "قیمت بر اساس استعلام",
+          description: "قیمت‌گذاری با فرضیات روشن و گام‌های بعدی عملی آماده می‌شود.",
         },
         {
-          title: "مراحل بعدی",
-          timeline: "جلسه پیگیری در ۱ هفته",
-          description: "بحث درباره شرایط، گواهی‌ها و لجستیک",
+          title: "هماهنگی",
+          timeline: "جلسه پیگیری",
+          description: "تحویل، انتظارات کیفی و مسئولیت‌های لجستیکی هماهنگ می‌شود.",
         },
       ],
     },
@@ -66,9 +66,6 @@ export function ResponseSLA({ lang }: ResponseSLAProps) {
 
   return (
     <div className="relative overflow-hidden rounded-3xl border border-foreground/10 bg-white px-6 py-12 sm:px-10 sm:py-14 lg:px-12 text-foreground shadow-[0_50px_120px_-90px_rgba(15,23,42,0.35)]">
-      <div className="pointer-events-none absolute -top-28 -right-24 h-64 w-64 rounded-full bg-slate-200/40 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 left-0 h-48 w-48 rounded-full bg-slate-100/70 blur-3xl" />
-
       <div className="relative">
         <h3 className="text-3xl sm:text-4xl font-semibold text-center tracking-tight text-primary">
           {data.title}

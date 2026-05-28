@@ -20,23 +20,20 @@ export default async function FAQPage({ params }: FAQPageProps) {
       <main>
         <FAQHero lang={lang} />
 
-        {/* FAQ Content */}
         <section className="py-24 px-6 bg-background">
           <div className="max-w-4xl mx-auto">
-            {/* Filters */}
             <FAQContent items={faqs} lang={lang} />
 
-            {/* CTA Section */}
             <div className="relative mt-20 p-12 bg-gradient-to-br from-background to-secondary/30 rounded-2xl border border-border text-center overflow-hidden shadow-lg animate-fade-in-up">
               <h2 className="text-3xl font-bold text-primary mb-4 tracking-tight">
                 {lang === "en"
-                  ? "Didn't find your answer?"
-                  : "پاسخ خود را پیدا نکردید؟"}
+                  ? "Need a product-specific answer?"
+                  : "پاسخ مخصوص محصول خود را می‌خواهید؟"}
               </h2>
               <p className="text-muted-foreground mb-8 text-lg">
                 {lang === "en"
-                  ? "Contact our team directly. We respond to inquiries within 24 hours."
-                  : "مستقیماً با تیم ما تماس بگیرید. ما در عرض ۲۴ ساعت به درخواست‌ها پاسخ می‌دهیم."}
+                  ? "Send us the product, volume, destination, and timeline. We respond within 24-48 hours."
+                  : "محصول، حجم، مقصد و زمان‌بندی را ارسال کنید. ما طی ۲۴ تا ۴۸ ساعت پاسخ می‌دهیم."}
               </p>
               <a
                 href={`/${lang}/contact`}
@@ -48,7 +45,6 @@ export default async function FAQPage({ params }: FAQPageProps) {
           </div>
         </section>
 
-        {/* Schema Markup for FAQPage */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

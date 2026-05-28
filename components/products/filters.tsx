@@ -14,28 +14,51 @@ const filterOptions = {
   en: {
     category: {
       label: "Category",
-      options: ["Saffron", "Nuts", "Dried Fruits", "Spices"],
+      options: ["Rice", "Legumes", "Seeds", "Nuts", "Spices", "Sugar"],
     },
     certification: {
       label: "Certification",
-      options: ["ISO 22000", "HACCP", "Organic", "Halal", "FSSC 22000"],
+      options: ["ISO 22000", "Quality Checked", "Import Docs"],
     },
     origin: {
       label: "Origin",
-      options: ["Khorasan", "Yazd", "Rafsanjan", "Various"],
+      options: ["India", "Pakistan", "Global supply"],
     },
   },
   fa: {
     category: {
       label: "دسته‌بندی",
-      options: ["زعفران", "آجیل", "میوه‌های خشک", "ادویه‌جات"],
+      options: ["برنج", "حبوبات", "دانه‌ها", "آجیل", "ادویه‌جات", "شکر"],
     },
     certification: {
       label: "گواهی",
-      options: ["ISO 22000", "HACCP", "ارگانیک", "حلال", "FSSC 22000"],
+      options: ["ISO 22000", "کنترل کیفیت", "اسناد واردات"],
     },
-    origin: { label: "منشأ", options: ["خراسان", "یزد", "رفسنجان", "مختلف"] },
+    origin: {
+      label: "مبدا",
+      options: ["هند", "پاکستان", "تامین جهانی"],
+    },
   },
+};
+
+const categoryMap: Record<string, Product["category"]> = {
+  Rice: "rice",
+  Legumes: "legumes",
+  Seeds: "seeds",
+  Nuts: "nuts",
+  Spices: "spices",
+  Sugar: "sugar",
+  برنج: "rice",
+  حبوبات: "legumes",
+  "دانه‌ها": "seeds",
+  آجیل: "nuts",
+  "ادویه‌جات": "spices",
+  شکر: "sugar",
+};
+
+const certificationMap: Record<string, string> = {
+  "کنترل کیفیت": "Quality Checked",
+  "اسناد واردات": "Import Docs",
 };
 
 export function Filters({ lang, products, onFilter }: FiltersProps) {
@@ -49,32 +72,22 @@ export function Filters({ lang, products, onFilter }: FiltersProps) {
     let filtered = products;
 
     if (selectedCategory) {
-      filtered = filtered.filter((p) => {
-        const categoryMap: Record<string, string> = {
-          Saffron: "saffron",
-          Nuts: "nuts",
-          "Dried Fruits": "dried-fruits",
-          Spices: "spices",
-          زعفران: "saffron",
-          آجیل: "nuts",
-          "میوه‌های خشک": "dried-fruits",
-          ادویه‌جات: "spices",
-        };
-        return p.category === categoryMap[selectedCategory];
-      });
+      filtered = filtered.filter(
+        (product) => product.category === categoryMap[selectedCategory],
+      );
     }
 
     if (selectedCerts.length > 0) {
-      filtered = filtered.filter((p) =>
+      filtered = filtered.filter((product) =>
         selectedCerts.some((cert) =>
-          p.certifications.some((c) => c.includes(cert.split(" ")[0])),
+          product.certifications.includes(certificationMap[cert] ?? cert),
         ),
       );
     }
 
     if (selectedOrigin) {
-      filtered = filtered.filter((p) => {
-        const originValue = lang === "en" ? p.originEn : p.originFa;
+      filtered = filtered.filter((product) => {
+        const originValue = lang === "en" ? product.originEn : product.originFa;
         return originValue === selectedOrigin;
       });
     }
@@ -94,30 +107,26 @@ export function Filters({ lang, products, onFilter }: FiltersProps) {
         {lang === "en" ? "Filters" : "فیلترها"}
       </h3>
 
-      {/* Category */}
       <div className="mb-6">
         <label className="text-sm font-medium text-foreground block mb-3">
           {options.category.label}
         </label>
         <select
           value={selectedCategory || ""}
-          onChange={(e) => {
-            setSelectedCategory(e.target.value || null);
-          }}
+          onChange={(event) => setSelectedCategory(event.target.value || null)}
           className="w-full px-3 py-2 border border-border rounded bg-white text-sm"
         >
           <option value="">
-            {lang === "en" ? "All Categories" : "تمام دسته‌بندی‌ها"}
+            {lang === "en" ? "All Categories" : "همه دسته‌بندی‌ها"}
           </option>
-          {options.category.options.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat}
+          {options.category.options.map((category) => (
+            <option key={category} value={category}>
+              {category}
             </option>
           ))}
         </select>
       </div>
 
-      {/* Certification */}
       <div className="mb-6">
         <label className="text-sm font-medium text-foreground block mb-3">
           {options.certification.label}
@@ -140,30 +149,26 @@ export function Filters({ lang, products, onFilter }: FiltersProps) {
         </div>
       </div>
 
-      {/* Origin */}
       <div className="mb-6">
         <label className="text-sm font-medium text-foreground block mb-3">
           {options.origin.label}
         </label>
         <select
           value={selectedOrigin || ""}
-          onChange={(e) => {
-            setSelectedOrigin(e.target.value || null);
-          }}
+          onChange={(event) => setSelectedOrigin(event.target.value || null)}
           className="w-full px-3 py-2 border border-border rounded bg-white text-sm"
         >
           <option value="">
-            {lang === "en" ? "All Regions" : "تمام مناطق"}
+            {lang === "en" ? "All Origins" : "همه مبداها"}
           </option>
-          {options.origin.options.map((org) => (
-            <option key={org} value={org}>
-              {org}
+          {options.origin.options.map((origin) => (
+            <option key={origin} value={origin}>
+              {origin}
             </option>
           ))}
         </select>
       </div>
 
-      {/* Apply */}
       <button
         onClick={applyFilters}
         className="w-full px-4 py-2 bg-primary text-primary-foreground font-medium rounded hover:bg-primary/90 transition-colors text-sm"
@@ -171,7 +176,6 @@ export function Filters({ lang, products, onFilter }: FiltersProps) {
         {lang === "en" ? "Apply Filters" : "اعمال فیلترها"}
       </button>
 
-      {/* Reset */}
       <button
         onClick={() => {
           setSelectedCategory(null);

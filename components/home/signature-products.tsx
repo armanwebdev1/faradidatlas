@@ -22,52 +22,52 @@ interface Product {
 const products: Product[] = [
   {
     id: 1,
-    name: { en: "Heritage Spice Blend", fa: "ترکیب ادویه اصیل" },
-    category: { en: "Premium Spices", fa: "ادویه‌های ممتاز" },
+    name: { en: "21 Rice Brand", fa: "برند برنج ۲۱" },
+    category: { en: "Rice Portfolio", fa: "سبد برنج" },
     image: "/featured1.jpg",
     description: {
-      en: "Carefully curated blend of the finest spices from around the world",
-      fa: "ترکیبی دقیق از بهترین ادویه‌های سراسر جهان",
+      en: "One of Faradid Atlas' recognized rice brands, built around dependable quality and everyday availability.",
+      fa: "یکی از برندهای شناخته‌شده برنج فرادید اطلس با تمرکز بر کیفیت قابل اتکا و دسترسی روزمره.",
     },
   },
   {
     id: 2,
-    name: { en: "Golden Olive Oil", fa: "روغن زیتون طلایی" },
-    category: { en: "Specialty Oils", fa: "روغن‌های ویژه" },
+    name: { en: "Mizban Rice", fa: "برنج میزبان" },
+    category: { en: "Rice Portfolio", fa: "سبد برنج" },
     image: "/featured2.jpg",
     description: {
-      en: "Cold-pressed extra virgin olive oil from Mediterranean estates",
-      fa: "روغن زیتون فرابکر سرد‌فشار از باغ‌های مدیترانه‌ای",
+      en: "A trusted rice line designed for households, retailers, and foodservice partners.",
+      fa: "برندی قابل اعتماد برای خانواده‌ها، فروشگاه‌ها و شرکای خدمات غذایی.",
     },
   },
   {
     id: 3,
-    name: { en: "Artisan Coffee Selection", fa: "گزینش قهوه هنرمندانه" },
-    category: { en: "Premium Coffee", fa: "قهوه ممتاز" },
+    name: { en: "Hayat Rice", fa: "برنج حیات" },
+    category: { en: "Rice Portfolio", fa: "سبد برنج" },
     image: "/featured3.jpg",
     description: {
-      en: "Single-origin, hand-roasted coffee beans from exclusive plantations",
-      fa: "دانه‌های قهوه تک‌خاستگاه، برشته‌کاری دستی از مزارع منتخب",
+      en: "Selected for consistent cooking quality, clear sourcing, and steady market supply.",
+      fa: "انتخاب‌شده برای کیفیت پخت یکنواخت، تامین شفاف و عرضه پایدار در بازار.",
     },
   },
   {
     id: 4,
-    name: { en: "Saffron Reserve", fa: "ذخیره زعفران" },
-    category: { en: "Precious Ingredients", fa: "مواد اولیه نفیس" },
+    name: { en: "Golbanou Rice", fa: "برنج گل‌بانو" },
+    category: { en: "Rice Portfolio", fa: "سبد برنج" },
     image: "/featured4.jpg",
     description: {
-      en: "Premium grade saffron threads sourced directly from renowned producers",
-      fa: "رشته‌های زعفران درجه ممتاز، تهیه‌شده مستقیم از تولیدکنندگان نامدار",
+      en: "A familiar rice brand serving demand across Iran and the wider Middle East region.",
+      fa: "برندی آشنا در بازار برنج برای پاسخ‌گویی به تقاضا در ایران و منطقه خاورمیانه.",
     },
   },
   {
     id: 5,
-    name: { en: "Pure Vanilla Extract", fa: "عصاره وانیل خالص" },
-    category: { en: "Gourmet Essentials", fa: "ملزومات گورمه" },
+    name: { en: "Essential Food Staples", fa: "مواد غذایی اساسی" },
+    category: { en: "Core Products", fa: "محصولات اصلی" },
     image: "/featured5.jpg",
     description: {
-      en: "Madagascar vanilla beans processed to perfection for culinary excellence",
-      fa: "دانه‌های وانیل ماداگاسکار با فرآوری دقیق برای برتری آشپزی",
+      en: "Legumes, spices, nuts, seeds, sugar, and other essentials selected for dependable B2B supply.",
+      fa: "حبوبات، ادویه‌جات، آجیل، دانه‌ها، شکر و سایر اقلام اساسی برای تامین B2B قابل اتکا.",
     },
   },
 ];
@@ -142,38 +142,34 @@ export function SignatureProducts() {
   };
 
   const handleProductClick = () => {
-    router.push(`/${lang}/products/${products[currentIndex].id}`);
+    router.push(`/${lang}/products`);
   };
 
   return (
     <section
+      id="products"
       ref={sectionRef}
       className="section relative w-full overflow-hidden bg-gradient-to-b from-background via-background to-muted/20 opacity-0 translate-y-6"
     >
-      {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-accent/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-accent/3 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 container-wide">
-        {/* Section Header */}
         <div className="text-center mb-10 sm:mb-12 md:mb-14 animate-fade-in">
           <p className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6">
-            {lang === "en" ? "Signature Collection" : "مجموعه برگزیده"}
+            {lang === "en" ? "Recognized Portfolio" : "سبد شناخته‌شده"}
           </p>
           <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 md:mb-8">
-            {lang === "en" ? "Signature Products" : "محصولات شاخص"}
+            {lang === "en" ? "Brands and Core Products" : "برندها و محصولات اصلی"}
           </h2>
-          <p
-            className="text-responsive-body text-foreground/70 max-w-2xl mx-auto mb-8"
-          >
+          <p className="text-responsive-body text-foreground/70 max-w-2xl mx-auto mb-8">
             {lang === "en"
-              ? "Discover our handpicked collection of premium products, each selected for exceptional quality and distinctive character"
-              : "مجموعه‌ای دست‌چین از محصولات ممتاز ما را کشف کنید که هرکدام برای کیفیت استثنایی و هویت متمایز انتخاب شده‌اند"}
+              ? "From rice brands to essential staples, our portfolio is shaped around reliable supply and consistent quality."
+              : "از برندهای برنج تا اقلام غذایی اساسی، سبد ما بر پایه تامین پایدار و کیفیت یکنواخت شکل گرفته است."}
           </p>
 
-          {/* Explore All Products button */}
           <button
             onClick={() => router.push(`/${lang}/products`)}
             className="btn btn-outline btn-md"
@@ -182,9 +178,7 @@ export function SignatureProducts() {
           </button>
         </div>
 
-        {/* Carousel Container */}
         <div className="relative">
-          {/* Main Carousel - Reduced height for better proportions */}
           <div className="relative h-80 sm:h-96 md:h-[480px] lg:h-[540px] overflow-hidden rounded-2xl sm:rounded-3xl">
             {products.map((product, index) => (
               <div
@@ -193,14 +187,13 @@ export function SignatureProducts() {
                   index === currentIndex ? "opacity-100" : "opacity-0"
                 }`}
               >
-                {/* Product Image */}
                 <button
                   onClick={handleProductClick}
                   className="relative h-full w-full bg-muted overflow-hidden text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                   aria-label={
                     lang === "en"
-                      ? `View ${t(product.name)} details`
-                      : `مشاهده جزئیات ${t(product.name)}`
+                      ? `View ${t(product.name)} products`
+                      : `مشاهده محصولات ${t(product.name)}`
                   }
                 >
                   <Image
@@ -215,7 +208,6 @@ export function SignatureProducts() {
                     }`}
                     priority={index === currentIndex}
                   />
-                  {/* Overlay Gradient */}
                   <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/90" />
                 </button>
 
@@ -295,7 +287,13 @@ export function SignatureProducts() {
               size="sm"
               onClick={() => setIsAutoplay(!isAutoplay)}
             >
-              {isAutoplay ? (lang === "en" ? "Pause" : "توقف") : lang === "en" ? "Play" : "پخش"}
+              {isAutoplay
+                ? lang === "en"
+                  ? "Pause"
+                  : "توقف"
+                : lang === "en"
+                  ? "Play"
+                  : "پخش"}
             </Button>
             <span className="text-xs sm:text-sm text-foreground/60">
               {currentIndex + 1} / {products.length}

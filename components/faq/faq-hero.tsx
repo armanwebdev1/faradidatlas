@@ -14,14 +14,11 @@ export function FAQHero({ lang }: FAQHeroProps) {
       className="relative w-full overflow-hidden bg-background"
       dir={isRTL ? "rtl" : "ltr"}
     >
-      <div className="absolute -top-20 right-[-10%] w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-br from-accent/25 via-white to-transparent blur-3xl" />
-      <div className="absolute bottom-0 left-[-5%] w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-tr from-secondary/40 via-white to-transparent blur-3xl" />
-
       <div className="w-full px-4 sm:px-6 pt-16 md:pt-20 pb-12">
         <div className="max-w-6xl mx-auto space-y-12 md:space-y-16">
           <StaggeredFade className="text-center">
             <p className="mb-4 text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-accent-warm-gold animate-fade-in-up">
-              {lang === "en" ? "Help Center" : "مرکز کمک"}
+              {lang === "en" ? "Help Center" : "مرکز راهنما"}
             </p>
             <h1
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-5 animate-fade-in-up"
@@ -38,8 +35,8 @@ export function FAQHero({ lang }: FAQHeroProps) {
             </h1>
             <p className="text-base md:text-lg text-foreground/70 leading-relaxed max-w-3xl mx-auto animate-fade-in-up">
               {lang === "en"
-                ? "Find answers to common questions about sourcing, certifications, logistics, and private labeling."
-                : "پاسخ سوالات متداول درباره تامین، تاییدیه‌ها، لجستیک و علامت‌گذاری خصوصی را بیابید."}
+                ? "Find answers about products, sourcing, quality standards, distribution, packaging, and B2B inquiry steps."
+                : "پاسخ سوالات درباره محصولات، تامین، استانداردهای کیفیت، توزیع، بسته‌بندی و مراحل درخواست B2B را ببینید."}
             </p>
             <div className="mt-6 flex justify-center animate-fade-in-up">
               <a
@@ -55,7 +52,7 @@ export function FAQHero({ lang }: FAQHeroProps) {
             <div className="relative w-full h-56 sm:h-64 md:h-80 rounded-3xl overflow-hidden shadow-2xl">
               <Image
                 src="/featured2.jpg"
-                alt={lang === "en" ? "Support team" : "تیم پشتیبانی"}
+                alt={lang === "en" ? "Food supply support" : "پشتیبانی تامین مواد غذایی"}
                 fill
                 sizes="100vw"
                 className="object-cover"

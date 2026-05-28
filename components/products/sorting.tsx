@@ -18,10 +18,10 @@ export function Sorting({ lang, products, onSort }: SortingProps) {
       { value: "name-desc", label: "Name (Z-A)" },
     ],
     fa: [
-      { value: "relevance", label: "مرتبط بودن" },
+      { value: "relevance", label: "مرتبط‌ترین" },
       { value: "newest", label: "جدیدترین" },
-      { value: "name-asc", label: "نام (الف - ی)" },
-      { value: "name-desc", label: "نام (ی - الف)" },
+      { value: "name-asc", label: "نام (الف تا ی)" },
+      { value: "name-desc", label: "نام (ی تا الف)" },
     ],
   };
 
@@ -55,15 +55,15 @@ export function Sorting({ lang, products, onSort }: SortingProps) {
   return (
     <div className="flex items-center gap-3">
       <label className="text-sm font-medium text-foreground whitespace-nowrap">
-        {lang === "en" ? "Sort by:" : "مرتب‌سازی بر اساس:"}
+        {lang === "en" ? "Sort by:" : "مرتب‌سازی:"}
       </label>
       <select
-        onChange={(e) => handleSort(e.target.value)}
+        onChange={(event) => handleSort(event.target.value)}
         className="px-3 py-2 border border-border rounded bg-white text-sm"
       >
-        {options.map((opt) => (
-          <option key={opt.value} value={opt.value}>
-            {opt.label}
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
           </option>
         ))}
       </select>

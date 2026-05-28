@@ -25,19 +25,15 @@ export default async function ContactPage({ params }: ContactPageProps) {
       <main>
         <ContactHero lang={lang} />
 
-
-        {/* Main Content - responsive grid */}
         <section
           id="contact-form"
           className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-background via-secondary/20 to-background"
         >
           <div className="container-wide grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
-            {/* Form */}
             <div className="lg:col-span-2">
               <ContactForm lang={lang} />
             </div>
 
-            {/* Office Info - responsive sticky */}
             <div id="contact-offices" className="lg:sticky lg:top-32">
               <h2 className="text-responsive-section text-primary mb-6 sm:mb-8 animate-fade-in-up">
                 {lang === "en" ? "Our Offices" : "دفاتر ما"}
@@ -47,13 +43,11 @@ export default async function ContactPage({ params }: ContactPageProps) {
           </div>
         </section>
 
-        {/* Response SLA - responsive */}
         <section className="space-responsive px-4 sm:px-6 bg-background">
           <div className="container-wide">
             <ResponseSLA lang={lang} />
           </div>
         </section>
-
       </main>
       <Footer lang={lang} />
     </div>

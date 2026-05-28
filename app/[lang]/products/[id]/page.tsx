@@ -29,7 +29,7 @@ export default async function ProductDetailPage({
   params,
 }: ProductDetailProps) {
   const { lang, id } = await params;
-  const product = products.find((p) => p.id === Number.parseInt(id));
+  const product = products.find((item) => item.id === Number.parseInt(id));
 
   if (!product) {
     return (
@@ -63,7 +63,6 @@ export default async function ProductDetailPage({
     <div dir={lang === "fa" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
-        {/* Breadcrumb */}
         <nav
           aria-label="Breadcrumb"
           className="container-wide px-4 sm:px-6 pt-6 sm:pt-8"
@@ -95,13 +94,10 @@ export default async function ProductDetailPage({
           </div>
         </nav>
 
-        {/* Content - responsive grid */}
         <section className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-background via-background to-secondary/30">
           <div className="container-wide grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-10 lg:gap-16 items-start">
-            {/* Gallery */}
             <ProductGallery images={gallery} alt={name} />
 
-            {/* Info - responsive typography and spacing */}
             <div className="flex flex-col rounded-3xl border border-foreground/10 bg-white/85 p-6 sm:p-8 shadow-[0_35px_80px_-60px_rgba(10,10,10,0.5)] backdrop-blur">
               <h1
                 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-primary tracking-tight font-hero leading-tight motion-safe:animate-fade-in-up"
@@ -122,11 +118,10 @@ export default async function ProductDetailPage({
                 {description}
               </p>
 
-              {/* Key specs - responsive grid */}
               <div className="grid grid-cols-2 gap-3 sm:gap-6 mt-6 mb-8 sm:mb-10 p-4 sm:p-6 bg-secondary/30 rounded-2xl border border-foreground/10">
                 <div>
                   <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
-                    {lang === "en" ? "Origin" : "منشأ"}
+                    {lang === "en" ? "Origin" : "مبدا"}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
                     {origin}
@@ -134,7 +129,7 @@ export default async function ProductDetailPage({
                 </div>
                 <div>
                   <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
-                    {lang === "en" ? "Grade" : "درجه"}
+                    {lang === "en" ? "Grade" : "گرید"}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
                     {grade}
@@ -158,10 +153,9 @@ export default async function ProductDetailPage({
                 </div>
               </div>
 
-              {/* Certifications - responsive */}
               <div className="mb-8">
                 <h3 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">
-                  {lang === "en" ? "Certifications" : "گواهی‌ها"}
+                  {lang === "en" ? "Standards" : "استانداردها"}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {product.certifications.map((cert) => (
@@ -175,7 +169,6 @@ export default async function ProductDetailPage({
                 </div>
               </div>
 
-              {/* Packaging - responsive */}
               <div className="mb-8">
                 <h3 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">
                   {lang === "en" ? "Packaging Options" : "گزینه‌های بسته‌بندی"}
@@ -193,7 +186,6 @@ export default async function ProductDetailPage({
                 </ul>
               </div>
 
-              {/* CTA - responsive stack on mobile */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link
                   href={`/${lang}/contact?product=${product.id}`}
@@ -209,11 +201,10 @@ export default async function ProductDetailPage({
                 </Link>
               </div>
 
-              {/* Download spec sheet - responsive */}
               <button className="w-full mt-4 sm:mt-6 px-4 sm:px-6 py-2.5 sm:py-3 bg-white border border-foreground/20 text-foreground font-semibold rounded-full hover:bg-background transition-colors text-sm sm:text-base">
                 {lang === "en"
-                  ? "Download Spec Sheet (PDF)"
-                  : "دانلود برگه مشخصات"}
+                  ? "Request Product Sheet"
+                  : "درخواست برگه مشخصات محصول"}
               </button>
             </div>
           </div>

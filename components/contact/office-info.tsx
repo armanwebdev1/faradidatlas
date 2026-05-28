@@ -9,39 +9,58 @@ export function OfficeInfo({ lang }: OfficeInfoProps) {
     lang === "fa"
       ? "text-[13px] font-semibold text-neutral uppercase mb-1"
       : "text-xs font-semibold text-neutral uppercase mb-1";
+
   const offices = {
     en: [
       {
         city: "Tehran",
-        address: "Tehran",
-        phone: "+98 (21) 1234-5678",
-        whatsapp: "+98 (910) 123-4567",
+        address: "Main commercial office for sales coordination and customer support.",
         email: "sales@faradidatlas.com",
         hours: "Saturday - Thursday, 9:00 AM - 6:00 PM",
       },
       {
-        city: "Alborz",
-        address: "Alborz",
-        phone: "+98 (26) 5678-9012",
+        city: "Isfahan",
+        address: "Regional branch supporting central Iran distribution.",
+        email: "operations@faradidatlas.com",
+        hours: "Saturday - Thursday, 9:00 AM - 5:00 PM",
+      },
+      {
+        city: "Shahrekord",
+        address: "Branch and storage support for regional supply movement.",
         email: "logistics@faradidatlas.com",
-        hours: "Saturday - Thursday, 8:00 AM - 5:00 PM",
+        hours: "Saturday - Thursday, 9:00 AM - 5:00 PM",
+      },
+      {
+        city: "UAE & Oman",
+        address: "Regional sales and trade access across the Middle East.",
+        email: "regional@faradidatlas.com",
+        hours: "Business inquiries by appointment",
       },
     ],
     fa: [
       {
         city: "تهران",
-        address: "تهران",
-        phone: "+98 (21) 1234-5678",
-        whatsapp: "+98 (910) 123-4567",
+        address: "دفتر تجاری اصلی برای هماهنگی فروش و پشتیبانی مشتریان.",
         email: "sales@faradidatlas.com",
-        hours: "شنبه تا پنج‌شنبه، ۹:۰۰ صبح - ۶:۰۰ عصر",
+        hours: "شنبه تا پنج‌شنبه، ۹:۰۰ تا ۱۸:۰۰",
       },
       {
-        city: "البرز",
-        address: "البرز",
-        phone: "+98 (26) 5678-9012",
+        city: "اصفهان",
+        address: "شعبه منطقه‌ای برای پشتیبانی از توزیع در مرکز ایران.",
+        email: "operations@faradidatlas.com",
+        hours: "شنبه تا پنج‌شنبه، ۹:۰۰ تا ۱۷:۰۰",
+      },
+      {
+        city: "شهرکرد",
+        address: "شعبه و پشتیبانی انبار برای جابه‌جایی منطقه‌ای کالا.",
         email: "logistics@faradidatlas.com",
-        hours: "شنبه تا پنج‌شنبه، ۸:۰۰ صبح - ۵:۰۰ عصر",
+        hours: "شنبه تا پنج‌شنبه، ۹:۰۰ تا ۱۷:۰۰",
+      },
+      {
+        city: "امارات و عمان",
+        address: "دسترسی فروش و تجارت منطقه‌ای در خاورمیانه.",
+        email: "regional@faradidatlas.com",
+        hours: "هماهنگی جلسات تجاری با وقت قبلی",
       },
     ],
   };
@@ -60,39 +79,11 @@ export function OfficeInfo({ lang }: OfficeInfoProps) {
           </h3>
 
           <div className="space-y-4">
-            {/* Address */}
             <div>
               <p className={labelClass}>{lang === "en" ? "Address" : "آدرس"}</p>
               <p className="text-foreground">{office.address}</p>
             </div>
 
-            {/* Phone */}
-            <div>
-              <p className={labelClass}>{lang === "en" ? "Phone" : "تلفن"}</p>
-              <a
-                href={`tel:${office.phone}`}
-                className="text-primary hover:text-accent transition-colors font-medium"
-              >
-                {office.phone}
-              </a>
-            </div>
-
-            {/* WhatsApp */}
-            {office.whatsapp && (
-              <div>
-                <p className={labelClass}>WhatsApp</p>
-                <a
-                  href={`https://wa.me/${office.whatsapp.replace(/\D/g, "")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:text-accent transition-colors font-medium"
-                >
-                  {office.whatsapp}
-                </a>
-              </div>
-            )}
-
-            {/* Email */}
             <div>
               <p className={labelClass}>{lang === "en" ? "Email" : "ایمیل"}</p>
               <a
@@ -103,7 +94,6 @@ export function OfficeInfo({ lang }: OfficeInfoProps) {
               </a>
             </div>
 
-            {/* Hours */}
             <div>
               <p className={labelClass}>
                 {lang === "en" ? "Business Hours" : "ساعات کاری"}

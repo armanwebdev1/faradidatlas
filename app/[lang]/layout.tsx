@@ -23,33 +23,33 @@ export async function generateMetadata({
   const isFa = lang === "fa";
 
   const title = isFa
-    ? "فرادید اطلس | صادرات B2B مواد غذایی"
-    : `${companyNameEn} | B2B Food Material Exports`;
+    ? "فرادید اطلس | تامین، واردات و توزیع مواد غذایی"
+    : `${companyNameEn} | Food Sourcing, Import & Distribution`;
   const description = isFa
-    ? "فرادید اطلس شرکت صادرات B2B مواد غذایی است که تأمین مطمئن، برندسازی خصوصی و لجستیک صادرات را برای خریداران جهانی فراهم می‌کند."
-    : "Faradid Atlas is a B2B food material export company delivering reliable sourcing, private labeling, and export logistics for global buyers.";
+    ? "فرادید اطلس محصولات غذایی اساسی مانند برنج، حبوبات، ادویه‌جات، آجیل، دانه‌ها و شکر را تامین، وارد و توزیع می‌کند."
+    : "Faradid Atlas sources, imports, and distributes essential food products including rice, legumes, spices, nuts, seeds, and sugar.";
   const keywords = isFa
     ? [
         companyNameFa,
-        "صادرات B2B مواد غذایی",
-        "صادرات مواد غذایی",
+        "تامین B2B مواد غذایی",
+        "واردات مواد غذایی",
         "تجارت مواد غذایی",
         "تامین کننده مواد غذایی",
-        "برندسازی خصوصی",
+        "توزیع مواد غذایی",
         "مواد اولیه غذایی",
-        "لجستیک صادرات",
+        "برنج وارداتی",
         "تامین مواد غذایی",
-        "صادرات مواد غذایی عمده",
+        "توزیع عمده مواد غذایی",
       ]
     : [
         companyNameEn,
-        "B2B food exports",
-        "food material exports",
+        "B2B food sourcing",
+        "food import distribution",
         "food trading",
         "food supplier",
-        "private labeling",
+        "rice importer",
         "bulk ingredients",
-        "export logistics",
+        "food distribution",
         "global food sourcing",
         "food commodities",
       ];

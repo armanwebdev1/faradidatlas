@@ -19,25 +19,21 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
     <div dir={isRTL ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
-        {/* Hero Section with Overlay Content */}
         <section className="w-full h-48 sm:h-56 md:h-64 relative overflow-hidden bg-gradient-to-br from-secondary/40 to-secondary/60">
           <Image
-            src="https://images.unsplash.com/photo-1585707572921-1a93ffd1dd81?w=1600&h=400&fit=crop"
-            alt="Premium products showcase"
+            src="/featured1.jpg"
+            alt={lang === "en" ? "Food product portfolio" : "سبد محصولات غذایی"}
             fill
             sizes="100vw"
             className="object-cover"
             priority
           />
 
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/55 to-black/10" />
 
-          {/* Overlay Content */}
           <div className="absolute inset-0 px-4 sm:px-6 py-8 sm:py-10 md:py-12 flex items-center">
             <div className="max-w-7xl w-full mx-auto">
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6 sm:gap-8">
-                {/* Left - Heading */}
                 <div className="flex-1">
                   <h1
                     className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight font-hero"
@@ -51,12 +47,11 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
                   </h1>
                 </div>
 
-                {/* Right - Description */}
                 <div className="flex-1">
                   <p className="text-sm sm:text-base text-white/90 leading-relaxed max-w-md">
                     {lang === "en"
-                      ? "Discover our curated collection of premium products, all certified and ready for export"
-                      : "مجموعه برگزیده‌شده‌ی محصولات برتر ما را کاوش کنید، همه آنها معتبر و آماده صادرات"}
+                      ? "Explore essential food products sourced, imported, and distributed through reliable B2B supply channels."
+                      : "محصولات غذایی اساسی را ببینید که از طریق کانال‌های مطمئن B2B تامین، وارد و توزیع می‌شوند."}
                   </p>
                 </div>
               </div>
@@ -64,7 +59,6 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
           </div>
         </section>
 
-        {/* Products Section with Sidebar */}
         <ProductsContent lang={lang} products={products} />
       </main>
       <Footer lang={lang} />

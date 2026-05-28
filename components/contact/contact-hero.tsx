@@ -14,12 +14,12 @@ export function ContactHero({ lang }: ContactHeroProps) {
       fa: "پاسخ ۲۴ تا ۴۸ ساعته",
     },
     {
-      en: "WhatsApp available",
-      fa: "پشتیبانی واتساپ",
+      en: "B2B supply planning",
+      fa: "برنامه‌ریزی تامین B2B",
     },
     {
-      en: "Tehran & Alborz offices",
-      fa: "دفاتر تهران و البرز",
+      en: "Iran, UAE & Oman",
+      fa: "ایران، امارات و عمان",
     },
   ];
 
@@ -28,36 +28,27 @@ export function ContactHero({ lang }: ContactHeroProps) {
       className="section-hero relative w-full overflow-hidden bg-background"
       dir={isRTL ? "rtl" : "ltr"}
     >
-      <div className="absolute -top-16 right-[-10%] w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-br from-accent/25 via-white to-transparent blur-3xl" />
-      <div className="absolute bottom-0 left-[-5%] w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-tr from-secondary/40 via-white to-transparent blur-3xl" />
-
       <div className="container-wide">
         <div className="space-y-8 md:space-y-10">
           <StaggeredFade className="text-center">
             <p className="eyebrow mb-4 text-accent-warm-gold animate-fade-in-up">
-              {lang === "en" ? "Get in Touch" : "تماس بگیرید"}
+              {lang === "en" ? "Get in Touch" : "در ارتباط باشید"}
             </p>
             <h1 className="text-responsive-hero text-primary mb-5 animate-fade-in-up">
               {lang === "en"
-                ? "Let’s Talk About Your Next Order"
-                : "برای سفارش بعدی‌تان با ما گفتگو کنید"}
+                ? "Tell us what you need to supply next"
+                : "بگویید برای تامین بعدی به چه نیاز دارید"}
             </h1>
             <p className="text-responsive-body text-foreground/70 max-w-3xl mx-auto animate-fade-in-up">
               {lang === "en"
-                ? "Have questions about sourcing, certifications, or logistics? Our B2B team is ready to help."
-                : "درباره تامین، تاییدیه‌ها یا لجستیک سوال دارید؟ تیم B2B ما آماده راهنمایی است."}
+                ? "Share the product, destination, volume, and timeline. Our team will respond with practical sourcing and distribution next steps."
+                : "محصول، مقصد، حجم و زمان‌بندی را اعلام کنید تا تیم ما با گام‌های عملی تامین و توزیع پاسخ دهد."}
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3 animate-fade-in-up">
-              <a
-                href="#contact-form"
-                className="btn btn-primary btn-md"
-              >
+              <a href="#contact-form" className="btn btn-primary btn-md">
                 {lang === "en" ? "Start an Inquiry" : "شروع درخواست"}
               </a>
-              <a
-                href="#contact-offices"
-                className="btn btn-outline btn-md"
-              >
+              <a href="#contact-offices" className="btn btn-outline btn-md">
                 {lang === "en" ? "View Offices" : "مشاهده دفاتر"}
               </a>
             </div>

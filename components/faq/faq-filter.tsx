@@ -46,7 +46,11 @@ export function FAQFilter({ items, lang, onFilter }: FAQFilterProps) {
       {categories.map((category) => (
         <FilterChip
           key={category}
-          label={lang === "en" ? faqCategories[category].en : faqCategories[category].fa}
+          label={
+            lang === "en"
+              ? faqCategories[category].en
+              : faqCategories[category].fa
+          }
           isActive={active === category}
           onClick={() => setActive(category)}
         />
