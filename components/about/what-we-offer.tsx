@@ -9,22 +9,19 @@ interface WhatWeOfferProps {
 const offerings = {
   en: [
     {
-      image:
-        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80",
+      image: "/featured1.jpg",
       title: "Sourcing & Import",
       description:
         "Direct supplier coordination for rice, legumes, spices, nuts, seeds, sugar, and other essentials.",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80",
+      image: "/featured2.jpg",
       title: "Quality & Documentation",
       description:
         "Quality checks, hygiene standards, import documentation, and ISO-led operating discipline.",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1486525891917-3b627cbf3d3c?w=400&q=80",
+      image: "/featured3.jpg",
       title: "Distribution & Access",
       description:
         "Regional offices, branches, and warehouses that support retailers, wholesalers, and institutions.",
@@ -32,22 +29,19 @@ const offerings = {
   ],
   fa: [
     {
-      image:
-        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80",
+      image: "/featured1.jpg",
       title: "تامین و واردات",
       description:
         "هماهنگی مستقیم با تامین‌کنندگان برای برنج، حبوبات، ادویه‌جات، آجیل، دانه‌ها، شکر و سایر اقلام اساسی.",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80",
+      image: "/featured2.jpg",
       title: "کیفیت و مستندسازی",
       description:
         "کنترل کیفیت، رعایت استانداردهای بهداشتی، اسناد واردات و نظم عملیاتی مبتنی بر ISO.",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1486525891917-3b627cbf3d3c?w=400&q=80",
+      image: "/featured3.jpg",
       title: "توزیع و دسترسی",
       description:
         "دفاتر، شعب و انبارهای منطقه‌ای برای پشتیبانی از خرده‌فروشان، عمده‌فروشان و سازمان‌ها.",

@@ -14,7 +14,7 @@ export function GetConnected({ lang }: GetConnectedProps) {
         <div className="max-w-6xl mx-auto">
           <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
             <Image
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80"
+              src="/featured2.jpg"
               alt={lang === "en" ? "Regional supply chain operations" : "عملیات زنجیره تامین منطقه‌ای"}
               fill
               sizes="100vw"

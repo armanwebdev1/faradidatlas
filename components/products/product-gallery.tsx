@@ -17,13 +17,6 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const thumbRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
-  if (gallery.length === 0) {
-    return null;
-  }
-
-  const activeImage = gallery[Math.min(activeIndex, gallery.length - 1)];
-  const canNavigate = gallery.length > 1;
-
   useEffect(() => {
     const current = thumbRefs.current[activeIndex];
     current?.scrollIntoView({
@@ -32,6 +25,13 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
       block: "nearest",
     });
   }, [activeIndex]);
+
+  if (gallery.length === 0) {
+    return null;
+  }
+
+  const activeImage = gallery[Math.min(activeIndex, gallery.length - 1)];
+  const canNavigate = gallery.length > 1;
 
   const goToPrev = () => {
     if (!canNavigate) return;

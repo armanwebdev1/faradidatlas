@@ -84,7 +84,7 @@ export function SignatureProducts() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoplay, setIsAutoplay] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const autoplayRef = useRef<NodeJS.Timeout>();
+  const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -197,7 +197,7 @@ export function SignatureProducts() {
                   }
                 >
                   <Image
-                    src={product.image || "/placeholder.svg"}
+                    src={product.image}
                     alt={t(product.name)}
                     fill
                     sizes="100vw"

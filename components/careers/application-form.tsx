@@ -19,6 +19,7 @@ type FormValues = {
   location: string;
   experience: string;
   cv: File | null;
+  website: string;
 };
 
 type FormErrors = Partial<Record<keyof FormValues, string>>;
@@ -45,6 +46,7 @@ export function ApplicationForm({
     location: "",
     experience: "",
     cv: null,
+    website: "",
   };
 
   const [formData, setFormData] = useState<FormValues>(initialFormData);
@@ -52,6 +54,7 @@ export function ApplicationForm({
   const [touched, setTouched] = useState<TouchedFields>({});
   const [submitted, setSubmitted] = useState(false);
   const [formError, setFormError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const copy =
@@ -75,7 +78,7 @@ export function ApplicationForm({
           placeholders: {
             firstName: "John",
             lastName: "Doe",
-            email: "hello@example.com",
+            email: "name@company.com",
             phone: "+1 (555) 123-4567",
             location: "City, Country",
           },
@@ -124,7 +127,7 @@ export function ApplicationForm({
           placeholders: {
             firstName: "علی",
             lastName: "علی‌پور",
-            email: "hello@example.com",
+            email: "name@company.com",
             phone: "+98 (XXX) XXX-XXXX",
             location: "شهر، کشور",
           },
@@ -295,18 +298,50 @@ export function ApplicationForm({
     }
 
     setFormError("");
-    console.log("Form submitted:", { ...formData, jobId });
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setSubmitted(false);
 
-    setTimeout(() => {
-      setSubmitted(false);
+    try {
+      const payload = new FormData();
+      payload.append("lang", lang);
+      payload.append("jobId", String(jobId));
+      payload.append("jobTitle", jobTitle);
+      payload.append("firstName", formData.firstName);
+      payload.append("lastName", formData.lastName);
+      payload.append("email", formData.email);
+      payload.append("phone", formData.phone);
+      payload.append("location", formData.location);
+      payload.append("experience", formData.experience);
+      payload.append("website", formData.website);
+      if (formData.cv) {
+        payload.append("cv", formData.cv);
+      }
+
+      const response = await fetch("/api/careers", {
+        method: "POST",
+        body: payload,
+      });
+      const result = (await response.json()) as {
+        ok?: boolean;
+        message?: string;
+      };
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message || copy.formError);
+      }
+
+      setSubmitted(true);
       setFormData(initialFormData);
       setErrors({});
       setTouched({});
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
-    }, 3000);
+    } catch (error) {
+      setFormError(error instanceof Error ? error.message : copy.formError);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const getError = (field: keyof FormValues) =>
@@ -336,6 +371,17 @@ export function ApplicationForm({
           {jobTitle}
         </div>
       </div>
+
+      <input
+        type="text"
+        name="website"
+        value={formData.website}
+        onChange={handleChange}
+        className="hidden"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
 
       {formError && (
         <div className="mb-6 rounded-2xl border border-destructive/30 bg-destructive/5 px-4 py-3 text-xs sm:text-sm text-destructive">
@@ -554,8 +600,16 @@ export function ApplicationForm({
         </div>
       </div>
 
-      <button type="submit" className="btn btn-primary btn-lg w-full mt-8">
-        {copy.submit}
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="btn btn-primary btn-lg w-full mt-8 disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {isSubmitting
+          ? lang === "en"
+            ? "Submitting..."
+            : "در حال ارسال..."
+          : copy.submit}
       </button>
 
       {submitted && (

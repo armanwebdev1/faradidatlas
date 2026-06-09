@@ -45,7 +45,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
           <div>
             <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80"
+                src="/featured1.jpg"
                 alt={lang === "en" ? "Faradid Atlas operations" : "عملیات فرادید اطلس"}
                 fill
                 priority

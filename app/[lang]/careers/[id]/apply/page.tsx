@@ -3,6 +3,7 @@ import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { ApplicationForm } from "@/components/careers/application-form"
 import { jobs } from "@/components/careers/job-data"
+import { buildPageMetadata } from "@/lib/metadata"
 import type { Language } from "@/lib/i18n"
 
 interface ApplyPageProps {
@@ -271,4 +272,33 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
       <Footer lang={lang} />
     </div>
   )
+}
+
+export async function generateMetadata({ params }: ApplyPageProps) {
+  const { lang, id } = await params
+  const job = jobs.find((j) => j.id === Number.parseInt(id))
+
+  if (!job) {
+    return buildPageMetadata({
+      lang,
+      path: "careers",
+      titleEn: "Application | Faradid Atlas",
+      titleFa: "درخواست همکاری | فرادید اطلس",
+      descriptionEn:
+        "Submit a career application for Faradid Atlas evergreen opportunity areas.",
+      descriptionFa:
+        "درخواست همکاری خود را برای حوزه‌های همکاری فرادید اطلس ارسال کنید.",
+    })
+  }
+
+  return buildPageMetadata({
+    lang,
+    path: `careers/${job.id}/apply`,
+    titleEn: `Apply for ${job.titleEn} | Faradid Atlas`,
+    titleFa: `درخواست برای ${job.titleFa} | فرادید اطلس`,
+    descriptionEn:
+      "Submit your details for review by the Faradid Atlas careers team.",
+    descriptionFa:
+      "اطلاعات خود را برای بررسی توسط تیم فرصت‌های شغلی فرادید اطلس ارسال کنید.",
+  })
 }

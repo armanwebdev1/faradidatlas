@@ -3,12 +3,28 @@ import { Footer } from "@/components/layout/footer";
 import { FAQHero } from "@/components/faq/faq-hero";
 import { FAQContent } from "@/components/faq/faq-content";
 import { faqs } from "@/components/faq/faq-data";
+import { buildPageMetadata } from "@/lib/metadata";
 import type { Language } from "@/lib/i18n";
 
 interface FAQPageProps {
   params: Promise<{
     lang: Language;
   }>;
+}
+
+export async function generateMetadata({ params }: FAQPageProps) {
+  const { lang } = await params;
+
+  return buildPageMetadata({
+    lang,
+    path: "faq",
+    titleEn: "FAQ | Faradid Atlas",
+    titleFa: "سوالات متداول | فرادید اطلس",
+    descriptionEn:
+      "Find answers about Faradid Atlas products, sourcing, quality, offices, mission, vision, and values.",
+    descriptionFa:
+      "پاسخ سوالات درباره محصولات، تامین، کیفیت، دفاتر، ماموریت، چشم‌انداز و ارزش‌های فرادید اطلس را ببینید.",
+  });
 }
 
 export default async function FAQPage({ params }: FAQPageProps) {

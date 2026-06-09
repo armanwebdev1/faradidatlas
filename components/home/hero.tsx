@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import type { Language } from "@/lib/i18n";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface HeroProps {
   lang: Language;
@@ -180,9 +180,9 @@ export function Hero({ lang }: HeroProps) {
       >
         <div className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition">
           {isRTL ? (
-            <MdChevronRight size={28} className="text-white" />
+            <ChevronRight className="h-7 w-7 text-white" />
           ) : (
-            <MdChevronLeft size={28} className="text-white" />
+            <ChevronLeft className="h-7 w-7 text-white" />
           )}
         </div>
       </button>
@@ -196,9 +196,9 @@ export function Hero({ lang }: HeroProps) {
       >
         <div className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition">
           {isRTL ? (
-            <MdChevronLeft size={28} className="text-white" />
+            <ChevronLeft className="h-7 w-7 text-white" />
           ) : (
-            <MdChevronRight size={28} className="text-white" />
+            <ChevronRight className="h-7 w-7 text-white" />
           )}
         </div>
       </button>

@@ -80,9 +80,13 @@ export function Header({ lang }: HeaderProps) {
   }, []);
 
   useEffect(() => {
-    setIsSearchOpen(false);
-    setActiveIndex(-1);
-    setQuery("");
+    const timeoutId = window.setTimeout(() => {
+      setIsSearchOpen(false);
+      setActiveIndex(-1);
+      setQuery("");
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
   }, [pathname]);
 
   const isActive = (href: string): boolean => {
@@ -224,10 +228,11 @@ export function Header({ lang }: HeaderProps) {
       careers: withIndex(searchResults.careers),
       faqs: withIndex(searchResults.faqs),
     };
-  }, [searchResults, flatResults]);
+  }, [searchResults]);
 
   useEffect(() => {
-    setActiveIndex(-1);
+    const timeoutId = window.setTimeout(() => setActiveIndex(-1), 0);
+    return () => window.clearTimeout(timeoutId);
   }, [query]);
 
   const hasResults = flatResults.length > 0;

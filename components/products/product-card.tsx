@@ -25,7 +25,7 @@ export function ProductCard({ product, lang }: ProductCardProps) {
 
         <div className="relative aspect-square bg-gradient-to-br from-secondary/40 to-secondary/60 overflow-hidden">
           <Image
-            src={product.image || "/placeholder.svg"}
+            src={product.image}
             alt={name}
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"

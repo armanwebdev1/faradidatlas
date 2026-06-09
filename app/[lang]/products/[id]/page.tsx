@@ -2,6 +2,8 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { categoryLabels, products } from "@/components/products/product-data";
 import { ProductGallery } from "@/components/products/product-gallery";
+import { buildPageMetadata } from "@/lib/metadata";
+import { absoluteUrl, localizedPath, siteConfig } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import Link from "next/link";
 
@@ -23,6 +25,31 @@ export async function generateStaticParams() {
   }
 
   return allParams;
+}
+
+export async function generateMetadata({ params }: ProductDetailProps) {
+  const { lang, id } = await params;
+  const product = products.find((item) => item.id === Number.parseInt(id));
+
+  if (!product) {
+    return buildPageMetadata({
+      lang,
+      path: "products",
+      titleEn: "Product Not Found | Faradid Atlas",
+      titleFa: "محصول پیدا نشد | فرادید اطلس",
+      descriptionEn: siteConfig.description,
+      descriptionFa: siteConfig.descriptionFa,
+    });
+  }
+
+  return buildPageMetadata({
+    lang,
+    path: `products/${product.id}`,
+    titleEn: `${product.nameEn} | Faradid Atlas`,
+    titleFa: `${product.nameFa} | فرادید اطلس`,
+    descriptionEn: product.descriptionEn,
+    descriptionFa: product.descriptionFa,
+  });
 }
 
 export default async function ProductDetailPage({
@@ -55,6 +82,7 @@ export default async function ProductDetailPage({
     product.images && product.images.length > 0
       ? product.images
       : [product.image];
+  const productUrl = absoluteUrl(localizedPath(lang, `products/${product.id}`));
 
   return (
     <div dir={lang === "fa" ? "rtl" : "ltr"}>
@@ -188,6 +216,50 @@ export default async function ProductDetailPage({
             </div>
           </div>
         </section>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Product",
+                name,
+                description,
+                category,
+                image: absoluteUrl(product.image),
+                brand: {
+                  "@type": "Brand",
+                  name: siteConfig.name,
+                },
+                url: productUrl,
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: lang === "en" ? "Home" : "خانه",
+                    item: absoluteUrl(localizedPath(lang)),
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: lang === "en" ? "Products" : "محصولات",
+                    item: absoluteUrl(localizedPath(lang, "products")),
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 3,
+                    name,
+                    item: productUrl,
+                  },
+                ],
+              },
+            ]),
+          }}
+        />
       </main>
       <Footer lang={lang} />
     </div>

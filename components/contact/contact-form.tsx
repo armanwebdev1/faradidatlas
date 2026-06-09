@@ -20,9 +20,12 @@ export function ContactForm({ lang }: ContactFormProps) {
     destination: "",
     timeline: "",
     message: "",
+    website: "",
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [formError, setFormError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const inputBase = "form-input";
   const labelBase = "form-label mb-2";
 
@@ -37,10 +40,28 @@ export function ContactForm({ lang }: ContactFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
+    setIsSubmitting(true);
+    setFormError("");
+    setSubmitted(false);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...formData, lang }),
+      });
+      const result = (await response.json()) as {
+        ok?: boolean;
+        message?: string;
+      };
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message || "Unable to send inquiry.");
+      }
+
+      setSubmitted(true);
       setFormData({
         company: "",
         name: "",
@@ -52,8 +73,19 @@ export function ContactForm({ lang }: ContactFormProps) {
         destination: "",
         timeline: "",
         message: "",
+        website: "",
       });
-    }, 3000);
+    } catch (error) {
+      setFormError(
+        error instanceof Error
+          ? error.message
+          : lang === "en"
+            ? "Unable to send inquiry."
+            : "امکان ارسال درخواست وجود ندارد.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -70,6 +102,17 @@ export function ContactForm({ lang }: ContactFormProps) {
           ? "Tell us about your product needs, destination, and expected volume so the team can review a practical supply path."
           : "درباره محصول مورد نیاز، مقصد و حجم تقریبی بگویید تا تیم ما مسیر عملی تامین را بررسی کند."}
       </p>
+
+      <input
+        type="text"
+        name="website"
+        value={formData.website}
+        onChange={handleChange}
+        className="hidden"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
 
       {/* Form grid - responsive */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 mb-6">
@@ -275,9 +318,25 @@ export function ContactForm({ lang }: ContactFormProps) {
       </div>
 
       {/* Submit - responsive */}
-      <button type="submit" className="btn btn-primary btn-lg w-full mb-4">
-        {lang === "en" ? "Send Inquiry" : "ارسال درخواست"}
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="btn btn-primary btn-lg w-full mb-4 disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {isSubmitting
+          ? lang === "en"
+            ? "Sending..."
+            : "در حال ارسال..."
+          : lang === "en"
+            ? "Send Inquiry"
+            : "ارسال درخواست"}
       </button>
+
+      {formError && (
+        <div className="mb-4 p-3 sm:p-4 bg-red-50 border border-red-200 rounded-2xl text-red-700 text-xs sm:text-sm animate-fade-in-up">
+          {formError}
+        </div>
+      )}
 
       {/* Success message - responsive */}
       {submitted && (

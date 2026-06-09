@@ -4,6 +4,7 @@ import { ContactForm } from "@/components/contact/contact-form";
 import { OfficeInfo } from "@/components/contact/office-info";
 import { ResponseSLA } from "@/components/contact/response-sla";
 import { ContactHero } from "@/components/contact/contact-hero";
+import { buildPageMetadata } from "@/lib/metadata";
 import type { Language } from "@/lib/i18n";
 
 interface ContactPageProps {
@@ -14,6 +15,21 @@ interface ContactPageProps {
 
 export async function generateStaticParams() {
   return [{ lang: "en" }, { lang: "fa" }];
+}
+
+export async function generateMetadata({ params }: ContactPageProps) {
+  const { lang } = await params;
+
+  return buildPageMetadata({
+    lang,
+    path: "contact",
+    titleEn: "Contact Faradid Atlas",
+    titleFa: "تماس با فرادید اطلس",
+    descriptionEn:
+      "Send Faradid Atlas a B2B inquiry with product, volume, destination, and timing details.",
+    descriptionFa:
+      "درخواست B2B خود را همراه با محصول، حجم، مقصد و زمان‌بندی برای فرادید اطلس ارسال کنید.",
+  });
 }
 
 export default async function ContactPage({ params }: ContactPageProps) {

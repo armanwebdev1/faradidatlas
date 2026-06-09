@@ -2,6 +2,8 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { JobDetail } from "@/components/careers/job-detail";
 import { jobs } from "@/components/careers/job-data";
+import { buildPageMetadata } from "@/lib/metadata";
+import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import Link from "next/link";
 
@@ -25,6 +27,33 @@ export async function generateStaticParams() {
   return allParams;
 }
 
+export async function generateMetadata({ params }: JobDetailPageProps) {
+  const { lang, id } = await params;
+  const job = jobs.find((j) => j.id === Number.parseInt(id));
+
+  if (!job) {
+    return buildPageMetadata({
+      lang,
+      path: "careers",
+      titleEn: "Career Opportunity Not Found | Faradid Atlas",
+      titleFa: "فرصت شغلی پیدا نشد | فرادید اطلس",
+      descriptionEn:
+        "Explore evergreen opportunity areas connected to Faradid Atlas' supply chain, quality, and customer relationship work.",
+      descriptionFa:
+        "حوزه‌های همکاری مرتبط با زنجیره تامین، کیفیت و ارتباط با مشتریان در فرادید اطلس را ببینید.",
+    });
+  }
+
+  return buildPageMetadata({
+    lang,
+    path: `careers/${job.id}`,
+    titleEn: `${job.titleEn} | Careers | Faradid Atlas`,
+    titleFa: `${job.titleFa} | فرصت‌های شغلی | فرادید اطلس`,
+    descriptionEn: job.descriptionEn,
+    descriptionFa: job.descriptionFa,
+  });
+}
+
 export default async function JobDetailPage({ params }: JobDetailPageProps) {
   const { lang, id } = await params;
   const job = jobs.find((j) => j.id === Number.parseInt(id));
@@ -42,6 +71,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
   }
 
   const title = lang === "en" ? job.titleEn : job.titleFa;
+  const jobUrl = absoluteUrl(localizedPath(lang, `careers/${job.id}`));
 
   return (
     <div dir={lang === "fa" ? "rtl" : "ltr"}>
@@ -82,6 +112,35 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
             <JobDetail job={job} lang={lang} />
           </div>
         </section>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: lang === "en" ? "Home" : "خانه",
+                  item: absoluteUrl(localizedPath(lang)),
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: lang === "en" ? "Careers" : "فرصت‌های شغلی",
+                  item: absoluteUrl(localizedPath(lang, "careers")),
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: title,
+                  item: jobUrl,
+                },
+              ],
+            }),
+          }}
+        />
       </main>
       <Footer lang={lang} />
     </div>

@@ -4,6 +4,7 @@ import { CareersHero } from "@/components/careers/careers-hero";
 import { CareersCulture } from "@/components/careers/careers-culture";
 import { CareersOpportunities } from "@/components/careers/careers-opportunities";
 import { jobs } from "@/components/careers/job-data";
+import { buildPageMetadata } from "@/lib/metadata";
 import type { Language } from "@/lib/i18n";
 
 interface CareersPageProps {
@@ -14,6 +15,21 @@ interface CareersPageProps {
 
 export async function generateStaticParams() {
   return [{ lang: "en" }, { lang: "fa" }];
+}
+
+export async function generateMetadata({ params }: CareersPageProps) {
+  const { lang } = await params;
+
+  return buildPageMetadata({
+    lang,
+    path: "careers",
+    titleEn: "Careers | Faradid Atlas",
+    titleFa: "فرصت‌های شغلی | فرادید اطلس",
+    descriptionEn:
+      "Explore evergreen opportunity areas connected to Faradid Atlas' supply chain, quality, and customer relationship work.",
+    descriptionFa:
+      "حوزه‌های همکاری مرتبط با زنجیره تامین، کیفیت و ارتباط با مشتریان در فرادید اطلس را ببینید.",
+  });
 }
 
 export default async function CareersPage({ params }: CareersPageProps) {

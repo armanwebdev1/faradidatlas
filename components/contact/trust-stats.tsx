@@ -25,18 +25,11 @@ function useCountUp(value: number, shouldStart: boolean, duration: number, delay
       return
     }
 
-    if (typeof window === "undefined") {
-      setCurrent(value)
-      return
-    }
-
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     if (prefersReducedMotion) {
-      setCurrent(value)
-      return
+      const timeoutId = window.setTimeout(() => setCurrent(value), delay)
+      return () => window.clearTimeout(timeoutId)
     }
-
-    setCurrent(0)
 
     let rafId = 0
     let timeoutId = 0

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Language } from "@/lib/i18n";
 import { CountUp } from "@/components/shared/count-up";
 
@@ -25,9 +26,11 @@ export function CTASection({ lang }: CTASectionProps) {
         >
           <div className="flex-1 lg:w-1/2 h-64 sm:h-80 md:h-96 lg:min-h-[26rem]">
             <div className="relative group overflow-hidden rounded-lg sm:rounded-2xl shadow-xl md:shadow-2xl h-full">
-              <img
+              <Image
                 src="/cta.jpg"
                 alt={lang === "en" ? "Food supply partnership" : "همکاری تامین مواد غذایی"}
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
               <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-lg sm:rounded-2xl" />

@@ -2,6 +2,8 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ProductsContent } from "@/components/products/products-content";
 import { products } from "@/components/products/product-data";
+import { buildPageMetadata } from "@/lib/metadata";
+import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import Image from "next/image";
 
@@ -9,6 +11,21 @@ interface ProductsPageProps {
   params: Promise<{
     lang: Language;
   }>;
+}
+
+export async function generateMetadata({ params }: ProductsPageProps) {
+  const { lang } = await params;
+
+  return buildPageMetadata({
+    lang,
+    path: "products",
+    titleEn: "Products | Faradid Atlas",
+    titleFa: "محصولات | فرادید اطلس",
+    descriptionEn:
+      "Explore Faradid Atlas' DOCX-defined portfolio of rice, legumes, seeds, nuts, spices, and sugar.",
+    descriptionFa:
+      "سبد محصولات فرادید اطلس شامل برنج، حبوبات، دانه‌ها، آجیل، ادویه‌جات و شکر را ببینید.",
+  });
 }
 
 export default async function ProductsPage({ params }: ProductsPageProps) {
@@ -60,6 +77,25 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
         </section>
 
         <ProductsContent lang={lang} products={products} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              name:
+                lang === "en"
+                  ? "Faradid Atlas Products"
+                  : "محصولات فرادید اطلس",
+              itemListElement: products.map((product, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: absoluteUrl(localizedPath(lang, `products/${product.id}`)),
+                name: lang === "en" ? product.nameEn : product.nameFa,
+              })),
+            }),
+          }}
+        />
       </main>
       <Footer lang={lang} />
     </div>

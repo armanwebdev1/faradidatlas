@@ -6,6 +6,7 @@ import { WhatWeOffer } from "@/components/about/what-we-offer";
 import { StrategicFramework } from "@/components/about/strategic-framework";
 import { TeamShowcase } from "@/components/about/team-showcase";
 import { JoinTeam } from "@/components/about/join-team";
+import { buildPageMetadata } from "@/lib/metadata";
 import type { Language } from "@/lib/i18n";
 
 interface AboutPageProps {
@@ -16,6 +17,21 @@ interface AboutPageProps {
 
 export async function generateStaticParams() {
   return [{ lang: "en" }, { lang: "fa" }];
+}
+
+export async function generateMetadata({ params }: AboutPageProps) {
+  const { lang } = await params;
+
+  return buildPageMetadata({
+    lang,
+    path: "about",
+    titleEn: "About Faradid Atlas",
+    titleFa: "درباره فرادید اطلس",
+    descriptionEn:
+      "Learn about Faradid Atlas' 2009 founding, food security mission, rice brands, offices, 2030 vision, and values.",
+    descriptionFa:
+      "درباره آغاز فعالیت فرادید اطلس در سال ۱۳۸۸، ماموریت امنیت غذایی، برندهای برنج، دفاتر، چشم‌انداز ۲۰۳۰ و ارزش‌های شرکت بخوانید.",
+  });
 }
 
 export default async function AboutPage({ params }: AboutPageProps) {

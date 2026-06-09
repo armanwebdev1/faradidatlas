@@ -1,11 +1,11 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Geist } from "next/font/google";
+import { Playfair_Display, Geist } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -56,21 +56,16 @@ const satoshi = localFont({
   weight: "300 900",
 });
 
-const siteUrl = "https://faradidatlas.vercl.app";
-const siteName = "faradid atlas";
-const companyName = "Faradid Atlas";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  applicationName: companyName,
+  metadataBase: new URL(siteConfig.url),
+  applicationName: siteConfig.name,
   title: {
-    default: `${companyName} | Food Sourcing, Import & Distribution`,
-    template: `%s | ${companyName}`,
+    default: `${siteConfig.name} | Food Sourcing, Import & Distribution`,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    "Faradid Atlas sources, imports, and distributes essential food products including rice, legumes, spices, nuts, seeds, and sugar.",
+  description: siteConfig.description,
   keywords: [
-    "Faradid Atlas",
+    siteConfig.name,
     "B2B food sourcing",
     "food import distribution",
     "food trading",
@@ -85,31 +80,43 @@ export const metadata: Metadata = {
     "واردات و توزیع مواد غذایی",
     "تامین کننده مواد غذایی",
   ],
-  authors: [{ name: companyName }],
-  creator: companyName,
-  publisher: companyName,
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
   robots: { index: true, follow: true },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
+  },
   alternates: {
+    canonical: absoluteUrl("/en"),
     languages: {
-      en: "/en",
-      fa: "/fa",
+      en: absoluteUrl("/en"),
+      fa: absoluteUrl("/fa"),
     },
   },
   openGraph: {
     type: "website",
-    url: siteUrl,
-    siteName,
-    title: `${companyName} | Food Sourcing, Import & Distribution`,
-    description:
-      "Faradid Atlas sources, imports, and distributes essential food products including rice, legumes, spices, nuts, seeds, and sugar.",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} | Food Sourcing, Import & Distribution`,
+    description: siteConfig.description,
     locale: "en_US",
     alternateLocale: ["fa_IR"],
+    images: [
+        {
+          url: absoluteUrl("/opengraph-image.svg"),
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name,
+      },
+    ],
   },
   twitter: {
-    card: "summary",
-    title: `${companyName} | Food Sourcing, Import & Distribution`,
-    description:
-      "Faradid Atlas sources, imports, and distributes essential food products including rice, legumes, spices, nuts, seeds, and sugar.",
+    card: "summary_large_image",
+    title: `${siteConfig.name} | Food Sourcing, Import & Distribution`,
+    description: siteConfig.description,
+    images: [absoluteUrl("/opengraph-image.svg")],
   },
   generator: "Next.js",
 };
@@ -135,6 +142,7 @@ export default function RootLayout({
       <body className="antialiased">
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
