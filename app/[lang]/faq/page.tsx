@@ -32,8 +32,8 @@ export default async function FAQPage({ params }: FAQPageProps) {
               </h2>
               <p className="text-muted-foreground mb-8 text-lg">
                 {lang === "en"
-                  ? "Send us the product, volume, destination, and timeline. We respond within 24-48 hours."
-                  : "محصول، حجم، مقصد و زمان‌بندی را ارسال کنید. ما طی ۲۴ تا ۴۸ ساعت پاسخ می‌دهیم."}
+                  ? "Send us the product, volume, destination, and timeline so the team can review practical next steps."
+                  : "محصول، حجم، مقصد و زمان‌بندی را ارسال کنید تا تیم ما گام‌های عملی بعدی را بررسی کند."}
               </p>
               <a
                 href={`/${lang}/contact`}

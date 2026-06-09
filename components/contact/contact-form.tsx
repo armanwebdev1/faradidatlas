@@ -67,8 +67,8 @@ export function ContactForm({ lang }: ContactFormProps) {
       </h2>
       <p className="text-responsive-body text-foreground/70 mb-6 sm:mb-8">
         {lang === "en"
-          ? "Tell us about your product needs, destination, and expected volume. We'll respond within 24-48 hours."
-          : "درباره محصول مورد نیاز، مقصد و حجم تقریبی بگویید. ما طی ۲۴ تا ۴۸ ساعت پاسخ می‌دهیم."}
+          ? "Tell us about your product needs, destination, and expected volume so the team can review a practical supply path."
+          : "درباره محصول مورد نیاز، مقصد و حجم تقریبی بگویید تا تیم ما مسیر عملی تامین را بررسی کند."}
       </p>
 
       {/* Form grid - responsive */}
@@ -151,17 +151,17 @@ export function ContactForm({ lang }: ContactFormProps) {
             <option value="">
               {lang === "en" ? "Select role..." : "نقش را انتخاب کنید..."}
             </option>
-            <option value="buyer">
-              {lang === "en" ? "Buyer/Importer" : "خریدار/واردکننده"}
+            <option value="individual">
+              {lang === "en" ? "Individual buyer" : "خریدار فردی"}
             </option>
-            <option value="distributor">
-              {lang === "en" ? "Distributor" : "توزیع‌کننده"}
+            <option value="wholesaler">
+              {lang === "en" ? "Wholesaler" : "عمده‌فروش"}
             </option>
-            <option value="retailer">
-              {lang === "en" ? "Retailer" : "فروشنده"}
+            <option value="organization">
+              {lang === "en" ? "Organization" : "سازمان"}
             </option>
-            <option value="food-manufacturer">
-              {lang === "en" ? "Food Manufacturer" : "تولیدکننده غذایی"}
+            <option value="governmental-body">
+              {lang === "en" ? "Governmental body" : "نهاد دولتی"}
             </option>
             <option value="other">{lang === "en" ? "Other" : "دیگر"}</option>
           </select>
@@ -208,22 +208,16 @@ export function ContactForm({ lang }: ContactFormProps) {
         {/* Volume */}
         <div>
           <label className={labelBase}>
-            {lang === "en" ? "Estimated Monthly Volume" : "حجم تقریبی ماهانه"}
+            {lang === "en" ? "Expected Volume" : "حجم مورد انتظار"}
           </label>
-          <select
+          <input
+            type="text"
             name="volume"
             value={formData.volume}
             onChange={handleChange}
             className={inputBase}
-          >
-            <option value="">
-              {lang === "en" ? "Select volume..." : "حجم را انتخاب کنید..."}
-            </option>
-            <option value="100-500">{"100-500 kg"}</option>
-            <option value="500-1000">{"500-1,000 kg"}</option>
-            <option value="1000-5000">{"1,000-5,000 kg"}</option>
-            <option value="5000+">{"5,000+ kg"}</option>
-          </select>
+            placeholder={lang === "en" ? "Approximate quantity" : "مقدار تقریبی"}
+          />
         </div>
 
         {/* Destination */}
@@ -246,36 +240,18 @@ export function ContactForm({ lang }: ContactFormProps) {
           <label className={labelBase}>
             {lang === "en" ? "Timeline" : "زمان‌بندی"}
           </label>
-          <select
+          <input
+            type="text"
             name="timeline"
             value={formData.timeline}
             onChange={handleChange}
             className={inputBase}
-          >
-            <option value="">
-              {lang === "en"
-                ? "Select timeline..."
-                : "زمان‌بندی را انتخاب کنید..."}
-            </option>
-            <option value="immediate">
-              {lang === "en"
-                ? "Immediate (within 2 weeks)"
-                : "فوری (در ۲ هفته)"}
-            </option>
-            <option value="short">
-              {lang === "en"
-                ? "Short-term (1-3 months)"
-                : "کوتاه‌مدت (۱-۳ ماه)"}
-            </option>
-            <option value="medium">
-              {lang === "en"
-                ? "Medium-term (3-6 months)"
-                : "میان‌مدت (۳-۶ ماه)"}
-            </option>
-            <option value="long">
-              {lang === "en" ? "Long-term (6+ months)" : "بلند‌مدت (۶+ ماه)"}
-            </option>
-          </select>
+            placeholder={
+              lang === "en"
+                ? "Expected purchase or delivery timing"
+                : "زمان مورد انتظار خرید یا تحویل"
+            }
+          />
         </div>
       </div>
 
@@ -307,8 +283,8 @@ export function ContactForm({ lang }: ContactFormProps) {
       {submitted && (
         <div className="p-3 sm:p-4 bg-green-50 border border-green-200 rounded-2xl text-green-700 text-xs sm:text-sm animate-fade-in-up">
           {lang === "en"
-            ? "Thank you! Your inquiry has been received. We'll contact you within 24-48 hours."
-            : "متشکریم! درخواست شما دریافت شد. ما در ۲۴-۴۸ ساعت با شما تماس می‌گیریم."}
+            ? "Thank you! Your inquiry has been received. Our team will review the details and contact you."
+            : "متشکریم! درخواست شما دریافت شد. تیم ما جزئیات را بررسی می‌کند و با شما تماس می‌گیرد."}
         </div>
       )}
     </form>

@@ -4,105 +4,69 @@ interface OfficeInfoProps {
   lang: Language;
 }
 
+const offices = {
+  en: [
+    {
+      city: "Tehran",
+      role: "Company office supporting sales coordination and access to Iran's essential food market.",
+    },
+    {
+      city: "Isfahan",
+      role: "Company office supporting regional coordination and distribution access in Iran.",
+    },
+    {
+      city: "Dubai",
+      role: "Company office supporting regional trade access through the United Arab Emirates.",
+    },
+    {
+      city: "Oman",
+      role: "Company office supporting regional presence and market expansion.",
+    },
+  ],
+  fa: [
+    {
+      city: "تهران",
+      role: "دفتر شرکت برای پشتیبانی از هماهنگی فروش و دسترسی به بازار مواد غذایی اساسی ایران.",
+    },
+    {
+      city: "اصفهان",
+      role: "دفتر شرکت برای پشتیبانی از هماهنگی منطقه‌ای و دسترسی توزیعی در ایران.",
+    },
+    {
+      city: "دبی",
+      role: "دفتر شرکت برای پشتیبانی از دسترسی تجاری منطقه‌ای از طریق امارات متحده عربی.",
+    },
+    {
+      city: "عمان",
+      role: "دفتر شرکت برای پشتیبانی از حضور منطقه‌ای و توسعه بازار.",
+    },
+  ],
+};
+
 export function OfficeInfo({ lang }: OfficeInfoProps) {
-  const labelClass =
-    lang === "fa"
-      ? "text-[13px] font-semibold text-neutral uppercase mb-1"
-      : "text-xs font-semibold text-neutral uppercase mb-1";
-
-  const offices = {
-    en: [
-      {
-        city: "Tehran",
-        address: "Main commercial office for sales coordination and customer support.",
-        email: "sales@faradidatlas.com",
-        hours: "Saturday - Thursday, 9:00 AM - 6:00 PM",
-      },
-      {
-        city: "Isfahan",
-        address: "Regional branch supporting central Iran distribution.",
-        email: "operations@faradidatlas.com",
-        hours: "Saturday - Thursday, 9:00 AM - 5:00 PM",
-      },
-      {
-        city: "Shahrekord",
-        address: "Branch and storage support for regional supply movement.",
-        email: "logistics@faradidatlas.com",
-        hours: "Saturday - Thursday, 9:00 AM - 5:00 PM",
-      },
-      {
-        city: "UAE & Oman",
-        address: "Regional sales and trade access across the Middle East.",
-        email: "regional@faradidatlas.com",
-        hours: "Business inquiries by appointment",
-      },
-    ],
-    fa: [
-      {
-        city: "تهران",
-        address: "دفتر تجاری اصلی برای هماهنگی فروش و پشتیبانی مشتریان.",
-        email: "sales@faradidatlas.com",
-        hours: "شنبه تا پنج‌شنبه، ۹:۰۰ تا ۱۸:۰۰",
-      },
-      {
-        city: "اصفهان",
-        address: "شعبه منطقه‌ای برای پشتیبانی از توزیع در مرکز ایران.",
-        email: "operations@faradidatlas.com",
-        hours: "شنبه تا پنج‌شنبه، ۹:۰۰ تا ۱۷:۰۰",
-      },
-      {
-        city: "شهرکرد",
-        address: "شعبه و پشتیبانی انبار برای جابه‌جایی منطقه‌ای کالا.",
-        email: "logistics@faradidatlas.com",
-        hours: "شنبه تا پنج‌شنبه، ۹:۰۰ تا ۱۷:۰۰",
-      },
-      {
-        city: "امارات و عمان",
-        address: "دسترسی فروش و تجارت منطقه‌ای در خاورمیانه.",
-        email: "regional@faradidatlas.com",
-        hours: "هماهنگی جلسات تجاری با وقت قبلی",
-      },
-    ],
-  };
-
   const officeList = lang === "en" ? offices.en : offices.fa;
 
   return (
-    <div className="space-y-8">
-      {officeList.map((office, idx) => (
+    <div className="space-y-6">
+      {officeList.map((office) => (
         <div
-          key={idx}
-          className="p-8 bg-background rounded-lg border border-border"
+          key={office.city}
+          className="p-6 sm:p-8 bg-background rounded-lg border border-border"
         >
-          <h3 className="text-2xl font-bold text-primary mb-6">
+          <h3 className="text-2xl font-bold text-primary mb-4">
             {office.city}
           </h3>
-
-          <div className="space-y-4">
-            <div>
-              <p className={labelClass}>{lang === "en" ? "Address" : "آدرس"}</p>
-              <p className="text-foreground">{office.address}</p>
-            </div>
-
-            <div>
-              <p className={labelClass}>{lang === "en" ? "Email" : "ایمیل"}</p>
-              <a
-                href={`mailto:${office.email}`}
-                className="text-primary hover:text-accent transition-colors font-medium"
-              >
-                {office.email}
-              </a>
-            </div>
-
-            <div>
-              <p className={labelClass}>
-                {lang === "en" ? "Business Hours" : "ساعات کاری"}
-              </p>
-              <p className="text-foreground">{office.hours}</p>
-            </div>
-          </div>
+          <p className="text-foreground/75 leading-relaxed">{office.role}</p>
         </div>
       ))}
+
+      <div className="p-5 sm:p-6 bg-secondary/40 rounded-lg border border-border">
+        <p className="text-sm text-foreground/70 leading-relaxed">
+          {lang === "en"
+            ? "Shahrekord is treated as operational and warehouse support in Iran, not as a listed company office."
+            : "شهرکرد به‌عنوان پشتیبانی عملیاتی و انباری در ایران در نظر گرفته می‌شود، نه به‌عنوان دفتر معرفی‌شده شرکت."}
+        </p>
+      </div>
     </div>
   );
 }

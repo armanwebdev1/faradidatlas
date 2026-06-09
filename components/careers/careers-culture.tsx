@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { Globe2, Scale, ShieldCheck, TrendingUp } from "lucide-react";
+import { Leaf, Lightbulb, Scale, ShieldCheck } from "lucide-react";
 import type { Language } from "@/lib/i18n";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -15,46 +15,46 @@ interface CareersCultureProps {
 const cultureItems = {
   en: [
     {
-      title: "Safety First",
-      description: "Food safety is not just policy—it's our identity.",
+      title: "Superior Quality",
+      description: "Quality control across import, warehousing, and distribution protects trust.",
       icon: ShieldCheck,
     },
     {
-      title: "Growth & Learning",
-      description: "Continuous development with training and certifications.",
-      icon: TrendingUp,
-    },
-    {
-      title: "Global Impact",
-      description: "Work across 50+ countries with diverse teams.",
-      icon: Globe2,
-    },
-    {
-      title: "Work-Life Balance",
-      description: "Flexible arrangements and supportive culture.",
+      title: "Professional Ethics",
+      description: "Transparent work, fair contracts, and compliance guide how teams operate.",
       icon: Scale,
+    },
+    {
+      title: "Sustainability",
+      description: "Responsible sourcing, waste reduction, recyclable packaging, and local support matter.",
+      icon: Leaf,
+    },
+    {
+      title: "Innovation",
+      description: "Digital channels, traceability, and new product thinking keep the company adaptable.",
+      icon: Lightbulb,
     },
   ],
   fa: [
     {
-      title: "ایمنی اول",
-      description: "ایمنی غذایی فقط یک سیاست نیست—این هویت ما است.",
+      title: "کیفیت برتر",
+      description: "کنترل کیفیت در واردات، انبارداری و توزیع اعتماد را حفظ می‌کند.",
       icon: ShieldCheck,
     },
     {
-      title: "رشد و یادگیری",
-      description: "توسعه مداوم با برنامه‌های آموزشی و گواهی‌ها.",
-      icon: TrendingUp,
-    },
-    {
-      title: "تأثیر جهانی",
-      description: "کار در بیش از ۵۰ کشور با تیم‌های متنوع.",
-      icon: Globe2,
-    },
-    {
-      title: "تعادل کاری-زندگی",
-      description: "ترتیبات انعطاف‌پذیر و فرهنگ حمایتی.",
+      title: "اخلاق حرفه‌ای",
+      description: "شفافیت، قراردادهای منصفانه و رعایت مقررات، شیوه کار تیم‌ها را هدایت می‌کند.",
       icon: Scale,
+    },
+    {
+      title: "پایداری",
+      description: "تامین مسئولانه، کاهش ضایعات، بسته‌بندی قابل بازیافت و حمایت محلی اهمیت دارد.",
+      icon: Leaf,
+    },
+    {
+      title: "نوآوری",
+      description: "کانال‌های دیجیتال، رهگیری و تفکر محصول جدید، شرکت را چابک نگه می‌دارد.",
+      icon: Lightbulb,
     },
   ],
 };
@@ -162,8 +162,8 @@ export function CareersCulture({ lang }: CareersCultureProps) {
             }}
           >
             {lang === "en"
-              ? "We believe in creating a workplace where talent thrives, innovation flourishes, and your career matters."
-              : "ما معتقدیم که در محیط کاری می‌تواند استعداد رشد کند، نوآوری شکوفا شود و حرفه شما اهمیت پیدا کند."}
+              ? "Our workplace expectations are shaped by the same documented values that guide sourcing, quality, customer relationships, and sustainable growth."
+              : "انتظارات کاری ما از همان ارزش‌های مستندی شکل می‌گیرد که تامین، کیفیت، ارتباط با مشتری و رشد پایدار را هدایت می‌کند."}
           </p>
         </div>
 

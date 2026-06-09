@@ -12,31 +12,31 @@ const values = {
       icon: BadgeCheck,
       title: "Customer-Centricity",
       description:
-        "Prompt responses, practical solutions, and long-term relationships built on trust.",
+        "Prompt feedback, practical buyer-specific solutions, and long-term trust reflected in the DOCX's retention focus above 80%.",
     },
     {
       icon: Leaf,
       title: "Sustainability",
       description:
-        "Responsible sourcing, reduced waste, recyclable packaging, and support for local communities.",
+        "Responsible sourcing, recyclable packaging, local community support, and a stated goal to reduce waste by 20% by 1407 SH.",
     },
     {
       icon: Scale,
       title: "Professional Ethics",
       description:
-        "Transparent supplier relationships, fair contracts, compliance, and accountable operations.",
+        "Transparency, integrity, fair contracts, anti-corruption discipline, and customs-regulation compliance.",
     },
     {
       icon: Lightbulb,
       title: "Innovation",
       description:
-        "New products, digital sales channels, and better traceability across the supply chain.",
+        "Digital sales channels, supply-chain traceability, ready-to-use spice blends, and agility toward plant-based demand.",
     },
     {
       icon: ShieldCheck,
       title: "Superior Quality",
       description:
-        "Rigorous control at import, warehousing, and distribution stages to protect brand trust.",
+        "Rigorous control at import, warehousing, and distribution stages to protect product trust and brand reputation.",
     },
   ],
   fa: [
@@ -44,31 +44,31 @@ const values = {
       icon: BadgeCheck,
       title: "مشتری‌مداری",
       description:
-        "پاسخ‌گویی سریع، راهکارهای کاربردی و روابط بلندمدت بر پایه اعتماد.",
+        "پاسخ‌گویی سریع، راهکارهای متناسب با خریدار و اعتماد بلندمدت که در متن مرجع با تمرکز بر حفظ مشتری بیش از ۸۰ درصد بیان شده است.",
     },
     {
       icon: Leaf,
       title: "پایداری",
       description:
-        "تامین مسئولانه، کاهش ضایعات، بسته‌بندی قابل بازیافت و حمایت از جوامع محلی.",
+        "تامین مسئولانه، بسته‌بندی قابل بازیافت، حمایت از جوامع محلی و هدف کاهش ۲۰ درصدی ضایعات تا سال ۱۴۰۷.",
     },
     {
       icon: Scale,
       title: "اخلاق حرفه‌ای",
       description:
-        "روابط شفاف با تامین‌کنندگان، قراردادهای منصفانه، رعایت مقررات و عملیات پاسخ‌گو.",
+        "شفافیت، درستکاری، قراردادهای منصفانه، انضباط ضدفساد و رعایت مقررات گمرکی.",
     },
     {
       icon: Lightbulb,
       title: "نوآوری",
       description:
-        "محصولات جدید، کانال‌های فروش دیجیتال و رهگیری بهتر در سراسر زنجیره تامین.",
+        "کانال‌های فروش دیجیتال، رهگیری زنجیره تامین، ترکیب‌های ادویه آماده مصرف و چابکی در برابر تقاضای محصولات گیاهی.",
     },
     {
       icon: ShieldCheck,
       title: "کیفیت برتر",
       description:
-        "کنترل دقیق در مراحل واردات، انبارداری و توزیع برای حفظ اعتماد به برند.",
+        "کنترل دقیق در مراحل واردات، انبارداری و توزیع برای حفظ اعتماد به محصول و اعتبار برند.",
     },
   ],
 };
@@ -93,7 +93,7 @@ export function TeamShowcase({ lang }: TeamShowcaseProps) {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {valueList.map((value, idx) => {
             const Icon = value.icon;
             return (

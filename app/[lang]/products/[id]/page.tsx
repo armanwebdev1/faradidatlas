@@ -1,6 +1,6 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { products } from "@/components/products/product-data";
+import { categoryLabels, products } from "@/components/products/product-data";
 import { ProductGallery } from "@/components/products/product-gallery";
 import type { Language } from "@/lib/i18n";
 import Link from "next/link";
@@ -44,16 +44,13 @@ export default async function ProductDetailPage({
   }
 
   const name = lang === "en" ? product.nameEn : product.nameFa;
+  const alias = lang === "en" ? product.aliasEn : product.aliasFa;
   const description =
     lang === "en" ? product.descriptionEn : product.descriptionFa;
-  const origin = lang === "en" ? product.originEn : product.originFa;
-  const grade = lang === "en" ? product.gradeEn : product.gradeFa;
-  const shelfLife = lang === "en" ? product.shelfLifeEn : product.shelfLifeFa;
-  const minOrder = lang === "en" ? product.minOrderEn : product.minOrderFa;
-  const packagingOptions =
+  const category =
     lang === "en"
-      ? product.packagingOptionsEn
-      : product.packagingOptionsFa;
+      ? categoryLabels[product.category].en
+      : categoryLabels[product.category].fa;
   const gallery =
     product.images && product.images.length > 0
       ? product.images
@@ -111,6 +108,14 @@ export default async function ProductDetailPage({
               >
                 {name}
               </h1>
+              {alias && (
+                <p
+                  className="mt-3 text-sm sm:text-base font-medium text-accent-warm-gold motion-safe:animate-fade-in-up"
+                  style={{ animationDelay: "0.1s" }}
+                >
+                  {alias}
+                </p>
+              )}
               <p
                 className="mt-4 text-sm sm:text-base text-foreground/70 leading-relaxed motion-safe:animate-fade-in-up"
                 style={{ animationDelay: "0.12s" }}
@@ -118,72 +123,52 @@ export default async function ProductDetailPage({
                 {description}
               </p>
 
-              <div className="grid grid-cols-2 gap-3 sm:gap-6 mt-6 mb-8 sm:mb-10 p-4 sm:p-6 bg-secondary/30 rounded-2xl border border-foreground/10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6 mt-6 mb-8 sm:mb-10 p-4 sm:p-6 bg-secondary/30 rounded-2xl border border-foreground/10">
                 <div>
                   <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
-                    {lang === "en" ? "Origin" : "مبدا"}
+                    {lang === "en" ? "Category" : "دسته‌بندی"}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
-                    {origin}
+                    {category}
                   </p>
                 </div>
                 <div>
                   <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
-                    {lang === "en" ? "Grade" : "گرید"}
+                    {lang === "en" ? "Portfolio" : "سبد محصول"}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
-                    {grade}
+                    {lang === "en" ? "Essential foods" : "مواد غذایی اساسی"}
                   </p>
                 </div>
                 <div>
                   <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
-                    {lang === "en" ? "Shelf Life" : "مدت نگهداری"}
+                    {lang === "en" ? "Supply Role" : "نقش در تامین"}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
-                    {shelfLife}
+                    {lang === "en"
+                      ? "Import & distribution"
+                      : "واردات و توزیع"}
                   </p>
                 </div>
                 <div>
                   <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
-                    {lang === "en" ? "Minimum Order" : "حداقل سفارش"}
+                    {lang === "en" ? "Inquiry" : "درخواست"}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
-                    {minOrder}
+                    {lang === "en" ? "B2B coordination" : "هماهنگی B2B"}
                   </p>
                 </div>
               </div>
 
               <div className="mb-8">
                 <h3 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">
-                  {lang === "en" ? "Standards" : "استانداردها"}
+                  {lang === "en" ? "How Faradid Atlas Supplies It" : "نحوه تامین توسط فرادید اطلس"}
                 </h3>
-                <div className="flex flex-wrap gap-2">
-                  {product.certifications.map((cert) => (
-                    <span
-                      key={cert}
-                      className="px-3 sm:px-4 py-1.5 sm:py-2 bg-accent-warm-gold text-primary text-xs sm:text-sm font-semibold rounded-full shadow-sm"
-                    >
-                      {cert}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mb-8">
-                <h3 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">
-                  {lang === "en" ? "Packaging Options" : "گزینه‌های بسته‌بندی"}
-                </h3>
-                <ul className="space-y-2 sm:space-y-3">
-                  {packagingOptions.map((option) => (
-                    <li
-                      key={option}
-                      className="flex items-center gap-3 text-foreground text-sm sm:text-base"
-                    >
-                      <span className="w-2 h-2 flex-shrink-0 bg-accent-warm-gold rounded-full" />
-                      {option}
-                    </li>
-                  ))}
-                </ul>
+                <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">
+                  {lang === "en"
+                    ? "This product is part of the DOCX-defined Faradid Atlas portfolio of essential foods. The team reviews product needs, destination, volume, and timing before proposing practical next steps."
+                    : "این محصول بخشی از سبد مواد غذایی اساسی فرادید اطلس طبق محتوای مرجع است. تیم ما محصول مورد نیاز، مقصد، حجم و زمان‌بندی را بررسی می‌کند و سپس گام‌های عملی بعدی را پیشنهاد می‌دهد."}
+                </p>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -191,7 +176,7 @@ export default async function ProductDetailPage({
                   href={`/${lang}/contact?product=${product.id}`}
                   className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-primary/90 transition-colors text-center text-sm sm:text-base shadow-sm hover:shadow-md"
                 >
-                  {lang === "en" ? "Request Quote" : "درخواست قیمت"}
+                  {lang === "en" ? "Start an Inquiry" : "شروع درخواست"}
                 </Link>
                 <Link
                   href={`/${lang}/products`}
@@ -200,12 +185,6 @@ export default async function ProductDetailPage({
                   {lang === "en" ? "Back to Catalog" : "بازگشت به کاتالوگ"}
                 </Link>
               </div>
-
-              <button className="w-full mt-4 sm:mt-6 px-4 sm:px-6 py-2.5 sm:py-3 bg-white border border-foreground/20 text-foreground font-semibold rounded-full hover:bg-background transition-colors text-sm sm:text-base">
-                {lang === "en"
-                  ? "Request Product Sheet"
-                  : "درخواست برگه مشخصات محصول"}
-              </button>
             </div>
           </div>
         </section>

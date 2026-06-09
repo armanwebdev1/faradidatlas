@@ -35,8 +35,8 @@ export function FAQHero({ lang }: FAQHeroProps) {
             </h1>
             <p className="text-base md:text-lg text-foreground/70 leading-relaxed max-w-3xl mx-auto animate-fade-in-up">
               {lang === "en"
-                ? "Find answers about products, sourcing, quality standards, distribution, packaging, and B2B inquiry steps."
-                : "پاسخ سوالات درباره محصولات، تامین، استانداردهای کیفیت، توزیع، بسته‌بندی و مراحل درخواست B2B را ببینید."}
+                ? "Find answers about Faradid Atlas, its products, sourcing, quality standards, vision, values, offices, and inquiry steps."
+                : "پاسخ سوالات درباره فرادید اطلس، محصولات، تامین، استانداردهای کیفیت، چشم‌انداز، ارزش‌ها، دفاتر و مراحل درخواست را ببینید."}
             </p>
             <div className="mt-6 flex justify-center animate-fade-in-up">
               <a

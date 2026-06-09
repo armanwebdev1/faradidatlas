@@ -37,9 +37,9 @@ const valueItems = {
     },
     {
       icon: Package,
-      title: "Practical Packaging",
+      title: "Accessible Buyer Channels",
       description:
-        "Bulk and retail-ready formats help wholesalers, retailers, institutions, and foodservice teams.",
+        "Offices, regional operations, and digital sales channels support individuals, wholesalers, organizations, and foodservice buyers.",
       accentColor: "accent-warm-orange",
     },
   ],
@@ -67,9 +67,9 @@ const valueItems = {
     },
     {
       icon: Package,
-      title: "بسته‌بندی کاربردی",
+      title: "کانال‌های در دسترس",
       description:
-        "فرمت‌های فله و آماده فروش برای عمده‌فروشان، خرده‌فروشان، سازمان‌ها و خدمات غذایی.",
+        "دفاتر، عملیات منطقه‌ای و کانال‌های فروش دیجیتال از افراد، عمده‌فروشان، سازمان‌ها و خدمات غذایی پشتیبانی می‌کند.",
       accentColor: "accent-warm-orange",
     },
   ],

@@ -15,9 +15,9 @@ const markets = {
       suffix: "",
     },
     {
-      region: "Regional Operating Markets",
-      countries: "Iran, United Arab Emirates, and Oman",
-      value: 3,
+      region: "Company Offices",
+      countries: "Tehran, Isfahan, Dubai, and Oman",
+      value: 4,
       suffix: "",
     },
     {
@@ -27,10 +27,10 @@ const markets = {
       suffix: "",
     },
     {
-      region: "Essential Product Lines",
-      countries: "Rice, legumes, spices, nuts, seeds, sugar, and more",
-      value: 20,
-      suffix: "+",
+      region: "DOCX-Listed Products",
+      countries: "Rice, legumes, seeds, nuts, spices, and sugar",
+      value: 25,
+      suffix: "",
     },
   ],
   fa: [
@@ -41,9 +41,9 @@ const markets = {
       suffix: "",
     },
     {
-      region: "بازارهای عملیاتی منطقه‌ای",
-      countries: "ایران، امارات متحده عربی و عمان",
-      value: 3,
+      region: "دفاتر شرکت",
+      countries: "تهران، اصفهان، دبی و عمان",
+      value: 4,
       suffix: "",
     },
     {
@@ -53,10 +53,10 @@ const markets = {
       suffix: "",
     },
     {
-      region: "گروه‌های محصول اساسی",
-      countries: "برنج، حبوبات، ادویه‌جات، آجیل، دانه‌ها، شکر و بیشتر",
-      value: 20,
-      suffix: "+",
+      region: "محصولات متن مرجع",
+      countries: "برنج، حبوبات، دانه‌ها، آجیل، ادویه‌جات و شکر",
+      value: 25,
+      suffix: "",
     },
   ],
 };
@@ -85,8 +85,8 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
 
           <p className="text-responsive-body text-foreground/70 max-w-2xl mx-auto animate-fade-in-up">
             {lang === "en"
-              ? "Our network connects global food suppliers with dependable distribution across Iran and nearby regional markets."
-              : "شبکه ما تامین‌کنندگان جهانی مواد غذایی را به توزیع قابل اتکا در ایران و بازارهای منطقه‌ای نزدیک متصل می‌کند."}
+              ? "Our network connects first-tier suppliers with offices and distribution support across Iran and nearby regional markets."
+              : "شبکه ما تامین‌کنندگان رده‌اول را به دفاتر و پشتیبانی توزیع در ایران و بازارهای منطقه‌ای نزدیک متصل می‌کند."}
           </p>
         </div>
 

@@ -47,9 +47,7 @@
       "sourcing_description": "Direct relationships with first-tier suppliers in key food-producing markets, especially India and Pakistan.",
       "qc": "Quality Control Workflow",
       "qc_description": "Every product is selected against international quality and hygiene standards before entering the supply chain.",
-      "privateLabelSolutions": "Brand & Packaging Solutions",
-      "certifications": "Certifications & Compliance",
-      "certifications_description": "Standards such as ISO 22000 guide our approach to product safety, documentation, and reliable operations."
+      "privateLabelSolutions": "Brand & Market Solutions"
     },
     "products": {
       "title": "Our Products",
@@ -58,19 +56,17 @@
       "noProducts": "No products found",
       "filters": "Filters",
       "products": "Products",
-      "minOrder": "Minimum Order",
       "viewDetails": "View Details",
-      "certified": "Certified",
       "available": "Available",
       "unavailable": "Unavailable"
     },
     "careers": {
       "title": "Join Our Team",
-      "subtitle": "We're Hiring",
+      "subtitle": "Opportunity Areas",
       "hiring": true,
-      "description": "We're looking for people who value quality, accountability, and practical service in the food supply chain.",
+      "description": "We welcome people who value quality, accountability, customer-centricity, and practical service in the food supply chain.",
       "culture": "Our Culture",
-      "openPositions": "Open Positions",
+      "openPositions": "Opportunity Areas",
       "apply": "Apply Now",
       "viewDetails": "View Details",
       "department": "Department",
@@ -104,7 +100,7 @@
       "showing": "Showing",
       "questions": "questions",
       "didntFind": "Didn't find your answer?",
-      "contactTeam": "Contact our team directly. We respond to inquiries within 24-48 hours."
+      "contactTeam": "Contact our team directly so we can review your product, volume, destination, and timing."
     }
   },
   "footer": {
@@ -118,12 +114,12 @@
     "featuredProducts": "Featured Products",
     "markets": "Markets",
     "tagline": "Reliable food sourcing, import, and distribution built around quality, continuity, and trust.",
-    "address": "Tehran, Isfahan, Shahrekord, UAE, Oman",
+    "address": "Tehran, Isfahan, Dubai, Oman",
     "legal": "Legal",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "sitemap": "Sitemap",
-    "haccp": "HACCP Aligned",
+    "haccp": "ISO-led Quality",
     "copyright": "All rights reserved",
     "followUs": "Follow Us"
   }

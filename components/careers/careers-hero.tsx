@@ -92,10 +92,10 @@ export function CareersHero({ lang }: CareersHeroProps) {
               }}
             >
               <span className="block">
-                {lang === "en" ? "Create" : "فرصت‌های"}
+                {lang === "en" ? "Build" : "همکاری"}
               </span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold via-accent-warm-orange to-accent-warm-gold">
-                {lang === "en" ? "Opportunities" : "جدید"}
+                {lang === "en" ? "Continuity" : "پایدار"}
               </span>
             </h1>
 
@@ -112,8 +112,8 @@ export function CareersHero({ lang }: CareersHeroProps) {
               }}
             >
               {lang === "en"
-                ? "Join a global team transforming specialty goods sourcing with innovation, integrity, and impact."
-                : "به تیم جهانی بپیوندید که با نوآوری، درستکاری و تاثیر، تامین کالاهای تخصصی را متحول می‌کند."}
+                ? "Join a food supply organization shaped by quality, customer-centricity, sustainability, professional ethics, and practical innovation."
+                : "به سازمانی در زنجیره تامین غذا بپیوندید که بر پایه کیفیت، مشتری‌مداری، پایداری، اخلاق حرفه‌ای و نوآوری عملی شکل گرفته است."}
             </p>
 
             <div

@@ -91,7 +91,7 @@ export function CareersOpportunities({
             ref={eyebrowRef}
             className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6"
           >
-            {lang === "en" ? "Open Roles" : "موقعیت‌های شغلی"}
+            {lang === "en" ? "Opportunity Areas" : "حوزه‌های همکاری"}
           </p>
           <h2
             ref={titleRef}
@@ -105,7 +105,7 @@ export function CareersOpportunities({
               letterSpacing: "-0.01em",
             }}
           >
-            {lang === "en" ? "Open Positions" : "موقعیت‌های باز"}
+            {lang === "en" ? "Evergreen Roles" : "نقش‌های همیشگی"}
           </h2>
           <p
             ref={subtitleRef}
@@ -120,8 +120,8 @@ export function CareersOpportunities({
             }}
           >
             {lang === "en"
-              ? "Find your next opportunity and make an impact across our global organization."
-              : "فرصت بعدی خود را پیدا کنید و در سراسر سازمان جهانی ما تأثیر بگذارید."}
+              ? "These conservative role areas reflect the work Faradid Atlas needs across supply continuity, quality, and customer relationships."
+              : "این حوزه‌های همکاری بر پایه نیازهای پایدار فرادید اطلس در استمرار تامین، کیفیت و ارتباط با مشتری تعریف شده‌اند."}
           </p>
         </div>
 

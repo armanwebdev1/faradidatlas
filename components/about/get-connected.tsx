@@ -46,14 +46,14 @@ export function GetConnected({ lang }: GetConnectedProps) {
           >
             <p className="text-base md:text-lg font-semibold text-foreground leading-relaxed">
               {lang === "en"
-                ? "Our operations span important provinces in Iran, including Tehran, Isfahan, and Shahrekord, alongside regional access through the UAE and Oman."
-                : "عملیات ما در استان‌های مهم ایران از جمله تهران، اصفهان و شهرکرد جریان دارد و از طریق امارات و عمان نیز دسترسی منطقه‌ای ایجاد می‌کند."}
+                ? "Our company offices are listed in Tehran, Isfahan, Dubai, and Oman, with operational and storage support in Iran including Shahrekord."
+                : "دفاتر شرکت در تهران، اصفهان، دبی و عمان معرفی شده‌اند و پشتیبانی عملیاتی و انباری در ایران، از جمله شهرکرد، فعالیت تامین را کامل می‌کند."}
             </p>
 
             <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
               {lang === "en"
-                ? "This footprint allows us to manage sourcing, storage, and distribution with speed, consistency, and closer visibility across the chain."
-                : "این گستره به ما امکان می‌دهد تامین، نگهداری و توزیع را با سرعت، ثبات و دید دقیق‌تر در سراسر زنجیره مدیریت کنیم."}
+                ? "This footprint helps the company manage procurement, storage, and distribution so top-grade food products can move continuously and on time across Iran."
+                : "این گستره به شرکت کمک می‌کند تامین، نگهداری و توزیع را مدیریت کند تا محصولات غذایی باکیفیت به‌صورت مستمر و به‌موقع در سراسر ایران در دسترس باشند."}
             </p>
 
             <div

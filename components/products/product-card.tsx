@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Language } from "@/lib/i18n";
-import type { Product } from "./product-data";
+import { categoryLabels, type Product } from "./product-data";
 
 interface ProductCardProps {
   product: Product;
@@ -11,9 +11,11 @@ interface ProductCardProps {
 export function ProductCard({ product, lang }: ProductCardProps) {
   const name = lang === "en" ? product.nameEn : product.nameFa;
   const desc = lang === "en" ? product.descriptionEn : product.descriptionFa;
-  const origin = lang === "en" ? product.originEn : product.originFa;
-  const grade = lang === "en" ? product.gradeEn : product.gradeFa;
-  const minOrder = lang === "en" ? product.minOrderEn : product.minOrderFa;
+  const alias = lang === "en" ? product.aliasEn : product.aliasFa;
+  const category =
+    lang === "en"
+      ? categoryLabels[product.category].en
+      : categoryLabels[product.category].fa;
   const isRTL = lang === "fa";
 
   return (
@@ -33,56 +35,36 @@ export function ProductCard({ product, lang }: ProductCardProps) {
           <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
           <div
-            className={`absolute top-3 sm:top-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-accent-warm-gold text-primary text-xs sm:text-sm font-semibold rounded-lg shadow-md group-hover:shadow-lg transition-all duration-300 ${isRTL ? "left-3 sm:left-4" : "right-3 sm:right-4"}`}
+            className={`absolute top-3 sm:top-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/90 text-primary text-xs sm:text-sm font-semibold rounded-lg shadow-md group-hover:shadow-lg transition-all duration-300 ${isRTL ? "left-3 sm:left-4" : "right-3 sm:right-4"}`}
           >
-            {grade}
+            {category}
           </div>
-
-          {!product.available && (
-            <div className="absolute inset-0 bg-white/70 backdrop-blur-sm flex items-center justify-center">
-              <span className="text-primary font-semibold text-sm sm:text-base">
-                {lang === "en" ? "Unavailable" : "ناموجود"}
-              </span>
-            </div>
-          )}
         </div>
 
         <div className="p-4 sm:p-5 space-y-2 sm:space-y-2.5 flex flex-col">
           <p className="text-xs text-accent-warm-gold uppercase tracking-widest font-semibold">
-            {origin}
+            {category}
           </p>
 
           <h3 className="text-sm sm:text-base text-primary font-bold group-hover:text-accent-warm-gold transition-colors duration-300 leading-tight line-clamp-2">
             {name}
           </h3>
 
+          {alias && (
+            <p className="text-xs text-foreground/55 leading-snug line-clamp-1">
+              {alias}
+            </p>
+          )}
+
           <p className="text-xs text-muted-foreground leading-snug line-clamp-2">
             {desc}
           </p>
-
-          {product.certifications.length > 0 && (
-            <div className="flex flex-wrap gap-1 pt-1 sm:pt-1.5">
-              {product.certifications.slice(0, 2).map((cert) => (
-                <span
-                  key={cert}
-                  className="inline-block text-xs px-2 py-0.5 bg-accent-warm-gold/15 text-accent-warm-gold rounded-full font-medium border border-accent-warm-gold/30 group-hover:bg-accent-warm-gold/25 transition-all duration-300"
-                >
-                  {cert}
-                </span>
-              ))}
-              {product.certifications.length > 2 && (
-                <span className="inline-block text-xs px-2 py-0.5 bg-secondary/40 text-muted-foreground rounded-full font-medium group-hover:bg-secondary/60 transition-colors">
-                  +{product.certifications.length - 2}
-                </span>
-              )}
-            </div>
-          )}
 
           <div className="my-1.5 sm:my-2 h-px bg-border group-hover:bg-accent-warm-gold/30 transition-colors duration-300" />
 
           <div className="flex justify-between items-center">
             <span className="text-xs text-muted-foreground font-medium">
-              {minOrder}
+              {lang === "en" ? "Product profile" : "معرفی محصول"}
             </span>
             <span
               className={`text-xs font-semibold text-accent-warm-gold group-hover:text-accent-warm-gold/80 transition-colors duration-300 flex items-center gap-1 ${isRTL ? "flex-row-reverse" : ""}`}

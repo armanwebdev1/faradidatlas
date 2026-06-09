@@ -17,7 +17,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
   const responsibilities =
     lang === "en" ? job.responsibilitiesEn : job.responsibilitiesFa;
   const requirements = lang === "en" ? job.requirementsEn : job.requirementsFa;
-  const benefits = lang === "en" ? job.benefitsEn : job.benefitsFa;
+  const values = lang === "en" ? job.benefitsEn : job.benefitsFa;
   const typeLabel =
     job.type === "full-time"
       ? lang === "en"
@@ -142,10 +142,10 @@ export function JobDetail({ job, lang }: JobDetailProps) {
                   : "Estedad, var(--font-hero)",
             }}
           >
-            {lang === "en" ? "Benefits" : "مزایا"}
+            {lang === "en" ? "What We Value" : "آنچه برای ما مهم است"}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-            {benefits.map((benefit, idx) => (
+            {values.map((value, idx) => (
               <div
                 key={idx}
                 className="rounded-2xl border border-foreground/10 bg-white/80 px-4 py-3 text-center"
@@ -159,7 +159,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
                         : "Shabnam, var(--font-body)",
                   }}
                 >
-                  {benefit}
+                  {value}
                 </p>
               </div>
             ))}

@@ -13,13 +13,14 @@ export function ResponseSLA({ lang }: ResponseSLAProps) {
       slas: [
         {
           title: "Initial Review",
-          timeline: "Response within 24-48 hours",
+          timeline: "Inquiry review",
           description: "We confirm product, volume, destination, and timing.",
         },
         {
           title: "Supply Check",
-          timeline: "Availability review",
-          description: "Our team checks sourcing options, packaging, and documentation needs.",
+          timeline: "Supply-chain review",
+          description:
+            "Our team checks sourcing options and practical distribution needs.",
         },
         {
           title: "Commercial Terms",
@@ -40,13 +41,13 @@ export function ResponseSLA({ lang }: ResponseSLAProps) {
       slas: [
         {
           title: "بررسی اولیه",
-          timeline: "پاسخ طی ۲۴ تا ۴۸ ساعت",
+          timeline: "بررسی درخواست",
           description: "محصول، حجم، مقصد و زمان‌بندی را تایید می‌کنیم.",
         },
         {
           title: "بررسی تامین",
-          timeline: "بررسی موجودی و امکان تامین",
-          description: "گزینه‌های تامین، بسته‌بندی و نیازهای مستندسازی بررسی می‌شود.",
+          timeline: "بررسی زنجیره تامین",
+          description: "گزینه‌های تامین و نیازهای عملی توزیع بررسی می‌شود.",
         },
         {
           title: "شرایط تجاری",

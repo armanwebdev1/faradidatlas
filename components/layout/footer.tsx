@@ -2,13 +2,7 @@ import Link from "next/link";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import {
-  Mail,
-  Phone,
   MapPin,
-  Linkedin,
-  Twitter,
-  Instagram,
-  Facebook,
 } from "lucide-react";
 
 interface FooterProps {
@@ -19,13 +13,6 @@ export function Footer({ lang }: FooterProps) {
   const t = translations[lang];
   const isRTL = lang === "fa";
   const dir = isRTL ? "rtl" : "ltr";
-
-  const socialLinks = [
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Facebook, href: "#", label: "Facebook" },
-  ];
 
   return (
     <footer
@@ -55,21 +42,12 @@ export function Footer({ lang }: FooterProps) {
                 </p>
               </div>
 
-              <div className="flex gap-3 sm:gap-4 items-center">
-                {socialLinks.map((social) => {
-                  const Icon = social.icon;
-                  return (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      aria-label={social.label}
-                      className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-accent hover:border-accent transition-all duration-300 hover:bg-white/5 group"
-                    >
-                      <Icon className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
-                    </a>
-                  );
-                })}
-              </div>
+              <Link
+                href={`/${lang}/contact`}
+                className="inline-flex text-sm font-semibold text-accent hover:text-accent/80 transition-colors"
+              >
+                {t.nav.contact}
+              </Link>
             </div>
 
             {/* Navigation */}
@@ -173,17 +151,6 @@ export function Footer({ lang }: FooterProps) {
                     </span>
                   </Link>
                 </li>
-                <li>
-                  <a
-                    href="mailto:sales@faradidatlas.com"
-                    className="text-sm text-white/70 hover:text-accent transition-colors duration-300 relative group"
-                  >
-                    <span className="relative">
-                      {t.pages.contact.email}
-                      <span className="absolute bottom-0 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300" />
-                    </span>
-                  </a>
-                </li>
               </ul>
             </div>
 
@@ -193,24 +160,16 @@ export function Footer({ lang }: FooterProps) {
                 {t.pages.contact.subtitle}
               </h4>
               <div className="space-y-4">
-                <a
-                  href="mailto:sales@faradidatlas.com"
-                  className="flex items-start gap-3 text-sm text-white/70 hover:text-accent transition-colors duration-300 group"
-                >
-                  <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-                  <span className="break-all">sales@faradidatlas.com</span>
-                </a>
-                <a
-                  href="tel:+98123456789"
-                  className="flex items-start gap-3 text-sm text-white/70 hover:text-accent transition-colors duration-300 group"
-                >
-                  <Phone className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-                  <span>+98 (123) 456-789</span>
-                </a>
                 <div className="flex items-start gap-3 text-sm text-white/70">
                   <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
                   <span>{t.footer.address}</span>
                 </div>
+                <Link
+                  href={`/${lang}/contact`}
+                  className="inline-flex text-sm text-white/70 hover:text-accent transition-colors duration-300"
+                >
+                  {t.pages.contact.sendMessage}
+                </Link>
               </div>
             </div>
           </div>
@@ -227,8 +186,7 @@ export function Footer({ lang }: FooterProps) {
             <div className="text-center md:text-start">
               <p className="text-xs text-white/60 leading-relaxed font-light">
                 &copy; 2026 Faradid Atlas Foods. {t.footer.copyright} |{" "}
-                <span className="text-accent/80">ISO 22000</span> |{" "}
-                <span className="text-accent/80">{t.footer.haccp}</span>
+                <span className="text-accent/80">ISO 22000</span>
               </p>
             </div>
             <div className="text-center md:text-end">

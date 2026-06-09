@@ -16,8 +16,8 @@ const slides = [
     title: { en: "Reliable Food Supply", fa: "تامین مطمئن مواد غذایی" },
     subtitle: { en: "Food Security in Practice", fa: "امنیت غذایی در عمل" },
     description: {
-      en: "Faradid Atlas sources, imports, and distributes essential food products with disciplined quality standards and dependable regional operations.",
-      fa: "فرادید اطلس محصولات غذایی اساسی را با انتخاب دقیق، استانداردهای کیفی منظم و عملیات منطقه‌ای قابل اتکا تامین، وارد و توزیع می‌کند.",
+      en: "Established in 2009, Faradid Atlas sources, imports, and distributes essential food products with disciplined quality standards and dependable regional operations.",
+      fa: "فرادید اطلس که در سال ۱۳۸۸ بنیان گذاشته شد، محصولات غذایی اساسی را با انتخاب دقیق، استانداردهای کیفی منظم و عملیات منطقه‌ای قابل اتکا تامین، وارد و توزیع می‌کند.",
     },
   },
   {
@@ -26,8 +26,8 @@ const slides = [
     title: { en: "Quality-Led Sourcing", fa: "تامین مبتنی بر کیفیت" },
     subtitle: { en: "International Standards", fa: "استانداردهای بین‌المللی" },
     description: {
-      en: "Rice, legumes, spices, nuts, seeds, and sugar are selected against strict hygiene and quality requirements before entering the supply chain.",
-      fa: "برنج، حبوبات، ادویه‌جات، آجیل، دانه‌ها و شکر پیش از ورود به زنجیره تامین بر اساس الزامات دقیق بهداشتی و کیفی انتخاب می‌شوند.",
+      en: "Rice, legumes, seeds, nuts, spices, and sugar are selected against strict hygiene and quality requirements before entering the supply chain.",
+      fa: "برنج، حبوبات، دانه‌ها، آجیل، ادویه‌جات و شکر پیش از ورود به زنجیره تامین بر اساس الزامات دقیق بهداشتی و کیفی انتخاب می‌شوند.",
     },
   },
   {

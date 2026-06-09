@@ -30,8 +30,8 @@ export function AboutHero({ lang }: AboutHeroProps) {
               data-animate
             >
               {lang === "en"
-                ? "We connect reliable global food supply with the essential needs of the Iranian market."
-                : "ما تامین جهانی قابل اتکا را به نیازهای اساسی بازار مواد غذایی ایران متصل می‌کنیم."}
+                ? "Since 2009, we have connected reliable global food supply with the essential needs of the Iranian market."
+                : "از سال ۱۳۸۸، تامین جهانی قابل اتکا را به نیازهای اساسی بازار مواد غذایی ایران متصل کرده‌ایم."}
             </h1>
             <Link
               href={`/${lang}/contact`}
@@ -71,14 +71,14 @@ export function AboutHero({ lang }: AboutHeroProps) {
             >
               <p className="text-base md:text-lg font-semibold text-foreground leading-relaxed max-w-xl">
                 {lang === "en"
-                  ? "Faradid Atlas imports and distributes essential food products including rice, legumes, spices, nuts, seeds, and sugar. Each product is selected carefully against global quality and hygiene standards."
-                  : "فرادید اطلس محصولات غذایی اساسی از جمله برنج، حبوبات، ادویه‌جات، آجیل، دانه‌ها و شکر را وارد و توزیع می‌کند. هر محصول با دقت و بر پایه استانداردهای جهانی کیفیت و بهداشت انتخاب می‌شود."}
+                  ? "Faradid Atlas was established in 2009 to help strengthen food security and support access to essential foods. The company imports and distributes rice, legumes, spices, nuts, seeds, and sugar selected against global quality and hygiene standards."
+                  : "فرادید اطلس در سال ۱۳۸۸ با هدف تقویت امنیت غذایی و پشتیبانی از دسترسی به مواد غذایی اساسی شکل گرفت. شرکت برنج، حبوبات، ادویه‌جات، آجیل، دانه‌ها و شکر را بر پایه استانداردهای جهانی کیفیت و بهداشت وارد و توزیع می‌کند."}
               </p>
 
               <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-xl">
                 {lang === "en"
-                  ? "Through supplier relationships, regional offices, branches, and warehouses, we keep supply accessible for retailers, wholesalers, organizations, and foodservice partners."
-                  : "ما با تکیه بر ارتباط با تامین‌کنندگان، دفاتر منطقه‌ای، شعب و انبارها، دسترسی پایدار به کالا را برای خرده‌فروشان، عمده‌فروشان، سازمان‌ها و شرکای خدمات غذایی فراهم می‌کنیم."}
+                  ? "Its recognized rice brands are 21, Mizban, Hayat, and Golbanou. Offices in Tehran, Isfahan, Dubai, and Oman, supported by operational storage access including Shahrekord, help keep supply accessible for retailers, wholesalers, organizations, and foodservice partners."
+                  : "برندهای شناخته‌شده برنج شرکت شامل ۲۱، میزبان، حیات و گلبانو است. دفاتر تهران، اصفهان، دبی و عمان، همراه با دسترسی عملیاتی و انباری از جمله شهرکرد، دسترسی پایدار را برای خرده‌فروشان، عمده‌فروشان، سازمان‌ها و شرکای خدمات غذایی پشتیبانی می‌کند."}
               </p>
             </div>
           </div>
@@ -104,10 +104,9 @@ export function AboutHero({ lang }: AboutHeroProps) {
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
             <Stat
-              value={10}
-              suffix="+"
-              labelEn="Years of operation"
-              labelFa="سال فعالیت"
+              value={2009}
+              labelEn="Established"
+              labelFa="سال آغاز فعالیت"
               lang={lang}
             />
             <Stat
@@ -117,16 +116,15 @@ export function AboutHero({ lang }: AboutHeroProps) {
               lang={lang}
             />
             <Stat
-              value={3}
-              labelEn="Regional markets"
-              labelFa="بازار منطقه‌ای"
+              value={4}
+              labelEn="Company offices"
+              labelFa="دفتر شرکت"
               lang={lang}
             />
             <Stat
-              value={20}
-              suffix="+"
-              labelEn="Product lines"
-              labelFa="گروه محصول"
+              value={25}
+              labelEn="DOCX-listed products"
+              labelFa="محصول در متن مرجع"
               lang={lang}
             />
           </div>

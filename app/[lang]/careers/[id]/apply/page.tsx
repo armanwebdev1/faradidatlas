@@ -51,7 +51,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
           tag: "Application",
           title: "Apply for",
           subtitle:
-            "Tell us about yourself. Our team reviews every application and responds within 5-7 business days.",
+            "Tell us about yourself. Our team reviews applications for alignment with current and future operational needs.",
           meta: {
             department: "Department",
             location: "Location",
@@ -67,9 +67,9 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
           ],
           timelineTitle: "Hiring timeline",
           timelineItems: [
-            "Application review (5-7 business days)",
-            "Intro call with the hiring team",
-            "Final interview and decision",
+            "Application received",
+            "Team review against current needs",
+            "Follow-up conversation when there is a fit",
           ],
           privacyTitle: "Privacy note",
           privacyBody:
@@ -79,7 +79,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
           tag: "درخواست همکاری",
           title: "درخواست برای",
           subtitle:
-            "درباره خودتان بگویید. تیم ما همه درخواست‌ها را بررسی می‌کند و در ۵ تا ۷ روز کاری پاسخ می‌دهد.",
+            "درباره خودتان بگویید. تیم ما درخواست‌ها را بر اساس نیازهای فعلی و آینده عملیات بررسی می‌کند.",
           meta: {
             department: "بخش",
             location: "مکان",
@@ -95,9 +95,9 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
           ],
           timelineTitle: "فرایند استخدام",
           timelineItems: [
-            "بررسی اولیه (۵ تا ۷ روز کاری)",
-            "تماس هماهنگی با تیم",
-            "مصاحبه نهایی و تصمیم",
+            "دریافت درخواست",
+            "بررسی تیم بر اساس نیازهای فعلی",
+            "گفتگوی بعدی در صورت تناسب",
           ],
           privacyTitle: "یادداشت محرمانگی",
           privacyBody:

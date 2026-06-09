@@ -62,7 +62,7 @@ export function ApplicationForm({
           jobLabel: "Position",
           formError: "Please fix the highlighted fields and try again.",
           success:
-            "Thank you! Your application has been submitted. We'll contact you soon.",
+            "Thank you! Your application has been submitted for review.",
           labels: {
             firstName: "First name",
             lastName: "Last name",
@@ -111,7 +111,7 @@ export function ApplicationForm({
           jobLabel: "موقعیت شغلی",
           formError: "لطفاً فیلدهای مشخص‌شده را اصلاح کنید.",
           success:
-            "متشکریم! درخواست شما ارسال شد. به زودی با شما تماس می‌گیریم.",
+            "متشکریم! درخواست شما برای بررسی ارسال شد.",
           labels: {
             firstName: "نام",
             lastName: "نام خانوادگی",

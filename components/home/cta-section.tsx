@@ -111,14 +111,13 @@ export function CTASection({ lang }: CTASectionProps) {
 
               <div className="text-center flex-1 sm:flex-none min-w-max">
                 <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent-warm-copper bg-clip-text text-transparent">
-                  <CountUp
-                    target={20}
-                    suffix="+"
+                <CountUp
+                    target={25}
                     className="text-2xl sm:text-3xl md:text-4xl font-bold"
                   />
                 </div>
                 <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50">
-                  {lang === "en" ? "Product Lines" : "گروه محصول"}
+                  {lang === "en" ? "Listed Products" : "محصول مرجع"}
                 </p>
               </div>
 
@@ -126,14 +125,13 @@ export function CTASection({ lang }: CTASectionProps) {
 
               <div className="text-center flex-1 sm:flex-none min-w-max">
                 <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
-                  <CountUp
-                    target={10}
-                    suffix={lang === "en" ? "y+" : "+ سال"}
+                <CountUp
+                    target={2009}
                     className="text-2xl sm:text-3xl md:text-4xl font-bold"
                   />
                 </div>
                 <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50">
-                  {lang === "en" ? "Operation" : "فعالیت"}
+                  {lang === "en" ? "Established" : "سال آغاز"}
                 </p>
               </div>
             </div>

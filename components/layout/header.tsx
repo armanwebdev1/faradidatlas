@@ -5,7 +5,7 @@ import { useState, useEffect, useRef, useMemo, type KeyboardEvent } from "react"
 import { usePathname, useRouter } from "next/navigation";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
-import { products } from "@/components/products/product-data";
+import { categoryLabels, products } from "@/components/products/product-data";
 import { jobs } from "@/components/careers/job-data";
 import { faqs, faqCategories } from "@/components/faq/faq-data";
 import {
@@ -141,21 +141,22 @@ export function Header({ lang }: HeaderProps) {
         (product) =>
           match(product.nameEn) ||
           match(product.nameFa) ||
+          match(product.aliasEn) ||
+          match(product.aliasFa) ||
           match(product.descriptionEn) ||
           match(product.descriptionFa) ||
-          match(product.originEn) ||
-          match(product.originFa) ||
-          match(product.gradeEn) ||
-          match(product.gradeFa),
+          match(categoryLabels[product.category].en) ||
+          match(categoryLabels[product.category].fa),
       )
       .slice(0, 6)
       .map((product) => ({
         id: `product-${product.id}`,
         type: "product",
         title: lang === "en" ? product.nameEn : product.nameFa,
-        subtitle: `${lang === "en" ? product.originEn : product.originFa} / ${
-          lang === "en" ? product.gradeEn : product.gradeFa
-        }`,
+        subtitle:
+          lang === "en"
+            ? categoryLabels[product.category].en
+            : categoryLabels[product.category].fa,
         href: `/${lang}/products/${product.id}`,
       }));
 

@@ -10,8 +10,8 @@ export function ContactHero({ lang }: ContactHeroProps) {
 
   const badges = [
     {
-      en: "24-48h response",
-      fa: "پاسخ ۲۴ تا ۴۸ ساعته",
+      en: "Inquiry review",
+      fa: "بررسی درخواست",
     },
     {
       en: "B2B supply planning",
@@ -41,8 +41,8 @@ export function ContactHero({ lang }: ContactHeroProps) {
             </h1>
             <p className="text-responsive-body text-foreground/70 max-w-3xl mx-auto animate-fade-in-up">
               {lang === "en"
-                ? "Share the product, destination, volume, and timeline. Our team will respond with practical sourcing and distribution next steps."
-                : "محصول، مقصد، حجم و زمان‌بندی را اعلام کنید تا تیم ما با گام‌های عملی تامین و توزیع پاسخ دهد."}
+                ? "Share the product, destination, volume, and timeline so our team can review practical sourcing and distribution next steps."
+                : "محصول، مقصد، حجم و زمان‌بندی را اعلام کنید تا تیم ما گام‌های عملی تامین و توزیع را بررسی کند."}
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3 animate-fade-in-up">
               <a href="#contact-form" className="btn btn-primary btn-md">
