@@ -53,7 +53,7 @@ const valueItems = {
     },
     {
       icon: CheckCircle,
-      title: "کیفیت پیش از حجم",
+      title: "کیفیت مهم‌تر از حجم",
       description:
         "محصولات بر اساس استانداردهای بین‌المللی کیفیت و بهداشت مانند ISO 22000 انتخاب می‌شوند.",
       accentColor: "accent-warm-red",
@@ -217,7 +217,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
           >
             {lang === "en"
               ? "Built for Continuity, Quality, and Trust"
-              : "ساخته‌شده برای استمرار، کیفیت و اعتماد"}
+              : "استمرار، کیفیت و اعتماد"}
           </h2>
           <p
             ref={subtitleRef}

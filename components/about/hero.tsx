@@ -31,7 +31,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
             >
               {lang === "en"
                 ? "Since 2009, we have connected reliable global food supply with the essential needs of the Iranian market."
-                : "از سال ۱۳۸۸، تامین جهانی قابل اتکا را به نیازهای اساسی بازار مواد غذایی ایران متصل کرده‌ایم."}
+                : "از سال ۱۳۸۸، پیونددهندهٔ تأمین جهانیِ معتبر با نیازهای بنیادین بازار مواد غذایی ایران بوده‌ایم"}
             </h1>
             <Link
               href={`/${lang}/contact`}
@@ -46,7 +46,11 @@ export function AboutHero({ lang }: AboutHeroProps) {
             <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="/featured1.jpg"
-                alt={lang === "en" ? "Faradid Atlas operations" : "عملیات فرادید اطلس"}
+                alt={
+                  lang === "en"
+                    ? "Faradid Atlas operations"
+                    : "عملیات فرادید اطلس"
+                }
                 fill
                 priority
                 sizes="100vw"
@@ -57,7 +61,9 @@ export function AboutHero({ lang }: AboutHeroProps) {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <h2 className="text-responsive-title text-primary">
-              {lang === "en" ? "Food security, made practical" : "امنیت غذایی، در عمل"}
+              {lang === "en"
+                ? "Food security, made practical"
+                : "امنیت غذایی، در عمل"}
             </h2>
 
             <div

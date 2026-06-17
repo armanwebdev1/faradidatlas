@@ -28,7 +28,11 @@ export function CTASection({ lang }: CTASectionProps) {
             <div className="relative group overflow-hidden rounded-lg sm:rounded-2xl shadow-xl md:shadow-2xl h-full">
               <Image
                 src="/cta.jpg"
-                alt={lang === "en" ? "Food supply partnership" : "همکاری تامین مواد غذایی"}
+                alt={
+                  lang === "en"
+                    ? "Food supply partnership"
+                    : "همکاری تامین مواد غذایی"
+                }
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
@@ -56,7 +60,7 @@ export function CTASection({ lang }: CTASectionProps) {
             <p className="text-responsive-body text-muted-foreground max-w-xl mb-6 sm:mb-8 md:mb-10 lg:mb-12 font-light">
               {lang === "en"
                 ? "Share your product needs, destination, and volume. Our team will help shape a practical sourcing and distribution plan with clear next steps."
-                : "نیاز محصول، مقصد و حجم مورد نظر را با ما در میان بگذارید تا تیم ما مسیر تامین و توزیع عملی با گام‌های روشن پیشنهاد کند."}
+                : "محصول، مقصد و حجم درخواستی خود را با ما مطرح نمایید تا تیم ما یک مسیر عملیاتی تأمین و توزیع با گام‌های روشن را پیش‌رویتان بگذارد."}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
@@ -114,7 +118,7 @@ export function CTASection({ lang }: CTASectionProps) {
 
               <div className="text-center flex-1 sm:flex-none min-w-max">
                 <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent-warm-copper bg-clip-text text-transparent">
-                <CountUp
+                  <CountUp
                     target={25}
                     className="text-2xl sm:text-3xl md:text-4xl font-bold"
                   />
@@ -128,7 +132,7 @@ export function CTASection({ lang }: CTASectionProps) {
 
               <div className="text-center flex-1 sm:flex-none min-w-max">
                 <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
-                <CountUp
+                  <CountUp
                     target={2009}
                     className="text-2xl sm:text-3xl md:text-4xl font-bold"
                   />

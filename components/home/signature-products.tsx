@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter, useParams } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { productImages } from "@/components/products/product-data";
 
 type LocalizedText = {
   en: string;
@@ -24,7 +25,7 @@ const products: Product[] = [
     id: 1,
     name: { en: "21 Rice Brand", fa: "برند برنج ۲۱" },
     category: { en: "Rice Portfolio", fa: "سبد برنج" },
-    image: "/featured1.jpg",
+    image: productImages.twentyOneSellaBasmati,
     description: {
       en: "One of Faradid Atlas' recognized rice brands, built around dependable quality and everyday availability.",
       fa: "یکی از برندهای شناخته‌شده برنج فرادید اطلس با تمرکز بر کیفیت قابل اتکا و دسترسی روزمره.",
@@ -34,7 +35,7 @@ const products: Product[] = [
     id: 2,
     name: { en: "Mizban Rice", fa: "برنج میزبان" },
     category: { en: "Rice Portfolio", fa: "سبد برنج" },
-    image: "/featured2.jpg",
+    image: productImages.mizbanSuperBasmati,
     description: {
       en: "A trusted rice line designed for households, retailers, and foodservice partners.",
       fa: "برندی قابل اعتماد برای خانواده‌ها، فروشگاه‌ها و شرکای خدمات غذایی.",
@@ -44,7 +45,7 @@ const products: Product[] = [
     id: 3,
     name: { en: "Hayat Rice", fa: "برنج حیات" },
     category: { en: "Rice Portfolio", fa: "سبد برنج" },
-    image: "/featured3.jpg",
+    image: productImages.hayatThaiJasmine,
     description: {
       en: "Selected for consistent cooking quality, clear sourcing, and steady market supply.",
       fa: "انتخاب‌شده برای کیفیت پخت یکنواخت، تامین شفاف و عرضه پایدار در بازار.",
@@ -54,7 +55,7 @@ const products: Product[] = [
     id: 4,
     name: { en: "Golbanou Rice", fa: "برنج گل‌بانو" },
     category: { en: "Rice Portfolio", fa: "سبد برنج" },
-    image: "/featured4.jpg",
+    image: productImages.golbanoo386Basmati,
     description: {
       en: "A familiar rice brand serving demand across Iran and the wider Middle East region.",
       fa: "برندی آشنا در بازار برنج برای پاسخ‌گویی به تقاضا در ایران و منطقه خاورمیانه.",
@@ -64,7 +65,7 @@ const products: Product[] = [
     id: 5,
     name: { en: "Essential Food Staples", fa: "مواد غذایی اساسی" },
     category: { en: "Core Products", fa: "محصولات اصلی" },
-    image: "/featured5.jpg",
+    image: productImages.redLentil,
     description: {
       en: "Legumes, spices, nuts, seeds, sugar, and other essentials selected for dependable B2B supply.",
       fa: "حبوبات، ادویه‌جات، آجیل، دانه‌ها، شکر و سایر اقلام اساسی برای تامین B2B قابل اتکا.",
@@ -159,10 +160,12 @@ export function SignatureProducts() {
       <div className="relative z-10 container-wide">
         <div className="text-center mb-10 sm:mb-12 md:mb-14 animate-fade-in">
           <p className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6">
-            {lang === "en" ? "Recognized Portfolio" : "سبد شناخته‌شده"}
+            {lang === "en" ? "Recognized Portfolio" : "سبد سرمایه‌گذاری معتبر"}
           </p>
           <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 md:mb-8">
-            {lang === "en" ? "Brands and Core Products" : "برندها و محصولات اصلی"}
+            {lang === "en"
+              ? "Brands and Core Products"
+              : "برندها و محصولات اصلی"}
           </h2>
           <p className="text-responsive-body text-foreground/70 max-w-2xl mx-auto mb-8">
             {lang === "en"
@@ -211,7 +214,9 @@ export function SignatureProducts() {
                   <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/90" />
                 </button>
 
-                <div className={`absolute inset-0 flex flex-col justify-end p-5 sm:p-7 md:p-10 lg:p-12 pointer-events-none transform-gpu ${textShiftClass}`}>
+                <div
+                  className={`absolute inset-0 flex flex-col justify-end p-5 sm:p-7 md:p-10 lg:p-12 pointer-events-none transform-gpu ${textShiftClass}`}
+                >
                   <div
                     className={`transition-all duration-700 transform ${
                       index === currentIndex

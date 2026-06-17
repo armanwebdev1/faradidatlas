@@ -53,7 +53,7 @@ const markets = {
       suffix: "",
     },
     {
-      region: "محصولات متن مرجع",
+      region: "تنوع محصولات",
       countries: "برنج، حبوبات، دانه‌ها، آجیل، ادویه‌جات و شکر",
       value: 25,
       suffix: "",

@@ -1,7 +1,7 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ProductsContent } from "@/components/products/products-content";
-import { products } from "@/components/products/product-data";
+import { productImages, products } from "@/components/products/product-data";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
@@ -38,7 +38,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
       <main>
         <section className="w-full h-48 sm:h-56 md:h-64 relative overflow-hidden bg-gradient-to-br from-secondary/40 to-secondary/60">
           <Image
-            src="/featured1.jpg"
+            src={productImages.twentyOneSellaBasmati}
             alt={lang === "en" ? "Food product portfolio" : "سبد محصولات غذایی"}
             fill
             sizes="100vw"
