@@ -36,371 +36,295 @@ export const productImages = {
     "/product_images/optimized/mizban-super-basmati.webp",
   mizbanWhiteBasmati:
     "/product_images/optimized/mizban-white-basmati.webp",
-  whiteBeans:
-    "/product_images/optimized/white-beans-box.webp",
+  whiteBeansBox: "/product_images/optimized/white-beans-box.webp",
   golbanoo386Basmati:
     "/product_images/optimized/golbanoo-386-basmati.webp",
   hayatThaiJasmine:
     "/product_images/optimized/hayat-thai-jasmine.webp",
-  walnutKernels:
-    "/product_images/optimized/walnut-kernels.webp",
-  pumpkinSeedKernels:
-    "/product_images/optimized/pumpkin-seed-kernels.webp",
-  cashewNuts:
-    "/product_images/optimized/cashew-nuts.webp",
-  turmeric:
-    "/product_images/optimized/turmeric.webp",
+  turmeric: "/product_images/optimized/turmeric.webp",
+  walnutKernels: "/product_images/optimized/walnut-kernels.webp",
   sunflowerSeedKernels:
     "/product_images/optimized/sunflower-seed-kernels.webp",
-  redLentil:
-    "/product_images/optimized/red-lentil.webp",
-  chickpeas:
-    "/product_images/optimized/chickpeas.webp",
-  whiteBeanBag:
-    "/product_images/optimized/white-bean-bag.webp",
-  mungBean:
-    "/product_images/optimized/mung-bean.webp",
-  kidneyBean:
-    "/product_images/optimized/kidney-bean.webp",
-  desiChickpea:
-    "/product_images/optimized/desi-chickpea.webp",
-  blackPepper:
-    "/product_images/optimized/black-pepper.webp",
-  popcornCorn:
-    "/product_images/optimized/popcorn-corn.webp",
+  pumpkinSeedKernels:
+    "/product_images/optimized/pumpkin-seed-kernels.webp",
+  cashewNuts: "/product_images/optimized/cashew-nuts.webp",
+  redLentil: "/product_images/optimized/red-lentil.webp",
+  chickpeas: "/product_images/optimized/chickpeas.webp",
+  whiteBeanBag: "/product_images/optimized/white-bean-bag.webp",
+  mungBean: "/product_images/optimized/mung-bean.webp",
+  kidneyBean: "/product_images/optimized/kidney-bean.webp",
+  desiChickpea: "/product_images/optimized/desi-chickpea.webp",
+  popcornCorn: "/product_images/optimized/popcorn-corn.webp",
   golbanooSellaBasmati:
     "/product_images/optimized/golbanoo-sella-basmati.webp",
   twentyOneSellaBasmati:
     "/product_images/optimized/twenty-one-sella-basmati.webp",
+  blackPepper: "/product_images/optimized/black-pepper.webp",
 } as const;
+
+function imageSet(image: string) {
+  return { image, images: [image] };
+}
 
 export const products: Product[] = [
   {
     id: 1,
-    nameEn: "Indian Rice",
-    nameFa: "برنج هندی",
+    nameEn: "Mizban Super Basmati Rice",
+    nameFa: "برنج سوپر باسماتی میزبان",
+    aliasEn: "Long Grain Basmati Rice",
+    aliasFa: "برنج دانه‌بلند باسماتی",
     category: "rice",
     descriptionEn:
-      "A core rice line in Faradid Atlas' essential food portfolio, sourced for dependable supply and broad market use.",
+      "Mizban Super Basmati is a premium long-grain rice pack selected for consistent cooking quality, clean aroma, and dependable retail-ready supply.",
     descriptionFa:
-      "یکی از اقلام اصلی سبد برنج فرادید اطلس که برای تامین قابل اتکا و مصرف گسترده بازار انتخاب می‌شود.",
-    image: productImages.mizbanSuperBasmati,
-    images: [productImages.mizbanSuperBasmati],
+      "برنج سوپر باسماتی میزبان محصولی دانه‌بلند و ممتاز است که برای کیفیت پخت یکنواخت، عطر مطلوب و عرضه قابل اتکا انتخاب می‌شود.",
+    ...imageSet(productImages.mizbanSuperBasmati),
   },
   {
     id: 2,
-    nameEn: "Pakistani Rice",
-    nameFa: "برنج پاکستانی",
+    nameEn: "Mizban 1121 White Basmati Rice",
+    nameFa: "برنج سفید باسماتی ۱۱۲۱ میزبان",
+    aliasEn: "Premium Quality 1121 Basmati",
+    aliasFa: "باسماتی ۱۱۲۱ با کیفیت ممتاز",
     category: "rice",
     descriptionEn:
-      "Part of the company's rice portfolio, selected through Faradid Atlas' quality-led import and distribution approach.",
+      "A Mizban-branded 1121 white basmati rice line for buyers who need long-grain rice with dependable branded packaging and steady availability.",
     descriptionFa:
-      "بخشی از سبد برنج شرکت که در چارچوب رویکرد واردات و توزیع مبتنی بر کیفیت فرادید اطلس تامین می‌شود.",
-    image: productImages.mizbanWhiteBasmati,
-    images: [productImages.mizbanWhiteBasmati],
+      "برنج سفید باسماتی ۱۱۲۱ میزبان برای خریدارانی عرضه می‌شود که به برنج دانه‌بلند با بسته‌بندی برنددار و موجودی پایدار نیاز دارند.",
+    ...imageSet(productImages.mizbanWhiteBasmati),
   },
   {
     id: 3,
-    nameEn: "Pinto Beans",
-    nameFa: "لوبیا چیتی",
+    nameEn: "21 White Beans Carton",
+    nameFa: "لوبیا سفید کارتنی ۲۱",
+    aliasEn: "White Beans",
+    aliasFa: "لوبیا سفید",
     category: "legumes",
     descriptionEn:
-      "A staple legume supplied for wholesalers, retailers, organizations, and foodservice buyers.",
+      "A 21-branded white beans carton prepared for organized retail, wholesale, and B2B channels that need clean presentation and reliable legume supply.",
     descriptionFa:
-      "حبوباتی پرمصرف برای عمده‌فروشان، خرده‌فروشان، سازمان‌ها و خریداران خدمات غذایی.",
+      "لوبیا سفید کارتنی برند ۲۱ برای فروشگاه‌ها، عمده‌فروشی‌ها و کانال‌های B2B که به بسته‌بندی منظم و تامین قابل اعتماد نیاز دارند مناسب است.",
+    ...imageSet(productImages.whiteBeansBox),
   },
   {
     id: 4,
-    nameEn: "Red Kidney Beans",
-    nameFa: "لوبیا قرمز",
-    category: "legumes",
+    nameEn: "Golbanoo 386 Basmati Rice",
+    nameFa: "برنج باسماتی ۳۸۶ گل‌بانو",
+    aliasEn: "Long Grain Rice",
+    aliasFa: "برنج دانه‌بلند",
+    category: "rice",
     descriptionEn:
-      "An essential pulse in the Faradid Atlas portfolio, supported by disciplined sourcing and distribution.",
+      "Golbanoo 386 Basmati Rice is a long-grain rice pack positioned for everyday retail demand and steady commercial distribution.",
     descriptionFa:
-      "یکی از حبوبات اساسی در سبد فرادید اطلس که با تامین و توزیع منظم پشتیبانی می‌شود.",
-    image: productImages.kidneyBean,
-    images: [productImages.kidneyBean],
+      "برنج باسماتی ۳۸۶ گل‌بانو محصولی دانه‌بلند است که برای تقاضای روزمره فروشگاهی و توزیع تجاری پایدار عرضه می‌شود.",
+    ...imageSet(productImages.golbanoo386Basmati),
   },
   {
     id: 5,
-    nameEn: "Black-Eyed Peas",
-    nameFa: "لوبیا چشم‌بلبلی",
-    category: "legumes",
+    nameEn: "Hayat Thai Jasmine Rice",
+    nameFa: "برنج تایلندی جاسمین حیات",
+    aliasEn: "Thai Jasmine Long Grain Rice",
+    aliasFa: "برنج جاسمین تایلندی دانه‌بلند",
+    category: "rice",
     descriptionEn:
-      "A practical pulse line for steady access to everyday food staples across B2B channels.",
+      "Hayat Thai Jasmine Rice is selected for buyers looking for aromatic long-grain rice with recognizable branded packaging.",
     descriptionFa:
-      "حبوباتی کاربردی برای دسترسی پایدار به اقلام غذایی روزمره در کانال‌های B2B.",
+      "برنج تایلندی جاسمین حیات برای خریدارانی انتخاب شده است که به برنج خوش‌عطر دانه‌بلند با بسته‌بندی برنددار نیاز دارند.",
+    ...imageSet(productImages.hayatThaiJasmine),
   },
   {
     id: 6,
-    nameEn: "Chickpeas",
-    nameFa: "نخود",
-    category: "legumes",
+    nameEn: "21 Turmeric",
+    nameFa: "زردچوبه ۲۱",
+    aliasEn: "Ground Turmeric",
+    aliasFa: "زردچوبه آسیاب‌شده",
+    category: "spices",
     descriptionEn:
-      "A widely used pulse imported and distributed as part of the company's essential food mission.",
+      "21 Turmeric is a core spice product for foodservice, retail, and wholesale buyers seeking consistent color, flavor, and packaged supply.",
     descriptionFa:
-      "حبوباتی پرکاربرد که در راستای ماموریت تامین مواد غذایی اساسی وارد و توزیع می‌شود.",
-    image: productImages.chickpeas,
-    images: [productImages.chickpeas],
+      "زردچوبه ۲۱ از اقلام اصلی ادویه است و برای خریداران خدمات غذایی، فروشگاهی و عمده که به رنگ، طعم و بسته‌بندی ثابت نیاز دارند عرضه می‌شود.",
+    ...imageSet(productImages.turmeric),
   },
   {
     id: 7,
-    nameEn: "Black Chickpeas",
-    nameFa: "نخود سیاه",
-    category: "legumes",
+    nameEn: "21 Walnut Kernels",
+    nameFa: "مغز گردو ۲۱",
+    aliasEn: "Premium Walnut Kernels",
+    aliasFa: "مغز گردوی ممتاز",
+    category: "nuts",
     descriptionEn:
-      "A focused pulse item included in Faradid Atlas' diversified legume and staple foods portfolio.",
+      "21 Walnut Kernels are packed for buyers who need ready-to-use nut kernels with clean branding and reliable commercial supply.",
     descriptionFa:
-      "یکی از اقلام حبوبات در سبد متنوع فرادید اطلس برای تامین مواد غذایی اساسی.",
-    image: productImages.desiChickpea,
-    images: [productImages.desiChickpea],
+      "مغز گردو ۲۱ برای خریدارانی بسته‌بندی شده است که به مغز آماده مصرف، برندینگ منظم و تامین تجاری قابل اعتماد نیاز دارند.",
+    ...imageSet(productImages.walnutKernels),
   },
   {
     id: 8,
-    nameEn: "Green Lentils",
-    nameFa: "عدس سبز",
-    category: "legumes",
+    nameEn: "21 Sunflower Seed Kernels",
+    nameFa: "مغز تخمه آفتابگردان ۲۱",
+    aliasEn: "Sunflower Kernels",
+    aliasFa: "مغز آفتابگردان",
+    category: "seeds",
     descriptionEn:
-      "A high-demand pulse supplied through a network designed for continuity and quality.",
+      "21 Sunflower Seed Kernels support snack, bakery, retail, and ingredient buyers with packaged kernels and dependable availability.",
     descriptionFa:
-      "حبوباتی پرتقاضا که از طریق شبکه‌ای مبتنی بر استمرار تامین و کیفیت عرضه می‌شود.",
+      "مغز تخمه آفتابگردان ۲۱ برای خریداران حوزه تنقلات، نانوایی، فروشگاهی و مواد اولیه با بسته‌بندی منظم و دسترسی پایدار عرضه می‌شود.",
+    ...imageSet(productImages.sunflowerSeedKernels),
   },
   {
     id: 9,
-    nameEn: "Red Lentils",
-    nameFa: "عدس قرمز",
-    category: "legumes",
+    nameEn: "21 Pumpkin Seed Kernels",
+    nameFa: "مغز تخمه کدو ۲۱",
+    aliasEn: "Pumpkin Kernels",
+    aliasFa: "مغز کدو",
+    category: "seeds",
     descriptionEn:
-      "A key lentil product for buyers seeking dependable access to core food staples.",
+      "21 Pumpkin Seed Kernels are packaged for buyers who need a clean, ready-to-use seed kernel product for retail and food production.",
     descriptionFa:
-      "یکی از محصولات کلیدی عدس برای خریدارانی که به دسترسی پایدار به مواد غذایی اصلی نیاز دارند.",
-    image: productImages.redLentil,
-    images: [productImages.redLentil],
+      "مغز تخمه کدو ۲۱ برای خریدارانی عرضه می‌شود که به محصولی تمیز و آماده مصرف برای فروشگاه یا تولید غذایی نیاز دارند.",
+    ...imageSet(productImages.pumpkinSeedKernels),
   },
   {
     id: 10,
-    nameEn: "Mung Beans",
-    nameFa: "ماش",
-    category: "legumes",
+    nameEn: "21 Cashew Nuts",
+    nameFa: "بادام هندی ۲۱",
+    aliasEn: "Cashews",
+    aliasFa: "بادام هندی",
+    category: "nuts",
     descriptionEn:
-      "A staple pulse included in the company's broad portfolio of imported essential foods.",
+      "21 Cashew Nuts are positioned for retail and wholesale buyers seeking a familiar nut product with polished packaging and steady supply.",
     descriptionFa:
-      "حبوباتی اساسی در سبد گسترده محصولات غذایی وارداتی فرادید اطلس.",
-    image: productImages.mungBean,
-    images: [productImages.mungBean],
+      "بادام هندی ۲۱ برای خریداران فروشگاهی و عمده عرضه می‌شود که به محصولی شناخته‌شده با بسته‌بندی مرتب و تامین پایدار نیاز دارند.",
+    ...imageSet(productImages.cashewNuts),
   },
   {
     id: 11,
-    nameEn: "Popcorn Corn",
-    nameFa: "ذرت پاپ‌کورن",
-    category: "seeds",
+    nameEn: "21 Red Lentil",
+    nameFa: "عدس قرمز ۲۱",
+    aliasEn: "Red Lentils",
+    aliasFa: "عدس قرمز",
+    category: "legumes",
     descriptionEn:
-      "A seeds-and-kernels product supplied as part of Faradid Atlas' expanded essential food portfolio.",
+      "21 Red Lentil is a high-demand pulse product for everyday cooking, foodservice use, and B2B staple-food procurement.",
     descriptionFa:
-      "محصولی از گروه دانه‌ها و مغزها در سبد توسعه‌یافته مواد غذایی اساسی فرادید اطلس.",
-    image: productImages.popcornCorn,
-    images: [productImages.popcornCorn],
+      "عدس قرمز ۲۱ از حبوبات پرتقاضا برای مصرف روزمره، خدمات غذایی و خرید B2B اقلام اساسی محسوب می‌شود.",
+    ...imageSet(productImages.redLentil),
   },
   {
     id: 12,
-    nameEn: "Sunflower Seeds",
-    nameFa: "تخمه آفتابگردان",
-    category: "seeds",
+    nameEn: "21 Chickpeas",
+    nameFa: "نخود ۲۱",
+    aliasEn: "Pea / Chickpea",
+    aliasFa: "نخود",
+    category: "legumes",
     descriptionEn:
-      "A familiar seed product supplied for reliable access across wholesale and retail food channels.",
+      "21 Chickpeas are packed for buyers seeking a reliable pulse line for retail shelves, foodservice kitchens, and wholesale channels.",
     descriptionFa:
-      "محصولی آشنا از گروه دانه‌ها برای دسترسی قابل اتکا در کانال‌های عمده و فروشگاهی.",
+      "نخود ۲۱ برای خریدارانی بسته‌بندی شده است که به تامین قابل اتکای حبوبات برای فروشگاه، آشپزخانه‌های خدمات غذایی و عمده‌فروشی نیاز دارند.",
+    ...imageSet(productImages.chickpeas),
   },
   {
     id: 13,
-    nameEn: "Sunflower Kernels",
-    nameFa: "مغز آفتابگردان",
-    category: "seeds",
+    nameEn: "21 White Bean Bag",
+    nameFa: "لوبیا سفید کیسه‌ای ۲۱",
+    aliasEn: "White Bean",
+    aliasFa: "لوبیا سفید",
+    category: "legumes",
     descriptionEn:
-      "A kernel product included in the company's essential food supply mix for B2B buyers.",
+      "21 White Bean Bag is a staple legume pack for buyers who need practical bagged supply across wholesale and retail distribution.",
     descriptionFa:
-      "محصولی از گروه مغزها در ترکیب تامین مواد غذایی اساسی شرکت برای خریداران B2B.",
-    image: productImages.sunflowerSeedKernels,
-    images: [productImages.sunflowerSeedKernels],
+      "لوبیا سفید کیسه‌ای ۲۱ محصولی پرمصرف برای خریدارانی است که به تامین کیسه‌ای و کاربردی در توزیع عمده و فروشگاهی نیاز دارند.",
+    ...imageSet(productImages.whiteBeanBag),
   },
   {
     id: 14,
-    nameEn: "Pumpkin Seeds",
-    nameFa: "تخمه کدو",
-    category: "seeds",
+    nameEn: "21 Mung Bean",
+    nameFa: "ماش ۲۱",
+    aliasEn: "Mung Beans",
+    aliasFa: "ماش",
+    category: "legumes",
     descriptionEn:
-      "A seed item selected within a portfolio focused on quality, availability, and practical market needs.",
+      "21 Mung Bean is a versatile pulse product selected for stable access to everyday food staples and clean packaged presentation.",
     descriptionFa:
-      "محصولی از گروه دانه‌ها در سبدی متمرکز بر کیفیت، دسترسی و نیازهای عملی بازار.",
+      "ماش ۲۱ از حبوبات کاربردی است که برای دسترسی پایدار به اقلام غذایی روزمره و ارائه بسته‌بندی‌شده انتخاب می‌شود.",
+    ...imageSet(productImages.mungBean),
   },
   {
     id: 15,
-    nameEn: "Pumpkin Seed Kernels",
-    nameFa: "مغز تخمه کدو",
-    category: "seeds",
+    nameEn: "21 Kidney Bean",
+    nameFa: "لوبیا قرمز ۲۱",
+    aliasEn: "Red Kidney Beans",
+    aliasFa: "لوبیا قرمز",
+    category: "legumes",
     descriptionEn:
-      "A kernel product that supports Faradid Atlas' broader seeds and staple foods offering.",
+      "21 Kidney Bean is a core legume product for retail, wholesale, and foodservice buyers looking for consistent packaged supply.",
     descriptionFa:
-      "محصولی از گروه مغزها که سبد دانه‌ها و مواد غذایی اساسی فرادید اطلس را کامل می‌کند.",
-    image: productImages.pumpkinSeedKernels,
-    images: [productImages.pumpkinSeedKernels],
+      "لوبیا قرمز ۲۱ از اقلام اصلی حبوبات برای خریداران فروشگاهی، عمده و خدمات غذایی است که به تامین بسته‌بندی‌شده و ثابت نیاز دارند.",
+    ...imageSet(productImages.kidneyBean),
   },
   {
     id: 16,
-    nameEn: "Sesame Seeds",
-    nameFa: "کنجد",
-    category: "seeds",
+    nameEn: "21 Desi Chickpea",
+    nameFa: "نخود دسی ۲۱",
+    aliasEn: "Desi Chickpeas",
+    aliasFa: "نخود دسی",
+    category: "legumes",
     descriptionEn:
-      "A core seed product supplied through the company's quality-conscious sourcing approach.",
+      "21 Desi Chickpea is a focused pulse product for buyers who need a darker chickpea variety with reliable branded packaging.",
     descriptionFa:
-      "یکی از محصولات اصلی گروه دانه‌ها که با رویکرد تامین حساس به کیفیت عرضه می‌شود.",
+      "نخود دسی ۲۱ محصولی تخصصی از گروه حبوبات است و برای خریدارانی عرضه می‌شود که به این رقم نخود با بسته‌بندی قابل اتکا نیاز دارند.",
+    ...imageSet(productImages.desiChickpea),
   },
   {
     id: 17,
-    nameEn: "Walnut",
-    nameFa: "گردو",
-    category: "nuts",
+    nameEn: "21 Popcorn Corn",
+    nameFa: "ذرت پاپ‌کورن ۲۱",
+    aliasEn: "Popcorn Kernels",
+    aliasFa: "دانه ذرت پاپ‌کورن",
+    category: "seeds",
     descriptionEn:
-      "A nut product in Faradid Atlas' essential food portfolio, selected for reliable commercial supply.",
+      "21 Popcorn Corn is packaged for snack producers, retailers, and wholesale buyers seeking dependable popcorn kernel supply.",
     descriptionFa:
-      "محصولی از گروه آجیل در سبد مواد غذایی اساسی فرادید اطلس برای تامین تجاری قابل اتکا.",
+      "ذرت پاپ‌کورن ۲۱ برای تولیدکنندگان تنقلات، فروشگاه‌ها و خریداران عمده که به تامین قابل اتکای دانه پاپ‌کورن نیاز دارند عرضه می‌شود.",
+    ...imageSet(productImages.popcornCorn),
   },
   {
     id: 18,
-    nameEn: "Walnut Kernels",
-    nameFa: "مغز گردو",
-    category: "nuts",
+    nameEn: "Golbanoo Sella Basmati Rice",
+    nameFa: "برنج سلا باسماتی گل‌بانو",
+    aliasEn: "Long Grain Sella Rice",
+    aliasFa: "برنج سلا دانه‌بلند",
+    category: "rice",
     descriptionEn:
-      "A nut-kernel product supplied within the company's diversified food import portfolio.",
+      "Golbanoo Sella Basmati Rice is a branded long-grain sella rice line for buyers who need consistent quality and strong shelf presence.",
     descriptionFa:
-      "محصولی از گروه مغزها در سبد متنوع واردات مواد غذایی شرکت.",
-    image: productImages.walnutKernels,
-    images: [productImages.walnutKernels],
+      "برنج سلا باسماتی گل‌بانو محصولی دانه‌بلند و برنددار است که برای کیفیت ثابت و حضور مناسب در قفسه فروشگاهی عرضه می‌شود.",
+    ...imageSet(productImages.golbanooSellaBasmati),
   },
   {
     id: 19,
-    nameEn: "Cashews",
-    nameFa: "بادام هندی",
-    category: "nuts",
+    nameEn: "21 Sella Basmati Rice",
+    nameFa: "برنج سلا باسماتی ۲۱",
+    aliasEn: "1121 Basmati Sella Rice",
+    aliasFa: "برنج سلا باسماتی ۱۱۲۱",
+    category: "rice",
     descriptionEn:
-      "A nut item supplied through Faradid Atlas' regional food supply and distribution network.",
+      "21 Sella Basmati Rice is a 1121 basmati sella product built for buyers seeking long-grain rice with recognizable 21 branding.",
     descriptionFa:
-      "محصولی از گروه آجیل که از طریق شبکه تامین و توزیع منطقه‌ای فرادید اطلس عرضه می‌شود.",
-    image: productImages.cashewNuts,
-    images: [productImages.cashewNuts],
+      "برنج سلا باسماتی ۲۱ محصولی از نوع باسماتی ۱۱۲۱ است و برای خریدارانی عرضه می‌شود که به برنج دانه‌بلند با برند ۲۱ نیاز دارند.",
+    ...imageSet(productImages.twentyOneSellaBasmati),
   },
   {
     id: 20,
-    nameEn: "Peanuts",
-    nameFa: "بادام زمینی",
-    category: "nuts",
-    descriptionEn:
-      "A staple nut product for buyers seeking steady access to essential food products.",
-    descriptionFa:
-      "محصولی پرمصرف از گروه آجیل برای خریدارانی که به دسترسی پایدار به مواد غذایی اساسی نیاز دارند.",
-  },
-  {
-    id: 21,
-    nameEn: "Desiccated Coconut",
-    nameFa: "پودر نارگیل",
-    aliasEn: "Coconut Powder",
-    aliasFa: "نارگیل خشک‌شده",
-    category: "nuts",
-    descriptionEn:
-      "A coconut product listed in the company's nuts and essential food portfolio.",
-    descriptionFa:
-      "محصولی از خانواده نارگیل در سبد آجیل و مواد غذایی اساسی شرکت.",
-  },
-  {
-    id: 22,
-    nameEn: "Turmeric",
-    nameFa: "زردچوبه",
+    nameEn: "21 Black Pepper",
+    nameFa: "فلفل سیاه ۲۱",
+    aliasEn: "Black Pepper",
+    aliasFa: "فلفل سیاه",
     category: "spices",
     descriptionEn:
-      "A core spice item selected for the company's seasoning and essential food portfolio.",
+      "21 Black Pepper is a core seasoning product for retail and foodservice buyers who need reliable packaged spice supply.",
     descriptionFa:
-      "یکی از اقلام اصلی ادویه در سبد چاشنی‌ها و مواد غذایی اساسی شرکت.",
-    image: productImages.turmeric,
-    images: [productImages.turmeric],
-  },
-  {
-    id: 23,
-    nameEn: "Black Pepper",
-    nameFa: "فلفل سیاه",
-    category: "spices",
-    descriptionEn:
-      "A key seasoning product supplied through Faradid Atlas' quality-led import approach.",
-    descriptionFa:
-      "محصولی کلیدی از گروه چاشنی‌ها که با رویکرد واردات مبتنی بر کیفیت تامین می‌شود.",
-    image: productImages.blackPepper,
-    images: [productImages.blackPepper],
-  },
-  {
-    id: 24,
-    nameEn: "Cardamom",
-    nameFa: "هل",
-    category: "spices",
-    descriptionEn:
-      "A spice product included in Faradid Atlas' essential food and seasoning portfolio.",
-    descriptionFa:
-      "محصولی از گروه ادویه‌جات در سبد مواد غذایی اساسی و چاشنی‌های فرادید اطلس.",
-  },
-  {
-    id: 25,
-    nameEn: "Sugar",
-    nameFa: "شکر",
-    category: "sugar",
-    descriptionEn:
-      "An essential sweetener supplied for wholesalers, retailers, organizations, and foodservice buyers.",
-    descriptionFa:
-      "شیرین‌کننده‌ای اساسی برای عمده‌فروشان، خرده‌فروشان، سازمان‌ها و خریداران خدمات غذایی.",
-  },
-  {
-    id: 26,
-    nameEn: "Golbanoo 386 Basmati Rice",
-    nameFa: "برنج باسماتی ۳۸۶ گل‌بانو",
-    category: "rice",
-    descriptionEn:
-      "A Golbanoo-branded basmati rice line for buyers seeking long-grain rice with dependable branded packaging.",
-    descriptionFa:
-      "محصولی از برند گل‌بانو در گروه برنج باسماتی برای خریدارانی که به برنج دانه‌بلند با بسته‌بندی قابل اتکا نیاز دارند.",
-    image: productImages.golbanoo386Basmati,
-    images: [productImages.golbanoo386Basmati],
-  },
-  {
-    id: 27,
-    nameEn: "Hayat Thai Jasmine Rice",
-    nameFa: "برنج تایلندی جاسمین حیات",
-    category: "rice",
-    descriptionEn:
-      "A Hayat-branded Thai jasmine rice product selected for Faradid Atlas' rice portfolio and retail-ready supply.",
-    descriptionFa:
-      "محصول برنج تایلندی جاسمین با برند حیات در سبد برنج فرادید اطلس برای عرضه آماده فروشگاهی.",
-    image: productImages.hayatThaiJasmine,
-    images: [productImages.hayatThaiJasmine],
-  },
-  {
-    id: 28,
-    nameEn: "Golbanoo Sella Basmati Rice",
-    nameFa: "برنج سلا باسماتی گل‌بانو",
-    category: "rice",
-    descriptionEn:
-      "A Golbanoo sella basmati rice line supplied for buyers who need consistent branded rice availability.",
-    descriptionFa:
-      "برنج سلا باسماتی گل‌بانو برای خریدارانی که به دسترسی پایدار به برنج برنددار نیاز دارند.",
-    image: productImages.golbanooSellaBasmati,
-    images: [productImages.golbanooSellaBasmati],
-  },
-  {
-    id: 29,
-    nameEn: "21 Sella Basmati Rice",
-    nameFa: "برنج سلا باسماتی ۲۱",
-    category: "rice",
-    descriptionEn:
-      "A 21-branded sella basmati rice product included in the company's expanded rice offering.",
-    descriptionFa:
-      "محصول برنج سلا باسماتی با برند ۲۱ در سبد توسعه‌یافته برنج شرکت.",
-    image: productImages.twentyOneSellaBasmati,
-    images: [productImages.twentyOneSellaBasmati],
+      "فلفل سیاه ۲۱ از چاشنی‌های اصلی است و برای خریداران فروشگاهی و خدمات غذایی که به تامین بسته‌بندی‌شده ادویه نیاز دارند عرضه می‌شود.",
+    ...imageSet(productImages.blackPepper),
   },
 ];

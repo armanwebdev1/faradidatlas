@@ -22,16 +22,16 @@ export function CountUp({
     const element = elementRef.current;
     if (!element) return;
 
+    let frame = 0;
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
     if (prefersReducedMotion || target === 0) {
-      setValue(target);
+      frame = requestAnimationFrame(() => setValue(target));
       return;
     }
 
-    let frame = 0;
     let started = false;
 
     const run = () => {

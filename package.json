@@ -3,13 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "next build --webpack",
     "dev": "next dev",
     "lint": "eslint .",
     "start": "next start",
     "typecheck": "tsc --noEmit --pretty false",
     "verify": "npm run typecheck && npm run lint && npm run build",
-    "audit": "npm audit --audit-level=moderate"
+    "audit": "npm audit --audit-level=moderate",
+    "production:check": "npm run verify && npm run audit"
+  },
+  "engines": {
+    "node": "22.x",
+    "npm": ">=10"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
