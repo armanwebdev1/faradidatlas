@@ -40,7 +40,7 @@ export default async function HomePage({ params }: HomePageProps) {
       <main>
         <Hero lang={lang} />
         <ValueProps lang={lang} />
-        <SignatureProducts lang={lang} />
+        <SignatureProducts />
         <GlobalMarkets lang={lang} />
         <CTASection lang={lang} />
       </main>

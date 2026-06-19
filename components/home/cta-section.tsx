@@ -1,10 +1,41 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { Language } from "@/lib/i18n";
 import { CountUp } from "@/components/shared/count-up";
 
 interface CTASectionProps {
   lang: Language;
+}
+
+interface StaticCtaImageProps {
+  src: string;
+  alt: string;
+  fill?: boolean;
+  sizes?: string;
+  className?: string;
+}
+
+function Image({ alt, sizes, className }: StaticCtaImageProps) {
+  return (
+    <picture>
+      <source
+        type="image/avif"
+        srcSet="/cta/partnership-640.avif 640w, /cta/partnership-1280.avif 1280w"
+        sizes={sizes}
+      />
+      <source
+        type="image/webp"
+        srcSet="/cta/partnership-640.webp 640w, /cta/partnership-1280.webp 1280w"
+        sizes={sizes}
+      />
+      <img
+        src="/cta/partnership-640.webp"
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        className={className}
+      />
+    </picture>
+  );
 }
 
 export function CTASection({ lang }: CTASectionProps) {

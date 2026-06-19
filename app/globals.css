@@ -176,7 +176,7 @@
 @theme inline {
   --font-body: var(--font-sans);
   --font-hero: var(--font-serif);
-  --font-label: var(--font-satoshi);
+  --font-label: var(--font-sans);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-text);
   --color-secondary: var(--secondary);

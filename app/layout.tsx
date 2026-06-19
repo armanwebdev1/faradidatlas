@@ -12,12 +12,14 @@ const playfair = Playfair_Display({
   variable: "--font-serif",
   weight: ["400", "600"],
   display: "swap",
+  preload: false,
 });
 
 const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
+  preload: false,
 });
 
 const estedad = localFont({
@@ -52,14 +54,6 @@ const shabnam = localFont({
     },
   ],
   variable: "--font-shabnam",
-  display: "swap",
-  preload: false,
-});
-
-const satoshi = localFont({
-  src: "./fonts/satoshi/Satoshi-Variable.woff2",
-  variable: "--font-satoshi",
-  weight: "300 900",
   display: "swap",
   preload: false,
 });
@@ -144,7 +138,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${playfair.variable} ${estedad.variable} ${shabnam.variable} ${satoshi.variable}`}
+      className={`${geistSans.variable} ${playfair.variable} ${estedad.variable} ${shabnam.variable}`}
     >
       <body className="antialiased">
         {children}
