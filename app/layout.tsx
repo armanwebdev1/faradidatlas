@@ -1,5 +1,5 @@
 import type React from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Geist } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
@@ -10,12 +10,14 @@ import "./globals.css";
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-serif",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600"],
+  display: "swap",
 });
 
 const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
 });
 
 const estedad = localFont({
@@ -32,6 +34,8 @@ const estedad = localFont({
     },
   ],
   variable: "--font-estedad",
+  display: "swap",
+  preload: false,
 });
 
 const shabnam = localFont({
@@ -48,12 +52,16 @@ const shabnam = localFont({
     },
   ],
   variable: "--font-shabnam",
+  display: "swap",
+  preload: false,
 });
 
 const satoshi = localFont({
   src: "./fonts/satoshi/Satoshi-Variable.woff2",
   variable: "--font-satoshi",
   weight: "300 900",
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -121,6 +129,13 @@ export const metadata: Metadata = {
   generator: "Next.js",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#f7f5f1",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -131,14 +146,6 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${playfair.variable} ${estedad.variable} ${shabnam.variable} ${satoshi.variable}`}
     >
-      <head>
-        <meta charSet="utf-8" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=5"
-        />
-        <meta name="theme-color" content="#f7f5f1" />
-      </head>
       <body className="antialiased">
         {children}
         <Analytics />

@@ -1,13 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef, useMemo, type KeyboardEvent } from "react";
+import {
+  useCallback,
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  type KeyboardEvent,
+} from "react";
 import { usePathname, useRouter } from "next/navigation";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
-import { categoryLabels, products } from "@/components/products/product-data";
-import { jobs } from "@/components/careers/job-data";
-import { faqs, faqCategories } from "@/components/faq/faq-data";
 import {
   ChevronDown,
   Home,
@@ -23,14 +27,123 @@ interface HeaderProps {
   lang: Language;
 }
 
+type SearchRecordType = "product" | "career" | "faq";
+
+interface SearchRecord {
+  id: string;
+  type: SearchRecordType;
+  titleEn: string;
+  titleFa: string;
+  subtitleEn: string;
+  subtitleFa: string;
+  path: string;
+  searchable: string;
+}
+
+interface SearchIndex {
+  products: SearchRecord[];
+  careers: SearchRecord[];
+  faqs: SearchRecord[];
+}
+
+let searchIndexPromise: Promise<SearchIndex> | null = null;
+
+const normalizeSearch = (value: string) => value.toLowerCase().trim();
+
+function buildSearchable(values: Array<string | undefined>) {
+  return normalizeSearch(values.filter(Boolean).join(" "));
+}
+
+function loadSearchIndex() {
+  searchIndexPromise ??= Promise.all([
+    import("@/components/products/product-data"),
+    import("@/components/careers/job-data"),
+    import("@/components/faq/faq-data"),
+  ]).then(([productModule, careerModule, faqModule]) => {
+    const products = productModule.products.map((product) => {
+      const labels = productModule.categoryLabels[product.category];
+
+      return {
+        id: `product-${product.id}`,
+        type: "product" as const,
+        titleEn: product.nameEn,
+        titleFa: product.nameFa,
+        subtitleEn: labels.en,
+        subtitleFa: labels.fa,
+        path: `products/${product.id}`,
+        searchable: buildSearchable([
+          product.nameEn,
+          product.nameFa,
+          product.aliasEn,
+          product.aliasFa,
+          product.descriptionEn,
+          product.descriptionFa,
+          labels.en,
+          labels.fa,
+        ]),
+      };
+    });
+
+    const careers = careerModule.jobs.map((job) => ({
+      id: `career-${job.id}`,
+      type: "career" as const,
+      titleEn: job.titleEn,
+      titleFa: job.titleFa,
+      subtitleEn: `${job.departmentEn} / ${job.locationEn}`,
+      subtitleFa: `${job.departmentFa} / ${job.locationFa}`,
+      path: `careers/${job.id}`,
+      searchable: buildSearchable([
+        job.titleEn,
+        job.titleFa,
+        job.descriptionEn,
+        job.descriptionFa,
+        job.departmentEn,
+        job.departmentFa,
+        job.locationEn,
+        job.locationFa,
+      ]),
+    }));
+
+    const faqs = faqModule.faqs.map((faq) => {
+      const category =
+        faqModule.faqCategories[
+          faq.category as keyof typeof faqModule.faqCategories
+        ];
+
+      return {
+        id: `faq-${faq.id}`,
+        type: "faq" as const,
+        titleEn: faq.questionEn,
+        titleFa: faq.questionFa,
+        subtitleEn: category?.en || "FAQ",
+        subtitleFa: category?.fa || "سوالات",
+        path: `faq#faq-${faq.id}`,
+        searchable: buildSearchable([
+          faq.questionEn,
+          faq.questionFa,
+          faq.answerEn,
+          faq.answerFa,
+        ]),
+      };
+    });
+
+    return { products, careers, faqs };
+  });
+
+  return searchIndexPromise;
+}
+
 export function Header({ lang }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [searchIndex, setSearchIndex] = useState<SearchIndex | null>(null);
+  const [isSearchLoading, setIsSearchLoading] = useState(false);
+  const lastScrollYRef = useRef(0);
+  const isVisibleRef = useRef(true);
   const langRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
 
@@ -45,21 +158,28 @@ export function Header({ lang }: HeaderProps) {
       const currentScrollY = window.scrollY;
       const heroHeight = window.innerHeight;
       const scrollTriggerPoint = heroHeight;
+      const previousScrollY = lastScrollYRef.current;
+      let nextIsVisible = isVisibleRef.current;
 
       if (currentScrollY < scrollTriggerPoint) {
-        setIsVisible(true);
-      } else if (currentScrollY < lastScrollY) {
-        setIsVisible(true);
+        nextIsVisible = true;
+      } else if (currentScrollY < previousScrollY) {
+        nextIsVisible = true;
       } else if (currentScrollY > scrollTriggerPoint) {
-        setIsVisible(false);
+        nextIsVisible = false;
       }
 
-      setLastScrollY(currentScrollY);
+      if (nextIsVisible !== isVisibleRef.current) {
+        isVisibleRef.current = nextIsVisible;
+        setIsVisible(nextIsVisible);
+      }
+
+      lastScrollYRef.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -88,6 +208,15 @@ export function Header({ lang }: HeaderProps) {
 
     return () => window.clearTimeout(timeoutId);
   }, [pathname]);
+
+  const preloadSearchIndex = useCallback(() => {
+    if (searchIndex || isSearchLoading) return;
+
+    setIsSearchLoading(true);
+    loadSearchIndex()
+      .then((index) => setSearchIndex(index))
+      .finally(() => setIsSearchLoading(false));
+  }, [isSearchLoading, searchIndex]);
 
   const isActive = (href: string): boolean => {
     if (pathname === href) return true;
@@ -129,85 +258,43 @@ export function Header({ lang }: HeaderProps) {
     },
   ];
 
-  const normalize = (value: string) => value.toLowerCase().trim();
-
   const searchResults = useMemo(() => {
-    const q = normalize(query);
-    if (!q) {
+    const q = normalizeSearch(query);
+    if (!q || !searchIndex) {
       return { products: [], careers: [], faqs: [] };
     }
 
-    const match = (value?: string) =>
-      value ? normalize(value).includes(q) : false;
+    const toResult = (item: SearchRecord) => ({
+      id: item.id,
+      type: item.type,
+      title: lang === "en" ? item.titleEn : item.titleFa,
+      subtitle: lang === "en" ? item.subtitleEn : item.subtitleFa,
+      href: `/${lang}/${item.path}`,
+    });
 
-    const productResults = products
-      .filter(
-        (product) =>
-          match(product.nameEn) ||
-          match(product.nameFa) ||
-          match(product.aliasEn) ||
-          match(product.aliasFa) ||
-          match(product.descriptionEn) ||
-          match(product.descriptionFa) ||
-          match(categoryLabels[product.category].en) ||
-          match(categoryLabels[product.category].fa),
-      )
+    const productResults = searchIndex.products
+      .filter((item) => item.searchable.includes(q))
       .slice(0, 6)
-      .map((product) => ({
-        id: `product-${product.id}`,
-        type: "product",
-        title: lang === "en" ? product.nameEn : product.nameFa,
-        subtitle:
-          lang === "en"
-            ? categoryLabels[product.category].en
-            : categoryLabels[product.category].fa,
-        href: `/${lang}/products/${product.id}`,
-      }));
+      .map(toResult);
 
-    const careerResults = jobs
-      .filter(
-        (job) =>
-          match(job.titleEn) ||
-          match(job.titleFa) ||
-          match(job.descriptionEn) ||
-          match(job.descriptionFa) ||
-          match(job.departmentEn) ||
-          match(job.departmentFa) ||
-          match(job.locationEn) ||
-          match(job.locationFa),
-      )
+    const careerResults = searchIndex.careers
+      .filter((item) => item.searchable.includes(q))
       .slice(0, 5)
-      .map((job) => ({
-        id: `career-${job.id}`,
-        type: "career",
-        title: lang === "en" ? job.titleEn : job.titleFa,
-        subtitle: `${lang === "en" ? job.departmentEn : job.departmentFa} / ${
-          lang === "en" ? job.locationEn : job.locationFa
-        }`,
-        href: `/${lang}/careers/${job.id}`,
-      }));
+      .map(toResult);
 
-    const faqResults = faqs
-      .filter(
-        (faq) =>
-          match(faq.questionEn) ||
-          match(faq.questionFa) ||
-          match(faq.answerEn) ||
-          match(faq.answerFa),
-      )
+    const faqResults = searchIndex.faqs
+      .filter((item) => item.searchable.includes(q))
       .slice(0, 5)
-      .map((faq) => ({
-        id: `faq-${faq.id}`,
-        type: "faq",
-        title: lang === "en" ? faq.questionEn : faq.questionFa,
-        subtitle:
+      .map(toResult);
+    /*
           faqCategories[faq.category]?.[lang] ||
           (lang === "en" ? "FAQ" : "سوالات"),
         href: `/${lang}/faq#faq-${faq.id}`,
       }));
 
+    */
     return { products: productResults, careers: careerResults, faqs: faqResults };
-  }, [query, lang]);
+  }, [query, lang, searchIndex]);
 
   const flatResults = useMemo(
     () => [
@@ -236,6 +323,8 @@ export function Header({ lang }: HeaderProps) {
   }, [query]);
 
   const hasResults = flatResults.length > 0;
+  const showSearchLoading =
+    isSearchLoading && query.trim().length > 0 && !searchIndex;
 
   const handleSearchKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Escape") {
@@ -310,8 +399,12 @@ export function Header({ lang }: HeaderProps) {
                   onChange={(event) => {
                     setQuery(event.target.value);
                     setIsSearchOpen(true);
+                    preloadSearchIndex();
                   }}
-                  onFocus={() => setIsSearchOpen(true)}
+                  onFocus={() => {
+                    setIsSearchOpen(true);
+                    preloadSearchIndex();
+                  }}
                   onKeyDown={handleSearchKeyDown}
                   placeholder={`${t.common.search}...`}
                   className="py-2 text-sm border border-border/50 rounded-full bg-background/60 text-foreground placeholder-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/50 w-full transition-all hover:border-border/70 pl-12 pr-4 text-left"
@@ -328,7 +421,11 @@ export function Header({ lang }: HeaderProps) {
                     role="listbox"
                     className="absolute inset-x-0 z-50 mt-2 rounded-2xl border border-border/40 bg-background/95 shadow-xl backdrop-blur-xl p-2 max-h-80 overflow-auto"
                   >
-                    {hasResults ? (
+                    {showSearchLoading ? (
+                      <div className="px-3 py-4 text-sm text-muted-foreground">
+                        {t.common.loading}
+                      </div>
+                    ) : hasResults ? (
                       <div className="space-y-2">
                         {indexedResults.products.length > 0 && (
                           <div>

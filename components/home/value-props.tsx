@@ -1,12 +1,5 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import type { Language } from "@/lib/i18n";
 import { Globe, CheckCircle, Route, Package } from "lucide-react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface ValuePropsProps {
   lang: Language;
@@ -77,126 +70,11 @@ const valueItems = {
 
 export function ValueProps({ lang }: ValuePropsProps) {
   const isRTL = lang === "fa";
-  const containerRef = useRef<HTMLDivElement>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-
-  useEffect(() => {
-    const section = containerRef.current;
-    if (!section) return;
-
-    const reduceMotion =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (reduceMotion) {
-      section.classList.remove("opacity-0", "translate-y-6");
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (!entries[0]?.isIntersecting) return;
-        section.classList.add("animate-fade-in-up");
-        section.classList.remove("opacity-0", "translate-y-6");
-        observer.unobserve(section);
-      },
-      { threshold: 0.2 },
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!carouselRef.current) return;
-
-    const carousel = carouselRef.current;
-    const direction = isRTL ? 1 : -1;
-    const existingClones = carousel.querySelectorAll("[data-clone='true']");
-    existingClones.forEach((node) => node.remove());
-    const itemWidth = carousel.children[0]?.getBoundingClientRect().width || 0;
-    const gap = 24;
-    const itemWithGap = itemWidth + gap;
-    const totalWidth = itemWithGap * 4;
-
-    const originalChildren = Array.from(carousel.children);
-    originalChildren.forEach((child) => {
-      const clone = child.cloneNode(true) as HTMLElement;
-      clone.setAttribute("data-clone", "true");
-      carousel.appendChild(clone);
-    });
-
-    let timeline = gsap.timeline({ repeat: -1 });
-    timeline.to(carousel, {
-      x: direction * totalWidth,
-      duration: 40,
-      ease: "linear",
-    });
-
-    const handleResize = () => {
-      timeline.kill();
-      carousel.style.transform = "translateX(0)";
-
-      const newItemWidth =
-        carousel.children[0]?.getBoundingClientRect().width || 0;
-      const newItemWithGap = newItemWidth + gap;
-      const newTotalWidth = newItemWithGap * 4;
-
-      const newTimeline = gsap.timeline({ repeat: -1 });
-      newTimeline.to(carousel, {
-        x: direction * newTotalWidth,
-        duration: 40,
-        ease: "linear",
-      });
-      timeline = newTimeline;
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      timeline.kill();
-      window.removeEventListener("resize", handleResize);
-      const clones = carousel.querySelectorAll("[data-clone='true']");
-      clones.forEach((node) => node.remove());
-    };
-  }, [isRTL]);
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    gsap.set([titleRef.current, subtitleRef.current], {
-      opacity: 0,
-      y: 40,
-    });
-
-    const headerTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 70%",
-        end: "top 40%",
-        scrub: 1,
-      },
-    });
-
-    headerTimeline
-      .to(titleRef.current, { opacity: 1, y: 0, duration: 0.8 }, 0)
-      .to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.8 }, 0.2);
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
-
   const items = lang === "en" ? valueItems.en : valueItems.fa;
+  const marqueeItems = [...items, ...items];
 
   return (
-    <section
-      ref={containerRef}
-      className="section bg-surface relative overflow-hidden opacity-0 translate-y-6"
-    >
+    <section className="section bg-surface relative overflow-hidden">
       <div
         className="absolute top-20 w-96 h-96 bg-gradient-to-br from-accent-warm-gold/3 to-transparent rounded-full blur-3xl pointer-events-none"
         style={{ right: 0 }}
@@ -212,7 +90,6 @@ export function ValueProps({ lang }: ValuePropsProps) {
             {lang === "en" ? "Why Faradid Atlas" : "چرا فرادید اطلس؟"}
           </p>
           <h2
-            ref={titleRef}
             className="text-responsive-title mb-5 sm:mb-7 md:mb-8 text-foreground"
           >
             {lang === "en"
@@ -220,7 +97,6 @@ export function ValueProps({ lang }: ValuePropsProps) {
               : "استمرار، کیفیت و اعتماد"}
           </h2>
           <p
-            ref={subtitleRef}
             className="text-responsive-body text-foreground/70 max-w-2xl mx-auto"
           >
             {lang === "en"
@@ -240,16 +116,18 @@ export function ValueProps({ lang }: ValuePropsProps) {
           />
 
           <div className="overflow-hidden rounded-2xl">
-            <div ref={carouselRef} className="flex gap-6 sm:gap-8 w-max py-2">
-              {items.map((item, idx) => {
+            <div
+              className={`flex gap-6 sm:gap-8 w-max py-2 value-props-marquee ${
+                isRTL ? "value-props-marquee-reverse" : ""
+              }`}
+            >
+              {marqueeItems.map((item, idx) => {
                 const IconComponent = item.icon;
                 return (
                   <div
-                    key={idx}
-                    ref={(el) => {
-                      itemsRef.current[idx] = el;
-                    }}
+                    key={`${item.title}-${idx}`}
                     className="flex-shrink-0 w-80 sm:w-96 md:w-[28rem]"
+                    aria-hidden={idx >= items.length}
                   >
                     <div className="h-full flex flex-col p-6 sm:p-8 rounded-2xl border border-foreground/8 bg-gradient-to-br from-foreground/[0.02] to-foreground/[0.01] backdrop-blur-md transition-colors duration-500 hover:bg-gradient-to-br hover:from-foreground/[0.05] hover:to-foreground/[0.02]">
                       <div className="relative mb-6 sm:mb-8 inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20">
@@ -276,6 +154,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
           </div>
         </div>
       </div>
+
     </section>
   );
 }

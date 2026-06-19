@@ -317,6 +317,10 @@
   textarea {
     font-family: inherit;
   }
+  footer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 760px;
+  }
   .eyebrow,
   .subtitle,
   .category-label {
@@ -591,14 +595,20 @@
 
   .section {
     padding-block: var(--section-y);
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
   }
 
   .section-compact {
     padding-block: var(--section-y-compact);
+    content-visibility: auto;
+    contain-intrinsic-size: auto 700px;
   }
 
   .section-hero {
     padding-block: var(--section-y-hero);
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
   }
 
   /* Spacing utilities */
@@ -1206,5 +1216,28 @@
 
   .hover-opacity:hover {
     opacity: 0.8;
+  }
+
+  @keyframes valuePropsMarquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .value-props-marquee {
+    animation: valuePropsMarquee 40s linear infinite;
+    will-change: transform;
+  }
+
+  .value-props-marquee-reverse {
+    animation-direction: reverse;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .value-props-marquee {
+      animation: none;
+      transform: none;
+      will-change: auto;
+    }
   }
 }

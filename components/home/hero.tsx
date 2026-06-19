@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import { useEffect, useState } from "react";
 import type { Language } from "@/lib/i18n";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -9,10 +8,22 @@ interface HeroProps {
   lang: Language;
 }
 
+const heroWidths = [640, 1280, 1920] as const;
+
+function heroSrcSet(id: number, format: "avif" | "webp") {
+  return heroWidths
+    .map((width) => `/hero/${id}-${width}.${format} ${width}w`)
+    .join(", ");
+}
+
 const slides = [
   {
     id: 1,
-    image: "/1.jpg",
+    image: {
+      avif: heroSrcSet(1, "avif"),
+      webp: heroSrcSet(1, "webp"),
+      fallback: "/hero/1-1280.webp",
+    },
     title: { en: "Reliable Food Supply", fa: "تامین مطمئن مواد غذایی" },
     subtitle: { en: "Food Security in Practice", fa: "امنیت غذایی در عمل" },
     description: {
@@ -22,7 +33,11 @@ const slides = [
   },
   {
     id: 2,
-    image: "/2.jpg",
+    image: {
+      avif: heroSrcSet(2, "avif"),
+      webp: heroSrcSet(2, "webp"),
+      fallback: "/hero/2-1280.webp",
+    },
     title: { en: "Quality-Led Sourcing", fa: "تامین مبتنی بر کیفیت" },
     subtitle: { en: "International Standards", fa: "استانداردهای بین‌المللی" },
     description: {
@@ -32,7 +47,11 @@ const slides = [
   },
   {
     id: 3,
-    image: "/3.jpg",
+    image: {
+      avif: heroSrcSet(3, "avif"),
+      webp: heroSrcSet(3, "webp"),
+      fallback: "/hero/3-1280.webp",
+    },
     title: { en: "Regional Distribution Network", fa: "شبکه توزیع منطقه‌ای" },
     subtitle: { en: "Iran, UAE & Oman", fa: "ایران، امارات و عمان" },
     description: {
@@ -44,13 +63,6 @@ const slides = [
 
 export function Hero({ lang }: HeroProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  const slideRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const titleLine1Ref = useRef<HTMLSpanElement>(null);
-  const titleLine2Ref = useRef<HTMLSpanElement>(null);
-  const descriptionRef = useRef<HTMLParagraphElement>(null);
 
   const isRTL = lang === "fa";
   const textShiftClass = isRTL
@@ -65,76 +77,6 @@ export function Hero({ lang }: HeroProps) {
   const prevSlide = () => goToSlide(currentSlide - 1);
 
   useEffect(() => {
-    const reduceMotion =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const timeline = gsap.timeline({
-      defaults: { ease: "cubic-bezier(0.22, 1, 0.36, 1)" },
-    });
-
-    const activeSlide = slideRefs.current[currentSlide];
-
-    gsap.set(
-      [
-        subtitleRef.current,
-        titleLine1Ref.current,
-        titleLine2Ref.current,
-        descriptionRef.current,
-      ],
-      { opacity: 0, y: 60 },
-    );
-
-    if (activeSlide) {
-      gsap.set(activeSlide, { scale: reduceMotion ? 1 : 1.04 });
-    }
-
-    timeline.to(subtitleRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.9,
-    });
-
-    if (activeSlide && !reduceMotion) {
-      timeline.to(activeSlide, { scale: 1, duration: 1.4 }, 0);
-    }
-
-    timeline.to(
-      titleLine1Ref.current,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-      },
-      0.2,
-    );
-
-    timeline.to(
-      titleLine2Ref.current,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-      },
-      0.4,
-    );
-
-    timeline.to(
-      descriptionRef.current,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-      },
-      0.6,
-    );
-
-    return () => {
-      timeline.kill();
-    };
-  }, [currentSlide]);
-
-  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 6000);
@@ -146,29 +88,21 @@ export function Hero({ lang }: HeroProps) {
   const titleParts = slide.title[lang].split(" ");
 
   return (
-    <div
-      ref={containerRef}
-      className="relative h-screen w-full overflow-hidden bg-neutral-900"
-    >
+    <div className="relative h-screen w-full overflow-hidden bg-neutral-900">
       <div className="relative h-full w-full">
-        {slides.map((s, index) => (
-          <div
-            key={s.id}
-            ref={(el) => {
-              slideRefs.current[index] = el;
-            }}
-            className={`absolute inset-0 transition-opacity duration-700 ${
-              index === currentSlide ? "opacity-100" : "opacity-0"
-            }`}
-            style={{
-              backgroundImage: `url(${s.image})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/90" />
-          </div>
-        ))}
+        <picture key={slide.id}>
+          <source type="image/avif" srcSet={slide.image.avif} sizes="100vw" />
+          <source type="image/webp" srcSet={slide.image.webp} sizes="100vw" />
+          <img
+            src={slide.image.fallback}
+            alt=""
+            fetchPriority={currentSlide === 0 ? "high" : "auto"}
+            loading={currentSlide === 0 ? "eager" : "lazy"}
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </picture>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/90" />
       </div>
 
       <button
@@ -203,33 +137,30 @@ export function Hero({ lang }: HeroProps) {
         </div>
       </button>
 
-      <div
-        className="absolute inset-0 z-10 pointer-events-none"
-        aria-hidden="true"
-      >
-        <div className="hero-premium-sheen" />
-      </div>
-
       <div className="absolute bottom-0 inset-x-0 z-20">
         <div
           className={`max-w-5xl px-8 md:px-12 lg:px-20 pb-20 md:pb-28 transform-gpu transition-transform duration-700 text-left ${textShiftClass}`}
           dir={isRTL ? "rtl" : "ltr"}
         >
-          <p ref={subtitleRef} className="eyebrow mb-6 text-accent-warm-gold">
+          <p
+            key={`subtitle-${slide.id}`}
+            className="eyebrow mb-6 text-accent-warm-gold"
+          >
             {slide.subtitle[lang]}
           </p>
 
-          <h1 className="mb-8 text-responsive-hero text-white">
-            <span ref={titleLine1Ref} className="block">
-              {titleParts[0]}
-            </span>
-            <span ref={titleLine2Ref} className="block">
+          <h1
+            key={`title-${slide.id}`}
+            className="mb-8 text-responsive-hero text-white"
+          >
+            <span className="block">{titleParts[0]}</span>
+            <span className="block">
               {titleParts.slice(1).join(" ")}
             </span>
           </h1>
 
           <p
-            ref={descriptionRef}
+            key={`description-${slide.id}`}
             className="mb-10 max-w-2xl text-responsive-body text-white/85"
           >
             {slide.description[lang]}
@@ -255,6 +186,7 @@ export function Hero({ lang }: HeroProps) {
           </div>
         </div>
       </div>
+
     </div>
   );
 }
