@@ -2,6 +2,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { categoryLabels, products } from "@/components/products/product-data";
 import { ProductGallery } from "@/components/products/product-gallery";
+import { ProductPlaceholder } from "@/components/products/product-placeholder";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath, siteConfig } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
@@ -81,7 +82,9 @@ export default async function ProductDetailPage({
   const gallery =
     product.images && product.images.length > 0
       ? product.images
-      : [product.image];
+      : product.image
+        ? [product.image]
+        : [];
   const productUrl = absoluteUrl(localizedPath(lang, `products/${product.id}`));
 
   return (
@@ -121,7 +124,17 @@ export default async function ProductDetailPage({
 
         <section className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-background via-background to-secondary/30">
           <div className="container-wide grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-10 lg:gap-16 items-start">
-            <ProductGallery images={gallery} alt={name} />
+            {gallery.length > 0 ? (
+              <ProductGallery images={gallery} alt={name} />
+            ) : (
+              <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-[5/4] max-h-[520px] lg:max-h-[560px] bg-white/80 rounded-3xl overflow-hidden border border-foreground/10 shadow-[0_30px_80px_-60px_rgba(15,15,15,0.45)]">
+                <ProductPlaceholder
+                  product={product}
+                  lang={lang}
+                  variant="detail"
+                />
+              </div>
+            )}
 
             <div className="flex flex-col rounded-3xl border border-foreground/10 bg-white/85 p-6 sm:p-8 shadow-[0_35px_80px_-60px_rgba(10,10,10,0.5)] backdrop-blur">
               <h1
@@ -226,7 +239,7 @@ export default async function ProductDetailPage({
                 name,
                 description,
                 category,
-                image: absoluteUrl(product.image),
+                ...(product.image ? { image: absoluteUrl(product.image) } : {}),
                 brand: {
                   "@type": "Brand",
                   name: siteConfig.name,

@@ -15,8 +15,8 @@ export interface Product {
   category: ProductCategory;
   descriptionEn: string;
   descriptionFa: string;
-  image: string;
-  images: string[];
+  image?: string;
+  images?: string[];
 }
 
 export const categoryLabels: Record<
@@ -33,45 +33,45 @@ export const categoryLabels: Record<
 
 export const productImages = {
   mizbanSuperBasmati:
-    "/product_images/ChatGPT Image Jun 17, 2026, 01_19_30 PM.png",
+    "/product_images/optimized/mizban-super-basmati.webp",
   mizbanWhiteBasmati:
-    "/product_images/ChatGPT Image Jun 17, 2026, 01_19_45 PM.png",
+    "/product_images/optimized/mizban-white-basmati.webp",
   whiteBeans:
-    "/product_images/ChatGPT Image Jun 17, 2026, 01_54_42 PM (3).png",
+    "/product_images/optimized/white-beans-box.webp",
   golbanoo386Basmati:
-    "/product_images/ChatGPT Image Jun 17, 2026, 01_55_22 PM (5).png",
+    "/product_images/optimized/golbanoo-386-basmati.webp",
   hayatThaiJasmine:
-    "/product_images/ChatGPT Image Jun 17, 2026, 01_55_22 PM (6).png",
+    "/product_images/optimized/hayat-thai-jasmine.webp",
   walnutKernels:
-    "/product_images/ChatGPT Image Jun 17, 2026, 04_01_59 PM (2).png",
+    "/product_images/optimized/walnut-kernels.webp",
   pumpkinSeedKernels:
-    "/product_images/ChatGPT Image Jun 17, 2026, 04_02_01 PM (4).png",
+    "/product_images/optimized/pumpkin-seed-kernels.webp",
   cashewNuts:
-    "/product_images/ChatGPT Image Jun 17, 2026, 04_02_02 PM (5).png",
+    "/product_images/optimized/cashew-nuts.webp",
   turmeric:
-    "/product_images/ChatGPT Image Jun 17, 2026, 04_01_59 PM (1).png",
+    "/product_images/optimized/turmeric.webp",
   sunflowerSeedKernels:
-    "/product_images/ChatGPT Image Jun 17, 2026, 04_02_00 PM (3).png",
+    "/product_images/optimized/sunflower-seed-kernels.webp",
   redLentil:
-    "/product_images/ChatGPT Image Jun 17, 2026, 04_02_18 PM (1).png",
+    "/product_images/optimized/red-lentil.webp",
   chickpeas:
-    "/product_images/ChatGPT Image Jun 17, 2026, 04_02_18 PM (2).png",
+    "/product_images/optimized/chickpeas.webp",
   whiteBeanBag:
-    "/product_images/ChatGPT Image Jun 17, 2026, 04_02_19 PM (3).png",
+    "/product_images/optimized/white-bean-bag.webp",
   mungBean:
-    "/product_images/ChatGPT Image Jun 17, 2026, 04_02_19 PM (4).png",
+    "/product_images/optimized/mung-bean.webp",
   kidneyBean:
-    "/product_images/ChatGPT Image Jun 17, 2026, 04_02_20 PM (5).png",
+    "/product_images/optimized/kidney-bean.webp",
   desiChickpea:
-    "/product_images/ChatGPT Image Jun 17, 2026, 04_02_21 PM (6).png",
+    "/product_images/optimized/desi-chickpea.webp",
   blackPepper:
-    "/product_images/\u0648\u0632\u0646 \u062e\u0627\u0644\u0635 \u0628\u0647 \u0641\u0627\u0631\u0633\u06cc 20 \u0628\u0627\u0634\u0647.png",
+    "/product_images/optimized/black-pepper.webp",
   popcornCorn:
-    "/product_images/ChatGPT Image Jun 17, 2026, 04_02_24 PM (10).png",
+    "/product_images/optimized/popcorn-corn.webp",
   golbanooSellaBasmati:
-    "/product_images/ChatGPT Image Jun 17, 2026, 06_04_31 PM (1).png",
+    "/product_images/optimized/golbanoo-sella-basmati.webp",
   twentyOneSellaBasmati:
-    "/product_images/ChatGPT Image Jun 17, 2026, 06_04_31 PM (2).png",
+    "/product_images/optimized/twenty-one-sella-basmati.webp",
 } as const;
 
 export const products: Product[] = [
@@ -108,8 +108,6 @@ export const products: Product[] = [
       "A staple legume supplied for wholesalers, retailers, organizations, and foodservice buyers.",
     descriptionFa:
       "حبوباتی پرمصرف برای عمده‌فروشان، خرده‌فروشان، سازمان‌ها و خریداران خدمات غذایی.",
-    image: productImages.whiteBeanBag,
-    images: [productImages.whiteBeanBag],
   },
   {
     id: 4,
@@ -132,8 +130,6 @@ export const products: Product[] = [
       "A practical pulse line for steady access to everyday food staples across B2B channels.",
     descriptionFa:
       "حبوباتی کاربردی برای دسترسی پایدار به اقلام غذایی روزمره در کانال‌های B2B.",
-    image: productImages.whiteBeans,
-    images: [productImages.whiteBeans],
   },
   {
     id: 6,
@@ -168,8 +164,6 @@ export const products: Product[] = [
       "A high-demand pulse supplied through a network designed for continuity and quality.",
     descriptionFa:
       "حبوباتی پرتقاضا که از طریق شبکه‌ای مبتنی بر استمرار تامین و کیفیت عرضه می‌شود.",
-    image: productImages.mungBean,
-    images: [productImages.mungBean],
   },
   {
     id: 9,
@@ -216,8 +210,6 @@ export const products: Product[] = [
       "A familiar seed product supplied for reliable access across wholesale and retail food channels.",
     descriptionFa:
       "محصولی آشنا از گروه دانه‌ها برای دسترسی قابل اتکا در کانال‌های عمده و فروشگاهی.",
-    image: productImages.sunflowerSeedKernels,
-    images: [productImages.sunflowerSeedKernels],
   },
   {
     id: 13,
@@ -240,8 +232,6 @@ export const products: Product[] = [
       "A seed item selected within a portfolio focused on quality, availability, and practical market needs.",
     descriptionFa:
       "محصولی از گروه دانه‌ها در سبدی متمرکز بر کیفیت، دسترسی و نیازهای عملی بازار.",
-    image: productImages.pumpkinSeedKernels,
-    images: [productImages.pumpkinSeedKernels],
   },
   {
     id: 15,
@@ -264,8 +254,6 @@ export const products: Product[] = [
       "A core seed product supplied through the company's quality-conscious sourcing approach.",
     descriptionFa:
       "یکی از محصولات اصلی گروه دانه‌ها که با رویکرد تامین حساس به کیفیت عرضه می‌شود.",
-    image: productImages.sunflowerSeedKernels,
-    images: [productImages.sunflowerSeedKernels],
   },
   {
     id: 17,
@@ -276,8 +264,6 @@ export const products: Product[] = [
       "A nut product in Faradid Atlas' essential food portfolio, selected for reliable commercial supply.",
     descriptionFa:
       "محصولی از گروه آجیل در سبد مواد غذایی اساسی فرادید اطلس برای تامین تجاری قابل اتکا.",
-    image: productImages.walnutKernels,
-    images: [productImages.walnutKernels],
   },
   {
     id: 18,
@@ -312,8 +298,6 @@ export const products: Product[] = [
       "A staple nut product for buyers seeking steady access to essential food products.",
     descriptionFa:
       "محصولی پرمصرف از گروه آجیل برای خریدارانی که به دسترسی پایدار به مواد غذایی اساسی نیاز دارند.",
-    image: productImages.cashewNuts,
-    images: [productImages.cashewNuts],
   },
   {
     id: 21,
@@ -326,8 +310,6 @@ export const products: Product[] = [
       "A coconut product listed in the company's nuts and essential food portfolio.",
     descriptionFa:
       "محصولی از خانواده نارگیل در سبد آجیل و مواد غذایی اساسی شرکت.",
-    image: productImages.cashewNuts,
-    images: [productImages.cashewNuts],
   },
   {
     id: 22,
@@ -362,8 +344,6 @@ export const products: Product[] = [
       "A spice product included in Faradid Atlas' essential food and seasoning portfolio.",
     descriptionFa:
       "محصولی از گروه ادویه‌جات در سبد مواد غذایی اساسی و چاشنی‌های فرادید اطلس.",
-    image: productImages.blackPepper,
-    images: [productImages.blackPepper],
   },
   {
     id: 25,
@@ -374,8 +354,6 @@ export const products: Product[] = [
       "An essential sweetener supplied for wholesalers, retailers, organizations, and foodservice buyers.",
     descriptionFa:
       "شیرین‌کننده‌ای اساسی برای عمده‌فروشان، خرده‌فروشان، سازمان‌ها و خریداران خدمات غذایی.",
-    image: productImages.whiteBeans,
-    images: [productImages.whiteBeans],
   },
   {
     id: 26,

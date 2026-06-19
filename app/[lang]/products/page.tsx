@@ -42,6 +42,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
             alt={lang === "en" ? "Food product portfolio" : "سبد محصولات غذایی"}
             fill
             sizes="100vw"
+            quality={82}
             className="object-cover"
             priority
           />

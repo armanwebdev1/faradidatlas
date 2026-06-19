@@ -62,6 +62,13 @@ function escapeHtml(value: string) {
 
 export async function POST(request: NextRequest) {
   try {
+    if (process.env.NEXT_PUBLIC_ENABLE_BACKEND !== "true") {
+      return NextResponse.json(
+        { ok: false, message: "Email delivery is paused for now." },
+        { status: 503 },
+      );
+    }
+
     const payload = contactSchema.parse(await request.json());
 
     if (payload.website) {

@@ -9,6 +9,7 @@ interface ContactFormProps {
 }
 
 export function ContactForm({ lang }: ContactFormProps) {
+  const backendEnabled = process.env.NEXT_PUBLIC_ENABLE_BACKEND === "true";
   const [formData, setFormData] = useState({
     company: "",
     name: "",
@@ -45,6 +46,24 @@ export function ContactForm({ lang }: ContactFormProps) {
     setSubmitted(false);
 
     try {
+      if (!backendEnabled) {
+        setSubmitted(true);
+        setFormData({
+          company: "",
+          name: "",
+          email: "",
+          phone: "",
+          role: "",
+          productInterest: "",
+          volume: "",
+          destination: "",
+          timeline: "",
+          message: "",
+          website: "",
+        });
+        return;
+      }
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -341,9 +360,13 @@ export function ContactForm({ lang }: ContactFormProps) {
       {/* Success message - responsive */}
       {submitted && (
         <div className="p-3 sm:p-4 bg-green-50 border border-green-200 rounded-2xl text-green-700 text-xs sm:text-sm animate-fade-in-up">
-          {lang === "en"
-            ? "Thank you! Your inquiry has been received. Our team will review the details and contact you."
-            : "متشکریم! درخواست شما دریافت شد. تیم ما جزئیات را بررسی می‌کند و با شما تماس می‌گیرد."}
+          {backendEnabled
+            ? lang === "en"
+              ? "Thank you! Your inquiry has been received. Our team will review the details and contact you."
+              : "متشکریم! درخواست شما دریافت شد. تیم ما جزئیات را بررسی می‌کند و با شما تماس می‌گیرد."
+            : lang === "en"
+              ? "Thank you! Email delivery is paused for now, so this inquiry was not sent."
+              : "متشکریم! ارسال ایمیل فعلا غیرفعال است، بنابراین این درخواست ارسال نشد."}
         </div>
       )}
     </form>

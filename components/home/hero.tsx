@@ -21,15 +21,15 @@ const slide = {
   },
   title: {
     en: "Reliable Food Supply",
-    fa: "ØªØ§Ù…ÛŒÙ† Ù…Ø·Ù…Ø¦Ù† Ù…ÙˆØ§Ø¯ ØºØ°Ø§ÛŒÛŒ",
+    fa: "تامین مطمئن مواد غذایی",
   },
   subtitle: {
     en: "Food Security in Practice",
-    fa: "Ø§Ù…Ù†ÛŒØª ØºØ°Ø§ÛŒÛŒ Ø¯Ø± Ø¹Ù…Ù„",
+    fa: "امنیت غذایی در عمل",
   },
   description: {
     en: "Established in 2009, Faradid Atlas sources, imports, and distributes essential food products with disciplined quality standards and dependable regional operations.",
-    fa: "ÙØ±Ø§Ø¯ÛŒØ¯ Ø§Ø·Ù„Ø³ Ú©Ù‡ Ø¯Ø± Ø³Ø§Ù„ Û±Û³Û¸Û¸ Ø¨Ù†ÛŒØ§Ù† Ú¯Ø°Ø§Ø´ØªÙ‡ Ø´Ø¯ØŒ Ù…Ø­ØµÙˆÙ„Ø§Øª ØºØ°Ø§ÛŒÛŒ Ø§Ø³Ø§Ø³ÛŒ Ø±Ø§ Ø¨Ø§ Ø§Ù†ØªØ®Ø§Ø¨ Ø¯Ù‚ÛŒÙ‚ØŒ Ø§Ø³ØªØ§Ù†Ø¯Ø§Ø±Ø¯Ù‡Ø§ÛŒ Ú©ÛŒÙÛŒ Ù…Ù†Ø¸Ù… Ùˆ Ø¹Ù…Ù„ÛŒØ§Øª Ù…Ù†Ø·Ù‚Ù‡â€ŒØ§ÛŒ Ù‚Ø§Ø¨Ù„ Ø§ØªÚ©Ø§ ØªØ§Ù…ÛŒÙ†ØŒ ÙˆØ§Ø±Ø¯ Ùˆ ØªÙˆØ²ÛŒØ¹ Ù…ÛŒâ€ŒÚ©Ù†Ø¯.",
+    fa: "فرادید اطلس که در سال ۱۳۸۸ بنیان گذاشته شد، محصولات غذایی اساسی را با انتخاب دقیق، استانداردهای کیفی منظم و عملیات منطقه‌ای قابل اتکا تامین، وارد و توزیع می‌کند.",
   },
 };
 
@@ -52,9 +52,10 @@ export function Hero({ lang }: HeroProps) {
             fetchPriority="high"
             loading="eager"
             decoding="async"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover scale-[1.03] transform-gpu animate-hero-image-zoom"
           />
         </picture>
+        <div className="hero-premium-sheen" aria-hidden="true" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/90" />
       </div>
 
@@ -63,21 +64,31 @@ export function Hero({ lang }: HeroProps) {
           className={`max-w-5xl px-8 md:px-12 lg:px-20 pb-20 md:pb-28 transform-gpu text-left ${textShiftClass}`}
           dir={isRTL ? "rtl" : "ltr"}
         >
-          <p className="eyebrow mb-6 text-accent-warm-gold">
+          <p
+            className="eyebrow mb-6 text-accent-warm-gold animate-fade-in-up"
+            style={{ animationDelay: "0.05s" }}
+          >
             {slide.subtitle[lang]}
           </p>
 
-          <h1 className="mb-8 text-responsive-hero text-white">
+          <h1
+            className="mb-8 text-responsive-hero text-white animate-fade-in-up"
+            style={{ animationDelay: "0.12s" }}
+          >
             <span className="block">{titleParts[0]}</span>
             <span className="block">{titleParts.slice(1).join(" ")}</span>
           </h1>
 
-          <p className="mb-10 max-w-2xl text-responsive-body text-white/85">
+          <p
+            className="mb-10 max-w-2xl text-responsive-body text-white/85 animate-fade-in-up"
+            style={{ animationDelay: "0.2s" }}
+          >
             {slide.description[lang]}
           </p>
 
           <div
-            className={`flex gap-2 ${isRTL ? "flex-row-reverse" : ""}`}
+            className={`flex gap-2 animate-fade-in-up ${isRTL ? "flex-row-reverse" : ""}`}
+            style={{ animationDelay: "0.28s" }}
             aria-hidden="true"
           >
             <span className="h-1 w-12 bg-white" />

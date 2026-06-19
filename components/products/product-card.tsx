@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Language } from "@/lib/i18n";
 import { categoryLabels, type Product } from "./product-data";
+import { ProductPlaceholder } from "./product-placeholder";
 
 interface ProductCardProps {
   product: Product;
@@ -24,13 +25,22 @@ export function ProductCard({ product, lang }: ProductCardProps) {
         <div className="absolute inset-0 bg-gradient-to-br from-accent-warm-gold/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
 
         <div className="relative aspect-square bg-gradient-to-br from-secondary/40 to-secondary/60 overflow-hidden">
-          <Image
-            src={product.image}
-            alt={name}
-            fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-          />
+          {product.image ? (
+            <Image
+              src={product.image}
+              alt={name}
+              fill
+              sizes="(min-width: 1280px) 360px, (min-width: 1024px) 31vw, (min-width: 640px) 46vw, 92vw"
+              quality={78}
+              className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+            />
+          ) : (
+            <ProductPlaceholder
+              product={product}
+              lang={lang}
+              className="transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+          )}
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 

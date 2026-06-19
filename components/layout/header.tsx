@@ -20,6 +20,14 @@ export function Header({ lang }: HeaderProps) {
   const isRTL = lang === "fa";
   const dir = isRTL ? "rtl" : "ltr";
   const otherLang = lang === "en" ? "fa" : "en";
+  const languageNames: Record<Language, string> = {
+    en: "English",
+    fa: "فارسی",
+  };
+  const localeMarks: Record<Language, string> = {
+    en: "US",
+    fa: "IR",
+  };
 
   const navItems = [
     { href: `/${lang}`, label: t.nav.home, key: "home", Icon: Home },
@@ -91,14 +99,14 @@ export function Header({ lang }: HeaderProps) {
 
             <details className="relative shrink-0 group/lang">
               <summary
-                aria-label={lang === "en" ? "Select language" : "Ø§Ù†ØªØ®Ø§Ø¨ Ø²Ø¨Ø§Ù†"}
+                aria-label={lang === "en" ? "Select language" : "انتخاب زبان"}
                 className="flex cursor-pointer list-none items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-primary/5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/30 [&::-webkit-details-marker]:hidden"
               >
                 <span className="text-base sm:text-lg">
-                  {lang === "en" ? "US" : "IR"}
+                  {localeMarks[lang]}
                 </span>
                 <span className="hidden sm:inline text-sm font-medium text-foreground">
-                  {lang === "en" ? "English" : "ÙØ§Ø±Ø³ÛŒ"}
+                  {languageNames[lang]}
                 </span>
                 <ChevronDown
                   size={18}
@@ -112,7 +120,7 @@ export function Header({ lang }: HeaderProps) {
               >
                 <div className="px-4 py-2 bg-gradient-to-r from-primary/5 to-accent/5 border-b border-border/10">
                   <p className="text-xs font-semibold text-muted-foreground tracking-wide uppercase">
-                    {isRTL ? "Ø²Ø¨Ø§Ù†" : "Language"}
+                    {isRTL ? t.common.language : "Language"}
                   </p>
                 </div>
                 <div className="py-2 space-y-1 px-2">
@@ -121,8 +129,8 @@ export function Header({ lang }: HeaderProps) {
                     className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg bg-primary/10 text-primary shadow-sm"
                     role="menuitem"
                   >
-                    <span className="text-lg">{lang === "en" ? "US" : "IR"}</span>
-                    <span>{lang === "en" ? "English" : "ÙØ§Ø±Ø³ÛŒ"}</span>
+                    <span className="text-lg">{localeMarks[lang]}</span>
+                    <span>{languageNames[lang]}</span>
                     <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary" />
                   </a>
                   <a
@@ -130,8 +138,8 @@ export function Header({ lang }: HeaderProps) {
                     className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-foreground hover:bg-muted/50 transition-all duration-200"
                     role="menuitem"
                   >
-                    <span className="text-lg">{otherLang === "en" ? "US" : "IR"}</span>
-                    <span>{otherLang === "en" ? "English" : "ÙØ§Ø±Ø³ÛŒ"}</span>
+                    <span className="text-lg">{localeMarks[otherLang]}</span>
+                    <span>{languageNames[otherLang]}</span>
                   </a>
                 </div>
               </div>

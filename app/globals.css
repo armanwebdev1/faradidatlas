@@ -962,6 +962,20 @@
     animation: shimmer 3s linear infinite;
   }
 
+  @keyframes heroImageZoom {
+    from {
+      transform: scale(1.03);
+    }
+    to {
+      transform: scale(1.13);
+    }
+  }
+
+  .animate-hero-image-zoom {
+    animation: heroImageZoom 13s ease-out forwards;
+    will-change: transform;
+  }
+
   /* Premium hero ambient animation */
   @keyframes heroSheen {
     0% {
@@ -1234,6 +1248,15 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .animate-hero-image-zoom,
+    .hero-premium-sheen,
+    .animate-fade-in-up {
+      animation: none !important;
+      opacity: 1;
+      transform: none;
+      will-change: auto;
+    }
+
     .value-props-marquee {
       animation: none;
       transform: none;

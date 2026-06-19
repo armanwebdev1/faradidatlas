@@ -38,6 +38,7 @@ export function ApplicationForm({
   jobId,
   jobTitle,
 }: ApplicationFormProps) {
+  const backendEnabled = process.env.NEXT_PUBLIC_ENABLE_BACKEND === "true";
   const initialFormData: FormValues = {
     firstName: "",
     lastName: "",
@@ -302,6 +303,17 @@ export function ApplicationForm({
     setSubmitted(false);
 
     try {
+      if (!backendEnabled) {
+        setSubmitted(true);
+        setFormData(initialFormData);
+        setErrors({});
+        setTouched({});
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+        return;
+      }
+
       const payload = new FormData();
       payload.append("lang", lang);
       payload.append("jobId", String(jobId));
@@ -614,7 +626,11 @@ export function ApplicationForm({
 
       {submitted && (
         <div className="mt-5 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-xs sm:text-sm text-green-700 animate-fade-in-up">
-          {copy.success}
+          {backendEnabled
+            ? copy.success
+            : lang === "en"
+              ? "Thank you! Email delivery is paused for now, so this application was not sent."
+              : "متشکریم! ارسال ایمیل فعلا غیرفعال است، بنابراین این درخواست ارسال نشد."}
         </div>
       )}
     </form>
