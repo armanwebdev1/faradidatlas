@@ -7,10 +7,15 @@ import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import Image from "next/image";
 
+type ProductSearchParams = {
+  q?: string | string[];
+};
+
 interface ProductsPageProps {
   params: Promise<{
     lang: Language;
   }>;
+  searchParams?: Promise<ProductSearchParams>;
 }
 
 export async function generateMetadata({ params }: ProductsPageProps) {
@@ -28,9 +33,20 @@ export async function generateMetadata({ params }: ProductsPageProps) {
   });
 }
 
-export default async function ProductsPage({ params }: ProductsPageProps) {
-  const { lang } = await params;
+export default async function ProductsPage({
+  params,
+  searchParams,
+}: ProductsPageProps) {
+  const emptySearchParams: ProductSearchParams = {};
+  const [{ lang }, resolvedSearchParams] = await Promise.all([
+    params,
+    searchParams ?? Promise.resolve(emptySearchParams),
+  ]);
   const isRTL = lang === "fa";
+  const rawSearchQuery = resolvedSearchParams.q;
+  const searchQuery = Array.isArray(rawSearchQuery)
+    ? rawSearchQuery[0] ?? ""
+    : rawSearchQuery ?? "";
 
   return (
     <div dir={isRTL ? "rtl" : "ltr"}>
@@ -77,7 +93,11 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
           </div>
         </section>
 
-        <ProductsContent lang={lang} products={products} />
+        <ProductsContent
+          lang={lang}
+          products={products}
+          initialQuery={searchQuery}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

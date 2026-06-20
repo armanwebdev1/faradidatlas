@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { Language } from "@/lib/i18n";
-import type { Product } from "./product-data";
+import { categoryLabels, type Product } from "./product-data";
 import { Filters } from "./filters";
 import { Sorting } from "./sorting";
 import { ProductCard } from "./product-card";
@@ -10,11 +10,65 @@ import { ProductCard } from "./product-card";
 interface ProductsContentProps {
   lang: Language;
   products: Product[];
+  initialQuery?: string;
 }
 
-export function ProductsContent({ lang, products }: ProductsContentProps) {
-  const [filteredProducts, setFilteredProducts] = useState(products);
-  const [sortedProducts, setSortedProducts] = useState(products);
+function normalizeSearchText(value: string) {
+  return value
+    .toLocaleLowerCase()
+    .replace(/ي/g, "ی")
+    .replace(/ك/g, "ک")
+    .replace(/\u200c/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function productSearchText(product: Product) {
+  const category = categoryLabels[product.category];
+
+  return [
+    product.nameEn,
+    product.nameFa,
+    product.aliasEn,
+    product.aliasFa,
+    product.descriptionEn,
+    product.descriptionFa,
+    category.en,
+    category.fa,
+    product.category,
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+export function ProductsContent(props: ProductsContentProps) {
+  return (
+    <ProductsContentInner
+      key={props.initialQuery ?? ""}
+      {...props}
+    />
+  );
+}
+
+function ProductsContentInner({
+  lang,
+  products,
+  initialQuery = "",
+}: ProductsContentProps) {
+  const query = initialQuery.trim();
+  const searchedProducts = useMemo(() => {
+    const normalizedQuery = normalizeSearchText(query);
+
+    if (!normalizedQuery) return products;
+
+    return products.filter((product) =>
+      normalizeSearchText(productSearchText(product)).includes(
+        normalizedQuery,
+      ),
+    );
+  }, [products, query]);
+  const [filteredProducts, setFilteredProducts] = useState(searchedProducts);
+  const [sortedProducts, setSortedProducts] = useState(searchedProducts);
 
   const handleFilter = (filtered: Product[]) => {
     setFilteredProducts(filtered);
@@ -36,7 +90,7 @@ export function ProductsContent({ lang, products }: ProductsContentProps) {
               </h3>
               <Filters
                 lang={lang}
-                products={products}
+                products={searchedProducts}
                 onFilter={handleFilter}
               />
             </div>
@@ -44,9 +98,19 @@ export function ProductsContent({ lang, products }: ProductsContentProps) {
 
           <div className="flex-1">
             <div className="mb-10 sm:mb-12 flex justify-between items-center gap-4">
-              <span className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wide">
-                {lang === "en" ? "Core Portfolio" : "سبد اصلی"}
-              </span>
+              <div>
+                <span className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+                  {lang === "en" ? "Core Portfolio" : "سبد اصلی"}
+                </span>
+                {query && (
+                  <p className="mt-2 text-sm text-foreground/65">
+                    {lang === "en" ? "Search" : "جستجو"}:{" "}
+                    <span className="font-medium text-foreground">
+                      {query}
+                    </span>
+                  </p>
+                )}
+              </div>
               <Sorting
                 lang={lang}
                 products={filteredProducts}

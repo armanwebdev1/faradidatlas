@@ -134,7 +134,7 @@ export function CTASection({ lang }: CTASectionProps) {
 
             <div className="mt-6 sm:mt-8 md:mt-10 flex justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 text-foreground/20 flex-wrap sm:flex-nowrap">
               <div className="text-center flex-1 sm:flex-none min-w-max">
-                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
+                <div className="mb-1.5 sm:mb-2 text-foreground">
                   <CountUp
                     target={4}
                     className="text-2xl sm:text-3xl md:text-4xl font-bold"
@@ -148,7 +148,7 @@ export function CTASection({ lang }: CTASectionProps) {
               <div className="hidden sm:block w-px bg-gradient-to-b from-transparent via-accent to-transparent" />
 
               <div className="text-center flex-1 sm:flex-none min-w-max">
-                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent-warm-copper bg-clip-text text-transparent">
+                <div className="mb-1.5 sm:mb-2 text-foreground">
                   <CountUp
                     target={25}
                     className="text-2xl sm:text-3xl md:text-4xl font-bold"
@@ -162,7 +162,7 @@ export function CTASection({ lang }: CTASectionProps) {
               <div className="hidden sm:block w-px bg-gradient-to-b from-transparent via-accent to-transparent" />
 
               <div className="text-center flex-1 sm:flex-none min-w-max">
-                <div className="mb-1.5 sm:mb-2 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
+                <div className="mb-1.5 sm:mb-2 text-foreground">
                   <CountUp
                     target={2009}
                     className="text-2xl sm:text-3xl md:text-4xl font-bold"

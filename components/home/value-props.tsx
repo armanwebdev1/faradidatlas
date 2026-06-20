@@ -71,18 +71,12 @@ const valueItems = {
 export function ValueProps({ lang }: ValuePropsProps) {
   const isRTL = lang === "fa";
   const items = lang === "en" ? valueItems.en : valueItems.fa;
-  const marqueeItems = [...items, ...items];
+  const marqueeGroups = [0, 1];
 
   return (
     <section className="section bg-surface relative overflow-hidden">
-      <div
-        className="absolute top-20 w-96 h-96 bg-gradient-to-br from-accent-warm-gold/3 to-transparent rounded-full blur-3xl pointer-events-none"
-        style={{ right: 0 }}
-      />
-      <div
-        className="absolute bottom-0 w-80 h-80 bg-gradient-to-tr from-accent/2 to-transparent rounded-full blur-3xl pointer-events-none"
-        style={{ left: 0 }}
-      />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/25 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
 
       <div className="container-wide relative z-10">
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
@@ -107,31 +101,37 @@ export function ValueProps({ lang }: ValuePropsProps) {
 
         <div className="relative">
           <div
-            className="absolute top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-gradient-to-r from-white via-white/50 to-transparent z-20 pointer-events-none"
+            className="absolute top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-gradient-to-r from-surface via-surface/70 to-transparent z-20 pointer-events-none"
             style={{ left: 0 }}
           />
           <div
-            className="absolute top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-gradient-to-l from-white via-white/50 to-transparent z-20 pointer-events-none"
+            className="absolute top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-gradient-to-l from-surface via-surface/70 to-transparent z-20 pointer-events-none"
             style={{ right: 0 }}
           />
 
-          <div className="overflow-hidden rounded-2xl">
+          <div className="overflow-hidden rounded-lg">
             <div
-              className={`flex gap-6 sm:gap-8 w-max py-2 value-props-marquee ${
+              className={`flex w-max py-2 value-props-marquee ${
                 isRTL ? "value-props-marquee-reverse" : ""
               }`}
             >
-              {marqueeItems.map((item, idx) => {
-                const IconComponent = item.icon;
-                return (
+              {marqueeGroups.map((groupIndex) => (
+                <div
+                  key={groupIndex}
+                  className="flex shrink-0 gap-6 sm:gap-8 pr-6 sm:pr-8"
+                  aria-hidden={groupIndex === 1}
+                >
+                  {items.map((item, idx) => {
+                    const IconComponent = item.icon;
+
+                    return (
                   <div
-                    key={`${item.title}-${idx}`}
+                    key={`${groupIndex}-${item.title}-${idx}`}
                     className="flex-shrink-0 w-80 sm:w-96 md:w-[28rem]"
-                    aria-hidden={idx >= items.length}
                   >
-                    <div className="h-full flex flex-col p-6 sm:p-8 rounded-2xl border border-foreground/8 bg-gradient-to-br from-foreground/[0.02] to-foreground/[0.01] backdrop-blur-md transition-colors duration-500 hover:bg-gradient-to-br hover:from-foreground/[0.05] hover:to-foreground/[0.02]">
+                    <div className="h-full flex flex-col p-6 sm:p-8 rounded-lg border border-foreground/8 bg-gradient-to-br from-foreground/[0.02] to-foreground/[0.01] backdrop-blur-md shadow-[0_18px_45px_-38px_rgba(30,35,39,0.55)] transition-all duration-500 hover:-translate-y-1 hover:border-accent/25 hover:bg-gradient-to-br hover:from-foreground/[0.05] hover:to-foreground/[0.02]">
                       <div className="relative mb-6 sm:mb-8 inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20">
-                        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-foreground/8 to-foreground/4" />
+                        <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-foreground/8 to-foreground/4" />
                         <IconComponent
                           size={32}
                           className="relative text-foreground sm:w-10 sm:h-10"
@@ -148,8 +148,10 @@ export function ValueProps({ lang }: ValuePropsProps) {
                       </p>
                     </div>
                   </div>
-                );
-              })}
+                    );
+                  })}
+                </div>
+              ))}
             </div>
           </div>
         </div>

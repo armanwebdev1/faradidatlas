@@ -16,6 +16,7 @@ export function CountUp({
   duration = 1200,
 }: CountUpProps) {
   const [value, setValue] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -28,7 +29,10 @@ export function CountUp({
     ).matches;
 
     if (prefersReducedMotion || target === 0) {
-      frame = requestAnimationFrame(() => setValue(target));
+      frame = requestAnimationFrame(() => {
+        setHasStarted(true);
+        setValue(target);
+      });
       return;
     }
 
@@ -37,6 +41,7 @@ export function CountUp({
     const run = () => {
       if (started) return;
       started = true;
+      setHasStarted(true);
       const startedAt = performance.now();
 
       const tick = (now: number) => {
@@ -71,7 +76,12 @@ export function CountUp({
   }, [duration, target]);
 
   return (
-    <div ref={elementRef} className={className}>
+    <div
+      ref={elementRef}
+      className={`${className} count-up-rise ${
+        hasStarted ? "count-up-rise-visible" : ""
+      }`}
+    >
       {value}
       {suffix}
     </div>

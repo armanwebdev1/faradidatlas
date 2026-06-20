@@ -1,3 +1,6 @@
+ "use client";
+
+import { useEffect, useState } from "react";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import {
@@ -9,6 +12,7 @@ import {
   Phone,
   Search,
   ShoppingBag,
+  X,
 } from "lucide-react";
 
 interface HeaderProps {
@@ -16,6 +20,8 @@ interface HeaderProps {
 }
 
 export function Header({ lang }: HeaderProps) {
+  const [isHidden, setIsHidden] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const t = translations[lang];
   const isRTL = lang === "fa";
   const dir = isRTL ? "rtl" : "ltr";
@@ -53,11 +59,30 @@ export function Header({ lang }: HeaderProps) {
     },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsHidden(window.scrollY > 6);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const clearSearch = () => setSearchValue("");
+  const clearSearchLabel =
+    lang === "en" ? "Clear search" : "پاک کردن جستجو";
+
   return (
     <>
       <header
         dir={dir}
-        className="fixed top-0 inset-x-0 z-40 transition-transform duration-300"
+        className={`fixed top-0 inset-x-0 z-40 transition-[opacity,transform] duration-300 ease-out ${
+          isHidden
+            ? "-translate-y-full opacity-0 pointer-events-none"
+            : "translate-y-0 opacity-100"
+        }`}
       >
         <div className="relative z-50 backdrop-blur-md bg-background/80 border-b border-border/30">
           <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
@@ -83,17 +108,33 @@ export function Header({ lang }: HeaderProps) {
 
             <form
               action={`/${lang}/products`}
+              onSubmit={(event) => {
+                if (!searchValue.trim()) event.preventDefault();
+              }}
               className="hidden md:flex flex-1 justify-center px-4"
             >
               <div className="relative w-full max-w-md">
                 <Search className="absolute top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5 pointer-events-none left-4" />
                 <input
-                  type="search"
+                  type="text"
                   name="q"
+                  value={searchValue}
+                  onChange={(event) => setSearchValue(event.target.value)}
                   placeholder={`${t.common.search}...`}
-                  className="py-2 text-sm border border-border/50 rounded-full bg-background/60 text-foreground placeholder-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/50 w-full transition-all hover:border-border/70 pl-12 pr-4 text-left"
+                  autoComplete="off"
+                  className="py-2 text-sm border border-border/50 rounded-full bg-background/60 text-foreground placeholder-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/35 w-full transition-all hover:border-border/70 pl-12 pr-11 text-left"
                   aria-label={t.common.search}
                 />
+                {searchValue && (
+                  <button
+                    type="button"
+                    onClick={clearSearch}
+                    aria-label={clearSearchLabel}
+                    className="absolute right-2 top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-border/70 bg-background/90 text-muted-foreground shadow-sm transition-all hover:border-foreground/20 hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
+                  >
+                    <X size={15} strokeWidth={1.8} />
+                  </button>
+                )}
               </div>
             </form>
 
@@ -165,6 +206,38 @@ export function Header({ lang }: HeaderProps) {
                 </svg>
               </summary>
               <div className="fixed inset-x-0 top-16 z-30 bg-background/95 backdrop-blur-md border-b border-border/30 animate-in fade-in slide-in-from-top-8 duration-200">
+                <div className="px-4 pt-4">
+                  <form
+                    action={`/${lang}/products`}
+                    onSubmit={(event) => {
+                      if (!searchValue.trim()) event.preventDefault();
+                    }}
+                  >
+                    <div className="relative">
+                      <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground pointer-events-none" />
+                      <input
+                        type="text"
+                        name="q"
+                        value={searchValue}
+                        onChange={(event) => setSearchValue(event.target.value)}
+                        placeholder={`${t.common.search}...`}
+                        autoComplete="off"
+                        className="w-full rounded-full border border-border/50 bg-background/80 py-2.5 pl-12 pr-11 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+                        aria-label={t.common.search}
+                      />
+                      {searchValue && (
+                        <button
+                          type="button"
+                          onClick={clearSearch}
+                          aria-label={clearSearchLabel}
+                          className="absolute right-2 top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-border/70 bg-background/90 text-muted-foreground shadow-sm transition-all hover:border-foreground/20 hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
+                        >
+                          <X size={15} strokeWidth={1.8} />
+                        </button>
+                      )}
+                    </div>
+                  </form>
+                </div>
                 <nav className="flex flex-col space-y-1 p-4">
                   {navItems.map(({ href, label, key, Icon }) => (
                     <a

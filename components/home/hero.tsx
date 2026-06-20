@@ -1,7 +1,25 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Language } from "@/lib/i18n";
 
 interface HeroProps {
   lang: Language;
+}
+
+interface HeroImage {
+  avif: string;
+  webp: string;
+  fallback: string;
+}
+
+interface HeroSlide {
+  id: number;
+  image: HeroImage;
+  title: Record<Language, string>;
+  subtitle: Record<Language, string>;
+  description: Record<Language, string>;
 }
 
 const heroWidths = [640, 1280, 1920] as const;
@@ -12,67 +30,186 @@ function heroSrcSet(id: number, format: "avif" | "webp") {
     .join(", ");
 }
 
-const slide = {
-  id: 1,
-  image: {
-    avif: heroSrcSet(1, "avif"),
-    webp: heroSrcSet(1, "webp"),
-    fallback: "/hero/1-1280.webp",
+function heroImage(id: number): HeroImage {
+  return {
+    avif: heroSrcSet(id, "avif"),
+    webp: heroSrcSet(id, "webp"),
+    fallback: `/hero/${id}-1280.webp`,
+  };
+}
+
+const slides: HeroSlide[] = [
+  {
+    id: 1,
+    image: heroImage(1),
+    title: {
+      en: "Reliable Food Supply",
+      fa: "تامین مطمئن مواد غذایی",
+    },
+    subtitle: {
+      en: "Food Security in Practice",
+      fa: "امنیت غذایی در عمل",
+    },
+    description: {
+      en: "Established in 2009, Faradid Atlas sources, imports, and distributes essential food products with disciplined quality standards and dependable regional operations.",
+      fa: "فرادید اطلس که در سال ۱۳۸۸ بنیان گذاشته شد، محصولات غذایی اساسی را با انتخاب دقیق، استانداردهای کیفی منظم و عملیات منطقه‌ای قابل اتکا تامین، وارد و توزیع می‌کند.",
+    },
   },
-  title: {
-    en: "Reliable Food Supply",
-    fa: "تامین مطمئن مواد غذایی",
+  {
+    id: 2,
+    image: heroImage(2),
+    title: {
+      en: "Direct Sourcing Network",
+      fa: "شبکه تامین مستقیم",
+    },
+    subtitle: {
+      en: "From Origin to Market",
+      fa: "از مبدا تا بازار",
+    },
+    description: {
+      en: "Supplier relationships across key food-producing markets help keep rice, legumes, nuts, seeds, spices, and sugar moving through clear, practical channels.",
+      fa: "ارتباط با تامین‌کنندگان در بازارهای کلیدی تولید غذا کمک می‌کند برنج، حبوبات، آجیل، دانه‌ها، ادویه‌جات و شکر از مسیرهای روشن و عملی تامین شوند.",
+    },
   },
-  subtitle: {
-    en: "Food Security in Practice",
-    fa: "امنیت غذایی در عمل",
+  {
+    id: 3,
+    image: heroImage(3),
+    title: {
+      en: "Steady Regional Reach",
+      fa: "حضور منطقه‌ای پایدار",
+    },
+    subtitle: {
+      en: "Built for B2B Continuity",
+      fa: "ساخته‌شده برای تداوم B2B",
+    },
+    description: {
+      en: "Offices, branches, and warehouse support across the region give buyers a steadier path from product need to reliable delivery.",
+      fa: "دفاتر، شعب و پشتیبانی انبار در منطقه، مسیر مطمئن‌تری از نیاز محصول تا تحویل قابل اتکا برای خریداران ایجاد می‌کند.",
+    },
   },
-  description: {
-    en: "Established in 2009, Faradid Atlas sources, imports, and distributes essential food products with disciplined quality standards and dependable regional operations.",
-    fa: "فرادید اطلس که در سال ۱۳۸۸ بنیان گذاشته شد، محصولات غذایی اساسی را با انتخاب دقیق، استانداردهای کیفی منظم و عملیات منطقه‌ای قابل اتکا تامین، وارد و توزیع می‌کند.",
-  },
-};
+];
 
 export function Hero({ lang }: HeroProps) {
+  const [activeIndex, setActiveIndex] = useState(0);
   const isRTL = lang === "fa";
-  const titleParts = slide.title[lang].split(" ");
+  const activeSlide = slides[activeIndex];
+  const titleParts = useMemo(
+    () => activeSlide.title[lang].split(" "),
+    [activeSlide, lang],
+  );
   const textShiftClass = isRTL
     ? "-translate-x-4 sm:-translate-x-6 md:-translate-x-8"
     : "translate-x-4 sm:translate-x-6 md:translate-x-8";
 
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) return;
+
+    const timer = window.setInterval(() => {
+      setActiveIndex((index) => (index + 1) % slides.length);
+    }, 6200);
+
+    return () => window.clearInterval(timer);
+  }, [activeIndex]);
+
+  const goToSlide = (index: number) => {
+    setActiveIndex((index + slides.length) % slides.length);
+  };
+
+  const goToPrevious = () => goToSlide(activeIndex - 1);
+  const goToNext = () => goToSlide(activeIndex + 1);
+
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-neutral-900">
-      <div className="relative h-full w-full">
-        <picture className="absolute inset-0 block">
-          <source type="image/avif" srcSet={slide.image.avif} sizes="100vw" />
-          <source type="image/webp" srcSet={slide.image.webp} sizes="100vw" />
-          <img
-            src={slide.image.fallback}
-            alt=""
-            fetchPriority="high"
-            loading="eager"
-            decoding="async"
-            className="h-full w-full object-cover scale-[1.03] transform-gpu animate-hero-image-zoom"
-          />
-        </picture>
+    <div className="relative h-[calc(100svh-5rem)] min-h-[34rem] max-h-[820px] w-full overflow-hidden bg-neutral-950 md:h-[calc(100svh-9rem)]">
+      <div className="absolute inset-0">
+        {slides.map((slide, index) => {
+          const isActive = index === activeIndex;
+
+          return (
+            <picture
+              key={slide.id}
+              className={`absolute inset-0 block transition-opacity duration-1000 ease-out ${
+                isActive ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <source
+                type="image/avif"
+                srcSet={slide.image.avif}
+                sizes="100vw"
+              />
+              <source
+                type="image/webp"
+                srcSet={slide.image.webp}
+                sizes="100vw"
+              />
+              <img
+                key={`${slide.id}-${isActive ? "active" : "idle"}`}
+                src={slide.image.fallback}
+                alt=""
+                fetchPriority={index === 0 ? "high" : "auto"}
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding="async"
+                className={`h-full w-full object-cover transform-gpu ${
+                  isActive
+                    ? "scale-[1.03] animate-hero-image-zoom"
+                    : "scale-[1.08]"
+                }`}
+              />
+            </picture>
+          );
+        })}
+
         <div className="hero-premium-sheen" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/45 to-black/90" />
+      </div>
+
+      <div className="absolute inset-x-0 top-1/2 z-30 flex -translate-y-1/2 items-center justify-between px-4 sm:px-6 md:px-8 pointer-events-none">
+        <button
+          type="button"
+          onClick={goToPrevious}
+          className="pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white shadow-xl backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 md:h-12 md:w-12"
+          aria-label={lang === "en" ? "Previous hero slide" : "اسلاید قبلی"}
+        >
+          {isRTL ? (
+            <ChevronRight className="h-5 w-5" strokeWidth={1.8} />
+          ) : (
+            <ChevronLeft className="h-5 w-5" strokeWidth={1.8} />
+          )}
+        </button>
+
+        <button
+          type="button"
+          onClick={goToNext}
+          className="pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white shadow-xl backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 md:h-12 md:w-12"
+          aria-label={lang === "en" ? "Next hero slide" : "اسلاید بعدی"}
+        >
+          {isRTL ? (
+            <ChevronLeft className="h-5 w-5" strokeWidth={1.8} />
+          ) : (
+            <ChevronRight className="h-5 w-5" strokeWidth={1.8} />
+          )}
+        </button>
       </div>
 
       <div className="absolute bottom-0 inset-x-0 z-20">
         <div
-          className={`max-w-5xl px-8 md:px-12 lg:px-20 pb-20 md:pb-28 transform-gpu text-left ${textShiftClass}`}
+          key={activeSlide.id}
+          className={`max-w-5xl px-8 md:px-12 lg:px-20 pb-16 sm:pb-20 md:pb-24 transform-gpu text-left ${textShiftClass}`}
           dir={isRTL ? "rtl" : "ltr"}
+          aria-live="polite"
         >
           <p
-            className="eyebrow mb-6 text-accent-warm-gold animate-fade-in-up"
+            className="eyebrow mb-5 text-accent-warm-gold animate-fade-in-up"
             style={{ animationDelay: "0.05s" }}
           >
-            {slide.subtitle[lang]}
+            {activeSlide.subtitle[lang]}
           </p>
 
           <h1
-            className="mb-8 text-responsive-hero text-white animate-fade-in-up"
+            className="mb-6 text-responsive-hero text-white animate-fade-in-up"
             style={{ animationDelay: "0.12s" }}
           >
             <span className="block">{titleParts[0]}</span>
@@ -80,20 +217,35 @@ export function Hero({ lang }: HeroProps) {
           </h1>
 
           <p
-            className="mb-10 max-w-2xl text-responsive-body text-white/85 animate-fade-in-up"
+            className="mb-8 max-w-2xl text-responsive-body text-white/85 animate-fade-in-up"
             style={{ animationDelay: "0.2s" }}
           >
-            {slide.description[lang]}
+            {activeSlide.description[lang]}
           </p>
 
           <div
-            className={`flex gap-2 animate-fade-in-up ${isRTL ? "flex-row-reverse" : ""}`}
+            className={`flex items-center gap-2 animate-fade-in-up ${
+              isRTL ? "flex-row-reverse justify-end" : ""
+            }`}
             style={{ animationDelay: "0.28s" }}
-            aria-hidden="true"
           >
-            <span className="h-1 w-12 bg-white" />
-            <span className="h-1 w-6 bg-white/40" />
-            <span className="h-1 w-6 bg-white/40" />
+            {slides.map((slide, index) => (
+              <button
+                key={slide.id}
+                type="button"
+                onClick={() => goToSlide(index)}
+                className={`h-1.5 rounded-full transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 ${
+                  index === activeIndex
+                    ? "w-12 bg-white"
+                    : "w-6 bg-white/40 hover:bg-white/65"
+                }`}
+                aria-label={
+                  lang === "en"
+                    ? `Go to hero slide ${index + 1}`
+                    : `رفتن به اسلاید ${index + 1}`
+                }
+              />
+            ))}
           </div>
         </div>
       </div>
