@@ -1,3 +1,4 @@
+// components/Hero.tsx
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
@@ -93,13 +94,19 @@ export function Hero({ lang }: HeroProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const isRTL = lang === "fa";
   const activeSlide = slides[activeIndex];
+
   const titleParts = useMemo(
     () => activeSlide.title[lang].split(" "),
     [activeSlide, lang],
   );
+
   const textShiftClass = isRTL
     ? "ml-auto text-right -translate-x-4 sm:-translate-x-6 md:-translate-x-8"
-    : "text-left translate-x-4 sm:translate-x-6 md:translate-x-8";
+    : "mr-auto text-left translate-x-4 sm:translate-x-6 md:translate-x-8";
+
+  const descriptionAlignClass = isRTL
+    ? "ml-auto text-right"
+    : "mr-auto text-left";
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -113,7 +120,7 @@ export function Hero({ lang }: HeroProps) {
     }, 6200);
 
     return () => window.clearInterval(timer);
-  }, [activeIndex]);
+  }, []);
 
   const goToSlide = (index: number) => {
     setActiveIndex((index + slides.length) % slides.length);
@@ -123,7 +130,10 @@ export function Hero({ lang }: HeroProps) {
   const goToNext = () => goToSlide(activeIndex + 1);
 
   return (
-    <div className="relative h-[calc(100svh-5rem)] min-h-[34rem] max-h-[820px] w-full overflow-hidden bg-neutral-950 md:h-[calc(100svh-9rem)]">
+    <div
+      className="relative h-[calc(100svh-5rem)] min-h-13 max-h-205 w-full overflow-hidden bg-neutral-950 md:h-[calc(100svh-9rem)]"
+      dir={isRTL ? "rtl" : "ltr"}
+    >
       <div className="absolute inset-0">
         {slides.map((slide, index) => {
           const isActive = index === activeIndex;
@@ -163,10 +173,10 @@ export function Hero({ lang }: HeroProps) {
         })}
 
         <div className="hero-premium-sheen" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/45 to-black/90" />
+        <div className="absolute inset-0 bg-liner-to-b from-black/5 via-black/45 to-black/90" />
       </div>
 
-      <div className="absolute inset-x-0 top-1/2 z-30 flex -translate-y-1/2 items-center justify-between px-4 sm:px-6 md:px-8 pointer-events-none">
+      <div className="pointer-events-none absolute inset-x-0 top-1/2 z-30 flex -translate-y-1/2 items-center justify-between px-4 sm:px-6 md:px-8">
         <button
           type="button"
           onClick={goToPrevious}
@@ -194,11 +204,10 @@ export function Hero({ lang }: HeroProps) {
         </button>
       </div>
 
-      <div className="absolute bottom-0 inset-x-0 z-20">
+      <div className="absolute inset-x-0 bottom-0 z-20">
         <div
           key={activeSlide.id}
-          className={`max-w-5xl px-8 md:px-12 lg:px-20 pb-16 sm:pb-20 md:pb-24 transform-gpu ${textShiftClass}`}
-          dir={isRTL ? "rtl" : "ltr"}
+          className={`w-full max-w-5xl transform-gpu px-8 pb-16 sm:pb-20 md:px-12 md:pb-24 lg:px-20 ${textShiftClass}`}
           aria-live="polite"
         >
           <p
@@ -217,16 +226,14 @@ export function Hero({ lang }: HeroProps) {
           </h1>
 
           <p
-            className="mb-8 max-w-2xl text-responsive-body text-white/85 animate-fade-in-up"
+            className={`mb-8 max-w-2xl text-responsive-body text-white/85 animate-fade-in-up ${descriptionAlignClass}`}
             style={{ animationDelay: "0.2s" }}
           >
             {activeSlide.description[lang]}
           </p>
 
           <div
-            className={`flex items-center gap-2 animate-fade-in-up ${
-              isRTL ? "justify-end" : ""
-            }`}
+            className="flex items-center justify-start gap-2 animate-fade-in-up"
             style={{ animationDelay: "0.28s" }}
           >
             {slides.map((slide, index) => (
