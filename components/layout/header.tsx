@@ -1,6 +1,7 @@
  "use client";
 
-import { useEffect, useState } from "react";
+import { type FormEvent, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import {
@@ -20,6 +21,7 @@ interface HeaderProps {
 }
 
 export function Header({ lang }: HeaderProps) {
+  const router = useRouter();
   const [isHidden, setIsHidden] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const t = translations[lang];
@@ -70,9 +72,30 @@ export function Header({ lang }: HeaderProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const productsPath = `/${lang}/products`;
+    const nextSearchValue =
+      url.pathname === productsPath ? (url.searchParams.get("q") ?? "") : "";
+    const frame = window.requestAnimationFrame(() => {
+      setSearchValue(nextSearchValue);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [lang]);
+
   const clearSearch = () => setSearchValue("");
   const clearSearchLabel =
     lang === "en" ? "Clear search" : "پاک کردن جستجو";
+
+  const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const query = searchValue.trim();
+    if (!query) return;
+
+    router.push(`/${lang}/products?q=${encodeURIComponent(query)}`);
+  };
 
   return (
     <>
@@ -108,13 +131,15 @@ export function Header({ lang }: HeaderProps) {
 
             <form
               action={`/${lang}/products`}
-              onSubmit={(event) => {
-                if (!searchValue.trim()) event.preventDefault();
-              }}
+              onSubmit={handleSearchSubmit}
               className="hidden md:flex flex-1 justify-center px-4"
             >
               <div className="relative w-full max-w-md">
-                <Search className="absolute top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5 pointer-events-none left-4" />
+                <Search
+                  className={`absolute top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5 pointer-events-none ${
+                    isRTL ? "right-4" : "left-4"
+                  }`}
+                />
                 <input
                   type="text"
                   name="q"
@@ -122,7 +147,10 @@ export function Header({ lang }: HeaderProps) {
                   onChange={(event) => setSearchValue(event.target.value)}
                   placeholder={`${t.common.search}...`}
                   autoComplete="off"
-                  className="py-2 text-sm border border-border/50 rounded-full bg-background/60 text-foreground placeholder-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/35 w-full transition-all hover:border-border/70 pl-12 pr-11 text-left"
+                  dir={dir}
+                  className={`py-2 text-sm border border-border/50 rounded-full bg-background/60 text-foreground placeholder-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/35 w-full transition-all hover:border-border/70 ${
+                    isRTL ? "pl-11 pr-12 text-right" : "pl-12 pr-11 text-left"
+                  }`}
                   aria-label={t.common.search}
                 />
                 {searchValue && (
@@ -130,7 +158,9 @@ export function Header({ lang }: HeaderProps) {
                     type="button"
                     onClick={clearSearch}
                     aria-label={clearSearchLabel}
-                    className="absolute right-2 top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-border/70 bg-background/90 text-muted-foreground shadow-sm transition-all hover:border-foreground/20 hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
+                    className={`absolute top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-border/70 bg-background/90 text-muted-foreground shadow-sm transition-all hover:border-foreground/20 hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 ${
+                      isRTL ? "left-2" : "right-2"
+                    }`}
                   >
                     <X size={15} strokeWidth={1.8} />
                   </button>
@@ -209,12 +239,14 @@ export function Header({ lang }: HeaderProps) {
                 <div className="px-4 pt-4">
                   <form
                     action={`/${lang}/products`}
-                    onSubmit={(event) => {
-                      if (!searchValue.trim()) event.preventDefault();
-                    }}
+                    onSubmit={handleSearchSubmit}
                   >
                     <div className="relative">
-                      <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground pointer-events-none" />
+                      <Search
+                        className={`absolute top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground pointer-events-none ${
+                          isRTL ? "right-4" : "left-4"
+                        }`}
+                      />
                       <input
                         type="text"
                         name="q"
@@ -222,7 +254,12 @@ export function Header({ lang }: HeaderProps) {
                         onChange={(event) => setSearchValue(event.target.value)}
                         placeholder={`${t.common.search}...`}
                         autoComplete="off"
-                        className="w-full rounded-full border border-border/50 bg-background/80 py-2.5 pl-12 pr-11 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+                        dir={dir}
+                        className={`w-full rounded-full border border-border/50 bg-background/80 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 ${
+                          isRTL
+                            ? "pl-11 pr-12 text-right"
+                            : "pl-12 pr-11 text-left"
+                        }`}
                         aria-label={t.common.search}
                       />
                       {searchValue && (
@@ -230,7 +267,9 @@ export function Header({ lang }: HeaderProps) {
                           type="button"
                           onClick={clearSearch}
                           aria-label={clearSearchLabel}
-                          className="absolute right-2 top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-border/70 bg-background/90 text-muted-foreground shadow-sm transition-all hover:border-foreground/20 hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
+                          className={`absolute top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-border/70 bg-background/90 text-muted-foreground shadow-sm transition-all hover:border-foreground/20 hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 ${
+                            isRTL ? "left-2" : "right-2"
+                          }`}
                         >
                           <X size={15} strokeWidth={1.8} />
                         </button>

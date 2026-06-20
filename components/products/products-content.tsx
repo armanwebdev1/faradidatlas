@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Language } from "@/lib/i18n";
 import { categoryLabels, type Product } from "./product-data";
 import { Filters } from "./filters";
@@ -55,7 +55,24 @@ function ProductsContentInner({
   products,
   initialQuery = "",
 }: ProductsContentProps) {
-  const query = initialQuery.trim();
+  const [clientQuery, setClientQuery] = useState(initialQuery);
+
+  useEffect(() => {
+    const syncQueryFromUrl = () => {
+      const url = new URL(window.location.href);
+      setClientQuery(url.searchParams.get("q") ?? initialQuery);
+    };
+    const frame = window.requestAnimationFrame(syncQueryFromUrl);
+
+    window.addEventListener("popstate", syncQueryFromUrl);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("popstate", syncQueryFromUrl);
+    };
+  }, [initialQuery]);
+
+  const query = clientQuery.trim();
   const searchedProducts = useMemo(() => {
     const normalizedQuery = normalizeSearchText(query);
 

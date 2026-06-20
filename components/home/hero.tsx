@@ -98,8 +98,8 @@ export function Hero({ lang }: HeroProps) {
     [activeSlide, lang],
   );
   const textShiftClass = isRTL
-    ? "-translate-x-4 sm:-translate-x-6 md:-translate-x-8"
-    : "translate-x-4 sm:translate-x-6 md:translate-x-8";
+    ? "ml-auto text-right -translate-x-4 sm:-translate-x-6 md:-translate-x-8"
+    : "text-left translate-x-4 sm:translate-x-6 md:translate-x-8";
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -197,7 +197,7 @@ export function Hero({ lang }: HeroProps) {
       <div className="absolute bottom-0 inset-x-0 z-20">
         <div
           key={activeSlide.id}
-          className={`max-w-5xl px-8 md:px-12 lg:px-20 pb-16 sm:pb-20 md:pb-24 transform-gpu text-left ${textShiftClass}`}
+          className={`max-w-5xl px-8 md:px-12 lg:px-20 pb-16 sm:pb-20 md:pb-24 transform-gpu ${textShiftClass}`}
           dir={isRTL ? "rtl" : "ltr"}
           aria-live="polite"
         >
@@ -225,7 +225,7 @@ export function Hero({ lang }: HeroProps) {
 
           <div
             className={`flex items-center gap-2 animate-fade-in-up ${
-              isRTL ? "flex-row-reverse justify-end" : ""
+              isRTL ? "justify-end" : ""
             }`}
             style={{ animationDelay: "0.28s" }}
           >
