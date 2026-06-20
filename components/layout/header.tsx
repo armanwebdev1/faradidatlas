@@ -44,6 +44,7 @@ export function Header({ lang }: HeaderProps) {
   const desktopSearchBoxRef = useRef<HTMLDivElement>(null);
   const mobileSearchBoxRef = useRef<HTMLDivElement>(null);
   const lastScrollYRef = useRef(0);
+  const downScrollStartYRef = useRef(0);
   const t = translations[lang];
   const isRTL = lang === "fa";
   const dir = isRTL ? "rtl" : "ltr";
@@ -83,7 +84,8 @@ export function Header({ lang }: HeaderProps) {
 
   useEffect(() => {
     const topThreshold = 8;
-    const directionThreshold = 4;
+    const directionThreshold = 3;
+    const hideScrollDistance = 30;
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -92,16 +94,28 @@ export function Header({ lang }: HeaderProps) {
       if (currentScrollY <= topThreshold) {
         setHeaderMode("full");
         lastScrollYRef.current = currentScrollY;
+        downScrollStartYRef.current = currentScrollY;
         return;
       }
 
       if (Math.abs(scrollDelta) < directionThreshold) return;
 
-      setHeaderMode(scrollDelta > 0 ? "hidden" : "compact");
+      if (scrollDelta < 0) {
+        setHeaderMode("compact");
+        downScrollStartYRef.current = currentScrollY;
+        lastScrollYRef.current = currentScrollY;
+        return;
+      }
+
+      if (currentScrollY - downScrollStartYRef.current >= hideScrollDistance) {
+        setHeaderMode("hidden");
+      }
+
       lastScrollYRef.current = currentScrollY;
     };
 
     lastScrollYRef.current = window.scrollY;
+    downScrollStartYRef.current = window.scrollY;
     setHeaderMode(lastScrollYRef.current <= topThreshold ? "full" : "hidden");
     window.addEventListener("scroll", handleScroll, { passive: true });
 
@@ -158,7 +172,7 @@ export function Header({ lang }: HeaderProps) {
     : headerMode;
   const headerVisibilityClass =
     effectiveHeaderMode === "hidden"
-      ? "-translate-y-full opacity-0 pointer-events-none"
+      ? "-translate-y-[calc(100%+0.75rem)] opacity-0 pointer-events-none"
       : effectiveHeaderMode === "compact"
         ? "-translate-y-16 opacity-100"
         : "translate-y-0 opacity-100";
@@ -192,7 +206,7 @@ export function Header({ lang }: HeaderProps) {
     <>
       <header
         dir={dir}
-        className={`fixed top-0 inset-x-0 z-[60] transition-[opacity,transform] duration-300 ease-out ${headerVisibilityClass}`}
+        className={`fixed top-0 inset-x-0 z-[60] transform-gpu will-change-transform transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${headerVisibilityClass}`}
       >
         <div className="relative z-50 backdrop-blur-md bg-background/80 border-b border-border/30">
           <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
@@ -444,7 +458,13 @@ export function Header({ lang }: HeaderProps) {
           </div>
         </div>
 
-        <nav className="relative z-10 backdrop-blur-md bg-background/70 hidden lg:block border-b border-border/30">
+        <nav
+          className={`relative z-10 hidden border-b backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:block ${
+            effectiveHeaderMode === "compact"
+              ? "border-border/40 bg-background/[0.92] shadow-[0_18px_44px_-30px_rgba(12,18,24,0.45)]"
+              : "border-border/30 bg-background/70 shadow-none"
+          }`}
+        >
           <div className="w-full px-6 h-12 flex items-center justify-center gap-4 lg:gap-8">
             {navItems.map(({ href, label, key, Icon }) => {
               const isActive = isNavItemActive(href);
