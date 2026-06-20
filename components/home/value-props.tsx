@@ -134,7 +134,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
                     }`}
                     dir={isRTL ? "rtl" : "ltr"}
                   >
-                    <div className="h-full flex flex-col p-6 sm:p-8 rounded-lg border border-foreground/8 bg-gradient-to-br from-foreground/[0.02] to-foreground/[0.01] backdrop-blur-md shadow-[0_18px_45px_-38px_rgba(30,35,39,0.55)] transition-all duration-500 hover:-translate-y-1 hover:border-accent/25 hover:bg-gradient-to-br hover:from-foreground/[0.05] hover:to-foreground/[0.02]">
+                    <div className="h-full flex flex-col p-6 sm:p-8 rounded-lg border border-foreground/10 bg-background/85 backdrop-blur-md shadow-[0_16px_42px_-30px_rgba(12,18,24,0.35),0_1px_0_rgba(255,255,255,0.55)_inset]">
                       <div className="relative mb-6 sm:mb-8 inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20">
                         <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-foreground/8 to-foreground/4" />
                         <IconComponent

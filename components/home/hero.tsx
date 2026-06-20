@@ -227,7 +227,7 @@ export function Hero({ lang }: HeroProps) {
 
           <div
             className={`flex items-center gap-2 animate-fade-in-up ${
-              isRTL ? "flex-row-reverse justify-end" : ""
+              isRTL ? "justify-start" : ""
             }`}
             dir={isRTL ? "rtl" : "ltr"}
             style={{ animationDelay: "0.28s" }}

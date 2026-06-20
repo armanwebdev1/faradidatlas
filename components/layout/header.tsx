@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import {
@@ -32,6 +33,7 @@ interface HeaderProps {
 }
 
 export function Header({ lang }: HeaderProps) {
+  const pathname = usePathname();
   const [isHidden, setIsHidden] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -143,6 +145,12 @@ export function Header({ lang }: HeaderProps) {
     direction: dir,
     textAlign: isRTL ? "right" : "left",
     ...(isRTL ? { paddingLeft: "3.25rem", paddingRight: "3.75rem" } : {}),
+  };
+  const currentPath = (pathname ?? `/${lang}`).replace(/\/$/, "") || `/${lang}`;
+  const isNavItemActive = (href: string) => {
+    if (href === `/${lang}`) return currentPath === href;
+
+    return currentPath === href || currentPath.startsWith(`${href}/`);
   };
   const openSearch = (value = searchValue) => {
     setIsSearchOpen(value.trim().length > 0);
@@ -385,16 +393,28 @@ export function Header({ lang }: HeaderProps) {
                   </form>
                 </div>
                 <nav className="flex flex-col space-y-1 p-4">
-                  {navItems.map(({ href, label, key, Icon }) => (
-                    <a
-                      key={key}
-                      href={href}
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 text-foreground hover:bg-muted/50"
-                    >
-                      <Icon size={20} />
-                      <span>{label}</span>
-                    </a>
-                  ))}
+                  {navItems.map(({ href, label, key, Icon }) => {
+                    const isActive = isNavItemActive(href);
+
+                    return (
+                      <a
+                        key={key}
+                        href={href}
+                        aria-current={isActive ? "page" : undefined}
+                        className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                          isActive
+                            ? "bg-primary/10 text-primary shadow-sm"
+                            : "text-foreground hover:bg-muted/50"
+                        }`}
+                      >
+                        <Icon
+                          size={20}
+                          className={isActive ? "text-primary" : ""}
+                        />
+                        <span>{label}</span>
+                      </a>
+                    );
+                  })}
                 </nav>
               </div>
             </details>
@@ -403,23 +423,42 @@ export function Header({ lang }: HeaderProps) {
 
         <nav className="relative z-10 backdrop-blur-md bg-background/70 hidden lg:block border-b border-border/30">
           <div className="w-full px-6 h-12 flex items-center justify-center gap-4 lg:gap-8">
-            {navItems.map(({ href, label, key, Icon }) => (
-              <a
-                key={key}
-                href={href}
-                className="relative flex items-center gap-2.5 h-full text-sm font-medium transition-colors group"
-              >
-                <Icon
-                  size={20}
-                  strokeWidth={1.5}
-                  className="text-muted-foreground transition-all duration-200 group-hover:text-primary group-hover:scale-105"
-                />
-                <span className="text-foreground group-hover:text-primary transition-colors">
-                  {label}
-                </span>
-                <span className="absolute bottom-0 inset-x-0 h-1 bg-primary rounded-t-md opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-              </a>
-            ))}
+            {navItems.map(({ href, label, key, Icon }) => {
+              const isActive = isNavItemActive(href);
+
+              return (
+                <a
+                  key={key}
+                  href={href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`relative flex items-center gap-2.5 h-full text-sm font-medium transition-colors group ${
+                    isActive ? "text-primary" : ""
+                  }`}
+                >
+                  <Icon
+                    size={20}
+                    strokeWidth={1.5}
+                    className={`transition-all duration-200 group-hover:text-primary group-hover:scale-105 ${
+                      isActive
+                        ? "text-primary"
+                        : "text-muted-foreground"
+                    }`}
+                  />
+                  <span
+                    className={`transition-colors group-hover:text-primary ${
+                      isActive ? "text-primary" : "text-foreground"
+                    }`}
+                  >
+                    {label}
+                  </span>
+                  <span
+                    className={`absolute bottom-0 inset-x-0 h-1 rounded-t-md bg-primary transition-opacity duration-200 ${
+                      isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                    }`}
+                  />
+                </a>
+              );
+            })}
           </div>
         </nav>
       </header>
