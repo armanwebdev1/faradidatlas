@@ -1,7 +1,6 @@
  "use client";
 
-import { type FormEvent, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import {
@@ -21,7 +20,6 @@ interface HeaderProps {
 }
 
 export function Header({ lang }: HeaderProps) {
-  const router = useRouter();
   const [isHidden, setIsHidden] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const t = translations[lang];
@@ -88,15 +86,6 @@ export function Header({ lang }: HeaderProps) {
   const clearSearchLabel =
     lang === "en" ? "Clear search" : "پاک کردن جستجو";
 
-  const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const query = searchValue.trim();
-    if (!query) return;
-
-    router.push(`/${lang}/products?q=${encodeURIComponent(query)}`);
-  };
-
   return (
     <>
       <header
@@ -131,15 +120,22 @@ export function Header({ lang }: HeaderProps) {
 
             <form
               action={`/${lang}/products`}
-              onSubmit={handleSearchSubmit}
+              method="get"
+              onSubmit={(event) => {
+                if (!searchValue.trim()) event.preventDefault();
+              }}
               className="hidden md:flex flex-1 justify-center px-4"
             >
               <div className="relative w-full max-w-md">
-                <Search
-                  className={`absolute top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5 pointer-events-none ${
+                <button
+                  type="submit"
+                  aria-label={t.common.search}
+                  className={`absolute top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 ${
                     isRTL ? "right-4" : "left-4"
                   }`}
-                />
+                >
+                  <Search className="h-5 w-5" />
+                </button>
                 <input
                   type="text"
                   name="q"
@@ -239,14 +235,21 @@ export function Header({ lang }: HeaderProps) {
                 <div className="px-4 pt-4">
                   <form
                     action={`/${lang}/products`}
-                    onSubmit={handleSearchSubmit}
+                    method="get"
+                    onSubmit={(event) => {
+                      if (!searchValue.trim()) event.preventDefault();
+                    }}
                   >
                     <div className="relative">
-                      <Search
-                        className={`absolute top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground pointer-events-none ${
+                      <button
+                        type="submit"
+                        aria-label={t.common.search}
+                        className={`absolute top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 ${
                           isRTL ? "right-4" : "left-4"
                         }`}
-                      />
+                      >
+                        <Search className="h-5 w-5" />
+                      </button>
                       <input
                         type="text"
                         name="q"

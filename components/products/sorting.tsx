@@ -1,16 +1,24 @@
 "use client";
 
 import type { Language } from "@/lib/i18n";
-import type { Product } from "./product-data";
+
+export type ProductSortValue =
+  | "relevance"
+  | "newest"
+  | "name-asc"
+  | "name-desc";
 
 interface SortingProps {
   lang: Language;
-  products: Product[];
-  onSort: (sorted: Product[]) => void;
+  value: ProductSortValue;
+  onChange: (value: ProductSortValue) => void;
 }
 
-export function Sorting({ lang, products, onSort }: SortingProps) {
-  const sortOptions = {
+export function Sorting({ lang, value, onChange }: SortingProps) {
+  const sortOptions: Record<
+    Language,
+    { value: ProductSortValue; label: string }[]
+  > = {
     en: [
       { value: "relevance", label: "Relevance" },
       { value: "newest", label: "Newest" },
@@ -27,38 +35,16 @@ export function Sorting({ lang, products, onSort }: SortingProps) {
 
   const options = lang === "en" ? sortOptions.en : sortOptions.fa;
 
-  const handleSort = (value: string) => {
-    let sorted = [...products];
-
-    switch (value) {
-      case "name-asc":
-        sorted.sort((a, b) => {
-          const aName = lang === "en" ? a.nameEn : a.nameFa;
-          const bName = lang === "en" ? b.nameEn : b.nameFa;
-          return aName.localeCompare(bName);
-        });
-        break;
-      case "name-desc":
-        sorted.sort((a, b) => {
-          const aName = lang === "en" ? a.nameEn : a.nameFa;
-          const bName = lang === "en" ? b.nameEn : b.nameFa;
-          return bName.localeCompare(aName);
-        });
-        break;
-      default:
-        sorted = products;
-    }
-
-    onSort(sorted);
-  };
-
   return (
     <div className="flex items-center gap-3">
       <label className="text-sm font-medium text-foreground whitespace-nowrap">
         {lang === "en" ? "Sort by:" : "مرتب‌سازی:"}
       </label>
       <select
-        onChange={(event) => handleSort(event.target.value)}
+        value={value}
+        onChange={(event) =>
+          onChange(event.target.value as ProductSortValue)
+        }
         className="px-3 py-2 border border-border rounded bg-white text-sm"
       >
         {options.map((option) => (

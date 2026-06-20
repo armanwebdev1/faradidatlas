@@ -2,9 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { Language } from "@/lib/i18n";
-import { categoryLabels, type Product } from "./product-data";
+import {
+  categoryLabels,
+  type Product,
+  type ProductCategory,
+} from "./product-data";
 import { Filters } from "./filters";
-import { Sorting } from "./sorting";
+import { Sorting, type ProductSortValue } from "./sorting";
 import { ProductCard } from "./product-card";
 
 interface ProductsContentProps {
@@ -41,21 +45,43 @@ function productSearchText(product: Product) {
     .join(" ");
 }
 
-export function ProductsContent(props: ProductsContentProps) {
-  return (
-    <ProductsContentInner
-      key={props.initialQuery ?? ""}
-      {...props}
-    />
-  );
+function sortProducts(
+  products: Product[],
+  sortValue: ProductSortValue,
+  lang: Language,
+) {
+  const sorted = [...products];
+
+  switch (sortValue) {
+    case "name-asc":
+      return sorted.sort((a, b) => {
+        const aName = lang === "en" ? a.nameEn : a.nameFa;
+        const bName = lang === "en" ? b.nameEn : b.nameFa;
+        return aName.localeCompare(bName);
+      });
+    case "name-desc":
+      return sorted.sort((a, b) => {
+        const aName = lang === "en" ? a.nameEn : a.nameFa;
+        const bName = lang === "en" ? b.nameEn : b.nameFa;
+        return bName.localeCompare(aName);
+      });
+    case "newest":
+      return sorted.sort((a, b) => b.id - a.id);
+    case "relevance":
+    default:
+      return sorted;
+  }
 }
 
-function ProductsContentInner({
+export function ProductsContent({
   lang,
   products,
   initialQuery = "",
 }: ProductsContentProps) {
   const [clientQuery, setClientQuery] = useState(initialQuery);
+  const [selectedCategory, setSelectedCategory] =
+    useState<ProductCategory | null>(null);
+  const [sortValue, setSortValue] = useState<ProductSortValue>("relevance");
 
   useEffect(() => {
     const syncQueryFromUrl = () => {
@@ -84,17 +110,17 @@ function ProductsContentInner({
       ),
     );
   }, [products, query]);
-  const [filteredProducts, setFilteredProducts] = useState(searchedProducts);
-  const [sortedProducts, setSortedProducts] = useState(searchedProducts);
+  const categoryFilteredProducts = useMemo(() => {
+    if (!selectedCategory) return searchedProducts;
 
-  const handleFilter = (filtered: Product[]) => {
-    setFilteredProducts(filtered);
-    setSortedProducts(filtered);
-  };
-
-  const handleSort = (sorted: Product[]) => {
-    setSortedProducts(sorted);
-  };
+    return searchedProducts.filter(
+      (product) => product.category === selectedCategory,
+    );
+  }, [searchedProducts, selectedCategory]);
+  const visibleProducts = useMemo(
+    () => sortProducts(categoryFilteredProducts, sortValue, lang),
+    [categoryFilteredProducts, lang, sortValue],
+  );
 
   return (
     <section className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-gradient-to-b from-background to-secondary/30">
@@ -107,8 +133,8 @@ function ProductsContentInner({
               </h3>
               <Filters
                 lang={lang}
-                products={searchedProducts}
-                onFilter={handleFilter}
+                selectedCategory={selectedCategory}
+                onCategoryChange={setSelectedCategory}
               />
             </div>
           </div>
@@ -130,14 +156,14 @@ function ProductsContentInner({
               </div>
               <Sorting
                 lang={lang}
-                products={filteredProducts}
-                onSort={handleSort}
+                value={sortValue}
+                onChange={setSortValue}
               />
             </div>
 
-            {sortedProducts.length > 0 ? (
+            {visibleProducts.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
-                {sortedProducts.map((product, idx) => (
+                {visibleProducts.map((product, idx) => (
                   <div
                     key={product.id}
                     className="animate-fade-in-up"

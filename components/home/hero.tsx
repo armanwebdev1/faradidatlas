@@ -217,7 +217,9 @@ export function Hero({ lang }: HeroProps) {
           </h1>
 
           <p
-            className="mb-8 max-w-2xl text-responsive-body text-white/85 animate-fade-in-up"
+            className={`mb-8 max-w-2xl text-responsive-body text-white/85 animate-fade-in-up ${
+              isRTL ? "ml-auto text-right" : ""
+            }`}
             style={{ animationDelay: "0.2s" }}
           >
             {activeSlide.description[lang]}
@@ -227,6 +229,7 @@ export function Hero({ lang }: HeroProps) {
             className={`flex items-center gap-2 animate-fade-in-up ${
               isRTL ? "justify-end" : ""
             }`}
+            dir={isRTL ? "rtl" : "ltr"}
             style={{ animationDelay: "0.28s" }}
           >
             {slides.map((slide, index) => (
