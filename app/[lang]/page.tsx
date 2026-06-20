@@ -53,7 +53,7 @@ export default async function HomePage({ params }: HomePageProps) {
               "@type": "Organization",
               name: siteConfig.name,
               url: siteConfig.url,
-              logo: absoluteUrl("/icon.svg"),
+              logo: absoluteUrl("/icon-512.png"),
               foundingDate: "2009",
               areaServed: ["Iran", "United Arab Emirates", "Oman"],
               knowsAbout: [
