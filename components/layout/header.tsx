@@ -1,6 +1,12 @@
  "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  type CSSProperties,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import Image from "next/image";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
@@ -127,6 +133,16 @@ export function Header({ lang }: HeaderProps) {
   );
   const shouldShowSearchResults = isSearchOpen && searchQuery.length > 0;
   const effectiveHidden = isHidden && !shouldShowSearchResults;
+  const searchIconStyle: CSSProperties = isRTL
+    ? { right: "1rem", left: "auto" }
+    : { left: "1rem", right: "auto" };
+  const clearButtonStyle: CSSProperties = isRTL
+    ? { left: "0.5rem", right: "auto" }
+    : { right: "0.5rem", left: "auto" };
+  const searchInputStyle: CSSProperties = {
+    direction: dir,
+    textAlign: isRTL ? "right" : "left",
+  };
   const openSearch = (value = searchValue) => {
     setIsSearchOpen(value.trim().length > 0);
   };
@@ -185,9 +201,8 @@ export function Header({ lang }: HeaderProps) {
                     desktopSearchRef.current?.focus();
                   }}
                   aria-label={t.common.search}
-                  className={`absolute top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 ${
-                    isRTL ? "right-4" : "left-4"
-                  }`}
+                  style={searchIconStyle}
+                  className="absolute top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
                 >
                   <Search className="h-5 w-5" />
                 </button>
@@ -204,6 +219,7 @@ export function Header({ lang }: HeaderProps) {
                   placeholder={`${t.common.search}...`}
                   autoComplete="off"
                   dir={dir}
+                  style={searchInputStyle}
                   className={`w-full rounded-full border border-border/50 bg-background/60 py-2 text-sm text-foreground transition-all placeholder:text-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/35 hover:border-border/70 ${
                     isRTL
                       ? "pl-11 pr-12 text-right [direction:rtl] placeholder:text-right"
@@ -216,9 +232,8 @@ export function Header({ lang }: HeaderProps) {
                     type="button"
                     onClick={clearSearch}
                     aria-label={clearSearchLabel}
-                    className={`absolute top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-border/70 bg-background/90 text-muted-foreground shadow-sm transition-all hover:border-foreground/20 hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 ${
-                      isRTL ? "left-2" : "right-2"
-                    }`}
+                    style={clearButtonStyle}
+                    className="absolute top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-border/70 bg-background/90 text-muted-foreground shadow-sm transition-all hover:border-foreground/20 hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
                   >
                     <X size={15} strokeWidth={1.8} />
                   </button>
@@ -319,9 +334,8 @@ export function Header({ lang }: HeaderProps) {
                           mobileSearchRef.current?.focus();
                         }}
                         aria-label={t.common.search}
-                        className={`absolute top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 ${
-                          isRTL ? "right-4" : "left-4"
-                        }`}
+                        style={searchIconStyle}
+                        className="absolute top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
                       >
                         <Search className="h-5 w-5" />
                       </button>
@@ -338,6 +352,7 @@ export function Header({ lang }: HeaderProps) {
                         placeholder={`${t.common.search}...`}
                         autoComplete="off"
                         dir={dir}
+                        style={searchInputStyle}
                         className={`w-full rounded-full border border-border/50 bg-background/80 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 ${
                           isRTL
                             ? "pl-11 pr-12 text-right [direction:rtl] placeholder:text-right"
@@ -350,9 +365,8 @@ export function Header({ lang }: HeaderProps) {
                           type="button"
                           onClick={clearSearch}
                           aria-label={clearSearchLabel}
-                          className={`absolute top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-border/70 bg-background/90 text-muted-foreground shadow-sm transition-all hover:border-foreground/20 hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 ${
-                            isRTL ? "left-2" : "right-2"
-                          }`}
+                          style={clearButtonStyle}
+                          className="absolute top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-border/70 bg-background/90 text-muted-foreground shadow-sm transition-all hover:border-foreground/20 hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
                         >
                           <X size={15} strokeWidth={1.8} />
                         </button>
@@ -478,8 +492,8 @@ function SearchResultsPopover({
       aria-label={lang === "en" ? "Search results" : "نتایج جستجو"}
     >
       <div
-        className={`flex items-center justify-between gap-3 border-b border-border/60 px-3 py-2.5 ${
-          isRTL ? "flex-row-reverse text-right" : ""
+        className={`border-b border-border/60 px-3 py-2.5 ${
+          isRTL ? "text-right" : ""
         }`}
       >
         <div className="min-w-0">
@@ -492,14 +506,6 @@ function SearchResultsPopover({
               : `${results.length} نتیجه برای «${query}»`}
           </p>
         </div>
-        <button
-          type="button"
-          onClick={onClose}
-          className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-border/70 bg-background text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
-          aria-label={lang === "en" ? "Close search" : "بستن جستجو"}
-        >
-          <X size={15} strokeWidth={1.8} />
-        </button>
       </div>
 
       <div className="max-h-[21rem] overflow-y-auto p-2">
