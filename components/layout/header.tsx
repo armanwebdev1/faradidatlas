@@ -142,6 +142,7 @@ export function Header({ lang }: HeaderProps) {
   const searchInputStyle: CSSProperties = {
     direction: dir,
     textAlign: isRTL ? "right" : "left",
+    ...(isRTL ? { paddingLeft: "3.25rem", paddingRight: "3.75rem" } : {}),
   };
   const openSearch = (value = searchValue) => {
     setIsSearchOpen(value.trim().length > 0);
@@ -589,7 +590,12 @@ function SearchResult({
         {alias && (
           <p className="truncate text-xs text-foreground/55">{alias}</p>
         )}
-        <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+        <p
+          dir={isRTL ? "rtl" : "ltr"}
+          className={`mt-1 line-clamp-2 text-xs leading-relaxed text-muted-foreground ${
+            isRTL ? "text-right" : ""
+          }`}
+        >
           {description}
         </p>
       </div>
