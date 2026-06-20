@@ -32,15 +32,18 @@ interface HeaderProps {
   lang: Language;
 }
 
+type HeaderMode = "full" | "compact" | "hidden";
+
 export function Header({ lang }: HeaderProps) {
   const pathname = usePathname();
-  const [isHidden, setIsHidden] = useState(false);
+  const [headerMode, setHeaderMode] = useState<HeaderMode>("full");
   const [searchValue, setSearchValue] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const desktopSearchRef = useRef<HTMLInputElement>(null);
   const mobileSearchRef = useRef<HTMLInputElement>(null);
   const desktopSearchBoxRef = useRef<HTMLDivElement>(null);
   const mobileSearchBoxRef = useRef<HTMLDivElement>(null);
+  const lastScrollYRef = useRef(0);
   const t = translations[lang];
   const isRTL = lang === "fa";
   const dir = isRTL ? "rtl" : "ltr";
@@ -79,11 +82,27 @@ export function Header({ lang }: HeaderProps) {
   ];
 
   useEffect(() => {
+    const topThreshold = 8;
+    const directionThreshold = 4;
+
     const handleScroll = () => {
-      setIsHidden(window.scrollY > 6);
+      const currentScrollY = window.scrollY;
+      const scrollDelta = currentScrollY - lastScrollYRef.current;
+
+      if (currentScrollY <= topThreshold) {
+        setHeaderMode("full");
+        lastScrollYRef.current = currentScrollY;
+        return;
+      }
+
+      if (Math.abs(scrollDelta) < directionThreshold) return;
+
+      setHeaderMode(scrollDelta > 0 ? "hidden" : "compact");
+      lastScrollYRef.current = currentScrollY;
     };
 
-    handleScroll();
+    lastScrollYRef.current = window.scrollY;
+    setHeaderMode(lastScrollYRef.current <= topThreshold ? "full" : "hidden");
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", handleScroll);
@@ -134,7 +153,15 @@ export function Header({ lang }: HeaderProps) {
     [searchQuery],
   );
   const shouldShowSearchResults = isSearchOpen && searchQuery.length > 0;
-  const effectiveHidden = isHidden && !shouldShowSearchResults;
+  const effectiveHeaderMode: HeaderMode = shouldShowSearchResults
+    ? "full"
+    : headerMode;
+  const headerVisibilityClass =
+    effectiveHeaderMode === "hidden"
+      ? "-translate-y-full opacity-0 pointer-events-none"
+      : effectiveHeaderMode === "compact"
+        ? "-translate-y-16 opacity-100"
+        : "translate-y-0 opacity-100";
   const searchIconStyle: CSSProperties = isRTL
     ? { right: "1rem", left: "auto" }
     : { left: "1rem", right: "auto" };
@@ -165,11 +192,7 @@ export function Header({ lang }: HeaderProps) {
     <>
       <header
         dir={dir}
-        className={`fixed top-0 inset-x-0 z-[60] transition-[opacity,transform] duration-300 ease-out ${
-          effectiveHidden
-            ? "-translate-y-full opacity-0 pointer-events-none"
-            : "translate-y-0 opacity-100"
-        }`}
+        className={`fixed top-0 inset-x-0 z-[60] transition-[opacity,transform] duration-300 ease-out ${headerVisibilityClass}`}
       >
         <div className="relative z-50 backdrop-blur-md bg-background/80 border-b border-border/30">
           <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
