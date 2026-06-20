@@ -123,7 +123,7 @@ export function Hero({ lang }: HeroProps) {
   const goToNext = () => goToSlide(activeIndex + 1);
 
   return (
-    <div className="relative h-[calc(100svh-5rem)] min-h-13 max-h-205 w-full overflow-hidden bg-neutral-950 md:h-[calc(100svh-9rem)]">
+    <div className="relative h-[calc(100svh-5rem)] min-h-[34rem] max-h-[820px] w-full overflow-hidden bg-neutral-950 md:h-[calc(100svh-9rem)]">
       <div className="absolute inset-0">
         {slides.map((slide, index) => {
           const isActive = index === activeIndex;
@@ -163,7 +163,7 @@ export function Hero({ lang }: HeroProps) {
         })}
 
         <div className="hero-premium-sheen" aria-hidden="true" />
-        <div className="absolute inset-0 bg-liner-to-b from-black/5 via-black/45 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/45 to-black/90" />
       </div>
 
       <div className="absolute inset-x-0 top-1/2 z-30 flex -translate-y-1/2 items-center justify-between px-4 sm:px-6 md:px-8 pointer-events-none">
