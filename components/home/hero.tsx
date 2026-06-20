@@ -98,7 +98,7 @@ export function Hero({ lang }: HeroProps) {
     [activeSlide, lang],
   );
   const textShiftClass = isRTL
-    ? "ml-auto text-right -translate-x-4 sm:-translate-x-6 md:-translate-x-8"
+    ? "ml-auto w-full text-right -translate-x-4 sm:-translate-x-6 md:-translate-x-8"
     : "text-left translate-x-4 sm:translate-x-6 md:translate-x-8";
 
   useEffect(() => {
@@ -218,7 +218,7 @@ export function Hero({ lang }: HeroProps) {
 
           <p
             className={`mb-8 max-w-2xl text-responsive-body text-white/85 animate-fade-in-up ${
-              isRTL ? "ml-auto text-right" : ""
+              isRTL ? "ml-auto mr-0 text-right" : ""
             }`}
             style={{ animationDelay: "0.2s" }}
           >
@@ -227,7 +227,7 @@ export function Hero({ lang }: HeroProps) {
 
           <div
             className={`flex items-center gap-2 animate-fade-in-up ${
-              isRTL ? "justify-end" : ""
+              isRTL ? "flex-row-reverse justify-end" : ""
             }`}
             dir={isRTL ? "rtl" : "ltr"}
             style={{ animationDelay: "0.28s" }}

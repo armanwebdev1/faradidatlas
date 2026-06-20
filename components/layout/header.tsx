@@ -1,8 +1,14 @@
  "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
+import {
+  categoryLabels,
+  products,
+  type Product,
+} from "@/components/products/product-data";
 import {
   Briefcase,
   ChevronDown,
@@ -22,6 +28,9 @@ interface HeaderProps {
 export function Header({ lang }: HeaderProps) {
   const [isHidden, setIsHidden] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const desktopSearchRef = useRef<HTMLInputElement>(null);
+  const mobileSearchRef = useRef<HTMLInputElement>(null);
   const t = translations[lang];
   const isRTL = lang === "fa";
   const dir = isRTL ? "rtl" : "ltr";
@@ -71,6 +80,18 @@ export function Header({ lang }: HeaderProps) {
   }, []);
 
   useEffect(() => {
+    if (!isSearchOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsSearchOpen(false);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isSearchOpen]);
+
+  useEffect(() => {
     const url = new URL(window.location.href);
     const productsPath = `/${lang}/products`;
     const nextSearchValue =
@@ -85,13 +106,25 @@ export function Header({ lang }: HeaderProps) {
   const clearSearch = () => setSearchValue("");
   const clearSearchLabel =
     lang === "en" ? "Clear search" : "پاک کردن جستجو";
+  const searchQuery = searchValue.trim();
+  const searchResults = useMemo(
+    () => searchProducts(searchQuery).slice(0, 6),
+    [searchQuery],
+  );
+  const effectiveHidden = isHidden && !isSearchOpen;
+  const openSearch = () => setIsSearchOpen(true);
+
+  const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    openSearch();
+  };
 
   return (
     <>
       <header
         dir={dir}
-        className={`fixed top-0 inset-x-0 z-40 transition-[opacity,transform] duration-300 ease-out ${
-          isHidden
+        className={`fixed top-0 inset-x-0 z-[60] transition-[opacity,transform] duration-300 ease-out ${
+          effectiveHidden
             ? "-translate-y-full opacity-0 pointer-events-none"
             : "translate-y-0 opacity-100"
         }`}
@@ -119,16 +152,17 @@ export function Header({ lang }: HeaderProps) {
             </a>
 
             <form
-              action={`/${lang}/products`}
-              method="get"
-              onSubmit={(event) => {
-                if (!searchValue.trim()) event.preventDefault();
-              }}
+              role="search"
+              onSubmit={handleSearchSubmit}
               className="hidden md:flex flex-1 justify-center px-4"
             >
               <div className="relative w-full max-w-md">
                 <button
-                  type="submit"
+                  type="button"
+                  onClick={() => {
+                    openSearch();
+                    desktopSearchRef.current?.focus();
+                  }}
                   aria-label={t.common.search}
                   className={`absolute top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 ${
                     isRTL ? "right-4" : "left-4"
@@ -137,10 +171,14 @@ export function Header({ lang }: HeaderProps) {
                   <Search className="h-5 w-5" />
                 </button>
                 <input
+                  ref={desktopSearchRef}
                   type="text"
-                  name="q"
                   value={searchValue}
-                  onChange={(event) => setSearchValue(event.target.value)}
+                  onChange={(event) => {
+                    setSearchValue(event.target.value);
+                    openSearch();
+                  }}
+                  onFocus={openSearch}
                   placeholder={`${t.common.search}...`}
                   autoComplete="off"
                   dir={dir}
@@ -234,15 +272,16 @@ export function Header({ lang }: HeaderProps) {
               <div className="fixed inset-x-0 top-16 z-30 bg-background/95 backdrop-blur-md border-b border-border/30 animate-in fade-in slide-in-from-top-8 duration-200">
                 <div className="px-4 pt-4">
                   <form
-                    action={`/${lang}/products`}
-                    method="get"
-                    onSubmit={(event) => {
-                      if (!searchValue.trim()) event.preventDefault();
-                    }}
+                    role="search"
+                    onSubmit={handleSearchSubmit}
                   >
                     <div className="relative">
                       <button
-                        type="submit"
+                        type="button"
+                        onClick={() => {
+                          openSearch();
+                          mobileSearchRef.current?.focus();
+                        }}
                         aria-label={t.common.search}
                         className={`absolute top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 ${
                           isRTL ? "right-4" : "left-4"
@@ -251,10 +290,14 @@ export function Header({ lang }: HeaderProps) {
                         <Search className="h-5 w-5" />
                       </button>
                       <input
+                        ref={mobileSearchRef}
                         type="text"
-                        name="q"
                         value={searchValue}
-                        onChange={(event) => setSearchValue(event.target.value)}
+                        onChange={(event) => {
+                          setSearchValue(event.target.value);
+                          openSearch();
+                        }}
+                        onFocus={openSearch}
                         placeholder={`${t.common.search}...`}
                         autoComplete="off"
                         dir={dir}
@@ -319,7 +362,178 @@ export function Header({ lang }: HeaderProps) {
           </div>
         </nav>
       </header>
+      {isSearchOpen && (
+        <div
+          className="fixed inset-x-0 bottom-0 top-16 z-50 bg-foreground/20 backdrop-blur-[2px] md:top-28"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setIsSearchOpen(false);
+          }}
+        >
+          <div
+            dir={dir}
+            className="mx-auto mt-3 max-h-[min(34rem,calc(100vh-8rem))] w-[calc(100%-1.5rem)] max-w-3xl overflow-hidden rounded-lg border border-border/70 bg-background/98 shadow-2xl md:mt-4"
+            role="dialog"
+            aria-modal="false"
+            aria-label={lang === "en" ? "Search results" : "نتایج جستجو"}
+          >
+            <div className="flex items-center justify-between gap-4 border-b border-border/60 px-4 py-3 sm:px-5">
+              <div className={isRTL ? "text-right" : ""}>
+                <p className="text-sm font-semibold text-foreground">
+                  {lang === "en" ? "Search results" : "نتایج جستجو"}
+                </p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {searchQuery
+                    ? lang === "en"
+                      ? `${searchResults.length} matches for "${searchQuery}"`
+                      : `${searchResults.length} نتیجه برای «${searchQuery}»`
+                    : lang === "en"
+                      ? "Type a product, brand, or category"
+                      : "نام محصول، برند یا دسته‌بندی را وارد کنید"}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsSearchOpen(false)}
+                className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border/70 bg-background text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
+                aria-label={lang === "en" ? "Close search" : "بستن جستجو"}
+              >
+                <X size={16} strokeWidth={1.8} />
+              </button>
+            </div>
+
+            <div className="max-h-[min(27rem,calc(100vh-13rem))] overflow-y-auto p-2 sm:p-3">
+              {!searchQuery ? (
+                <div className="px-4 py-10 text-center text-sm text-muted-foreground">
+                  {lang === "en"
+                    ? "Search across rice, legumes, nuts, seeds, spices, and sweeteners."
+                    : "در میان برنج، حبوبات، آجیل، دانه‌ها، ادویه‌جات و شیرین‌کننده‌ها جستجو کنید."}
+                </div>
+              ) : searchResults.length > 0 ? (
+                <div className="space-y-1.5">
+                  {searchResults.map((product) => (
+                    <SearchResult
+                      key={product.id}
+                      product={product}
+                      lang={lang}
+                      onSelect={() => setIsSearchOpen(false)}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="px-4 py-10 text-center text-sm text-muted-foreground">
+                  {lang === "en"
+                    ? "No matching products found."
+                    : "محصولی مطابق جستجو پیدا نشد."}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
       <div className="h-16 sm:h-16 md:h-28" />
     </>
+  );
+}
+
+function normalizeSearchText(value: string) {
+  return value
+    .toLocaleLowerCase()
+    .replace(/ي/g, "ی")
+    .replace(/ك/g, "ک")
+    .replace(/\u200c/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function productSearchText(product: Product) {
+  const category = categoryLabels[product.category];
+
+  return [
+    product.nameEn,
+    product.nameFa,
+    product.aliasEn,
+    product.aliasFa,
+    product.descriptionEn,
+    product.descriptionFa,
+    category.en,
+    category.fa,
+    product.category,
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+function searchProducts(query: string) {
+  const normalizedQuery = normalizeSearchText(query);
+
+  if (!normalizedQuery) return [];
+
+  return products.filter((product) =>
+    normalizeSearchText(productSearchText(product)).includes(normalizedQuery),
+  );
+}
+
+function SearchResult({
+  product,
+  lang,
+  onSelect,
+}: {
+  product: Product;
+  lang: Language;
+  onSelect: () => void;
+}) {
+  const isRTL = lang === "fa";
+  const name = lang === "en" ? product.nameEn : product.nameFa;
+  const alias = lang === "en" ? product.aliasEn : product.aliasFa;
+  const description =
+    lang === "en" ? product.descriptionEn : product.descriptionFa;
+  const category =
+    lang === "en"
+      ? categoryLabels[product.category].en
+      : categoryLabels[product.category].fa;
+
+  return (
+    <a
+      href={`/${lang}/products/${product.id}`}
+      onClick={onSelect}
+      className={`flex gap-3 rounded-md border border-transparent p-2.5 transition-colors hover:border-border/70 hover:bg-muted/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 ${
+        isRTL ? "flex-row-reverse text-right" : ""
+      }`}
+    >
+      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-md bg-muted">
+        {product.image ? (
+          <Image
+            src={product.image}
+            alt=""
+            fill
+            sizes="64px"
+            className="object-cover"
+            loading="lazy"
+          />
+        ) : (
+          <div className="h-full w-full bg-secondary" />
+        )}
+      </div>
+      <div className="min-w-0 flex-1">
+        <div
+          className={`mb-1 flex items-center gap-2 ${
+            isRTL ? "flex-row-reverse" : ""
+          }`}
+        >
+          <span className="truncate text-sm font-semibold text-foreground">
+            {name}
+          </span>
+          <span className="shrink-0 rounded-md bg-muted px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+            {category}
+          </span>
+        </div>
+        {alias && (
+          <p className="truncate text-xs text-foreground/55">{alias}</p>
+        )}
+        <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+          {description}
+        </p>
+      </div>
+    </a>
   );
 }
