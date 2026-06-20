@@ -31,6 +31,8 @@ export function Header({ lang }: HeaderProps) {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const desktopSearchRef = useRef<HTMLInputElement>(null);
   const mobileSearchRef = useRef<HTMLInputElement>(null);
+  const desktopSearchBoxRef = useRef<HTMLDivElement>(null);
+  const mobileSearchBoxRef = useRef<HTMLDivElement>(null);
   const t = translations[lang];
   const isRTL = lang === "fa";
   const dir = isRTL ? "rtl" : "ltr";
@@ -92,18 +94,30 @@ export function Header({ lang }: HeaderProps) {
   }, [isSearchOpen]);
 
   useEffect(() => {
-    const url = new URL(window.location.href);
-    const productsPath = `/${lang}/products`;
-    const nextSearchValue =
-      url.pathname === productsPath ? (url.searchParams.get("q") ?? "") : "";
-    const frame = window.requestAnimationFrame(() => {
-      setSearchValue(nextSearchValue);
-    });
+    if (!isSearchOpen) return;
 
-    return () => window.cancelAnimationFrame(frame);
-  }, [lang]);
+    const handlePointerDown = (event: MouseEvent) => {
+      const target = event.target as Node;
 
-  const clearSearch = () => setSearchValue("");
+      if (
+        desktopSearchBoxRef.current?.contains(target) ||
+        mobileSearchBoxRef.current?.contains(target)
+      ) {
+        return;
+      }
+
+      setIsSearchOpen(false);
+    };
+
+    window.addEventListener("mousedown", handlePointerDown);
+
+    return () => window.removeEventListener("mousedown", handlePointerDown);
+  }, [isSearchOpen]);
+
+  const clearSearch = () => {
+    setSearchValue("");
+    setIsSearchOpen(false);
+  };
   const clearSearchLabel =
     lang === "en" ? "Clear search" : "پاک کردن جستجو";
   const searchQuery = searchValue.trim();
@@ -111,8 +125,11 @@ export function Header({ lang }: HeaderProps) {
     () => searchProducts(searchQuery).slice(0, 6),
     [searchQuery],
   );
-  const effectiveHidden = isHidden && !isSearchOpen;
-  const openSearch = () => setIsSearchOpen(true);
+  const shouldShowSearchResults = isSearchOpen && searchQuery.length > 0;
+  const effectiveHidden = isHidden && !shouldShowSearchResults;
+  const openSearch = (value = searchValue) => {
+    setIsSearchOpen(value.trim().length > 0);
+  };
 
   const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -154,9 +171,13 @@ export function Header({ lang }: HeaderProps) {
             <form
               role="search"
               onSubmit={handleSearchSubmit}
-              className="hidden md:flex flex-1 justify-center px-4"
+              className="relative z-[80] hidden flex-1 justify-center px-4 md:flex"
             >
-              <div className="relative w-full max-w-md">
+              <div
+                ref={desktopSearchBoxRef}
+                className="relative w-full max-w-md"
+                dir={dir}
+              >
                 <button
                   type="button"
                   onClick={() => {
@@ -175,15 +196,18 @@ export function Header({ lang }: HeaderProps) {
                   type="text"
                   value={searchValue}
                   onChange={(event) => {
-                    setSearchValue(event.target.value);
-                    openSearch();
+                    const nextValue = event.target.value;
+                    setSearchValue(nextValue);
+                    openSearch(nextValue);
                   }}
-                  onFocus={openSearch}
+                  onFocus={() => openSearch()}
                   placeholder={`${t.common.search}...`}
                   autoComplete="off"
                   dir={dir}
-                  className={`py-2 text-sm border border-border/50 rounded-full bg-background/60 text-foreground placeholder-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/35 w-full transition-all hover:border-border/70 ${
-                    isRTL ? "pl-11 pr-12 text-right" : "pl-12 pr-11 text-left"
+                  className={`w-full rounded-full border border-border/50 bg-background/60 py-2 text-sm text-foreground transition-all placeholder:text-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/35 hover:border-border/70 ${
+                    isRTL
+                      ? "pl-11 pr-12 text-right [direction:rtl] placeholder:text-right"
+                      : "pl-12 pr-11 text-left"
                   }`}
                   aria-label={t.common.search}
                 />
@@ -198,6 +222,14 @@ export function Header({ lang }: HeaderProps) {
                   >
                     <X size={15} strokeWidth={1.8} />
                   </button>
+                )}
+                {shouldShowSearchResults && (
+                  <SearchResultsPopover
+                    lang={lang}
+                    query={searchQuery}
+                    results={searchResults}
+                    onClose={() => setIsSearchOpen(false)}
+                  />
                 )}
               </div>
             </form>
@@ -275,7 +307,11 @@ export function Header({ lang }: HeaderProps) {
                     role="search"
                     onSubmit={handleSearchSubmit}
                   >
-                    <div className="relative">
+                    <div
+                      ref={mobileSearchBoxRef}
+                      className="relative"
+                      dir={dir}
+                    >
                       <button
                         type="button"
                         onClick={() => {
@@ -294,16 +330,17 @@ export function Header({ lang }: HeaderProps) {
                         type="text"
                         value={searchValue}
                         onChange={(event) => {
-                          setSearchValue(event.target.value);
-                          openSearch();
+                          const nextValue = event.target.value;
+                          setSearchValue(nextValue);
+                          openSearch(nextValue);
                         }}
-                        onFocus={openSearch}
+                        onFocus={() => openSearch()}
                         placeholder={`${t.common.search}...`}
                         autoComplete="off"
                         dir={dir}
                         className={`w-full rounded-full border border-border/50 bg-background/80 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 ${
                           isRTL
-                            ? "pl-11 pr-12 text-right"
+                            ? "pl-11 pr-12 text-right [direction:rtl] placeholder:text-right"
                             : "pl-12 pr-11 text-left"
                         }`}
                         aria-label={t.common.search}
@@ -319,6 +356,15 @@ export function Header({ lang }: HeaderProps) {
                         >
                           <X size={15} strokeWidth={1.8} />
                         </button>
+                      )}
+                      {shouldShowSearchResults && (
+                        <SearchResultsPopover
+                          lang={lang}
+                          query={searchQuery}
+                          results={searchResults}
+                          onClose={() => setIsSearchOpen(false)}
+                          compact
+                        />
                       )}
                     </div>
                   </form>
@@ -362,74 +408,6 @@ export function Header({ lang }: HeaderProps) {
           </div>
         </nav>
       </header>
-      {isSearchOpen && (
-        <div
-          className="fixed inset-x-0 bottom-0 top-16 z-50 bg-foreground/20 backdrop-blur-[2px] md:top-28"
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) setIsSearchOpen(false);
-          }}
-        >
-          <div
-            dir={dir}
-            className="mx-auto mt-3 max-h-[min(34rem,calc(100vh-8rem))] w-[calc(100%-1.5rem)] max-w-3xl overflow-hidden rounded-lg border border-border/70 bg-background/98 shadow-2xl md:mt-4"
-            role="dialog"
-            aria-modal="false"
-            aria-label={lang === "en" ? "Search results" : "نتایج جستجو"}
-          >
-            <div className="flex items-center justify-between gap-4 border-b border-border/60 px-4 py-3 sm:px-5">
-              <div className={isRTL ? "text-right" : ""}>
-                <p className="text-sm font-semibold text-foreground">
-                  {lang === "en" ? "Search results" : "نتایج جستجو"}
-                </p>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  {searchQuery
-                    ? lang === "en"
-                      ? `${searchResults.length} matches for "${searchQuery}"`
-                      : `${searchResults.length} نتیجه برای «${searchQuery}»`
-                    : lang === "en"
-                      ? "Type a product, brand, or category"
-                      : "نام محصول، برند یا دسته‌بندی را وارد کنید"}
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setIsSearchOpen(false)}
-                className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border/70 bg-background text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
-                aria-label={lang === "en" ? "Close search" : "بستن جستجو"}
-              >
-                <X size={16} strokeWidth={1.8} />
-              </button>
-            </div>
-
-            <div className="max-h-[min(27rem,calc(100vh-13rem))] overflow-y-auto p-2 sm:p-3">
-              {!searchQuery ? (
-                <div className="px-4 py-10 text-center text-sm text-muted-foreground">
-                  {lang === "en"
-                    ? "Search across rice, legumes, nuts, seeds, spices, and sweeteners."
-                    : "در میان برنج، حبوبات، آجیل، دانه‌ها، ادویه‌جات و شیرین‌کننده‌ها جستجو کنید."}
-                </div>
-              ) : searchResults.length > 0 ? (
-                <div className="space-y-1.5">
-                  {searchResults.map((product) => (
-                    <SearchResult
-                      key={product.id}
-                      product={product}
-                      lang={lang}
-                      onSelect={() => setIsSearchOpen(false)}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <div className="px-4 py-10 text-center text-sm text-muted-foreground">
-                  {lang === "en"
-                    ? "No matching products found."
-                    : "محصولی مطابق جستجو پیدا نشد."}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
       <div className="h-16 sm:h-16 md:h-28" />
     </>
   );
@@ -470,6 +448,81 @@ function searchProducts(query: string) {
 
   return products.filter((product) =>
     normalizeSearchText(productSearchText(product)).includes(normalizedQuery),
+  );
+}
+
+function SearchResultsPopover({
+  lang,
+  query,
+  results,
+  onClose,
+  compact = false,
+}: {
+  lang: Language;
+  query: string;
+  results: Product[];
+  onClose: () => void;
+  compact?: boolean;
+}) {
+  const isRTL = lang === "fa";
+  const dir = isRTL ? "rtl" : "ltr";
+
+  return (
+    <div
+      dir={dir}
+      className={`absolute left-0 right-0 top-full z-[100] mt-2 overflow-hidden rounded-lg border border-border/70 bg-background/98 shadow-2xl ${
+        compact ? "max-h-[22rem]" : "max-h-[28rem]"
+      }`}
+      role="dialog"
+      aria-modal="false"
+      aria-label={lang === "en" ? "Search results" : "نتایج جستجو"}
+    >
+      <div
+        className={`flex items-center justify-between gap-3 border-b border-border/60 px-3 py-2.5 ${
+          isRTL ? "flex-row-reverse text-right" : ""
+        }`}
+      >
+        <div className="min-w-0">
+          <p className="truncate text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+            {lang === "en" ? "Search results" : "نتایج جستجو"}
+          </p>
+          <p className="mt-0.5 truncate text-xs text-foreground/65">
+            {lang === "en"
+              ? `${results.length} matches for "${query}"`
+              : `${results.length} نتیجه برای «${query}»`}
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={onClose}
+          className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-border/70 bg-background text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
+          aria-label={lang === "en" ? "Close search" : "بستن جستجو"}
+        >
+          <X size={15} strokeWidth={1.8} />
+        </button>
+      </div>
+
+      <div className="max-h-[21rem] overflow-y-auto p-2">
+        {results.length > 0 ? (
+          <div className="space-y-1.5">
+            {results.map((product) => (
+              <SearchResult
+                key={product.id}
+                product={product}
+                lang={lang}
+                onSelect={onClose}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="px-3 py-8 text-center text-sm text-muted-foreground">
+            {lang === "en"
+              ? "No matching products found."
+              : "محصولی مطابق جستجو پیدا نشد."}
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 
