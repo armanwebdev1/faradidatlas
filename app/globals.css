@@ -438,14 +438,8 @@
   padding-left: 3rem;
 }
 
-/* Rtl text alignment */
-[dir="rtl"] .text-left {
-  text-align: right;
-}
-
-[dir="rtl"] .text-right {
-  text-align: left;
-}
+/* Tailwind text-left/text-right are physical utilities.
+   Persian containers inherit right alignment from [dir="rtl"]. */
 
 /* Rtl flex */
 [dir="rtl"] .flex-row {

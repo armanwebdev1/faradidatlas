@@ -209,7 +209,7 @@ export function SignatureProducts() {
               >
                 <button
                   onClick={handleProductClick}
-                  className="relative h-full w-full bg-muted overflow-hidden text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                  className="relative h-full w-full bg-muted overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                   aria-label={
                     lang === "en"
                       ? `View ${t(product.name)} products`

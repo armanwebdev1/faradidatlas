@@ -11,6 +11,7 @@ interface FAQAccordionProps {
 
 export function FAQAccordion({ items, lang }: FAQAccordionProps) {
   const [openId, setOpenId] = useState<number | null>(null);
+  const isRTL = lang === "fa";
 
   return (
     <div className="space-y-4 sm:space-y-5">
@@ -32,7 +33,9 @@ export function FAQAccordion({ items, lang }: FAQAccordionProps) {
           >
             <button
               onClick={() => setOpenId(isOpen ? null : item.id)}
-              className="w-full px-4 sm:px-6 py-4 sm:py-5 flex justify-between items-start gap-3 sm:gap-4 text-left transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20"
+              className={`w-full px-4 sm:px-6 py-4 sm:py-5 flex justify-between items-start gap-3 sm:gap-4 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20 ${
+                isRTL ? "text-right" : "text-left"
+              }`}
               aria-expanded={isOpen}
               aria-controls={`faq-answer-${item.id}`}
             >
