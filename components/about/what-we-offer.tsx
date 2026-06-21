@@ -15,13 +15,13 @@ const offerings = {
         "Direct supplier coordination for rice, legumes, spices, nuts, seeds, sugar, and other essentials.",
     },
     {
-      image: "/what-we-offer/quality-documentation.png",
+      image: "/what-we-offer/featured2.jpg",
       title: "Quality & Documentation",
       description:
         "Quality checks, hygiene standards, import documentation, and ISO-led operating discipline.",
     },
     {
-      image: "/what-we-offer/featured2.jpg",
+      image: "/what-we-offer/quality-documentation.png",
       title: "Distribution & Access",
       description:
         "Regional offices, branches, and warehouses that support retailers, wholesalers, and institutions.",
@@ -35,13 +35,13 @@ const offerings = {
         "هماهنگی مستقیم با تامین‌کنندگان برای برنج، حبوبات، ادویه‌جات، آجیل، دانه‌ها، شکر و سایر اقلام اساسی.",
     },
     {
-      image: "/what-we-offer/quality-documentation.png",
+      image: "/what-we-offer/featured2.jpg",
       title: "کیفیت و مستندسازی",
       description:
         "کنترل کیفیت، رعایت استانداردهای بهداشتی، اسناد واردات و نظم عملیاتی مبتنی بر ISO.",
     },
     {
-      image: "/what-we-offer/featured2.jpg",
+      image: "/what-we-offer/quality-documentation.png",
       title: "توزیع و دسترسی",
       description:
         "دفاتر، شعب و انبارهای منطقه‌ای برای پشتیبانی از خرده‌فروشان، عمده‌فروشان و سازمان‌ها.",
