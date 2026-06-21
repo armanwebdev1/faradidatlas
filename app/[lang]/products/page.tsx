@@ -54,7 +54,7 @@ export default async function ProductsPage({
       <main>
         <section className="w-full h-48 sm:h-56 md:h-64 relative overflow-hidden bg-gradient-to-br from-secondary/40 to-secondary/60">
           <Image
-            src="/product_images/products-hero.png"
+            src="/products-hero.png"
             alt={lang === "en" ? "Food product portfolio" : "سبد محصولات غذایی"}
             fill
             sizes="100vw"

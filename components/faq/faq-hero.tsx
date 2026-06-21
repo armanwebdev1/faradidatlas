@@ -29,9 +29,7 @@ export function FAQHero({ lang }: FAQHeroProps) {
                     : "Estedad, var(--font-hero)",
               }}
             >
-              {lang === "en"
-                ? "Frequently Asked Questions"
-                : "سوالات متداول"}
+              {lang === "en" ? "Frequently Asked Questions" : "سوالات متداول"}
             </h1>
             <p className="text-base md:text-lg text-foreground/70 leading-relaxed max-w-3xl mx-auto animate-fade-in-up">
               {lang === "en"
@@ -51,8 +49,12 @@ export function FAQHero({ lang }: FAQHeroProps) {
           <div className="animate-fade-in-up">
             <div className="relative w-full h-56 sm:h-64 md:h-80 rounded-3xl overflow-hidden shadow-2xl">
               <Image
-                src="/featured2.jpg"
-                alt={lang === "en" ? "Food supply support" : "پشتیبانی تامین مواد غذایی"}
+                src="/faq-image.png"
+                alt={
+                  lang === "en"
+                    ? "Food supply support"
+                    : "پشتیبانی تامین مواد غذایی"
+                }
                 fill
                 sizes="100vw"
                 className="object-cover"
