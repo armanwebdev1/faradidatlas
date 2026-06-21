@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Language } from "@/lib/i18n";
 
@@ -9,9 +10,7 @@ interface HeroProps {
 }
 
 interface HeroImage {
-  avif: string;
-  webp: string;
-  fallback: string;
+  src: string;
 }
 
 interface HeroSlide {
@@ -22,26 +21,16 @@ interface HeroSlide {
   description: Record<Language, string>;
 }
 
-const heroWidths = [640, 1280, 1920] as const;
-
-function heroSrcSet(id: number, format: "avif" | "webp") {
-  return heroWidths
-    .map((width) => `/hero/${id}-${width}.${format} ${width}w`)
-    .join(", ");
-}
-
-function heroImage(id: number): HeroImage {
+function heroImage(filename: string): HeroImage {
   return {
-    avif: heroSrcSet(id, "avif"),
-    webp: heroSrcSet(id, "webp"),
-    fallback: `/hero/${id}-1280.webp`,
+    src: `/hero/${filename}`,
   };
 }
 
 const slides: HeroSlide[] = [
   {
     id: 1,
-    image: heroImage(1),
+    image: heroImage("ChatGPT Image Jun 21, 2026, 10_14_48 AM.png"),
     title: {
       en: "Reliable Food Supply",
       fa: "تامین مطمئن مواد غذایی",
@@ -57,7 +46,7 @@ const slides: HeroSlide[] = [
   },
   {
     id: 2,
-    image: heroImage(2),
+    image: heroImage("ChatGPT Image Jun 21, 2026, 10_15_00 AM.png"),
     title: {
       en: "Direct Sourcing Network",
       fa: "شبکه تامین مستقیم",
@@ -73,7 +62,7 @@ const slides: HeroSlide[] = [
   },
   {
     id: 3,
-    image: heroImage(3),
+    image: heroImage("ChatGPT Image Jun 21, 2026, 10_15_17 AM.png"),
     title: {
       en: "Steady Regional Reach",
       fa: "حضور منطقه‌ای پایدار",
@@ -129,36 +118,28 @@ export function Hero({ lang }: HeroProps) {
           const isActive = index === activeIndex;
 
           return (
-            <picture
+            <div
               key={slide.id}
               className={`absolute inset-0 block transition-opacity duration-1000 ease-out ${
                 isActive ? "opacity-100" : "opacity-0"
               }`}
             >
-              <source
-                type="image/avif"
-                srcSet={slide.image.avif}
-                sizes="100vw"
-              />
-              <source
-                type="image/webp"
-                srcSet={slide.image.webp}
-                sizes="100vw"
-              />
-              <img
+              <Image
                 key={`${slide.id}-${isActive ? "active" : "idle"}`}
-                src={slide.image.fallback}
+                src={slide.image.src}
                 alt=""
-                fetchPriority={index === 0 ? "high" : "auto"}
-                loading={index === 0 ? "eager" : "lazy"}
-                decoding="async"
+                fill
+                priority={index === 0}
+                loading={index === 0 ? undefined : "lazy"}
+                sizes="100vw"
+                quality={90}
                 className={`h-full w-full object-cover transform-gpu ${
                   isActive
                     ? "scale-[1.03] animate-hero-image-zoom"
                     : "scale-[1.08]"
                 }`}
               />
-            </picture>
+            </div>
           );
         })}
 
