@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { useRouter, useParams } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -14,27 +15,17 @@ interface Product {
   id: number;
   name: LocalizedText;
   category: LocalizedText;
-  image: OptimizedProductImage;
+  image: ProductImage;
   description: LocalizedText;
 }
 
-interface OptimizedProductImage {
-  avif: string;
-  webp: string;
-  fallback: string;
+interface ProductImage {
+  src: string;
 }
 
-const productImageWidths = [640, 1280] as const;
-
-function productImage(id: string): OptimizedProductImage {
+function productImage(filename: string): ProductImage {
   return {
-    avif: productImageWidths
-      .map((width) => `/signature-products/${id}-${width}.avif ${width}w`)
-      .join(", "),
-    webp: productImageWidths
-      .map((width) => `/signature-products/${id}-${width}.webp ${width}w`)
-      .join(", "),
-    fallback: `/signature-products/${id}-640.webp`,
+    src: `/signature-products/${filename}`,
   };
 }
 
@@ -43,7 +34,7 @@ const products: Product[] = [
     id: 1,
     name: { en: "21 Rice Brand", fa: "برند برنج ۲۱" },
     category: { en: "Rice Portfolio", fa: "سبد برنج" },
-    image: productImage("twenty-one"),
+    image: productImage("twenty-one.png"),
     description: {
       en: "One of Faradid Atlas' recognized rice brands, built around dependable quality and everyday availability.",
       fa: "یکی از برندهای شناخته‌شده برنج فرادید اطلس با تمرکز بر کیفیت قابل اتکا و دسترسی روزمره.",
@@ -53,7 +44,7 @@ const products: Product[] = [
     id: 2,
     name: { en: "Mizban Rice", fa: "برنج میزبان" },
     category: { en: "Rice Portfolio", fa: "سبد برنج" },
-    image: productImage("mizban"),
+    image: productImage("mizban.png"),
     description: {
       en: "A trusted rice line designed for households, retailers, and foodservice partners.",
       fa: "برندی قابل اعتماد برای خانواده‌ها، فروشگاه‌ها و شرکای خدمات غذایی.",
@@ -63,7 +54,7 @@ const products: Product[] = [
     id: 3,
     name: { en: "Hayat Rice", fa: "برنج حیات" },
     category: { en: "Rice Portfolio", fa: "سبد برنج" },
-    image: productImage("hayat"),
+    image: productImage("hayat.png"),
     description: {
       en: "Selected for consistent cooking quality, clear sourcing, and steady market supply.",
       fa: "انتخاب‌شده برای کیفیت پخت یکنواخت، تامین شفاف و عرضه پایدار در بازار.",
@@ -73,7 +64,7 @@ const products: Product[] = [
     id: 4,
     name: { en: "Golbanou Rice", fa: "برنج گل‌بانو" },
     category: { en: "Rice Portfolio", fa: "سبد برنج" },
-    image: productImage("golbanoo"),
+    image: productImage("golbanoo.png"),
     description: {
       en: "A familiar rice brand serving demand across Iran and the wider Middle East region.",
       fa: "برندی آشنا در بازار برنج برای پاسخ‌گویی به تقاضا در ایران و منطقه خاورمیانه.",
@@ -83,7 +74,7 @@ const products: Product[] = [
     id: 5,
     name: { en: "Essential Food Staples", fa: "مواد غذایی اساسی" },
     category: { en: "Core Products", fa: "محصولات اصلی" },
-    image: productImage("red-lentil"),
+    image: productImage("red-lentil.png"),
     description: {
       en: "Legumes, spices, nuts, seeds, sugar, and other essentials selected for dependable B2B supply.",
       fa: "حبوبات، ادویه‌جات، آجیل، دانه‌ها، شکر و سایر اقلام اساسی برای تامین B2B قابل اتکا.",
@@ -217,29 +208,19 @@ export function SignatureProducts() {
                   }
                 >
                   {hasEntered && (
-                    <picture>
-                      <source
-                        type="image/avif"
-                        srcSet={product.image.avif}
-                        sizes="100vw"
-                      />
-                      <source
-                        type="image/webp"
-                        srcSet={product.image.webp}
-                        sizes="100vw"
-                      />
-                      <img
-                        src={product.image.fallback}
-                        alt={t(product.name)}
-                        loading="lazy"
-                        decoding="async"
-                        className={`absolute inset-0 h-full w-full object-cover transition-transform duration-700 ${
-                          index === currentIndex && !isTransitioning
-                            ? "scale-100"
-                            : "scale-105"
-                        }`}
-                      />
-                    </picture>
+                    <Image
+                      src={product.image.src}
+                      alt={t(product.name)}
+                      fill
+                      loading="lazy"
+                      sizes="100vw"
+                      quality={90}
+                      className={`absolute inset-0 h-full w-full object-cover transition-transform duration-700 ${
+                        index === currentIndex && !isTransitioning
+                          ? "scale-100"
+                          : "scale-105"
+                      }`}
+                    />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/90" />
                 </button>
