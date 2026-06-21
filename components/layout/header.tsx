@@ -85,7 +85,7 @@ export function Header({ lang }: HeaderProps) {
   useEffect(() => {
     const topThreshold = 8;
     const directionThreshold = 3;
-    const hideScrollDistance = 30;
+    const hideScrollDistance = 100;
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
