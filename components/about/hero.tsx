@@ -45,7 +45,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
           <div>
             <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/featured1.jpg"
+                src="/about-hero.png"
                 alt={
                   lang === "en"
                     ? "Faradid Atlas operations"
