@@ -9,19 +9,19 @@ interface WhatWeOfferProps {
 const offerings = {
   en: [
     {
-      image: "/featured1.jpg",
+      image: "/what-we-offer/sourcing-import.png",
       title: "Sourcing & Import",
       description:
         "Direct supplier coordination for rice, legumes, spices, nuts, seeds, sugar, and other essentials.",
     },
     {
-      image: "/featured2.jpg",
+      image: "/what-we-offer/quality-documentation.png",
       title: "Quality & Documentation",
       description:
         "Quality checks, hygiene standards, import documentation, and ISO-led operating discipline.",
     },
     {
-      image: "/featured3.jpg",
+      image: "/what-we-offer/featured2.jpg",
       title: "Distribution & Access",
       description:
         "Regional offices, branches, and warehouses that support retailers, wholesalers, and institutions.",
@@ -29,19 +29,19 @@ const offerings = {
   ],
   fa: [
     {
-      image: "/featured1.jpg",
+      image: "/what-we-offer/sourcing-import.png",
       title: "تامین و واردات",
       description:
         "هماهنگی مستقیم با تامین‌کنندگان برای برنج، حبوبات، ادویه‌جات، آجیل، دانه‌ها، شکر و سایر اقلام اساسی.",
     },
     {
-      image: "/featured2.jpg",
+      image: "/what-we-offer/quality-documentation.png",
       title: "کیفیت و مستندسازی",
       description:
         "کنترل کیفیت، رعایت استانداردهای بهداشتی، اسناد واردات و نظم عملیاتی مبتنی بر ISO.",
     },
     {
-      image: "/featured3.jpg",
+      image: "/what-we-offer/featured2.jpg",
       title: "توزیع و دسترسی",
       description:
         "دفاتر، شعب و انبارهای منطقه‌ای برای پشتیبانی از خرده‌فروشان، عمده‌فروشان و سازمان‌ها.",
