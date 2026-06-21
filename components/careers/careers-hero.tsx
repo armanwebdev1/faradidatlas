@@ -1,7 +1,3 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
 import type { Language } from "@/lib/i18n";
 
 interface CareersHeroProps {
@@ -10,58 +6,16 @@ interface CareersHeroProps {
 
 export function CareersHero({ lang }: CareersHeroProps) {
   const isRTL = lang === "fa";
-  const sectionRef = useRef<HTMLElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
-  const eyebrowRef = useRef<HTMLParagraphElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const reduceMotion =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const targets = [
-      eyebrowRef.current,
-      titleRef.current,
-      subtitleRef.current,
-      ctaRef.current,
-    ].filter(Boolean);
-
-    if (reduceMotion) {
-      gsap.set(targets, { opacity: 1, y: 0 });
-      gsap.set(bgRef.current, { scale: 1 });
-      return;
-    }
-
-    const ctx = gsap.context(() => {
-      gsap.set(targets, { opacity: 0, y: 24 });
-      gsap.set(bgRef.current, { scale: 1.04 });
-
-      const timeline = gsap.timeline({
-        defaults: { ease: "cubic-bezier(0.22, 1, 0.36, 1)" },
-      });
-
-      timeline
-        .to(bgRef.current, { scale: 1, duration: 1.4 }, 0)
-        .to(titleRef.current, { opacity: 1, y: 0, duration: 0.9 }, 0.2)
-        .to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.9 }, 0.4)
-        .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.8 }, 0.55);
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  const revealClass =
+    "opacity-0 translate-y-6 motion-safe:animate-fade-in-up motion-reduce:translate-y-0 motion-reduce:opacity-100";
 
   return (
     <section
-      ref={sectionRef}
       className="relative min-h-screen w-full overflow-hidden bg-neutral-950"
     >
       <div
-        ref={bgRef}
         className="absolute inset-0 bg-center bg-cover"
-        style={{ backgroundImage: "url('/featured1.jpg')" }}
+        style={{ backgroundImage: "url('/careers-hero.png')" }}
       />
       <div
         className={`absolute inset-0 ${
@@ -77,18 +31,20 @@ export function CareersHero({ lang }: CareersHeroProps) {
             className={`max-w-2xl ${isRTL ? "text-right" : "text-left"}`}
             dir={isRTL ? "rtl" : "ltr"}
           >
-            <p ref={eyebrowRef} className="eyebrow mb-4 text-accent-warm-gold">
+            <p
+              className={`eyebrow mb-4 text-accent-warm-gold ${revealClass}`}
+            >
               {lang === "en" ? "Careers" : "فرصت‌های شغلی"}
             </p>
             <h1
-              ref={titleRef}
-              className="mb-8 font-hero text-white"
+              className={`mb-8 font-hero text-white ${revealClass}`}
               style={{
                 fontFamily:
                   lang === "en"
                     ? "var(--font-hero)"
                     : "Estedad, var(--font-hero)",
                 textAlign: isRTL ? "right" : "left",
+                animationDelay: "90ms",
               }}
             >
               <span className="block">
@@ -100,8 +56,7 @@ export function CareersHero({ lang }: CareersHeroProps) {
             </h1>
 
             <p
-              ref={subtitleRef}
-              className="mb-10 max-w-2xl leading-[1.6] text-white/85"
+              className={`mb-10 max-w-2xl leading-[1.6] text-white/85 ${revealClass}`}
               style={{
                 fontSize: "clamp(16px, 2vw, 18px)",
                 fontFamily:
@@ -109,6 +64,7 @@ export function CareersHero({ lang }: CareersHeroProps) {
                     ? "var(--font-body)"
                     : "Shabnam, var(--font-body)",
                 textAlign: isRTL ? "right" : "left",
+                animationDelay: "180ms",
               }}
             >
               {lang === "en"
@@ -117,12 +73,12 @@ export function CareersHero({ lang }: CareersHeroProps) {
             </p>
 
             <div
-              ref={ctaRef}
-              className={`mt-8 flex flex-col sm:flex-row gap-4 ${
+              className={`mt-8 flex flex-col sm:flex-row gap-4 ${revealClass} ${
                 isRTL
                   ? "sm:flex-row-reverse sm:justify-end items-end"
                   : "sm:justify-start items-start"
               }`}
+              style={{ animationDelay: "270ms" }}
             >
               <a
                 href="#open-roles"
