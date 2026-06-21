@@ -7,7 +7,7 @@ interface CareersHeroProps {
 export function CareersHero({ lang }: CareersHeroProps) {
   const isRTL = lang === "fa";
   const revealClass =
-    "opacity-0 translate-y-6 motion-safe:animate-fade-in-up motion-reduce:translate-y-0 motion-reduce:opacity-100";
+    "opacity-0 translate-y-6 animate-fade-in-up motion-reduce:translate-y-0 motion-reduce:opacity-100";
 
   return (
     <section
