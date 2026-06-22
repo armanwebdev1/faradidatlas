@@ -80,6 +80,7 @@ const content = {
 export function StrategicFramework({ lang }: StrategicFrameworkProps) {
   const data = lang === "en" ? content.en : content.fa;
   const isRTL = lang === "fa";
+  const textAlignClass = isRTL ? "text-right" : "text-left";
 
   return (
     <AnimatedSection className="relative overflow-hidden bg-background-alt px-4 py-20 sm:px-6 md:py-28">
@@ -89,9 +90,7 @@ export function StrategicFramework({ lang }: StrategicFrameworkProps) {
           dir={isRTL ? "rtl" : "ltr"}
         >
           <div className="lg:col-span-7">
-            <p className="eyebrow mb-4 text-accent-warm-gold">
-              {data.eyebrow}
-            </p>
+            <p className="eyebrow mb-4 text-accent-warm-gold">{data.eyebrow}</p>
             <h2 className="max-w-4xl text-responsive-title text-primary">
               {data.title}
             </h2>
@@ -126,11 +125,17 @@ export function StrategicFramework({ lang }: StrategicFrameworkProps) {
           className="relative overflow-hidden rounded-xl border border-primary/10 bg-primary px-6 py-7 shadow-[0_22px_50px_rgba(30,35,39,0.12)] sm:px-8 md:px-10"
           dir={isRTL ? "rtl" : "ltr"}
         >
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-warm-gold/60 to-transparent" />
-          <div className="grid gap-6 lg:grid-cols-12 lg:items-center">
-            <div className="lg:col-span-4">
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-accent-warm-gold">
-                <Gem className="h-5 w-5" strokeWidth={1.7} />
+          {/* <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-warm-gold/60 to-transparent" /> */}
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.35fr)] lg:items-start">
+            <div className={textAlignClass}>
+              <div
+                className={`mb-4 flex ${
+                  isRTL ? "justify-end" : "justify-start"
+                }`}
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-accent-warm-gold">
+                  <Gem className="h-5 w-5" strokeWidth={1.7} />
+                </div>
               </div>
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-accent-warm-gold">
                 {data.values.label}
@@ -139,7 +144,11 @@ export function StrategicFramework({ lang }: StrategicFrameworkProps) {
                 {data.values.title}
               </h3>
             </div>
-            <p className="text-sm leading-relaxed text-white/75 sm:text-base lg:col-span-8">
+            <p
+              className={`text-sm leading-relaxed text-white/75 sm:text-base ${
+                isRTL ? "text-right" : "text-left"
+              }`}
+            >
               {data.values.body}
             </p>
           </div>

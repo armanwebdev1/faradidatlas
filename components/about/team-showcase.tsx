@@ -75,42 +75,58 @@ const values = {
 
 export function TeamShowcase({ lang }: TeamShowcaseProps) {
   const valueList = lang === "en" ? values.en : values.fa;
+  const isRTL = lang === "fa";
+  const sectionIntro =
+    lang === "en"
+      ? "A compact set of standards guides how the team selects partners, protects quality, and builds long-term commercial trust."
+      : "مجموعه‌ای روشن از ارزش‌ها، شیوه انتخاب همکاران، حفاظت از کیفیت و ایجاد اعتماد بلندمدت تجاری را هدایت می‌کند.";
 
   return (
-    <AnimatedSection className="relative py-24 md:py-32 px-4 sm:px-6 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-20">
-          <span className="inline-block px-4 py-2 bg-accent-warm-gold/15 rounded-full text-xs font-bold text-accent-warm-gold mb-6 uppercase tracking-widest">
+    <AnimatedSection className="relative overflow-hidden bg-white px-4 py-20 sm:px-6 md:py-28">
+      <div
+        className="relative z-10 mx-auto max-w-7xl"
+        dir={isRTL ? "rtl" : "ltr"}
+      >
+        <div className="mb-12 grid gap-6 border-b border-foreground/10 pb-10 md:mb-14 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7">
+            <p className="eyebrow mb-4 text-accent-warm-gold">
             {lang === "en" ? "Core Values" : "ارزش‌های بنیادین"}
-          </span>
-          <h2
-            className="text-5xl md:text-6xl font-bold text-primary mb-6 tracking-tight font-hero"
-            style={{ fontFamily: "var(--font-hero)" }}
-          >
+            </p>
+            <h2 className="max-w-4xl text-responsive-title text-primary">
             {lang === "en"
               ? "The principles behind every decision"
               : "اصولی که پشت هر تصمیم قرار دارد"}
-          </h2>
+            </h2>
+          </div>
+          <p className="text-responsive-body leading-relaxed text-foreground/70 lg:col-span-5">
+            {sectionIntro}
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-foreground/10 bg-foreground/10 shadow-[0_18px_45px_rgba(30,35,39,0.06)] sm:grid-cols-2 lg:grid-cols-6">
           {valueList.map((value, idx) => {
             const Icon = value.icon;
+            const tileSpan = idx < 3 ? "lg:col-span-2" : "lg:col-span-3";
             return (
               <div
                 key={idx}
-                className="group opacity-0 translate-y-6"
+                className={`${tileSpan} opacity-0 translate-y-6`}
                 data-animate
                 style={{ animationDelay: `${idx * 0.05}s` }}
               >
-                <div className="relative bg-white rounded-2xl overflow-hidden border border-border hover:border-accent-warm-gold hover:shadow-2xl transition-all duration-500 h-full p-6">
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-accent-warm-gold/15 text-accent-warm-gold">
-                    <Icon className="h-7 w-7" strokeWidth={1.5} />
+                <div className="relative flex h-full min-h-[230px] flex-col bg-white p-6 sm:p-7">
+                  <div className="mb-7 flex items-start justify-between gap-5">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-accent-warm-gold/25 bg-accent-warm-gold/10 text-accent-warm-gold">
+                      <Icon className="h-5 w-5" strokeWidth={1.7} />
+                    </span>
+                    <span className="font-hero text-4xl leading-none text-foreground/[0.08]">
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
                   </div>
-                  <h3 className="text-lg font-bold text-primary mb-3 group-hover:text-accent-warm-gold transition-colors">
+                  <h3 className="mb-3 text-lg font-semibold leading-snug text-primary">
                     {value.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm leading-relaxed text-muted-foreground">
                     {value.description}
                   </p>
                 </div>
