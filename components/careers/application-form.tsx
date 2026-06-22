@@ -368,7 +368,7 @@ export function ApplicationForm({
       <div className="pointer-events-none absolute -bottom-20 left-0 h-56 w-56 rounded-full bg-gradient-to-tr from-foreground/5 via-white to-transparent blur-3xl -z-10" />
 
       <div className="mb-6 sm:mb-8">
-        <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.35em] text-accent-warm-gold">
+        <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.35em] text-brand-navy">
           {copy.jobLabel}
         </p>
         <h2 className="mt-3 text-responsive-section text-foreground tracking-tight">

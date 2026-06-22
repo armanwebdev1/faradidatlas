@@ -31,7 +31,7 @@ export function ContactHero({ lang }: ContactHeroProps) {
       <div className="container-wide">
         <div className="space-y-8 md:space-y-10">
           <StaggeredFade className="text-center">
-            <p className="eyebrow mb-4 text-accent-warm-gold animate-fade-in-up">
+            <p className="eyebrow mb-4 text-brand-navy animate-fade-in-up">
               {lang === "en" ? "Get in Touch" : "با ما در ارتباط باشید"}
             </p>
             <h1 className="text-responsive-hero text-primary mb-5 animate-fade-in-up">

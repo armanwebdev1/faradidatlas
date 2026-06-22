@@ -167,7 +167,7 @@ export function SignatureProducts() {
 
       <div className="relative z-10 container-wide">
         <div className="text-center mb-10 sm:mb-12 md:mb-14 animate-fade-in">
-          <p className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6">
+          <p className="eyebrow text-brand-navy mb-4 sm:mb-5 md:mb-6">
             {lang === "en" ? "Recognized Portfolio" : "سبد محصولات منتخب"}
           </p>
           <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 md:mb-8">

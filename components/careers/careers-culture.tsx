@@ -139,7 +139,7 @@ export function CareersCulture({ lang }: CareersCultureProps) {
         <div className="text-center mb-10 sm:mb-12 md:mb-14">
           <p
             ref={eyebrowRef}
-            className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6"
+            className="eyebrow text-brand-navy mb-4 sm:mb-5 md:mb-6"
           >
             {lang === "en" ? "Culture" : "فرهنگ کاری"}
           </p>

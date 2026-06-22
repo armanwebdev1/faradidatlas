@@ -24,9 +24,12 @@ export function Footer({ lang }: FooterProps) {
       dir={dir}
       className="relative bg-gradient-to-b from-depth to-depth/95 text-white overflow-hidden"
     >
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-navy/80 to-transparent" />
+      <div className="pointer-events-none absolute left-1/2 top-0 h-24 w-[80vw] max-w-[34rem] -translate-x-1/2 bg-brand-navy/15 blur-3xl" />
+
       {/* Background blobs */}
       <div className="absolute inset-0 opacity-30 pointer-events-none">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-accent rounded-full blur-3xl opacity-5 -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute top-0 left-0 w-96 h-96 bg-brand-navy rounded-full blur-3xl opacity-10 -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl opacity-5 translate-x-1/2 translate-y-1/2" />
       </div>
 
@@ -49,7 +52,7 @@ export function Footer({ lang }: FooterProps) {
                     alt=""
                     width={56}
                     height={56}
-                    className="h-11 w-11 object-contain opacity-95 transition duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_18px_rgba(201,169,97,0.35)] sm:h-12 sm:w-12"
+                    className="h-11 w-11 object-contain opacity-95 transition duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_18px_rgba(48,59,112,0.55)] sm:h-12 sm:w-12"
                   />
                   <span className="flex flex-col leading-none">
                     <span className="text-xl font-bold text-white transition-colors duration-300 group-hover:text-accent sm:text-2xl">
@@ -204,7 +207,7 @@ export function Footer({ lang }: FooterProps) {
           {/* Divider */}
           <div className="relative py-8 mb-8">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <div className="w-full h-px bg-gradient-to-r from-transparent via-brand-navy/80 to-transparent" />
             </div>
           </div>
 

@@ -89,7 +89,7 @@ export function TeamShowcase({ lang }: TeamShowcaseProps) {
       >
         <div className="mx-auto mb-14 max-w-3xl text-center md:mb-16">
           <div>
-            <p className="eyebrow mb-4 text-accent-warm-gold">
+            <p className="eyebrow mb-4 text-brand-navy">
             {lang === "en" ? "Core Values" : "ارزش‌های بنیادین"}
             </p>
             <h2 className="max-w-4xl text-responsive-title text-primary">

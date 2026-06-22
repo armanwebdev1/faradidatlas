@@ -64,7 +64,7 @@ export function CTASection({ lang }: CTASectionProps) {
     <section className="section relative overflow-hidden bg-background-alt">
       <div className="relative container-wide">
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
-          <p className="eyebrow text-accent">
+          <p className="eyebrow text-brand-navy">
             {lang === "en" ? "B2B Cooperation" : "همکاری تجاری و سازمانی"}
           </p>
         </div>

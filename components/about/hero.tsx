@@ -20,7 +20,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
         <div className="space-y-20">
           <AnimatedHeadline className="text-center">
             <p
-              className="eyebrow mb-4 text-accent-warm-gold opacity-0 translate-y-6"
+              className="eyebrow mb-4 text-brand-navy opacity-0 translate-y-6"
               data-animate
             >
               {lang === "en" ? "About Faradid Atlas" : "درباره فرادید اطلس"}
