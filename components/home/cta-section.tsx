@@ -148,7 +148,7 @@ export function CTASection({ lang }: CTASectionProps) {
             <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-14 bg-gradient-to-r from-background-alt to-transparent sm:w-24 md:w-32" />
             <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-14 bg-gradient-to-l from-background-alt to-transparent sm:w-24 md:w-32" />
 
-            <div className="overflow-hidden py-4" dir="ltr">
+            <div className="overflow-hidden py-8" dir="ltr">
               <div
                 className={`brand-logo-marquee flex w-max ${
                   isRTL ? "brand-logo-marquee-reverse" : ""
@@ -157,13 +157,13 @@ export function CTASection({ lang }: CTASectionProps) {
                 {[0, 1].map((groupIndex) => (
                   <div
                     key={groupIndex}
-                    className="flex shrink-0 items-center gap-6 pr-6 sm:gap-8 sm:pr-8 md:gap-10 md:pr-10"
+                    className="flex shrink-0 items-center gap-8 pr-8 sm:gap-10 sm:pr-10 md:gap-12 md:pr-12"
                     aria-hidden={groupIndex === 1}
                   >
                     {brandLogoLoop.map((brand, brandIndex) => (
                       <div
                         key={`${groupIndex}-${brand.name}-${brandIndex}`}
-                        className="group/brand flex h-20 w-36 shrink-0 items-center justify-center px-1 transition-transform duration-500 hover:-translate-y-1 sm:h-24 sm:w-44 md:h-28 md:w-52 lg:w-56"
+                        className="group/brand shrink-0 transition-transform duration-500 hover:-translate-y-1"
                       >
                         <NextImage
                           src={brand.src}
@@ -172,7 +172,7 @@ export function CTASection({ lang }: CTASectionProps) {
                           height={brand.height}
                           sizes="(min-width: 1024px) 224px, (min-width: 768px) 208px, (min-width: 640px) 176px, 144px"
                           loading="lazy"
-                          className="h-full w-full object-contain drop-shadow-[0_14px_22px_rgba(30,35,39,0.12)] transition duration-500 group-hover/brand:scale-[1.05] group-hover/brand:drop-shadow-[0_0_28px_rgba(201,169,97,0.58)]"
+                          className="h-16 w-auto object-contain drop-shadow-[0_10px_16px_rgba(30,35,39,0.10)] transition duration-500 group-hover/brand:scale-[1.04] group-hover/brand:drop-shadow-[0_0_18px_rgba(201,169,97,0.42)] sm:h-20 md:h-24"
                         />
                       </div>
                     ))}
