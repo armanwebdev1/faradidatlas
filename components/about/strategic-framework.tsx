@@ -1,4 +1,11 @@
 import type { Language } from "@/lib/i18n";
+import {
+  CheckCircle2,
+  Compass,
+  Gem,
+  Route,
+  type LucideIcon,
+} from "lucide-react";
 import { AnimatedSection } from "./animated-section";
 
 interface StrategicFrameworkProps {
@@ -72,28 +79,42 @@ const content = {
 
 export function StrategicFramework({ lang }: StrategicFrameworkProps) {
   const data = lang === "en" ? content.en : content.fa;
+  const isRTL = lang === "fa";
 
   return (
-    <AnimatedSection className="relative py-20 md:py-28 px-4 sm:px-6 bg-secondary/30 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="max-w-3xl mb-12 md:mb-16">
-          <p className="eyebrow text-accent-warm-gold mb-4">{data.eyebrow}</p>
-          <h2 className="text-responsive-title text-primary mb-5">
-            {data.title}
-          </h2>
-          <p className="text-responsive-body text-foreground/70 leading-relaxed">
+    <AnimatedSection className="relative overflow-hidden bg-background-alt px-4 py-20 sm:px-6 md:py-28">
+      <div className="mx-auto max-w-7xl">
+        <div
+          className="grid gap-8 border-y border-foreground/10 py-10 md:py-14 lg:grid-cols-12 lg:items-end"
+          dir={isRTL ? "rtl" : "ltr"}
+        >
+          <div className="lg:col-span-7">
+            <p className="eyebrow mb-4 text-accent-warm-gold">
+              {data.eyebrow}
+            </p>
+            <h2 className="max-w-4xl text-responsive-title text-primary">
+              {data.title}
+            </h2>
+          </div>
+          <p className="text-responsive-body leading-relaxed text-foreground/70 lg:col-span-5">
             {data.intro}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 gap-5 py-8 md:gap-6 md:py-10 lg:grid-cols-2">
           <FrameworkPanel
+            number="01"
+            Icon={Compass}
+            isRTL={isRTL}
             label={data.vision.label}
             title={data.vision.title}
             body={data.vision.body}
             notes={data.vision.notes}
           />
           <FrameworkPanel
+            number="02"
+            Icon={Route}
+            isRTL={isRTL}
             label={data.mission.label}
             title={data.mission.title}
             body={data.mission.body}
@@ -101,16 +122,27 @@ export function StrategicFramework({ lang }: StrategicFrameworkProps) {
           />
         </div>
 
-        <div className="mt-6 md:mt-8 rounded-2xl border border-foreground/10 bg-white p-6 sm:p-8 md:p-10 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-warm-gold mb-3">
-            {data.values.label}
-          </p>
-          <h3 className="text-2xl md:text-3xl font-semibold text-primary mb-4">
-            {data.values.title}
-          </h3>
-          <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">
-            {data.values.body}
-          </p>
+        <div
+          className="relative overflow-hidden rounded-xl border border-primary/10 bg-primary px-6 py-7 shadow-[0_22px_50px_rgba(30,35,39,0.12)] sm:px-8 md:px-10"
+          dir={isRTL ? "rtl" : "ltr"}
+        >
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-warm-gold/60 to-transparent" />
+          <div className="grid gap-6 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-4">
+              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-accent-warm-gold">
+                <Gem className="h-5 w-5" strokeWidth={1.7} />
+              </div>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-accent-warm-gold">
+                {data.values.label}
+              </p>
+              <h3 className="text-2xl font-semibold leading-snug text-white md:text-3xl">
+                {data.values.title}
+              </h3>
+            </div>
+            <p className="text-sm leading-relaxed text-white/75 sm:text-base lg:col-span-8">
+              {data.values.body}
+            </p>
+          </div>
         </div>
       </div>
     </AnimatedSection>
@@ -118,31 +150,56 @@ export function StrategicFramework({ lang }: StrategicFrameworkProps) {
 }
 
 function FrameworkPanel({
+  number,
+  Icon,
+  isRTL,
   label,
   title,
   body,
   notes,
 }: {
+  number: string;
+  Icon: LucideIcon;
+  isRTL: boolean;
   label: string;
   title: string;
   body: string;
   notes: string[];
 }) {
   return (
-    <article className="rounded-2xl border border-foreground/10 bg-white p-6 sm:p-8 md:p-10 shadow-sm h-full">
-      <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-warm-gold mb-3">
+    <article
+      className="relative h-full overflow-hidden rounded-xl border border-foreground/10 bg-white/90 p-6 shadow-[0_18px_45px_rgba(30,35,39,0.06)] sm:p-8 md:p-9"
+      dir={isRTL ? "rtl" : "ltr"}
+    >
+      <div className="mb-8 flex items-start justify-between gap-5">
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-accent-warm-gold/25 bg-accent-warm-gold/10 text-accent-warm-gold">
+          <Icon className="h-5 w-5" strokeWidth={1.7} />
+        </div>
+        <span className="font-hero text-5xl leading-none text-foreground/[0.08]">
+          {number}
+        </span>
+      </div>
+
+      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-accent-warm-gold">
         {label}
       </p>
-      <h3 className="text-2xl md:text-3xl font-semibold text-primary mb-4">
+      <h3 className="mb-4 text-2xl font-semibold leading-tight text-primary md:text-3xl">
         {title}
       </h3>
-      <p className="text-sm sm:text-base text-foreground/70 leading-relaxed mb-6">
+      <p className="mb-7 text-sm leading-relaxed text-foreground/70 sm:text-base">
         {body}
       </p>
-      <ul className="space-y-3">
+
+      <ul className="space-y-3 border-t border-foreground/10 pt-6">
         {notes.map((note) => (
-          <li key={note} className="flex gap-3 text-sm text-foreground/70">
-            <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent-warm-gold" />
+          <li
+            key={note}
+            className="flex gap-3 text-sm leading-relaxed text-foreground/70"
+          >
+            <CheckCircle2
+              className="mt-1 h-4 w-4 shrink-0 text-accent-warm-gold"
+              strokeWidth={1.8}
+            />
             <span className="leading-relaxed">{note}</span>
           </li>
         ))}
