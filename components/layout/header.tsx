@@ -183,12 +183,12 @@ export function Header({ lang }: HeaderProps) {
         : "translate-y-0 opacity-100";
   const topBrandVisibilityClass =
     effectiveHeaderMode === "full"
-      ? "opacity-100 scale-100 blur-0 delay-150"
-      : "pointer-events-none opacity-0 scale-95 blur-[1px] delay-0";
+      ? "site-brand-top-visible"
+      : "site-brand-top-hidden pointer-events-none";
   const compactBrandVisibilityClass =
     effectiveHeaderMode === "compact"
-      ? "opacity-100 scale-100 blur-0 delay-150"
-      : "pointer-events-none opacity-0 scale-95 blur-[1px] delay-0";
+      ? "site-brand-compact-visible"
+      : "site-brand-compact-hidden pointer-events-none";
   const compactBrandPositionStyle: CSSProperties = isRTL
     ? { right: "1.5rem", left: "auto" }
     : { left: "1.5rem", right: "auto" };
@@ -222,14 +222,14 @@ export function Header({ lang }: HeaderProps) {
     <>
       <header
         dir={dir}
-        className={`fixed top-0 inset-x-0 z-[60] transform-gpu will-change-transform transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${headerVisibilityClass}`}
+        className={`fixed top-0 inset-x-0 z-[60] transform-gpu will-change-transform transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${headerVisibilityClass}`}
       >
         <div className="relative z-50 backdrop-blur-md bg-background/80 border-b border-border/30">
           <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
             <a
               href={`/${lang}`}
               aria-label={brandHomeLabel}
-              className={`group relative flex transform-gpu items-center gap-2.5 rounded-xl px-2 py-1.5 text-primary transition-[opacity,transform,filter,background-color,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${topBrandVisibilityClass} ${
+              className={`site-brand-transition group relative flex transform-gpu items-center gap-2.5 rounded-xl px-2 py-1.5 text-primary transition-[background-color,box-shadow] shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${topBrandVisibilityClass} ${
                 isRTL ? "flex-row-reverse text-right" : "text-left"
               }`}
             >
@@ -502,7 +502,7 @@ export function Header({ lang }: HeaderProps) {
               aria-label={brandHomeLabel}
               dir={dir}
               style={compactBrandPositionStyle}
-              className={`absolute top-1/2 hidden -translate-y-1/2 transform-gpu items-center gap-2 rounded-lg px-2 py-1 text-primary transition-[opacity,transform,filter] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:flex ${compactBrandVisibilityClass}`}
+              className={`site-brand-transition absolute top-1/2 hidden transform-gpu items-center gap-2 rounded-lg px-2 py-1 text-primary lg:flex ${compactBrandVisibilityClass}`}
             >
               <Image
                 src="/brand/faradid-atlas-mark.png"

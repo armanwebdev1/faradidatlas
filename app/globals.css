@@ -1237,6 +1237,44 @@
     opacity: 0.8;
   }
 
+  .site-brand-transition {
+    will-change: opacity, transform, filter;
+    transition-property: opacity, transform, filter;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .site-brand-top-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+    transition-delay: 240ms;
+    transition-duration: 620ms;
+  }
+
+  .site-brand-top-hidden {
+    opacity: 0;
+    transform: translate3d(0, -0.45rem, 0) scale(0.985);
+    filter: blur(1.2px);
+    transition-delay: 0ms;
+    transition-duration: 420ms;
+  }
+
+  .site-brand-compact-visible {
+    opacity: 1;
+    transform: translate3d(0, -50%, 0) scale(1);
+    filter: blur(0);
+    transition-delay: 240ms;
+    transition-duration: 620ms;
+  }
+
+  .site-brand-compact-hidden {
+    opacity: 0;
+    transform: translate3d(0, calc(-50% + 0.45rem), 0) scale(0.985);
+    filter: blur(1.2px);
+    transition-delay: 0ms;
+    transition-duration: 420ms;
+  }
+
   @keyframes valuePropsMarquee {
     from {
       transform: translate3d(0, 0, 0);
