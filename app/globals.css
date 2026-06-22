@@ -1255,6 +1255,24 @@
     animation-direction: reverse;
   }
 
+  @keyframes brandLogoMarquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  .brand-logo-marquee {
+    animation: brandLogoMarquee 28s linear infinite;
+    will-change: transform;
+  }
+
+  .brand-logo-marquee-reverse {
+    animation-direction: reverse;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-hero-image-zoom,
     .hero-premium-sheen,
@@ -1273,7 +1291,8 @@
       will-change: auto;
     }
 
-    .value-props-marquee {
+    .value-props-marquee,
+    .brand-logo-marquee {
       animation: none;
       transform: none;
       will-change: auto;

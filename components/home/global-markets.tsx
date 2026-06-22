@@ -15,19 +15,19 @@ const markets = {
       suffix: "",
     },
     {
-      region: "Company Offices",
+      region: "Offices & Regional Presence",
       countries: "Tehran, Isfahan, Dubai, and Oman",
       value: 4,
       suffix: "",
     },
     {
-      region: "Key Supplier Origins",
+      region: "Key Sourcing Origins",
       countries: "Direct sourcing focus across India and Pakistan",
       value: 2,
       suffix: "",
     },
     {
-      region: "DOCX-Listed Products",
+      region: "Product Portfolio",
       countries: "Rice, legumes, seeds, nuts, spices, and sugar",
       value: 25,
       suffix: "",
@@ -35,27 +35,31 @@ const markets = {
   ],
   fa: [
     {
-      region: "برند شناخته‌شده برنج",
-      countries: "۲۱، میزبان، حیات و گلبانو",
-      value: 4,
+      region: "برند معتبر برنج",
+      countries:
+        "۲۱، میزبان، حیات و گلبانو؛ نام‌هایی آشنا برای بازار عمده و مصرف سازمانی",
+      value: +4,
       suffix: "",
     },
     {
-      region: "دفتر و پایگاه عملیاتی",
-      countries: "تهران، اصفهان، دبی و عمان",
-      value: 4,
+      region: "دفاتر شرکت",
+      countries:
+        "تهران، اصفهان، دبی و عمان؛ برای پیگیری بهتر، پاسخ سریع‌تر و پشتیبانی مطمئن‌تر",
+      value: +4,
       suffix: "",
     },
     {
-      region: "مبدأ اصلی تأمین",
-      countries: "تمرکز بر تأمین مستقیم از هند و پاکستان",
-      value: 2,
+      region: "مبدأ تأمین",
+      countries:
+        "تمرکز ما بر تأمین مستقیم از هند، پاکستان، تایلند، کانادا و... است؛ مبادی مهم در تجارت مواد غذایی",
+      value: +30,
       suffix: "",
     },
     {
-      region: "گروه محصولی",
-      countries: "برنج، حبوبات، دانه‌ها، مغزها، ادویه‌ها و شکر",
-      value: 25,
+      region: "گروه کالایی",
+      countries:
+        "از برنج و حبوبات تا دانه‌ها، مغزها، ادویه‌ها و شکر؛ برای نیازهای متنوع بازار",
+      value: +25,
       suffix: "",
     },
   ],
@@ -72,21 +76,21 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
       <div className="relative container-wide">
         <div className="text-center mb-14 sm:mb-16 md:mb-20">
           <p className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6">
-            {lang === "en" ? "Supply Footprint" : "گستره فعالیت و تامین"}
+            {lang === "en" ? "Supply Footprint" : "تامین مستمر"}
           </p>
           <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 md:mb-8 animate-fade-in-up">
             <span className="inline-block">
-              {lang === "en" ? "Regional" : "حضور"}
+              {lang === "en" ? "Regional" : "گستره"}
             </span>
-            <span className="inline-block ml-3 md:ml-4 text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold to-accent-warm-orange">
-              {lang === "en" ? "Reach" : "منطقه‌ای"}
+            <span className="inline-block ml-3 md:ml-4 text-transparent bg-clip-text bg-linear-to-r from-accent-warm-gold to-accent-warm-orange">
+              {lang === "en" ? "Reach" : "فعالیت"}
             </span>
           </h2>
 
           <p className="text-responsive-body text-foreground/70 max-w-2xl mx-auto animate-fade-in-up">
             {lang === "en"
               ? "Our network connects first-tier suppliers with offices and distribution support across Iran and nearby regional markets."
-              : "شبکه فعالیت ما، تأمین‌کنندگان معتبر را به دفاتر، مسیرهای توزیع و پشتیبانی عملیاتی در ایران و بازارهای منطقه‌ای متصل می‌کند."}
+              : "شبکه ما مبدأهای معتبر تأمین را به دفاتر فعال، مسیرهای توزیع و پشتیبانی عملیاتی در ایران و بازارهای منطقه‌ای وصل می‌کند."}
           </p>
         </div>
 
@@ -97,7 +101,7 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
               className="group relative animate-fade-in-up h-full"
               style={{ animationDelay: `${idx * 100}ms` }}
             >
-              <div className="relative h-full p-6 sm:p-8 md:p-10 border border-border/30 rounded-2xl sm:rounded-2xl bg-card/50 transition-all duration-500 ease-out group-hover:border-accent-warm-gold/50 group-hover:shadow-lg hover:bg-gradient-to-br hover:from-foreground/[0.02] hover:to-foreground/[0.01] flex flex-col">
+              <div className="relative h-full p-6 sm:p-8 md:p-10 border border-border/30 rounded-2xl sm:rounded-2xl bg-card/50 transition-all duration-500 ease-out group-hover:border-accent-warm-gold/50 group-hover:shadow-lg hover:bg-linear-to-br hover:from-foreground/2 hover:to-foreground/1 flex flex-col">
                 <div className="mb-6 relative">
                   <CountUp
                     target={market.value}

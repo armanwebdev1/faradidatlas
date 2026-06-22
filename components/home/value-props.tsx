@@ -41,28 +41,28 @@ const valueItems = {
       icon: Globe,
       title: "تأمین مستقیم از بازارهای جهانی",
       description:
-        "ارتباط با تأمین‌کنندگان معتبر در بازارهای اصلی تولید غذا، از جمله هند و پاکستان.",
+        "از مبدأهای معتبر غذایی مثل هند و پاکستان، محصول مطمئن را بی‌واسطه و با پشتوانه روشن به بازار ایران می‌رسانیم.",
       accentColor: "accent-warm-gold",
     },
     {
       icon: CheckCircle,
-      title: "اول کیفیت، بعد حجم",
+      title: "کیفیت؛ شرط اول همکاری",
       description:
-        "انتخاب محصولات بر پایه استانداردهای معتبر بهداشتی و کیفی، از جمله ISO 22000 انجام می‌شود.",
+        "ما هر محصول را از نظر سلامت، ثبات کیفیت و استانداردهایی مانند ISO 22000 بررسی می‌کنیم؛ حجم، بعد از اطمینان می‌آید.",
       accentColor: "accent-warm-red",
     },
     {
       icon: Route,
-      title: "مسیرهای پایدار تأمین",
+      title: "تأمین پیوسته",
       description:
-        "دفاتر، شعب و پشتیبانی انبار در منطقه، امکان تأمین مستمر را برای خریداران عمده و سازمانی فراهم می‌کند.",
+        "با شبکه منطقه‌ای دفتر، شعبه و انبار، سفارش‌های عمده و سازمانی را با ریتمی قابل اعتماد پشتیبانی می‌کنیم.",
       accentColor: "accent",
     },
     {
       icon: Package,
-      title: "دسترسی آسان برای خریداران",
+      title: "راه روشن خرید",
       description:
-        "دفاتر فعال، عملیات منطقه‌ای و کانال‌های فروش دیجیتال، پاسخ‌گوی نیاز مصرف‌کنندگان، عمده‌فروشان، سازمان‌ها و فعالان خدمات غذایی است.",
+        "از تماس حضوری تا فروش دیجیتال، مسیر خرید را برای عمده‌فروشان، سازمان‌ها و فعالان خدمات غذایی ساده و سریع نگه می‌داریم.",
       accentColor: "accent-warm-orange",
     },
   ],
@@ -75,8 +75,8 @@ export function ValueProps({ lang }: ValuePropsProps) {
 
   return (
     <section className="section bg-surface relative overflow-hidden">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/25 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent/25 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-foreground/10 to-transparent" />
 
       <div className="container-wide relative z-10">
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
@@ -97,11 +97,11 @@ export function ValueProps({ lang }: ValuePropsProps) {
 
         <div className="relative">
           <div
-            className="absolute top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-gradient-to-r from-surface via-surface/70 to-transparent z-20 pointer-events-none"
+            className="absolute top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-linear-to-r from-surface via-surface/70 to-transparent z-20 pointer-events-none"
             style={{ left: 0 }}
           />
           <div
-            className="absolute top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-gradient-to-l from-surface via-surface/70 to-transparent z-20 pointer-events-none"
+            className="absolute top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-linear-to-l from-surface via-surface/70 to-transparent z-20 pointer-events-none"
             style={{ right: 0 }}
           />
 
@@ -125,14 +125,14 @@ export function ValueProps({ lang }: ValuePropsProps) {
                     return (
                       <div
                         key={`${groupIndex}-${item.title}-${idx}`}
-                        className={`flex-shrink-0 w-[min(20rem,calc(100vw-2rem))] sm:w-96 md:w-[28rem] ${
+                        className={`shrink-0 w-[min(20rem,calc(100vw-2rem))] sm:w-96 md:w-md ${
                           isRTL ? "text-right" : ""
                         }`}
                         dir={isRTL ? "rtl" : "ltr"}
                       >
                         <div className="h-full flex flex-col p-6 sm:p-8 rounded-lg border border-foreground/10 bg-background/85 backdrop-blur-md shadow-[0_16px_42px_-30px_rgba(12,18,24,0.35),0_1px_0_rgba(255,255,255,0.55)_inset]">
                           <div className="relative mb-6 sm:mb-8 inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20">
-                            <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-foreground/8 to-foreground/4" />
+                            <div className="absolute inset-0 rounded-lg bg-linear-to-br from-foreground/8 to-foreground/4" />
                             <IconComponent
                               size={32}
                               className="relative text-foreground sm:w-10 sm:h-10"
@@ -144,7 +144,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
                             {item.title}
                           </h3>
 
-                          <p className="text-sm sm:text-base text-foreground/65 leading-relaxed flex-grow">
+                          <p className="text-sm sm:text-base text-foreground/65 leading-relaxed grow">
                             {item.description}
                           </p>
                         </div>

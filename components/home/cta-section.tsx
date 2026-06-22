@@ -1,6 +1,6 @@
 import Link from "next/link";
+import NextImage from "next/image";
 import type { Language } from "@/lib/i18n";
-import { CountUp } from "@/components/shared/count-up";
 
 interface CTASectionProps {
   lang: Language;
@@ -37,6 +37,15 @@ function Image({ alt, sizes, className }: StaticCtaImageProps) {
     </picture>
   );
 }
+
+const brandLogos = [
+  { name: "Hayat", src: "/brands/hayat-4k.png" },
+  { name: "Golbanoo", src: "/brands/golbanoo-4k.png" },
+  { name: "Twenty One", src: "/brands/twenty-one-4k.png" },
+  { name: "Mizban", src: "/brands/mizban-4k.png" },
+];
+
+const brandLogoLoop = [...brandLogos, ...brandLogos];
 
 export function CTASection({ lang }: CTASectionProps) {
   const isRTL = lang === "fa";
@@ -112,65 +121,53 @@ export function CTASection({ lang }: CTASectionProps) {
           </div>
         </div>
 
-        <div className="relative pt-8 sm:pt-12 md:pt-16 border-t border-foreground/10">
-          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <div className="w-6 sm:w-8 h-6 sm:h-8 border border-accent rounded-full flex items-center justify-center bg-background">
-              <span className="text-xs sm:text-sm bg-gradient-to-r from-foreground to-accent-warm-copper bg-clip-text text-transparent font-bold">
-                +
-              </span>
-            </div>
+        <div className="relative border-t border-foreground/10 pt-10 sm:pt-12 md:pt-16">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="eyebrow mb-4 text-accent">
+              {lang === "en" ? "Our Brands" : "برندهای ما"}
+            </p>
+
+            <h2 className="text-responsive-section text-foreground">
+              {lang === "en"
+                ? "Recognized names in our rice portfolio"
+                : "نام‌های شناخته‌شده در سبد برنج ما"}
+            </h2>
           </div>
 
-          <div className="text-center max-w-3xl mx-auto">
-            <p className="eyebrow text-foreground/60 mb-4 md:mb-6">
-              {lang === "en" ? "Practical Commitments" : "تعهدات عملی"}
-            </p>
+          <div className="relative mt-8 sm:mt-10 md:mt-12">
+            <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-14 bg-gradient-to-r from-background-alt to-transparent sm:w-24 md:w-32" />
+            <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-14 bg-gradient-to-l from-background-alt to-transparent sm:w-24 md:w-32" />
 
-            <p className="text-responsive-body text-muted-foreground font-light px-2 sm:px-0">
-              {lang === "en"
-                ? "We focus on measurable commitments: quality standards, rational pricing discipline, accessible supply channels, and long-term trust."
-                : "تمرکز ما بر تعهدهایی است که در عمل قابل سنجش‌اند: استانداردهای کیفی، قیمت‌گذاری منطقی، مسیرهای روشن تأمین و اعتمادی که در همکاری‌های بلندمدت ساخته می‌شود."}
-            </p>
-
-            <div className="mt-6 sm:mt-8 md:mt-10 flex justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 text-foreground/20 flex-wrap sm:flex-nowrap">
-              <div className="text-center flex-1 basis-28 sm:flex-none sm:basis-auto min-w-0">
-                <div className="mb-1.5 sm:mb-2 text-foreground">
-                  <CountUp
-                    target={4}
-                    className="text-2xl sm:text-3xl md:text-4xl font-bold"
-                  />
-                </div>
-                <p className="text-xs sm:text-sm uppercase tracking-wider leading-snug text-foreground/50">
-                  {lang === "en" ? "Rice Brands" : "برند برنج"}
-                </p>
-              </div>
-
-              <div className="hidden sm:block w-px bg-gradient-to-b from-transparent via-accent to-transparent" />
-
-              <div className="text-center flex-1 basis-28 sm:flex-none sm:basis-auto min-w-0">
-                <div className="mb-1.5 sm:mb-2 text-foreground">
-                  <CountUp
-                    target={25}
-                    className="text-2xl sm:text-3xl md:text-4xl font-bold"
-                  />
-                </div>
-                <p className="text-xs sm:text-sm uppercase tracking-wider leading-snug text-foreground/50">
-                  {lang === "en" ? "Listed Products" : "محصول در سبد تأمین"}
-                </p>
-              </div>
-
-              <div className="hidden sm:block w-px bg-gradient-to-b from-transparent via-accent to-transparent" />
-
-              <div className="text-center flex-1 basis-28 sm:flex-none sm:basis-auto min-w-0">
-                <div className="mb-1.5 sm:mb-2 text-foreground">
-                  <CountUp
-                    target={2009}
-                    className="text-2xl sm:text-3xl md:text-4xl font-bold"
-                  />
-                </div>
-                <p className="text-xs sm:text-sm uppercase tracking-wider leading-snug text-foreground/50">
-                  {lang === "en" ? "Established" : "سال آغاز فعالیت"}
-                </p>
+            <div className="overflow-hidden py-4" dir="ltr">
+              <div
+                className={`brand-logo-marquee flex w-max ${
+                  isRTL ? "brand-logo-marquee-reverse" : ""
+                }`}
+              >
+                {[0, 1].map((groupIndex) => (
+                  <div
+                    key={groupIndex}
+                    className="flex shrink-0 items-center gap-4 pr-4 sm:gap-5 sm:pr-5 md:gap-6 md:pr-6"
+                    aria-hidden={groupIndex === 1}
+                  >
+                    {brandLogoLoop.map((brand, brandIndex) => (
+                      <div
+                        key={`${groupIndex}-${brand.name}-${brandIndex}`}
+                        className="group/brand flex h-28 w-44 shrink-0 items-center justify-center rounded-xl border border-foreground/10 bg-white px-6 py-5 shadow-[0_18px_45px_-36px_rgba(30,35,39,0.45)] transition-all duration-500 hover:-translate-y-1 hover:border-accent/45 hover:shadow-[0_22px_70px_-30px_rgba(201,169,97,0.75)] sm:h-32 sm:w-56 md:h-36 md:w-64"
+                      >
+                        <NextImage
+                          src={brand.src}
+                          alt={brand.name}
+                          width={512}
+                          height={288}
+                          sizes="(min-width: 768px) 256px, (min-width: 640px) 224px, 176px"
+                          loading="lazy"
+                          className="max-h-full max-w-full object-contain transition duration-500 group-hover/brand:scale-[1.04] group-hover/brand:drop-shadow-[0_0_18px_rgba(201,169,97,0.45)]"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
