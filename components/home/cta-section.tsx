@@ -39,10 +39,20 @@ function Image({ alt, sizes, className }: StaticCtaImageProps) {
 }
 
 const brandLogos = [
-  { name: "Hayat", src: "/brands/hayat-4k.png" },
-  { name: "Golbanoo", src: "/brands/golbanoo-4k.png" },
-  { name: "Twenty One", src: "/brands/twenty-one-4k.png" },
-  { name: "Mizban", src: "/brands/mizban-4k.png" },
+  { name: "Hayat", src: "/brands/hayat-4k.png", width: 4096, height: 2172 },
+  {
+    name: "Golbanoo",
+    src: "/brands/golbanoo-4k.png",
+    width: 4096,
+    height: 2005,
+  },
+  {
+    name: "Twenty One",
+    src: "/brands/twenty-one-4k.png",
+    width: 4096,
+    height: 3371,
+  },
+  { name: "Mizban", src: "/brands/mizban-4k.png", width: 4096, height: 1568 },
 ];
 
 const brandLogoLoop = [...brandLogos, ...brandLogos];
@@ -147,22 +157,22 @@ export function CTASection({ lang }: CTASectionProps) {
                 {[0, 1].map((groupIndex) => (
                   <div
                     key={groupIndex}
-                    className="flex shrink-0 items-center gap-4 pr-4 sm:gap-5 sm:pr-5 md:gap-6 md:pr-6"
+                    className="flex shrink-0 items-center gap-8 pr-8 sm:gap-12 sm:pr-12 md:gap-16 md:pr-16"
                     aria-hidden={groupIndex === 1}
                   >
                     {brandLogoLoop.map((brand, brandIndex) => (
                       <div
                         key={`${groupIndex}-${brand.name}-${brandIndex}`}
-                        className="group/brand flex h-28 w-44 shrink-0 items-center justify-center rounded-xl border border-foreground/10 bg-white px-6 py-5 shadow-[0_18px_45px_-36px_rgba(30,35,39,0.45)] transition-all duration-500 hover:-translate-y-1 hover:border-accent/45 hover:shadow-[0_22px_70px_-30px_rgba(201,169,97,0.75)] sm:h-32 sm:w-56 md:h-36 md:w-64"
+                        className="group/brand flex h-36 w-64 shrink-0 items-center justify-center px-1 transition-transform duration-500 hover:-translate-y-1 sm:h-44 sm:w-80 md:h-52 md:w-[28rem] lg:h-60 lg:w-[34rem]"
                       >
                         <NextImage
                           src={brand.src}
                           alt={brand.name}
-                          width={512}
-                          height={288}
-                          sizes="(min-width: 768px) 256px, (min-width: 640px) 224px, 176px"
+                          width={brand.width}
+                          height={brand.height}
+                          sizes="(min-width: 1024px) 544px, (min-width: 768px) 448px, (min-width: 640px) 320px, 256px"
                           loading="lazy"
-                          className="max-h-full max-w-full object-contain transition duration-500 group-hover/brand:scale-[1.04] group-hover/brand:drop-shadow-[0_0_18px_rgba(201,169,97,0.45)]"
+                          className="h-full w-full object-contain drop-shadow-[0_14px_22px_rgba(30,35,39,0.12)] transition duration-500 group-hover/brand:scale-[1.05] group-hover/brand:drop-shadow-[0_0_28px_rgba(201,169,97,0.58)]"
                         />
                       </div>
                     ))}
