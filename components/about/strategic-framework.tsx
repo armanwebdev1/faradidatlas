@@ -90,10 +90,10 @@ export function StrategicFramework({ lang }: StrategicFrameworkProps) {
           <p className="eyebrow mb-4 text-brand-navy">
             {lang === "en" ? "Vision & Mission" : "چشم‌انداز و مأموریت"}
           </p>
-          <h2 className="mx-auto max-w-4xl text-responsive-title text-primary">
+          <h2 className="mx-auto max-w-4xl text-center text-responsive-title text-primary">
             {data.title}
           </h2>
-          <p className="mx-auto mt-5 max-w-3xl text-responsive-body leading-relaxed text-foreground/70 md:mt-6">
+          <p className="mx-auto mt-5 max-w-3xl text-center text-responsive-body leading-relaxed text-foreground/70 md:mt-6">
             {data.intro}
           </p>
         </div>
