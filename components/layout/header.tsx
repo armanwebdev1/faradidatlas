@@ -20,6 +20,8 @@ import {
 } from "@/components/products/product-data";
 import {
   Briefcase,
+  ArrowLeft,
+  ArrowRight,
   ChevronDown,
   HelpCircle,
   Home,
@@ -143,15 +145,10 @@ export function Header({ lang }: HeaderProps) {
                 : `${numberFormatter.format(count)} محصول`,
             href: `/${lang}/products?category=${category}#product-catalog`,
             image: categoryProducts.find((product) => product.image)?.image,
-            featuredProducts: categoryProducts.slice(0, 2),
           };
         })
         .filter((item) => item.count > 0),
     [lang, numberFormatter],
-  );
-  const featuredMenuProducts = useMemo(
-    () => products.filter((product) => product.image).slice(0, 3),
-    [],
   );
 
   useEffect(() => {
@@ -554,7 +551,7 @@ export function Header({ lang }: HeaderProps) {
                               <a
                                 key={item.category}
                                 href={item.href}
-                                className={`rounded-lg border border-border/50 bg-background/80 px-3 py-2.5 text-xs font-semibold text-foreground/80 transition-all hover:border-brand-navy/25 hover:bg-brand-navy/5 hover:text-brand-navy ${
+                                className={`rounded-lg border border-border/50 bg-background/80 px-3 py-2.5 text-xs font-semibold text-foreground/80 transition-all hover:border-foreground/15 hover:bg-muted/60 hover:text-foreground ${
                                   isRTL ? "text-right" : "text-left"
                                 }`}
                               >
@@ -657,7 +654,6 @@ export function Header({ lang }: HeaderProps) {
                       lang={lang}
                       isRTL={isRTL}
                       categories={productCategoryMenuItems}
-                      featuredProducts={featuredMenuProducts}
                     />
                   </div>
                 );
@@ -712,171 +708,92 @@ type ProductCategoryMenuItem = {
   countLabel: string;
   href: string;
   image?: string;
-  featuredProducts: Product[];
 };
 
 function ProductsMegaMenu({
   lang,
   isRTL,
   categories,
-  featuredProducts,
 }: {
   lang: Language;
   isRTL: boolean;
   categories: ProductCategoryMenuItem[];
-  featuredProducts: Product[];
 }) {
   const dir = isRTL ? "rtl" : "ltr";
-  const productName = (product: Product) =>
-    lang === "en" ? product.nameEn : product.nameFa;
-  const productAlias = (product: Product) =>
-    lang === "en" ? product.aliasEn : product.aliasFa;
+  const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
 
   return (
     <div
-      className="invisible absolute left-1/2 top-full z-[75] hidden w-[min(94vw,62rem)] -translate-x-1/2 translate-y-3 pt-3 opacity-0 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/products:visible group-hover/products:translate-y-0 group-hover/products:opacity-100 group-hover/products:pointer-events-auto group-focus-within/products:visible group-focus-within/products:translate-y-0 group-focus-within/products:opacity-100 group-focus-within/products:pointer-events-auto lg:block"
+      className="invisible absolute left-1/2 top-full z-[75] hidden w-[min(92vw,62rem)] -translate-x-1/2 translate-y-2 pt-3 opacity-0 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/products:visible group-hover/products:translate-y-0 group-hover/products:opacity-100 group-hover/products:pointer-events-auto group-focus-within/products:visible group-focus-within/products:translate-y-0 group-focus-within/products:opacity-100 group-focus-within/products:pointer-events-auto lg:block"
       dir={dir}
     >
-      <div className="overflow-hidden rounded-2xl border border-border/70 bg-background/95 shadow-[0_28px_80px_rgba(12,18,24,0.18)] backdrop-blur-xl">
-        <div className="grid lg:grid-cols-[0.82fr_1.6fr]">
+      <div className="overflow-hidden rounded-2xl border border-border/70 bg-background/98 shadow-[0_24px_70px_rgba(12,18,24,0.14)] backdrop-blur-xl">
+        <div
+          className={`grid grid-cols-[17rem_1fr] ${
+            isRTL ? "text-right" : "text-left"
+          }`}
+        >
           <div
-            className={`relative overflow-hidden bg-brand-navy p-6 text-white ${
-              isRTL ? "text-right lg:order-2" : "text-left"
+            className={`flex min-h-[20rem] flex-col justify-between border-border/60 bg-muted/20 p-8 ${
+              isRTL ? "order-2 border-l" : "border-r"
             }`}
           >
-            <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-white/10 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-16 left-4 h-40 w-40 rounded-full bg-accent-warm-gold/20 blur-3xl" />
-            <div className="relative z-10 flex h-full flex-col justify-between gap-8">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/55">
-                  {lang === "en" ? "Product Portfolio" : "سبد محصولات"}
-                </p>
-                <h3 className="mt-4 text-2xl font-semibold leading-tight">
-                  {lang === "en"
-                    ? "Essential food categories for steady supply."
-                    : "دسته‌بندی‌های اصلی برای تأمین پایدار."}
-                </h3>
-                <p className="mt-4 text-sm leading-relaxed text-white/68">
-                  {lang === "en"
-                    ? "Move directly into the category you need, compare available lines, or open the full portfolio."
-                    : "مستقیم وارد دسته موردنظر شوید، محصولات موجود را بررسی کنید یا کل سبد را ببینید."}
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <a
-                  href={`/${lang}/products#product-catalog`}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-white px-4 py-3 text-sm font-semibold text-brand-navy transition-all hover:-translate-y-0.5 hover:bg-white/95 hover:shadow-lg"
-                >
-                  {lang === "en" ? "View All Products" : "مشاهده همه محصولات"}
-                </a>
-                <a
-                  href={`/${lang}/contact`}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-4 py-3 text-sm font-semibold text-white transition-all hover:border-white/35 hover:bg-white/10"
-                >
-                  {lang === "en" ? "Request Supply" : "درخواست تأمین"}
-                </a>
-              </div>
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                {lang === "en" ? "Products" : "محصولات"}
+              </p>
+              <h3 className="mt-5 max-w-[13rem] font-hero text-3xl font-semibold leading-[1.08] text-foreground">
+                {lang === "en"
+                  ? "Explore our essential food portfolio"
+                  : "سبد محصولات غذایی ما را ببینید"}
+              </h3>
             </div>
-          </div>
 
-          <div className={`p-5 ${isRTL ? "text-right lg:order-1" : ""}`}>
-            <div
-              className={`mb-4 flex items-end justify-between gap-4 ${
+            <a
+              href={`/${lang}/products#product-catalog`}
+              className={`inline-flex w-fit items-center gap-2 rounded-full bg-background px-5 py-3 text-sm font-semibold text-foreground shadow-sm ring-1 ring-border/50 transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/15 ${
                 isRTL ? "flex-row-reverse" : ""
               }`}
             >
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-navy">
-                  {lang === "en" ? "Browse Categories" : "مرور دسته‌بندی‌ها"}
-                </p>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {lang === "en"
-                    ? "Filtered links into the product catalog"
-                    : "لینک‌های فیلترشده به صفحه محصولات"}
-                </p>
-              </div>
-              <a
-                href={`/${lang}/products#product-catalog`}
-                className="shrink-0 text-xs font-semibold text-brand-navy transition-colors hover:text-brand-navy/75"
-              >
-                {lang === "en" ? "All products" : "همه محصولات"}
-              </a>
-            </div>
+              {lang === "en" ? "See all" : "مشاهده همه"}
+              <ArrowIcon className="h-4 w-4" strokeWidth={1.8} />
+            </a>
+          </div>
 
-            <div className="grid grid-cols-2 gap-3">
+          <div className="p-8">
+            <div className="grid grid-cols-3 gap-x-10 gap-y-7">
               {categories.map((item) => (
                 <a
                   key={item.category}
                   href={item.href}
-                  className="group/category relative min-h-[8rem] overflow-hidden rounded-xl border border-border/60 bg-white p-4 shadow-[0_12px_28px_rgba(30,35,39,0.045)] transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-navy/25 hover:shadow-[0_18px_42px_rgba(48,59,112,0.12)] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25"
+                  title={item.description}
+                  className={`group/category flex min-w-0 items-center gap-3 rounded-lg p-1.5 transition-colors duration-200 hover:bg-muted/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/15 ${
+                    isRTL ? "flex-row-reverse" : ""
+                  }`}
                 >
-                  <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-brand-navy/0 via-brand-navy/0 to-brand-navy/6 opacity-0 transition-opacity duration-300 group-hover/category:opacity-100" />
-                  <div
-                    className={`relative z-10 flex gap-3 ${
-                      isRTL ? "flex-row-reverse" : ""
-                    }`}
-                  >
-                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-muted">
-                      {item.image ? (
-                        <Image
-                          src={item.image}
-                          alt=""
-                          fill
-                          sizes="56px"
-                          className="object-cover transition-transform duration-500 group-hover/category:scale-105"
-                        />
-                      ) : (
-                        <div className="h-full w-full bg-brand-navy/10" />
-                      )}
-                    </div>
-                    <div className="min-w-0">
-                      <h4 className="truncate text-sm font-semibold text-foreground transition-colors group-hover/category:text-brand-navy">
-                        {item.label}
-                      </h4>
-                      <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-navy/70">
-                        {item.countLabel}
-                      </p>
-                      <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
+                  <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-md bg-muted shadow-sm ring-1 ring-border/50">
+                    {item.image ? (
+                      <Image
+                        src={item.image}
+                        alt=""
+                        fill
+                        sizes="32px"
+                        className="object-cover"
+                      />
+                    ) : (
+                      <span className="block h-full w-full bg-muted" />
+                    )}
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block truncate text-sm font-semibold text-foreground">
+                      {item.label}
+                    </span>
+                    <span className="mt-0.5 block truncate text-xs text-muted-foreground">
+                      {item.countLabel}
+                    </span>
+                  </span>
                 </a>
               ))}
-            </div>
-
-            <div className="mt-4 rounded-xl border border-border/50 bg-muted/35 p-3">
-              <div
-                className={`mb-2 flex items-center justify-between gap-3 ${
-                  isRTL ? "flex-row-reverse" : ""
-                }`}
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                  {lang === "en" ? "Featured Lines" : "محصولات منتخب"}
-                </p>
-                <span className="h-px flex-1 bg-border/70" />
-              </div>
-              <div className="grid grid-cols-3 gap-2">
-                {featuredProducts.map((product) => (
-                  <a
-                    key={product.id}
-                    href={`/${lang}/products/${product.id}`}
-                    className={`rounded-lg border border-transparent bg-background/80 p-2 transition-all hover:border-brand-navy/20 hover:bg-white hover:shadow-sm ${
-                      isRTL ? "text-right" : ""
-                    }`}
-                  >
-                    <span className="block truncate text-xs font-semibold text-foreground">
-                      {productName(product)}
-                    </span>
-                    {productAlias(product) && (
-                      <span className="mt-1 block truncate text-[11px] text-muted-foreground">
-                        {productAlias(product)}
-                      </span>
-                    )}
-                  </a>
-                ))}
-              </div>
             </div>
           </div>
         </div>
