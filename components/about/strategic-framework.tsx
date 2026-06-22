@@ -122,7 +122,6 @@ export function StrategicFramework({ lang }: StrategicFrameworkProps) {
           className="relative overflow-hidden rounded-xl border border-primary/10 bg-primary p-7 text-center shadow-[0_22px_50px_rgba(30,35,39,0.12)] sm:p-9 md:p-10"
           dir={isRTL ? "rtl" : "ltr"}
         >
-          <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent-warm-gold/60 to-transparent" />
           <div className="mx-auto max-w-5xl">
             <div className="mb-5 flex flex-col items-center justify-center gap-3">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white/10 text-accent-warm-gold">
@@ -132,15 +131,11 @@ export function StrategicFramework({ lang }: StrategicFrameworkProps) {
                 {data.values.label}
               </p>
             </div>
-            <h3
-              className="mx-auto max-w-3xl text-2xl font-semibold leading-snug text-white md:text-3xl"
-            >
+            <h3 className="mx-auto max-w-3xl text-2xl font-semibold leading-snug text-white md:text-3xl">
               {data.values.title}
             </h3>
-            <div className="my-6 h-px w-full bg-white/10" />
-            <p
-              className="mx-auto max-w-4xl text-sm leading-relaxed text-white/75 sm:text-base"
-            >
+
+            <p className="mx-auto max-w-4xl text-sm leading-relaxed text-white/75 sm:text-base">
               {data.values.body}
             </p>
           </div>
@@ -176,7 +171,7 @@ function FrameworkPanel({
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-accent-warm-gold/25 bg-accent-warm-gold/10 text-accent-warm-gold">
           <Icon className="h-5 w-5" strokeWidth={1.7} />
         </div>
-        <span className="font-hero text-5xl leading-none text-foreground/[0.08]">
+        <span className="font-hero text-5xl leading-none text-foreground/8">
           {number}
         </span>
       </div>
