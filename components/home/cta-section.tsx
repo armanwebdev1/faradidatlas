@@ -157,7 +157,7 @@ export function CTASection({ lang }: CTASectionProps) {
                 {[0, 1].map((groupIndex) => (
                   <div
                     key={groupIndex}
-                    className="flex shrink-0 items-center gap-8 pr-8 sm:gap-10 sm:pr-10 md:gap-12 md:pr-12"
+                    className="flex shrink-0 items-center gap-12 pr-12 sm:gap-16 sm:pr-16 md:gap-20 md:pr-20"
                     aria-hidden={groupIndex === 1}
                   >
                     {brandLogoLoop.map((brand, brandIndex) => (
@@ -170,9 +170,9 @@ export function CTASection({ lang }: CTASectionProps) {
                           alt={brand.name}
                           width={brand.width}
                           height={brand.height}
-                          sizes="(min-width: 1024px) 224px, (min-width: 768px) 208px, (min-width: 640px) 176px, 144px"
+                          sizes="(min-width: 1024px) 192px, (min-width: 768px) 176px, (min-width: 640px) 152px, 128px"
                           loading="lazy"
-                          className="h-16 w-auto object-contain drop-shadow-[0_10px_16px_rgba(30,35,39,0.10)] transition duration-500 group-hover/brand:scale-[1.04] group-hover/brand:drop-shadow-[0_0_18px_rgba(201,169,97,0.42)] sm:h-20 md:h-24"
+                          className="h-14 w-auto object-contain drop-shadow-[0_10px_16px_rgba(30,35,39,0.10)] transition duration-500 group-hover/brand:scale-[1.04] group-hover/brand:drop-shadow-[0_0_18px_rgba(201,169,97,0.42)] sm:h-16 md:h-20"
                         />
                       </div>
                     ))}
