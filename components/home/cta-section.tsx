@@ -157,20 +157,20 @@ export function CTASection({ lang }: CTASectionProps) {
                 {[0, 1].map((groupIndex) => (
                   <div
                     key={groupIndex}
-                    className="flex shrink-0 items-center gap-7 pr-7 sm:gap-10 sm:pr-10 md:gap-12 md:pr-12"
+                    className="flex shrink-0 items-center gap-6 pr-6 sm:gap-8 sm:pr-8 md:gap-10 md:pr-10"
                     aria-hidden={groupIndex === 1}
                   >
                     {brandLogoLoop.map((brand, brandIndex) => (
                       <div
                         key={`${groupIndex}-${brand.name}-${brandIndex}`}
-                        className="group/brand flex h-24 w-44 shrink-0 items-center justify-center px-1 transition-transform duration-500 hover:-translate-y-1 sm:h-28 sm:w-56 md:h-32 md:w-64 lg:h-36 lg:w-72"
+                        className="group/brand flex h-20 w-36 shrink-0 items-center justify-center px-1 transition-transform duration-500 hover:-translate-y-1 sm:h-24 sm:w-44 md:h-28 md:w-52 lg:w-56"
                       >
                         <NextImage
                           src={brand.src}
                           alt={brand.name}
                           width={brand.width}
                           height={brand.height}
-                          sizes="(min-width: 1024px) 288px, (min-width: 768px) 256px, (min-width: 640px) 224px, 176px"
+                          sizes="(min-width: 1024px) 224px, (min-width: 768px) 208px, (min-width: 640px) 176px, 144px"
                           loading="lazy"
                           className="h-full w-full object-contain drop-shadow-[0_14px_22px_rgba(30,35,39,0.12)] transition duration-500 group-hover/brand:scale-[1.05] group-hover/brand:drop-shadow-[0_0_28px_rgba(201,169,97,0.58)]"
                         />
