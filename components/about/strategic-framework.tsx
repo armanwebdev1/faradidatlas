@@ -2,7 +2,6 @@ import type { Language } from "@/lib/i18n";
 import {
   CheckCircle2,
   Compass,
-  Gem,
   Route,
   type LucideIcon,
 } from "lucide-react";
@@ -85,10 +84,12 @@ export function StrategicFramework({ lang }: StrategicFrameworkProps) {
     <AnimatedSection className="relative overflow-hidden bg-background-alt px-4 py-20 sm:px-6 md:py-28">
       <div className="mx-auto max-w-7xl">
         <div
-          className="mx-auto max-w-4xl border-y border-foreground/10 py-10 text-center md:py-14"
+          className="mx-auto max-w-4xl py-10 text-center md:py-14"
           dir={isRTL ? "rtl" : "ltr"}
         >
-          <p className="eyebrow mb-4 text-brand-navy">{data.eyebrow}</p>
+          <p className="eyebrow mb-4 text-brand-navy">
+            {lang === "en" ? "Vision & Mission" : "چشم‌انداز و مأموریت"}
+          </p>
           <h2 className="mx-auto max-w-4xl text-responsive-title text-primary">
             {data.title}
           </h2>
@@ -116,29 +117,6 @@ export function StrategicFramework({ lang }: StrategicFrameworkProps) {
             body={data.mission.body}
             notes={data.mission.notes}
           />
-        </div>
-
-        <div
-          className="relative overflow-hidden rounded-xl border border-primary/10 bg-primary p-7 text-center shadow-[0_22px_50px_rgba(30,35,39,0.12)] sm:p-9 md:p-10"
-          dir={isRTL ? "rtl" : "ltr"}
-        >
-          <div className="mx-auto max-w-5xl">
-            <div className="mb-5 flex flex-col items-center justify-center gap-3">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white/10 text-accent-warm-gold">
-                <Gem className="h-5 w-5" strokeWidth={1.7} />
-              </div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-accent-warm-gold">
-                {data.values.label}
-              </p>
-            </div>
-            <h3 className="mx-auto max-w-3xl text-2xl font-semibold leading-snug text-white md:text-3xl">
-              {data.values.title}
-            </h3>
-
-            <p className="mx-auto max-w-4xl text-sm leading-relaxed text-white/75 sm:text-base">
-              {data.values.body}
-            </p>
-          </div>
         </div>
       </div>
     </AnimatedSection>
@@ -186,14 +164,14 @@ function FrameworkPanel({
         {body}
       </p>
 
-      <ul className="space-y-3 border-t border-foreground/10 pt-6">
+      <ul className="space-y-4 pt-2">
         {notes.map((note) => (
           <li
             key={note}
-            className="flex justify-center gap-3 text-center text-sm leading-relaxed text-foreground/70"
+            className="mx-auto flex max-w-md flex-col items-center gap-2 text-center text-sm leading-relaxed text-foreground/70"
           >
             <CheckCircle2
-              className="mt-1 h-4 w-4 shrink-0 text-accent-warm-gold"
+              className="h-4 w-4 shrink-0 text-accent-warm-gold"
               strokeWidth={1.8}
             />
             <span className="leading-relaxed">{note}</span>
