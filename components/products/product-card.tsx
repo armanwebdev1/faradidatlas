@@ -21,8 +21,8 @@ export function ProductCard({ product, lang }: ProductCardProps) {
 
   return (
     <Link href={`/${lang}/products/${product.id}`}>
-      <div className="group relative h-full bg-white rounded-2xl overflow-hidden border border-border hover:border-accent-warm-gold/60 transition-all duration-500 hover:shadow-lg hover:-translate-y-1 cursor-pointer">
-        <div className="absolute inset-0 bg-gradient-to-br from-accent-warm-gold/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+      <div className="group relative h-full bg-white rounded-2xl overflow-hidden border border-border transition-all duration-500 md:hover:border-accent-warm-gold/60 md:hover:shadow-lg md:hover:-translate-y-1 cursor-pointer">
+        <div className="absolute inset-0 bg-gradient-to-br from-accent-warm-gold/3 to-transparent opacity-0 transition-opacity duration-500 md:group-hover:opacity-100 -z-10" />
 
         <div className="relative aspect-square bg-gradient-to-br from-secondary/40 to-secondary/60 overflow-hidden">
           {product.image ? (
@@ -32,20 +32,20 @@ export function ProductCard({ product, lang }: ProductCardProps) {
               fill
               sizes="(min-width: 1280px) 360px, (min-width: 1024px) 31vw, (min-width: 640px) 46vw, 92vw"
               quality={78}
-              className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+              className="object-cover transition-transform duration-700 ease-out motion-safe:md:group-hover:scale-110"
             />
           ) : (
             <ProductPlaceholder
               product={product}
               lang={lang}
-              className="transition-transform duration-700 ease-out group-hover:scale-105"
+              className="transition-transform duration-700 ease-out motion-safe:md:group-hover:scale-105"
             />
           )}
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent opacity-0 transition-opacity duration-500 md:group-hover:opacity-100" />
 
           <div
-            className={`absolute top-3 sm:top-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/90 text-primary text-xs sm:text-sm font-semibold rounded-lg shadow-md group-hover:shadow-lg transition-all duration-300 ${isRTL ? "left-3 sm:left-4" : "right-3 sm:right-4"}`}
+            className={`absolute top-3 sm:top-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/90 text-primary text-xs sm:text-sm font-semibold rounded-lg shadow-md transition-all duration-300 md:group-hover:shadow-lg ${isRTL ? "left-3 sm:left-4" : "right-3 sm:right-4"}`}
           >
             {category}
           </div>
@@ -56,7 +56,7 @@ export function ProductCard({ product, lang }: ProductCardProps) {
             {category}
           </p>
 
-          <h3 className="text-sm sm:text-base text-primary font-bold group-hover:text-accent-warm-gold transition-colors duration-300 leading-tight line-clamp-2">
+          <h3 className="text-sm sm:text-base text-primary font-bold transition-colors duration-300 leading-tight line-clamp-2 md:group-hover:text-accent-warm-gold">
             {name}
           </h3>
 
@@ -70,18 +70,18 @@ export function ProductCard({ product, lang }: ProductCardProps) {
             {desc}
           </p>
 
-          <div className="my-1.5 sm:my-2 h-px bg-border group-hover:bg-accent-warm-gold/30 transition-colors duration-300" />
+          <div className="my-1.5 sm:my-2 h-px bg-border transition-colors duration-300 md:group-hover:bg-accent-warm-gold/30" />
 
           <div className="flex items-center justify-between gap-3">
             <span className="min-w-0 text-xs text-muted-foreground font-medium line-clamp-1">
               {lang === "en" ? "Product profile" : "معرفی محصول"}
             </span>
             <span
-              className={`shrink-0 text-xs font-semibold text-accent-warm-gold group-hover:text-accent-warm-gold/80 transition-colors duration-300 flex items-center gap-1 ${isRTL ? "flex-row-reverse" : ""}`}
+              className={`shrink-0 text-xs font-semibold text-accent-warm-gold transition-colors duration-300 flex items-center gap-1 md:group-hover:text-accent-warm-gold/80 ${isRTL ? "flex-row-reverse" : ""}`}
             >
               <span>{lang === "en" ? "View" : "مشاهده"}</span>
               <svg
-                className={`w-3.5 h-3.5 transition-transform duration-300 ${isRTL ? "-scale-x-100 group-hover:-translate-x-1" : "group-hover:translate-x-1"}`}
+                className={`w-3.5 h-3.5 transition-transform duration-300 ${isRTL ? "-scale-x-100 md:group-hover:-translate-x-1" : "md:group-hover:translate-x-1"}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

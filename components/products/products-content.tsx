@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import type { Language } from "@/lib/i18n";
 import {
   categoryLabels,
@@ -93,6 +93,7 @@ export function ProductsContent({
   const [selectedCategory, setSelectedCategory] =
     useState<ProductCategory | null>(initialCategory);
   const [sortValue, setSortValue] = useState<ProductSortValue>("relevance");
+  const deferredQuery = useDeferredValue(clientQuery);
 
   useEffect(() => {
     const syncQueryFromUrl = () => {
@@ -122,18 +123,24 @@ export function ProductsContent({
     window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
   };
 
-  const query = clientQuery.trim();
+  const searchIndex = useMemo(
+    () =>
+      products.map((product) => ({
+        product,
+        text: normalizeSearchText(productSearchText(product)),
+      })),
+    [products],
+  );
+  const query = deferredQuery.trim();
   const searchedProducts = useMemo(() => {
     const normalizedQuery = normalizeSearchText(query);
 
     if (!normalizedQuery) return products;
 
-    return products.filter((product) =>
-      normalizeSearchText(productSearchText(product)).includes(
-        normalizedQuery,
-      ),
-    );
-  }, [products, query]);
+    return searchIndex
+      .filter((item) => item.text.includes(normalizedQuery))
+      .map((item) => item.product);
+  }, [products, query, searchIndex]);
   const categoryFilteredProducts = useMemo(() => {
     if (!selectedCategory) return searchedProducts;
 

@@ -23,14 +23,14 @@ interface HeroSlide {
 
 function heroImage(filename: string): HeroImage {
   return {
-    src: `/hero/${filename}`,
+    src: `/hero/optimized/${filename}`,
   };
 }
 
 const slides: HeroSlide[] = [
   {
     id: 1,
-    image: heroImage("ChatGPT Image Jun 21, 2026, 10_14_48 AM.png"),
+    image: heroImage("home-hero-1.webp"),
     title: {
       en: "Reliable Food Supply",
       fa: "تأمین مطمئن مواد غذایی",
@@ -46,7 +46,7 @@ const slides: HeroSlide[] = [
   },
   {
     id: 2,
-    image: heroImage("ChatGPT Image Jun 21, 2026, 10_15_00 AM.png"),
+    image: heroImage("home-hero-2.webp"),
     title: {
       en: "Direct Sourcing Network",
       fa: "شبکه مستقیم تأمین",
@@ -62,7 +62,7 @@ const slides: HeroSlide[] = [
   },
   {
     id: 3,
-    image: heroImage("ChatGPT Image Jun 21, 2026, 10_15_17 AM.png"),
+    image: heroImage("home-hero-3.webp"),
     title: {
       en: "Steady Regional Reach",
       fa: "حضور منظم منطقه‌ای",
@@ -132,11 +132,11 @@ export function Hero({ lang }: HeroProps) {
                 priority={index === 0}
                 loading={index === 0 ? undefined : "lazy"}
                 sizes="100vw"
-                quality={90}
+                quality={84}
                 className={`h-full w-full object-cover transform-gpu ${
                   isActive
-                    ? "scale-[1.03] animate-hero-image-zoom"
-                    : "scale-[1.08]"
+                    ? "md:scale-[1.03] motion-safe:md:animate-hero-image-zoom"
+                    : "md:scale-[1.08]"
                 }`}
               />
             </div>

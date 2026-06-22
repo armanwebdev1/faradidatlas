@@ -2,6 +2,7 @@
 
 import {
   type CSSProperties,
+  useDeferredValue,
   useEffect,
   useMemo,
   useRef,
@@ -231,9 +232,18 @@ export function Header({ lang }: HeaderProps) {
   const clearSearchLabel =
     lang === "en" ? "Clear search" : "پاک کردن جستجو";
   const searchQuery = searchValue.trim();
+  const deferredSearchQuery = useDeferredValue(searchQuery);
+  const searchCorpus = useMemo(
+    () =>
+      products.map((product) => ({
+        product,
+        text: normalizeSearchText(productSearchText(product)),
+      })),
+    [],
+  );
   const searchResults = useMemo(
-    () => searchProducts(searchQuery).slice(0, 6),
-    [searchQuery],
+    () => searchProducts(deferredSearchQuery, searchCorpus).slice(0, 6),
+    [deferredSearchQuery, searchCorpus],
   );
   const shouldShowSearchResults = isSearchOpen && searchQuery.length > 0;
   const effectiveHeaderMode: HeaderMode = shouldShowSearchResults
@@ -907,14 +917,19 @@ function productSearchText(product: Product) {
     .join(" ");
 }
 
-function searchProducts(query: string) {
+type ProductSearchEntry = {
+  product: Product;
+  text: string;
+};
+
+function searchProducts(query: string, entries: ProductSearchEntry[]) {
   const normalizedQuery = normalizeSearchText(query);
 
   if (!normalizedQuery) return [];
 
-  return products.filter((product) =>
-    normalizeSearchText(productSearchText(product)).includes(normalizedQuery),
-  );
+  return entries
+    .filter((entry) => entry.text.includes(normalizedQuery))
+    .map((entry) => entry.product);
 }
 
 function SearchResultsPopover({

@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
   images: {
@@ -19,6 +20,24 @@ const nextConfig = {
       },
       {
         source: "/signature-products/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/optimized/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/what-we-offer/optimized/:path*",
         headers: [
           {
             key: "Cache-Control",

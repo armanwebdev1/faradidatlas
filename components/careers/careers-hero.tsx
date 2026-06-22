@@ -1,4 +1,5 @@
 import type { Language } from "@/lib/i18n";
+import Image from "next/image";
 
 interface CareersHeroProps {
   lang: Language;
@@ -11,9 +12,14 @@ export function CareersHero({ lang }: CareersHeroProps) {
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-neutral-950">
-      <div
-        className="absolute inset-0 bg-center bg-cover"
-        style={{ backgroundImage: "url('/careers-hero.png')" }}
+      <Image
+        src="/optimized/careers-hero.webp"
+        alt=""
+        fill
+        sizes="100vw"
+        quality={84}
+        priority
+        className="object-cover"
       />
       <div
         className={`absolute inset-0 ${

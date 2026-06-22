@@ -25,7 +25,7 @@ interface ProductImage {
 
 function productImage(filename: string): ProductImage {
   return {
-    src: `/signature-products/${filename}`,
+    src: `/signature-products/optimized/${filename}`,
   };
 }
 
@@ -34,7 +34,7 @@ const products: Product[] = [
     id: 1,
     name: { en: "21 Rice Brand", fa: "برنج ۲۱" },
     category: { en: "Rice Portfolio", fa: "برندهای برنج" },
-    image: productImage("twenty-one.png"),
+    image: productImage("twenty-one.webp"),
     description: {
       en: "One of Faradid Atlas' recognized rice brands, built around dependable quality and everyday availability.",
       fa: "یکی از برندهای شناخته‌شده برنج فرادید اطلس؛ انتخابی برای تأمین روزمره با کیفیتی قابل اتکا و عرضه‌ای منظم.",
@@ -44,7 +44,7 @@ const products: Product[] = [
     id: 2,
     name: { en: "Mizban Rice", fa: "برنج میزبان" },
     category: { en: "Rice Portfolio", fa: "برندهای برنج" },
-    image: productImage("mizban.png"),
+    image: productImage("mizban.webp"),
     description: {
       en: "A trusted rice line designed for households, retailers, and foodservice partners.",
       fa: "نامی آشنا در سبد برنج فرادید اطلس؛ مناسب خانواده‌ها، فروشگاه‌ها و فعالان خدمات غذایی که به کیفیت پایدار نیاز دارند.",
@@ -54,7 +54,7 @@ const products: Product[] = [
     id: 3,
     name: { en: "Hayat Rice", fa: "برنج حیات" },
     category: { en: "Rice Portfolio", fa: "برندهای برنج" },
-    image: productImage("hayat.png"),
+    image: productImage("hayat.webp"),
     description: {
       en: "Selected for consistent cooking quality, clear sourcing, and steady market supply.",
       fa: "برندی با تمرکز بر کیفیت پخت یکنواخت، مسیر تأمین شفاف و عرضه‌ای پایدار برای بازار.",
@@ -64,7 +64,7 @@ const products: Product[] = [
     id: 4,
     name: { en: "Golbanou Rice", fa: "برنج گلبانو" },
     category: { en: "Rice Portfolio", fa: "برندهای برنج" },
-    image: productImage("golbanoo.png"),
+    image: productImage("golbanoo.webp"),
     description: {
       en: "A familiar rice brand serving demand across Iran and the wider Middle East region.",
       fa: "برندی آشنا در بازار برنج، برای پاسخ‌گویی به نیاز خریداران در ایران و بازارهای منطقه‌ای.",
@@ -74,7 +74,7 @@ const products: Product[] = [
     id: 5,
     name: { en: "Essential Food Staples", fa: "مواد غذایی اساسی" },
     category: { en: "Core Products", fa: "محصولات اصلی" },
-    image: productImage("red-lentil.png"),
+    image: productImage("red-lentil.webp"),
     description: {
       en: "Legumes, spices, nuts, seeds, sugar, and other essentials selected for dependable B2B supply.",
       fa: "حبوبات، ادویه‌ها، مغزها، دانه‌ها، شکر و سایر اقلام ضروری؛ انتخاب‌شده برای تأمین قابل اتکا در همکاری‌های عمده و سازمانی.",
@@ -214,7 +214,7 @@ export function SignatureProducts() {
                       fill
                       loading="lazy"
                       sizes="100vw"
-                      quality={90}
+                      quality={84}
                       className={`absolute inset-0 h-full w-full object-cover transition-transform duration-700 ${
                         index === currentIndex && !isTransitioning
                           ? "scale-100"

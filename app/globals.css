@@ -1356,6 +1356,29 @@
     animation-direction: reverse;
   }
 
+  @media (max-width: 767px) {
+    .animate-hero-image-zoom,
+    .hero-premium-sheen {
+      animation: none;
+      transform: none;
+      will-change: auto;
+    }
+
+    .animate-fade-in-up {
+      animation-duration: 420ms;
+    }
+
+    .count-up-rise {
+      filter: none;
+      will-change: opacity, transform;
+    }
+
+    .value-props-marquee,
+    .brand-logo-marquee {
+      will-change: auto;
+    }
+  }
+
   @media (max-width: 640px) {
     .brand-logo-viewport {
       mask-image: linear-gradient(

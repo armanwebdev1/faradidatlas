@@ -49,7 +49,7 @@ export function FAQHero({ lang }: FAQHeroProps) {
           <div className="animate-fade-in-up">
             <div className="relative w-full h-56 sm:h-64 md:h-80 rounded-3xl overflow-hidden shadow-2xl">
               <Image
-                src="/faq-image.png"
+                src="/optimized/faq-image.webp"
                 alt={
                   lang === "en"
                     ? "Food supply support"
@@ -57,6 +57,7 @@ export function FAQHero({ lang }: FAQHeroProps) {
                 }
                 fill
                 sizes="100vw"
+                quality={84}
                 className="object-cover"
                 priority
               />

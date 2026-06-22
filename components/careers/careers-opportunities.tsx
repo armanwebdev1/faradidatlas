@@ -28,11 +28,14 @@ export function CareersOpportunities({
     const reduceMotion =
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const smallViewport =
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 767px)").matches;
 
     const cards = cardRefs.current.filter(Boolean);
 
     const ctx = gsap.context(() => {
-      if (reduceMotion) {
+      if (reduceMotion || smallViewport) {
         gsap.set(
           [eyebrowRef.current, titleRef.current, subtitleRef.current, ...cards],
           {

@@ -45,7 +45,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
           <div>
             <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/about-hero.png"
+                src="/optimized/about-hero.webp"
                 alt={
                   lang === "en"
                     ? "Faradid Atlas operations"
@@ -54,6 +54,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
                 fill
                 priority
                 sizes="100vw"
+                quality={84}
                 className="object-cover"
               />
             </div>

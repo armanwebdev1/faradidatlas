@@ -68,7 +68,7 @@ export default async function ProductsPage({
       <main>
         <section className="w-full h-48 sm:h-56 md:h-64 relative overflow-hidden bg-gradient-to-br from-secondary/40 to-secondary/60">
           <Image
-            src="/products-hero.png"
+            src="/optimized/products-hero.webp"
             alt={
               lang === "en"
                 ? "Food product portfolio"
@@ -76,7 +76,7 @@ export default async function ProductsPage({
             }
             fill
             sizes="100vw"
-            quality={82}
+            quality={84}
             className="object-cover"
             priority
           />

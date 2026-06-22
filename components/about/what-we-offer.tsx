@@ -9,19 +9,19 @@ interface WhatWeOfferProps {
 const offerings = {
   en: [
     {
-      image: "/what-we-offer/sourcing-import.png",
+      image: "/what-we-offer/optimized/sourcing-import.webp",
       title: "Sourcing & Import",
       description:
         "Direct supplier coordination for rice, legumes, spices, nuts, seeds, sugar, and other essentials.",
     },
     {
-      image: "/what-we-offer/featured2.jpg",
+      image: "/what-we-offer/optimized/featured2.webp",
       title: "Quality & Documentation",
       description:
         "Quality checks, hygiene standards, import documentation, and ISO-led operating discipline.",
     },
     {
-      image: "/what-we-offer/quality-documentation.png",
+      image: "/what-we-offer/optimized/quality-documentation.webp",
       title: "Distribution & Access",
       description:
         "Regional offices, branches, and warehouses that support retailers, wholesalers, and institutions.",
@@ -29,19 +29,19 @@ const offerings = {
   ],
   fa: [
     {
-      image: "/what-we-offer/sourcing-import.png",
+      image: "/what-we-offer/optimized/sourcing-import.webp",
       title: "تأمین و واردات",
       description:
         "هماهنگی مستقیم با تأمین‌کنندگان معتبر برای تأمین برنج، حبوبات، ادویه‌ها، مغزها، دانه‌ها، شکر و سایر اقلام غذایی اساسی.",
     },
     {
-      image: "/what-we-offer/featured2.jpg",
+      image: "/what-we-offer/optimized/featured2.webp",
       title: "کنترل کیفیت و مستندات",
       description:
         "بررسی کیفیت، رعایت معیارهای بهداشتی، آماده‌سازی اسناد واردات و پیشبرد فرایندها بر پایه نظم عملیاتی و استانداردهای معتبر.",
     },
     {
-      image: "/what-we-offer/quality-documentation.png",
+      image: "/what-we-offer/optimized/quality-documentation.webp",
       title: "توزیع و دسترسی",
       description:
         "دفاتر، شعب و پشتیبانی انبار در منطقه، برای پاسخ‌گویی به نیاز خرده‌فروشان، عمده‌فروشان، سازمان‌ها و خریداران تجاری.",
@@ -80,19 +80,20 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
                 data-animate
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
-                <div className="relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 border border-border hover:border-accent-warm-gold h-full flex flex-col">
+                <div className="relative bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-500 border border-border h-full flex flex-col md:hover:border-accent-warm-gold md:hover:shadow-xl">
                   <div className="relative h-64 overflow-hidden bg-gradient-to-br from-secondary/40 to-secondary/60">
                     <Image
                       src={offer.image}
                       alt={offer.title}
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
+                      quality={82}
+                      className="object-cover transition-transform duration-700 motion-safe:md:group-hover:scale-110"
                     />
                   </div>
 
                   <div className="p-8 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-accent-warm-gold transition-colors">
+                    <h3 className="text-xl font-bold text-primary mb-3 transition-colors md:group-hover:text-accent-warm-gold">
                       {offer.title}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed flex-grow">

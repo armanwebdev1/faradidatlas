@@ -78,6 +78,9 @@ export function CareersCulture({ lang }: CareersCultureProps) {
     const reduceMotion =
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const smallViewport =
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 767px)").matches;
 
     const cards = cardRefs.current.filter(Boolean);
     const textTargets = [
@@ -87,7 +90,7 @@ export function CareersCulture({ lang }: CareersCultureProps) {
     ].filter(Boolean);
 
     const ctx = gsap.context(() => {
-      if (reduceMotion) {
+      if (reduceMotion || smallViewport) {
         gsap.set([...textTargets, ...cards], { opacity: 1, y: 0 });
         return;
       }

@@ -14,16 +14,16 @@ export function GetConnected({ lang }: GetConnectedProps) {
         <div className="max-w-6xl mx-auto">
           <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
             <Image
-              src="/featured2.jpg"
+              src="/optimized/featured2.webp"
               alt={
                 lang === "en"
                   ? "Regional supply chain operations"
                   : "زنجیره تامین منطقه‌ای فرادید اطلس"
               }
               fill
-              sizes="100vw"
+              sizes="(min-width: 1152px) 1152px, 100vw"
+              quality={82}
               className="object-cover"
-              priority
             />
           </div>
         </div>
