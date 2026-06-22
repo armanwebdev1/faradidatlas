@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import {
@@ -13,6 +14,10 @@ export function Footer({ lang }: FooterProps) {
   const t = translations[lang];
   const isRTL = lang === "fa";
   const dir = isRTL ? "rtl" : "ltr";
+  const brandHomeLabel =
+    lang === "en" ? "Faradid Atlas home" : "خانه فرادید اطلس";
+  const brandPrimary = lang === "en" ? "Faradid" : "فرادید";
+  const brandSecondary = lang === "en" ? "Atlas" : "اطلس";
 
   return (
     <footer
@@ -32,11 +37,33 @@ export function Footer({ lang }: FooterProps) {
             {/* Brand section */}
             <div className="lg:col-span-1 flex flex-col justify-between">
               <div className="mb-8">
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 tracking-tight">
-                  <span className="bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
-                    Faradid Atlas
+                <Link
+                  href={`/${lang}`}
+                  aria-label={brandHomeLabel}
+                  className={`group mb-4 inline-flex items-center gap-3 ${
+                    isRTL ? "flex-row-reverse text-right" : "text-left"
+                  }`}
+                >
+                  <Image
+                    src="/brand/faradid-atlas-mark-light.png"
+                    alt=""
+                    width={56}
+                    height={56}
+                    className="h-11 w-11 object-contain opacity-95 transition duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_18px_rgba(201,169,97,0.35)] sm:h-12 sm:w-12"
+                  />
+                  <span className="flex flex-col leading-none">
+                    <span className="text-xl font-bold text-white transition-colors duration-300 group-hover:text-accent sm:text-2xl">
+                      {brandPrimary}
+                    </span>
+                    <span
+                      className={`mt-1 text-xs font-medium text-white/65 transition-colors duration-300 group-hover:text-accent/80 ${
+                        isRTL ? "tracking-normal" : "tracking-[0.24em]"
+                      }`}
+                    >
+                      {brandSecondary}
+                    </span>
                   </span>
-                </h3>
+                </Link>
                 <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-light">
                   {t.footer.tagline}
                 </p>

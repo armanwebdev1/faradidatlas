@@ -57,6 +57,11 @@ export function Header({ lang }: HeaderProps) {
     en: "US",
     fa: "IR",
   };
+  const brandHomeLabel =
+    lang === "en" ? "Faradid Atlas home" : "خانه فرادید اطلس";
+  const brandPrimary = lang === "en" ? "Faradid" : "فرادید";
+  const brandSecondary = lang === "en" ? "Atlas" : "اطلس";
+  const brandFullName = lang === "en" ? "Faradid Atlas" : "فرادید اطلس";
 
   const navItems = [
     { href: `/${lang}`, label: t.nav.home, key: "home", Icon: Home },
@@ -212,19 +217,34 @@ export function Header({ lang }: HeaderProps) {
           <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
             <a
               href={`/${lang}`}
-              className="group relative flex flex-col leading-[0.9] px-2 py-1 rounded-lg text-primary transition-all duration-300 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+              aria-label={brandHomeLabel}
+              className={`group relative flex items-center gap-2.5 rounded-xl px-2 py-1.5 text-primary transition-all duration-300 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
+                isRTL ? "flex-row-reverse text-right" : "text-left"
+              }`}
             >
-              <span className="relative z-10 inline-block text-xl sm:text-2xl font-bold tracking-[0.18em] text-primary">
-                <span className="relative z-10">Faradid</span>
+              <Image
+                src="/brand/faradid-atlas-mark.png"
+                alt=""
+                width={44}
+                height={44}
+                priority
+                className="relative z-10 h-9 w-9 object-contain drop-shadow-[0_8px_16px_rgba(30,35,39,0.12)] transition duration-300 group-hover:scale-105 sm:h-10 sm:w-10"
+              />
+              <span className="relative z-10 flex flex-col leading-none">
                 <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/80 to-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  className={`text-lg font-bold text-primary transition-colors duration-300 group-hover:text-primary/90 sm:text-xl ${
+                    isRTL ? "tracking-normal" : "tracking-[0.12em]"
+                  }`}
                 >
-                  Faradid
+                  {brandPrimary}
                 </span>
-              </span>
-              <span className="relative z-10 text-[11px] sm:text-xs font-medium tracking-[0.24em] text-muted-foreground/90 transition-colors duration-300 group-hover:text-primary/80">
-                Atlas
+                <span
+                  className={`text-[11px] font-medium text-muted-foreground/90 transition-colors duration-300 group-hover:text-primary/80 sm:text-xs ${
+                    isRTL ? "mt-1 tracking-normal" : "mt-0.5 tracking-[0.22em]"
+                  }`}
+                >
+                  {brandSecondary}
+                </span>
               </span>
               <span className="pointer-events-none absolute inset-0 z-0 rounded-lg bg-gradient-to-r from-primary/0 via-primary/10 to-accent/10 opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-100" />
               <span className="pointer-events-none absolute -bottom-1 left-2 right-2 z-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -466,6 +486,32 @@ export function Header({ lang }: HeaderProps) {
           }`}
         >
           <div className="w-full px-6 h-12 flex items-center justify-center gap-4 lg:gap-8">
+            <a
+              href={`/${lang}`}
+              aria-label={brandHomeLabel}
+              className={`absolute top-1/2 hidden -translate-y-1/2 items-center gap-2 rounded-lg px-2 py-1 text-primary transition-all duration-500 lg:flex ${
+                isRTL ? "right-6" : "left-6"
+              } ${
+                effectiveHeaderMode === "compact"
+                  ? "opacity-100 scale-100"
+                  : "pointer-events-none opacity-0 scale-95"
+              }`}
+            >
+              <Image
+                src="/brand/faradid-atlas-mark.png"
+                alt=""
+                width={32}
+                height={32}
+                className="h-7 w-7 object-contain drop-shadow-[0_8px_14px_rgba(30,35,39,0.12)]"
+              />
+              <span
+                className={`hidden text-xs font-semibold text-primary xl:inline ${
+                  isRTL ? "tracking-normal" : "tracking-[0.14em]"
+                }`}
+              >
+                {brandFullName}
+              </span>
+            </a>
             {navItems.map(({ href, label, key, Icon }) => {
               const isActive = isNavItemActive(href);
 
