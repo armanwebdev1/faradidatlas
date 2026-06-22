@@ -87,8 +87,8 @@ export function TeamShowcase({ lang }: TeamShowcaseProps) {
         className="relative z-10 mx-auto max-w-7xl"
         dir={isRTL ? "rtl" : "ltr"}
       >
-        <div className="mb-12 grid gap-6 border-b border-foreground/10 pb-10 md:mb-14 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-7">
+        <div className="mx-auto mb-14 max-w-3xl text-center md:mb-16">
+          <div>
             <p className="eyebrow mb-4 text-accent-warm-gold">
             {lang === "en" ? "Core Values" : "ارزش‌های بنیادین"}
             </p>
@@ -98,30 +98,24 @@ export function TeamShowcase({ lang }: TeamShowcaseProps) {
               : "اصولی که پشت هر تصمیم قرار دارد"}
             </h2>
           </div>
-          <p className="text-responsive-body leading-relaxed text-foreground/70 lg:col-span-5">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-foreground/70">
             {sectionIntro}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-foreground/10 bg-foreground/10 shadow-[0_18px_45px_rgba(30,35,39,0.06)] sm:grid-cols-2 lg:grid-cols-6">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {valueList.map((value, idx) => {
             const Icon = value.icon;
-            const tileSpan = idx < 3 ? "lg:col-span-2" : "lg:col-span-3";
             return (
               <div
                 key={idx}
-                className={`${tileSpan} opacity-0 translate-y-6`}
+                className="opacity-0 translate-y-6"
                 data-animate
                 style={{ animationDelay: `${idx * 0.05}s` }}
               >
-                <div className="relative flex h-full min-h-[230px] flex-col bg-white p-6 sm:p-7">
-                  <div className="mb-7 flex items-start justify-between gap-5">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-accent-warm-gold/25 bg-accent-warm-gold/10 text-accent-warm-gold">
-                      <Icon className="h-5 w-5" strokeWidth={1.7} />
-                    </span>
-                    <span className="font-hero text-4xl leading-none text-foreground/[0.08]">
-                      {String(idx + 1).padStart(2, "0")}
-                    </span>
+                <div className="relative flex h-full min-h-[260px] flex-col rounded-xl border border-foreground/10 bg-white p-6 shadow-[0_14px_35px_rgba(30,35,39,0.055)] sm:p-7">
+                  <div className="mb-6 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-accent-warm-gold/25 bg-accent-warm-gold/10 text-accent-warm-gold">
+                    <Icon className="h-5 w-5" strokeWidth={1.7} />
                   </div>
                   <h3 className="mb-3 text-lg font-semibold leading-snug text-primary">
                     {value.title}
