@@ -190,7 +190,7 @@ export function Footer({ lang }: FooterProps) {
               </p>
             </div>
             <div className="text-center md:text-end">
-              <div className="flex justify-center md:justify-end gap-6">
+              <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:justify-end">
                 <a
                   href="#"
                   className="text-xs text-white/60 hover:text-accent transition-colors duration-300"

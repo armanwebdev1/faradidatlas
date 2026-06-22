@@ -95,7 +95,7 @@ export function CareersOpportunities({
           </p>
           <h2
             ref={titleRef}
-            className="text-4xl sm:text-5xl md:text-6xl font-semibold text-foreground mb-5 sm:mb-6 tracking-tight"
+            className="text-3xl sm:text-5xl md:text-6xl font-semibold text-foreground mb-5 sm:mb-6 tracking-tight"
             style={{
               fontFamily:
                 lang === "en"

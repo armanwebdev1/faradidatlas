@@ -36,7 +36,7 @@ export function Sorting({ lang, value, onChange }: SortingProps) {
   const options = lang === "en" ? sortOptions.en : sortOptions.fa;
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
       <label className="text-sm font-medium text-foreground whitespace-nowrap">
         {lang === "en" ? "Sort by:" : "مرتب‌سازی:"}
       </label>
@@ -45,7 +45,7 @@ export function Sorting({ lang, value, onChange }: SortingProps) {
         onChange={(event) =>
           onChange(event.target.value as ProductSortValue)
         }
-        className="px-3 py-2 border border-border rounded bg-white text-sm"
+        className="min-w-0 px-3 py-2 border border-border rounded bg-white text-sm"
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>

@@ -125,7 +125,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
                     return (
                       <div
                         key={`${groupIndex}-${item.title}-${idx}`}
-                        className={`flex-shrink-0 w-80 sm:w-96 md:w-[28rem] ${
+                        className={`flex-shrink-0 w-[min(20rem,calc(100vw-2rem))] sm:w-96 md:w-[28rem] ${
                           isRTL ? "text-right" : ""
                         }`}
                         dir={isRTL ? "rtl" : "ltr"}

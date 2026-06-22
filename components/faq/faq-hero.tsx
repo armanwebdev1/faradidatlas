@@ -21,7 +21,7 @@ export function FAQHero({ lang }: FAQHeroProps) {
               {lang === "en" ? "Help Center" : "سوالات متداول"}
             </p>
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-5 animate-fade-in-up"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-5 animate-fade-in-up"
               style={{
                 fontFamily:
                   lang === "en"
@@ -39,7 +39,7 @@ export function FAQHero({ lang }: FAQHeroProps) {
             <div className="mt-6 flex justify-center animate-fade-in-up">
               <a
                 href={`/${lang}/contact`}
-                className="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm sm:text-base font-semibold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+                className="inline-flex w-full items-center justify-center rounded-full bg-primary px-7 py-3 text-center text-sm font-semibold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg sm:w-auto sm:text-base"
               >
                 {lang === "en" ? "Contact Us" : "تماس با ما"}
               </a>

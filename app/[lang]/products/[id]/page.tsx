@@ -95,7 +95,7 @@ export default async function ProductDetailPage({
           aria-label="Breadcrumb"
           className="container-wide px-4 sm:px-6 pt-6 sm:pt-8"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-white/80 px-4 py-2 text-xs sm:text-sm text-foreground/70 shadow-sm backdrop-blur">
+          <div className="inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-foreground/10 bg-white/80 px-4 py-2 text-xs sm:text-sm text-foreground/70 shadow-sm backdrop-blur">
             <Link
               href={`/${lang}`}
               className="line-accent transition-colors hover:text-primary"

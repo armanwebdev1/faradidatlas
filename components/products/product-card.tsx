@@ -72,12 +72,12 @@ export function ProductCard({ product, lang }: ProductCardProps) {
 
           <div className="my-1.5 sm:my-2 h-px bg-border group-hover:bg-accent-warm-gold/30 transition-colors duration-300" />
 
-          <div className="flex justify-between items-center">
-            <span className="text-xs text-muted-foreground font-medium">
+          <div className="flex items-center justify-between gap-3">
+            <span className="min-w-0 text-xs text-muted-foreground font-medium line-clamp-1">
               {lang === "en" ? "Product profile" : "معرفی محصول"}
             </span>
             <span
-              className={`text-xs font-semibold text-accent-warm-gold group-hover:text-accent-warm-gold/80 transition-colors duration-300 flex items-center gap-1 ${isRTL ? "flex-row-reverse" : ""}`}
+              className={`shrink-0 text-xs font-semibold text-accent-warm-gold group-hover:text-accent-warm-gold/80 transition-colors duration-300 flex items-center gap-1 ${isRTL ? "flex-row-reverse" : ""}`}
             >
               <span>{lang === "en" ? "View" : "مشاهده"}</span>
               <svg

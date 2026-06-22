@@ -184,27 +184,27 @@ export function JobDetail({ job, lang }: JobDetailProps) {
             {lang === "en" ? "At a Glance" : "خلاصه موقعیت"}
           </h3>
           <div className="mt-6 space-y-4">
-            <div className="flex items-center justify-between gap-4 border-b border-foreground/5 pb-3">
-              <span className="text-xs font-semibold uppercase text-foreground/50">
+            <div className="flex items-start justify-between gap-4 border-b border-foreground/5 pb-3">
+              <span className="shrink-0 text-xs font-semibold uppercase text-foreground/50">
                 {lang === "en" ? "Department" : "بخش"}
               </span>
-              <span className="text-sm font-semibold text-foreground">
+              <span className="min-w-0 text-end text-sm font-semibold text-foreground">
                 {department}
               </span>
             </div>
-            <div className="flex items-center justify-between gap-4 border-b border-foreground/5 pb-3">
-              <span className="text-xs font-semibold uppercase text-foreground/50">
+            <div className="flex items-start justify-between gap-4 border-b border-foreground/5 pb-3">
+              <span className="shrink-0 text-xs font-semibold uppercase text-foreground/50">
                 {lang === "en" ? "Location" : "محل فعالیت"}
               </span>
-              <span className="text-sm font-semibold text-foreground">
+              <span className="min-w-0 text-end text-sm font-semibold text-foreground">
                 {location}
               </span>
             </div>
-            <div className="flex items-center justify-between gap-4">
-              <span className="text-xs font-semibold uppercase text-foreground/50">
+            <div className="flex items-start justify-between gap-4">
+              <span className="shrink-0 text-xs font-semibold uppercase text-foreground/50">
                 {lang === "en" ? "Type" : "نوع همکاری"}
               </span>
-              <span className="text-sm font-semibold text-foreground">
+              <span className="min-w-0 text-end text-sm font-semibold text-foreground">
                 {typeLabel}
               </span>
             </div>

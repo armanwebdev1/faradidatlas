@@ -29,7 +29,7 @@ export function Filters({
   const label = lang === "en" ? "Category" : "دسته محصول";
 
   return (
-    <div className="bg-white p-6 rounded-lg border border-border sticky top-24">
+    <div className="bg-white p-6 rounded-lg border border-border lg:sticky lg:top-24">
       <h3 className="text-lg font-semibold text-primary mb-6">
         {lang === "en" ? "Filters" : "فیلتر محصولات"}
       </h3>

@@ -377,9 +377,9 @@ export function ApplicationForm({
         <p className="mt-3 text-sm sm:text-base text-foreground/70">
           {copy.subtitle}
         </p>
-        <div className="mt-4 inline-flex items-center gap-3 rounded-full border border-foreground/10 bg-white px-4 py-2 text-xs sm:text-sm font-semibold text-foreground/80">
+        <div className="mt-4 inline-flex max-w-full items-center gap-3 rounded-full border border-foreground/10 bg-white px-4 py-2 text-xs sm:text-sm font-semibold text-foreground/80">
           <span className="h-2 w-2 rounded-full bg-accent-warm-gold" />
-          {jobTitle}
+          <span className="min-w-0 truncate">{jobTitle}</span>
         </div>
       </div>
 
@@ -584,7 +584,7 @@ export function ApplicationForm({
               onChange={handleFileChange}
               accept=".pdf,.doc,.docx"
               required
-              className={`w-full text-sm text-foreground file:mr-4 file:rounded-full file:border-0 file:bg-foreground file:px-4 file:py-2 file:text-xs file:font-semibold file:text-white hover:file:bg-foreground/90 ${
+              className={`w-full max-w-full text-sm text-foreground file:mr-4 file:max-w-full file:rounded-full file:border-0 file:bg-foreground file:px-4 file:py-2 file:text-xs file:font-semibold file:text-white hover:file:bg-foreground/90 ${
                 getError("cv") ? "text-destructive" : ""
               }`}
               aria-invalid={!!getError("cv")}

@@ -123,7 +123,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
                   {copy.tag}
                 </p>
                 <h1
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-5 animate-fade-in-up"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-5 animate-fade-in-up"
                   style={{
                     fontFamily:
                       lang === "en"
@@ -146,7 +146,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
                 </p>
 
                 <div className="mt-6 flex flex-wrap justify-center gap-3 animate-fade-in-up">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-white px-4 py-2 text-xs sm:text-sm">
+                  <div className="inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-foreground/10 bg-white px-4 py-2 text-xs sm:text-sm">
                     <span className="text-foreground/50 uppercase tracking-[0.2em] text-[10px] sm:text-xs">
                       {copy.meta.department}
                     </span>
@@ -155,7 +155,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
                       {department}
                     </span>
                   </div>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-white px-4 py-2 text-xs sm:text-sm">
+                  <div className="inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-foreground/10 bg-white px-4 py-2 text-xs sm:text-sm">
                     <span className="text-foreground/50 uppercase tracking-[0.2em] text-[10px] sm:text-xs">
                       {copy.meta.location}
                     </span>
@@ -164,7 +164,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
                       {location}
                     </span>
                   </div>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-white px-4 py-2 text-xs sm:text-sm">
+                  <div className="inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-foreground/10 bg-white px-4 py-2 text-xs sm:text-sm">
                     <span className="text-foreground/50 uppercase tracking-[0.2em] text-[10px] sm:text-xs">
                       {copy.meta.type}
                     </span>
@@ -178,7 +178,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
                 <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up">
                   <Link
                     href={`/${lang}/careers/${job.id}`}
-                    className="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm sm:text-base font-semibold text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg"
+                    className="inline-flex w-full items-center justify-center rounded-full bg-primary px-7 py-3 text-center text-sm sm:w-auto sm:text-base font-semibold text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg"
                     style={{
                       fontFamily:
                         lang === "en"

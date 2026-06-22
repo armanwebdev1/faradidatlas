@@ -362,7 +362,7 @@ export function Header({ lang }: HeaderProps) {
                   />
                 </svg>
               </summary>
-              <div className="fixed inset-x-0 top-16 z-30 bg-background/95 backdrop-blur-md border-b border-border/30 animate-in fade-in slide-in-from-top-8 duration-200">
+              <div className="fixed inset-x-0 top-16 z-30 max-h-[calc(100svh-4rem)] overflow-y-auto bg-background/95 backdrop-blur-md border-b border-border/30 animate-in fade-in slide-in-from-top-8 duration-200">
                 <div className="px-4 pt-4">
                   <form
                     role="search"

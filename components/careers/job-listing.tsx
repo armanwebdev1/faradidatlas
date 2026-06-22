@@ -33,9 +33,9 @@ export function JobListing({ job, lang }: JobListingProps) {
   return (
     <Link href={`/${lang}/careers/${job.id}`} className="block h-full">
       <div className="group relative h-full rounded-3xl border border-foreground/10 bg-white/90 p-6 sm:p-7 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-foreground/5">
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <h3
-            className="text-xl sm:text-2xl font-semibold text-foreground tracking-tight"
+            className="min-w-0 text-xl sm:text-2xl font-semibold text-foreground tracking-tight"
             style={{
               fontFamily:
                 lang === "en"
@@ -47,7 +47,7 @@ export function JobListing({ job, lang }: JobListingProps) {
             {title}
           </h3>
           <span
-            className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-widest ${typeClasses[job.type]}`}
+            className={`inline-flex w-fit max-w-full items-center gap-2 rounded-full border px-3 py-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-widest ${typeClasses[job.type]}`}
             style={{
               fontFamily:
                 lang === "en"
@@ -122,7 +122,7 @@ export function JobListing({ job, lang }: JobListingProps) {
         </p>
 
         <div
-          className={`mt-6 flex items-center justify-between border-t border-foreground/10 pt-4 text-[11px] sm:text-xs uppercase tracking-[0.2em] text-accent-warm-gold ${
+          className={`mt-6 flex items-center justify-between gap-3 border-t border-foreground/10 pt-4 text-[11px] sm:text-xs uppercase tracking-[0.2em] text-accent-warm-gold ${
             isRTL ? "flex-row-reverse" : ""
           }`}
         >

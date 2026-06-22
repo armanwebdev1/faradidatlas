@@ -126,8 +126,8 @@ export function ProductsContent({
     <section className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-gradient-to-b from-background to-secondary/30">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-10 md:gap-14 lg:gap-16">
-          <div className="lg:w-64 flex-shrink-0">
-            <div className="sticky top-32">
+          <div className="w-full lg:w-64 flex-shrink-0">
+            <div className="lg:sticky lg:top-32">
               <h3 className="text-sm font-bold text-primary mb-8 uppercase tracking-widest">
                 {lang === "en" ? "Filter" : "فیلتر"}
               </h3>
@@ -140,8 +140,8 @@ export function ProductsContent({
           </div>
 
           <div className="flex-1">
-            <div className="mb-10 sm:mb-12 flex justify-between items-center gap-4">
-              <div>
+            <div className="mb-10 sm:mb-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="min-w-0">
                 <span className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wide">
                   {lang === "en" ? "Core Portfolio" : "سبد اصلی"}
                 </span>

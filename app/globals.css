@@ -520,21 +520,6 @@
   transform-origin: left;
 }
 
-/* Rtl responsive padding for mobile */
-@media (max-width: 640px) {
-  [dir="rtl"] :is(.sm\:px-6, .px-4) {
-    padding-left: 0;
-  }
-
-  [dir="rtl"] .sm\:px-6 {
-    padding-right: 1.5rem;
-  }
-
-  [dir="rtl"] .px-4 {
-    padding-right: 1rem;
-  }
-}
-
 /* Rtl responsive margin adjustments */
 [dir="rtl"] :is(.space-x-4, .space-x-6, .space-x-8) > * + * {
   margin-right: 0;
@@ -730,6 +715,8 @@
   /* Buttons */
   .btn {
     @apply inline-flex items-center justify-center gap-2 whitespace-nowrap font-semibold;
+    max-width: 100%;
+    text-align: center;
     border-radius: var(--radius-pill);
     cursor: pointer;
     transition:
@@ -832,6 +819,7 @@
   .form-select,
   .form-textarea {
     @apply w-full text-sm;
+    min-width: 0;
     border-radius: var(--radius-lg);
     border: 1px solid var(--foreground-10);
     background: var(--surface-90);
@@ -860,6 +848,12 @@
   .form-error {
     font-size: 0.75rem;
     color: var(--destructive);
+  }
+
+  @media (max-width: 380px) {
+    .btn {
+      white-space: normal;
+    }
   }
 }
 
