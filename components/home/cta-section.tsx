@@ -145,7 +145,10 @@ export function CTASection({ lang }: CTASectionProps) {
           </div>
 
           <div className="relative mt-8 sm:mt-10 md:mt-12">
-            <div className="brand-logo-viewport overflow-hidden py-8" dir="ltr">
+            <div
+              className="brand-logo-viewport mx-auto max-w-3xl overflow-hidden py-8"
+              dir="ltr"
+            >
               <div
                 className={`brand-logo-marquee flex w-max ${
                   isRTL ? "brand-logo-marquee-reverse" : ""
