@@ -780,10 +780,18 @@ function ProductsMegaMenu({
           style={{ direction: "ltr" }}
         >
           <div
-            className={`flex min-h-[20rem] flex-col justify-between border-border/60 bg-muted/20 p-8 ${
-              isRTL ? "order-2 border-l" : "border-r"
+            className={`flex min-h-[20rem] flex-col justify-between bg-muted/20 p-8 ${
+              isRTL ? "order-2" : "border-r border-border/60"
             }`}
             dir={dir}
+            style={
+              isRTL
+                ? {
+                    borderLeft:
+                      "1px solid color-mix(in srgb, var(--border) 60%, transparent)",
+                  }
+                : undefined
+            }
           >
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
