@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { Language } from "@/lib/i18n";
 import {
   categoryLabels,
+  productCategories,
   type Product,
   type ProductCategory,
 } from "./product-data";
@@ -15,6 +16,7 @@ interface ProductsContentProps {
   lang: Language;
   products: Product[];
   initialQuery?: string;
+  initialCategory?: ProductCategory | null;
 }
 
 function normalizeSearchText(value: string) {
@@ -73,20 +75,30 @@ function sortProducts(
   }
 }
 
+function readCategoryFromUrl(searchParams: URLSearchParams) {
+  const category = searchParams.get("category");
+
+  return productCategories.includes(category as ProductCategory)
+    ? (category as ProductCategory)
+    : null;
+}
+
 export function ProductsContent({
   lang,
   products,
   initialQuery = "",
+  initialCategory = null,
 }: ProductsContentProps) {
   const [clientQuery, setClientQuery] = useState(initialQuery);
   const [selectedCategory, setSelectedCategory] =
-    useState<ProductCategory | null>(null);
+    useState<ProductCategory | null>(initialCategory);
   const [sortValue, setSortValue] = useState<ProductSortValue>("relevance");
 
   useEffect(() => {
     const syncQueryFromUrl = () => {
       const url = new URL(window.location.href);
       setClientQuery(url.searchParams.get("q") ?? initialQuery);
+      setSelectedCategory(readCategoryFromUrl(url.searchParams));
     };
     const frame = window.requestAnimationFrame(syncQueryFromUrl);
 
@@ -97,6 +109,18 @@ export function ProductsContent({
       window.removeEventListener("popstate", syncQueryFromUrl);
     };
   }, [initialQuery]);
+
+  const handleCategoryChange = (category: ProductCategory | null) => {
+    setSelectedCategory(category);
+
+    const url = new URL(window.location.href);
+    if (category) {
+      url.searchParams.set("category", category);
+    } else {
+      url.searchParams.delete("category");
+    }
+    window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+  };
 
   const query = clientQuery.trim();
   const searchedProducts = useMemo(() => {
@@ -123,7 +147,10 @@ export function ProductsContent({
   );
 
   return (
-    <section className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-gradient-to-b from-background to-secondary/30">
+    <section
+      id="product-catalog"
+      className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-gradient-to-b from-background to-secondary/30"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-10 md:gap-14 lg:gap-16">
           <div className="w-full lg:w-64 flex-shrink-0">
@@ -132,9 +159,10 @@ export function ProductsContent({
                 {lang === "en" ? "Filter" : "فیلتر"}
               </h3>
               <Filters
+                key={selectedCategory ?? "all"}
                 lang={lang}
                 selectedCategory={selectedCategory}
-                onCategoryChange={setSelectedCategory}
+                onCategoryChange={handleCategoryChange}
               />
             </div>
           </div>

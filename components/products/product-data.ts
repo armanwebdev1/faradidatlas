@@ -6,6 +6,15 @@ export type ProductCategory =
   | "spices"
   | "sugar";
 
+export const productCategories: ProductCategory[] = [
+  "rice",
+  "legumes",
+  "seeds",
+  "nuts",
+  "spices",
+  "sugar",
+];
+
 export interface Product {
   id: number;
   nameEn: string;

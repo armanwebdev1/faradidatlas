@@ -2,22 +2,17 @@
 
 import { useState } from "react";
 import type { Language } from "@/lib/i18n";
-import { categoryLabels, type ProductCategory } from "./product-data";
+import {
+  categoryLabels,
+  productCategories,
+  type ProductCategory,
+} from "./product-data";
 
 interface FiltersProps {
   lang: Language;
   selectedCategory: ProductCategory | null;
   onCategoryChange: (category: ProductCategory | null) => void;
 }
-
-const categoryOptions: ProductCategory[] = [
-  "rice",
-  "legumes",
-  "seeds",
-  "nuts",
-  "spices",
-  "sugar",
-];
 
 export function Filters({
   lang,
@@ -52,7 +47,7 @@ export function Filters({
           <option value="">
             {lang === "en" ? "All Categories" : "همه محصولات"}
           </option>
-          {categoryOptions.map((category) => (
+          {productCategories.map((category) => (
             <option key={category} value={category}>
               {lang === "en"
                 ? categoryLabels[category].en

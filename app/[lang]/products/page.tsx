@@ -1,7 +1,11 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ProductsContent } from "@/components/products/products-content";
-import { products } from "@/components/products/product-data";
+import {
+  productCategories,
+  products,
+  type ProductCategory,
+} from "@/components/products/product-data";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
@@ -9,6 +13,7 @@ import Image from "next/image";
 
 type ProductSearchParams = {
   q?: string | string[];
+  category?: string | string[];
 };
 
 interface ProductsPageProps {
@@ -44,9 +49,18 @@ export default async function ProductsPage({
   ]);
   const isRTL = lang === "fa";
   const rawSearchQuery = resolvedSearchParams.q;
+  const rawCategory = resolvedSearchParams.category;
   const searchQuery = Array.isArray(rawSearchQuery)
     ? (rawSearchQuery[0] ?? "")
     : (rawSearchQuery ?? "");
+  const category = Array.isArray(rawCategory)
+    ? (rawCategory[0] ?? "")
+    : (rawCategory ?? "");
+  const initialCategory = productCategories.includes(
+    category as ProductCategory,
+  )
+    ? (category as ProductCategory)
+    : null;
 
   return (
     <div dir={isRTL ? "rtl" : "ltr"}>
@@ -101,6 +115,7 @@ export default async function ProductsPage({
           lang={lang}
           products={products}
           initialQuery={searchQuery}
+          initialCategory={initialCategory}
         />
         <script
           type="application/ld+json"
