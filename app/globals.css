@@ -1269,8 +1269,44 @@
     will-change: transform;
   }
 
+  .brand-logo-viewport {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 7%,
+      black 93%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 7%,
+      black 93%,
+      transparent
+    );
+  }
+
   .brand-logo-marquee-reverse {
     animation-direction: reverse;
+  }
+
+  @media (max-width: 640px) {
+    .brand-logo-viewport {
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 4%,
+        black 96%,
+        transparent
+      );
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 4%,
+        black 96%,
+        transparent
+      );
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
