@@ -13,7 +13,9 @@ export function JoinTeam({ lang }: JoinTeamProps) {
       <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight tracking-tight">
-            {lang === "en" ? "Work with Faradid Atlas" : "با فرادید اطلس همکاری کنید"}
+            {lang === "en"
+              ? "Work with Faradid Atlas"
+              : "مسیر همکاری با فرادید اطلس را آغاز کنید"}
           </h2>
 
           <div
@@ -27,7 +29,7 @@ export function JoinTeam({ lang }: JoinTeamProps) {
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
               {lang === "en"
                 ? "Whether you are a buyer, supplier, or future teammate, we value practical thinking, professional ethics, and long-term trust."
-                : "چه خریدار باشید، چه تامین‌کننده یا همکار آینده، ما برای تفکر عملی، اخلاق حرفه‌ای و اعتماد بلندمدت ارزش قائلیم."}
+                : "چه خریدار باشید، چه تأمین‌کننده یا همکار آینده، برای ما نگاه عملی، اخلاق حرفه‌ای و اعتماد بلندمدت پایه هر همکاری است."}
             </p>
 
             <Link

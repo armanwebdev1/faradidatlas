@@ -35,26 +35,26 @@ const markets = {
   ],
   fa: [
     {
-      region: "برندهای شناخته‌شده برنج",
-      countries: "۲۱، میزبان، حیات و گل‌بانو",
+      region: "برند شناخته‌شده برنج",
+      countries: "۲۱، میزبان، حیات و گلبانو",
       value: 4,
       suffix: "",
     },
     {
-      region: "دفاتر شرکت",
+      region: "دفتر و پایگاه عملیاتی",
       countries: "تهران، اصفهان، دبی و عمان",
       value: 4,
       suffix: "",
     },
     {
-      region: "مبداهای کلیدی تامین",
-      countries: "تمرکز تامین مستقیم از هند و پاکستان",
+      region: "مبدأ اصلی تأمین",
+      countries: "تمرکز بر تأمین مستقیم از هند و پاکستان",
       value: 2,
       suffix: "",
     },
     {
-      region: "تنوع محصولات",
-      countries: "برنج، حبوبات، دانه‌ها، آجیل، ادویه‌جات و شکر",
+      region: "گروه محصولی",
+      countries: "برنج، حبوبات، دانه‌ها، مغزها، ادویه‌ها و شکر",
       value: 25,
       suffix: "",
     },
@@ -72,7 +72,7 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
       <div className="relative container-wide">
         <div className="text-center mb-14 sm:mb-16 md:mb-20">
           <p className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6">
-            {lang === "en" ? "Supply Footprint" : "گستره تامین"}
+            {lang === "en" ? "Supply Footprint" : "گستره فعالیت و تامین"}
           </p>
           <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 md:mb-8 animate-fade-in-up">
             <span className="inline-block">
@@ -86,7 +86,7 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
           <p className="text-responsive-body text-foreground/70 max-w-2xl mx-auto animate-fade-in-up">
             {lang === "en"
               ? "Our network connects first-tier suppliers with offices and distribution support across Iran and nearby regional markets."
-              : "شبکه ما تامین‌کنندگان رده‌اول را به دفاتر و پشتیبانی توزیع در ایران و بازارهای منطقه‌ای نزدیک متصل می‌کند."}
+              : "شبکه فعالیت ما، تأمین‌کنندگان معتبر را به دفاتر، مسیرهای توزیع و پشتیبانی عملیاتی در ایران و بازارهای منطقه‌ای متصل می‌کند."}
           </p>
         </div>
 

@@ -32,42 +32,42 @@ function productImage(filename: string): ProductImage {
 const products: Product[] = [
   {
     id: 1,
-    name: { en: "21 Rice Brand", fa: "برند برنج ۲۱" },
-    category: { en: "Rice Portfolio", fa: "سبد برنج" },
+    name: { en: "21 Rice Brand", fa: "برنج ۲۱" },
+    category: { en: "Rice Portfolio", fa: "برندهای برنج" },
     image: productImage("twenty-one.png"),
     description: {
       en: "One of Faradid Atlas' recognized rice brands, built around dependable quality and everyday availability.",
-      fa: "یکی از برندهای شناخته‌شده برنج فرادید اطلس با تمرکز بر کیفیت قابل اتکا و دسترسی روزمره.",
+      fa: "یکی از برندهای شناخته‌شده برنج فرادید اطلس؛ انتخابی برای تأمین روزمره با کیفیتی قابل اتکا و عرضه‌ای منظم.",
     },
   },
   {
     id: 2,
     name: { en: "Mizban Rice", fa: "برنج میزبان" },
-    category: { en: "Rice Portfolio", fa: "سبد برنج" },
+    category: { en: "Rice Portfolio", fa: "برندهای برنج" },
     image: productImage("mizban.png"),
     description: {
       en: "A trusted rice line designed for households, retailers, and foodservice partners.",
-      fa: "برندی قابل اعتماد برای خانواده‌ها، فروشگاه‌ها و شرکای خدمات غذایی.",
+      fa: "نامی آشنا در سبد برنج فرادید اطلس؛ مناسب خانواده‌ها، فروشگاه‌ها و فعالان خدمات غذایی که به کیفیت پایدار نیاز دارند.",
     },
   },
   {
     id: 3,
     name: { en: "Hayat Rice", fa: "برنج حیات" },
-    category: { en: "Rice Portfolio", fa: "سبد برنج" },
+    category: { en: "Rice Portfolio", fa: "برندهای برنج" },
     image: productImage("hayat.png"),
     description: {
       en: "Selected for consistent cooking quality, clear sourcing, and steady market supply.",
-      fa: "انتخاب‌شده برای کیفیت پخت یکنواخت، تامین شفاف و عرضه پایدار در بازار.",
+      fa: "برندی با تمرکز بر کیفیت پخت یکنواخت، مسیر تأمین شفاف و عرضه‌ای پایدار برای بازار.",
     },
   },
   {
     id: 4,
-    name: { en: "Golbanou Rice", fa: "برنج گل‌بانو" },
-    category: { en: "Rice Portfolio", fa: "سبد برنج" },
+    name: { en: "Golbanou Rice", fa: "برنج گلبانو" },
+    category: { en: "Rice Portfolio", fa: "برندهای برنج" },
     image: productImage("golbanoo.png"),
     description: {
       en: "A familiar rice brand serving demand across Iran and the wider Middle East region.",
-      fa: "برندی آشنا در بازار برنج برای پاسخ‌گویی به تقاضا در ایران و منطقه خاورمیانه.",
+      fa: "برندی آشنا در بازار برنج، برای پاسخ‌گویی به نیاز خریداران در ایران و بازارهای منطقه‌ای.",
     },
   },
   {
@@ -77,7 +77,7 @@ const products: Product[] = [
     image: productImage("red-lentil.png"),
     description: {
       en: "Legumes, spices, nuts, seeds, sugar, and other essentials selected for dependable B2B supply.",
-      fa: "حبوبات، ادویه‌جات، آجیل، دانه‌ها، شکر و سایر اقلام اساسی برای تامین B2B قابل اتکا.",
+      fa: "حبوبات، ادویه‌ها، مغزها، دانه‌ها، شکر و سایر اقلام ضروری؛ انتخاب‌شده برای تأمین قابل اتکا در همکاری‌های عمده و سازمانی.",
     },
   },
 ];
@@ -168,7 +168,7 @@ export function SignatureProducts() {
       <div className="relative z-10 container-wide">
         <div className="text-center mb-10 sm:mb-12 md:mb-14 animate-fade-in">
           <p className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6">
-            {lang === "en" ? "Recognized Portfolio" : "سبد سرمایه‌گذاری معتبر"}
+            {lang === "en" ? "Recognized Portfolio" : "سبد محصولات منتخب"}
           </p>
           <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 md:mb-8">
             {lang === "en"
@@ -178,7 +178,7 @@ export function SignatureProducts() {
           <p className="text-responsive-body text-foreground/70 max-w-2xl mx-auto mb-8">
             {lang === "en"
               ? "From rice brands to essential staples, our portfolio is shaped around reliable supply and consistent quality."
-              : "از برندهای برنج تا اقلام غذایی اساسی، سبد ما بر پایه تامین پایدار و کیفیت یکنواخت شکل گرفته است."}
+              : "از برندهای برنج تا اقلام غذایی اساسی، سبد محصولات ما با تمرکز بر تأمین پایدار، کیفیت قابل اعتماد و نیاز واقعی بازار شکل گرفته است."}
           </p>
 
           <button

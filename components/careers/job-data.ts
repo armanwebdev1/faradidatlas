@@ -21,16 +21,16 @@ export const jobs: Job[] = [
   {
     id: 1,
     titleEn: "Supply Chain & Procurement",
-    titleFa: "زنجیره تامین و خرید",
+    titleFa: "زنجیره تأمین و خرید",
     departmentEn: "Operations",
     departmentFa: "عملیات",
     locationEn: "Iran and regional operations",
-    locationFa: "ایران و عملیات منطقه‌ای",
+    locationFa: "ایران و فعالیت‌های منطقه‌ای",
     type: "full-time",
     descriptionEn:
       "An evergreen opportunity area for people who can support shorter, more reliable food supply chains and first-tier supplier coordination.",
     descriptionFa:
-      "حوزه‌ای همیشگی برای افرادی که می‌توانند به کوتاه‌تر و قابل‌اتکاتر شدن زنجیره تامین غذا و هماهنگی با تامین‌کنندگان رده‌اول کمک کنند.",
+      "حوزه‌ای مستمر برای افرادی که می‌توانند به کوتاه‌تر، شفاف‌تر و قابل‌اتکاتر شدن زنجیره تأمین مواد غذایی و هماهنگی با تأمین‌کنندگان معتبر کمک کنند.",
     responsibilitiesEn: [
       "Support sourcing coordination for essential food products",
       "Help maintain visibility across procurement, import, storage, and distribution",
@@ -38,10 +38,10 @@ export const jobs: Job[] = [
       "Coordinate practical next steps for wholesalers, organizations, and buyers",
     ],
     responsibilitiesFa: [
-      "پشتیبانی از هماهنگی تامین محصولات غذایی اساسی",
-      "کمک به شفافیت در خرید، واردات، نگهداری و توزیع",
-      "مشارکت در تنوع‌بخشی تامین‌کنندگان و نظم موجودی راهبردی",
-      "هماهنگی گام‌های عملی برای عمده‌فروشان، سازمان‌ها و خریداران",
+      "پشتیبانی از هماهنگی تأمین مواد غذایی اساسی",
+      "کمک به شفافیت فرایندهای خرید، واردات، نگهداری و توزیع",
+      "مشارکت در تنوع‌بخشی به تأمین‌کنندگان و نظم‌دهی راهبردی به موجودی",
+      "هماهنگی مراحل اجرایی برای عمده‌فروشان، سازمان‌ها و خریداران",
     ],
     requirementsEn: [
       "Interest in food supply, sourcing, and distribution",
@@ -50,9 +50,9 @@ export const jobs: Job[] = [
       "Comfort working with cross-functional commercial and operations teams",
     ],
     requirementsFa: [
-      "علاقه به تامین، خرید و توزیع مواد غذایی",
-      "عادت کاری قوی در پیگیری، مستندسازی و هماهنگی",
-      "پایبندی به اخلاق حرفه‌ای و ارتباط شفاف",
+      "علاقه به تأمین، خرید و توزیع مواد غذایی",
+      "توانایی قوی در پیگیری، مستندسازی و هماهنگی",
+      "پایبندی به اخلاق حرفه‌ای و ارتباطات شفاف",
       "توانایی همکاری با تیم‌های تجاری و عملیاتی",
     ],
     benefitsEn: [
@@ -63,24 +63,24 @@ export const jobs: Job[] = [
     ],
     benefitsFa: [
       "نگاه مشتری‌مدار",
-      "استمرار تامین",
+      "تداوم تأمین",
       "اخلاق حرفه‌ای",
-      "حل مسئله عملی",
+      "حل مسئله کاربردی",
     ],
   },
   {
     id: 2,
     titleEn: "Quality & Food Safety",
-    titleFa: "کیفیت و ایمنی غذا",
+    titleFa: "کیفیت و ایمنی مواد غذایی",
     departmentEn: "Quality",
     departmentFa: "کیفیت",
     locationEn: "Iran and regional operations",
-    locationFa: "ایران و عملیات منطقه‌ای",
+    locationFa: "ایران و فعالیت‌های منطقه‌ای",
     type: "full-time",
     descriptionEn:
       "An evergreen opportunity area for people committed to superior quality, hygiene standards, and ISO 22000-led operating discipline.",
     descriptionFa:
-      "حوزه‌ای همیشگی برای افرادی که به کیفیت برتر، استانداردهای بهداشتی و نظم عملیاتی مبتنی بر ISO 22000 متعهد هستند.",
+      "حوزه‌ای مستمر برای افرادی که به کیفیت برتر، استانداردهای بهداشتی و نظم عملیاتی بر پایه ISO 22000 پایبند هستند.",
     responsibilitiesEn: [
       "Support quality checks across import, warehousing, and distribution",
       "Help maintain food safety and hygiene documentation",
@@ -88,9 +88,9 @@ export const jobs: Job[] = [
       "Protect trust in Faradid Atlas products and brands",
     ],
     responsibilitiesFa: [
-      "پشتیبانی از کنترل کیفیت در واردات، انبارداری و توزیع",
-      "کمک به نگهداری مستندات ایمنی و بهداشت غذا",
-      "مشارکت در آموزش و ارزیابی تامین‌کنندگان بر پایه ارزش‌ها",
+      "پشتیبانی از کنترل کیفیت در مراحل واردات، انبارداری و توزیع",
+      "کمک به نگهداری مستندات ایمنی و بهداشت مواد غذایی",
+      "مشارکت در آموزش و ارزیابی تأمین‌کنندگان بر پایه ارزش‌های شرکت",
       "حفظ اعتماد به محصولات و برندهای فرادید اطلس",
     ],
     requirementsEn: [
@@ -100,10 +100,10 @@ export const jobs: Job[] = [
       "Ability to improve routines through training and feedback",
     ],
     requirementsFa: [
-      "علاقه به کیفیت غذا و استانداردهای بهداشتی",
+      "علاقه به کیفیت مواد غذایی و استانداردهای بهداشتی",
       "دقت در مستندسازی و توجه به جزئیات",
-      "تعهد به شفافیت و عملیات پاسخ‌گو",
-      "توانایی بهبود روال‌ها از طریق آموزش و بازخورد",
+      "پایبندی به شفافیت و مسئولیت‌پذیری در عملیات",
+      "توانایی بهبود روال‌های کاری از طریق آموزش و بازخورد",
     ],
     benefitsEn: [
       "Superior quality",
@@ -113,8 +113,8 @@ export const jobs: Job[] = [
     ],
     benefitsFa: [
       "کیفیت برتر",
-      "نظم مبتنی بر ISO",
-      "پاسخ‌گویی",
+      "نظم بر پایه ISO",
+      "مسئولیت‌پذیری",
       "بهبود مستمر",
     ],
   },
@@ -125,12 +125,12 @@ export const jobs: Job[] = [
     departmentEn: "Commercial",
     departmentFa: "تجاری",
     locationEn: "Iran and regional operations",
-    locationFa: "ایران و عملیات منطقه‌ای",
+    locationFa: "ایران و فعالیت‌های منطقه‌ای",
     type: "full-time",
     descriptionEn:
       "An evergreen opportunity area for people who can build long-term trust with individuals, wholesalers, organizations, and foodservice buyers.",
     descriptionFa:
-      "حوزه‌ای همیشگی برای افرادی که می‌توانند با افراد، عمده‌فروشان، سازمان‌ها و خریداران خدمات غذایی اعتماد بلندمدت ایجاد کنند.",
+      "حوزه‌ای مستمر برای افرادی که می‌توانند با خریداران فردی، عمده‌فروشان، سازمان‌ها و فعالان خدمات غذایی اعتماد بلندمدت بسازند.",
     responsibilitiesEn: [
       "Understand buyer needs across the essential food portfolio",
       "Coordinate product inquiries with operations and sourcing teams",
@@ -138,10 +138,10 @@ export const jobs: Job[] = [
       "Build relationships through honesty, clarity, and consistent follow-up",
     ],
     responsibilitiesFa: [
-      "درک نیاز خریداران در سراسر سبد مواد غذایی اساسی",
-      "هماهنگی درخواست‌های محصول با تیم‌های عملیات و تامین",
-      "پشتیبانی از کانال‌های فروش دیجیتال و چرخه‌های بازخورد مشتری",
-      "ایجاد رابطه با صداقت، شفافیت و پیگیری منظم",
+      "درک نیاز خریداران در سبد مواد غذایی اساسی",
+      "هماهنگی درخواست‌های محصول با تیم‌های عملیات و تأمین",
+      "پشتیبانی از کانال‌های فروش دیجیتال و چرخه‌های کاربردی بازخورد مشتری",
+      "ساختن رابطه با صداقت، شفافیت و پیگیری منظم",
     ],
     requirementsEn: [
       "Customer-oriented communication",
@@ -150,9 +150,9 @@ export const jobs: Job[] = [
       "Interest in food products and regional distribution",
     ],
     requirementsFa: [
-      "ارتباط مشتری‌مدار",
-      "توانایی تبدیل درخواست‌ها به گام‌های عملی بعدی",
-      "اولویت دادن به اعتماد بلندمدت نسبت به معامله کوتاه‌مدت",
+      "توانایی ارتباط مشتری‌مدار",
+      "توانایی تبدیل درخواست‌ها به مراحل اجرایی و قابل پیگیری",
+      "اولویت دادن به اعتماد بلندمدت به‌جای معامله کوتاه‌مدت",
       "علاقه به محصولات غذایی و توزیع منطقه‌ای",
     ],
     benefitsEn: [

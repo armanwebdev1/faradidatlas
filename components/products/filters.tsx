@@ -26,12 +26,12 @@ export function Filters({
 }: FiltersProps) {
   const [pendingCategory, setPendingCategory] =
     useState<ProductCategory | null>(selectedCategory);
-  const label = lang === "en" ? "Category" : "دسته‌بندی";
+  const label = lang === "en" ? "Category" : "دسته محصول";
 
   return (
     <div className="bg-white p-6 rounded-lg border border-border sticky top-24">
       <h3 className="text-lg font-semibold text-primary mb-6">
-        {lang === "en" ? "Filters" : "فیلترها"}
+        {lang === "en" ? "Filters" : "فیلتر محصولات"}
       </h3>
 
       <div className="mb-6">
@@ -50,7 +50,7 @@ export function Filters({
           className="w-full px-3 py-2 border border-border rounded bg-white text-sm"
         >
           <option value="">
-            {lang === "en" ? "All Categories" : "همه دسته‌بندی‌ها"}
+            {lang === "en" ? "All Categories" : "همه محصولات"}
           </option>
           {categoryOptions.map((category) => (
             <option key={category} value={category}>
@@ -66,7 +66,7 @@ export function Filters({
         onClick={() => onCategoryChange(pendingCategory)}
         className="w-full px-4 py-2 bg-primary text-primary-foreground font-medium rounded hover:bg-primary/90 transition-colors text-sm"
       >
-        {lang === "en" ? "Apply Filters" : "اعمال فیلترها"}
+        {lang === "en" ? "Apply Filters" : "نمایش نتایج"}
       </button>
 
       <button
@@ -76,7 +76,7 @@ export function Filters({
         }}
         className="w-full mt-2 px-4 py-2 border border-border text-foreground font-medium rounded hover:bg-muted transition-colors text-sm"
       >
-        {lang === "en" ? "Reset" : "بازنشانی"}
+        {lang === "en" ? "Reset" : "حذف فیلترها"}
       </button>
     </div>
   );

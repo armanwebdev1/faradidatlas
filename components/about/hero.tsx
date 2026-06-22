@@ -31,7 +31,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
             >
               {lang === "en"
                 ? "Since 2009, we have connected reliable global food supply with the essential needs of the Iranian market."
-                : "از سال ۱۳۸۸، پیونددهندهٔ تأمین جهانیِ معتبر با نیازهای بنیادین بازار مواد غذایی ایران بوده‌ایم"}
+                : "از سال ۱۳۸۸، فرادید اطلس تأمین مطمئن مواد غذایی را به نیازهای اساسی بازار ایران پیوند می‌دهد."}
             </h1>
             <Link
               href={`/${lang}/contact`}
@@ -49,7 +49,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
                 alt={
                   lang === "en"
                     ? "Faradid Atlas operations"
-                    : "عملیات فرادید اطلس"
+                    : "فعالیت‌های فرادید اطلس در تأمین مواد غذایی"
                 }
                 fill
                 priority
@@ -63,7 +63,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
             <h2 className="text-responsive-title text-primary">
               {lang === "en"
                 ? "Food security, made practical"
-                : "امنیت غذایی، در عمل"}
+                : "امنیت غذایی، در مسیر عمل"}
             </h2>
 
             <div
@@ -78,13 +78,13 @@ export function AboutHero({ lang }: AboutHeroProps) {
               <p className="text-base md:text-lg font-semibold text-foreground leading-relaxed max-w-xl">
                 {lang === "en"
                   ? "Faradid Atlas was established in 2009 to help strengthen food security and support access to essential foods. The company imports and distributes rice, legumes, spices, nuts, seeds, and sugar selected against global quality and hygiene standards."
-                  : "فرادید اطلس در سال ۱۳۸۸ با هدف تقویت امنیت غذایی و پشتیبانی از دسترسی به مواد غذایی اساسی شکل گرفت. شرکت برنج، حبوبات، ادویه‌جات، آجیل، دانه‌ها و شکر را بر پایه استانداردهای جهانی کیفیت و بهداشت وارد و توزیع می‌کند."}
+                  : "فرادید اطلس در سال ۱۳۸۸ با هدف تقویت امنیت غذایی و آسان‌تر کردن دسترسی به مواد غذایی اساسی آغاز به کار کرد. این شرکت برنج، حبوبات، ادویه‌ها، مغزها، دانه‌ها و شکر را بر پایه معیارهای معتبر کیفی و بهداشتی وارد و توزیع می‌کند."}
               </p>
 
               <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-xl">
                 {lang === "en"
                   ? "Its recognized rice brands are 21, Mizban, Hayat, and Golbanou. Offices in Tehran, Isfahan, Dubai, and Oman, supported by operational storage access including Shahrekord, help keep supply accessible for retailers, wholesalers, organizations, and foodservice partners."
-                  : "برندهای شناخته‌شده برنج شرکت شامل ۲۱، میزبان، حیات و گلبانو است. دفاتر تهران، اصفهان، دبی و عمان، همراه با دسترسی عملیاتی و انباری از جمله شهرکرد، دسترسی پایدار را برای خرده‌فروشان، عمده‌فروشان، سازمان‌ها و شرکای خدمات غذایی پشتیبانی می‌کند."}
+                  : "برندهای برنج فرادید اطلس شامل ۲۱، میزبان، حیات و گلبانو هستند. دفاتر تهران، اصفهان، دبی و عمان، همراه با پشتیبانی انبار و دسترسی عملیاتی از جمله شهرکرد، مسیر تأمین را برای خرده‌فروشان، عمده‌فروشان، سازمان‌ها و فعالان خدمات غذایی منظم‌تر و قابل اتکاتر می‌کند."}
               </p>
             </div>
           </div>
@@ -97,14 +97,14 @@ export function AboutHero({ lang }: AboutHeroProps) {
               <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-xl">
                 {lang === "en"
                   ? "Our mission is to remove unnecessary intermediaries, protect supply chain continuity, and create lasting value for customers and the wider community."
-                  : "ماموریت ما حذف واسطه‌های غیرضروری، حفظ پایداری زنجیره تامین و خلق ارزش ماندگار برای مشتریان و جامعه است."}
+                  : "مأموریت ما کاهش واسطه‌های غیرضروری، حفظ تداوم زنجیره تأمین و ایجاد ارزشی ماندگار برای مشتریان و جامعه است."}
               </p>
             </div>
 
             <blockquote className="text-2xl md:text-3xl font-bold text-primary leading-tight max-w-xl">
               {lang === "en"
                 ? "Healthy, quality food should be accessible. That belief guides every sourcing and distribution decision we make."
-                : "دسترسی به غذای سالم و باکیفیت باید ممکن باشد؛ این باور راهنمای تصمیم‌های ما در تامین و توزیع است."}
+                : "دسترسی به غذای سالم و باکیفیت باید ممکن باشد؛ همین باور، راهنمای تصمیم‌های ما در تأمین و توزیع است."}
             </blockquote>
           </div>
 
@@ -130,7 +130,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
             <Stat
               value={25}
               labelEn="DOCX-listed products"
-              labelFa="محصول در متن مرجع"
+              labelFa="محصول در سبد تامین"
               lang={lang}
             />
           </div>

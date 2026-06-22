@@ -15,7 +15,7 @@ export function ContactHero({ lang }: ContactHeroProps) {
     },
     {
       en: "B2B supply planning",
-      fa: "برنامه‌ریزی تامین B2B",
+      fa: "برنامه‌ریزی تأمین تجاری",
     },
     {
       en: "Iran, UAE & Oman",
@@ -32,21 +32,21 @@ export function ContactHero({ lang }: ContactHeroProps) {
         <div className="space-y-8 md:space-y-10">
           <StaggeredFade className="text-center">
             <p className="eyebrow mb-4 text-accent-warm-gold animate-fade-in-up">
-              {lang === "en" ? "Get in Touch" : "در ارتباط باشید"}
+              {lang === "en" ? "Get in Touch" : "با ما در ارتباط باشید"}
             </p>
             <h1 className="text-responsive-hero text-primary mb-5 animate-fade-in-up">
               {lang === "en"
                 ? "Tell us what you need to supply next"
-                : "بگویید برای تامین بعدی به چه نیاز دارید"}
+                : "نیاز بعدی خود را برای تأمین با ما در میان بگذارید"}
             </h1>
             <p className="text-responsive-body text-foreground/70 max-w-3xl mx-auto animate-fade-in-up">
               {lang === "en"
                 ? "Share the product, destination, volume, and timeline so our team can review practical sourcing and distribution next steps."
-                : "محصول، مقصد، حجم و زمان‌بندی را اعلام کنید تا تیم ما گام‌های عملی تامین و توزیع را بررسی کند."}
+                : "نوع محصول، مقصد، حجم و زمان‌بندی موردنظرتان را اعلام کنید تا تیم فرادید اطلس مراحل تأمین و توزیع را بررسی کند."}
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3 animate-fade-in-up">
               <a href="#contact-form" className="btn btn-primary btn-md">
-                {lang === "en" ? "Start an Inquiry" : "شروع درخواست"}
+                {lang === "en" ? "Start an Inquiry" : "ثبت درخواست همکاری"}
               </a>
               <a href="#contact-offices" className="btn btn-outline btn-md">
                 {lang === "en" ? "View Offices" : "مشاهده دفاتر"}

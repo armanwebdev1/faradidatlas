@@ -29,7 +29,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
           : "پاره‌وقت"
         : lang === "en"
           ? "Contract"
-          : "قرارداد";
+          : "قراردادی";
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-10 lg:gap-16 items-start">
@@ -39,7 +39,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
       >
         <div>
           <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-accent-warm-gold">
-            {lang === "en" ? "Career Opportunity" : "فرصت شغلی"}
+            {lang === "en" ? "Career Opportunity" : "فرصت همکاری"}
           </p>
           <h1
             className="mt-4 text-3xl sm:text-4xl md:text-5xl font-semibold text-foreground leading-tight tracking-tight"
@@ -58,7 +58,9 @@ export function JobDetail({ job, lang }: JobDetailProps) {
             className="mt-5 text-sm sm:text-base text-foreground/70 leading-relaxed"
             style={{
               fontFamily:
-                lang === "en" ? "var(--font-body)" : "Shabnam, var(--font-body)",
+                lang === "en"
+                  ? "var(--font-body)"
+                  : "Shabnam, var(--font-body)",
               fontWeight: "400",
             }}
           >
@@ -80,7 +82,10 @@ export function JobDetail({ job, lang }: JobDetailProps) {
           </h2>
           <ul className="space-y-3 sm:space-y-4">
             {responsibilities.map((item, idx) => (
-              <li key={idx} className="flex gap-3 sm:gap-4 text-sm sm:text-base">
+              <li
+                key={idx}
+                className="flex gap-3 sm:gap-4 text-sm sm:text-base"
+              >
                 <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-accent-warm-gold" />
                 <span
                   className="text-foreground/75 leading-relaxed"
@@ -108,11 +113,14 @@ export function JobDetail({ job, lang }: JobDetailProps) {
                   : "Estedad, var(--font-hero)",
             }}
           >
-            {lang === "en" ? "Requirements" : "الزامات"}
+            {lang === "en" ? "Requirements" : "شرایط موردنیاز"}
           </h2>
           <ul className="space-y-3 sm:space-y-4">
             {requirements.map((item, idx) => (
-              <li key={idx} className="flex gap-3 sm:gap-4 text-sm sm:text-base">
+              <li
+                key={idx}
+                className="flex gap-3 sm:gap-4 text-sm sm:text-base"
+              >
                 <span className="mt-0.5 text-accent-warm-gold font-semibold">
                   ✓
                 </span>
@@ -142,7 +150,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
                   : "Estedad, var(--font-hero)",
             }}
           >
-            {lang === "en" ? "What We Value" : "آنچه برای ما مهم است"}
+            {lang === "en" ? "What We Value" : "ارزش‌های مورد توجه ما"}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {values.map((value, idx) => (
@@ -173,7 +181,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
           style={{ animationDelay: "0.1s" }}
         >
           <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-foreground/50">
-            {lang === "en" ? "At a Glance" : "نگاهی کوتاه"}
+            {lang === "en" ? "At a Glance" : "خلاصه موقعیت"}
           </h3>
           <div className="mt-6 space-y-4">
             <div className="flex items-center justify-between gap-4 border-b border-foreground/5 pb-3">
@@ -186,7 +194,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
             </div>
             <div className="flex items-center justify-between gap-4 border-b border-foreground/5 pb-3">
               <span className="text-xs font-semibold uppercase text-foreground/50">
-                {lang === "en" ? "Location" : "مکان"}
+                {lang === "en" ? "Location" : "محل فعالیت"}
               </span>
               <span className="text-sm font-semibold text-foreground">
                 {location}
@@ -194,7 +202,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
             </div>
             <div className="flex items-center justify-between gap-4">
               <span className="text-xs font-semibold uppercase text-foreground/50">
-                {lang === "en" ? "Type" : "نوع"}
+                {lang === "en" ? "Type" : "نوع همکاری"}
               </span>
               <span className="text-sm font-semibold text-foreground">
                 {typeLabel}
@@ -216,12 +224,14 @@ export function JobDetail({ job, lang }: JobDetailProps) {
                   : "Estedad, var(--font-hero)",
             }}
           >
-            {lang === "en" ? "Apply for this role" : "درخواست برای این موقعیت"}
+            {lang === "en"
+              ? "Apply for this role"
+              : "ارسال درخواست برای این موقعیت"}
           </h3>
           <p className="mt-3 text-sm text-white/70">
             {lang === "en"
               ? "We review applications on a rolling basis."
-              : "درخواست‌ها به‌صورت دوره‌ای بررسی می‌شوند."}
+              : "درخواست‌ها به‌صورت مستمر بررسی می‌شوند."}
           </p>
           <div className="mt-6 flex flex-col gap-3">
             <Link
@@ -234,7 +244,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
                     : "Shabnam, var(--font-body)",
               }}
             >
-              {lang === "en" ? "Apply Now" : "اعمال درخواست"}
+              {lang === "en" ? "Apply Now" : "ارسال درخواست"}
             </Link>
             <Link
               href={`/${lang}/careers`}
@@ -246,7 +256,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
                     : "Shabnam, var(--font-body)",
               }}
             >
-              {lang === "en" ? "View All Jobs" : "مشاهده تمام شغل‌ها"}
+              {lang === "en" ? "View All Jobs" : "مشاهده همه فرصت‌ها"}
             </Link>
           </div>
         </div>

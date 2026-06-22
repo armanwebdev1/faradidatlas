@@ -105,7 +105,7 @@ export function CareersOpportunities({
               letterSpacing: "-0.01em",
             }}
           >
-            {lang === "en" ? "Evergreen Roles" : "نقش‌های همیشگی"}
+            {lang === "en" ? "Evergreen Roles" : "نقش‌های کلیدی و مستمر"}
           </h2>
           <p
             ref={subtitleRef}
@@ -121,7 +121,7 @@ export function CareersOpportunities({
           >
             {lang === "en"
               ? "These conservative role areas reflect the work Faradid Atlas needs across supply continuity, quality, and customer relationships."
-              : "این حوزه‌های همکاری بر پایه نیازهای پایدار فرادید اطلس در استمرار تامین، کیفیت و ارتباط با مشتری تعریف شده‌اند."}
+              : "این حوزه‌های همکاری بر پایه نیازهای همیشگی فرادید اطلس در تأمین مستمر، کنترل کیفیت و ارتباط با مشتریان تعریف شده‌اند."}
           </p>
         </div>
 

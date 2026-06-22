@@ -114,12 +114,12 @@ export function ContactForm({ lang }: ContactFormProps) {
     >
       <div className="pointer-events-none absolute -top-24 right-0 h-40 w-40 rounded-full bg-gradient-to-br from-accent/25 via-white to-transparent blur-3xl -z-10" />
       <h2 className="text-responsive-section text-primary mb-3">
-        {lang === "en" ? "B2B Inquiry Form" : "فرم درخواست B2B"}
+        {lang === "en" ? "B2B Inquiry Form" : "فرم درخواست همکاری"}
       </h2>
       <p className="text-responsive-body text-foreground/70 mb-6 sm:mb-8">
         {lang === "en"
           ? "Tell us about your product needs, destination, and expected volume so the team can review a practical supply path."
-          : "درباره محصول مورد نیاز، مقصد و حجم تقریبی بگویید تا تیم ما مسیر عملی تامین را بررسی کند."}
+          : "نوع محصول، مقصد و حجم تقریبی موردنیازتان را با ما در میان بگذارید تا تیم فرادید اطلس مسیر مناسب تأمین را بررسی کند."}
       </p>
 
       <input
@@ -147,14 +147,14 @@ export function ContactForm({ lang }: ContactFormProps) {
             onChange={handleChange}
             required
             className={inputBase}
-            placeholder={lang === "en" ? "Your company" : "شرکت شما"}
+            placeholder={lang === "en" ? "Your company" : "نام شرکت"}
           />
         </div>
 
         {/* Name */}
         <div>
           <label className={labelBase}>
-            {lang === "en" ? "Contact Name" : "نام تماس"}
+            {lang === "en" ? "Contact Name" : "نام و نام خانوادگی"}
           </label>
           <input
             type="text"
@@ -186,7 +186,7 @@ export function ContactForm({ lang }: ContactFormProps) {
         {/* Phone */}
         <div>
           <label className={labelBase}>
-            {lang === "en" ? "Phone" : "تلفن"}
+            {lang === "en" ? "Phone" : "شماره تماس"}
           </label>
           <input
             type="tel"
@@ -202,7 +202,7 @@ export function ContactForm({ lang }: ContactFormProps) {
         {/* Role */}
         <div>
           <label className={labelBase}>
-            {lang === "en" ? "Your Role" : "نقش شما"}
+            {lang === "en" ? "Your Role" : "نوع همکاری"}
           </label>
           <select
             name="role"
@@ -211,7 +211,9 @@ export function ContactForm({ lang }: ContactFormProps) {
             className={inputBase}
           >
             <option value="">
-              {lang === "en" ? "Select role..." : "نقش را انتخاب کنید..."}
+              {lang === "en"
+                ? "Select role..."
+                : "نوع همکاری را انتخاب کنید..."}
             </option>
             <option value="individual">
               {lang === "en" ? "Individual buyer" : "خریدار فردی"}
@@ -220,19 +222,19 @@ export function ContactForm({ lang }: ContactFormProps) {
               {lang === "en" ? "Wholesaler" : "عمده‌فروش"}
             </option>
             <option value="organization">
-              {lang === "en" ? "Organization" : "سازمان"}
+              {lang === "en" ? "Organization" : "سازمان یا شرکت"}
             </option>
             <option value="governmental-body">
               {lang === "en" ? "Governmental body" : "نهاد دولتی"}
             </option>
-            <option value="other">{lang === "en" ? "Other" : "دیگر"}</option>
+            <option value="other">{lang === "en" ? "Other" : "سایر"}</option>
           </select>
         </div>
 
         {/* Product Interest */}
         <div>
           <label className={labelBase}>
-            {lang === "en" ? "Product Interest" : "محصول مورد علاقه"}
+            {lang === "en" ? "Product Interest" : "محصول موردنظر"}
           </label>
           <select
             name="productInterest"
@@ -243,26 +245,18 @@ export function ContactForm({ lang }: ContactFormProps) {
             <option value="">
               {lang === "en" ? "Select product..." : "محصول را انتخاب کنید..."}
             </option>
-            <option value="rice">
-              {lang === "en" ? "Rice" : "برنج"}
-            </option>
+            <option value="rice">{lang === "en" ? "Rice" : "برنج"}</option>
             <option value="legumes">
               {lang === "en" ? "Legumes" : "حبوبات"}
             </option>
             <option value="spices">
               {lang === "en" ? "Spices" : "ادویه‌جات"}
             </option>
-            <option value="nuts">
-              {lang === "en" ? "Nuts" : "آجیل"}
-            </option>
-            <option value="seeds">
-              {lang === "en" ? "Seeds" : "دانه‌ها"}
-            </option>
-            <option value="sugar">
-              {lang === "en" ? "Sugar" : "شکر"}
-            </option>
+            <option value="nuts">{lang === "en" ? "Nuts" : "آجیل"}</option>
+            <option value="seeds">{lang === "en" ? "Seeds" : "دانه‌ها"}</option>
+            <option value="sugar">{lang === "en" ? "Sugar" : "شکر"}</option>
             <option value="multiple">
-              {lang === "en" ? "Multiple Products" : "محصولات متعدد"}
+              {lang === "en" ? "Multiple Products" : "چند محصول"}
             </option>
           </select>
         </div>
@@ -270,7 +264,7 @@ export function ContactForm({ lang }: ContactFormProps) {
         {/* Volume */}
         <div>
           <label className={labelBase}>
-            {lang === "en" ? "Expected Volume" : "حجم مورد انتظار"}
+            {lang === "en" ? "Expected Volume" : "حجم مورد نیاز"}
           </label>
           <input
             type="text"
@@ -278,7 +272,9 @@ export function ContactForm({ lang }: ContactFormProps) {
             value={formData.volume}
             onChange={handleChange}
             className={inputBase}
-            placeholder={lang === "en" ? "Approximate quantity" : "مقدار تقریبی"}
+            placeholder={
+              lang === "en" ? "Approximate quantity" : "مقدار تقریبی"
+            }
           />
         </div>
 
@@ -293,7 +289,9 @@ export function ContactForm({ lang }: ContactFormProps) {
             value={formData.destination}
             onChange={handleChange}
             className={inputBase}
-            placeholder={lang === "en" ? "Country" : "کشور"}
+            placeholder={
+              lang === "en" ? "Country" : "مثلاً ایران، عمان یا امارات"
+            }
           />
         </div>
 
@@ -311,7 +309,7 @@ export function ContactForm({ lang }: ContactFormProps) {
             placeholder={
               lang === "en"
                 ? "Expected purchase or delivery timing"
-                : "زمان مورد انتظار خرید یا تحویل"
+                : "زمان مورد نظر برای خرید یا تحویل"
             }
           />
         </div>
@@ -320,7 +318,7 @@ export function ContactForm({ lang }: ContactFormProps) {
       {/* Message - responsive */}
       <div className="mb-6">
         <label className={labelBase}>
-          {lang === "en" ? "Additional Details" : "جزئیات اضافی"}
+          {lang === "en" ? "Additional Details" : "توضیحات تکمیلی"}
         </label>
         <textarea
           name="message"
@@ -331,7 +329,7 @@ export function ContactForm({ lang }: ContactFormProps) {
           placeholder={
             lang === "en"
               ? "Tell us more about your requirements..."
-              : "بیشتر در مورد نیاز‌های خود بگویید..."
+              : "درباره نیاز، شرایط همکاری یا جزئیات سفارش بیشتر توضیح دهید..."
           }
         />
       </div>
@@ -363,10 +361,10 @@ export function ContactForm({ lang }: ContactFormProps) {
           {backendEnabled
             ? lang === "en"
               ? "Thank you! Your inquiry has been received. Our team will review the details and contact you."
-              : "متشکریم! درخواست شما دریافت شد. تیم ما جزئیات را بررسی می‌کند و با شما تماس می‌گیرد."
+              : "سپاسگزاریم. درخواست شما دریافت شد؛ تیم فرادید اطلس جزئیات را بررسی می‌کند و با شما تماس خواهد گرفت."
             : lang === "en"
               ? "Thank you! Email delivery is paused for now, so this inquiry was not sent."
-              : "متشکریم! ارسال ایمیل فعلا غیرفعال است، بنابراین این درخواست ارسال نشد."}
+              : "سپاسگزاریم. در حال حاضر ارسال ایمیل غیرفعال است؛ بنابراین این درخواست ارسال نشد."}
         </div>
       )}
     </form>

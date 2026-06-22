@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: ProductsPageProps) {
     descriptionEn:
       "Explore Faradid Atlas' DOCX-defined portfolio of rice, legumes, seeds, nuts, spices, and sugar.",
     descriptionFa:
-      "سبد محصولات فرادید اطلس شامل برنج، حبوبات، دانه‌ها، آجیل، ادویه‌جات و شکر را ببینید.",
+      "با سبد محصولات فرادید اطلس آشنا شوید؛ از برنج، حبوبات و دانه‌ها تا مغزها، ادویه‌ها، شکر و دیگر مواد غذایی اساسی.",
   });
 }
 
@@ -45,8 +45,8 @@ export default async function ProductsPage({
   const isRTL = lang === "fa";
   const rawSearchQuery = resolvedSearchParams.q;
   const searchQuery = Array.isArray(rawSearchQuery)
-    ? rawSearchQuery[0] ?? ""
-    : rawSearchQuery ?? "";
+    ? (rawSearchQuery[0] ?? "")
+    : (rawSearchQuery ?? "");
 
   return (
     <div dir={isRTL ? "rtl" : "ltr"}>
@@ -55,7 +55,11 @@ export default async function ProductsPage({
         <section className="w-full h-48 sm:h-56 md:h-64 relative overflow-hidden bg-gradient-to-br from-secondary/40 to-secondary/60">
           <Image
             src="/products-hero.png"
-            alt={lang === "en" ? "Food product portfolio" : "سبد محصولات غذایی"}
+            alt={
+              lang === "en"
+                ? "Food product portfolio"
+                : "سبد محصولات غذایی فرادید اطلس"
+            }
             fill
             sizes="100vw"
             quality={82}
@@ -77,7 +81,7 @@ export default async function ProductsPage({
                         : "var(--font-hero)",
                     }}
                   >
-                    {lang === "en" ? "Our Products" : "محصولات ما"}
+                    {lang === "en" ? "Our Products" : "محصولات فرادید اطلس"}
                   </h1>
                 </div>
 
@@ -85,7 +89,7 @@ export default async function ProductsPage({
                   <p className="text-sm sm:text-base text-white/90 leading-relaxed max-w-md">
                     {lang === "en"
                       ? "Explore essential food products sourced, imported, and distributed through reliable B2B supply channels."
-                      : "محصولات غذایی اساسی را ببینید که از طریق کانال‌های مطمئن B2B تامین، وارد و توزیع می‌شوند."}
+                      : "با مجموعه‌ای از مواد غذایی اساسی آشنا شوید که با تمرکز بر کیفیت قابل اعتماد، تأمین پایدار و توزیع منظم انتخاب، وارد و عرضه می‌شوند."}
                   </p>
                 </div>
               </div>

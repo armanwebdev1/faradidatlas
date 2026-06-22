@@ -26,9 +26,9 @@ export async function generateMetadata({ params }: ContactPageProps) {
     titleEn: "Contact Faradid Atlas",
     titleFa: "تماس با فرادید اطلس",
     descriptionEn:
-      "Send Faradid Atlas a B2B inquiry with product, volume, destination, and timing details.",
+      "Contact Faradid Atlas with your product, volume, destination, and timing details for sourcing and distribution inquiries.",
     descriptionFa:
-      "درخواست B2B خود را همراه با محصول، حجم، مقصد و زمان‌بندی برای فرادید اطلس ارسال کنید.",
+      "برای ثبت درخواست همکاری، نوع محصول، حجم موردنیاز، مقصد و زمان‌بندی خود را با تیم فرادید اطلس در میان بگذارید.",
   });
 }
 

@@ -65,8 +65,7 @@ export function ApplicationForm({
           subtitle: "Share your details so we can get in touch.",
           jobLabel: "Position",
           formError: "Please fix the highlighted fields and try again.",
-          success:
-            "Thank you! Your application has been submitted for review.",
+          success: "Thank you! Your application has been submitted for review.",
           labels: {
             firstName: "First name",
             lastName: "Last name",
@@ -110,49 +109,49 @@ export function ApplicationForm({
           },
         }
       : {
-          title: "درخواست شما",
-          subtitle: "جزئیات خود را وارد کنید تا با شما تماس بگیریم.",
-          jobLabel: "موقعیت شغلی",
-          formError: "لطفاً فیلدهای مشخص‌شده را اصلاح کنید.",
-          success:
-            "متشکریم! درخواست شما برای بررسی ارسال شد.",
+          title: "فرم درخواست همکاری",
+          subtitle:
+            "اطلاعات خود را وارد کنید تا بتوانیم با شما در ارتباط باشیم.",
+          jobLabel: "موقعیت همکاری",
+          formError: "لطفاً فیلدهای مشخص‌شده را اصلاح کنید و دوباره تلاش کنید.",
+          success: "سپاسگزاریم. درخواست شما برای بررسی دریافت شد.",
           labels: {
             firstName: "نام",
             lastName: "نام خانوادگی",
             email: "ایمیل",
-            phone: "تلفن",
-            location: "مکان",
-            experience: "سال‌های تجربه",
+            phone: "شماره تماس",
+            location: "شهر / کشور",
+            experience: "سابقه کاری",
             cv: "بارگذاری رزومه",
           },
           placeholders: {
             firstName: "علی",
             lastName: "علی‌پور",
             email: "name@company.com",
-            phone: "+98 (XXX) XXX-XXXX",
+            phone: "+98 912 000 0000",
             location: "شهر، کشور",
           },
           experienceOptions: [
             { value: "", label: "انتخاب کنید..." },
-            { value: "0-2", label: "۰-۲ سال" },
-            { value: "2-5", label: "۲-۵ سال" },
-            { value: "5-10", label: "۵-۱۰ سال" },
-            { value: "10+", label: "۱۰+ سال" },
+            { value: "0-2", label: "۰ تا ۲ سال" },
+            { value: "2-5", label: "۲ تا ۵ سال" },
+            { value: "5-10", label: "۵ تا ۱۰ سال" },
+            { value: "10+", label: "بیش از ۱۰ سال" },
           ],
-          required: "الزامی",
+          required: "ضروری",
           fileHint: "فرمت PDF یا DOC. حداکثر حجم فایل: ۵ مگابایت.",
-          submit: "ارسال درخواست",
+          submit: "ارسال درخواست همکاری",
           errors: {
-            firstNameRequired: "نام الزامی است.",
+            firstNameRequired: "وارد کردن نام ضروری است.",
             firstNameLength: "نام باید حداقل ۲ حرف باشد.",
-            lastNameRequired: "نام خانوادگی الزامی است.",
+            lastNameRequired: "وارد کردن نام خانوادگی ضروری است.",
             lastNameLength: "نام خانوادگی باید حداقل ۲ حرف باشد.",
-            emailRequired: "ایمیل الزامی است.",
+            emailRequired: "وارد کردن ایمیل ضروری است.",
             emailInvalid: "لطفاً یک ایمیل معتبر وارد کنید.",
-            phoneRequired: "شماره تلفن الزامی است.",
-            phoneInvalid: "لطفاً شماره تلفن معتبر وارد کنید.",
-            locationInvalid: "مکان باید حداقل ۲ حرف باشد.",
-            experienceRequired: "سطح تجربه را انتخاب کنید.",
+            phoneRequired: "وارد کردن شماره تماس ضروری است.",
+            phoneInvalid: "لطفاً یک شماره تماس معتبر وارد کنید.",
+            locationInvalid: "موقعیت مکانی باید حداقل ۲ حرف باشد.",
+            experienceRequired: "لطفاً سابقه کاری خود را انتخاب کنید.",
             cvRequired: "لطفاً رزومه خود را بارگذاری کنید.",
             cvType: "فرمت فایل باید PDF یا Word باشد.",
             cvSize: "حجم فایل باید حداکثر ۵ مگابایت باشد.",
@@ -404,7 +403,7 @@ export function ApplicationForm({
       <div className="space-y-6">
         <div>
           <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-foreground/50 mb-4">
-            {lang === "en" ? "Personal details" : "اطلاعات فردی"}
+            {lang === "en" ? "Personal details" : "اطلاعات شخصی"}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
             <div>
@@ -482,10 +481,7 @@ export function ApplicationForm({
                 aria-describedby="email-error"
               />
               {getError("email") && (
-                <p
-                  id="email-error"
-                  className="mt-2 text-xs text-destructive"
-                >
+                <p id="email-error" className="mt-2 text-xs text-destructive">
                   {getError("email")}
                 </p>
               )}
@@ -510,10 +506,7 @@ export function ApplicationForm({
                 aria-describedby="phone-error"
               />
               {getError("phone") && (
-                <p
-                  id="phone-error"
-                  className="mt-2 text-xs text-destructive"
-                >
+                <p id="phone-error" className="mt-2 text-xs text-destructive">
                   {getError("phone")}
                 </p>
               )}
@@ -630,7 +623,7 @@ export function ApplicationForm({
             ? copy.success
             : lang === "en"
               ? "Thank you! Email delivery is paused for now, so this application was not sent."
-              : "متشکریم! ارسال ایمیل فعلا غیرفعال است، بنابراین این درخواست ارسال نشد."}
+              : "سپاسگزاریم. در حال حاضر ارسال ایمیل غیرفعال است؛ بنابراین این درخواست ارسال نشد."}
         </div>
       )}
     </form>

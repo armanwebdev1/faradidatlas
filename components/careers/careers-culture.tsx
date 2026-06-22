@@ -16,44 +16,52 @@ const cultureItems = {
   en: [
     {
       title: "Superior Quality",
-      description: "Quality control across import, warehousing, and distribution protects trust.",
+      description:
+        "Quality control across import, warehousing, and distribution protects trust.",
       icon: ShieldCheck,
     },
     {
       title: "Professional Ethics",
-      description: "Transparent work, fair contracts, and compliance guide how teams operate.",
+      description:
+        "Transparent work, fair contracts, and compliance guide how teams operate.",
       icon: Scale,
     },
     {
       title: "Sustainability",
-      description: "Responsible sourcing, waste reduction, recyclable packaging, and local support matter.",
+      description:
+        "Responsible sourcing, waste reduction, recyclable packaging, and local support matter.",
       icon: Leaf,
     },
     {
       title: "Innovation",
-      description: "Digital channels, traceability, and new product thinking keep the company adaptable.",
+      description:
+        "Digital channels, traceability, and new product thinking keep the company adaptable.",
       icon: Lightbulb,
     },
   ],
   fa: [
     {
       title: "کیفیت برتر",
-      description: "کنترل کیفیت در واردات، انبارداری و توزیع اعتماد را حفظ می‌کند.",
+      description:
+        "کنترل کیفیت در مراحل واردات، انبارداری و توزیع، اعتماد به محصول و برند را حفظ می‌کند.",
       icon: ShieldCheck,
     },
     {
       title: "اخلاق حرفه‌ای",
-      description: "شفافیت، قراردادهای منصفانه و رعایت مقررات، شیوه کار تیم‌ها را هدایت می‌کند.",
+      description:
+        "شفافیت، قراردادهای منصفانه و رعایت مقررات، مسیر کار تیم‌ها را مشخص می‌کند.",
       icon: Scale,
     },
     {
       title: "پایداری",
-      description: "تامین مسئولانه، کاهش ضایعات، بسته‌بندی قابل بازیافت و حمایت محلی اهمیت دارد.",
+      description:
+        "تأمین مسئولانه، کاهش ضایعات، بسته‌بندی قابل بازیافت و حمایت از جامعه محلی برای ما اهمیت دارد.",
       icon: Leaf,
     },
     {
       title: "نوآوری",
-      description: "کانال‌های دیجیتال، رهگیری و تفکر محصول جدید، شرکت را چابک نگه می‌دارد.",
+      description:
+        "کانال‌های دیجیتال، ردیابی زنجیره تأمین و نگاه تازه به محصول، شرکت را پویا و سازگار نگه می‌دارد.",
       icon: Lightbulb,
     },
   ],
@@ -133,7 +141,7 @@ export function CareersCulture({ lang }: CareersCultureProps) {
             ref={eyebrowRef}
             className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6"
           >
-            {lang === "en" ? "Culture" : "فرهنگ سازمانی"}
+            {lang === "en" ? "Culture" : "فرهنگ کاری"}
           </p>
           <h2
             ref={titleRef}
@@ -147,7 +155,7 @@ export function CareersCulture({ lang }: CareersCultureProps) {
               letterSpacing: "-0.01em",
             }}
           >
-            {lang === "en" ? "Why Join Us" : "چرا به ما بپیوندید"}
+            {lang === "en" ? "Why Join Us" : "چرا با ما همکاری کنید؟"}
           </h2>
           <p
             ref={subtitleRef}
@@ -163,7 +171,7 @@ export function CareersCulture({ lang }: CareersCultureProps) {
           >
             {lang === "en"
               ? "Our workplace expectations are shaped by the same documented values that guide sourcing, quality, customer relationships, and sustainable growth."
-              : "انتظارات کاری ما از همان ارزش‌های مستندی شکل می‌گیرد که تامین، کیفیت، ارتباط با مشتری و رشد پایدار را هدایت می‌کند."}
+              : "فرهنگ کاری ما بر پایه همان ارزش‌هایی شکل گرفته که مسیر تأمین، کیفیت، ارتباط با مشتریان و رشد پایدار شرکت را هدایت می‌کند."}
           </p>
         </div>
 

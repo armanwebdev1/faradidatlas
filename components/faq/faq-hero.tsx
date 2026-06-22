@@ -18,7 +18,7 @@ export function FAQHero({ lang }: FAQHeroProps) {
         <div className="max-w-6xl mx-auto space-y-12 md:space-y-16">
           <StaggeredFade className="text-center">
             <p className="mb-4 text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-accent-warm-gold animate-fade-in-up">
-              {lang === "en" ? "Help Center" : "مرکز راهنما"}
+              {lang === "en" ? "Help Center" : "سوالات متداول"}
             </p>
             <h1
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-5 animate-fade-in-up"
@@ -29,12 +29,12 @@ export function FAQHero({ lang }: FAQHeroProps) {
                     : "Estedad, var(--font-hero)",
               }}
             >
-              {lang === "en" ? "Frequently Asked Questions" : "سوالات متداول"}
+              {lang === "en" ? "Frequently Asked Questions" : "پرسش‌های متداول"}
             </h1>
             <p className="text-base md:text-lg text-foreground/70 leading-relaxed max-w-3xl mx-auto animate-fade-in-up">
               {lang === "en"
                 ? "Find answers about Faradid Atlas, its products, sourcing, quality standards, vision, values, offices, and inquiry steps."
-                : "پاسخ سوالات درباره فرادید اطلس، محصولات، تامین، استانداردهای کیفیت، چشم‌انداز، ارزش‌ها، دفاتر و مراحل درخواست را ببینید."}
+                : "پاسخ پرسش‌های رایج درباره فرادید اطلس، محصولات، تأمین، استانداردهای کیفیت، چشم‌انداز، ارزش‌ها، دفاتر و مراحل ثبت درخواست را در این بخش ببینید."}
             </p>
             <div className="mt-6 flex justify-center animate-fade-in-up">
               <a
@@ -53,7 +53,7 @@ export function FAQHero({ lang }: FAQHeroProps) {
                 alt={
                   lang === "en"
                     ? "Food supply support"
-                    : "پشتیبانی تامین مواد غذایی"
+                    : "پشتیبانی در تأمین مواد غذایی"
                 }
                 fill
                 sizes="100vw"

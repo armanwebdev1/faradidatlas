@@ -23,7 +23,7 @@ export function FAQContent({ items, lang }: FAQContentProps) {
       ) : (
         <div className="text-center py-16">
           <p className="text-lg text-muted-foreground">
-            {lang === "en" ? "No questions found" : "سوالی پیدا نشد"}
+            {lang === "en" ? "No questions found" : "پرسشی پیدا نشد"}
           </p>
         </div>
       )}

@@ -30,21 +30,21 @@ const offerings = {
   fa: [
     {
       image: "/what-we-offer/sourcing-import.png",
-      title: "تامین و واردات",
+      title: "تأمین و واردات",
       description:
-        "هماهنگی مستقیم با تامین‌کنندگان برای برنج، حبوبات، ادویه‌جات، آجیل، دانه‌ها، شکر و سایر اقلام اساسی.",
+        "هماهنگی مستقیم با تأمین‌کنندگان معتبر برای تأمین برنج، حبوبات، ادویه‌ها، مغزها، دانه‌ها، شکر و سایر اقلام غذایی اساسی.",
     },
     {
       image: "/what-we-offer/featured2.jpg",
-      title: "کیفیت و مستندسازی",
+      title: "کنترل کیفیت و مستندات",
       description:
-        "کنترل کیفیت، رعایت استانداردهای بهداشتی، اسناد واردات و نظم عملیاتی مبتنی بر ISO.",
+        "بررسی کیفیت، رعایت معیارهای بهداشتی، آماده‌سازی اسناد واردات و پیشبرد فرایندها بر پایه نظم عملیاتی و استانداردهای معتبر.",
     },
     {
       image: "/what-we-offer/quality-documentation.png",
       title: "توزیع و دسترسی",
       description:
-        "دفاتر، شعب و انبارهای منطقه‌ای برای پشتیبانی از خرده‌فروشان، عمده‌فروشان و سازمان‌ها.",
+        "دفاتر، شعب و پشتیبانی انبار در منطقه، برای پاسخ‌گویی به نیاز خرده‌فروشان، عمده‌فروشان، سازمان‌ها و خریداران تجاری.",
     },
   ],
 };
@@ -60,12 +60,12 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
             className="text-5xl md:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-8"
             style={{ fontFamily: "var(--font-hero)" }}
           >
-            {lang === "en" ? "What we offer" : "آنچه ارائه می‌کنیم"}
+            {lang === "en" ? "What we offer" : "خدمات ما"}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             {lang === "en"
               ? "Practical food supply services designed for continuity, fair pricing, and dependable quality."
-              : "خدمات عملی تامین مواد غذایی با تمرکز بر استمرار، قیمت‌گذاری منصفانه و کیفیت قابل اتکا."}
+              : "خدماتی کاربردی در تأمین مواد غذایی، با تمرکز بر تداوم عرضه، قیمت‌گذاری منطقی و کیفیت قابل اعتماد."}
           </p>
         </div>
 

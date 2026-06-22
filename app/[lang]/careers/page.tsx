@@ -24,11 +24,11 @@ export async function generateMetadata({ params }: CareersPageProps) {
     lang,
     path: "careers",
     titleEn: "Careers | Faradid Atlas",
-    titleFa: "فرصت‌های شغلی | فرادید اطلس",
+    titleFa: "فرصت‌های همکاری | فرادید اطلس",
     descriptionEn:
       "Explore evergreen opportunity areas connected to Faradid Atlas' supply chain, quality, and customer relationship work.",
     descriptionFa:
-      "حوزه‌های همکاری مرتبط با زنجیره تامین، کیفیت و ارتباط با مشتریان در فرادید اطلس را ببینید.",
+      "با حوزه‌های همکاری در فرادید اطلس آشنا شوید؛ از زنجیره تأمین و کنترل کیفیت تا ارتباط با مشتریان و پشتیبانی عملیاتی.",
   });
 }
 

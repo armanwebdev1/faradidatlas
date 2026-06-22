@@ -25,39 +25,45 @@ export function ResponseSLA({ lang }: ResponseSLAProps) {
         {
           title: "Commercial Terms",
           timeline: "Quote on request",
-          description: "Pricing is prepared with clear assumptions and practical next steps.",
+          description:
+            "Pricing is prepared with clear assumptions and practical next steps.",
         },
         {
           title: "Coordination",
           timeline: "Follow-up meeting",
-          description: "We align delivery, quality expectations, and logistics responsibilities.",
+          description:
+            "We align delivery, quality expectations, and logistics responsibilities.",
         },
       ],
     },
     fa: {
-      title: "مراحل بعدی",
+      title: "بعد از ارسال درخواست چه می‌شود؟",
       description:
-        "فرآیند درخواست را مستقیم و روشن نگه می‌داریم تا خریداران سریع‌تر از نیاز به برنامه تامین برسند.",
+        "فرآیند بررسی درخواست را مستقیم و روشن نگه می‌داریم تا خریداران سریع‌تر از اعلام نیاز به برنامه تأمین برسند.",
       slas: [
         {
           title: "بررسی اولیه",
           timeline: "بررسی درخواست",
-          description: "محصول، حجم، مقصد و زمان‌بندی را تایید می‌کنیم.",
+          description:
+            "نوع محصول، حجم موردنیاز، مقصد و زمان‌بندی پیشنهادی بررسی و تأیید می‌شود.",
         },
         {
-          title: "بررسی تامین",
-          timeline: "بررسی زنجیره تامین",
-          description: "گزینه‌های تامین و نیازهای عملی توزیع بررسی می‌شود.",
+          title: "بررسی امکان تأمین",
+          timeline: "بررسی زنجیره تأمین",
+          description:
+            "تیم ما گزینه‌های تأمین و نیازهای اجرایی توزیع را بررسی می‌کند.",
         },
         {
           title: "شرایط تجاری",
-          timeline: "قیمت بر اساس استعلام",
-          description: "قیمت‌گذاری با فرضیات روشن و گام‌های بعدی عملی آماده می‌شود.",
+          timeline: "اعلام قیمت بر اساس استعلام",
+          description:
+            "قیمت‌گذاری با فرضیات روشن و مراحل بعدی قابل اجرا آماده می‌شود.",
         },
         {
-          title: "هماهنگی",
-          timeline: "جلسه پیگیری",
-          description: "تحویل، انتظارات کیفی و مسئولیت‌های لجستیکی هماهنگ می‌شود.",
+          title: "هماهنگی نهایی",
+          timeline: "تماس یا جلسه پیگیری",
+          description:
+            "تحویل، انتظارات کیفی و مسئولیت‌های لجستیکی هماهنگ می‌شود.",
         },
       ],
     },

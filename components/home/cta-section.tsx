@@ -46,7 +46,7 @@ export function CTASection({ lang }: CTASectionProps) {
       <div className="relative container-wide">
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <p className="eyebrow text-accent">
-            {lang === "en" ? "B2B Cooperation" : "همکاری B2B"}
+            {lang === "en" ? "B2B Cooperation" : "همکاری تجاری و سازمانی"}
           </p>
         </div>
 
@@ -62,7 +62,7 @@ export function CTASection({ lang }: CTASectionProps) {
                 alt={
                   lang === "en"
                     ? "Food supply partnership"
-                    : "همکاری تامین مواد غذایی"
+                    : "همکاری در تامین مواد غذایی"
                 }
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
@@ -84,14 +84,14 @@ export function CTASection({ lang }: CTASectionProps) {
                   <span className="italic font-light">food supply</span>
                 </>
               ) : (
-                "تامین غذایی پایدارتر بسازید"
+                "مسیر مطمئن‌تری برای تأمین مواد غذایی بسازید"
               )}
             </h2>
 
             <p className="text-responsive-body text-muted-foreground max-w-xl mb-6 sm:mb-8 md:mb-10 lg:mb-12 font-light">
               {lang === "en"
                 ? "Share your product needs, destination, and volume. Our team will help shape a practical sourcing and distribution plan with clear next steps."
-                : "محصول، مقصد و حجم درخواستی خود را با ما مطرح نمایید تا تیم ما یک مسیر عملیاتی تأمین و توزیع با گام‌های روشن را پیش‌رویتان بگذارد."}
+                : "نوع محصول، مقصد و حجم موردنیازتان را با ما در میان بگذارید تا تیم فرادید اطلس، مسیر مناسب تأمین و توزیع را بررسی کرده و مراحل بعدی همکاری را روشن کند."}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
@@ -99,7 +99,7 @@ export function CTASection({ lang }: CTASectionProps) {
                 href={`/${lang}/contact`}
                 className="btn btn-primary btn-lg w-full sm:w-auto"
               >
-                {lang === "en" ? "Start an Inquiry" : "شروع درخواست"}
+                {lang === "en" ? "Start an Inquiry" : "ثبت درخواست همکاری"}
               </Link>
 
               <Link
@@ -129,7 +129,7 @@ export function CTASection({ lang }: CTASectionProps) {
             <p className="text-responsive-body text-muted-foreground font-light px-2 sm:px-0">
               {lang === "en"
                 ? "We focus on measurable commitments: quality standards, rational pricing discipline, accessible supply channels, and long-term trust."
-                : "تمرکز ما بر تعهدات قابل سنجش است: استانداردهای کیفیت، نظم منطقی در قیمت‌گذاری، کانال‌های در دسترس تامین و اعتماد بلندمدت."}
+                : "تمرکز ما بر تعهدهایی است که در عمل قابل سنجش‌اند: استانداردهای کیفی، قیمت‌گذاری منطقی، مسیرهای روشن تأمین و اعتمادی که در همکاری‌های بلندمدت ساخته می‌شود."}
             </p>
 
             <div className="mt-6 sm:mt-8 md:mt-10 flex justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 text-foreground/20 flex-wrap sm:flex-nowrap">
@@ -155,7 +155,7 @@ export function CTASection({ lang }: CTASectionProps) {
                   />
                 </div>
                 <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50">
-                  {lang === "en" ? "Listed Products" : "محصول مرجع"}
+                  {lang === "en" ? "Listed Products" : "محصول در سبد تأمین"}
                 </p>
               </div>
 
@@ -169,7 +169,7 @@ export function CTASection({ lang }: CTASectionProps) {
                   />
                 </div>
                 <p className="text-xs sm:text-sm uppercase tracking-wider text-foreground/50">
-                  {lang === "en" ? "Established" : "سال آغاز"}
+                  {lang === "en" ? "Established" : "سال آغاز فعالیت"}
                 </p>
               </div>
             </div>

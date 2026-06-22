@@ -39,30 +39,30 @@ const valueItems = {
   fa: [
     {
       icon: Globe,
-      title: "تامین مستقیم جهانی",
+      title: "تأمین مستقیم از بازارهای جهانی",
       description:
-        "همکاری با تامین‌کنندگان رده‌اول در بازارهای کلیدی مواد غذایی، از جمله هند و پاکستان.",
+        "ارتباط با تأمین‌کنندگان معتبر در بازارهای اصلی تولید غذا، از جمله هند و پاکستان.",
       accentColor: "accent-warm-gold",
     },
     {
       icon: CheckCircle,
-      title: "کیفیت مهم‌تر از حجم",
+      title: "اول کیفیت، بعد حجم",
       description:
-        "محصولات بر اساس استانداردهای بین‌المللی کیفیت و بهداشت مانند ISO 22000 انتخاب می‌شوند.",
+        "انتخاب محصولات بر پایه استانداردهای معتبر بهداشتی و کیفی، از جمله ISO 22000 انجام می‌شود.",
       accentColor: "accent-warm-red",
     },
     {
       icon: Route,
-      title: "کانال تامین پایدار",
+      title: "مسیرهای پایدار تأمین",
       description:
-        "دفاتر، شعب و انبارهای منطقه‌ای از تامین مستمر برای خریداران B2B پشتیبانی می‌کنند.",
+        "دفاتر، شعب و پشتیبانی انبار در منطقه، امکان تأمین مستمر را برای خریداران عمده و سازمانی فراهم می‌کند.",
       accentColor: "accent",
     },
     {
       icon: Package,
-      title: "کانال‌های در دسترس",
+      title: "دسترسی آسان برای خریداران",
       description:
-        "دفاتر، عملیات منطقه‌ای و کانال‌های فروش دیجیتال از افراد، عمده‌فروشان، سازمان‌ها و خدمات غذایی پشتیبانی می‌کند.",
+        "دفاتر فعال، عملیات منطقه‌ای و کانال‌های فروش دیجیتال، پاسخ‌گوی نیاز مصرف‌کنندگان، عمده‌فروشان، سازمان‌ها و فعالان خدمات غذایی است.",
       accentColor: "accent-warm-orange",
     },
   ],
@@ -83,19 +83,15 @@ export function ValueProps({ lang }: ValuePropsProps) {
           <p className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6">
             {lang === "en" ? "Why Faradid Atlas" : "چرا فرادید اطلس؟"}
           </p>
-          <h2
-            className="text-responsive-title mb-5 sm:mb-7 md:mb-8 text-foreground"
-          >
+          <h2 className="text-responsive-title mb-5 sm:mb-7 md:mb-8 text-foreground">
             {lang === "en"
               ? "Built for Continuity, Quality, and Trust"
               : "استمرار، کیفیت و اعتماد"}
           </h2>
-          <p
-            className="text-responsive-body text-foreground/70 max-w-2xl mx-auto"
-          >
+          <p className="text-responsive-body text-foreground/70 max-w-2xl mx-auto">
             {lang === "en"
               ? "Our work is practical: reliable sourcing, fair pricing discipline, clear documentation, and steady access to essential foods."
-              : "کار ما عملی و دقیق است: تامین قابل اتکا، نظم در قیمت‌گذاری، مستندسازی روشن و دسترسی پایدار به مواد غذایی اساسی."}
+              : "کار ما بر پایه عمل و تجربه شکل گرفته است: تأمین قابل اتکا، قیمت‌گذاری منطقی، مستندسازی شفاف و دسترسی پایدار به مواد غذایی اساسی."}
           </p>
         </div>
 
@@ -127,32 +123,32 @@ export function ValueProps({ lang }: ValuePropsProps) {
                     const IconComponent = item.icon;
 
                     return (
-                  <div
-                    key={`${groupIndex}-${item.title}-${idx}`}
-                    className={`flex-shrink-0 w-80 sm:w-96 md:w-[28rem] ${
-                      isRTL ? "text-right" : ""
-                    }`}
-                    dir={isRTL ? "rtl" : "ltr"}
-                  >
-                    <div className="h-full flex flex-col p-6 sm:p-8 rounded-lg border border-foreground/10 bg-background/85 backdrop-blur-md shadow-[0_16px_42px_-30px_rgba(12,18,24,0.35),0_1px_0_rgba(255,255,255,0.55)_inset]">
-                      <div className="relative mb-6 sm:mb-8 inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20">
-                        <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-foreground/8 to-foreground/4" />
-                        <IconComponent
-                          size={32}
-                          className="relative text-foreground sm:w-10 sm:h-10"
-                          strokeWidth={1.2}
-                        />
+                      <div
+                        key={`${groupIndex}-${item.title}-${idx}`}
+                        className={`flex-shrink-0 w-80 sm:w-96 md:w-[28rem] ${
+                          isRTL ? "text-right" : ""
+                        }`}
+                        dir={isRTL ? "rtl" : "ltr"}
+                      >
+                        <div className="h-full flex flex-col p-6 sm:p-8 rounded-lg border border-foreground/10 bg-background/85 backdrop-blur-md shadow-[0_16px_42px_-30px_rgba(12,18,24,0.35),0_1px_0_rgba(255,255,255,0.55)_inset]">
+                          <div className="relative mb-6 sm:mb-8 inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20">
+                            <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-foreground/8 to-foreground/4" />
+                            <IconComponent
+                              size={32}
+                              className="relative text-foreground sm:w-10 sm:h-10"
+                              strokeWidth={1.2}
+                            />
+                          </div>
+
+                          <h3 className="text-responsive-subheading text-foreground mb-3 sm:mb-4">
+                            {item.title}
+                          </h3>
+
+                          <p className="text-sm sm:text-base text-foreground/65 leading-relaxed flex-grow">
+                            {item.description}
+                          </p>
+                        </div>
                       </div>
-
-                      <h3 className="text-responsive-subheading text-foreground mb-3 sm:mb-4">
-                        {item.title}
-                      </h3>
-
-                      <p className="text-sm sm:text-base text-foreground/65 leading-relaxed flex-grow">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
                     );
                   })}
                 </div>
@@ -161,7 +157,6 @@ export function ValueProps({ lang }: ValuePropsProps) {
           </div>
         </div>
       </div>
-
     </section>
   );
 }

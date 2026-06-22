@@ -19,11 +19,11 @@ export async function generateMetadata({ params }: FAQPageProps) {
     lang,
     path: "faq",
     titleEn: "FAQ | Faradid Atlas",
-    titleFa: "سوالات متداول | فرادید اطلس",
+    titleFa: "پرسش‌های متداول | فرادید اطلس",
     descriptionEn:
       "Find answers about Faradid Atlas products, sourcing, quality, offices, mission, vision, and values.",
     descriptionFa:
-      "پاسخ سوالات درباره محصولات، تامین، کیفیت، دفاتر، ماموریت، چشم‌انداز و ارزش‌های فرادید اطلس را ببینید.",
+      "پاسخ پرسش‌های رایج درباره محصولات، تأمین، کیفیت، دفاتر، مأموریت، چشم‌انداز و ارزش‌های فرادید اطلس را در این بخش ببینید.",
   });
 }
 
@@ -44,12 +44,12 @@ export default async function FAQPage({ params }: FAQPageProps) {
               <h2 className="text-3xl font-bold text-primary mb-4 tracking-tight">
                 {lang === "en"
                   ? "Need a product-specific answer?"
-                  : "پاسخ مخصوص محصول خود را می‌خواهید؟"}
+                  : "پرسشی درباره محصول خاصی دارید؟"}
               </h2>
               <p className="text-muted-foreground mb-8 text-lg">
                 {lang === "en"
                   ? "Send us the product, volume, destination, and timeline so the team can review practical next steps."
-                  : "محصول، حجم، مقصد و زمان‌بندی را ارسال کنید تا تیم ما گام‌های عملی بعدی را بررسی کند."}
+                  : "نوع محصول، حجم موردنیاز، مقصد و زمان‌بندی موردنظرتان را برای ما ارسال کنید تا تیم فرادید اطلس مراحل بعدی تأمین و توزیع را بررسی کند."}
               </p>
               <a
                 href={`/${lang}/contact`}

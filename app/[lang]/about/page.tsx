@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: AboutPageProps) {
     descriptionEn:
       "Learn about Faradid Atlas' 2009 founding, food security mission, rice brands, offices, 2030 vision, and values.",
     descriptionFa:
-      "درباره آغاز فعالیت فرادید اطلس در سال ۱۳۸۸، ماموریت امنیت غذایی، برندهای برنج، دفاتر، چشم‌انداز ۲۰۳۰ و ارزش‌های شرکت بخوانید.",
+      "با فرادید اطلس بیشتر آشنا شوید؛ از آغاز فعالیت در سال ۱۳۸۸ و نقش آن در تأمین مواد غذایی اساسی تا برندهای برنج، دفاتر، چشم‌انداز ۲۰۳۰ و ارزش‌های شرکت.",
   });
 }
 

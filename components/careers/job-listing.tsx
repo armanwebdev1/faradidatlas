@@ -19,12 +19,11 @@ export function JobListing({ job, lang }: JobListingProps) {
   const typeLabels = {
     "full-time": { en: "Full-time", fa: "تمام‌وقت" },
     "part-time": { en: "Part-time", fa: "پاره‌وقت" },
-    contract: { en: "Contract", fa: "قرارداد" },
+    contract: { en: "Contract", fa: "قراردادی" },
   };
 
   const typeClasses: Record<Job["type"], string> = {
-    "full-time":
-      "border-foreground/15 bg-foreground/5 text-foreground",
+    "full-time": "border-foreground/15 bg-foreground/5 text-foreground",
     "part-time":
       "border-accent-warm-orange/30 bg-accent-warm-orange/10 text-accent-warm-orange",
     contract:
@@ -115,9 +114,7 @@ export function JobListing({ job, lang }: JobListingProps) {
           className="mt-4 text-sm sm:text-base text-foreground/70 leading-relaxed"
           style={{
             fontFamily:
-              lang === "en"
-                ? "var(--font-body)"
-                : "Shabnam, var(--font-body)",
+              lang === "en" ? "var(--font-body)" : "Shabnam, var(--font-body)",
             fontWeight: "400",
           }}
         >
@@ -137,11 +134,13 @@ export function JobListing({ job, lang }: JobListingProps) {
                   : "Shabnam, var(--font-body)",
             }}
           >
-            {lang === "en" ? "View Position" : "مشاهده موقعیت"}
+            {lang === "en" ? "View Position" : "مشاهده جزئیات"}
           </span>
           <svg
             className={`h-4 w-4 text-accent-warm-gold transition-transform duration-300 ${
-              isRTL ? "-scale-x-100 group-hover:-translate-x-1" : "group-hover:translate-x-1"
+              isRTL
+                ? "-scale-x-100 group-hover:-translate-x-1"
+                : "group-hover:translate-x-1"
             }`}
             fill="none"
             stroke="currentColor"

@@ -22,17 +22,17 @@ export const faqs: FAQItem[] = [
     answerEn:
       "Faradid Atlas was established in 2009 to help strengthen food security and support access to essential foods for the Iranian market.",
     answerFa:
-      "فرادید اطلس در سال ۱۳۸۸ با هدف کمک به تقویت امنیت غذایی و پشتیبانی از دسترسی بازار ایران به مواد غذایی اساسی شکل گرفت.",
+      "فرادید اطلس در سال ۱۳۸۸ با هدف تقویت امنیت غذایی و آسان‌تر کردن دسترسی بازار ایران به مواد غذایی اساسی شکل گرفت.",
     category: "company",
   },
   {
     id: 2,
     questionEn: "What products are included in the portfolio?",
-    questionFa: "چه محصولاتی در سبد شرکت قرار دارد؟",
+    questionFa: "چه محصولاتی در سبد فرادید اطلس قرار دارد؟",
     answerEn:
       "The DOCX-defined portfolio includes rice, legumes and pulses, seeds and kernels, nuts, spices and seasonings, and sugar.",
     answerFa:
-      "سبد تعریف‌شده در متن مرجع شامل برنج، حبوبات، دانه‌ها و مغزها، آجیل، ادویه‌جات و چاشنی‌ها و شکر است.",
+      "سبد محصولات فرادید اطلس شامل برنج، حبوبات، دانه‌ها، مغزها، ادویه‌ها، چاشنی‌ها و شکر است.",
     category: "products",
   },
   {
@@ -48,31 +48,31 @@ export const faqs: FAQItem[] = [
   {
     id: 4,
     questionEn: "Where are the company offices listed?",
-    questionFa: "دفاتر شرکت در کجا معرفی شده‌اند؟",
+    questionFa: "دفاتر فرادید اطلس در کجا قرار دارند؟",
     answerEn:
       "The DOCX lists company offices in Tehran, Isfahan, Dubai, and Oman. Shahrekord is referenced as operational and warehouse support in Iran.",
     answerFa:
-      "در متن مرجع، دفاتر شرکت در تهران، اصفهان، دبی و عمان معرفی شده‌اند. شهرکرد به‌عنوان پشتیبانی عملیاتی و انباری در ایران ذکر می‌شود.",
+      "دفاتر شرکت در تهران، اصفهان، دبی و عمان قرار دارند. شهرکرد نیز به‌عنوان پشتیبانی عملیاتی و انباری در ایران در نظر گرفته می‌شود.",
     category: "company",
   },
   {
     id: 5,
     questionEn: "How does Faradid Atlas approach sourcing?",
-    questionFa: "رویکرد فرادید اطلس در تامین چیست؟",
+    questionFa: "رویکرد فرادید اطلس در تأمین چیست؟",
     answerEn:
       "The company works to shorten the global food supply chain, remove unnecessary intermediaries, and cooperate directly with first-tier suppliers, especially in India and Pakistan.",
     answerFa:
-      "شرکت تلاش می‌کند زنجیره تامین جهانی غذا را کوتاه‌تر کند، واسطه‌های غیرضروری را حذف کند و با تامین‌کنندگان رده‌اول، به‌ویژه در هند و پاکستان، همکاری مستقیم داشته باشد.",
+      "فرادید اطلس تلاش می‌کند مسیر زنجیره تأمین مواد غذایی را کوتاه‌تر کند، واسطه‌های غیرضروری را کاهش دهد و با تأمین‌کنندگان معتبر، به‌ویژه در هند و پاکستان، همکاری مستقیم داشته باشد.",
     category: "sourcing",
   },
   {
     id: 6,
     questionEn: "How is quality described in the source content?",
-    questionFa: "کیفیت در متن مرجع چگونه توصیف شده است؟",
+    questionFa: "رویکرد فرادید اطلس در کیفیت چگونه است؟",
     answerEn:
       "Products are selected according to global quality and hygiene standards, with ISO 22000 named as a guiding discipline for food safety and quality systems.",
     answerFa:
-      "محصولات بر اساس استانداردهای جهانی کیفیت و بهداشت انتخاب می‌شوند و ISO 22000 به‌عنوان مبنای نظم ایمنی و کیفیت غذا مطرح شده است.",
+      "محصولات بر پایه معیارهای معتبر کیفی و بهداشتی انتخاب می‌شوند و استاندارد ISO 22000 به‌عنوان یکی از مبناهای نظم در ایمنی و کیفیت مواد غذایی مورد توجه قرار دارد.",
     category: "quality",
   },
   {
@@ -82,37 +82,37 @@ export const faqs: FAQItem[] = [
     answerEn:
       "Faradid Atlas aims to reach a 25% share of Iran's essential food products market by 2030 while expanding its focus across the United Arab Emirates, India, and Oman.",
     answerFa:
-      "فرادید اطلس هدف دارد تا سال ۱۴۰۹ شمسی / ۲۰۳۰ میلادی به سهم ۲۵ درصدی بازار محصولات غذایی اساسی ایران برسد و تمرکز خود را در امارات، هند و عمان توسعه دهد.",
+      "فرادید اطلس در نظر دارد تا سال ۱۴۰۹ شمسی / ۲۰۳۰ میلادی به سهم ۲۵ درصدی از بازار محصولات غذایی اساسی ایران برسد و فعالیت خود را در امارات، هند و عمان توسعه دهد.",
     category: "vision",
   },
   {
     id: 8,
     questionEn: "What values guide the company?",
-    questionFa: "چه ارزش‌هایی راهنمای شرکت هستند؟",
+    questionFa: "چه ارزش‌هایی راهنمای فرادید اطلس هستند؟",
     answerEn:
       "The core values are customer-centricity, sustainability, professional ethics, innovation, and superior quality.",
     answerFa:
-      "ارزش‌های بنیادین شرکت شامل مشتری‌مداری، پایداری، اخلاق حرفه‌ای، نوآوری و کیفیت برتر است.",
+      "مشتری‌مداری، پایداری، اخلاق حرفه‌ای، نوآوری و کیفیت برتر از ارزش‌های بنیادین فرادید اطلس هستند.",
     category: "values",
   },
   {
     id: 9,
     questionEn: "Who does Faradid Atlas serve?",
-    questionFa: "فرادید اطلس به چه گروه‌هایی خدمت می‌کند؟",
+    questionFa: "فرادید اطلس با چه گروه‌هایی همکاری می‌کند؟",
     answerEn:
       "The mission names individuals, wholesalers, organizations, and governmental bodies as audiences for high-quality, cost-effective food supply.",
     answerFa:
-      "در ماموریت شرکت، افراد، عمده‌فروشان، سازمان‌ها و نهادهای دولتی به‌عنوان مخاطبان تامین مواد غذایی باکیفیت و مقرون‌به‌صرفه مطرح شده‌اند.",
+      "فرادید اطلس با خریداران فردی، عمده‌فروشان، سازمان‌ها و نهادهای دولتی همکاری می‌کند تا دسترسی به مواد غذایی باکیفیت و مقرون‌به‌صرفه آسان‌تر شود.",
     category: "inquiry",
   },
   {
     id: 10,
     questionEn: "What should be included in a product inquiry?",
-    questionFa: "در یک درخواست محصول چه اطلاعاتی بهتر است ارائه شود؟",
+    questionFa: "در درخواست محصول چه اطلاعاتی بهتر است ارسال شود؟",
     answerEn:
       "Share the product or category, expected volume, destination, and timing so the team can review sourcing and distribution next steps.",
     answerFa:
-      "محصول یا گروه محصول، حجم مورد انتظار، مقصد و زمان‌بندی را اعلام کنید تا تیم شرکت گام‌های بعدی تامین و توزیع را بررسی کند.",
+      "بهتر است نام محصول یا گروه محصول، حجم موردنیاز، مقصد و زمان‌بندی موردنظر را اعلام کنید تا تیم فرادید اطلس مراحل بعدی تأمین و توزیع را بررسی کند.",
     category: "inquiry",
   },
 ];
@@ -120,7 +120,7 @@ export const faqs: FAQItem[] = [
 export const faqCategories = {
   company: { en: "Company", fa: "شرکت" },
   products: { en: "Products", fa: "محصولات" },
-  sourcing: { en: "Sourcing", fa: "تامین" },
+  sourcing: { en: "Sourcing", fa: "تأمین" },
   quality: { en: "Quality", fa: "کیفیت" },
   vision: { en: "Vision", fa: "چشم‌انداز" },
   values: { en: "Values", fa: "ارزش‌ها" },

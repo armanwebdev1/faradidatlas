@@ -10,9 +10,7 @@ export function CareersHero({ lang }: CareersHeroProps) {
     "opacity-0 translate-y-6 animate-fade-in-up motion-reduce:translate-y-0 motion-reduce:opacity-100";
 
   return (
-    <section
-      className="relative min-h-screen w-full overflow-hidden bg-neutral-950"
-    >
+    <section className="relative min-h-screen w-full overflow-hidden bg-neutral-950">
       <div
         className="absolute inset-0 bg-center bg-cover"
         style={{ backgroundImage: "url('/careers-hero.png')" }}
@@ -31,10 +29,8 @@ export function CareersHero({ lang }: CareersHeroProps) {
             className={`max-w-2xl ${isRTL ? "text-right" : "text-left"}`}
             dir={isRTL ? "rtl" : "ltr"}
           >
-            <p
-              className={`eyebrow mb-4 text-accent-warm-gold ${revealClass}`}
-            >
-              {lang === "en" ? "Careers" : "فرصت‌های شغلی"}
+            <p className={`eyebrow mb-4 text-accent-warm-gold ${revealClass}`}>
+              {lang === "en" ? "Careers" : "فرصت‌های همکاری"}
             </p>
             <h1
               className={`mb-8 font-hero text-white ${revealClass}`}
@@ -51,7 +47,7 @@ export function CareersHero({ lang }: CareersHeroProps) {
                 {lang === "en" ? "Build" : "همکاری"}
               </span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold via-accent-warm-orange to-accent-warm-gold">
-                {lang === "en" ? "Continuity" : "پایدار"}
+                {lang === "en" ? "Continuity" : "ماندگار"}
               </span>
             </h1>
 
@@ -69,7 +65,7 @@ export function CareersHero({ lang }: CareersHeroProps) {
             >
               {lang === "en"
                 ? "Join a food supply organization shaped by quality, customer-centricity, sustainability, professional ethics, and practical innovation."
-                : "به سازمانی در زنجیره تامین غذا بپیوندید که بر پایه کیفیت، مشتری‌مداری، پایداری، اخلاق حرفه‌ای و نوآوری عملی شکل گرفته است."}
+                : "به مجموعه‌ای در زنجیره تأمین مواد غذایی بپیوندید که کیفیت، مشتری‌مداری، پایداری، اخلاق حرفه‌ای و نوآوری کاربردی را پایه کار خود می‌داند."}
             </p>
 
             <div
@@ -91,7 +87,7 @@ export function CareersHero({ lang }: CareersHeroProps) {
                   fontWeight: "600",
                 }}
               >
-                {lang === "en" ? "View Open Positions" : "موقعیت‌های باز"}
+                {lang === "en" ? "View Open Positions" : "مشاهده فرصت‌ها"}
               </a>
               <a
                 href="#culture"
@@ -104,13 +100,12 @@ export function CareersHero({ lang }: CareersHeroProps) {
                   fontWeight: "600",
                 }}
               >
-                {lang === "en" ? "Our Culture" : "فرهنگ ما"}
+                {lang === "en" ? "Our Culture" : "فرهنگ کاری ما"}
               </a>
             </div>
           </div>
         </div>
       </div>
-
     </section>
   );
 }

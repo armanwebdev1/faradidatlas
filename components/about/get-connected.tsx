@@ -15,7 +15,11 @@ export function GetConnected({ lang }: GetConnectedProps) {
           <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
             <Image
               src="/featured2.jpg"
-              alt={lang === "en" ? "Regional supply chain operations" : "عملیات زنجیره تامین منطقه‌ای"}
+              alt={
+                lang === "en"
+                  ? "Regional supply chain operations"
+                  : "زنجیره تامین منطقه‌ای فرادید اطلس"
+              }
               fill
               sizes="100vw"
               className="object-cover"
@@ -33,7 +37,7 @@ export function GetConnected({ lang }: GetConnectedProps) {
           >
             {lang === "en"
               ? "A supply network shaped by access and accountability"
-              : "شبکه تامینی بر پایه دسترسی و مسئولیت‌پذیری"}
+              : "شبکه‌ای برای تأمین منظم، در دسترس و قابل اتکا"}
           </h2>
 
           <div
@@ -47,13 +51,13 @@ export function GetConnected({ lang }: GetConnectedProps) {
             <p className="text-base md:text-lg font-semibold text-foreground leading-relaxed">
               {lang === "en"
                 ? "Our company offices are listed in Tehran, Isfahan, Dubai, and Oman, with operational and storage support in Iran including Shahrekord."
-                : "دفاتر شرکت در تهران، اصفهان، دبی و عمان معرفی شده‌اند و پشتیبانی عملیاتی و انباری در ایران، از جمله شهرکرد، فعالیت تامین را کامل می‌کند."}
+                : "فرادید اطلس در تهران، اصفهان، دبی و عمان دفتر دارد و با پشتیبانی عملیاتی و انباری در ایران، از جمله شهرکرد، مسیر تأمین را منظم‌تر و قابل اتکاتر می‌کند."}
             </p>
 
             <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
               {lang === "en"
                 ? "This footprint helps the company manage procurement, storage, and distribution so top-grade food products can move continuously and on time across Iran."
-                : "این گستره به شرکت کمک می‌کند تامین، نگهداری و توزیع را مدیریت کند تا محصولات غذایی باکیفیت به‌صورت مستمر و به‌موقع در سراسر ایران در دسترس باشند."}
+                : "این گستره به شرکت کمک می‌کند فرایند تأمین، نگهداری و توزیع را با هماهنگی بیشتری مدیریت کند تا محصولات غذایی باکیفیت، به‌موقع و به‌صورت مستمر در اختیار بازار قرار بگیرند."}
             </p>
 
             <div
@@ -64,7 +68,7 @@ export function GetConnected({ lang }: GetConnectedProps) {
               <p className="text-sm md:text-base text-muted-foreground leading-relaxed italic">
                 {lang === "en"
                   ? "The goal is simple: keep high-quality essential food products available, fairly priced, and ready for the buyers who depend on them."
-                  : "هدف ساده است: حفظ دسترسی به مواد غذایی اساسی باکیفیت، قیمت‌گذاری منطقی و آمادگی برای خریدارانی که به آن وابسته‌اند."}
+                  : "هدف روشن است: تأمین مواد غذایی اساسی با کیفیت قابل اعتماد، قیمت‌گذاری منطقی و آمادگی برای پاسخ‌گویی به خریدارانی که به عرضه منظم نیاز دارند."}
               </p>
             </div>
           </div>
