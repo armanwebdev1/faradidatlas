@@ -33,15 +33,15 @@ const slides: HeroSlide[] = [
     image: heroImage("ChatGPT Image Jun 21, 2026, 10_14_48 AM.png"),
     title: {
       en: "Reliable Food Supply",
-      fa: "تامین مطمئن مواد غذایی",
+      fa: "تأمین مطمئن مواد غذایی",
     },
     subtitle: {
       en: "Food Security in Practice",
-      fa: "امنیت غذایی در عمل",
+      fa: "تأمین پایدار، فراتر از شعار",
     },
     description: {
       en: "Established in 2009, Faradid Atlas sources, imports, and distributes essential food products with disciplined quality standards and dependable regional operations.",
-      fa: "فرادید اطلس که در سال ۱۳۸۸ بنیان گذاشته شد، محصولات غذایی اساسی را با انتخاب دقیق، استانداردهای کیفی منظم و عملیات منطقه‌ای قابل اتکا تامین، وارد و توزیع می‌کند.",
+      fa: "فرادید اطلس از سال ۱۳۸۸ در زمینه تأمین، واردات و توزیع مواد غذایی اساسی فعالیت می‌کند؛ با انتخاب دقیق محصولات، پایبندی به استانداردهای کیفی و شبکه‌ای منظم برای پاسخ‌گویی به نیاز بازار.",
     },
   },
   {
@@ -49,15 +49,15 @@ const slides: HeroSlide[] = [
     image: heroImage("ChatGPT Image Jun 21, 2026, 10_15_00 AM.png"),
     title: {
       en: "Direct Sourcing Network",
-      fa: "شبکه تامین مستقیم",
+      fa: "شبکه مستقیم تأمین",
     },
     subtitle: {
       en: "From Origin to Market",
-      fa: "از مبدا تا بازار",
+      fa: "از مبدأ معتبر تا بازار مصرف",
     },
     description: {
       en: "Supplier relationships across key food-producing markets help keep rice, legumes, nuts, seeds, spices, and sugar moving through clear, practical channels.",
-      fa: "ارتباط با تامین‌کنندگان در بازارهای کلیدی تولید غذا کمک می‌کند برنج، حبوبات، آجیل، دانه‌ها، ادویه‌جات و شکر از مسیرهای روشن و عملی تامین شوند.",
+      fa: "ارتباط مستقیم با تأمین‌کنندگان معتبر در بازارهای اصلی تولید غذا، مسیر تأمین برنج، حبوبات، مغزها، دانه‌ها، ادویه‌ها و شکر را شفاف‌تر، سریع‌تر و قابل اتکاتر می‌کند.",
     },
   },
   {
@@ -65,15 +65,15 @@ const slides: HeroSlide[] = [
     image: heroImage("ChatGPT Image Jun 21, 2026, 10_15_17 AM.png"),
     title: {
       en: "Steady Regional Reach",
-      fa: "حضور منطقه‌ای پایدار",
+      fa: "حضور منظم منطقه‌ای",
     },
     subtitle: {
       en: "Built for B2B Continuity",
-      fa: "ساخته‌شده برای تداوم B2B",
+      fa: "برای تأمین مستمر خریداران عمده و سازمانی",
     },
     description: {
       en: "Offices, branches, and warehouse support across the region give buyers a steadier path from product need to reliable delivery.",
-      fa: "دفاتر، شعب و پشتیبانی انبار در منطقه، مسیر مطمئن‌تری از نیاز محصول تا تحویل قابل اتکا برای خریداران ایجاد می‌کند.",
+      fa: "دفاتر، شعب و پشتیبانی انبار در ایران و بازارهای منطقه‌ای، به خریداران کمک می‌کند از مرحله نیازسنجی تا تحویل محصول، مسیر مطمئن‌تر و منظم‌تری را تجربه کنند.",
     },
   },
 ];
