@@ -142,10 +142,12 @@ function FrameworkPanel({
 }) {
   return (
     <article
-      className="relative h-full overflow-hidden rounded-xl border border-foreground/10 bg-white/90 p-6 text-center shadow-[0_18px_45px_rgba(30,35,39,0.06)] sm:p-8 md:p-9"
+      className={`relative h-full overflow-hidden rounded-xl border border-foreground/10 bg-white/90 p-6 shadow-[0_18px_45px_rgba(30,35,39,0.06)] sm:p-8 md:p-9 ${
+        isRTL ? "text-right" : "text-left"
+      }`}
       dir={isRTL ? "rtl" : "ltr"}
     >
-      <div className="mb-8 flex flex-col items-center justify-center gap-4">
+      <div className="mb-8 flex items-start justify-between gap-5">
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-accent-warm-gold/25 bg-accent-warm-gold/10 text-accent-warm-gold">
           <Icon className="h-5 w-5" strokeWidth={1.7} />
         </div>
@@ -168,10 +170,10 @@ function FrameworkPanel({
         {notes.map((note) => (
           <li
             key={note}
-            className="mx-auto flex max-w-md flex-col items-center gap-2 text-center text-sm leading-relaxed text-foreground/70"
+            className="flex gap-3 text-sm leading-relaxed text-foreground/70"
           >
             <CheckCircle2
-              className="h-4 w-4 shrink-0 text-accent-warm-gold"
+              className="mt-1 h-4 w-4 shrink-0 text-accent-warm-gold"
               strokeWidth={1.8}
             />
             <span className="leading-relaxed">{note}</span>
