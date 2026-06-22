@@ -39,20 +39,20 @@ function Image({ alt, sizes, className }: StaticCtaImageProps) {
 }
 
 const brandLogos = [
-  { name: "Hayat", src: "/brands/hayat-4k.png", width: 4096, height: 2172 },
+  { name: "Hayat", src: "/brands/hayat-4k.png", width: 1194, height: 650 },
   {
     name: "Golbanoo",
     src: "/brands/golbanoo-4k.png",
-    width: 4096,
-    height: 2005,
+    width: 1146,
+    height: 556,
   },
   {
     name: "Twenty One",
     src: "/brands/twenty-one-4k.png",
-    width: 4096,
-    height: 3371,
+    width: 1116,
+    height: 912,
   },
-  { name: "Mizban", src: "/brands/mizban-4k.png", width: 4096, height: 1568 },
+  { name: "Mizban", src: "/brands/mizban-4k.png", width: 1235, height: 482 },
 ];
 
 const brandLogoLoop = [...brandLogos, ...brandLogos];
@@ -157,20 +157,20 @@ export function CTASection({ lang }: CTASectionProps) {
                 {[0, 1].map((groupIndex) => (
                   <div
                     key={groupIndex}
-                    className="flex shrink-0 items-center gap-8 pr-8 sm:gap-12 sm:pr-12 md:gap-16 md:pr-16"
+                    className="flex shrink-0 items-center gap-7 pr-7 sm:gap-10 sm:pr-10 md:gap-12 md:pr-12"
                     aria-hidden={groupIndex === 1}
                   >
                     {brandLogoLoop.map((brand, brandIndex) => (
                       <div
                         key={`${groupIndex}-${brand.name}-${brandIndex}`}
-                        className="group/brand flex h-36 w-64 shrink-0 items-center justify-center px-1 transition-transform duration-500 hover:-translate-y-1 sm:h-44 sm:w-80 md:h-52 md:w-[28rem] lg:h-60 lg:w-[34rem]"
+                        className="group/brand flex h-24 w-44 shrink-0 items-center justify-center px-1 transition-transform duration-500 hover:-translate-y-1 sm:h-28 sm:w-56 md:h-32 md:w-64 lg:h-36 lg:w-72"
                       >
                         <NextImage
                           src={brand.src}
                           alt={brand.name}
                           width={brand.width}
                           height={brand.height}
-                          sizes="(min-width: 1024px) 544px, (min-width: 768px) 448px, (min-width: 640px) 320px, 256px"
+                          sizes="(min-width: 1024px) 288px, (min-width: 768px) 256px, (min-width: 640px) 224px, 176px"
                           loading="lazy"
                           className="h-full w-full object-contain drop-shadow-[0_14px_22px_rgba(30,35,39,0.12)] transition duration-500 group-hover/brand:scale-[1.05] group-hover/brand:drop-shadow-[0_0_28px_rgba(201,169,97,0.58)]"
                         />
