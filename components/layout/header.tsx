@@ -528,44 +528,87 @@ export function Header({ lang }: HeaderProps) {
                   {navItems.map(({ href, label, key, Icon }) => {
                     const isActive = isNavItemActive(href);
 
-                    return (
-                      <div key={key}>
-                        <a
-                          href={href}
-                          aria-current={isActive ? "page" : undefined}
-                          className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
-                            isActive
-                              ? "bg-brand-navy/10 text-brand-navy shadow-sm"
-                              : "text-foreground hover:bg-muted/50"
-                          }`}
+                    if (key === "products") {
+                      return (
+                        <details
+                          key={key}
+                          className="group/mobile-products rounded-xl border border-border/60 bg-background/70"
+                          open={isActive || undefined}
                         >
-                          <Icon
-                            size={20}
-                            className={isActive ? "text-brand-navy" : ""}
-                          />
-                          <span>{label}</span>
-                        </a>
-                        {key === "products" && (
-                          <div className="grid grid-cols-2 gap-2 px-2 pb-3 pt-1">
-                            {productCategoryMenuItems.map((item) => (
-                              <a
-                                key={item.category}
-                                href={item.href}
-                                className={`rounded-lg border border-border/50 bg-background/80 px-3 py-2.5 text-xs font-semibold text-foreground/80 transition-all hover:border-foreground/15 hover:bg-muted/60 hover:text-foreground ${
-                                  isRTL ? "text-right" : "text-left"
-                                }`}
-                              >
-                                <span className="block truncate">
-                                  {item.label}
-                                </span>
-                                <span className="mt-1 block text-[11px] font-medium text-muted-foreground">
-                                  {item.countLabel}
-                                </span>
-                              </a>
-                            ))}
+                          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-foreground transition-colors hover:bg-muted/45 [&::-webkit-details-marker]:hidden">
+                            <span className="flex min-w-0 items-center gap-3">
+                              <Icon size={20} />
+                              <span className="truncate">{label}</span>
+                            </span>
+                            <ChevronDown
+                              size={17}
+                              className="shrink-0 text-muted-foreground transition-transform duration-300 group-open/mobile-products:rotate-180"
+                            />
+                          </summary>
+
+                          <div className="px-3 pb-3">
+                            <a
+                              href={href}
+                              className="mb-2 flex items-center justify-between rounded-lg px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:bg-muted/45 hover:text-foreground"
+                            >
+                              <span>
+                                {lang === "en" ? "All products" : "همه محصولات"}
+                              </span>
+                            </a>
+
+                            <div className="divide-y divide-border/50 overflow-hidden rounded-lg border border-border/50 bg-background/80">
+                              {productCategoryMenuItems.map((item) => (
+                                <a
+                                  key={item.category}
+                                  href={item.href}
+                                  className="flex items-center gap-3 px-3 py-3 transition-colors hover:bg-muted/45"
+                                >
+                                  <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-md bg-muted ring-1 ring-border/50">
+                                    {item.image ? (
+                                      <Image
+                                        src={item.image}
+                                        alt=""
+                                        fill
+                                        sizes="32px"
+                                        className="object-cover"
+                                      />
+                                    ) : (
+                                      <span className="block h-full w-full bg-muted" />
+                                    )}
+                                  </span>
+                                  <span className="min-w-0 flex-1">
+                                    <span className="block truncate text-sm font-semibold text-foreground">
+                                      {item.label}
+                                    </span>
+                                    <span className="mt-0.5 block truncate text-xs text-muted-foreground">
+                                      {item.countLabel}
+                                    </span>
+                                  </span>
+                                </a>
+                              ))}
+                            </div>
                           </div>
-                        )}
-                      </div>
+                        </details>
+                      );
+                    }
+
+                    return (
+                      <a
+                        key={key}
+                        href={href}
+                        aria-current={isActive ? "page" : undefined}
+                        className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                          isActive
+                            ? "bg-brand-navy/10 text-brand-navy shadow-sm"
+                            : "text-foreground hover:bg-muted/50"
+                        }`}
+                      >
+                        <Icon
+                          size={20}
+                          className={isActive ? "text-brand-navy" : ""}
+                        />
+                        <span>{label}</span>
+                      </a>
                     );
                   })}
                 </nav>
@@ -729,20 +772,35 @@ function ProductsMegaMenu({
     >
       <div className="overflow-hidden rounded-2xl border border-border/70 bg-background/98 shadow-[0_24px_70px_rgba(12,18,24,0.14)] backdrop-blur-xl">
         <div
-          className={`grid grid-cols-[17rem_1fr] ${
+          className={`grid ${
+            isRTL ? "grid-cols-[1fr_19rem]" : "grid-cols-[17rem_1fr]"
+          } ${
             isRTL ? "text-right" : "text-left"
           }`}
+          style={{ direction: "ltr" }}
         >
           <div
             className={`flex min-h-[20rem] flex-col justify-between border-border/60 bg-muted/20 p-8 ${
               isRTL ? "order-2 border-l" : "border-r"
             }`}
+            dir={dir}
           >
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
                 {lang === "en" ? "Products" : "محصولات"}
               </p>
-              <h3 className="mt-5 max-w-[13rem] font-hero text-3xl font-semibold leading-[1.08] text-foreground">
+              <h3
+                className={`mt-5 font-hero font-semibold text-foreground ${
+                  isRTL
+                    ? "max-w-[16rem] text-2xl leading-[1.35]"
+                    : "max-w-[13rem] text-3xl leading-[1.08]"
+                }`}
+                style={{
+                  fontFamily: isRTL
+                    ? "Estedad, var(--font-hero)"
+                    : "var(--font-hero)",
+                }}
+              >
                 {lang === "en"
                   ? "Explore our essential food portfolio"
                   : "سبد محصولات غذایی ما را ببینید"}
@@ -760,16 +818,23 @@ function ProductsMegaMenu({
             </a>
           </div>
 
-          <div className="p-8">
-            <div className="grid grid-cols-3 gap-x-10 gap-y-7">
+          <div
+            className={`p-8 ${isRTL ? "order-1" : "order-2"}`}
+            dir={dir}
+          >
+            <div
+              className={`grid ${
+                isRTL
+                  ? "grid-cols-2 gap-x-8 gap-y-6"
+                  : "grid-cols-3 gap-x-10 gap-y-7"
+              }`}
+            >
               {categories.map((item) => (
                 <a
                   key={item.category}
                   href={item.href}
                   title={item.description}
-                  className={`group/category flex min-w-0 items-center gap-3 rounded-lg p-1.5 transition-colors duration-200 hover:bg-muted/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/15 ${
-                    isRTL ? "flex-row-reverse" : ""
-                  }`}
+                  className="group/category flex min-w-0 items-center gap-3 rounded-lg p-1.5 transition-colors duration-200 hover:bg-muted/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/15"
                 >
                   <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-md bg-muted shadow-sm ring-1 ring-border/50">
                     {item.image ? (
@@ -785,7 +850,11 @@ function ProductsMegaMenu({
                     )}
                   </span>
                   <span className="min-w-0">
-                    <span className="block truncate text-sm font-semibold text-foreground">
+                    <span
+                      className={`block text-sm font-semibold leading-snug text-foreground ${
+                        isRTL ? "" : "truncate"
+                      }`}
+                    >
                       {item.label}
                     </span>
                     <span className="mt-0.5 block truncate text-xs text-muted-foreground">
