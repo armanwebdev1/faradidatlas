@@ -85,16 +85,14 @@ export function StrategicFramework({ lang }: StrategicFrameworkProps) {
     <AnimatedSection className="relative overflow-hidden bg-background-alt px-4 py-20 sm:px-6 md:py-28">
       <div className="mx-auto max-w-7xl">
         <div
-          className="grid gap-8 border-y border-foreground/10 py-10 md:py-14 lg:grid-cols-12 lg:items-end"
+          className="mx-auto max-w-4xl border-y border-foreground/10 py-10 text-center md:py-14"
           dir={isRTL ? "rtl" : "ltr"}
         >
-          <div className="lg:col-span-7">
-            <p className="eyebrow mb-4 text-accent-warm-gold">{data.eyebrow}</p>
-            <h2 className="max-w-4xl text-responsive-title text-primary">
-              {data.title}
-            </h2>
-          </div>
-          <p className="text-responsive-body leading-relaxed text-foreground/70 lg:col-span-5">
+          <p className="eyebrow mb-4 text-brand-navy">{data.eyebrow}</p>
+          <h2 className="mx-auto max-w-4xl text-responsive-title text-primary">
+            {data.title}
+          </h2>
+          <p className="mx-auto mt-5 max-w-3xl text-responsive-body leading-relaxed text-foreground/70 md:mt-6">
             {data.intro}
           </p>
         </div>
@@ -121,14 +119,12 @@ export function StrategicFramework({ lang }: StrategicFrameworkProps) {
         </div>
 
         <div
-          className={`relative overflow-hidden rounded-xl border border-primary/10 bg-primary p-7 shadow-[0_22px_50px_rgba(30,35,39,0.12)] sm:p-9 md:p-10 ${
-            isRTL ? "text-right" : "text-left"
-          }`}
+          className="relative overflow-hidden rounded-xl border border-primary/10 bg-primary p-7 text-center shadow-[0_22px_50px_rgba(30,35,39,0.12)] sm:p-9 md:p-10"
           dir={isRTL ? "rtl" : "ltr"}
         >
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-warm-gold/60 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent-warm-gold/60 to-transparent" />
           <div className="mx-auto max-w-5xl">
-            <div className="mb-5 flex items-center gap-4">
+            <div className="mb-5 flex flex-col items-center justify-center gap-3">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white/10 text-accent-warm-gold">
                 <Gem className="h-5 w-5" strokeWidth={1.7} />
               </div>
@@ -137,15 +133,13 @@ export function StrategicFramework({ lang }: StrategicFrameworkProps) {
               </p>
             </div>
             <h3
-              className="max-w-3xl text-2xl font-semibold leading-snug text-white md:text-3xl"
-              style={{ marginInlineEnd: "auto" }}
+              className="mx-auto max-w-3xl text-2xl font-semibold leading-snug text-white md:text-3xl"
             >
               {data.values.title}
             </h3>
             <div className="my-6 h-px w-full bg-white/10" />
             <p
-              className="max-w-4xl text-sm leading-relaxed text-white/75 sm:text-base"
-              style={{ marginInlineEnd: "auto" }}
+              className="mx-auto max-w-4xl text-sm leading-relaxed text-white/75 sm:text-base"
             >
               {data.values.body}
             </p>
@@ -175,10 +169,10 @@ function FrameworkPanel({
 }) {
   return (
     <article
-      className="relative h-full overflow-hidden rounded-xl border border-foreground/10 bg-white/90 p-6 shadow-[0_18px_45px_rgba(30,35,39,0.06)] sm:p-8 md:p-9"
+      className="relative h-full overflow-hidden rounded-xl border border-foreground/10 bg-white/90 p-6 text-center shadow-[0_18px_45px_rgba(30,35,39,0.06)] sm:p-8 md:p-9"
       dir={isRTL ? "rtl" : "ltr"}
     >
-      <div className="mb-8 flex items-start justify-between gap-5">
+      <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-accent-warm-gold/25 bg-accent-warm-gold/10 text-accent-warm-gold">
           <Icon className="h-5 w-5" strokeWidth={1.7} />
         </div>
@@ -201,7 +195,7 @@ function FrameworkPanel({
         {notes.map((note) => (
           <li
             key={note}
-            className="flex gap-3 text-sm leading-relaxed text-foreground/70"
+            className="flex justify-center gap-3 text-center text-sm leading-relaxed text-foreground/70"
           >
             <CheckCircle2
               className="mt-1 h-4 w-4 shrink-0 text-accent-warm-gold"

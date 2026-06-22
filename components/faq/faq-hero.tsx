@@ -17,7 +17,7 @@ export function FAQHero({ lang }: FAQHeroProps) {
       <div className="w-full px-4 sm:px-6 pt-16 md:pt-20 pb-12">
         <div className="max-w-6xl mx-auto space-y-12 md:space-y-16">
           <StaggeredFade className="text-center">
-            <p className="mb-4 text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-accent-warm-gold animate-fade-in-up">
+            <p className="eyebrow mb-4 text-brand-navy animate-fade-in-up">
               {lang === "en" ? "Help Center" : "سوالات متداول"}
             </p>
             <h1
