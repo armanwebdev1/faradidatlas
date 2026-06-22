@@ -133,7 +133,7 @@ export function CTASection({ lang }: CTASectionProps) {
 
         <div className="relative border-t border-foreground/10 pt-10 sm:pt-12 md:pt-16">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="eyebrow mb-4 text-accent">
+            <p className="eyebrow mb-4 text-brand-navy">
               {lang === "en" ? "Our Brands" : "برندهای ما"}
             </p>
 

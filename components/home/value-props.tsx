@@ -75,12 +75,12 @@ export function ValueProps({ lang }: ValuePropsProps) {
 
   return (
     <section className="section bg-surface relative overflow-hidden">
-      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent/25 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-brand-navy/25 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-foreground/10 to-transparent" />
 
       <div className="container-wide relative z-10">
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
-          <p className="eyebrow text-accent mb-4 sm:mb-5 md:mb-6">
+          <p className="eyebrow text-brand-navy mb-4 sm:mb-5 md:mb-6">
             {lang === "en" ? "Why Faradid Atlas" : "چرا فرادید اطلس؟"}
           </p>
           <h2 className="text-responsive-title mb-5 sm:mb-7 md:mb-8 text-foreground">
@@ -132,10 +132,10 @@ export function ValueProps({ lang }: ValuePropsProps) {
                       >
                         <div className="h-full flex flex-col p-6 sm:p-8 rounded-lg border border-foreground/10 bg-background/85 backdrop-blur-md shadow-[0_16px_42px_-30px_rgba(12,18,24,0.35),0_1px_0_rgba(255,255,255,0.55)_inset]">
                           <div className="relative mb-6 sm:mb-8 inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20">
-                            <div className="absolute inset-0 rounded-lg bg-linear-to-br from-foreground/8 to-foreground/4" />
+                            <div className="absolute inset-0 rounded-lg bg-linear-to-br from-brand-navy/10 to-brand-navy/4" />
                             <IconComponent
                               size={32}
-                              className="relative text-foreground sm:w-10 sm:h-10"
+                              className="relative text-brand-navy sm:w-10 sm:h-10"
                               strokeWidth={1.2}
                             />
                           </div>

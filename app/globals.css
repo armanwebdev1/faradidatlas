@@ -16,6 +16,7 @@
   --accent-warm-copper: #a84a3a;
   --accent-platinum: #d4af37;
   --accent-warm-red: #3d2e24;
+  --brand-navy: #303b70;
 
   --neutral: #5e6a61;
   --neutral-light: #cfcbc4;
@@ -42,6 +43,10 @@
   --foreground-60: color-mix(in srgb, var(--foreground) 60%, transparent);
   --foreground-65: color-mix(in srgb, var(--foreground) 65%, transparent);
   --foreground-78: color-mix(in srgb, var(--foreground) 78%, transparent);
+  --brand-navy-8: color-mix(in srgb, var(--brand-navy) 8%, transparent);
+  --brand-navy-12: color-mix(in srgb, var(--brand-navy) 12%, transparent);
+  --brand-navy-18: color-mix(in srgb, var(--brand-navy) 18%, transparent);
+  --brand-navy-28: color-mix(in srgb, var(--brand-navy) 28%, transparent);
   --secondary-70: color-mix(in srgb, var(--secondary) 70%, transparent);
   --surface-90: color-mix(in srgb, var(--surface) 90%, transparent);
 
@@ -202,6 +207,7 @@
   --color-accent-warm-gold: var(--accent-warm-gold);
   --color-accent-warm-copper: var(--accent-warm-copper);
   --color-accent-platinum: var(--accent-platinum);
+  --color-brand-navy: var(--brand-navy);
   --color-surface: var(--surface);
   --color-surface-muted: var(--surface-muted);
   --color-background-alt: var(--background-alt);
@@ -316,6 +322,11 @@
   select,
   textarea {
     font-family: inherit;
+  }
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="range"] {
+    accent-color: var(--brand-navy);
   }
   footer {
     content-visibility: auto;
@@ -838,8 +849,8 @@
   .form-select:focus,
   .form-textarea:focus {
     outline: none;
-    border-color: var(--foreground-40);
-    box-shadow: 0 0 0 3px var(--foreground-12);
+    border-color: var(--brand-navy-28);
+    box-shadow: 0 0 0 3px var(--brand-navy-12);
   }
   .form-hint {
     font-size: 0.75rem;

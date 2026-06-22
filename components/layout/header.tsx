@@ -229,7 +229,7 @@ export function Header({ lang }: HeaderProps) {
             <a
               href={`/${lang}`}
               aria-label={brandHomeLabel}
-              className={`site-brand-transition group relative flex transform-gpu items-center gap-2.5 rounded-xl px-2 py-1.5 text-primary transition-[background-color,box-shadow] shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${topBrandVisibilityClass} ${
+              className={`site-brand-transition group relative flex transform-gpu items-center gap-2.5 rounded-xl px-2 py-1.5 text-brand-navy transition-[background-color,box-shadow] shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/30 ${topBrandVisibilityClass} ${
                 isRTL ? "flex-row-reverse text-right" : "text-left"
               }`}
             >
@@ -243,14 +243,14 @@ export function Header({ lang }: HeaderProps) {
               />
               <span className="relative z-10 flex flex-col leading-none">
                 <span
-                  className={`text-lg font-bold text-primary transition-colors duration-300 group-hover:text-primary/90 sm:text-xl ${
+                  className={`text-lg font-bold text-brand-navy transition-colors duration-300 group-hover:text-brand-navy/90 sm:text-xl ${
                     isRTL ? "tracking-normal" : "tracking-[0.12em]"
                   }`}
                 >
                   {brandPrimary}
                 </span>
                 <span
-                  className={`text-[11px] font-medium text-muted-foreground/90 transition-colors duration-300 group-hover:text-primary/80 sm:text-xs ${
+                  className={`text-[11px] font-medium text-muted-foreground/90 transition-colors duration-300 group-hover:text-brand-navy/80 sm:text-xs ${
                     isRTL ? "mt-1 tracking-normal" : "mt-0.5 tracking-[0.22em]"
                   }`}
                 >
@@ -279,7 +279,7 @@ export function Header({ lang }: HeaderProps) {
                   }}
                   aria-label={t.common.search}
                   style={searchIconStyle}
-                  className="absolute top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
+                  className="absolute top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-brand-navy focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25"
                 >
                   <Search className="h-5 w-5" />
                 </button>
@@ -297,7 +297,7 @@ export function Header({ lang }: HeaderProps) {
                   autoComplete="off"
                   dir={dir}
                   style={searchInputStyle}
-                  className={`w-full rounded-full border border-border/50 bg-background/60 py-2 text-sm text-foreground transition-all placeholder:text-muted-foreground placeholder:font-light focus:outline-none focus:ring-2 focus:ring-primary/35 hover:border-border/70 ${
+                  className={`w-full rounded-full border border-border/50 bg-background/60 py-2 text-sm text-foreground transition-all placeholder:text-muted-foreground placeholder:font-light focus:border-brand-navy/30 focus:outline-none focus:ring-2 focus:ring-brand-navy/20 hover:border-border/70 ${
                     isRTL
                       ? "pl-11 pr-12 text-right [direction:rtl] placeholder:text-right"
                       : "pl-12 pr-11 text-left"
@@ -310,7 +310,7 @@ export function Header({ lang }: HeaderProps) {
                     onClick={clearSearch}
                     aria-label={clearSearchLabel}
                     style={clearButtonStyle}
-                    className="absolute top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-border/70 bg-background/90 text-muted-foreground shadow-sm transition-all hover:border-foreground/20 hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
+                    className="absolute top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-border/70 bg-background/90 text-muted-foreground shadow-sm transition-all hover:border-brand-navy/25 hover:bg-brand-navy/5 hover:text-brand-navy focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25"
                   >
                     <X size={15} strokeWidth={1.8} />
                   </button>
@@ -329,7 +329,7 @@ export function Header({ lang }: HeaderProps) {
             <details className="relative shrink-0 group/lang">
               <summary
                 aria-label={lang === "en" ? "Select language" : "انتخاب زبان"}
-                className="flex cursor-pointer list-none items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-primary/5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/30 [&::-webkit-details-marker]:hidden"
+                className="flex cursor-pointer list-none items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-brand-navy/5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-navy/25 [&::-webkit-details-marker]:hidden"
               >
                 <span className="text-base sm:text-lg">
                   {localeMarks[lang]}
@@ -355,12 +355,12 @@ export function Header({ lang }: HeaderProps) {
                 <div className="py-2 space-y-1 px-2">
                   <a
                     href={`/${lang}`}
-                    className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg bg-primary/10 text-primary shadow-sm"
+                    className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg bg-brand-navy/10 text-brand-navy shadow-sm"
                     role="menuitem"
                   >
                     <span className="text-lg">{localeMarks[lang]}</span>
                     <span>{languageNames[lang]}</span>
-                    <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary" />
+                    <span className="ml-auto w-1.5 h-1.5 rounded-full bg-brand-navy" />
                   </a>
                   <a
                     href={`/${otherLang}`}
@@ -412,7 +412,7 @@ export function Header({ lang }: HeaderProps) {
                         }}
                         aria-label={t.common.search}
                         style={searchIconStyle}
-                        className="absolute top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
+                        className="absolute top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-brand-navy focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25"
                       >
                         <Search className="h-5 w-5" />
                       </button>
@@ -430,7 +430,7 @@ export function Header({ lang }: HeaderProps) {
                         autoComplete="off"
                         dir={dir}
                         style={searchInputStyle}
-                        className={`w-full rounded-full border border-border/50 bg-background/80 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 ${
+                        className={`w-full rounded-full border border-border/50 bg-background/80 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-brand-navy/30 focus:outline-none focus:ring-2 focus:ring-brand-navy/20 ${
                           isRTL
                             ? "pl-11 pr-12 text-right [direction:rtl] placeholder:text-right"
                             : "pl-12 pr-11 text-left"
@@ -443,7 +443,7 @@ export function Header({ lang }: HeaderProps) {
                           onClick={clearSearch}
                           aria-label={clearSearchLabel}
                           style={clearButtonStyle}
-                          className="absolute top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-border/70 bg-background/90 text-muted-foreground shadow-sm transition-all hover:border-foreground/20 hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
+                          className="absolute top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-border/70 bg-background/90 text-muted-foreground shadow-sm transition-all hover:border-brand-navy/25 hover:bg-brand-navy/5 hover:text-brand-navy focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25"
                         >
                           <X size={15} strokeWidth={1.8} />
                         </button>
@@ -471,13 +471,13 @@ export function Header({ lang }: HeaderProps) {
                         aria-current={isActive ? "page" : undefined}
                         className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                           isActive
-                            ? "bg-primary/10 text-primary shadow-sm"
+                            ? "bg-brand-navy/10 text-brand-navy shadow-sm"
                             : "text-foreground hover:bg-muted/50"
                         }`}
                       >
                         <Icon
                           size={20}
-                          className={isActive ? "text-primary" : ""}
+                          className={isActive ? "text-brand-navy" : ""}
                         />
                         <span>{label}</span>
                       </a>
@@ -502,7 +502,7 @@ export function Header({ lang }: HeaderProps) {
               aria-label={brandHomeLabel}
               dir={dir}
               style={compactBrandPositionStyle}
-              className={`site-brand-transition absolute top-1/2 hidden transform-gpu items-center gap-2 rounded-lg px-2 py-1 text-primary lg:flex ${compactBrandVisibilityClass}`}
+              className={`site-brand-transition absolute top-1/2 hidden transform-gpu items-center gap-2 rounded-lg px-2 py-1 text-brand-navy lg:flex ${compactBrandVisibilityClass}`}
             >
               <Image
                 src="/brand/faradid-atlas-mark.png"
@@ -512,7 +512,7 @@ export function Header({ lang }: HeaderProps) {
                 className="h-7 w-7 object-contain drop-shadow-[0_8px_14px_rgba(30,35,39,0.12)]"
               />
               <span
-                className={`hidden text-xs font-semibold text-primary xl:inline ${
+                className={`hidden text-xs font-semibold text-brand-navy xl:inline ${
                   isRTL ? "tracking-normal" : "tracking-[0.14em]"
                 }`}
               >
@@ -528,27 +528,27 @@ export function Header({ lang }: HeaderProps) {
                   href={href}
                   aria-current={isActive ? "page" : undefined}
                   className={`relative flex items-center gap-2.5 h-full text-sm font-medium transition-colors group ${
-                    isActive ? "text-primary" : ""
+                    isActive ? "text-brand-navy" : ""
                   }`}
                 >
                   <Icon
                     size={20}
                     strokeWidth={1.5}
-                    className={`transition-all duration-200 group-hover:text-primary group-hover:scale-105 ${
+                    className={`transition-all duration-200 group-hover:text-brand-navy group-hover:scale-105 ${
                       isActive
-                        ? "text-primary"
+                        ? "text-brand-navy"
                         : "text-muted-foreground"
                     }`}
                   />
                   <span
-                    className={`transition-colors group-hover:text-primary ${
-                      isActive ? "text-primary" : "text-foreground"
+                    className={`transition-colors group-hover:text-brand-navy ${
+                      isActive ? "text-brand-navy" : "text-foreground"
                     }`}
                   >
                     {label}
                   </span>
                   <span
-                    className={`absolute bottom-0 inset-x-0 h-1 rounded-t-md bg-primary transition-opacity duration-200 ${
+                    className={`absolute bottom-0 inset-x-0 h-1 rounded-t-md bg-brand-navy transition-opacity duration-200 ${
                       isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                     }`}
                   />

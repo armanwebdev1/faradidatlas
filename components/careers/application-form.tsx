@@ -584,7 +584,7 @@ export function ApplicationForm({
               onChange={handleFileChange}
               accept=".pdf,.doc,.docx"
               required
-              className={`w-full max-w-full text-sm text-foreground file:mr-4 file:max-w-full file:rounded-full file:border-0 file:bg-foreground file:px-4 file:py-2 file:text-xs file:font-semibold file:text-white hover:file:bg-foreground/90 ${
+              className={`w-full max-w-full text-sm text-foreground file:mr-4 file:max-w-full file:rounded-full file:border-0 file:bg-brand-navy file:px-4 file:py-2 file:text-xs file:font-semibold file:text-white hover:file:bg-brand-navy/90 ${
                 getError("cv") ? "text-destructive" : ""
               }`}
               aria-invalid={!!getError("cv")}

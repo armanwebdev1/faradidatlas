@@ -26,14 +26,14 @@ export function FAQAccordion({ items, lang }: FAQAccordionProps) {
             id={`faq-${item.id}`}
             className={`group rounded-2xl border overflow-hidden shadow-sm transition-all duration-300 animate-fade-in-up ${
               isOpen
-                ? "border-accent/30 bg-accent/10 shadow-md"
-                : "border-border bg-white/80 hover:border-accent/40 hover:shadow-lg"
+                ? "border-brand-navy/25 bg-brand-navy/5 shadow-md"
+                : "border-border bg-white/80 hover:border-brand-navy/25 hover:shadow-lg"
             }`}
             style={{ animationDelay: `${index * 0.06}s` }}
           >
             <button
               onClick={() => setOpenId(isOpen ? null : item.id)}
-              className={`w-full px-4 sm:px-6 py-4 sm:py-5 flex justify-between items-start gap-3 sm:gap-4 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20 ${
+              className={`w-full px-4 sm:px-6 py-4 sm:py-5 flex justify-between items-start gap-3 sm:gap-4 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25 ${
                 isRTL ? "text-right" : "text-left"
               }`}
               aria-expanded={isOpen}
@@ -43,7 +43,7 @@ export function FAQAccordion({ items, lang }: FAQAccordionProps) {
                 {question}
               </h3>
               <svg
-                className={`w-5 h-5 sm:w-6 sm:h-6 text-accent flex-shrink-0 transition-transform duration-300 ${
+                className={`w-5 h-5 sm:w-6 sm:h-6 text-brand-navy flex-shrink-0 transition-transform duration-300 ${
                   isOpen ? "rotate-180" : ""
                 }`}
                 fill="none"
@@ -69,7 +69,7 @@ export function FAQAccordion({ items, lang }: FAQAccordionProps) {
               <div className="overflow-hidden">
                 <div
                   id={`faq-answer-${item.id}`}
-                  className="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base leading-relaxed text-foreground/75 border-t border-accent/20"
+                  className="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base leading-relaxed text-foreground/75 border-t border-brand-navy/15"
                 >
                   {answer}
                 </div>
