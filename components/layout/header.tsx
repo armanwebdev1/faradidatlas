@@ -77,6 +77,13 @@ const categoryDescriptions: Record<
   },
 };
 
+const brandThumbnails: Record<ProductBrand, string> = {
+  "twenty-one": "/brands/twenty-one-4k.png",
+  mizban: "/brands/mizban-4k.png",
+  golbanoo: "/brands/golbanoo-4k.png",
+  hayat: "/brands/hayat-4k.png",
+};
+
 export function Header({ lang }: HeaderProps) {
   const pathname = usePathname();
   const [headerMode, setHeaderMode] = useState<HeaderMode>("full");
@@ -176,6 +183,8 @@ export function Header({ lang }: HeaderProps) {
                 ? `${numberFormatter.format(count)} products`
                 : `${numberFormatter.format(count)} محصول`,
             href: `/${lang}/products?brand=${brand}#product-catalog`,
+            image: brandThumbnails[brand],
+            imageFit: "contain" as const,
           };
         })
         .filter((item) => item.count > 0),
@@ -185,9 +194,10 @@ export function Header({ lang }: HeaderProps) {
     () =>
       productTypes
         .map((type) => {
-          const count = products.filter(
+          const typeProducts = products.filter(
             (product) => getProductType(product) === type,
-          ).length;
+          );
+          const count = typeProducts.length;
 
           return {
             key: type,
@@ -198,6 +208,8 @@ export function Header({ lang }: HeaderProps) {
                 ? `${numberFormatter.format(count)} products`
                 : `${numberFormatter.format(count)} محصول`,
             href: `/${lang}/products?type=${type}#product-catalog`,
+            image: typeProducts.find((product) => product.image)?.image,
+            imageFit: "cover" as const,
           };
         })
         .filter((item) => item.count > 0),
@@ -660,9 +672,12 @@ export function Header({ lang }: HeaderProps) {
                                     <a
                                       key={item.key}
                                       href={item.href}
-                                      className="flex items-center justify-between gap-3 rounded-md px-2 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/45"
+                                      className="flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/45"
                                     >
-                                      <span>{item.label}</span>
+                                      <MenuFilterThumbnail item={item} size="sm" />
+                                      <span className="min-w-0 flex-1 truncate">
+                                        {item.label}
+                                      </span>
                                       <span className="shrink-0 text-xs text-muted-foreground">
                                         {numberFormatter.format(item.count)}
                                       </span>
@@ -680,9 +695,12 @@ export function Header({ lang }: HeaderProps) {
                                     <a
                                       key={item.key}
                                       href={item.href}
-                                      className="flex items-center justify-between gap-3 rounded-md px-2 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/45"
+                                      className="flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/45"
                                     >
-                                      <span>{item.label}</span>
+                                      <MenuFilterThumbnail item={item} size="sm" />
+                                      <span className="min-w-0 flex-1 truncate">
+                                        {item.label}
+                                      </span>
                                       <span className="shrink-0 text-xs text-muted-foreground">
                                         {numberFormatter.format(item.count)}
                                       </span>
@@ -865,6 +883,8 @@ type ProductFilterMenuItem = {
   count: number;
   countLabel: string;
   href: string;
+  image?: string;
+  imageFit?: "contain" | "cover";
 };
 
 function ProductsMegaMenu({
@@ -1027,9 +1047,10 @@ function MegaMenuFilterColumn({
           <a
             key={item.key}
             href={item.href}
-            className="flex min-w-0 items-center justify-between gap-3 rounded-lg px-2.5 py-2 text-sm font-medium text-foreground transition-colors duration-200 hover:bg-muted/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/15"
+            className="flex min-w-0 items-center gap-3 rounded-lg px-2.5 py-2 text-sm font-medium text-foreground transition-colors duration-200 hover:bg-muted/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/15"
           >
-            <span className="min-w-0 truncate">{item.label}</span>
+            <MenuFilterThumbnail item={item} />
+            <span className="min-w-0 flex-1 truncate">{item.label}</span>
             <span className="shrink-0 text-xs text-muted-foreground">
               {item.count}
             </span>
@@ -1037,6 +1058,49 @@ function MegaMenuFilterColumn({
         ))}
       </div>
     </div>
+  );
+}
+
+function MenuFilterThumbnail({
+  item,
+  size = "md",
+}: {
+  item: ProductFilterMenuItem;
+  size?: "sm" | "md";
+}) {
+  const imageSize = size === "sm" ? 22 : 26;
+  const boxClass = size === "sm" ? "h-7 w-7" : "h-8 w-8";
+  const isLogo = item.imageFit === "contain";
+
+  return (
+    <span
+      className={`relative flex ${boxClass} shrink-0 items-center justify-center overflow-hidden rounded-md ${
+        isLogo ? "bg-white/90 p-1" : "bg-muted"
+      } shadow-sm ring-1 ring-border/50`}
+    >
+      {item.image ? (
+        isLogo ? (
+          <Image
+            src={item.image}
+            alt=""
+            width={imageSize}
+            height={imageSize}
+            sizes={`${imageSize}px`}
+            className="max-h-full max-w-full object-contain"
+          />
+        ) : (
+          <Image
+            src={item.image}
+            alt=""
+            fill
+            sizes={size === "sm" ? "28px" : "32px"}
+            className="object-cover"
+          />
+        )
+      ) : (
+        <span className="block h-full w-full bg-muted" />
+      )}
+    </span>
   );
 }
 
