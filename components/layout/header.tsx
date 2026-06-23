@@ -912,7 +912,7 @@ function ProductsMegaMenu({
     >
       <div className="overflow-hidden rounded-2xl border border-border/70 bg-background/98 shadow-[0_24px_70px_rgba(12,18,24,0.14)] backdrop-blur-xl">
         <div
-          className={`grid ${
+          className={`grid h-[min(21rem,calc(100vh-7rem))] min-h-[16.5rem] ${
             isRTL ? "grid-cols-[1fr_18rem]" : "grid-cols-[17rem_1fr]"
           } ${
             isRTL ? "text-right" : "text-left"
@@ -920,7 +920,7 @@ function ProductsMegaMenu({
           style={{ direction: "ltr" }}
         >
           <div
-            className={`flex min-h-[20rem] flex-col justify-between bg-muted/20 p-8 ${
+            className={`flex min-h-0 flex-col justify-between bg-muted/20 p-6 ${
               isRTL ? "order-2" : "border-r border-border/60"
             }`}
             dir={dir}
@@ -938,10 +938,10 @@ function ProductsMegaMenu({
                 {lang === "en" ? "Products" : "محصولات"}
               </p>
               <h3
-                className={`mt-5 font-hero font-semibold text-foreground ${
+                className={`mt-4 font-hero font-semibold text-foreground ${
                   isRTL
-                    ? "max-w-[16rem] text-2xl leading-[1.35]"
-                    : "max-w-[13rem] text-3xl leading-[1.08]"
+                    ? "max-w-[15rem] text-[1.45rem] leading-[1.35]"
+                    : "max-w-[13rem] text-[1.7rem] leading-[1.08]"
                 }`}
                 style={{
                   fontFamily: isRTL
@@ -957,7 +957,7 @@ function ProductsMegaMenu({
 
             <a
               href={`/${lang}/products#product-catalog`}
-              className={`inline-flex w-fit items-center gap-2 rounded-full bg-background px-5 py-3 text-sm font-semibold text-foreground shadow-sm ring-1 ring-border/50 transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/15 ${
+              className={`inline-flex w-fit items-center gap-2 rounded-full bg-background px-4 py-2.5 text-sm font-semibold text-foreground shadow-sm ring-1 ring-border/50 transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/15 ${
                 isRTL ? "flex-row-reverse" : ""
               }`}
             >
@@ -967,15 +967,15 @@ function ProductsMegaMenu({
           </div>
 
           <div
-            className={`p-7 ${isRTL ? "order-1" : "order-2"}`}
+            className={`min-h-0 overflow-hidden p-6 ${isRTL ? "order-1" : "order-2"}`}
             dir={dir}
           >
-            <div className="grid grid-cols-[1.15fr_0.8fr_1fr] gap-7">
-              <div>
-                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+            <div className="grid h-full min-h-0 grid-cols-[1.15fr_0.8fr_1fr] gap-6">
+              <div className="flex min-h-0 flex-col">
+                <p className="mb-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                   {lang === "en" ? "Categories" : "دسته‌بندی‌ها"}
                 </p>
-                <div className="grid gap-1.5">
+                <div className="grid min-h-0 flex-1 content-start gap-1.5 overflow-y-auto pr-1 [scrollbar-color:rgba(12,18,24,0.18)_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-foreground/15 [&::-webkit-scrollbar-track]:bg-transparent">
                   {categories.map((item) => (
                     <a
                       key={item.category}
@@ -1038,11 +1038,11 @@ function MegaMenuFilterColumn({
   items: ProductFilterMenuItem[];
 }) {
   return (
-    <div>
-      <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+    <div className="flex min-h-0 flex-col">
+      <p className="mb-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
         {title}
       </p>
-      <div className="grid gap-1">
+      <div className="grid min-h-0 flex-1 content-start gap-1 overflow-y-auto pr-1 [scrollbar-color:rgba(12,18,24,0.18)_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-foreground/15 [&::-webkit-scrollbar-track]:bg-transparent">
         {items.map((item) => (
           <a
             key={item.key}
