@@ -77,16 +77,9 @@ export function Footer({ lang }: FooterProps) {
   return (
     <footer
       dir={dir}
-      className="relative overflow-hidden bg-[linear-gradient(180deg,#121722_0%,#151b29_48%,#0c1018_100%)] text-white"
+      className="relative overflow-hidden border-t border-brand-navy/30 bg-[#111722] text-white"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-navy/45 to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-36 bg-[radial-gradient(circle_at_50%_-24%,rgba(48,59,112,0.16),rgba(48,59,112,0.05)_38%,transparent_72%)]" />
-
-      {/* Background blobs */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-brand-navy rounded-full blur-3xl opacity-[0.12] -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl opacity-[0.04] translate-x-1/2 translate-y-1/2" />
-      </div>
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-brand-navy/35" />
 
       {/* Main content */}
       <div className="relative z-10 w-full px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24">
@@ -166,7 +159,7 @@ export function Footer({ lang }: FooterProps) {
           {/* Divider */}
           <div className="relative py-8 mb-8">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full h-px bg-gradient-to-r from-transparent via-brand-navy/45 to-transparent" />
+              <div className="w-full h-px bg-white/10" />
             </div>
           </div>
 
