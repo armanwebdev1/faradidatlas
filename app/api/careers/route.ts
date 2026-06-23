@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 import { jobs } from "@/components/careers/job-data";
+import { parseEmailRecipients } from "@/lib/email";
 import { siteConfig } from "@/lib/site";
 
 export const runtime = "nodejs";
@@ -123,12 +124,14 @@ export async function POST(request: Request) {
     }
 
     const apiKey = process.env.RESEND_API_KEY;
-    const to = process.env.CAREERS_TO_EMAIL || process.env.LEAD_TO_EMAIL;
+    const to = parseEmailRecipients(
+      process.env.CAREERS_TO_EMAIL || process.env.LEAD_TO_EMAIL,
+    );
     const from =
       process.env.LEAD_FROM_EMAIL ||
       `Faradid Atlas <noreply@${new URL(siteConfig.url).hostname}>`;
 
-    if (!apiKey || !to) {
+    if (!apiKey || to.length === 0) {
       return NextResponse.json(
         { ok: false, message: "Email delivery is not configured." },
         { status: 503 },
