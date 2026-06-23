@@ -4,7 +4,7 @@ import { Playfair_Display, Geist } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { absoluteUrl, siteConfig } from "@/lib/site";
+import { absoluteUrl, localizedAlternates, siteConfig } from "@/lib/site";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -58,34 +58,32 @@ const shabnam = localFont({
   preload: false,
 });
 
+const defaultTitle = `${siteConfig.name} | Food Sourcing, Import & Distribution`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   applicationName: siteConfig.name,
   title: {
-    default: `${siteConfig.name} | Food Sourcing, Import & Distribution`,
+    default: defaultTitle,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: [
-    siteConfig.name,
-    "B2B food sourcing",
-    "food import distribution",
-    "food trading",
-    "food supplier",
-    "rice importer",
-    "bulk ingredients",
-    "food distribution",
-    "global food sourcing",
-    "تجارت مواد غذایی",
-    "واردات مواد غذایی",
-    "تامین B2B مواد غذایی",
-    "واردات و توزیع مواد غذایی",
-    "تامین کننده مواد غذایی",
-  ],
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
-  robots: { index: true, follow: true },
+  category: "Food sourcing and distribution",
+  classification: "Business",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -98,22 +96,19 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: absoluteUrl("/en"),
-    languages: {
-      en: absoluteUrl("/en"),
-      fa: absoluteUrl("/fa"),
-    },
+    languages: localizedAlternates(),
   },
   openGraph: {
     type: "website",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} | Food Sourcing, Import & Distribution`,
+    title: defaultTitle,
     description: siteConfig.description,
     locale: "en_US",
     alternateLocale: ["fa_IR"],
     images: [
-        {
-          url: absoluteUrl("/opengraph-image.svg"),
+      {
+        url: absoluteUrl(siteConfig.defaultOgImagePath),
         width: 1200,
         height: 630,
         alt: siteConfig.name,
@@ -122,9 +117,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} | Food Sourcing, Import & Distribution`,
+    title: defaultTitle,
     description: siteConfig.description,
-    images: [absoluteUrl("/opengraph-image.svg")],
+    images: [absoluteUrl(siteConfig.defaultOgImagePath)],
   },
   generator: "Next.js",
 };

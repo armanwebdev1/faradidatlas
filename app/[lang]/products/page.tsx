@@ -35,12 +35,12 @@ export async function generateMetadata({ params }: ProductsPageProps) {
   return buildPageMetadata({
     lang,
     path: "products",
-    titleEn: "Products | Faradid Atlas",
-    titleFa: "محصولات | فرادید اطلس",
+    titleEn: "Food Products: Rice, Legumes, Nuts and Spices | Faradid Atlas",
+    titleFa: "محصولات غذایی؛ برنج، حبوبات، مغزها و ادویه | فرادید اطلس",
     descriptionEn:
-      "Explore Faradid Atlas' DOCX-defined portfolio of rice, legumes, seeds, nuts, spices, and sugar.",
+      "Browse Faradid Atlas food products, including branded rice, legumes, seeds, nuts, spices, and sugar for wholesale and B2B supply needs.",
     descriptionFa:
-      "با سبد محصولات فرادید اطلس آشنا شوید؛ از برنج، حبوبات و دانه‌ها تا مغزها، ادویه‌ها، شکر و دیگر مواد غذایی اساسی.",
+      "سبد محصولات فرادید اطلس را ببینید؛ از برنج‌های برنددار و حبوبات تا دانه‌ها، مغزها، ادویه و شکر برای نیازهای عمده و سازمانی.",
   });
 }
 
@@ -81,9 +81,14 @@ export default async function ProductsPage({
   const initialType = productTypes.includes(type as ProductType)
     ? (type as ProductType)
     : null;
+  const pageUrl = absoluteUrl(localizedPath(lang, "products"));
+  const pageDescription =
+    lang === "en"
+      ? "Browse Faradid Atlas food products, including branded rice, legumes, seeds, nuts, spices, and sugar for wholesale and B2B supply needs."
+      : "سبد محصولات فرادید اطلس را ببینید؛ از برنج‌های برنددار و حبوبات تا دانه‌ها، مغزها، ادویه و شکر برای نیازهای عمده و سازمانی.";
 
   return (
-    <div dir={isRTL ? "rtl" : "ltr"}>
+    <div lang={lang} dir={isRTL ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
         <section className="w-full h-48 sm:h-56 md:h-64 relative overflow-hidden bg-gradient-to-br from-secondary/40 to-secondary/60">
@@ -142,22 +147,60 @@ export default async function ProductsPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ItemList",
-              name:
-                lang === "en"
-                  ? "Faradid Atlas Products"
-                  : "محصولات فرادید اطلس",
-              itemListElement: products.map((product, index) => ({
-                "@type": "ListItem",
-                position: index + 1,
-                url: absoluteUrl(
-                  localizedPath(lang, `products/${product.slug}`),
-                ),
-                name: lang === "en" ? product.nameEn : product.nameFa,
-              })),
-            }),
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "CollectionPage",
+                "@id": `${pageUrl}#webpage`,
+                url: pageUrl,
+                name:
+                  lang === "en"
+                    ? "Faradid Atlas Products"
+                    : "محصولات فرادید اطلس",
+                description: pageDescription,
+                inLanguage: lang,
+                mainEntity: {
+                  "@id": `${pageUrl}#products`,
+                },
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "ItemList",
+                "@id": `${pageUrl}#products`,
+                name:
+                  lang === "en"
+                    ? "Faradid Atlas Products"
+                    : "محصولات فرادید اطلس",
+                description: pageDescription,
+                inLanguage: lang,
+                itemListElement: products.map((product, index) => ({
+                  "@type": "ListItem",
+                  position: index + 1,
+                  url: absoluteUrl(
+                    localizedPath(lang, `products/${product.slug}`),
+                  ),
+                  name: lang === "en" ? product.nameEn : product.nameFa,
+                })),
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: lang === "en" ? "Home" : "خانه",
+                    item: absoluteUrl(localizedPath(lang)),
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: lang === "en" ? "Products" : "محصولات",
+                    item: pageUrl,
+                  },
+                ],
+              },
+            ]),
           }}
         />
       </main>

@@ -1,7 +1,12 @@
 import type { MetadataRoute } from "next";
 import { jobs } from "@/components/careers/job-data";
 import { products } from "@/components/products/product-data";
-import { absoluteUrl, localizedPath, supportedLanguages } from "@/lib/site";
+import {
+  absoluteUrl,
+  localizedAlternates,
+  localizedPath,
+  supportedLanguages,
+} from "@/lib/site";
 
 const staticPaths = ["", "about", "products", "contact", "faq", "careers"];
 
@@ -16,24 +21,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: now,
         changeFrequency: path === "" ? "weekly" : "monthly",
         priority: path === "" ? 1 : 0.8,
+        alternates: {
+          languages: localizedAlternates(path),
+        },
       });
     }
 
     for (const product of products) {
+      const path = `products/${product.slug}`;
+
       entries.push({
-        url: absoluteUrl(localizedPath(lang, `products/${product.slug}`)),
+        url: absoluteUrl(localizedPath(lang, path)),
         lastModified: now,
         changeFrequency: "monthly",
         priority: 0.7,
+        alternates: {
+          languages: localizedAlternates(path),
+        },
+        ...(product.image ? { images: [absoluteUrl(product.image)] } : {}),
       });
     }
 
     for (const job of jobs) {
+      const path = `careers/${job.id}`;
+
       entries.push({
-        url: absoluteUrl(localizedPath(lang, `careers/${job.id}`)),
+        url: absoluteUrl(localizedPath(lang, path)),
         lastModified: now,
         changeFrequency: "monthly",
         priority: 0.5,
+        alternates: {
+          languages: localizedAlternates(path),
+        },
       });
     }
   }

@@ -30,7 +30,7 @@ export const faqs: FAQItem[] = [
     questionEn: "What products are included in the portfolio?",
     questionFa: "چه محصولاتی در سبد فرادید اطلس قرار دارد؟",
     answerEn:
-      "The DOCX-defined portfolio includes rice, legumes and pulses, seeds and kernels, nuts, spices and seasonings, and sugar.",
+      "The portfolio includes rice, legumes and pulses, seeds and kernels, nuts, spices and seasonings, and sugar.",
     answerFa:
       "سبد محصولات فرادید اطلس شامل برنج، حبوبات، دانه‌ها، مغزها، ادویه‌ها، چاشنی‌ها و شکر است.",
     category: "products",
@@ -50,7 +50,7 @@ export const faqs: FAQItem[] = [
     questionEn: "Where are the company offices listed?",
     questionFa: "دفاتر فرادید اطلس در کجا قرار دارند؟",
     answerEn:
-      "The DOCX lists company offices in Tehran, Isfahan, Dubai, and Oman. Shahrekord is referenced as operational and warehouse support in Iran.",
+      "The company has offices in Tehran, Isfahan, Dubai, and Oman, with Shahrekord supporting operations and warehousing in Iran.",
     answerFa:
       "دفاتر شرکت در تهران، اصفهان، دبی و عمان قرار دارند. شهرکرد نیز به‌عنوان پشتیبانی عملیاتی و انباری در ایران در نظر گرفته می‌شود.",
     category: "company",
@@ -67,7 +67,7 @@ export const faqs: FAQItem[] = [
   },
   {
     id: 6,
-    questionEn: "How is quality described in the source content?",
+    questionEn: "How does Faradid Atlas approach quality?",
     questionFa: "رویکرد فرادید اطلس در کیفیت چگونه است؟",
     answerEn:
       "Products are selected according to global quality and hygiene standards, with ISO 22000 named as a guiding discipline for food safety and quality systems.",

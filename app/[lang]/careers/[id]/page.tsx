@@ -36,19 +36,19 @@ export async function generateMetadata({ params }: JobDetailPageProps) {
       lang,
       path: "careers",
       titleEn: "Career Opportunity Not Found | Faradid Atlas",
-      titleFa: "فرصت شغلی پیدا نشد | فرادید اطلس",
+      titleFa: "فرصت همکاری پیدا نشد | فرادید اطلس",
       descriptionEn:
-        "Explore evergreen opportunity areas connected to Faradid Atlas' supply chain, quality, and customer relationship work.",
+        "Explore career paths at Faradid Atlas across supply chain, quality, sales, distribution, and customer relations.",
       descriptionFa:
-        "حوزه‌های همکاری مرتبط با زنجیره تامین، کیفیت و ارتباط با مشتریان در فرادید اطلس را ببینید.",
+        "با مسیرهای همکاری در فرادید اطلس آشنا شوید؛ از زنجیره تأمین و کیفیت تا فروش، توزیع و ارتباط با مشتریان.",
     });
   }
 
   return buildPageMetadata({
     lang,
     path: `careers/${job.id}`,
-    titleEn: `${job.titleEn} | Careers | Faradid Atlas`,
-    titleFa: `${job.titleFa} | فرصت‌های شغلی | فرادید اطلس`,
+    titleEn: `${job.titleEn} Careers | Faradid Atlas`,
+    titleFa: `${job.titleFa} | فرصت همکاری در فرادید اطلس`,
     descriptionEn: job.descriptionEn,
     descriptionFa: job.descriptionFa,
   });
@@ -72,9 +72,10 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
 
   const title = lang === "en" ? job.titleEn : job.titleFa;
   const jobUrl = absoluteUrl(localizedPath(lang, `careers/${job.id}`));
+  const description = lang === "en" ? job.descriptionEn : job.descriptionFa;
 
   return (
-    <div dir={lang === "fa" ? "rtl" : "ltr"}>
+    <div lang={lang} dir={lang === "fa" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
         {/* Breadcrumb */}
@@ -115,9 +116,19 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "WebPage",
+                "@id": `${jobUrl}#webpage`,
+                url: jobUrl,
+                name: title,
+                description,
+                inLanguage: lang,
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
               itemListElement: [
                 {
                   "@type": "ListItem",
@@ -138,7 +149,8 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
                   item: jobUrl,
                 },
               ],
-            }),
+              },
+            ]),
           }}
         />
       </main>

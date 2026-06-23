@@ -14,6 +14,21 @@ interface PageMetadataInput {
   titleFa: string;
   descriptionEn: string;
   descriptionFa: string;
+  image?: string;
+  robots?: Metadata["robots"];
+}
+
+function normalizeTitle(title: string, brand: string) {
+  const parts = title
+    .split("|")
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  const normalizedParts = parts.filter(
+    (part, index) => part !== brand || index === parts.lastIndexOf(brand),
+  );
+
+  return normalizedParts.length > 0 ? normalizedParts.join(" | ") : title;
 }
 
 export function buildPageMetadata({
@@ -23,15 +38,33 @@ export function buildPageMetadata({
   titleFa,
   descriptionEn,
   descriptionFa,
+  image = siteConfig.defaultOgImagePath,
+  robots,
 }: PageMetadataInput): Metadata {
   const isFa = lang === "fa";
-  const title = isFa ? titleFa : titleEn;
+  const brand = isFa ? siteConfig.nameFa : siteConfig.name;
+  const title = normalizeTitle(isFa ? titleFa : titleEn, brand);
   const description = isFa ? descriptionFa : descriptionEn;
   const canonical = absoluteUrl(localizedPath(lang, path));
+  const imageUrl = absoluteUrl(image);
 
   return {
-    title,
+    title: {
+      absolute: title,
+    },
     description,
+    robots:
+      robots ?? {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+          "max-video-preview": -1,
+        },
+      },
     alternates: {
       canonical,
       languages: localizedAlternates(path),
@@ -46,10 +79,10 @@ export function buildPageMetadata({
       alternateLocale: isFa ? ["en_US"] : ["fa_IR"],
       images: [
         {
-          url: absoluteUrl("/opengraph-image.svg"),
+          url: imageUrl,
           width: 1200,
           height: 630,
-          alt: siteConfig.name,
+          alt: title,
         },
       ],
     },
@@ -57,7 +90,7 @@ export function buildPageMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [absoluteUrl("/opengraph-image.svg")],
+      images: [imageUrl],
     },
   };
 }

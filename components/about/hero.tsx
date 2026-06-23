@@ -130,7 +130,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
             />
             <Stat
               value={25}
-              labelEn="DOCX-listed products"
+              labelEn="Portfolio products"
               labelFa="محصول در سبد تامین"
               lang={lang}
             />

@@ -22,9 +22,9 @@ const content = {
       title: "Sustainable leadership by 2030",
       body: "By 2030, Faradid Atlas aims to reach a 25% share of Iran's essential food products market while expanding its operating focus across the United Arab Emirates, India, and Oman. The company seeks to be recognized for high-quality, sustainable, and innovative food solutions.",
       notes: [
-        "The DOCX cites Statista for an Iranian food market projected above $100B by 2030.",
+        "Market research points to a large Iranian food market opportunity by 2030.",
         "The same vision calls for 15-20% annual growth and attention to 8-10% annual demand growth in cost-effective grains and legumes.",
-        "The DOCX cites FAO projections that the Middle East will require a 20% increase in food imports by 2030.",
+        "Regional food import demand is expected to keep rising across the Middle East.",
       ],
     },
     mission: {

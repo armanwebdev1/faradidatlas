@@ -5,6 +5,7 @@ import { OfficeInfo } from "@/components/contact/office-info";
 import { ResponseSLA } from "@/components/contact/response-sla";
 import { ContactHero } from "@/components/contact/contact-hero";
 import { buildPageMetadata } from "@/lib/metadata";
+import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 
 interface ContactPageProps {
@@ -23,20 +24,25 @@ export async function generateMetadata({ params }: ContactPageProps) {
   return buildPageMetadata({
     lang,
     path: "contact",
-    titleEn: "Contact Faradid Atlas",
-    titleFa: "تماس با فرادید اطلس",
+    titleEn: "Contact Faradid Atlas for Food Supply Inquiries",
+    titleFa: "تماس با فرادید اطلس برای تأمین مواد غذایی",
     descriptionEn:
-      "Contact Faradid Atlas with your product, volume, destination, and timing details for sourcing and distribution inquiries.",
+      "Send Faradid Atlas your product, volume, destination, and timing details so the team can review a practical sourcing or distribution path.",
     descriptionFa:
-      "برای ثبت درخواست همکاری، نوع محصول، حجم موردنیاز، مقصد و زمان‌بندی خود را با تیم فرادید اطلس در میان بگذارید.",
+      "نوع محصول، حجم موردنیاز، مقصد و زمان‌بندی خود را برای فرادید اطلس ارسال کنید تا تیم ما مسیر عملی تأمین یا توزیع را بررسی کند.",
   });
 }
 
 export default async function ContactPage({ params }: ContactPageProps) {
   const { lang } = await params;
+  const pageUrl = absoluteUrl(localizedPath(lang, "contact"));
+  const pageDescription =
+    lang === "en"
+      ? "Send Faradid Atlas your product, volume, destination, and timing details so the team can review a practical sourcing or distribution path."
+      : "نوع محصول، حجم موردنیاز، مقصد و زمان‌بندی خود را برای فرادید اطلس ارسال کنید تا تیم ما مسیر عملی تأمین یا توزیع را بررسی کند.";
 
   return (
-    <div dir={lang === "fa" ? "rtl" : "ltr"}>
+    <div lang={lang} dir={lang === "fa" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
         <ContactHero lang={lang} />
@@ -65,6 +71,43 @@ export default async function ContactPage({ params }: ContactPageProps) {
           </div>
         </section>
       </main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "ContactPage",
+              "@id": `${pageUrl}#webpage`,
+              url: pageUrl,
+              name:
+                lang === "en"
+                  ? "Contact Faradid Atlas"
+                  : "تماس با فرادید اطلس",
+              description: pageDescription,
+              inLanguage: lang,
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: lang === "en" ? "Home" : "خانه",
+                  item: absoluteUrl(localizedPath(lang)),
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: lang === "en" ? "Contact" : "تماس",
+                  item: pageUrl,
+                },
+              ],
+            },
+          ]),
+        }}
+      />
       <Footer lang={lang} />
     </div>
   );

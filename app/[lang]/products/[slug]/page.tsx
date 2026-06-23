@@ -1,6 +1,11 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { categoryLabels, products } from "@/components/products/product-data";
+import {
+  categoryLabels,
+  getProductBrand,
+  productBrandLabels,
+  products,
+} from "@/components/products/product-data";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { ProductPlaceholder } from "@/components/products/product-placeholder";
 import { buildPageMetadata } from "@/lib/metadata";
@@ -59,10 +64,11 @@ export async function generateMetadata({ params }: ProductDetailProps) {
   return buildPageMetadata({
     lang,
     path: `products/${product.slug}`,
-    titleEn: `${product.nameEn} | Faradid Atlas`,
-    titleFa: `${product.nameFa} | فرادید اطلس`,
+    titleEn: `${product.nameEn} | Faradid Atlas Products`,
+    titleFa: `${product.nameFa} | محصولات فرادید اطلس`,
     descriptionEn: product.descriptionEn,
     descriptionFa: product.descriptionFa,
+    image: product.image,
   });
 }
 
@@ -105,9 +111,10 @@ export default async function ProductDetailPage({
   const productUrl = absoluteUrl(
     localizedPath(lang, `products/${product.slug}`),
   );
+  const productBrand = productBrandLabels[getProductBrand(product)][lang];
 
   return (
-    <div dir={lang === "fa" ? "rtl" : "ltr"}>
+    <div lang={lang} dir={lang === "fa" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
         <nav
@@ -226,7 +233,7 @@ export default async function ProductDetailPage({
                 </h3>
                 <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">
                   {lang === "en"
-                    ? "This product is part of the DOCX-defined Faradid Atlas portfolio of essential foods. The team reviews product needs, destination, volume, and timing before proposing practical next steps."
+                    ? "This product is part of the Faradid Atlas portfolio of essential foods. The team reviews product needs, destination, volume, and timing before proposing practical next steps."
                     : "این محصول بخشی از سبد مواد غذایی اساسی فرادید اطلس طبق محتوای مرجع است. تیم ما محصول مورد نیاز، مقصد، حجم و زمان‌بندی را بررسی می‌کند و سپس گام‌های عملی بعدی را پیشنهاد می‌دهد."}
                 </p>
               </div>
@@ -255,14 +262,18 @@ export default async function ProductDetailPage({
               {
                 "@context": "https://schema.org",
                 "@type": "Product",
+                "@id": `${productUrl}#product`,
                 name,
                 description,
                 category,
+                sku: product.slug,
                 ...(product.image ? { image: absoluteUrl(product.image) } : {}),
                 brand: {
                   "@type": "Brand",
-                  name: siteConfig.name,
+                  name: productBrand,
                 },
+                inLanguage: lang,
+                mainEntityOfPage: productUrl,
                 url: productUrl,
               },
               {

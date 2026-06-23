@@ -14,13 +14,18 @@ export const siteConfig = {
   name: "Faradid Atlas",
   nameFa: "فرادید اطلس",
   legalName: "Faradid Atlas Foods",
+  brandMarkPath: "/brand/faradid-atlas-mark.png",
+  defaultOgImagePath: "/opengraph-image.svg",
   description:
-    "Faradid Atlas sources, imports, and distributes essential food products including rice, legumes, seeds, nuts, spices, and sugar.",
+    "Faradid Atlas helps businesses source, import, and distribute essential foods such as rice, legumes, nuts, seeds, spices, and sugar through reliable regional supply channels.",
   descriptionFa:
-    "فرادید اطلس محصولات غذایی اساسی مانند برنج، حبوبات، دانه‌ها، آجیل، ادویه‌جات و شکر را تامین، وارد و توزیع می‌کند.",
+    "فرادید اطلس به کسب‌وکارها کمک می‌کند مواد غذایی اساسی مانند برنج، حبوبات، مغزها، دانه‌ها، ادویه و شکر را از مسیرهای تأمین قابل اتکا تهیه، وارد و توزیع کنند.",
+  sameAs: [] as string[],
 };
 
 export function absoluteUrl(path = "") {
+  if (/^https?:\/\//i.test(path)) return path;
+
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
   return `${siteConfig.url}${normalizedPath}`;
 }
@@ -34,5 +39,6 @@ export function localizedAlternates(path = "") {
   return {
     en: absoluteUrl(localizedPath("en", path)),
     fa: absoluteUrl(localizedPath("fa", path)),
+    "x-default": absoluteUrl(localizedPath("en", path)),
   };
 }

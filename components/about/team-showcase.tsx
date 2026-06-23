@@ -12,7 +12,7 @@ const values = {
       icon: BadgeCheck,
       title: "Customer-Centricity",
       description:
-        "Prompt feedback, practical buyer-specific solutions, and long-term trust reflected in the DOCX's retention focus above 80%.",
+        "Prompt feedback, practical buyer-specific solutions, and long-term trust reflected in strong customer retention goals.",
     },
     {
       icon: Leaf,

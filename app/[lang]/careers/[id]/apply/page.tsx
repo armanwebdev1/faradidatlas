@@ -106,7 +106,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
         }
 
   return (
-    <div dir={lang === "fa" ? "rtl" : "ltr"}>
+    <div lang={lang} dir={lang === "fa" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
         <section
@@ -282,12 +282,16 @@ export async function generateMetadata({ params }: ApplyPageProps) {
     return buildPageMetadata({
       lang,
       path: "careers",
-      titleEn: "Application | Faradid Atlas",
+      titleEn: "Career Application | Faradid Atlas",
       titleFa: "درخواست همکاری | فرادید اطلس",
       descriptionEn:
-        "Submit a career application for Faradid Atlas evergreen opportunity areas.",
+        "Submit your details for review by the Faradid Atlas careers team.",
       descriptionFa:
         "درخواست همکاری خود را برای حوزه‌های همکاری فرادید اطلس ارسال کنید.",
+      robots: {
+        index: false,
+        follow: true,
+      },
     })
   }
 
@@ -300,5 +304,9 @@ export async function generateMetadata({ params }: ApplyPageProps) {
       "Submit your details for review by the Faradid Atlas careers team.",
     descriptionFa:
       "اطلاعات خود را برای بررسی توسط تیم فرصت‌های شغلی فرادید اطلس ارسال کنید.",
+    robots: {
+      index: false,
+      follow: true,
+    },
   })
 }
