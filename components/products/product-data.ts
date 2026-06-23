@@ -28,6 +28,92 @@ export interface Product {
   images?: string[];
 }
 
+export type ProductBrand = "twenty-one" | "mizban" | "golbanoo" | "hayat";
+
+export const productBrands: ProductBrand[] = [
+  "twenty-one",
+  "mizban",
+  "golbanoo",
+  "hayat",
+];
+
+export const productBrandLabels: Record<
+  ProductBrand,
+  { en: string; fa: string }
+> = {
+  "twenty-one": { en: "21", fa: "۲۱" },
+  mizban: { en: "Mizban", fa: "میزبان" },
+  golbanoo: { en: "Golbanoo", fa: "گلبانو" },
+  hayat: { en: "Hayat", fa: "حیات" },
+};
+
+export type ProductType =
+  | "basmati-rice"
+  | "jasmine-rice"
+  | "beans"
+  | "lentils"
+  | "chickpeas"
+  | "seeds-kernels"
+  | "nuts"
+  | "spices"
+  | "sweeteners";
+
+export const productTypes: ProductType[] = [
+  "basmati-rice",
+  "jasmine-rice",
+  "beans",
+  "lentils",
+  "chickpeas",
+  "seeds-kernels",
+  "nuts",
+  "spices",
+  "sweeteners",
+];
+
+export const productTypeLabels: Record<
+  ProductType,
+  { en: string; fa: string }
+> = {
+  "basmati-rice": { en: "Basmati Rice", fa: "برنج باسماتی" },
+  "jasmine-rice": { en: "Jasmine Rice", fa: "برنج جاسمین" },
+  beans: { en: "Beans", fa: "لوبیا و ماش" },
+  lentils: { en: "Lentils", fa: "عدس" },
+  chickpeas: { en: "Chickpeas", fa: "نخود" },
+  "seeds-kernels": { en: "Seeds & Kernels", fa: "دانه‌ها و مغز تخمه‌ها" },
+  nuts: { en: "Nuts", fa: "مغزها" },
+  spices: { en: "Spices", fa: "ادویه‌ها" },
+  sweeteners: { en: "Sweeteners", fa: "شکر و شیرین‌کننده‌ها" },
+};
+
+export function getProductBrand(product: Product): ProductBrand {
+  if (product.nameEn.startsWith("Mizban")) return "mizban";
+  if (product.nameEn.startsWith("Golbanoo")) return "golbanoo";
+  if (product.nameEn.startsWith("Hayat")) return "hayat";
+
+  return "twenty-one";
+}
+
+export function getProductType(product: Product): ProductType {
+  const searchText = `${product.nameEn} ${product.aliasEn ?? ""}`.toLowerCase();
+
+  if (product.category === "rice") {
+    return searchText.includes("jasmine") ? "jasmine-rice" : "basmati-rice";
+  }
+
+  if (product.category === "legumes") {
+    if (searchText.includes("lentil")) return "lentils";
+    if (searchText.includes("chickpea")) return "chickpeas";
+
+    return "beans";
+  }
+
+  if (product.category === "seeds") return "seeds-kernels";
+  if (product.category === "nuts") return "nuts";
+  if (product.category === "sugar") return "sweeteners";
+
+  return "spices";
+}
+
 export const categoryLabels: Record<
   ProductCategory,
   { en: string; fa: string }

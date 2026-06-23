@@ -2,9 +2,13 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ProductsContent } from "@/components/products/products-content";
 import {
+  productBrands,
   productCategories,
+  productTypes,
   products,
+  type ProductBrand,
   type ProductCategory,
+  type ProductType,
 } from "@/components/products/product-data";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
@@ -14,6 +18,8 @@ import Image from "next/image";
 type ProductSearchParams = {
   q?: string | string[];
   category?: string | string[];
+  brand?: string | string[];
+  type?: string | string[];
 };
 
 interface ProductsPageProps {
@@ -50,16 +56,30 @@ export default async function ProductsPage({
   const isRTL = lang === "fa";
   const rawSearchQuery = resolvedSearchParams.q;
   const rawCategory = resolvedSearchParams.category;
+  const rawBrand = resolvedSearchParams.brand;
+  const rawType = resolvedSearchParams.type;
   const searchQuery = Array.isArray(rawSearchQuery)
     ? (rawSearchQuery[0] ?? "")
     : (rawSearchQuery ?? "");
   const category = Array.isArray(rawCategory)
     ? (rawCategory[0] ?? "")
     : (rawCategory ?? "");
+  const brand = Array.isArray(rawBrand)
+    ? (rawBrand[0] ?? "")
+    : (rawBrand ?? "");
+  const type = Array.isArray(rawType)
+    ? (rawType[0] ?? "")
+    : (rawType ?? "");
   const initialCategory = productCategories.includes(
     category as ProductCategory,
   )
     ? (category as ProductCategory)
+    : null;
+  const initialBrand = productBrands.includes(brand as ProductBrand)
+    ? (brand as ProductBrand)
+    : null;
+  const initialType = productTypes.includes(type as ProductType)
+    ? (type as ProductType)
     : null;
 
   return (
@@ -116,6 +136,8 @@ export default async function ProductsPage({
           products={products}
           initialQuery={searchQuery}
           initialCategory={initialCategory}
+          initialBrand={initialBrand}
+          initialType={initialType}
         />
         <script
           type="application/ld+json"

@@ -4,11 +4,19 @@ import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import type { Language } from "@/lib/i18n";
 import {
   categoryLabels,
+  getProductBrand,
+  getProductType,
+  productBrands,
   productCategories,
+  productBrandLabels,
+  productTypes,
+  productTypeLabels,
   type Product,
+  type ProductBrand,
   type ProductCategory,
+  type ProductType,
 } from "./product-data";
-import { Filters } from "./filters";
+import { Filters, type ProductFilterSelection } from "./filters";
 import { Sorting, type ProductSortValue } from "./sorting";
 import { ProductCard } from "./product-card";
 
@@ -17,6 +25,8 @@ interface ProductsContentProps {
   products: Product[];
   initialQuery?: string;
   initialCategory?: ProductCategory | null;
+  initialBrand?: ProductBrand | null;
+  initialType?: ProductType | null;
 }
 
 function normalizeSearchText(value: string) {
@@ -41,6 +51,10 @@ function productSearchText(product: Product) {
     product.descriptionFa,
     category.en,
     category.fa,
+    productBrandLabels[getProductBrand(product)].en,
+    productBrandLabels[getProductBrand(product)].fa,
+    productTypeLabels[getProductType(product)].en,
+    productTypeLabels[getProductType(product)].fa,
     product.category,
   ]
     .filter(Boolean)
@@ -83,15 +97,37 @@ function readCategoryFromUrl(searchParams: URLSearchParams) {
     : null;
 }
 
+function readBrandFromUrl(searchParams: URLSearchParams) {
+  const brand = searchParams.get("brand");
+
+  return productBrands.includes(brand as ProductBrand)
+    ? (brand as ProductBrand)
+    : null;
+}
+
+function readTypeFromUrl(searchParams: URLSearchParams) {
+  const type = searchParams.get("type");
+
+  return productTypes.includes(type as ProductType)
+    ? (type as ProductType)
+    : null;
+}
+
 export function ProductsContent({
   lang,
   products,
   initialQuery = "",
   initialCategory = null,
+  initialBrand = null,
+  initialType = null,
 }: ProductsContentProps) {
   const [clientQuery, setClientQuery] = useState(initialQuery);
   const [selectedCategory, setSelectedCategory] =
     useState<ProductCategory | null>(initialCategory);
+  const [selectedBrand, setSelectedBrand] =
+    useState<ProductBrand | null>(initialBrand);
+  const [selectedType, setSelectedType] =
+    useState<ProductType | null>(initialType);
   const [sortValue, setSortValue] = useState<ProductSortValue>("relevance");
   const deferredQuery = useDeferredValue(clientQuery);
 
@@ -100,6 +136,8 @@ export function ProductsContent({
       const url = new URL(window.location.href);
       setClientQuery(url.searchParams.get("q") ?? initialQuery);
       setSelectedCategory(readCategoryFromUrl(url.searchParams));
+      setSelectedBrand(readBrandFromUrl(url.searchParams));
+      setSelectedType(readTypeFromUrl(url.searchParams));
     };
     const frame = window.requestAnimationFrame(syncQueryFromUrl);
 
@@ -111,17 +149,58 @@ export function ProductsContent({
     };
   }, [initialQuery]);
 
-  const handleCategoryChange = (category: ProductCategory | null) => {
-    setSelectedCategory(category);
+  const handleFiltersChange = (filters: ProductFilterSelection) => {
+    setSelectedCategory(filters.category);
+    setSelectedBrand(filters.brand);
+    setSelectedType(filters.type);
 
     const url = new URL(window.location.href);
-    if (category) {
-      url.searchParams.set("category", category);
+    if (filters.category) {
+      url.searchParams.set("category", filters.category);
     } else {
       url.searchParams.delete("category");
     }
-    window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+
+    if (filters.brand) {
+      url.searchParams.set("brand", filters.brand);
+    } else {
+      url.searchParams.delete("brand");
+    }
+
+    if (filters.type) {
+      url.searchParams.set("type", filters.type);
+    } else {
+      url.searchParams.delete("type");
+    }
+
+    window.history.replaceState(
+      null,
+      "",
+      `${url.pathname}${url.search}${url.hash}`,
+    );
   };
+
+  const availableCategories = useMemo(
+    () =>
+      productCategories.filter((category) =>
+        products.some((product) => product.category === category),
+      ),
+    [products],
+  );
+  const availableBrands = useMemo(
+    () =>
+      productBrands.filter((brand) =>
+        products.some((product) => getProductBrand(product) === brand),
+      ),
+    [products],
+  );
+  const availableTypes = useMemo(
+    () =>
+      productTypes.filter((type) =>
+        products.some((product) => getProductType(product) === type),
+      ),
+    [products],
+  );
 
   const searchIndex = useMemo(
     () =>
@@ -141,17 +220,29 @@ export function ProductsContent({
       .filter((item) => item.text.includes(normalizedQuery))
       .map((item) => item.product);
   }, [products, query, searchIndex]);
-  const categoryFilteredProducts = useMemo(() => {
-    if (!selectedCategory) return searchedProducts;
+  const filteredProducts = useMemo(
+    () =>
+      searchedProducts.filter((product) => {
+        const categoryMatches =
+          !selectedCategory || product.category === selectedCategory;
+        const brandMatches =
+          !selectedBrand || getProductBrand(product) === selectedBrand;
+        const typeMatches =
+          !selectedType || getProductType(product) === selectedType;
 
-    return searchedProducts.filter(
-      (product) => product.category === selectedCategory,
-    );
-  }, [searchedProducts, selectedCategory]);
-  const visibleProducts = useMemo(
-    () => sortProducts(categoryFilteredProducts, sortValue, lang),
-    [categoryFilteredProducts, lang, sortValue],
+        return categoryMatches && brandMatches && typeMatches;
+      }),
+    [searchedProducts, selectedBrand, selectedCategory, selectedType],
   );
+  const visibleProducts = useMemo(
+    () => sortProducts(filteredProducts, sortValue, lang),
+    [filteredProducts, lang, sortValue],
+  );
+  const activeFilterLabels = [
+    selectedCategory ? categoryLabels[selectedCategory][lang] : null,
+    selectedBrand ? productBrandLabels[selectedBrand][lang] : null,
+    selectedType ? productTypeLabels[selectedType][lang] : null,
+  ].filter(Boolean);
 
   return (
     <section
@@ -166,10 +257,17 @@ export function ProductsContent({
                 {lang === "en" ? "Filter" : "فیلتر"}
               </h3>
               <Filters
-                key={selectedCategory ?? "all"}
+                key={`${selectedCategory ?? "all"}-${selectedBrand ?? "all"}-${
+                  selectedType ?? "all"
+                }`}
                 lang={lang}
                 selectedCategory={selectedCategory}
-                onCategoryChange={handleCategoryChange}
+                selectedBrand={selectedBrand}
+                selectedType={selectedType}
+                categoryOptions={availableCategories}
+                brandOptions={availableBrands}
+                typeOptions={availableTypes}
+                onFiltersChange={handleFiltersChange}
               />
             </div>
           </div>
@@ -187,6 +285,18 @@ export function ProductsContent({
                       {query}
                     </span>
                   </p>
+                )}
+                {activeFilterLabels.length > 0 && (
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {activeFilterLabels.map((label) => (
+                      <span
+                        key={label}
+                        className="rounded-full border border-border bg-white/70 px-3 py-1 text-xs font-medium text-foreground/70"
+                      >
+                        {label}
+                      </span>
+                    ))}
+                  </div>
                 )}
               </div>
               <Sorting
