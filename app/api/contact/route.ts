@@ -1,11 +1,12 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
+import { parseEmailRecipients } from "@/lib/email";
 import { siteConfig } from "@/lib/site";
 
 export const runtime = "nodejs";
 
-const defaultLeadToEmail = "ahmadpour.web@gmail.com";
+const defaultLeadToEmail = "ahmadpour.web@gmail.com,info.faradidco@gmail.com";
 
 const contactSchema = z.object({
   lang: z.enum(["en", "fa"]),
@@ -86,12 +87,14 @@ export async function POST(request: NextRequest) {
     }
 
     const apiKey = process.env.RESEND_API_KEY;
-    const to = process.env.LEAD_TO_EMAIL || defaultLeadToEmail;
+    const to = parseEmailRecipients(
+      process.env.LEAD_TO_EMAIL || defaultLeadToEmail,
+    );
     const from =
       process.env.LEAD_FROM_EMAIL ||
       `Faradid Atlas <noreply@${new URL(siteConfig.url).hostname}>`;
 
-    if (!apiKey) {
+    if (!apiKey || to.length === 0) {
       return NextResponse.json(
         { ok: false, message: "Email delivery is not configured." },
         { status: 503 },
