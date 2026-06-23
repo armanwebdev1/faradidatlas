@@ -1,34 +1,65 @@
 ﻿"use client";
 
 import type React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Language } from "@/lib/i18n";
 
 interface ContactFormProps {
   lang: Language;
+  initialProductInterest?: string;
 }
 
-export function ContactForm({ lang }: ContactFormProps) {
-  const backendEnabled = process.env.NEXT_PUBLIC_ENABLE_BACKEND === "true";
-  const [formData, setFormData] = useState({
+function getInitialFormData(productInterest = "") {
+  return {
     company: "",
     name: "",
     email: "",
     phone: "",
     role: "",
-    productInterest: "",
+    productInterest,
     volume: "",
     destination: "",
     timeline: "",
     message: "",
     website: "",
-  });
+  };
+}
+
+export function ContactForm({
+  lang,
+  initialProductInterest,
+}: ContactFormProps) {
+  const backendEnabled = process.env.NEXT_PUBLIC_ENABLE_BACKEND === "true";
+  const [formData, setFormData] = useState(() =>
+    getInitialFormData(initialProductInterest),
+  );
 
   const [submitted, setSubmitted] = useState(false);
   const [formError, setFormError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const inputBase = "form-input";
   const labelBase = "form-label mb-2";
+  const productOptions = [
+    { value: "rice", labelEn: "Rice", labelFa: "برنج" },
+    { value: "legumes", labelEn: "Legumes", labelFa: "حبوبات" },
+    { value: "spices", labelEn: "Spices", labelFa: "ادویه‌جات" },
+    { value: "nuts", labelEn: "Nuts", labelFa: "آجیل" },
+    { value: "seeds", labelEn: "Seeds", labelFa: "دانه‌ها" },
+    { value: "sugar", labelEn: "Sugar", labelFa: "شکر" },
+    { value: "multiple", labelEn: "Multiple Products", labelFa: "چند محصول" },
+  ];
+  const hasInitialProductOption =
+    !!initialProductInterest &&
+    !productOptions.some((option) => option.value === initialProductInterest);
+
+  useEffect(() => {
+    if (!initialProductInterest) return;
+
+    setFormData((prev) => ({
+      ...prev,
+      productInterest: initialProductInterest,
+    }));
+  }, [initialProductInterest]);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -48,19 +79,7 @@ export function ContactForm({ lang }: ContactFormProps) {
     try {
       if (!backendEnabled) {
         setSubmitted(true);
-        setFormData({
-          company: "",
-          name: "",
-          email: "",
-          phone: "",
-          role: "",
-          productInterest: "",
-          volume: "",
-          destination: "",
-          timeline: "",
-          message: "",
-          website: "",
-        });
+        setFormData(getInitialFormData(initialProductInterest));
         return;
       }
 
@@ -81,19 +100,7 @@ export function ContactForm({ lang }: ContactFormProps) {
       }
 
       setSubmitted(true);
-      setFormData({
-        company: "",
-        name: "",
-        email: "",
-        phone: "",
-        role: "",
-        productInterest: "",
-        volume: "",
-        destination: "",
-        timeline: "",
-        message: "",
-        website: "",
-      });
+      setFormData(getInitialFormData(initialProductInterest));
     } catch (error) {
       setFormError(
         error instanceof Error
@@ -245,19 +252,16 @@ export function ContactForm({ lang }: ContactFormProps) {
             <option value="">
               {lang === "en" ? "Select product..." : "محصول را انتخاب کنید..."}
             </option>
-            <option value="rice">{lang === "en" ? "Rice" : "برنج"}</option>
-            <option value="legumes">
-              {lang === "en" ? "Legumes" : "حبوبات"}
-            </option>
-            <option value="spices">
-              {lang === "en" ? "Spices" : "ادویه‌جات"}
-            </option>
-            <option value="nuts">{lang === "en" ? "Nuts" : "آجیل"}</option>
-            <option value="seeds">{lang === "en" ? "Seeds" : "دانه‌ها"}</option>
-            <option value="sugar">{lang === "en" ? "Sugar" : "شکر"}</option>
-            <option value="multiple">
-              {lang === "en" ? "Multiple Products" : "چند محصول"}
-            </option>
+            {hasInitialProductOption && (
+              <option value={initialProductInterest}>
+                {initialProductInterest}
+              </option>
+            )}
+            {productOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {lang === "en" ? option.labelEn : option.labelFa}
+              </option>
+            ))}
           </select>
         </div>
 

@@ -240,7 +240,7 @@ export default async function ProductDetailPage({
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link
-                  href={`/${lang}/contact?product=${product.id}`}
+                  href={`/${lang}/contact?product=${product.slug}#contact-form`}
                   className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-primary/90 transition-colors text-center text-sm sm:text-base shadow-sm hover:shadow-md"
                 >
                   {lang === "en" ? "Start an Inquiry" : "شروع درخواست"}

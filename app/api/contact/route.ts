@@ -5,6 +5,8 @@ import { siteConfig } from "@/lib/site";
 
 export const runtime = "nodejs";
 
+const defaultLeadToEmail = "ahmadpour.web@gmail.com";
+
 const contactSchema = z.object({
   lang: z.enum(["en", "fa"]),
   company: z.string().trim().min(1).max(160),
@@ -84,12 +86,12 @@ export async function POST(request: NextRequest) {
     }
 
     const apiKey = process.env.RESEND_API_KEY;
-    const to = process.env.LEAD_TO_EMAIL;
+    const to = process.env.LEAD_TO_EMAIL || defaultLeadToEmail;
     const from =
       process.env.LEAD_FROM_EMAIL ||
       `Faradid Atlas <noreply@${new URL(siteConfig.url).hostname}>`;
 
-    if (!apiKey || !to) {
+    if (!apiKey) {
       return NextResponse.json(
         { ok: false, message: "Email delivery is not configured." },
         { status: 503 },
@@ -97,7 +99,10 @@ export async function POST(request: NextRequest) {
     }
 
     const resend = new Resend(apiKey);
-    const subject = `Faradid Atlas inquiry: ${payload.productInterest || payload.company}`;
+    const subjectPrefix = payload.productInterest
+      ? "Faradid Atlas product inquiry"
+      : "Faradid Atlas contact inquiry";
+    const subject = `${subjectPrefix}: ${payload.productInterest || payload.company}`;
     const rows = renderRows({
       Language: payload.lang,
       Company: payload.company,

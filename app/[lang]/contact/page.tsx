@@ -4,14 +4,20 @@ import { ContactForm } from "@/components/contact/contact-form";
 import { OfficeInfo } from "@/components/contact/office-info";
 import { ResponseSLA } from "@/components/contact/response-sla";
 import { ContactHero } from "@/components/contact/contact-hero";
+import { products } from "@/components/products/product-data";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
+
+interface ContactSearchParams {
+  product?: string;
+}
 
 interface ContactPageProps {
   params: Promise<{
     lang: Language;
   }>;
+  searchParams?: Promise<ContactSearchParams>;
 }
 
 export async function generateStaticParams() {
@@ -33,8 +39,26 @@ export async function generateMetadata({ params }: ContactPageProps) {
   });
 }
 
-export default async function ContactPage({ params }: ContactPageProps) {
+export default async function ContactPage({
+  params,
+  searchParams,
+}: ContactPageProps) {
   const { lang } = await params;
+  const resolvedSearchParams: ContactSearchParams = searchParams
+    ? await searchParams
+    : {};
+  const productParam = resolvedSearchParams.product;
+  const selectedProduct = productParam
+    ? products.find(
+        (product) =>
+          product.slug === productParam || String(product.id) === productParam,
+      )
+    : undefined;
+  const initialProductInterest = selectedProduct
+    ? lang === "en"
+      ? selectedProduct.nameEn
+      : selectedProduct.nameFa
+    : undefined;
   const pageUrl = absoluteUrl(localizedPath(lang, "contact"));
   const pageDescription =
     lang === "en"
@@ -53,7 +77,10 @@ export default async function ContactPage({ params }: ContactPageProps) {
         >
           <div className="container-wide grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
             <div className="lg:col-span-2">
-              <ContactForm lang={lang} />
+              <ContactForm
+                lang={lang}
+                initialProductInterest={initialProductInterest}
+              />
             </div>
 
             <div id="contact-offices" className="lg:sticky lg:top-32">
