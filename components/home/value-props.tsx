@@ -39,28 +39,28 @@ const valueItems = {
   fa: [
     {
       icon: Globe,
-      title: "تأمین مستقیم از بازارهای جهانی",
+      title: "تأمین مستقیم از مبدا",
       description:
-        "از مبدأهای معتبر غذایی مثل هند و پاکستان، محصول مطمئن را بی‌واسطه و با پشتوانه روشن به بازار ایران می‌رسانیم.",
+        "با تأمین‌کنندگان معتبر در بازارهای اصلی تولید غذا، از جمله هند و پاکستان، همکاری می‌کنیم تا محصول باکیفیت با مسیر تأمین روشن‌تری به بازار برسد.",
       accentColor: "accent-warm-gold",
     },
     {
       icon: CheckCircle,
       title: "کیفیت؛ شرط اول همکاری",
       description:
-        "ما هر محصول را از نظر سلامت، ثبات کیفیت و استانداردهایی مانند ISO 22000 بررسی می‌کنیم؛ حجم، بعد از اطمینان می‌آید.",
+        "پیش از هر همکاری، محصول از نظر سلامت، کیفیت و ثبات بررسی می‌شود. استانداردهایی مانند ISO 22000 برای ما بخشی از نظم کاری در زنجیره تأمین غذاست.",
       accentColor: "accent-warm-red",
     },
     {
       icon: Route,
-      title: "تأمین پیوسته",
+      title: "تأمین منظم برای خرید عمده",
       description:
         "با شبکه منطقه‌ای دفتر، شعبه و انبار، سفارش‌های عمده و سازمانی را با ریتمی قابل اعتماد پشتیبانی می‌کنیم.",
       accentColor: "accent",
     },
     {
       icon: Package,
-      title: "راه روشن خرید",
+      title: "مسیر ساده‌تر برای خرید",
       description:
         "از تماس حضوری تا فروش دیجیتال، مسیر خرید را برای عمده‌فروشان، سازمان‌ها و فعالان خدمات غذایی ساده و سریع نگه می‌داریم.",
       accentColor: "accent-warm-orange",
@@ -130,7 +130,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
                         }`}
                         dir={isRTL ? "rtl" : "ltr"}
                       >
-                        <div className="h-full flex flex-col p-6 sm:p-8 rounded-lg border border-foreground/10 bg-background/85 backdrop-blur-md shadow-[0_16px_42px_-30px_rgba(12,18,24,0.35),0_1px_0_rgba(255,255,255,0.55)_inset]">
+                        <div className="h-full flex flex-col p-6 sm:p-8 rounded-lg border border-foreground/10 bg-background/90 backdrop-blur-md shadow-[0_24px_62px_-48px_rgba(12,18,24,0.44),0_10px_24px_-20px_rgba(12,18,24,0.18),0_1px_0_rgba(255,255,255,0.62)_inset]">
                           <div className="relative mb-6 sm:mb-8 inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20">
                             <div className="absolute inset-0 rounded-lg bg-linear-to-br from-brand-navy/10 to-brand-navy/4" />
                             <IconComponent

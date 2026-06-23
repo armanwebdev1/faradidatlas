@@ -33,7 +33,7 @@ const slides: HeroSlide[] = [
     image: heroImage("home-hero-1.webp"),
     title: {
       en: "Reliable Food Supply",
-      fa: "تأمین مطمئن مواد غذایی",
+      fa: "تأمین مواد غذایی",
     },
     subtitle: {
       en: "Food Security in Practice",
@@ -49,7 +49,7 @@ const slides: HeroSlide[] = [
     image: heroImage("home-hero-2.webp"),
     title: {
       en: "Direct Sourcing Network",
-      fa: "شبکه مستقیم تأمین",
+      fa: "ارتباط نزدیک با مبدا تامین",
     },
     subtitle: {
       en: "From Origin to Market",
@@ -65,7 +65,7 @@ const slides: HeroSlide[] = [
     image: heroImage("home-hero-3.webp"),
     title: {
       en: "Steady Regional Reach",
-      fa: "حضور منظم منطقه‌ای",
+      fa: "پشتیبانی مطمئن",
     },
     subtitle: {
       en: "Built for B2B Continuity",
