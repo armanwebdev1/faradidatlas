@@ -20,7 +20,7 @@ export function ProductCard({ product, lang }: ProductCardProps) {
   const isRTL = lang === "fa";
 
   return (
-    <Link href={`/${lang}/products/${product.id}`}>
+    <Link href={`/${lang}/products/${product.slug}`}>
       <div className="group relative h-full bg-white rounded-2xl overflow-hidden border border-border transition-all duration-500 md:hover:border-accent-warm-gold/60 md:hover:shadow-lg md:hover:-translate-y-1 cursor-pointer">
         <div className="absolute inset-0 bg-gradient-to-br from-accent-warm-gold/3 to-transparent opacity-0 transition-opacity duration-500 md:group-hover:opacity-100 -z-10" />
 

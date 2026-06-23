@@ -17,6 +17,7 @@ export const productCategories: ProductCategory[] = [
 
 export interface Product {
   id: number;
+  slug: string;
   nameEn: string;
   nameFa: string;
   aliasEn?: string;
@@ -157,6 +158,7 @@ function imageSet(image: string) {
 export const products: Product[] = [
   {
     id: 1,
+    slug: "mizban-super-basmati-rice",
     nameEn: "Mizban Super Basmati Rice",
     nameFa: "برنج سوپر باسماتی میزبان",
     aliasEn: "Long Grain Basmati Rice",
@@ -170,6 +172,7 @@ export const products: Product[] = [
   },
   {
     id: 2,
+    slug: "mizban-1121-white-basmati-rice",
     nameEn: "Mizban 1121 White Basmati Rice",
     nameFa: "برنج سفید باسماتی ۱۱۲۱ میزبان",
     aliasEn: "Premium Quality 1121 Basmati",
@@ -183,6 +186,7 @@ export const products: Product[] = [
   },
   {
     id: 3,
+    slug: "twenty-one-white-beans-carton",
     nameEn: "21 White Beans Carton",
     nameFa: "لوبیا سفید کارتنی ۲۱",
     aliasEn: "White Beans",
@@ -196,6 +200,7 @@ export const products: Product[] = [
   },
   {
     id: 4,
+    slug: "golbanoo-386-basmati-rice",
     nameEn: "Golbanoo 386 Basmati Rice",
     nameFa: "برنج باسماتی ۳۸۶ گلبانو",
     aliasEn: "Long Grain Rice",
@@ -209,6 +214,7 @@ export const products: Product[] = [
   },
   {
     id: 5,
+    slug: "hayat-thai-jasmine-rice",
     nameEn: "Hayat Thai Jasmine Rice",
     nameFa: "برنج جاسمین تایلندی حیات",
     aliasEn: "Thai Jasmine Long Grain Rice",
@@ -222,6 +228,7 @@ export const products: Product[] = [
   },
   {
     id: 6,
+    slug: "twenty-one-turmeric",
     nameEn: "21 Turmeric",
     nameFa: "زردچوبه ۲۱",
     aliasEn: "Ground Turmeric",
@@ -235,6 +242,7 @@ export const products: Product[] = [
   },
   {
     id: 7,
+    slug: "twenty-one-walnut-kernels",
     nameEn: "21 Walnut Kernels",
     nameFa: "مغز گردو ۲۱",
     aliasEn: "Premium Walnut Kernels",
@@ -248,6 +256,7 @@ export const products: Product[] = [
   },
   {
     id: 8,
+    slug: "twenty-one-sunflower-seed-kernels",
     nameEn: "21 Sunflower Seed Kernels",
     nameFa: "مغز تخمه آفتابگردان ۲۱",
     aliasEn: "Sunflower Kernels",
@@ -261,6 +270,7 @@ export const products: Product[] = [
   },
   {
     id: 9,
+    slug: "twenty-one-pumpkin-seed-kernels",
     nameEn: "21 Pumpkin Seed Kernels",
     nameFa: "مغز تخمه کدو ۲۱",
     aliasEn: "Pumpkin Kernels",
@@ -274,6 +284,7 @@ export const products: Product[] = [
   },
   {
     id: 10,
+    slug: "twenty-one-cashew-nuts",
     nameEn: "21 Cashew Nuts",
     nameFa: "بادام هندی ۲۱",
     aliasEn: "Cashews",
@@ -287,6 +298,7 @@ export const products: Product[] = [
   },
   {
     id: 11,
+    slug: "twenty-one-red-lentil",
     nameEn: "21 Red Lentil",
     nameFa: "عدس قرمز ۲۱",
     aliasEn: "Red Lentils",
@@ -300,6 +312,7 @@ export const products: Product[] = [
   },
   {
     id: 12,
+    slug: "twenty-one-chickpeas",
     nameEn: "21 Chickpeas",
     nameFa: "نخود ۲۱",
     aliasEn: "Pea / Chickpea",
@@ -313,6 +326,7 @@ export const products: Product[] = [
   },
   {
     id: 13,
+    slug: "twenty-one-white-bean-bag",
     nameEn: "21 White Bean Bag",
     nameFa: "لوبیا سفید کیسه‌ای ۲۱",
     aliasEn: "White Bean",
@@ -326,6 +340,7 @@ export const products: Product[] = [
   },
   {
     id: 14,
+    slug: "twenty-one-mung-bean",
     nameEn: "21 Mung Bean",
     nameFa: "ماش ۲۱",
     aliasEn: "Mung Beans",
@@ -339,6 +354,7 @@ export const products: Product[] = [
   },
   {
     id: 15,
+    slug: "twenty-one-kidney-bean",
     nameEn: "21 Kidney Bean",
     nameFa: "لوبیا قرمز ۲۱",
     aliasEn: "Red Kidney Beans",
@@ -352,6 +368,7 @@ export const products: Product[] = [
   },
   {
     id: 16,
+    slug: "twenty-one-desi-chickpea",
     nameEn: "21 Desi Chickpea",
     nameFa: "نخود دسی ۲۱",
     aliasEn: "Desi Chickpeas",
@@ -365,6 +382,7 @@ export const products: Product[] = [
   },
   {
     id: 17,
+    slug: "twenty-one-popcorn-corn",
     nameEn: "21 Popcorn Corn",
     nameFa: "ذرت پاپ‌کورن ۲۱",
     aliasEn: "Popcorn Kernels",
@@ -378,6 +396,7 @@ export const products: Product[] = [
   },
   {
     id: 18,
+    slug: "golbanoo-sella-basmati-rice",
     nameEn: "Golbanoo Sella Basmati Rice",
     nameFa: "برنج سیلا باسماتی گلبانو",
     aliasEn: "Long Grain Sella Rice",
@@ -391,6 +410,7 @@ export const products: Product[] = [
   },
   {
     id: 19,
+    slug: "twenty-one-sella-basmati-rice",
     nameEn: "21 Sella Basmati Rice",
     nameFa: "برنج سیلا باسماتی ۲۱",
     aliasEn: "1121 Basmati Sella Rice",
@@ -404,6 +424,7 @@ export const products: Product[] = [
   },
   {
     id: 20,
+    slug: "twenty-one-black-pepper",
     nameEn: "21 Black Pepper",
     nameFa: "فلفل سیاه ۲۱",
     aliasEn: "Black Pepper",

@@ -152,7 +152,9 @@ export default async function ProductsPage({
               itemListElement: products.map((product, index) => ({
                 "@type": "ListItem",
                 position: index + 1,
-                url: absoluteUrl(localizedPath(lang, `products/${product.id}`)),
+                url: absoluteUrl(
+                  localizedPath(lang, `products/${product.slug}`),
+                ),
                 name: lang === "en" ? product.nameEn : product.nameFa,
               })),
             }),

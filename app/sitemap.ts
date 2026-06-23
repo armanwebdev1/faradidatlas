@@ -21,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     for (const product of products) {
       entries.push({
-        url: absoluteUrl(localizedPath(lang, `products/${product.id}`)),
+        url: absoluteUrl(localizedPath(lang, `products/${product.slug}`)),
         lastModified: now,
         changeFrequency: "monthly",
         priority: 0.7,

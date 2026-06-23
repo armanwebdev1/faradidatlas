@@ -14,10 +14,18 @@ import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import {
   categoryLabels,
+  getProductBrand,
+  getProductType,
+  productBrandLabels,
+  productBrands,
   productCategories,
+  productTypeLabels,
+  productTypes,
   products,
   type Product,
+  type ProductBrand,
   type ProductCategory,
+  type ProductType,
 } from "@/components/products/product-data";
 import {
   Briefcase,
@@ -146,6 +154,50 @@ export function Header({ lang }: HeaderProps) {
                 : `${numberFormatter.format(count)} محصول`,
             href: `/${lang}/products?category=${category}#product-catalog`,
             image: categoryProducts.find((product) => product.image)?.image,
+          };
+        })
+        .filter((item) => item.count > 0),
+    [lang, numberFormatter],
+  );
+  const productBrandMenuItems = useMemo(
+    () =>
+      productBrands
+        .map((brand) => {
+          const count = products.filter(
+            (product) => getProductBrand(product) === brand,
+          ).length;
+
+          return {
+            key: brand,
+            label: productBrandLabels[brand][lang],
+            count,
+            countLabel:
+              lang === "en"
+                ? `${numberFormatter.format(count)} products`
+                : `${numberFormatter.format(count)} محصول`,
+            href: `/${lang}/products?brand=${brand}#product-catalog`,
+          };
+        })
+        .filter((item) => item.count > 0),
+    [lang, numberFormatter],
+  );
+  const productTypeMenuItems = useMemo(
+    () =>
+      productTypes
+        .map((type) => {
+          const count = products.filter(
+            (product) => getProductType(product) === type,
+          ).length;
+
+          return {
+            key: type,
+            label: productTypeLabels[type][lang],
+            count,
+            countLabel:
+              lang === "en"
+                ? `${numberFormatter.format(count)} products`
+                : `${numberFormatter.format(count)} محصول`,
+            href: `/${lang}/products?type=${type}#product-catalog`,
           };
         })
         .filter((item) => item.count > 0),
@@ -597,6 +649,48 @@ export function Header({ lang }: HeaderProps) {
                                 </a>
                               ))}
                             </div>
+
+                            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                              <div className="rounded-lg border border-border/50 bg-background/80 p-2">
+                                <p className="px-2 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                                  {lang === "en" ? "Brands" : "برندها"}
+                                </p>
+                                <div className="space-y-1">
+                                  {productBrandMenuItems.map((item) => (
+                                    <a
+                                      key={item.key}
+                                      href={item.href}
+                                      className="flex items-center justify-between gap-3 rounded-md px-2 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/45"
+                                    >
+                                      <span>{item.label}</span>
+                                      <span className="shrink-0 text-xs text-muted-foreground">
+                                        {numberFormatter.format(item.count)}
+                                      </span>
+                                    </a>
+                                  ))}
+                                </div>
+                              </div>
+
+                              <div className="rounded-lg border border-border/50 bg-background/80 p-2">
+                                <p className="px-2 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                                  {lang === "en" ? "Product type" : "نوع محصول"}
+                                </p>
+                                <div className="space-y-1">
+                                  {productTypeMenuItems.map((item) => (
+                                    <a
+                                      key={item.key}
+                                      href={item.href}
+                                      className="flex items-center justify-between gap-3 rounded-md px-2 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/45"
+                                    >
+                                      <span>{item.label}</span>
+                                      <span className="shrink-0 text-xs text-muted-foreground">
+                                        {numberFormatter.format(item.count)}
+                                      </span>
+                                    </a>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </details>
                       );
@@ -707,6 +801,8 @@ export function Header({ lang }: HeaderProps) {
                       lang={lang}
                       isRTL={isRTL}
                       categories={productCategoryMenuItems}
+                      brands={productBrandMenuItems}
+                      types={productTypeMenuItems}
                     />
                   </div>
                 );
@@ -763,27 +859,41 @@ type ProductCategoryMenuItem = {
   image?: string;
 };
 
+type ProductFilterMenuItem = {
+  key: ProductBrand | ProductType;
+  label: string;
+  count: number;
+  countLabel: string;
+  href: string;
+};
+
 function ProductsMegaMenu({
   lang,
   isRTL,
   categories,
+  brands,
+  types,
 }: {
   lang: Language;
   isRTL: boolean;
   categories: ProductCategoryMenuItem[];
+  brands: ProductFilterMenuItem[];
+  types: ProductFilterMenuItem[];
 }) {
   const dir = isRTL ? "rtl" : "ltr";
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
 
   return (
     <div
-      className="invisible absolute left-1/2 top-full z-[75] hidden w-[min(92vw,62rem)] -translate-x-1/2 translate-y-2 pt-3 opacity-0 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/products:visible group-hover/products:translate-y-0 group-hover/products:opacity-100 group-hover/products:pointer-events-auto group-focus-within/products:visible group-focus-within/products:translate-y-0 group-focus-within/products:opacity-100 group-focus-within/products:pointer-events-auto lg:block"
+      className={`invisible absolute left-1/2 top-full z-[75] hidden w-[min(92vw,64rem)] translate-y-2 pt-3 opacity-0 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/products:visible group-hover/products:translate-y-0 group-hover/products:opacity-100 group-hover/products:pointer-events-auto group-focus-within/products:visible group-focus-within/products:translate-y-0 group-focus-within/products:opacity-100 group-focus-within/products:pointer-events-auto lg:block ${
+        isRTL ? "-translate-x-[56%]" : "-translate-x-1/2"
+      }`}
       dir={dir}
     >
       <div className="overflow-hidden rounded-2xl border border-border/70 bg-background/98 shadow-[0_24px_70px_rgba(12,18,24,0.14)] backdrop-blur-xl">
         <div
           className={`grid ${
-            isRTL ? "grid-cols-[1fr_19rem]" : "grid-cols-[17rem_1fr]"
+            isRTL ? "grid-cols-[1fr_18rem]" : "grid-cols-[17rem_1fr]"
           } ${
             isRTL ? "text-right" : "text-left"
           }`}
@@ -837,53 +947,94 @@ function ProductsMegaMenu({
           </div>
 
           <div
-            className={`p-8 ${isRTL ? "order-1" : "order-2"}`}
+            className={`p-7 ${isRTL ? "order-1" : "order-2"}`}
             dir={dir}
           >
-            <div
-              className={`grid ${
-                isRTL
-                  ? "grid-cols-2 gap-x-8 gap-y-6"
-                  : "grid-cols-3 gap-x-10 gap-y-7"
-              }`}
-            >
-              {categories.map((item) => (
-                <a
-                  key={item.category}
-                  href={item.href}
-                  title={item.description}
-                  className="group/category flex min-w-0 items-center gap-3 rounded-lg p-1.5 transition-colors duration-200 hover:bg-muted/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/15"
-                >
-                  <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-md bg-muted shadow-sm ring-1 ring-border/50">
-                    {item.image ? (
-                      <Image
-                        src={item.image}
-                        alt=""
-                        fill
-                        sizes="32px"
-                        className="object-cover"
-                      />
-                    ) : (
-                      <span className="block h-full w-full bg-muted" />
-                    )}
-                  </span>
-                  <span className="min-w-0">
-                    <span
-                      className={`block text-sm font-semibold leading-snug text-foreground ${
-                        isRTL ? "" : "truncate"
-                      }`}
+            <div className="grid grid-cols-[1.15fr_0.8fr_1fr] gap-7">
+              <div>
+                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  {lang === "en" ? "Categories" : "دسته‌بندی‌ها"}
+                </p>
+                <div className="grid gap-1.5">
+                  {categories.map((item) => (
+                    <a
+                      key={item.category}
+                      href={item.href}
+                      title={item.description}
+                      className="group/category flex min-w-0 items-center gap-3 rounded-lg p-1.5 transition-colors duration-200 hover:bg-muted/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/15"
                     >
-                      {item.label}
-                    </span>
-                    <span className="mt-0.5 block truncate text-xs text-muted-foreground">
-                      {item.countLabel}
-                    </span>
-                  </span>
-                </a>
-              ))}
+                      <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-md bg-muted shadow-sm ring-1 ring-border/50">
+                        {item.image ? (
+                          <Image
+                            src={item.image}
+                            alt=""
+                            fill
+                            sizes="32px"
+                            className="object-cover"
+                          />
+                        ) : (
+                          <span className="block h-full w-full bg-muted" />
+                        )}
+                      </span>
+                      <span className="min-w-0">
+                        <span
+                          className={`block text-sm font-semibold leading-snug text-foreground ${
+                            isRTL ? "" : "truncate"
+                          }`}
+                        >
+                          {item.label}
+                        </span>
+                        <span className="mt-0.5 block truncate text-xs text-muted-foreground">
+                          {item.countLabel}
+                        </span>
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <MegaMenuFilterColumn
+                title={lang === "en" ? "Brands" : "برندها"}
+                items={brands}
+              />
+
+              <MegaMenuFilterColumn
+                title={lang === "en" ? "Product type" : "نوع محصول"}
+                items={types}
+              />
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function MegaMenuFilterColumn({
+  title,
+  items,
+}: {
+  title: string;
+  items: ProductFilterMenuItem[];
+}) {
+  return (
+    <div>
+      <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+        {title}
+      </p>
+      <div className="grid gap-1">
+        {items.map((item) => (
+          <a
+            key={item.key}
+            href={item.href}
+            className="flex min-w-0 items-center justify-between gap-3 rounded-lg px-2.5 py-2 text-sm font-medium text-foreground transition-colors duration-200 hover:bg-muted/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/15"
+          >
+            <span className="min-w-0 truncate">{item.label}</span>
+            <span className="shrink-0 text-xs text-muted-foreground">
+              {item.count}
+            </span>
+          </a>
+        ))}
       </div>
     </div>
   );
@@ -901,8 +1052,11 @@ function normalizeSearchText(value: string) {
 
 function productSearchText(product: Product) {
   const category = categoryLabels[product.category];
+  const brand = productBrandLabels[getProductBrand(product)];
+  const type = productTypeLabels[getProductType(product)];
 
   return [
+    product.slug,
     product.nameEn,
     product.nameFa,
     product.aliasEn,
@@ -911,6 +1065,10 @@ function productSearchText(product: Product) {
     product.descriptionFa,
     category.en,
     category.fa,
+    brand.en,
+    brand.fa,
+    type.en,
+    type.fa,
     product.category,
   ]
     .filter(Boolean)
@@ -1020,7 +1178,7 @@ function SearchResult({
 
   return (
     <a
-      href={`/${lang}/products/${product.id}`}
+      href={`/${lang}/products/${product.slug}`}
       onClick={onSelect}
       className={`flex gap-3 rounded-md border border-transparent p-2.5 transition-colors hover:border-border/70 hover:bg-muted/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 ${
         isRTL ? "flex-row-reverse text-right" : ""

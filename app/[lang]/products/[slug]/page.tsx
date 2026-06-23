@@ -6,13 +6,26 @@ import { ProductPlaceholder } from "@/components/products/product-placeholder";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath, siteConfig } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
+import { permanentRedirect } from "next/navigation";
 import Link from "next/link";
 
 interface ProductDetailProps {
   params: Promise<{
     lang: Language;
-    id: string;
+    slug: string;
   }>;
+}
+
+function isNumericProductParam(value: string) {
+  return /^[0-9]+$/.test(value);
+}
+
+function findProductBySlugOrId(slug: string) {
+  if (isNumericProductParam(slug)) {
+    return products.find((item) => item.id === Number.parseInt(slug, 10));
+  }
+
+  return products.find((item) => item.slug === slug);
 }
 
 export async function generateStaticParams() {
@@ -21,7 +34,7 @@ export async function generateStaticParams() {
 
   for (const lang of langs) {
     for (const product of products) {
-      allParams.push({ lang, id: product.id.toString() });
+      allParams.push({ lang, slug: product.slug });
     }
   }
 
@@ -29,8 +42,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ProductDetailProps) {
-  const { lang, id } = await params;
-  const product = products.find((item) => item.id === Number.parseInt(id));
+  const { lang, slug } = await params;
+  const product = findProductBySlugOrId(slug);
 
   if (!product) {
     return buildPageMetadata({
@@ -45,7 +58,7 @@ export async function generateMetadata({ params }: ProductDetailProps) {
 
   return buildPageMetadata({
     lang,
-    path: `products/${product.id}`,
+    path: `products/${product.slug}`,
     titleEn: `${product.nameEn} | Faradid Atlas`,
     titleFa: `${product.nameFa} | فرادید اطلس`,
     descriptionEn: product.descriptionEn,
@@ -56,8 +69,12 @@ export async function generateMetadata({ params }: ProductDetailProps) {
 export default async function ProductDetailPage({
   params,
 }: ProductDetailProps) {
-  const { lang, id } = await params;
-  const product = products.find((item) => item.id === Number.parseInt(id));
+  const { lang, slug } = await params;
+  const product = findProductBySlugOrId(slug);
+
+  if (product && isNumericProductParam(slug)) {
+    permanentRedirect(localizedPath(lang, `products/${product.slug}`));
+  }
 
   if (!product) {
     return (
@@ -85,7 +102,9 @@ export default async function ProductDetailPage({
       : product.image
         ? [product.image]
         : [];
-  const productUrl = absoluteUrl(localizedPath(lang, `products/${product.id}`));
+  const productUrl = absoluteUrl(
+    localizedPath(lang, `products/${product.slug}`),
+  );
 
   return (
     <div dir={lang === "fa" ? "rtl" : "ltr"}>
