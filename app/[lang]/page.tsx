@@ -6,6 +6,7 @@ import { GlobalMarkets } from "@/components/home/global-markets";
 import { CTASection } from "@/components/home/cta-section";
 import { SignatureProducts } from "@/components/home/signature-products";
 import { buildPageMetadata } from "@/lib/metadata";
+import { publicContactEmail, publicPhoneNumbers } from "@/lib/contact-info";
 import { absoluteUrl, localizedPath, siteConfig } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 
@@ -66,9 +67,18 @@ export default async function HomePage({ params }: HomePageProps) {
               legalName: siteConfig.legalName,
               url: siteConfig.url,
               logo: absoluteUrl(siteConfig.brandMarkPath),
+              email: publicContactEmail,
+              telephone: publicPhoneNumbers.map((phone) => phone.value),
               description:
                 lang === "en" ? siteConfig.description : siteConfig.descriptionFa,
               foundingDate: "2009",
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "customer service",
+                email: publicContactEmail,
+                telephone: publicPhoneNumbers.map((phone) => phone.value),
+                availableLanguage: ["English", "Persian"],
+              },
               areaServed: ["Iran", "United Arab Emirates", "Oman"],
               knowsAbout: [
                 "Rice",

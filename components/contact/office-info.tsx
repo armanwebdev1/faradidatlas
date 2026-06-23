@@ -1,4 +1,5 @@
 import type { Language } from "@/lib/i18n";
+import { publicContactEmail, publicPhoneNumbers } from "@/lib/contact-info";
 
 interface OfficeInfoProps {
   lang: Language;
@@ -48,6 +49,32 @@ export function OfficeInfo({ lang }: OfficeInfoProps) {
 
   return (
     <div className="space-y-6">
+      <div className="p-6 sm:p-8 bg-background rounded-lg border border-border shadow-sm">
+        <h3 className="text-xl sm:text-2xl font-bold text-primary mb-4">
+          {lang === "en" ? "Direct Contact" : "ارتباط مستقیم"}
+        </h3>
+        <div className="space-y-3 text-sm text-foreground/75">
+          <a
+            href={`mailto:${publicContactEmail}`}
+            className="block transition-colors hover:text-brand-navy"
+            dir="ltr"
+          >
+            {publicContactEmail}
+          </a>
+          <div className="flex flex-col gap-2" dir="ltr">
+            {publicPhoneNumbers.map((phone) => (
+              <a
+                key={phone.value}
+                href={phone.href}
+                className="transition-colors hover:text-brand-navy"
+              >
+                {phone.display}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {officeList.map((office) => (
         <div
           key={office.city}

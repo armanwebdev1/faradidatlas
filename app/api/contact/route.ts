@@ -15,7 +15,7 @@ const contactSchema = z.object({
   email: z.string().trim().email().max(220),
   phone: z.string().trim().min(7).max(80),
   role: z.string().trim().max(80).optional(),
-  productInterest: z.string().trim().max(80).optional(),
+  productInterest: z.string().trim().min(1).max(180),
   volume: z.string().trim().max(160).optional(),
   destination: z.string().trim().max(160).optional(),
   timeline: z.string().trim().max(160).optional(),

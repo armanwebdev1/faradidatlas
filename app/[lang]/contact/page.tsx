@@ -6,6 +6,7 @@ import { ResponseSLA } from "@/components/contact/response-sla";
 import { ContactHero } from "@/components/contact/contact-hero";
 import { products } from "@/components/products/product-data";
 import { buildPageMetadata } from "@/lib/metadata";
+import { publicContactEmail, publicPhoneNumbers } from "@/lib/contact-info";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 
@@ -113,6 +114,19 @@ export default async function ContactPage({
                   : "تماس با فرادید اطلس",
               description: pageDescription,
               inLanguage: lang,
+              mainEntity: {
+                "@type": "Organization",
+                name: "Faradid Atlas",
+                email: publicContactEmail,
+                telephone: publicPhoneNumbers.map((phone) => phone.value),
+                contactPoint: {
+                  "@type": "ContactPoint",
+                  contactType: "customer service",
+                  email: publicContactEmail,
+                  telephone: publicPhoneNumbers.map((phone) => phone.value),
+                  availableLanguage: ["English", "Persian"],
+                },
+              },
             },
             {
               "@context": "https://schema.org",

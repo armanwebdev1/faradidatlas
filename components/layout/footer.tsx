@@ -7,7 +7,8 @@ import {
   productCategories,
   products,
 } from "@/components/products/product-data";
-import { MapPin } from "lucide-react";
+import { publicContactEmail, publicPhoneNumbers } from "@/lib/contact-info";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 interface FooterProps {
   lang: Language;
@@ -145,6 +146,27 @@ export function Footer({ lang }: FooterProps) {
                 <div className="flex items-start gap-3 text-sm text-white/70">
                   <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
                   <span>{t.footer.address}</span>
+                </div>
+                <a
+                  href={`mailto:${publicContactEmail}`}
+                  className="flex items-start gap-3 text-sm text-white/70 transition-colors duration-300 hover:text-accent"
+                  dir="ltr"
+                >
+                  <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <span>{publicContactEmail}</span>
+                </a>
+                <div className="space-y-2">
+                  {publicPhoneNumbers.map((phone) => (
+                    <a
+                      key={phone.value}
+                      href={phone.href}
+                      className="flex items-start gap-3 text-sm text-white/70 transition-colors duration-300 hover:text-accent"
+                      dir="ltr"
+                    >
+                      <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                      <span>{phone.display}</span>
+                    </a>
+                  ))}
                 </div>
                 <Link
                   href={`/${lang}/contact`}
