@@ -23,7 +23,7 @@ const markets = {
     {
       region: "Key Sourcing Origins",
       countries: "Direct sourcing focus across India and Pakistan",
-      value: 2,
+      value: 30,
       suffix: "",
     },
     {
@@ -35,31 +35,31 @@ const markets = {
   ],
   fa: [
     {
-      region: "برند معتبر برنج",
+      region: "برند معتبر",
       countries:
         "۲۱، میزبان، حیات و گلبانو؛ نام‌هایی آشنا برای بازار عمده و مصرف سازمانی",
-      value: +4,
+      value: 4,
       suffix: "",
     },
     {
       region: "دفاتر شرکت",
       countries:
         "تهران، اصفهان، دبی و عمان؛ برای پیگیری بهتر، پاسخ سریع‌تر و پشتیبانی مطمئن‌تر",
-      value: +4,
+      value: 4,
       suffix: "",
     },
     {
-      region: "مبدأ تأمین",
+      region: "مسیر تأمین",
       countries:
-        "تمرکز ما بر تأمین مستقیم از هند، پاکستان، تایلند، کانادا و... است؛ مبادی مهم در تجارت مواد غذایی",
-      value: +30,
+        "تمرکز بر تأمین مستقیم از مبدأهای معتبر مانند هند، پاکستان، تایلند و کانادا برای دسترسی پایدارتر به کالاهای اساسی.",
+      value: 30,
       suffix: "",
     },
     {
       region: "گروه کالایی",
       countries:
         "از برنج و حبوبات تا دانه‌ها، مغزها، ادویه‌ها و شکر؛ برای نیازهای متنوع بازار",
-      value: +25,
+      value: 25,
       suffix: "",
     },
   ],
@@ -76,14 +76,14 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
       <div className="relative container-wide">
         <div className="text-center mb-14 sm:mb-16 md:mb-20">
           <p className="eyebrow text-brand-navy mb-4 sm:mb-5 md:mb-6">
-            {lang === "en" ? "Supply Footprint" : "تامین مستمر"}
+            {lang === "en" ? "Supply Footprint" : "گستره تأمین"}
           </p>
           <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 md:mb-8 animate-fade-in-up">
             <span className="inline-block">
-              {lang === "en" ? "Regional" : "گستره"}
+              {lang === "en" ? "Regional" : "شبکه فعال"}
             </span>
             <span className="inline-block ml-3 md:ml-4 text-transparent bg-clip-text bg-linear-to-r from-accent-warm-gold to-accent-warm-orange">
-              {lang === "en" ? "Reach" : "فعالیت"}
+              {lang === "en" ? "Reach" : "تأمین و توزیع"}
             </span>
           </h2>
 

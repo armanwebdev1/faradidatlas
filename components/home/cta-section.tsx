@@ -140,7 +140,7 @@ export function CTASection({ lang }: CTASectionProps) {
             <h2 className="text-responsive-section text-foreground">
               {lang === "en"
                 ? "Recognized names in our rice portfolio"
-                : "نام‌های شناخته‌شده در سبد برنج ما"}
+                : "نام‌های شناخته‌شده در سبد کالاهای ما"}
             </h2>
           </div>
 
