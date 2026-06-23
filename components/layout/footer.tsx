@@ -159,7 +159,7 @@ export function Footer({ lang }: FooterProps) {
           {/* Divider */}
           <div className="relative py-8 mb-8">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full h-px bg-white/10" />
+              <div className="w-full h-px bg-gradient-to-r from-transparent via-white/12 to-transparent" />
             </div>
           </div>
 
