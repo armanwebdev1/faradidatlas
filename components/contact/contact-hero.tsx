@@ -34,7 +34,7 @@ export function ContactHero({ lang }: ContactHeroProps) {
             <p className="eyebrow mb-4 text-brand-navy animate-fade-in-up">
               {lang === "en" ? "Get in Touch" : "با ما در ارتباط باشید"}
             </p>
-            <h1 className="text-responsive-hero text-primary mb-5 animate-fade-in-up">
+            <h1 className="font-semibold text-[clamp(2.05rem,2.2vw+1rem,3.45rem)] leading-[1.18] sm:leading-[1.15] md:leading-[1.12] tracking-normal text-primary mb-5 animate-fade-in-up">
               {lang === "en"
                 ? "Tell us what you need to supply next"
                 : "نیاز بعدی خود را برای تأمین با ما در میان بگذارید"}
