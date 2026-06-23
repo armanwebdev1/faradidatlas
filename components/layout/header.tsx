@@ -805,7 +805,7 @@ export function Header({ lang }: HeaderProps) {
                       <ChevronDown
                         size={16}
                         strokeWidth={1.7}
-                        className="text-muted-foreground transition-all duration-300 group-hover:text-brand-navy group-hover/products:rotate-180"
+                        className="shrink-0 origin-center transform-gpu text-muted-foreground transition-[transform,color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform group-hover:text-brand-navy group-hover/products:rotate-180"
                       />
                       <span
                         className={`absolute bottom-0 inset-x-0 h-1 rounded-t-md bg-brand-navy transition-opacity duration-200 ${

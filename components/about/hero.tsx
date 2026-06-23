@@ -26,7 +26,7 @@ export function AboutHero({ lang }: AboutHeroProps) {
               {lang === "en" ? "About Faradid Atlas" : "درباره فرادید اطلس"}
             </p>
             <h1
-              className="text-responsive-hero font-semibold text-primary mb-8 max-w-5xl mx-auto opacity-0 translate-y-6"
+              className="text-responsive-hero font-medium leading-[1.14] sm:leading-[1.13] md:leading-[1.12] tracking-normal text-primary mb-8 max-w-5xl mx-auto opacity-0 translate-y-6"
               data-animate
             >
               {lang === "en"
