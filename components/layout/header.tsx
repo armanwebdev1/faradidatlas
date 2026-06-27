@@ -362,7 +362,7 @@ export function Header({ lang }: HeaderProps) {
         dir={dir}
         className={`fixed top-0 inset-x-0 z-[60] transform-gpu will-change-transform transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${headerVisibilityClass}`}
       >
-        <div className="relative z-50 backdrop-blur-md bg-background/80 border-b border-border/30">
+        <div className="relative z-50 border-b border-border/35 bg-background/85 shadow-[0_18px_55px_-45px_rgba(12,18,24,0.55)] backdrop-blur-xl">
           <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
             <a
               href={`/${lang}`}
@@ -512,26 +512,24 @@ export function Header({ lang }: HeaderProps) {
               </div>
             </details>
 
-            <details className="lg:hidden">
+            <details className="group/mobile-menu lg:hidden">
               <summary
-                className="list-none p-2 text-foreground shrink-0 cursor-pointer [&::-webkit-details-marker]:hidden"
+                className="relative inline-flex h-11 w-11 shrink-0 cursor-pointer list-none items-center justify-center rounded-full border border-border/60 bg-background/75 text-foreground shadow-sm backdrop-blur-md transition-all duration-300 hover:border-brand-navy/25 hover:bg-brand-navy/5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25 [&::-webkit-details-marker]:hidden"
                 aria-label="Toggle menu"
               >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
+                <span className="relative h-4 w-5">
+                  <span className="absolute left-0 top-0 h-px w-5 rounded-full bg-current transition-transform duration-300 group-open/mobile-menu:translate-y-[7px] group-open/mobile-menu:rotate-45" />
+                  <span className="absolute left-0 top-[7px] h-px w-5 rounded-full bg-current transition-all duration-300 group-open/mobile-menu:scale-x-0 group-open/mobile-menu:opacity-0" />
+                  <span className="absolute left-0 top-[14px] h-px w-5 rounded-full bg-current transition-transform duration-300 group-open/mobile-menu:-translate-y-[7px] group-open/mobile-menu:-rotate-45" />
+                </span>
               </summary>
-              <div className="fixed inset-x-0 top-16 z-30 max-h-[calc(100svh-4rem)] overflow-y-auto bg-background/95 backdrop-blur-md border-b border-border/30 animate-in fade-in slide-in-from-top-8 duration-200">
+              <div className="fixed inset-x-3 top-[4.55rem] z-[70] max-h-[calc(100svh-5.25rem)] overflow-hidden rounded-2xl border border-border/70 bg-background/96 shadow-[0_28px_90px_rgba(12,18,24,0.18)] backdrop-blur-2xl animate-in fade-in slide-in-from-top-4 zoom-in-95 duration-300">
+                <div className="max-h-[calc(100svh-5.25rem)] overflow-y-auto">
+                  <div className="border-b border-border/60 bg-muted/20 px-4 py-3">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                      {lang === "en" ? "Navigation" : "دسترسی سریع"}
+                    </p>
+                  </div>
                 <div className="px-4 pt-4">
                   <form
                     role="search"
@@ -606,13 +604,25 @@ export function Header({ lang }: HeaderProps) {
                       return (
                         <details
                           key={key}
-                          className="group/mobile-products rounded-xl border border-border/60 bg-background/70"
+                          className={`group/mobile-products overflow-hidden rounded-xl border transition-all duration-300 ${
+                            isActive
+                              ? "border-brand-navy/20 bg-brand-navy/[0.04] shadow-sm"
+                              : "border-border/60 bg-background/70"
+                          }`}
                           open={isActive || undefined}
                         >
-                          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-foreground transition-colors hover:bg-muted/45 [&::-webkit-details-marker]:hidden">
+                          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-3.5 py-3 text-foreground transition-colors hover:bg-muted/45 [&::-webkit-details-marker]:hidden">
                             <span className="flex min-w-0 items-center gap-3">
-                              <Icon size={20} />
-                              <span className="truncate">{label}</span>
+                              <span
+                                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors ${
+                                  isActive
+                                    ? "bg-brand-navy text-white"
+                                    : "bg-muted text-muted-foreground"
+                                }`}
+                              >
+                                <Icon size={18} strokeWidth={1.7} />
+                              </span>
+                              <span className="truncate font-semibold">{label}</span>
                             </span>
                             <ChevronDown
                               size={17}
@@ -719,21 +729,27 @@ export function Header({ lang }: HeaderProps) {
                         key={key}
                         href={href}
                         aria-current={isActive ? "page" : undefined}
-                        className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                        className={`group/mobile-link flex items-center gap-3 rounded-xl px-3.5 py-3 transition-all duration-300 ${
                           isActive
-                            ? "bg-brand-navy/10 text-brand-navy shadow-sm"
-                            : "text-foreground hover:bg-muted/50"
+                            ? "bg-brand-navy/[0.06] text-brand-navy shadow-sm ring-1 ring-brand-navy/15"
+                            : "text-foreground hover:bg-muted/55"
                         }`}
                       >
-                        <Icon
-                          size={20}
-                          className={isActive ? "text-brand-navy" : ""}
-                        />
-                        <span>{label}</span>
+                        <span
+                          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${
+                            isActive
+                              ? "bg-brand-navy text-white"
+                              : "bg-muted text-muted-foreground group-hover/mobile-link:bg-background group-hover/mobile-link:text-brand-navy"
+                          }`}
+                        >
+                          <Icon size={18} strokeWidth={1.7} />
+                        </span>
+                        <span className="font-semibold">{label}</span>
                       </a>
                     );
                   })}
                 </nav>
+              </div>
               </div>
             </details>
           </div>

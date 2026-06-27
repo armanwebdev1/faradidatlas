@@ -147,7 +147,7 @@ export function Hero({ lang }: HeroProps) {
         <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/45 to-black/90" />
       </div>
 
-      <div className="absolute inset-x-0 top-1/2 z-30 flex -translate-y-1/2 items-center justify-between px-4 sm:px-6 md:px-8 pointer-events-none">
+      <div className="absolute inset-x-0 top-1/2 z-30 hidden -translate-y-1/2 items-center justify-between px-4 sm:flex sm:px-6 md:px-8 pointer-events-none">
         <button
           type="button"
           onClick={goToPrevious}
@@ -213,6 +213,18 @@ export function Hero({ lang }: HeroProps) {
             dir={isRTL ? "rtl" : "ltr"}
             style={{ animationDelay: "0.28s" }}
           >
+            <button
+              type="button"
+              onClick={goToPrevious}
+              className="mx-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/12 text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:border-brand-navy/70 hover:bg-brand-navy/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/50 sm:hidden"
+              aria-label={lang === "en" ? "Previous hero slide" : "اسلاید قبلی"}
+            >
+              {isRTL ? (
+                <ChevronRight className="h-[18px] w-[18px]" strokeWidth={1.8} />
+              ) : (
+                <ChevronLeft className="h-[18px] w-[18px]" strokeWidth={1.8} />
+              )}
+            </button>
             {slides.map((slide, index) => (
               <button
                 key={slide.id}
@@ -230,6 +242,18 @@ export function Hero({ lang }: HeroProps) {
                 }
               />
             ))}
+            <button
+              type="button"
+              onClick={goToNext}
+              className="mx-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/12 text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:border-brand-navy/70 hover:bg-brand-navy/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/50 sm:hidden"
+              aria-label={lang === "en" ? "Next hero slide" : "اسلاید بعدی"}
+            >
+              {isRTL ? (
+                <ChevronLeft className="h-[18px] w-[18px]" strokeWidth={1.8} />
+              ) : (
+                <ChevronRight className="h-[18px] w-[18px]" strokeWidth={1.8} />
+              )}
+            </button>
           </div>
         </div>
       </div>

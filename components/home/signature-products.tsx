@@ -248,7 +248,7 @@ export function SignatureProducts() {
                 </div>
               </div>
             ))}
-            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-between px-4 md:px-8 pointer-events-none z-20">
+            <div className="absolute inset-x-0 top-1/2 z-20 hidden -translate-y-1/2 items-center justify-between px-4 pointer-events-none sm:flex md:px-8">
               <Button
                 variant="ghost"
                 size="icon"
@@ -276,6 +276,38 @@ export function SignatureProducts() {
                 )}
               </Button>
             </div>
+          </div>
+
+          <div className="mt-4 flex items-center justify-center gap-3 sm:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={goToPrevious}
+              className="h-10 w-10 rounded-full border border-border/70 bg-background/90 text-foreground shadow-sm backdrop-blur-md transition-all duration-300 hover:border-brand-navy/25 hover:bg-brand-navy/5 hover:text-brand-navy"
+              aria-label={lang === "en" ? "Previous product" : "محصول قبلی"}
+            >
+              {isRTL ? (
+                <ChevronRight className="h-5 w-5" />
+              ) : (
+                <ChevronLeft className="h-5 w-5" />
+              )}
+            </Button>
+            <span className="min-w-14 rounded-full border border-border/60 bg-background/80 px-3 py-1.5 text-center text-xs font-semibold text-foreground/65 shadow-sm">
+              {currentIndex + 1} / {products.length}
+            </span>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={goToNext}
+              className="h-10 w-10 rounded-full border border-border/70 bg-background/90 text-foreground shadow-sm backdrop-blur-md transition-all duration-300 hover:border-brand-navy/25 hover:bg-brand-navy/5 hover:text-brand-navy"
+              aria-label={lang === "en" ? "Next product" : "محصول بعدی"}
+            >
+              {isRTL ? (
+                <ChevronLeft className="h-5 w-5" />
+              ) : (
+                <ChevronRight className="h-5 w-5" />
+              )}
+            </Button>
           </div>
 
           <div className="flex justify-center gap-2 mt-5 sm:mt-6 md:mt-8">
@@ -311,7 +343,7 @@ export function SignatureProducts() {
                   ? "Play"
                   : "پخش"}
             </Button>
-            <span className="text-xs sm:text-sm text-foreground/60">
+            <span className="hidden text-xs text-foreground/60 sm:inline sm:text-sm">
               {currentIndex + 1} / {products.length}
             </span>
           </div>
