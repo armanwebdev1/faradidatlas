@@ -151,24 +151,22 @@ export function Footer({ lang }: FooterProps) {
                 <a
                   href={`mailto:${publicContactEmail}`}
                   className="flex items-start gap-3 text-sm text-white/70 transition-colors duration-300 hover:text-accent"
-                  dir="ltr"
                 >
                   <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                  <span>{publicContactEmail}</span>
+                  <span dir="ltr">{publicContactEmail}</span>
                 </a>
                 <div className="space-y-2">
                   {publicPhoneNumbers.map((phone) => (
                     <div
                       key={phone.value}
                       className="flex items-center gap-3 text-sm text-white/70"
-                      dir="ltr"
                     >
                       <a
                         href={phone.href}
                         className="flex items-center gap-3 transition-colors duration-300 hover:text-accent"
                       >
                         <Phone className="w-4 h-4 flex-shrink-0" />
-                        <span>{phone.display}</span>
+                        <span dir="ltr">{phone.display}</span>
                       </a>
                       <a
                         href={phone.whatsappHref}
