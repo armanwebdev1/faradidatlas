@@ -516,19 +516,6 @@ export const products: Product[] = [
   },
   {
     id: 27,
-    slug: "twenty-one-walnut",
-    nameEn: "21 Walnut",
-    nameFa: "گردو ۲۱",
-    aliasEn: "Walnut",
-    aliasFa: "گردو",
-    category: "nuts",
-    descriptionEn:
-      "21 Walnut is an in-shell nut product for retail and wholesale buyers seeking a familiar nut line with reliable commercial supply.",
-    descriptionFa:
-      "گردو ۲۱ محصولی با پوست از گروه آجیل است و برای خریداران فروشگاهی و عمده‌ای عرضه می‌شود که به محصولی شناخته‌شده با تأمین تجاری قابل اعتماد نیاز دارند.",
-  },
-  {
-    id: 28,
     slug: "twenty-one-peanuts",
     nameEn: "21 Peanuts",
     nameFa: "بادام زمینی ۲۱",
@@ -541,7 +528,7 @@ export const products: Product[] = [
       "بادام زمینی ۲۱ برای تولیدکنندگان تنقلات، فروشگاه‌ها و خریداران عمده‌ای عرضه می‌شود که به محصولی شناخته‌شده با تأمین پایدار نیاز دارند.",
   },
   {
-    id: 29,
+    id: 28,
     slug: "twenty-one-desiccated-coconut",
     nameEn: "21 Desiccated Coconut",
     nameFa: "پودر نارگیل ۲۱",
@@ -554,7 +541,7 @@ export const products: Product[] = [
       "پودر نارگیل ۲۱ محصولی بسته‌بندی‌شده برای خریداران حوزه نانوایی، شیرینی‌پزی و فروشگاهی است که به کیفیت و تأمین یکنواخت نیاز دارند.",
   },
   {
-    id: 30,
+    id: 29,
     slug: "twenty-one-cardamom",
     nameEn: "21 Cardamom",
     nameFa: "هل ۲۱",
@@ -567,7 +554,7 @@ export const products: Product[] = [
       "هل ۲۱ از ادویه‌های خوش‌عطر است و برای خریداران خدمات غذایی، فروشگاهی و عمده که به طعم یکدست و بسته‌بندی منظم نیاز دارند عرضه می‌شود.",
   },
   {
-    id: 31,
+    id: 30,
     slug: "twenty-one-sugar",
     nameEn: "21 Sugar",
     nameFa: "شکر ۲۱",
