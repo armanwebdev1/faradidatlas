@@ -39,20 +39,30 @@ function Image({ alt, sizes, className }: StaticCtaImageProps) {
 }
 
 const brandLogos = [
-  { name: "Hayat", src: "/brands/hayat-4k.png", width: 1194, height: 650 },
+  {
+    name: "Hayat",
+    src: "/brands/hayat-4k.png",
+    width: 147,
+    height: 80,
+  },
   {
     name: "Golbanoo",
     src: "/brands/golbanoo-4k.png",
-    width: 1146,
-    height: 556,
+    width: 165,
+    height: 80,
   },
   {
     name: "Twenty One",
     src: "/brands/twenty-one-4k.png",
-    width: 1116,
-    height: 912,
+    width: 98,
+    height: 80,
   },
-  { name: "Mizban", src: "/brands/mizban-4k.png", width: 1235, height: 482 },
+  {
+    name: "Mizban",
+    src: "/brands/mizban-4k.png",
+    width: 205,
+    height: 80,
+  },
 ];
 
 const brandLogoLoop = [...brandLogos, ...brandLogos];
@@ -170,7 +180,6 @@ export function CTASection({ lang }: CTASectionProps) {
                           alt={brand.name}
                           width={brand.width}
                           height={brand.height}
-                          sizes="(min-width: 1024px) 192px, (min-width: 768px) 176px, (min-width: 640px) 152px, 128px"
                           loading="lazy"
                           className="h-14 w-auto object-contain drop-shadow-[0_10px_16px_rgba(30,35,39,0.10)] transition duration-500 group-hover/brand:scale-[1.04] group-hover/brand:drop-shadow-[0_0_18px_rgba(201,169,97,0.42)] sm:h-16 md:h-20"
                         />

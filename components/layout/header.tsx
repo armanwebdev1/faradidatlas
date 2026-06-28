@@ -89,6 +89,9 @@ export function Header({ lang }: HeaderProps) {
   const [headerMode, setHeaderMode] = useState<HeaderMode>("full");
   const [searchValue, setSearchValue] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDesktopProductsMenuReady, setIsDesktopProductsMenuReady] =
+    useState(false);
   const desktopSearchRef = useRef<HTMLInputElement>(null);
   const mobileSearchRef = useRef<HTMLInputElement>(null);
   const desktopSearchBoxRef = useRef<HTMLDivElement>(null);
@@ -512,7 +515,13 @@ export function Header({ lang }: HeaderProps) {
               </div>
             </details>
 
-            <details className="group/mobile-menu lg:hidden">
+            <details
+              className="group/mobile-menu lg:hidden"
+              open={isMobileMenuOpen}
+              onToggle={(event) =>
+                setIsMobileMenuOpen(event.currentTarget.open)
+              }
+            >
               <summary
                 className="relative inline-flex h-11 w-11 shrink-0 cursor-pointer list-none items-center justify-center rounded-full border border-border/60 bg-background/75 text-foreground shadow-sm backdrop-blur-md transition-all duration-300 hover:border-brand-navy/25 hover:bg-brand-navy/5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25 [&::-webkit-details-marker]:hidden"
                 aria-label="Toggle menu"
@@ -523,6 +532,7 @@ export function Header({ lang }: HeaderProps) {
                   <span className="absolute left-0 top-[14px] h-px w-5 rounded-full bg-current transition-transform duration-300 group-open/mobile-menu:-translate-y-[7px] group-open/mobile-menu:-rotate-45" />
                 </span>
               </summary>
+              {isMobileMenuOpen && (
               <div className="fixed inset-x-3 top-[4.55rem] z-[70] max-h-[calc(100svh-5.25rem)] overflow-hidden rounded-2xl border border-border/70 bg-background/96 shadow-[0_28px_90px_rgba(12,18,24,0.18)] backdrop-blur-2xl animate-in fade-in slide-in-from-top-4 zoom-in-95 duration-300">
                 <div className="max-h-[calc(100svh-5.25rem)] overflow-y-auto">
                   <div className="border-b border-border/60 bg-muted/20 px-4 py-3">
@@ -652,9 +662,9 @@ export function Header({ lang }: HeaderProps) {
                                       <Image
                                         src={item.image}
                                         alt=""
-                                        fill
-                                        sizes="32px"
-                                        className="object-cover"
+                                        width={32}
+                                        height={32}
+                                        className="h-full w-full object-cover"
                                       />
                                     ) : (
                                       <span className="block h-full w-full bg-muted" />
@@ -751,6 +761,7 @@ export function Header({ lang }: HeaderProps) {
                 </nav>
               </div>
               </div>
+              )}
             </details>
           </div>
         </div>
@@ -793,6 +804,8 @@ export function Header({ lang }: HeaderProps) {
                   <div
                     key={key}
                     className="group/products relative flex h-full items-center"
+                    onMouseEnter={() => setIsDesktopProductsMenuReady(true)}
+                    onFocusCapture={() => setIsDesktopProductsMenuReady(true)}
                   >
                     <a
                       href={href}
@@ -831,13 +844,15 @@ export function Header({ lang }: HeaderProps) {
                         }`}
                       />
                     </a>
-                    <ProductsMegaMenu
-                      lang={lang}
-                      isRTL={isRTL}
-                      categories={productCategoryMenuItems}
-                      brands={productBrandMenuItems}
-                      types={productTypeMenuItems}
-                    />
+                    {isDesktopProductsMenuReady && (
+                      <ProductsMegaMenu
+                        lang={lang}
+                        isRTL={isRTL}
+                        categories={productCategoryMenuItems}
+                        brands={productBrandMenuItems}
+                        types={productTypeMenuItems}
+                      />
+                    )}
                   </div>
                 );
               }
@@ -1004,9 +1019,9 @@ function ProductsMegaMenu({
                           <Image
                             src={item.image}
                             alt=""
-                            fill
-                            sizes="32px"
-                            className="object-cover"
+                            width={32}
+                            height={32}
+                            className="h-full w-full object-cover"
                           />
                         ) : (
                           <span className="block h-full w-full bg-muted" />
@@ -1086,6 +1101,7 @@ function MenuFilterThumbnail({
 }) {
   const imageSize = size === "sm" ? 22 : 26;
   const boxClass = size === "sm" ? "h-7 w-7" : "h-8 w-8";
+  const boxPixels = size === "sm" ? 28 : 32;
   const isLogo = item.imageFit === "contain";
 
   return (
@@ -1101,16 +1117,15 @@ function MenuFilterThumbnail({
             alt=""
             width={imageSize}
             height={imageSize}
-            sizes={`${imageSize}px`}
             className="max-h-full max-w-full object-contain"
           />
         ) : (
           <Image
             src={item.image}
             alt=""
-            fill
-            sizes={size === "sm" ? "28px" : "32px"}
-            className="object-cover"
+            width={boxPixels}
+            height={boxPixels}
+            className="h-full w-full object-cover"
           />
         )
       ) : (

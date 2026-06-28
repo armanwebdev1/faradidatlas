@@ -299,13 +299,13 @@ export const products: Product[] = [
   {
     id: 11,
     slug: "twenty-one-red-lentil",
-    nameEn: "21 Red Lentil",
+    nameEn: "21 Masoor Dal",
     nameFa: "عدس قرمز ۲۱",
-    aliasEn: "Red Lentils",
+    aliasEn: "Masoor Dal",
     aliasFa: "عدس قرمز",
     category: "legumes",
     descriptionEn:
-      "21 Red Lentil is a high-demand pulse product for everyday cooking, foodservice use, and B2B staple-food procurement.",
+      "21 Masoor Dal is a high-demand pulse product for everyday cooking, foodservice use, and B2B staple-food procurement.",
     descriptionFa:
       "عدس قرمز ۲۱ از حبوبات پرتقاضا برای مصرف روزمره، خدمات غذایی و تأمین عمده اقلام غذایی اساسی است.",
     ...imageSet(productImages.redLentil),

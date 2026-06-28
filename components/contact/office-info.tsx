@@ -1,5 +1,6 @@
 import type { Language } from "@/lib/i18n";
 import { publicContactEmail, publicPhoneNumbers } from "@/lib/contact-info";
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 
 interface OfficeInfoProps {
   lang: Language;
@@ -63,13 +64,23 @@ export function OfficeInfo({ lang }: OfficeInfoProps) {
           </a>
           <div className="flex flex-col gap-2" dir="ltr">
             {publicPhoneNumbers.map((phone) => (
-              <a
-                key={phone.value}
-                href={phone.href}
-                className="transition-colors hover:text-brand-navy"
-              >
-                {phone.display}
-              </a>
+              <div key={phone.value} className="flex items-center gap-3">
+                <a
+                  href={phone.href}
+                  className="transition-colors hover:text-brand-navy"
+                >
+                  {phone.display}
+                </a>
+                <a
+                  href={phone.whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Chat with ${phone.display} on WhatsApp`}
+                  className="transition-colors hover:text-[#25D366]"
+                >
+                  <WhatsAppIcon className="w-4 h-4 shrink-0" />
+                </a>
+              </div>
             ))}
           </div>
         </div>

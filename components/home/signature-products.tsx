@@ -213,7 +213,7 @@ export function SignatureProducts() {
                       alt={t(product.name)}
                       fill
                       loading="lazy"
-                      sizes="100vw"
+                      sizes="(min-width: 1024px) 48vw, 100vw"
                       quality={84}
                       className={`absolute inset-0 h-full w-full object-cover transition-transform duration-700 ${
                         index === currentIndex && !isTransitioning
