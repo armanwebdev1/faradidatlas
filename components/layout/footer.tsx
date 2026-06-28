@@ -149,33 +149,38 @@ export function Footer({ lang }: FooterProps) {
                 </div>
                 <a
                   href={`mailto:${publicContactEmail}`}
-                  className="flex items-start gap-3 text-sm text-white/70 transition-colors duration-300 hover:text-accent"
+                  className="flex items-start gap-3 text-sm text-white/70! transition-colors duration-300 hover:text-accent!"
                 >
                   <Mail className="w-4 h-4 mt-0.5 shrink-0" />
                   <span dir="ltr">{publicContactEmail}</span>
                 </a>
-                <div className="space-y-2">
+                <div className="space-y-4">
                   {publicPhoneNumbers.map((phone) => (
                     <div
                       key={phone.value}
-                      className="flex items-center gap-3 text-sm text-white/70"
+                      className="flex items-start gap-3 text-sm"
                     >
-                      <a
-                        href={phone.href}
-                        className="flex items-center gap-3 transition-colors duration-300 hover:text-accent"
-                      >
-                        <Phone className="w-4 h-4 shrink-0" />
-                        <span dir="ltr">{phone.display}</span>
-                      </a>
-                      <a
-                        href={phone.whatsappHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Chat with ${phone.display} on WhatsApp`}
-                        className="text-white/70 transition-colors duration-300 hover:text-[#25D366]"
-                      >
-                        <WhatsAppIcon className="w-4 h-4 shrink-0" />
-                      </a>
+                      <Phone className="w-4 h-4 mt-0.5 shrink-0 text-white/70" />
+
+                      <div className="flex flex-col">
+                        <a
+                          href={phone.href}
+                          className="text-sm text-white/70! transition-colors duration-300 hover:text-accent!"
+                        >
+                          <span dir="ltr">{phone.display}</span>
+                        </a>
+
+                        <a
+                          href={phone.whatsappHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Chat with ${phone.display} on WhatsApp`}
+                          className="mt-1 inline-flex items-center gap-1 text-xs text-white/60 transition-colors duration-300 hover:text-[#25D366]"
+                        >
+                          <WhatsAppIcon className="h-3.5 w-3.5 shrink-0" />
+                          <span>WhatsApp ↗</span>
+                        </a>
+                      </div>
                     </div>
                   ))}
                 </div>

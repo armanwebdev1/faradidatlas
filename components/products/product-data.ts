@@ -197,8 +197,8 @@ export const products: Product[] = [
   {
     id: 3,
     slug: "twenty-one-white-beans-carton",
-    nameEn: "21 White Beans Carton",
-    nameFa: "لوبیا سفید کارتنی ۲۱",
+    nameEn: "21 White Beans",
+    nameFa: "لوبیا سفید ۲۱",
     aliasEn: "White Beans",
     aliasFa: "لوبیا سفید",
     category: "legumes",
