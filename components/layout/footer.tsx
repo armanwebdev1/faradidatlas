@@ -9,6 +9,7 @@ import {
 } from "@/components/products/product-data";
 import { publicContactEmail, publicPhoneNumbers } from "@/lib/contact-info";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 
 interface FooterProps {
   lang: Language;
@@ -157,15 +158,28 @@ export function Footer({ lang }: FooterProps) {
                 </a>
                 <div className="space-y-2">
                   {publicPhoneNumbers.map((phone) => (
-                    <a
+                    <div
                       key={phone.value}
-                      href={phone.href}
-                      className="flex items-start gap-3 text-sm text-white/70 transition-colors duration-300 hover:text-accent"
+                      className="flex items-center gap-3 text-sm text-white/70"
                       dir="ltr"
                     >
-                      <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                      <span>{phone.display}</span>
-                    </a>
+                      <a
+                        href={phone.href}
+                        className="flex items-center gap-3 transition-colors duration-300 hover:text-accent"
+                      >
+                        <Phone className="w-4 h-4 flex-shrink-0" />
+                        <span>{phone.display}</span>
+                      </a>
+                      <a
+                        href={phone.whatsappHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Chat with ${phone.display} on WhatsApp`}
+                        className="text-white/70 transition-colors duration-300 hover:text-[#25D366]"
+                      >
+                        <WhatsAppIcon className="w-4 h-4 flex-shrink-0" />
+                      </a>
+                    </div>
                   ))}
                 </div>
                 <Link
