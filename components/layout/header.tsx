@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import {
   type CSSProperties,
@@ -89,9 +89,6 @@ export function Header({ lang }: HeaderProps) {
   const [headerMode, setHeaderMode] = useState<HeaderMode>("full");
   const [searchValue, setSearchValue] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDesktopProductsMenuReady, setIsDesktopProductsMenuReady] =
-    useState(false);
   const desktopSearchRef = useRef<HTMLInputElement>(null);
   const mobileSearchRef = useRef<HTMLInputElement>(null);
   const desktopSearchBoxRef = useRef<HTMLDivElement>(null);
@@ -296,8 +293,7 @@ export function Header({ lang }: HeaderProps) {
     setSearchValue("");
     setIsSearchOpen(false);
   };
-  const clearSearchLabel =
-    lang === "en" ? "Clear search" : "پاک کردن جستجو";
+  const clearSearchLabel = lang === "en" ? "Clear search" : "پاک کردن جستجو";
   const searchQuery = searchValue.trim();
   const deferredSearchQuery = useDeferredValue(searchQuery);
   const searchCorpus = useMemo(
@@ -363,7 +359,7 @@ export function Header({ lang }: HeaderProps) {
     <>
       <header
         dir={dir}
-        className={`fixed top-0 inset-x-0 z-[60] transform-gpu will-change-transform transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${headerVisibilityClass}`}
+        className={`fixed top-0 inset-x-0 z-60 transform-gpu will-change-transform transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${headerVisibilityClass}`}
       >
         <div className="relative z-50 border-b border-border/35 bg-background/85 shadow-[0_18px_55px_-45px_rgba(12,18,24,0.55)] backdrop-blur-xl">
           <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
@@ -398,14 +394,14 @@ export function Header({ lang }: HeaderProps) {
                   {brandSecondary}
                 </span>
               </span>
-              <span className="pointer-events-none absolute inset-0 z-0 rounded-lg bg-gradient-to-r from-primary/0 via-primary/10 to-accent/10 opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-100" />
-              <span className="pointer-events-none absolute -bottom-1 left-2 right-2 z-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <span className="pointer-events-none absolute inset-0 z-0 rounded-lg bg-linear-to-r from-primary/0 via-primary/10 to-accent/10 opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-100" />
+              <span className="pointer-events-none absolute -bottom-1 left-2 right-2 z-0 h-px bg-linear-to-r from-transparent via-primary/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </a>
 
             <form
               role="search"
               onSubmit={handleSearchSubmit}
-              className="relative z-[80] hidden flex-1 justify-center px-4 md:flex"
+              className="relative z-80 hidden flex-1 justify-center px-4 md:flex"
             >
               <div
                 ref={desktopSearchBoxRef}
@@ -488,7 +484,7 @@ export function Header({ lang }: HeaderProps) {
                 className="absolute top-full mt-2 right-0 w-44 sm:w-48 bg-background/95 backdrop-blur-md border border-border/20 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200"
                 role="menu"
               >
-                <div className="px-4 py-2 bg-gradient-to-r from-primary/5 to-accent/5 border-b border-border/10">
+                <div className="px-4 py-2 bg-linear-to-r from-primary/5 to-accent/5 border-b border-border/10">
                   <p className="text-xs font-semibold text-muted-foreground tracking-wide uppercase">
                     {isRTL ? t.common.language : "Language"}
                   </p>
@@ -515,253 +511,245 @@ export function Header({ lang }: HeaderProps) {
               </div>
             </details>
 
-            <details
-              className="group/mobile-menu lg:hidden"
-              open={isMobileMenuOpen}
-              onToggle={(event) =>
-                setIsMobileMenuOpen(event.currentTarget.open)
-              }
-            >
+            <details className="group/mobile-menu lg:hidden">
               <summary
                 className="relative inline-flex h-11 w-11 shrink-0 cursor-pointer list-none items-center justify-center rounded-full border border-border/60 bg-background/75 text-foreground shadow-sm backdrop-blur-md transition-all duration-300 hover:border-brand-navy/25 hover:bg-brand-navy/5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25 [&::-webkit-details-marker]:hidden"
                 aria-label="Toggle menu"
               >
                 <span className="relative h-4 w-5">
-                  <span className="absolute left-0 top-0 h-px w-5 rounded-full bg-current transition-transform duration-300 group-open/mobile-menu:translate-y-[7px] group-open/mobile-menu:rotate-45" />
-                  <span className="absolute left-0 top-[7px] h-px w-5 rounded-full bg-current transition-all duration-300 group-open/mobile-menu:scale-x-0 group-open/mobile-menu:opacity-0" />
-                  <span className="absolute left-0 top-[14px] h-px w-5 rounded-full bg-current transition-transform duration-300 group-open/mobile-menu:-translate-y-[7px] group-open/mobile-menu:-rotate-45" />
+                  <span className="absolute left-0 top-0 h-px w-5 rounded-full bg-current transition-transform duration-300 group-open/mobile-menu:translate-y-1.75 group-open/mobile-menu:rotate-45" />
+                  <span className="absolute left-0 top-1.75 h-px w-5 rounded-full bg-current transition-all duration-300 group-open/mobile-menu:scale-x-0 group-open/mobile-menu:opacity-0" />
+                  <span className="absolute left-0 top-3.5 h-px w-5 rounded-full bg-current transition-transform duration-300 group-open/mobile-menu:-translate-y-1/75 group-open/mobile-menu:-rotate-45" />
                 </span>
               </summary>
-              {isMobileMenuOpen && (
-              <div className="fixed inset-x-3 top-[4.55rem] z-[70] max-h-[calc(100svh-5.25rem)] overflow-hidden rounded-2xl border border-border/70 bg-background/96 shadow-[0_28px_90px_rgba(12,18,24,0.18)] backdrop-blur-2xl animate-in fade-in slide-in-from-top-4 zoom-in-95 duration-300">
+              <div className="fixed inset-x-3 top-[4.55rem] z-70 max-h-[calc(100svh-5.25rem)] overflow-hidden rounded-2xl border border-border/70 bg-background/96 shadow-[0_28px_90px_rgba(12,18,24,0.18)] backdrop-blur-2xl animate-in fade-in slide-in-from-top-4 zoom-in-95 duration-300">
                 <div className="max-h-[calc(100svh-5.25rem)] overflow-y-auto">
                   <div className="border-b border-border/60 bg-muted/20 px-4 py-3">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                       {lang === "en" ? "Navigation" : "دسترسی سریع"}
                     </p>
                   </div>
-                <div className="px-4 pt-4">
-                  <form
-                    role="search"
-                    onSubmit={handleSearchSubmit}
-                  >
-                    <div
-                      ref={mobileSearchBoxRef}
-                      className="relative"
-                      dir={dir}
-                    >
-                      <button
-                        type="button"
-                        onClick={() => {
-                          openSearch();
-                          mobileSearchRef.current?.focus();
-                        }}
-                        aria-label={t.common.search}
-                        style={searchIconStyle}
-                        className="absolute top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-brand-navy focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25"
-                      >
-                        <Search className="h-5 w-5" />
-                      </button>
-                      <input
-                        ref={mobileSearchRef}
-                        type="text"
-                        value={searchValue}
-                        onChange={(event) => {
-                          const nextValue = event.target.value;
-                          setSearchValue(nextValue);
-                          openSearch(nextValue);
-                        }}
-                        onFocus={() => openSearch()}
-                        placeholder={`${t.common.search}...`}
-                        autoComplete="off"
+                  <div className="px-4 pt-4">
+                    <form role="search" onSubmit={handleSearchSubmit}>
+                      <div
+                        ref={mobileSearchBoxRef}
+                        className="relative"
                         dir={dir}
-                        style={searchInputStyle}
-                        className={`w-full rounded-full border border-border/50 bg-background/80 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-brand-navy/30 focus:outline-none focus:ring-2 focus:ring-brand-navy/20 ${
-                          isRTL
-                            ? "pl-11 pr-12 text-right [direction:rtl] placeholder:text-right"
-                            : "pl-12 pr-11 text-left"
-                        }`}
-                        aria-label={t.common.search}
-                      />
-                      {searchValue && (
+                      >
                         <button
                           type="button"
-                          onClick={clearSearch}
-                          aria-label={clearSearchLabel}
-                          style={clearButtonStyle}
-                          className="absolute top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-border/70 bg-background/90 text-muted-foreground shadow-sm transition-all hover:border-brand-navy/25 hover:bg-brand-navy/5 hover:text-brand-navy focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25"
+                          onClick={() => {
+                            openSearch();
+                            mobileSearchRef.current?.focus();
+                          }}
+                          aria-label={t.common.search}
+                          style={searchIconStyle}
+                          className="absolute top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-brand-navy focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25"
                         >
-                          <X size={15} strokeWidth={1.8} />
+                          <Search className="h-5 w-5" />
                         </button>
-                      )}
-                      {shouldShowSearchResults && (
-                        <SearchResultsPopover
-                          lang={lang}
-                          query={searchQuery}
-                          results={searchResults}
-                          onClose={() => setIsSearchOpen(false)}
-                          compact
+                        <input
+                          ref={mobileSearchRef}
+                          type="text"
+                          value={searchValue}
+                          onChange={(event) => {
+                            const nextValue = event.target.value;
+                            setSearchValue(nextValue);
+                            openSearch(nextValue);
+                          }}
+                          onFocus={() => openSearch()}
+                          placeholder={`${t.common.search}...`}
+                          autoComplete="off"
+                          dir={dir}
+                          style={searchInputStyle}
+                          className={`w-full rounded-full border border-border/50 bg-background/80 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-brand-navy/30 focus:outline-none focus:ring-2 focus:ring-brand-navy/20 ${
+                            isRTL
+                              ? "pl-11 pr-12 text-right [direction:rtl] placeholder:text-right"
+                              : "pl-12 pr-11 text-left"
+                          }`}
+                          aria-label={t.common.search}
                         />
-                      )}
-                    </div>
-                  </form>
-                </div>
-                <nav className="flex flex-col space-y-1 p-4">
-                  {navItems.map(({ href, label, key, Icon }) => {
-                    const isActive = isNavItemActive(href);
+                        {searchValue && (
+                          <button
+                            type="button"
+                            onClick={clearSearch}
+                            aria-label={clearSearchLabel}
+                            style={clearButtonStyle}
+                            className="absolute top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md border border-border/70 bg-background/90 text-muted-foreground shadow-sm transition-all hover:border-brand-navy/25 hover:bg-brand-navy/5 hover:text-brand-navy focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25"
+                          >
+                            <X size={15} strokeWidth={1.8} />
+                          </button>
+                        )}
+                        {shouldShowSearchResults && (
+                          <SearchResultsPopover
+                            lang={lang}
+                            query={searchQuery}
+                            results={searchResults}
+                            onClose={() => setIsSearchOpen(false)}
+                            compact
+                          />
+                        )}
+                      </div>
+                    </form>
+                  </div>
+                  <nav className="flex flex-col space-y-1 p-4">
+                    {navItems.map(({ href, label, key, Icon }) => {
+                      const isActive = isNavItemActive(href);
 
-                    if (key === "products") {
-                      return (
-                        <details
-                          key={key}
-                          className={`group/mobile-products overflow-hidden rounded-xl border transition-all duration-300 ${
-                            isActive
-                              ? "border-brand-navy/20 bg-brand-navy/[0.04] shadow-sm"
-                              : "border-border/60 bg-background/70"
-                          }`}
-                          open={isActive || undefined}
-                        >
-                          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-3.5 py-3 text-foreground transition-colors hover:bg-muted/45 [&::-webkit-details-marker]:hidden">
-                            <span className="flex min-w-0 items-center gap-3">
-                              <span
-                                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors ${
-                                  isActive
-                                    ? "bg-brand-navy text-white"
-                                    : "bg-muted text-muted-foreground"
-                                }`}
-                              >
-                                <Icon size={18} strokeWidth={1.7} />
-                              </span>
-                              <span className="truncate font-semibold">{label}</span>
-                            </span>
-                            <ChevronDown
-                              size={17}
-                              className="shrink-0 text-muted-foreground transition-transform duration-300 group-open/mobile-products:rotate-180"
-                            />
-                          </summary>
-
-                          <div className="px-3 pb-3">
-                            <a
-                              href={href}
-                              className="mb-2 flex items-center justify-between rounded-lg px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:bg-muted/45 hover:text-foreground"
-                            >
-                              <span>
-                                {lang === "en" ? "All products" : "همه محصولات"}
-                              </span>
-                            </a>
-
-                            <div className="divide-y divide-border/50 overflow-hidden rounded-lg border border-border/50 bg-background/80">
-                              {productCategoryMenuItems.map((item) => (
-                                <a
-                                  key={item.category}
-                                  href={item.href}
-                                  className="flex items-center gap-3 px-3 py-3 transition-colors hover:bg-muted/45"
+                      if (key === "products") {
+                        return (
+                          <details
+                            key={key}
+                            className={`group/mobile-products overflow-hidden rounded-xl border transition-all duration-300 ${
+                              isActive
+                                ? "border-brand-navy/20 bg-brand-navy/4 shadow-sm"
+                                : "border-border/60 bg-background/70"
+                            }`}
+                            open={isActive || undefined}
+                          >
+                            <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-3.5 py-3 text-foreground transition-colors hover:bg-muted/45 [&::-webkit-details-marker]:hidden">
+                              <span className="flex min-w-0 items-center gap-3">
+                                <span
+                                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors ${
+                                    isActive
+                                      ? "bg-brand-navy text-white"
+                                      : "bg-muted text-muted-foreground"
+                                  }`}
                                 >
-                                  <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-md bg-muted ring-1 ring-border/50">
-                                    {item.image ? (
-                                      <Image
-                                        src={item.image}
-                                        alt=""
-                                        width={32}
-                                        height={32}
-                                        className="h-full w-full object-cover"
-                                      />
-                                    ) : (
-                                      <span className="block h-full w-full bg-muted" />
-                                    )}
-                                  </span>
-                                  <span className="min-w-0 flex-1">
-                                    <span className="block truncate text-sm font-semibold text-foreground">
-                                      {item.label}
-                                    </span>
-                                    <span className="mt-0.5 block truncate text-xs text-muted-foreground">
-                                      {item.countLabel}
-                                    </span>
-                                  </span>
-                                </a>
-                              ))}
-                            </div>
+                                  <Icon size={18} strokeWidth={1.7} />
+                                </span>
+                                <span className="truncate font-semibold">
+                                  {label}
+                                </span>
+                              </span>
+                              <ChevronDown
+                                size={17}
+                                className="shrink-0 text-muted-foreground transition-transform duration-300 group-open/mobile-products:rotate-180"
+                              />
+                            </summary>
 
-                            <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                              <div className="rounded-lg border border-border/50 bg-background/80 p-2">
-                                <p className="px-2 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                                  {lang === "en" ? "Brands" : "برندها"}
-                                </p>
-                                <div className="space-y-1">
-                                  {productBrandMenuItems.map((item) => (
-                                    <a
-                                      key={item.key}
-                                      href={item.href}
-                                      className="flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/45"
-                                    >
-                                      <MenuFilterThumbnail item={item} size="sm" />
-                                      <span className="min-w-0 flex-1 truncate">
+                            <div className="px-3 pb-3">
+                              <a
+                                href={href}
+                                className="mb-2 flex items-center justify-between rounded-lg px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:bg-muted/45 hover:text-foreground"
+                              >
+                                <span>
+                                  {lang === "en"
+                                    ? "All products"
+                                    : "همه محصولات"}
+                                </span>
+                              </a>
+
+                              <div className="divide-y divide-border/50 overflow-hidden rounded-lg border border-border/50 bg-background/80">
+                                {productCategoryMenuItems.map((item) => (
+                                  <a
+                                    key={item.category}
+                                    href={item.href}
+                                    className="flex items-center gap-3 px-3 py-3 transition-colors hover:bg-muted/45"
+                                  >
+                                    <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-md bg-muted ring-1 ring-border/50">
+                                      {item.image ? (
+                                        <Image
+                                          src={item.image}
+                                          alt=""
+                                          fill
+                                          sizes="32px"
+                                          className="object-cover"
+                                        />
+                                      ) : (
+                                        <span className="block h-full w-full bg-muted" />
+                                      )}
+                                    </span>
+                                    <span className="min-w-0 flex-1">
+                                      <span className="block truncate text-sm font-semibold text-foreground">
                                         {item.label}
                                       </span>
-                                      <span className="shrink-0 text-xs text-muted-foreground">
-                                        {numberFormatter.format(item.count)}
-                                      </span>
-                                    </a>
-                                  ))}
-                                </div>
+                                    </span>
+                                  </a>
+                                ))}
                               </div>
 
-                              <div className="rounded-lg border border-border/50 bg-background/80 p-2">
-                                <p className="px-2 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                                  {lang === "en" ? "Product type" : "نوع محصول"}
-                                </p>
-                                <div className="space-y-1">
-                                  {productTypeMenuItems.map((item) => (
-                                    <a
-                                      key={item.key}
-                                      href={item.href}
-                                      className="flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/45"
-                                    >
-                                      <MenuFilterThumbnail item={item} size="sm" />
-                                      <span className="min-w-0 flex-1 truncate">
-                                        {item.label}
-                                      </span>
-                                      <span className="shrink-0 text-xs text-muted-foreground">
-                                        {numberFormatter.format(item.count)}
-                                      </span>
-                                    </a>
-                                  ))}
+                              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                                <div className="rounded-lg border border-border/50 bg-background/80 p-2">
+                                  <p className="px-2 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                                    {lang === "en" ? "Brands" : "برندها"}
+                                  </p>
+                                  <div className="space-y-1">
+                                    {productBrandMenuItems.map((item) => (
+                                      <a
+                                        key={item.key}
+                                        href={item.href}
+                                        className="flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/45"
+                                      >
+                                        <MenuFilterThumbnail
+                                          item={item}
+                                          size="sm"
+                                        />
+                                        <span className="min-w-0 flex-1 truncate">
+                                          {item.label}
+                                        </span>
+                                      </a>
+                                    ))}
+                                  </div>
+                                </div>
+
+                                <div className="rounded-lg border border-border/50 bg-background/80 p-2">
+                                  <p className="px-2 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                                    {lang === "en"
+                                      ? "Product type"
+                                      : "نوع محصول"}
+                                  </p>
+                                  <div className="space-y-1">
+                                    {productTypeMenuItems.map((item) => (
+                                      <a
+                                        key={item.key}
+                                        href={item.href}
+                                        className="flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/45"
+                                      >
+                                        <MenuFilterThumbnail
+                                          item={item}
+                                          size="sm"
+                                        />
+                                        <span className="min-w-0 flex-1 truncate">
+                                          {item.label}
+                                        </span>
+                                      </a>
+                                    ))}
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </details>
-                      );
-                    }
+                          </details>
+                        );
+                      }
 
-                    return (
-                      <a
-                        key={key}
-                        href={href}
-                        aria-current={isActive ? "page" : undefined}
-                        className={`group/mobile-link flex items-center gap-3 rounded-xl px-3.5 py-3 transition-all duration-300 ${
-                          isActive
-                            ? "bg-brand-navy/[0.06] text-brand-navy shadow-sm ring-1 ring-brand-navy/15"
-                            : "text-foreground hover:bg-muted/55"
-                        }`}
-                      >
-                        <span
-                          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${
+                      return (
+                        <a
+                          key={key}
+                          href={href}
+                          aria-current={isActive ? "page" : undefined}
+                          className={`group/mobile-link flex items-center gap-3 rounded-xl px-3.5 py-3 transition-all duration-300 ${
                             isActive
-                              ? "bg-brand-navy text-white"
-                              : "bg-muted text-muted-foreground group-hover/mobile-link:bg-background group-hover/mobile-link:text-brand-navy"
+                              ? "bg-brand-navy/6 text-brand-navy shadow-sm ring-1 ring-brand-navy/15"
+                              : "text-foreground hover:bg-muted/55"
                           }`}
                         >
-                          <Icon size={18} strokeWidth={1.7} />
-                        </span>
-                        <span className="font-semibold">{label}</span>
-                      </a>
-                    );
-                  })}
-                </nav>
+                          <span
+                            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${
+                              isActive
+                                ? "bg-brand-navy text-white"
+                                : "bg-muted text-muted-foreground group-hover/mobile-link:bg-background group-hover/mobile-link:text-brand-navy"
+                            }`}
+                          >
+                            <Icon size={18} strokeWidth={1.7} />
+                          </span>
+                          <span className="font-semibold">{label}</span>
+                        </a>
+                      );
+                    })}
+                  </nav>
+                </div>
               </div>
-              </div>
-              )}
             </details>
           </div>
         </div>
@@ -769,7 +757,7 @@ export function Header({ lang }: HeaderProps) {
         <nav
           className={`relative z-10 hidden border-b backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:block ${
             effectiveHeaderMode === "compact"
-              ? "border-border/40 bg-background/[0.92] shadow-[0_18px_44px_-30px_rgba(12,18,24,0.45)]"
+              ? "border-border/40 bg-background/92 shadow-[0_18px_44px_-30px_rgba(12,18,24,0.45)]"
               : "border-border/30 bg-background/70 shadow-none"
           }`}
         >
@@ -804,8 +792,6 @@ export function Header({ lang }: HeaderProps) {
                   <div
                     key={key}
                     className="group/products relative flex h-full items-center"
-                    onMouseEnter={() => setIsDesktopProductsMenuReady(true)}
-                    onFocusCapture={() => setIsDesktopProductsMenuReady(true)}
                   >
                     <a
                       href={href}
@@ -819,9 +805,7 @@ export function Header({ lang }: HeaderProps) {
                         size={20}
                         strokeWidth={1.5}
                         className={`transition-all duration-200 group-hover:text-brand-navy group-hover:scale-105 ${
-                          isActive
-                            ? "text-brand-navy"
-                            : "text-muted-foreground"
+                          isActive ? "text-brand-navy" : "text-muted-foreground"
                         }`}
                       />
                       <span
@@ -844,15 +828,13 @@ export function Header({ lang }: HeaderProps) {
                         }`}
                       />
                     </a>
-                    {isDesktopProductsMenuReady && (
-                      <ProductsMegaMenu
-                        lang={lang}
-                        isRTL={isRTL}
-                        categories={productCategoryMenuItems}
-                        brands={productBrandMenuItems}
-                        types={productTypeMenuItems}
-                      />
-                    )}
+                    <ProductsMegaMenu
+                      lang={lang}
+                      isRTL={isRTL}
+                      categories={productCategoryMenuItems}
+                      brands={productBrandMenuItems}
+                      types={productTypeMenuItems}
+                    />
                   </div>
                 );
               }
@@ -870,9 +852,7 @@ export function Header({ lang }: HeaderProps) {
                     size={20}
                     strokeWidth={1.5}
                     className={`transition-all duration-200 group-hover:text-brand-navy group-hover:scale-105 ${
-                      isActive
-                        ? "text-brand-navy"
-                        : "text-muted-foreground"
+                      isActive ? "text-brand-navy" : "text-muted-foreground"
                     }`}
                   />
                   <span
@@ -884,7 +864,9 @@ export function Header({ lang }: HeaderProps) {
                   </span>
                   <span
                     className={`absolute bottom-0 inset-x-0 h-1 rounded-t-md bg-brand-navy transition-opacity duration-200 ${
-                      isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                      isActive
+                        ? "opacity-100"
+                        : "opacity-0 group-hover:opacity-100"
                     }`}
                   />
                 </a>
@@ -936,18 +918,16 @@ function ProductsMegaMenu({
 
   return (
     <div
-      className={`invisible absolute left-1/2 top-full z-[75] hidden w-[min(92vw,64rem)] translate-y-2 pt-3 opacity-0 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/products:visible group-hover/products:translate-y-0 group-hover/products:opacity-100 group-hover/products:pointer-events-auto group-focus-within/products:visible group-focus-within/products:translate-y-0 group-focus-within/products:opacity-100 group-focus-within/products:pointer-events-auto lg:block ${
+      className={`invisible absolute left-1/2 top-full z-75 hidden w-[min(92vw,64rem)] translate-y-2 pt-3 opacity-0 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/products:visible group-hover/products:translate-y-0 group-hover/products:opacity-100 group-hover/products:pointer-events-auto group-focus-within/products:visible group-focus-within/products:translate-y-0 group-focus-within/products:opacity-100 group-focus-within/products:pointer-events-auto lg:block ${
         isRTL ? "-translate-x-[56%]" : "-translate-x-1/2"
       }`}
       dir={dir}
     >
       <div className="overflow-hidden rounded-2xl border border-border/70 bg-background/98 shadow-[0_24px_70px_rgba(12,18,24,0.14)] backdrop-blur-xl">
         <div
-          className={`grid h-[min(23rem,calc(100vh-7rem))] min-h-[17.5rem] ${
+          className={`grid h-[min(23rem,calc(100vh-7rem))] min-h-70 ${
             isRTL ? "grid-cols-[1fr_18rem]" : "grid-cols-[17rem_1fr]"
-          } ${
-            isRTL ? "text-right" : "text-left"
-          }`}
+          } ${isRTL ? "text-right" : "text-left"}`}
           style={{ direction: "ltr" }}
         >
           <div
@@ -971,8 +951,8 @@ function ProductsMegaMenu({
               <h3
                 className={`mt-4 font-hero font-semibold text-foreground ${
                   isRTL
-                    ? "max-w-[15rem] text-[1.45rem] leading-[1.35]"
-                    : "max-w-[13rem] text-[1.7rem] leading-[1.08]"
+                    ? "max-w-60 text-[1.45rem] leading-[1.35]"
+                    : "max-w-52 text-[1.7rem] leading-[1.08]"
                 }`}
                 style={{
                   fontFamily: isRTL
@@ -1019,9 +999,9 @@ function ProductsMegaMenu({
                           <Image
                             src={item.image}
                             alt=""
-                            width={32}
-                            height={32}
-                            className="h-full w-full object-cover"
+                            fill
+                            sizes="32px"
+                            className="object-cover"
                           />
                         ) : (
                           <span className="block h-full w-full bg-muted" />
@@ -1034,9 +1014,6 @@ function ProductsMegaMenu({
                           }`}
                         >
                           {item.label}
-                        </span>
-                        <span className="mt-0.5 block truncate text-xs text-muted-foreground">
-                          {item.countLabel}
                         </span>
                       </span>
                     </a>
@@ -1082,9 +1059,6 @@ function MegaMenuFilterColumn({
           >
             <MenuFilterThumbnail item={item} />
             <span className="min-w-0 flex-1 truncate">{item.label}</span>
-            <span className="shrink-0 text-xs text-muted-foreground">
-              {item.count}
-            </span>
           </a>
         ))}
       </div>
@@ -1101,7 +1075,6 @@ function MenuFilterThumbnail({
 }) {
   const imageSize = size === "sm" ? 22 : 26;
   const boxClass = size === "sm" ? "h-7 w-7" : "h-8 w-8";
-  const boxPixels = size === "sm" ? 28 : 32;
   const isLogo = item.imageFit === "contain";
 
   return (
@@ -1117,15 +1090,16 @@ function MenuFilterThumbnail({
             alt=""
             width={imageSize}
             height={imageSize}
+            sizes={`${imageSize}px`}
             className="max-h-full max-w-full object-contain"
           />
         ) : (
           <Image
             src={item.image}
             alt=""
-            width={boxPixels}
-            height={boxPixels}
-            className="h-full w-full object-cover"
+            fill
+            sizes={size === "sm" ? "28px" : "32px"}
+            className="object-cover"
           />
         )
       ) : (
@@ -1204,8 +1178,8 @@ function SearchResultsPopover({
   return (
     <div
       dir={dir}
-      className={`absolute left-0 right-0 top-full z-[100] mt-2 overflow-hidden rounded-lg border border-border/70 bg-background/98 shadow-2xl ${
-        compact ? "max-h-[22rem]" : "max-h-[28rem]"
+      className={`absolute left-0 right-0 top-full z-100 mt-2 overflow-hidden rounded-lg border border-border/70 bg-background/98 shadow-2xl ${
+        compact ? "max-h-88" : "max-h-112"
       }`}
       role="dialog"
       aria-modal="false"
@@ -1228,7 +1202,7 @@ function SearchResultsPopover({
         </div>
       </div>
 
-      <div className="max-h-[21rem] overflow-y-auto p-2">
+      <div className="max-h-84 overflow-y-auto p-2">
         {results.length > 0 ? (
           <div className="space-y-1.5">
             {results.map((product) => (
