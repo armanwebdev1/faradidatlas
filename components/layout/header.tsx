@@ -664,9 +664,6 @@ export function Header({ lang }: HeaderProps) {
                                     <span className="block truncate text-sm font-semibold text-foreground">
                                       {item.label}
                                     </span>
-                                    <span className="mt-0.5 block truncate text-xs text-muted-foreground">
-                                      {item.countLabel}
-                                    </span>
                                   </span>
                                 </a>
                               ))}
@@ -688,9 +685,6 @@ export function Header({ lang }: HeaderProps) {
                                       <span className="min-w-0 flex-1 truncate">
                                         {item.label}
                                       </span>
-                                      <span className="shrink-0 text-xs text-muted-foreground">
-                                        {numberFormatter.format(item.count)}
-                                      </span>
                                     </a>
                                   ))}
                                 </div>
@@ -710,9 +704,6 @@ export function Header({ lang }: HeaderProps) {
                                       <MenuFilterThumbnail item={item} size="sm" />
                                       <span className="min-w-0 flex-1 truncate">
                                         {item.label}
-                                      </span>
-                                      <span className="shrink-0 text-xs text-muted-foreground">
-                                        {numberFormatter.format(item.count)}
                                       </span>
                                     </a>
                                   ))}
@@ -1020,9 +1011,6 @@ function ProductsMegaMenu({
                         >
                           {item.label}
                         </span>
-                        <span className="mt-0.5 block truncate text-xs text-muted-foreground">
-                          {item.countLabel}
-                        </span>
                       </span>
                     </a>
                   ))}
@@ -1067,9 +1055,6 @@ function MegaMenuFilterColumn({
           >
             <MenuFilterThumbnail item={item} />
             <span className="min-w-0 flex-1 truncate">{item.label}</span>
-            <span className="shrink-0 text-xs text-muted-foreground">
-              {item.count}
-            </span>
           </a>
         ))}
       </div>
