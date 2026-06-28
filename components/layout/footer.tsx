@@ -144,30 +144,28 @@ export function Footer({ lang }: FooterProps) {
               </h4>
               <div className="space-y-4">
                 <div className="flex items-start gap-3 text-sm text-white/70">
-                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
                   <span>{t.footer.address}</span>
                 </div>
                 <a
                   href={`mailto:${publicContactEmail}`}
                   className="flex items-start gap-3 text-sm text-white/70 transition-colors duration-300 hover:text-accent"
-                  dir="ltr"
                 >
-                  <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                  <span>{publicContactEmail}</span>
+                  <Mail className="w-4 h-4 mt-0.5 shrink-0" />
+                  <span dir="ltr">{publicContactEmail}</span>
                 </a>
                 <div className="space-y-2">
                   {publicPhoneNumbers.map((phone) => (
                     <div
                       key={phone.value}
                       className="flex items-center gap-3 text-sm text-white/70"
-                      dir="ltr"
                     >
                       <a
                         href={phone.href}
                         className="flex items-center gap-3 transition-colors duration-300 hover:text-accent"
                       >
-                        <Phone className="w-4 h-4 flex-shrink-0" />
-                        <span>{phone.display}</span>
+                        <Phone className="w-4 h-4 shrink-0" />
+                        <span dir="ltr">{phone.display}</span>
                       </a>
                       <a
                         href={phone.whatsappHref}
@@ -176,7 +174,7 @@ export function Footer({ lang }: FooterProps) {
                         aria-label={`Chat with ${phone.display} on WhatsApp`}
                         className="text-white/70 transition-colors duration-300 hover:text-[#25D366]"
                       >
-                        <WhatsAppIcon className="w-4 h-4 flex-shrink-0" />
+                        <WhatsAppIcon className="w-4 h-4 shrink-0" />
                       </a>
                     </div>
                   ))}
@@ -194,7 +192,7 @@ export function Footer({ lang }: FooterProps) {
           {/* Divider */}
           <div className="relative py-8 mb-8">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full h-px bg-gradient-to-r from-transparent via-white/12 to-transparent" />
+              <div className="w-full h-px bg-linear-to-r from-transparent via-white/12 to-transparent" />
             </div>
           </div>
 
