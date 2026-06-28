@@ -436,4 +436,147 @@ export const products: Product[] = [
       "فلفل سیاه ۲۱ از چاشنی‌های اصلی است و برای خریداران فروشگاهی و خدمات غذایی که به تأمین بسته‌بندی‌شده و قابل اعتماد ادویه نیاز دارند عرضه می‌شود.",
     ...imageSet(productImages.blackPepper),
   },
+  {
+    id: 21,
+    slug: "twenty-one-pinto-beans",
+    nameEn: "21 Pinto Beans",
+    nameFa: "لوبیا چیتی ۲۱",
+    aliasEn: "Pinto Beans",
+    aliasFa: "لوبیا چیتی",
+    category: "legumes",
+    descriptionEn:
+      "21 Pinto Beans are a staple legume product for retail, wholesale, and foodservice buyers seeking reliable packaged supply.",
+    descriptionFa:
+      "لوبیا چیتی ۲۱ از حبوبات پرمصرف است و برای خریداران فروشگاهی، عمده و خدمات غذایی که به تأمین بسته‌بندی‌شده و قابل اعتماد نیاز دارند عرضه می‌شود.",
+  },
+  {
+    id: 22,
+    slug: "twenty-one-black-eyed-peas",
+    nameEn: "21 Black-Eyed Peas",
+    nameFa: "لوبیا چشم بلبلی ۲۱",
+    aliasEn: "Black-Eyed Peas",
+    aliasFa: "لوبیا چشم بلبلی",
+    category: "legumes",
+    descriptionEn:
+      "21 Black-Eyed Peas are a versatile pulse line packaged for everyday cooking, foodservice use, and wholesale distribution.",
+    descriptionFa:
+      "لوبیا چشم بلبلی ۲۱ از حبوبات کاربردی است که برای مصرف روزمره، خدمات غذایی و توزیع عمده بسته‌بندی می‌شود.",
+  },
+  {
+    id: 23,
+    slug: "twenty-one-green-lentils",
+    nameEn: "21 Green Lentils",
+    nameFa: "عدس سبز ۲۱",
+    aliasEn: "Green Lentils",
+    aliasFa: "عدس سبز",
+    category: "legumes",
+    descriptionEn:
+      "21 Green Lentils are a high-demand pulse product for everyday cooking, foodservice kitchens, and B2B staple-food procurement.",
+    descriptionFa:
+      "عدس سبز ۲۱ از حبوبات پرتقاضا برای مصرف روزمره، آشپزخانه‌های خدمات غذایی و تأمین عمده اقلام غذایی اساسی است.",
+  },
+  {
+    id: 24,
+    slug: "twenty-one-sunflower-seeds",
+    nameEn: "21 Sunflower Seeds",
+    nameFa: "تخمه آفتابگردان ۲۱",
+    aliasEn: "Sunflower Seeds",
+    aliasFa: "تخمه آفتابگردان",
+    category: "seeds",
+    descriptionEn:
+      "21 Sunflower Seeds are packaged whole for snack producers, retailers, and wholesale buyers seeking dependable seed supply.",
+    descriptionFa:
+      "تخمه آفتابگردان ۲۱ به‌صورت کامل برای تولیدکنندگان تنقلات، فروشگاه‌ها و خریداران عمده‌ای عرضه می‌شود که به تأمین قابل اتکای تخمه نیاز دارند.",
+  },
+  {
+    id: 25,
+    slug: "twenty-one-pumpkin-seeds",
+    nameEn: "21 Pumpkin Seeds",
+    nameFa: "تخمه کدو ۲۱",
+    aliasEn: "Pumpkin Seeds",
+    aliasFa: "تخمه کدو",
+    category: "seeds",
+    descriptionEn:
+      "21 Pumpkin Seeds are packaged whole for snack, retail, and ingredient buyers who need consistent quality and steady availability.",
+    descriptionFa:
+      "تخمه کدو ۲۱ به‌صورت کامل برای خریداران حوزه تنقلات، فروشگاهی و مواد اولیه عرضه می‌شود که به کیفیت یکنواخت و دسترسی پایدار نیاز دارند.",
+  },
+  {
+    id: 26,
+    slug: "twenty-one-sesame-seeds",
+    nameEn: "21 Sesame Seeds",
+    nameFa: "کنجد ۲۱",
+    aliasEn: "Sesame Seeds",
+    aliasFa: "کنجد",
+    category: "seeds",
+    descriptionEn:
+      "21 Sesame Seeds support bakery, foodservice, and ingredient buyers with clean packaged seeds and dependable availability.",
+    descriptionFa:
+      "کنجد ۲۱ برای خریداران حوزه نانوایی، خدمات غذایی و مواد اولیه عرضه می‌شود؛ با بسته‌بندی تمیز و دسترسی پایدار.",
+  },
+  {
+    id: 27,
+    slug: "twenty-one-walnut",
+    nameEn: "21 Walnut",
+    nameFa: "گردو ۲۱",
+    aliasEn: "Walnut",
+    aliasFa: "گردو",
+    category: "nuts",
+    descriptionEn:
+      "21 Walnut is an in-shell nut product for retail and wholesale buyers seeking a familiar nut line with reliable commercial supply.",
+    descriptionFa:
+      "گردو ۲۱ محصولی با پوست از گروه آجیل است و برای خریداران فروشگاهی و عمده‌ای عرضه می‌شود که به محصولی شناخته‌شده با تأمین تجاری قابل اعتماد نیاز دارند.",
+  },
+  {
+    id: 28,
+    slug: "twenty-one-peanuts",
+    nameEn: "21 Peanuts",
+    nameFa: "بادام زمینی ۲۱",
+    aliasEn: "Peanuts",
+    aliasFa: "بادام زمینی",
+    category: "nuts",
+    descriptionEn:
+      "21 Peanuts are positioned for snack producers, retail, and wholesale buyers who need a familiar nut product with steady supply.",
+    descriptionFa:
+      "بادام زمینی ۲۱ برای تولیدکنندگان تنقلات، فروشگاه‌ها و خریداران عمده‌ای عرضه می‌شود که به محصولی شناخته‌شده با تأمین پایدار نیاز دارند.",
+  },
+  {
+    id: 29,
+    slug: "twenty-one-desiccated-coconut",
+    nameEn: "21 Desiccated Coconut",
+    nameFa: "پودر نارگیل ۲۱",
+    aliasEn: "Coconut Powder",
+    aliasFa: "پودر نارگیل",
+    category: "nuts",
+    descriptionEn:
+      "21 Desiccated Coconut is a packaged coconut powder for bakery, confectionery, and retail buyers seeking consistent quality and supply.",
+    descriptionFa:
+      "پودر نارگیل ۲۱ محصولی بسته‌بندی‌شده برای خریداران حوزه نانوایی، شیرینی‌پزی و فروشگاهی است که به کیفیت و تأمین یکنواخت نیاز دارند.",
+  },
+  {
+    id: 30,
+    slug: "twenty-one-cardamom",
+    nameEn: "21 Cardamom",
+    nameFa: "هل ۲۱",
+    aliasEn: "Cardamom",
+    aliasFa: "هل",
+    category: "spices",
+    descriptionEn:
+      "21 Cardamom is an aromatic spice product for foodservice, retail, and wholesale buyers seeking consistent flavor and packaged supply.",
+    descriptionFa:
+      "هل ۲۱ از ادویه‌های خوش‌عطر است و برای خریداران خدمات غذایی، فروشگاهی و عمده که به طعم یکدست و بسته‌بندی منظم نیاز دارند عرضه می‌شود.",
+  },
+  {
+    id: 31,
+    slug: "twenty-one-sugar",
+    nameEn: "21 Sugar",
+    nameFa: "شکر ۲۱",
+    aliasEn: "Sugar",
+    aliasFa: "شکر",
+    category: "sugar",
+    descriptionEn:
+      "21 Sugar is a core sweetener product for retail, foodservice, and wholesale buyers who need reliable packaged supply.",
+    descriptionFa:
+      "شکر ۲۱ از شیرین‌کننده‌های اصلی است و برای خریداران فروشگاهی، خدمات غذایی و عمده که به تأمین بسته‌بندی‌شده و قابل اعتماد نیاز دارند عرضه می‌شود.",
+  },
 ];
