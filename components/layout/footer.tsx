@@ -152,7 +152,9 @@ export function Footer({ lang }: FooterProps) {
                   className="flex items-start gap-3 text-sm text-white/70! transition-colors duration-300 hover:text-accent!"
                 >
                   <Mail className="w-4 h-4 mt-0.5 shrink-0" />
-                  <span dir="ltr">{publicContactEmail}</span>
+                  <span dir="ltr" className="text-inherit">
+                    {publicContactEmail}
+                  </span>
                 </a>
                 <div className="space-y-4">
                   {publicPhoneNumbers.map((phone) => (
@@ -167,7 +169,9 @@ export function Footer({ lang }: FooterProps) {
                           href={phone.href}
                           className="text-sm text-white/70! transition-colors duration-300 hover:text-accent!"
                         >
-                          <span dir="ltr">{phone.display}</span>
+                          <span dir="ltr" className="text-inherit">
+                            {phone.display}
+                          </span>
                         </a>
 
                         <a
