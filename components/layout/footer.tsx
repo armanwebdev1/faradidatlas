@@ -149,10 +149,14 @@ export function Footer({ lang }: FooterProps) {
                 </div>
                 <a
                   href={`mailto:${publicContactEmail}`}
-                  className="flex items-start gap-3 text-sm text-white/70! transition-colors duration-300 hover:text-accent!"
+                  aria-label={`Email us at ${publicContactEmail}`}
+                  className="group/email flex items-center gap-3 text-sm text-white/70 transition-colors duration-300 hover:text-accent"
                 >
-                  <Mail className="w-4 h-4 mt-0.5 shrink-0" />
-                  <span dir="ltr" className="text-inherit">
+                  <Mail className="w-4 h-4 shrink-0 text-inherit" />
+                  <span
+                    dir="ltr"
+                    className="text-inherit underline-offset-4 group-hover/email:underline"
+                  >
                     {publicContactEmail}
                   </span>
                 </a>
@@ -160,16 +164,20 @@ export function Footer({ lang }: FooterProps) {
                   {publicPhoneNumbers.map((phone) => (
                     <div
                       key={phone.value}
-                      className="flex items-start gap-3 text-sm"
+                      className="group/phone flex items-start gap-3 text-sm"
                     >
-                      <Phone className="w-4 h-4 mt-0.5 shrink-0 text-white/70" />
+                      <Phone className="w-4 h-4 mt-0.5 shrink-0 text-white/70 transition-colors duration-300 group-hover/phone:text-accent" />
 
                       <div className="flex flex-col">
                         <a
                           href={phone.href}
-                          className="text-sm text-white/70! transition-colors duration-300 hover:text-accent!"
+                          aria-label={`Call us at ${phone.display}`}
+                          className="text-sm text-white/70 transition-colors duration-300 hover:text-accent"
                         >
-                          <span dir="ltr" className="text-inherit">
+                          <span
+                            dir="ltr"
+                            className="text-inherit tabular-nums underline-offset-4 hover:underline"
+                          >
                             {phone.display}
                           </span>
                         </a>
