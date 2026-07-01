@@ -1111,6 +1111,22 @@
     animation: scaleReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
+  /* Premium side entrance — GPU-friendly transform + opacity only */
+  .reveal-side {
+    opacity: 0;
+    transform: translate3d(var(--reveal-x, 0), 0, 0);
+    transition:
+      opacity 0.7s var(--ease-emphasized, cubic-bezier(0.22, 1, 0.36, 1)),
+      transform 0.7s var(--ease-emphasized, cubic-bezier(0.22, 1, 0.36, 1));
+    will-change: opacity, transform;
+  }
+
+  .reveal-side.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+  }
+
   /* Hover underline animation */
   .line-accent {
     position: relative;
@@ -1401,11 +1417,13 @@
   @media (prefers-reduced-motion: reduce) {
     .animate-hero-image-zoom,
     .hero-premium-sheen,
-    .animate-fade-in-up {
-      animation: none !important;
-      opacity: 1;
-      transform: none;
-      will-change: auto;
+    .animate-fade-in-up,
+    .reveal-side {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1;
+    transform: none;
+    will-change: auto;
     }
 
     .count-up-rise {
