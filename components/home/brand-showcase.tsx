@@ -53,7 +53,7 @@ export function BrandShowcase({ lang }: BrandShowcaseProps) {
 
       <div className="relative z-10 container-wide">
         <p
-          className={`reveal-side eyebrow text-brand-navy mb-8 text-center sm:mb-10 ${
+          className={`reveal-side eyebrow text-brand-navy mx-auto mb-8 sm:mb-10 ${
             isVisible ? "is-visible" : ""
           }`}
         >
