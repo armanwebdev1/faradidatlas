@@ -89,8 +89,8 @@ export function SignatureProducts() {
   const isRTL = lang === "fa";
   const t = (value: LocalizedText) => value[lang];
   const textShiftClass = isRTL
-    ? "-translate-x-4 sm:-translate-x-6 md:-translate-x-8 -translate-y-4 sm:-translate-y-6 md:-translate-y-8"
-    : "translate-x-4 sm:translate-x-6 md:translate-x-8 -translate-y-4 sm:-translate-y-6 md:-translate-y-8";
+    ? "sm:-translate-x-6 md:-translate-x-8 sm:-translate-y-6 md:-translate-y-8"
+    : "sm:translate-x-6 md:translate-x-8 sm:-translate-y-6 md:-translate-y-8";
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoplay, setIsAutoplay] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -226,7 +226,9 @@ export function SignatureProducts() {
                 </button>
 
                 <div
-                  className={`absolute inset-0 flex flex-col justify-end p-5 sm:p-7 md:p-10 lg:p-12 pointer-events-none transform-gpu ${textShiftClass}`}
+                  className={`absolute inset-0 flex flex-col justify-end p-5 sm:p-7 md:p-10 lg:p-12 pointer-events-none transform-gpu items-center text-center sm:items-start ${
+                    isRTL ? "sm:text-right" : "sm:text-left"
+                  } ${textShiftClass}`}
                 >
                   <div
                     className={`transition-all duration-700 transform ${
@@ -238,12 +240,9 @@ export function SignatureProducts() {
                     <span className="eyebrow text-accent">
                       {t(product.category)}
                     </span>
-                    <h3 className="text-responsive-subheading text-white my-3 sm:my-4">
+                    <h3 className="text-responsive-subheading text-white mt-2 sm:mt-3">
                       {t(product.name)}
                     </h3>
-                    <p className="text-primary-foreground/80 text-sm sm:text-base md:text-base leading-relaxed max-w-2xl">
-                      {t(product.description)}
-                    </p>
                   </div>
                 </div>
               </div>
