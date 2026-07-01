@@ -9,6 +9,7 @@ import {
 } from "@/components/products/product-data";
 import { publicContactEmail, publicPhoneNumbers } from "@/lib/contact-info";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 
 interface FooterProps {
   lang: Language;
@@ -31,8 +32,7 @@ export function Footer({ lang }: FooterProps) {
 
   const productCategoryLinks = productCategories
     .map((category) => ({
-      count: products.filter((product) => product.category === category)
-        .length,
+      count: products.filter((product) => product.category === category).length,
       link: {
         href: `/${lang}/products?category=${category}#product-catalog`,
         label: categoryLabels[category][lang],
@@ -144,28 +144,56 @@ export function Footer({ lang }: FooterProps) {
               </h4>
               <div className="space-y-4">
                 <div className="flex items-start gap-3 text-sm text-white/70">
-                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
                   <span>{t.footer.address}</span>
                 </div>
                 <a
                   href={`mailto:${publicContactEmail}`}
-                  className="flex items-start gap-3 text-sm text-white/70 transition-colors duration-300 hover:text-accent"
-                  dir="ltr"
+                  aria-label={`Email us at ${publicContactEmail}`}
+                  className="group/email flex items-center gap-3 text-sm text-white/70 transition-colors duration-300 hover:text-accent"
                 >
-                  <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                  <span>{publicContactEmail}</span>
+                  <Mail className="w-4 h-4 shrink-0 text-inherit" />
+                  <span
+                    dir="ltr"
+                    className="text-inherit underline-offset-4 group-hover/email:underline"
+                  >
+                    {publicContactEmail}
+                  </span>
                 </a>
-                <div className="space-y-2">
+                <div className="space-y-4">
                   {publicPhoneNumbers.map((phone) => (
-                    <a
+                    <div
                       key={phone.value}
-                      href={phone.href}
-                      className="flex items-start gap-3 text-sm text-white/70 transition-colors duration-300 hover:text-accent"
-                      dir="ltr"
+                      className="group/phone flex items-start gap-3 text-sm"
                     >
-                      <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                      <span>{phone.display}</span>
-                    </a>
+                      <Phone className="w-4 h-4 mt-0.5 shrink-0 text-white/70 transition-colors duration-300 group-hover/phone:text-accent" />
+
+                      <div className="flex flex-col">
+                        <a
+                          href={phone.href}
+                          aria-label={`Call us at ${phone.display}`}
+                          className="text-sm text-white/70 transition-colors duration-300 hover:text-accent"
+                        >
+                          <span
+                            dir="ltr"
+                            className="text-inherit tabular-nums underline-offset-4 hover:underline"
+                          >
+                            {phone.display}
+                          </span>
+                        </a>
+
+                        <a
+                          href={phone.whatsappHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Chat with ${phone.display} on WhatsApp`}
+                          className="mt-1 inline-flex items-center gap-1 text-xs text-white/60 transition-colors duration-300 hover:text-[#25D366]"
+                        >
+                          <WhatsAppIcon className="h-3.5 w-3.5 shrink-0" />
+                          <span>WhatsApp ↗</span>
+                        </a>
+                      </div>
+                    </div>
                   ))}
                 </div>
                 <Link
@@ -181,7 +209,7 @@ export function Footer({ lang }: FooterProps) {
           {/* Divider */}
           <div className="relative py-8 mb-8">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full h-px bg-gradient-to-r from-transparent via-white/12 to-transparent" />
+              <div className="w-full h-px bg-linear-to-r from-transparent via-white/12 to-transparent" />
             </div>
           </div>
 
