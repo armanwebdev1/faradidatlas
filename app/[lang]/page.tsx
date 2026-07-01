@@ -4,7 +4,6 @@ import { Hero } from "@/components/home/hero";
 import { ValueProps } from "@/components/home/value-props";
 import { GlobalMarkets } from "@/components/home/global-markets";
 import { CTASection } from "@/components/home/cta-section";
-import { BrandShowcase } from "@/components/home/brand-showcase";
 import { SignatureProducts } from "@/components/home/signature-products";
 import { buildPageMetadata } from "@/lib/metadata";
 import { publicContactEmail, publicPhoneNumbers } from "@/lib/contact-info";
@@ -51,7 +50,6 @@ export default async function HomePage({ params }: HomePageProps) {
       <main>
         <Hero lang={lang} />
         <ValueProps lang={lang} />
-        <BrandShowcase lang={lang} />
         <SignatureProducts />
         <GlobalMarkets lang={lang} />
         <CTASection lang={lang} />
