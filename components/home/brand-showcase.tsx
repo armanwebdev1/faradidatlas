@@ -63,7 +63,7 @@ export function BrandShowcase({ lang }: BrandShowcaseProps) {
           <div
             className={`reveal-side mx-auto max-w-md text-center md:mx-0 ${
               isVisible ? "is-visible" : ""
-            } ${isRTL ? "md:order-2 md:text-right" : "md:order-1 md:text-left"}`}
+            } md:order-1 ${isRTL ? "md:text-right" : "md:text-left"}`}
             style={{ ["--reveal-x" as string]: isRTL ? "48px" : "-48px" }}
           >
             <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 text-balance">
@@ -77,8 +77,8 @@ export function BrandShowcase({ lang }: BrandShowcaseProps) {
           </div>
 
           <div
-            className={`reveal-side ${isVisible ? "is-visible" : ""} ${
-              isRTL ? "md:order-1" : "md:order-2"
+            className={`reveal-side md:order-2 ${
+              isVisible ? "is-visible" : ""
             }`}
             style={{
               ["--reveal-x" as string]: isRTL ? "-48px" : "48px",
