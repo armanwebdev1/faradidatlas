@@ -52,6 +52,13 @@ export function BrandShowcase({ lang }: BrandShowcaseProps) {
       <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-foreground/10 to-transparent" />
 
       <div className="relative z-10 container-wide">
+        <p
+          className={`reveal-side eyebrow text-brand-navy mb-8 text-center sm:mb-10 ${
+            isVisible ? "is-visible" : ""
+          }`}
+        >
+          {lang === "en" ? "Our Brands" : "برندهای ما"}
+        </p>
         <div className="grid items-center gap-10 md:gap-12 lg:gap-16 md:grid-cols-2">
           <div
             className={`reveal-side mx-auto max-w-md text-center md:mx-0 ${
@@ -59,9 +66,6 @@ export function BrandShowcase({ lang }: BrandShowcaseProps) {
             } ${isRTL ? "md:order-2 md:text-right" : "md:order-1 md:text-left"}`}
             style={{ ["--reveal-x" as string]: isRTL ? "48px" : "-48px" }}
           >
-            <p className="eyebrow text-brand-navy mb-4 sm:mb-5">
-              {lang === "en" ? "Our Brands" : "برندهای ما"}
-            </p>
             <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 text-balance">
               {lang === "en" ? "Trusted names" : "نام‌های آشنا"}
             </h2>
