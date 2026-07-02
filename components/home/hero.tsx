@@ -143,7 +143,7 @@ export function Hero({ lang }: HeroProps) {
               <Image
                 key={`${slide.id}-${isActive ? "active" : "idle"}`}
                 src={slide.image.src}
-                alt=""
+                alt={`${slide.title[lang]} – ${slide.subtitle[lang]}`}
                 fill
                 priority={index === 0}
                 loading={index === 0 ? undefined : "lazy"}

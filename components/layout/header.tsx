@@ -651,7 +651,7 @@ export function Header({ lang }: HeaderProps) {
                                       {item.image ? (
                                         <Image
                                           src={item.image}
-                                          alt=""
+                                          alt={item.label}
                                           fill
                                           sizes="32px"
                                           className="object-cover"
@@ -998,7 +998,7 @@ function ProductsMegaMenu({
                         {item.image ? (
                           <Image
                             src={item.image}
-                            alt=""
+                            alt={item.label}
                             fill
                             sizes="32px"
                             className="object-cover"
@@ -1096,7 +1096,7 @@ function MenuFilterThumbnail({
         ) : (
           <Image
             src={item.image}
-            alt=""
+            alt={item.label}
             fill
             sizes={size === "sm" ? "28px" : "32px"}
             className="object-cover"
@@ -1257,7 +1257,7 @@ function SearchResult({
         {product.image ? (
           <Image
             src={product.image}
-            alt=""
+            alt={name}
             fill
             sizes="64px"
             className="object-cover"
