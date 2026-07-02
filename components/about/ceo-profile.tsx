@@ -14,11 +14,7 @@ const content = {
     name: "Dr. Sohrab Bakhtiar",
     degrees:
       "Ph.D. in International Economics, University of Tehran • Ph.D. in Strategic Management, Vrije Universiteit Brussel (VUB), Belgium",
-    bio: [
-      "Dr. Sohrab Bakhtiar, Chief Executive Officer of Faradid Atlas, combines decades of executive leadership and economic policymaking experience with a strong academic foundation in international economics and strategic management.",
-      "Recognized for his expertise in macroeconomic strategy, he has played leading roles in strategic planning and organizational leadership throughout his career. His perspective is shaped by both rigorous academic research and extensive executive experience.",
-      "Supported by three generations of continuous family involvement in the trade of essential commodities, Dr. Bakhtiar brings together practical expertise in international commerce, procurement, and supply chain management with a long-term vision for sustainable business growth and food security.",
-    ],
+    bio: "Dr. Sohrab Bakhtiar, Chief Executive Officer of Faradid Atlas, combines decades of executive leadership and economic policymaking experience with a strong academic foundation in international economics and strategic management. Recognized for his expertise in macroeconomic strategy, he has played leading roles in strategic planning and organizational leadership throughout his career. His perspective is shaped by both rigorous academic research and extensive executive experience. Supported by three generations of continuous family involvement in the trade of essential commodities, Dr. Bakhtiar brings together practical expertise in international commerce, procurement, and supply chain management with a long-term vision for sustainable business growth and food security.",
   },
   fa: {
     eyebrow: "مدیریت",
@@ -27,11 +23,7 @@ const content = {
     name: "دکتر سهراب بختیار",
     degrees:
       "دکترای اقتصاد بین‌الملل، دانشگاه تهران • دکترای مدیریت استراتژیک، دانشگاه (VUB) بروکسل بلژیک",
-    bio: [
-      "دکتر سهراب بختیار، مدیرعامل شرکت فرادید اطلس، دانش‌آموخته دکترای اقتصاد بین‌الملل از دانشگاه تهران و دکترای مدیریت استراتژیک از دانشگاه (VUB) بروکسل بلژیک است.",
-      "ایشان با بهره‌گیری از دهه‌ها تجربه در سطوح عالی سیاست‌گذاری و مدیریت، از مدیران باسابقه و صاحب‌نظر در حوزه راهبردهای کلان اقتصادی به شمار می‌روند.",
-      "همچنین، با پشتوانه سه نسل فعالیت مستمر خانوادگی در حوزه تجارت کالاهای اساسی، از دانش نظری و تجربه عملی ارزشمندی در عرصه بازرگانی، تجارت بین‌الملل و مدیریت زنجیره تأمین برخوردار هستند.",
-    ],
+    bio: "دکتر سهراب بختیار، مدیرعامل شرکت فرادید اطلس، دانش‌آموخته دکترای اقتصاد بین‌الملل از دانشگاه تهران و دکترای مدیریت استراتژیک از دانشگاه (VUB) بروکسل بلژیک است. ایشان با بهره‌گیری از دهه‌ها تجربه در سطوح عالی سیاست‌گذاری و مدیریت، از مدیران باسابقه و صاحب‌نظر در حوزه راهبردهای کلان اقتصادی به شمار می‌روند. همچنین، با پشتوانه سه نسل فعالیت مستمر خانوادگی در حوزه تجارت کالاهای اساسی، از دانش نظری و تجربه عملی ارزشمندی در عرصه بازرگانی، تجارت بین‌الملل و مدیریت زنجیره تأمین برخوردار هستند.",
   },
 };
 
@@ -43,7 +35,7 @@ export function CEOProfile({ lang }: CEOProfileProps) {
     <AnimatedSection className="relative overflow-hidden bg-background px-4 py-20 sm:px-6 md:py-28">
       <div className="mx-auto max-w-7xl" dir={isRTL ? "rtl" : "ltr"}>
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-5 opacity-0 translate-y-6" data-animate>
+          <div className="opacity-0 translate-y-6 lg:col-span-5" data-animate>
             <div className="overflow-hidden rounded-2xl border border-foreground/10 bg-white shadow-[0_18px_45px_rgba(30,35,39,0.06)]">
               <div className="relative aspect-4/5 w-full">
                 <Image
@@ -54,7 +46,7 @@ export function CEOProfile({ lang }: CEOProfileProps) {
                       : "دکتر سهراب بختیار، مدیرعامل فرادید اطلس"
                   }
                   fill
-                  sizes="(min-width:1024px) 40vw, 100vw"
+                  sizes="(min-width: 1024px) 40vw, 100vw"
                   quality={90}
                   className="object-cover"
                 />
@@ -84,16 +76,9 @@ export function CEOProfile({ lang }: CEOProfileProps) {
                 {data.degrees}
               </p>
 
-              <div className="mt-8 space-y-6">
-                {data.bio.map((paragraph) => (
-                  <p
-                    key={paragraph}
-                    className="text-base leading-relaxed text-foreground/75"
-                  >
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
+              <p className="mt-8 max-w-3xl text-base leading-8 text-foreground/75">
+                {data.bio}
+              </p>
             </div>
           </div>
         </div>
