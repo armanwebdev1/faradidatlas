@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/footer";
 import { AboutHero } from "@/components/about/hero";
 import { GetConnected } from "@/components/about/get-connected";
 import { WhatWeOffer } from "@/components/about/what-we-offer";
+import { CEOProfile } from "@/components/about/ceo-profile";
 import { StrategicFramework } from "@/components/about/strategic-framework";
 import { TeamShowcase } from "@/components/about/team-showcase";
 import { JoinTeam } from "@/components/about/join-team";
@@ -47,6 +48,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
         <AboutHero lang={lang} />
         <GetConnected lang={lang} />
         <StrategicFramework lang={lang} />
+        <CEOProfile lang={lang} />
         <WhatWeOffer lang={lang} />
         <TeamShowcase lang={lang} />
         <JoinTeam lang={lang} />
@@ -61,9 +63,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
               "@id": `${pageUrl}#webpage`,
               url: pageUrl,
               name:
-                lang === "en"
-                  ? "About Faradid Atlas"
-                  : "درباره فرادید اطلس",
+                lang === "en" ? "About Faradid Atlas" : "درباره فرادید اطلس",
               description:
                 lang === "en"
                   ? "Learn how Faradid Atlas has built regional food sourcing, import, and distribution capabilities since 2009, guided by quality, continuity, and trust."
