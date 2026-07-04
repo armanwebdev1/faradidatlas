@@ -177,7 +177,11 @@ export function CTASection({ lang }: CTASectionProps) {
                       >
                         <NextImage
                           src={brand.src}
-                          alt={brand.name}
+                          alt={
+                            lang === "en"
+                              ? `${brand.name} rice brand logo`
+                              : `لوگوی برند برنج ${brand.name}`
+                          }
                           width={brand.width}
                           height={brand.height}
                           loading="lazy"

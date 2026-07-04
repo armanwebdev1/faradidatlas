@@ -74,7 +74,7 @@ export default async function ContactPage({
 
         <section
           id="contact-form"
-          className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-background via-secondary/20 to-background"
+          className="space-responsive px-4 sm:px-6 bg-linear-to-b from-background via-secondary/20 to-background"
         >
           <div className="container-wide grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
             <div className="lg:col-span-2">
@@ -109,9 +109,7 @@ export default async function ContactPage({
               "@id": `${pageUrl}#webpage`,
               url: pageUrl,
               name:
-                lang === "en"
-                  ? "Contact Faradid Atlas"
-                  : "تماس با فرادید اطلس",
+                lang === "en" ? "Contact Faradid Atlas" : "تماس با فرادید اطلس",
               description: pageDescription,
               inLanguage: lang,
               mainEntity: {
