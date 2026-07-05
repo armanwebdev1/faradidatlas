@@ -20,18 +20,20 @@ export function BlogEmpty({ lang }: BlogEmptyProps) {
           <BookOpen className="h-8 w-8 text-brand-navy" strokeWidth={1.5} />
         </div>
       </div>
-      <h2 className="text-3xl font-bold text-primary mb-4 tracking-tight">
+      <h2 className="text-3xl font-bold text-primary mb-4 tracking-tight text-center">
         {t.pages.blog.emptyTitle}
       </h2>
-      <p className="text-muted-foreground mb-8 text-lg max-w-xl mx-auto leading-relaxed">
+      <p className="text-muted-foreground mb-8 text-lg max-w-xl mx-auto leading-relaxed text-center">
         {t.pages.blog.emptyDescription}
       </p>
-      <a
-        href={`/${lang}/contact`}
-        className="inline-block px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 hover:shadow-lg transition-all duration-300 group"
-      >
-        {t.pages.blog.emptyCta}
-      </a>
+      <div className="flex justify-center">
+        <a
+          href={`/${lang}/contact`}
+          className="inline-block px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 hover:shadow-lg transition-all duration-300 group"
+        >
+          {t.pages.blog.emptyCta}
+        </a>
+      </div>
     </div>
   );
 }

@@ -17,7 +17,7 @@ export function BlogTags({ lang, activeTag, onTagChange }: BlogTagsProps) {
   return (
     <div
       dir={isRTL ? "rtl" : "ltr"}
-      className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide"
+      className={`flex flex-wrap gap-2 ${isRTL ? "justify-end" : "justify-start"}`}
     >
       <button
         onClick={() => onTagChange("")}
