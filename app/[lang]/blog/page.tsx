@@ -48,7 +48,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
       <main>
         <BlogHero lang={lang} />
 
-        <section className="py-24 px-6 bg-background">
+        <section className="py-24 px-4 sm:px-6 bg-background">
           <div className="max-w-6xl mx-auto">
             <BlogFilters lang={lang} />
 

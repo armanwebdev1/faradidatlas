@@ -11,7 +11,7 @@ export function BlogAuthors({ lang }: BlogAuthorsProps) {
   const authors = t.pages.blog.authors;
 
   return (
-    <section className="py-24 px-6 bg-background" dir={isRTL ? "rtl" : "ltr"}>
+    <section className="py-24 px-4 sm:px-6 bg-background" dir={isRTL ? "rtl" : "ltr"}>
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-12 text-center tracking-tight">
           {t.pages.blog.authorsTitle}

@@ -47,7 +47,7 @@ export default async function FAQPage({ params }: FAQPageProps) {
       <main>
         <FAQHero lang={lang} />
 
-        <section className="py-24 px-6 bg-background">
+        <section className="py-24 px-4 sm:px-6 bg-background">
           <div className="max-w-4xl mx-auto">
             <FAQContent items={faqs} lang={lang} />
 

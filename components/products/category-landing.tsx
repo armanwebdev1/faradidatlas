@@ -247,7 +247,7 @@ export function CategoryLanding({ category, lang }: CategoryLandingProps) {
       </section>
 
       {/* Rich SEO Content */}
-      <section className="py-24 px-6 bg-background">
+      <section className="py-24 px-4 sm:px-6 bg-background">
         <div className="max-w-4xl mx-auto">
           <h2
             className="text-2xl sm:text-3xl font-bold text-primary mb-6 font-hero"
