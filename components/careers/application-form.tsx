@@ -1,10 +1,8 @@
 "use client";
 
-import type React from "react";
-
-import { useRef, useState } from "react";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import { useApplicationForm } from "./use-application-form";
+import { CvUploadField } from "./cv-upload-field";
 
 interface ApplicationFormProps {
   lang: Language;
@@ -12,353 +10,32 @@ interface ApplicationFormProps {
   jobTitle: string;
 }
 
-type FormValues = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  location: string;
-  experience: string;
-  cv: File | null;
-  website: string;
-};
-
-type FormErrors = Partial<Record<keyof FormValues, string>>;
-type TouchedFields = Partial<Record<keyof FormValues, boolean>>;
-
-const MAX_FILE_SIZE = 5 * 1024 * 1024;
-const ALLOWED_FILE_TYPES = [
-  "application/pdf",
-  "application/msword",
-  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-];
-const ALLOWED_FILE_EXTENSIONS = ["pdf", "doc", "docx"];
-
 export function ApplicationForm({
   lang,
   jobId,
   jobTitle,
 }: ApplicationFormProps) {
-  const t = translations[lang];
+  const {
+    t,
+    copy,
+    formData,
+    fileInputRef,
+    submitted,
+    formError,
+    isSubmitting,
+    handleChange,
+    handleBlur,
+    handleFileChange,
+    handleSubmit,
+    formatFileSize,
+    getError,
+  } = useApplicationForm({ lang, jobId, jobTitle });
+
   const backendEnabled = process.env.NEXT_PUBLIC_ENABLE_BACKEND === "true";
-  const initialFormData: FormValues = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    location: "",
-    experience: "",
-    cv: null,
-    website: "",
-  };
-
-  const [formData, setFormData] = useState<FormValues>(initialFormData);
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [touched, setTouched] = useState<TouchedFields>({});
-  const [submitted, setSubmitted] = useState(false);
-  const [formError, setFormError] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-
-  const copy =
-    lang === "en"
-      ? {
-          title: "Your application",
-          subtitle: "Share your details so we can get in touch.",
-          jobLabel: "Position",
-          formError: "Please fix the highlighted fields and try again.",
-          success: "Thank you! Your application has been submitted for review.",
-          labels: {
-            firstName: "First name",
-            lastName: "Last name",
-            email: "Email",
-            phone: "Phone",
-            location: "Location",
-            experience: "Years of experience",
-            cv: "Upload CV",
-          },
-          placeholders: {
-            firstName: "John",
-            lastName: "Doe",
-            email: "name@company.com",
-            phone: "+1 (555) 123-4567",
-            location: "City, Country",
-          },
-          experienceOptions: [
-            { value: "", label: "Select..." },
-            { value: "0-2", label: "0-2 years" },
-            { value: "2-5", label: "2-5 years" },
-            { value: "5-10", label: "5-10 years" },
-            { value: "10+", label: "10+ years" },
-          ],
-          required: "Required",
-          fileHint: "PDF or DOC. Maximum file size: 5 MB.",
-          submit: "Submit application",
-          errors: {
-            firstNameRequired: "First name is required.",
-            firstNameLength: "First name should be at least 2 characters.",
-            lastNameRequired: "Last name is required.",
-            lastNameLength: "Last name should be at least 2 characters.",
-            emailRequired: "Email is required.",
-            emailInvalid: "Please enter a valid email address.",
-            phoneRequired: "Phone number is required.",
-            phoneInvalid: "Please enter a valid phone number.",
-            locationInvalid: "Location should be at least 2 characters.",
-            experienceRequired: "Please select your experience level.",
-            cvRequired: "Please upload your CV.",
-            cvType: "File must be PDF or Word format.",
-            cvSize: "File size must be 5 MB or less.",
-          },
-        }
-      : {
-          title: "فرم درخواست همکاری",
-          subtitle:
-            "اطلاعات خود را وارد کنید تا بتوانیم با شما در ارتباط باشیم.",
-          jobLabel: "موقعیت همکاری",
-          formError: "لطفاً فیلدهای مشخص‌شده را اصلاح کنید و دوباره تلاش کنید.",
-          success: "سپاسگزاریم. درخواست شما برای بررسی دریافت شد.",
-          labels: {
-            firstName: "نام",
-            lastName: "نام خانوادگی",
-            email: "ایمیل",
-            phone: "شماره تماس",
-            location: "شهر / کشور",
-            experience: "سابقه کاری",
-            cv: "بارگذاری رزومه",
-          },
-          placeholders: {
-            firstName: "علی",
-            lastName: "علی‌پور",
-            email: "name@company.com",
-            phone: "+98 912 000 0000",
-            location: "شهر، کشور",
-          },
-          experienceOptions: [
-            { value: "", label: "انتخاب کنید..." },
-            { value: "0-2", label: "۰ تا ۲ سال" },
-            { value: "2-5", label: "۲ تا ۵ سال" },
-            { value: "5-10", label: "۵ تا ۱۰ سال" },
-            { value: "10+", label: "بیش از ۱۰ سال" },
-          ],
-          required: "ضروری",
-          fileHint: "فرمت PDF یا DOC. حداکثر حجم فایل: ۵ مگابایت.",
-          submit: "ارسال درخواست همکاری",
-          errors: {
-            firstNameRequired: "وارد کردن نام ضروری است.",
-            firstNameLength: "نام باید حداقل ۲ حرف باشد.",
-            lastNameRequired: "وارد کردن نام خانوادگی ضروری است.",
-            lastNameLength: "نام خانوادگی باید حداقل ۲ حرف باشد.",
-            emailRequired: "وارد کردن ایمیل ضروری است.",
-            emailInvalid: "لطفاً یک ایمیل معتبر وارد کنید.",
-            phoneRequired: "وارد کردن شماره تماس ضروری است.",
-            phoneInvalid: "لطفاً یک شماره تماس معتبر وارد کنید.",
-            locationInvalid: "موقعیت مکانی باید حداقل ۲ حرف باشد.",
-            experienceRequired: "لطفاً سابقه کاری خود را انتخاب کنید.",
-            cvRequired: "لطفاً رزومه خود را بارگذاری کنید.",
-            cvType: "فرمت فایل باید PDF یا Word باشد.",
-            cvSize: "حجم فایل باید حداکثر ۵ مگابایت باشد.",
-          },
-        };
-
   const labelBase = "form-label mb-2";
   const inputBase = "form-input";
   const errorClass =
     "border-destructive/60 focus:border-destructive/70 focus:ring-destructive/20";
-
-  const validateField = (
-    name: keyof FormValues,
-    value: FormValues[keyof FormValues],
-  ) => {
-    switch (name) {
-      case "firstName": {
-        const trimmed = String(value || "").trim();
-        if (!trimmed) return copy.errors.firstNameRequired;
-        if (trimmed.length < 2) return copy.errors.firstNameLength;
-        return "";
-      }
-      case "lastName": {
-        const trimmed = String(value || "").trim();
-        if (!trimmed) return copy.errors.lastNameRequired;
-        if (trimmed.length < 2) return copy.errors.lastNameLength;
-        return "";
-      }
-      case "email": {
-        const trimmed = String(value || "").trim();
-        if (!trimmed) return copy.errors.emailRequired;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(trimmed)) return copy.errors.emailInvalid;
-        return "";
-      }
-      case "phone": {
-        const trimmed = String(value || "").trim();
-        if (!trimmed) return copy.errors.phoneRequired;
-        const digits = trimmed.replace(/\D/g, "");
-        if (digits.length < 7) return copy.errors.phoneInvalid;
-        return "";
-      }
-      case "location": {
-        const trimmed = String(value || "").trim();
-        if (!trimmed) return "";
-        if (trimmed.length < 2) return copy.errors.locationInvalid;
-        return "";
-      }
-      case "experience": {
-        if (!value) return copy.errors.experienceRequired;
-        return "";
-      }
-      case "cv": {
-        if (!value) return copy.errors.cvRequired;
-        const file = value as File;
-        const extension = file.name.split(".").pop()?.toLowerCase() ?? "";
-        const isTypeAllowed =
-          ALLOWED_FILE_TYPES.includes(file.type) ||
-          ALLOWED_FILE_EXTENSIONS.includes(extension);
-        if (!isTypeAllowed) return copy.errors.cvType;
-        if (file.size > MAX_FILE_SIZE) return copy.errors.cvSize;
-        return "";
-      }
-      default:
-        return "";
-    }
-  };
-
-  const validateForm = (data: FormValues) => {
-    const nextErrors: FormErrors = {};
-    (Object.keys(data) as Array<keyof FormValues>).forEach((field) => {
-      const message = validateField(field, data[field]);
-      if (message) {
-        nextErrors[field] = message;
-      }
-    });
-    return nextErrors;
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) => {
-    const { name, value } = e.target;
-    const fieldName = name as keyof FormValues;
-    setFormData((prev) => ({ ...prev, [fieldName]: value }));
-    if (touched[fieldName]) {
-      setErrors((prev) => ({
-        ...prev,
-        [fieldName]: validateField(fieldName, value),
-      }));
-    }
-  };
-
-  const handleBlur = (
-    e: React.FocusEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) => {
-    const { name, value } = e.target;
-    const fieldName = name as keyof FormValues;
-    setTouched((prev) => ({ ...prev, [fieldName]: true }));
-    setErrors((prev) => ({
-      ...prev,
-      [fieldName]: validateField(fieldName, value),
-    }));
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] ?? null;
-    setFormData((prev) => ({ ...prev, cv: file }));
-    setTouched((prev) => ({ ...prev, cv: true }));
-    setErrors((prev) => ({
-      ...prev,
-      cv: validateField("cv", file),
-    }));
-  };
-
-  const formatFileSize = (size: number) => {
-    if (size < 1024 * 1024) {
-      return `${Math.round(size / 1024)} KB`;
-    }
-    return `${(size / (1024 * 1024)).toFixed(1)} MB`;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const nextErrors = validateForm(formData);
-    setErrors(nextErrors);
-    setTouched({
-      firstName: true,
-      lastName: true,
-      email: true,
-      phone: true,
-      location: true,
-      experience: true,
-      cv: true,
-    });
-
-    if (Object.keys(nextErrors).length > 0) {
-      setFormError(copy.formError);
-      return;
-    }
-
-    setFormError("");
-    setIsSubmitting(true);
-    setSubmitted(false);
-
-    try {
-      if (!backendEnabled) {
-        setSubmitted(true);
-        setFormData(initialFormData);
-        setErrors({});
-        setTouched({});
-        if (fileInputRef.current) {
-          fileInputRef.current.value = "";
-        }
-        return;
-      }
-
-      const payload = new FormData();
-      payload.append("lang", lang);
-      payload.append("jobId", String(jobId));
-      payload.append("jobTitle", jobTitle);
-      payload.append("firstName", formData.firstName);
-      payload.append("lastName", formData.lastName);
-      payload.append("email", formData.email);
-      payload.append("phone", formData.phone);
-      payload.append("location", formData.location);
-      payload.append("experience", formData.experience);
-      payload.append("website", formData.website);
-      if (formData.cv) {
-        payload.append("cv", formData.cv);
-      }
-
-      const response = await fetch("/api/careers", {
-        method: "POST",
-        body: payload,
-      });
-      const result = (await response.json()) as {
-        ok?: boolean;
-        message?: string;
-      };
-
-      if (!response.ok || !result.ok) {
-        throw new Error(result.message || copy.formError);
-      }
-
-      setSubmitted(true);
-      setFormData(initialFormData);
-      setErrors({});
-      setTouched({});
-      if (fileInputRef.current) {
-        fileInputRef.current.value = "";
-      }
-    } catch (error) {
-      setFormError(error instanceof Error ? error.message : copy.formError);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const getError = (field: keyof FormValues) =>
-    touched[field] ? errors[field] : "";
 
   return (
     <form
@@ -575,35 +252,17 @@ export function ApplicationForm({
           <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-foreground/50 mb-4">
             {t.pages.careers.resume}
           </p>
-          <div className="rounded-2xl border border-dashed border-foreground/20 bg-white/70 px-4 py-5">
-            <label className={`${labelBase} mb-3`}>
-              {copy.labels.cv}{" "}
-              <span className="text-destructive">({copy.required})</span>
-            </label>
-            <input
-              ref={fileInputRef}
-              type="file"
-              onChange={handleFileChange}
-              accept=".pdf,.doc,.docx"
-              required
-              className={`w-full max-w-full text-sm text-foreground file:mr-4 file:max-w-full file:rounded-full file:border-0 file:bg-brand-navy file:px-4 file:py-2 file:text-xs file:font-semibold file:text-white hover:file:bg-brand-navy/90 ${
-                getError("cv") ? "text-destructive" : ""
-              }`}
-              aria-invalid={!!getError("cv")}
-              aria-describedby="cv-error"
-            />
-            <p className="mt-3 text-xs text-foreground/60">{copy.fileHint}</p>
-            {formData.cv && (
-              <p className="mt-2 text-xs text-foreground/70">
-                {formData.cv.name} - {formatFileSize(formData.cv.size)}
-              </p>
-            )}
-            {getError("cv") && (
-              <p id="cv-error" className="mt-2 text-xs text-destructive">
-                {getError("cv")}
-              </p>
-            )}
-          </div>
+          <CvUploadField
+            fileInputRef={fileInputRef}
+            file={formData.cv}
+            error={getError("cv")}
+            onChange={handleFileChange}
+            label={copy.labels.cv}
+            requiredLabel={copy.required}
+            fileHint={copy.fileHint}
+            formatFileSize={formatFileSize}
+            labelBase={labelBase}
+          />
         </div>
       </div>
 

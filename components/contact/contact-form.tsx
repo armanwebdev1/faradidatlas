@@ -1,288 +1,36 @@
-﻿"use client";
+"use client";
 
-import type React from "react";
-import { useEffect, useState } from "react";
 import type { Language } from "@/lib/i18n";
+import { useContactForm } from "./use-contact-form";
+import { FieldError } from "./field-error";
+import { productOptions, hasInitialProductOption } from "./contact-form-types";
 
 interface ContactFormProps {
   lang: Language;
   initialProductInterest?: string;
 }
 
-function getInitialFormData(productInterest = "") {
-  return {
-    company: "",
-    name: "",
-    email: "",
-    phone: "",
-    role: "",
-    productInterest,
-    volume: "",
-    destination: "",
-    timeline: "",
-    message: "",
-    website: "",
-  };
-}
-
-type ContactFormData = ReturnType<typeof getInitialFormData>;
-type ContactField = keyof ContactFormData;
-type ContactErrors = Partial<Record<ContactField, string>>;
-
-function toLatinDigits(value: string) {
-  const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
-  const arabicDigits = "٠١٢٣٤٥٦٧٨٩";
-
-  return value.replace(/[۰-۹٠-٩]/g, (digit) => {
-    const persianIndex = persianDigits.indexOf(digit);
-    if (persianIndex !== -1) return String(persianIndex);
-
-    const arabicIndex = arabicDigits.indexOf(digit);
-    return arabicIndex !== -1 ? String(arabicIndex) : digit;
-  });
-}
-
 export function ContactForm({
   lang,
   initialProductInterest,
 }: ContactFormProps) {
-  const [formData, setFormData] = useState(() =>
-    getInitialFormData(initialProductInterest),
-  );
+  const {
+    formData,
+    submitted,
+    formError,
+    isSubmitting,
+    copy,
+    getError,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = useContactForm({ lang, initialProductInterest });
 
-  const [submitted, setSubmitted] = useState(false);
-  const [formError, setFormError] = useState("");
-  const [fieldErrors, setFieldErrors] = useState<ContactErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const inputBase = "form-input";
   const labelBase = "form-label mb-2";
   const errorClass =
     "border-destructive/60 focus:border-destructive/70 focus:ring-destructive/20";
-  const copy =
-    lang === "en"
-      ? {
-          required: "required",
-          fixFields: "Please fix the highlighted fields before sending.",
-          success:
-            "Thank you. Your inquiry has been received. Our team will review the details and contact you.",
-          errors: {
-            companyRequired: "Company name is required.",
-            companyLength: "Company name should be at least 2 characters.",
-            nameRequired: "Contact name is required.",
-            nameLength: "Contact name should be at least 2 characters.",
-            emailRequired: "Email is required.",
-            emailInvalid: "Please enter a valid email address.",
-            phoneRequired: "Phone number is required.",
-            phoneInvalid: "Please enter a valid phone number.",
-            productRequired: "Please choose a product interest.",
-            messageLength: "Additional details must be under 3000 characters.",
-            paused:
-              "Email delivery is not active yet. Please check the Vercel environment variables and redeploy.",
-            notConfigured:
-              "Email delivery is not configured yet. Please check the Resend API key and recipient emails.",
-            security: "Security check failed. Please try again.",
-            invalid: "Please review the inquiry details and try again.",
-            generic: "Unable to send inquiry. Please try again.",
-          },
-        }
-      : {
-          required: "ضروری",
-          fixFields: "لطفاً فیلدهای مشخص‌شده را اصلاح کنید.",
-          success:
-            "سپاسگزاریم. درخواست شما دریافت شد؛ تیم فرادید اطلس جزئیات را بررسی می‌کند و با شما تماس خواهد گرفت.",
-          errors: {
-            companyRequired: "وارد کردن نام شرکت ضروری است.",
-            companyLength: "نام شرکت باید حداقل ۲ حرف باشد.",
-            nameRequired: "وارد کردن نام و نام خانوادگی ضروری است.",
-            nameLength: "نام باید حداقل ۲ حرف باشد.",
-            emailRequired: "وارد کردن ایمیل ضروری است.",
-            emailInvalid: "لطفاً یک ایمیل معتبر وارد کنید.",
-            phoneRequired: "وارد کردن شماره تماس ضروری است.",
-            phoneInvalid: "لطفاً یک شماره تماس معتبر وارد کنید.",
-            productRequired: "لطفاً محصول موردنظر را انتخاب کنید.",
-            messageLength: "توضیحات تکمیلی باید کمتر از ۳۰۰۰ کاراکتر باشد.",
-            paused:
-              "ارسال ایمیل هنوز در تنظیمات سایت فعال نشده است. لطفاً تنظیمات Vercel را بررسی کنید و سایت را دوباره منتشر کنید.",
-            notConfigured:
-              "ارسال ایمیل هنوز کامل تنظیم نشده است. لطفاً کلید Resend و ایمیل‌های گیرنده را بررسی کنید.",
-            security: "بررسی امنیتی ناموفق بود. لطفاً دوباره تلاش کنید.",
-            invalid: "لطفاً جزئیات درخواست را بررسی و دوباره ارسال کنید.",
-            generic: "امکان ارسال درخواست وجود ندارد. لطفاً دوباره تلاش کنید.",
-          },
-        };
-  const productOptions = [
-    { value: "rice", labelEn: "Rice", labelFa: "برنج" },
-    { value: "legumes", labelEn: "Legumes", labelFa: "حبوبات" },
-    { value: "spices", labelEn: "Spices", labelFa: "ادویه‌جات" },
-    { value: "nuts", labelEn: "Nuts", labelFa: "آجیل" },
-    { value: "seeds", labelEn: "Seeds", labelFa: "دانه‌ها" },
-    { value: "sugar", labelEn: "Sugar", labelFa: "شکر" },
-    { value: "multiple", labelEn: "Multiple Products", labelFa: "چند محصول" },
-  ];
-  const hasInitialProductOption =
-    !!initialProductInterest &&
-    !productOptions.some((option) => option.value === initialProductInterest);
-
-  useEffect(() => {
-    if (!initialProductInterest) return;
-
-    setFormData((prev) => ({
-      ...prev,
-      productInterest: initialProductInterest,
-    }));
-  }, [initialProductInterest]);
-
-  const validateField = (name: ContactField, value: string) => {
-    const trimmed = value.trim();
-
-    switch (name) {
-      case "company":
-        if (!trimmed) return copy.errors.companyRequired;
-        if (trimmed.length < 2) return copy.errors.companyLength;
-        return "";
-      case "name":
-        if (!trimmed) return copy.errors.nameRequired;
-        if (trimmed.length < 2) return copy.errors.nameLength;
-        return "";
-      case "email": {
-        if (!trimmed) return copy.errors.emailRequired;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(trimmed)) return copy.errors.emailInvalid;
-        return "";
-      }
-      case "phone": {
-        if (!trimmed) return copy.errors.phoneRequired;
-        const digits = toLatinDigits(trimmed).replace(/\D/g, "");
-        if (digits.length < 7) return copy.errors.phoneInvalid;
-        return "";
-      }
-      case "productInterest":
-        if (!trimmed) return copy.errors.productRequired;
-        return "";
-      case "message":
-        if (trimmed.length > 3000) return copy.errors.messageLength;
-        return "";
-      default:
-        return "";
-    }
-  };
-
-  const validateForm = (data: ContactFormData) => {
-    const nextErrors: ContactErrors = {};
-
-    (
-      [
-        "company",
-        "name",
-        "email",
-        "phone",
-        "productInterest",
-        "message",
-      ] satisfies ContactField[]
-    ).forEach((field) => {
-      const message = validateField(field, data[field]);
-      if (message) {
-        nextErrors[field] = message;
-      }
-    });
-
-    return nextErrors;
-  };
-
-  const getError = (field: ContactField) => fieldErrors[field];
-
-  const getSubmitErrorMessage = (message?: string) => {
-    if (!message) return copy.errors.generic;
-    const normalized = message.toLowerCase();
-
-    if (normalized.includes("paused")) return copy.errors.paused;
-    if (normalized.includes("not configured")) return copy.errors.notConfigured;
-    if (normalized.includes("security")) return copy.errors.security;
-    if (normalized.includes("invalid")) return copy.errors.invalid;
-
-    return lang === "en" ? message : copy.errors.generic;
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    setFieldErrors((prev) => {
-      const field = name as ContactField;
-      if (!prev[field]) return prev;
-
-      const next = { ...prev };
-      delete next[field];
-      return next;
-    });
-  };
-
-  const handleBlur = (
-    e: React.FocusEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) => {
-    const field = e.target.name as ContactField;
-    const message = validateField(field, e.target.value);
-
-    setFieldErrors((prev) => {
-      const next = { ...prev };
-      if (message) {
-        next[field] = message;
-      } else {
-        delete next[field];
-      }
-      return next;
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setFormError("");
-    setSubmitted(false);
-
-    try {
-      const nextErrors = validateForm(formData);
-
-      if (Object.keys(nextErrors).length > 0) {
-        setFieldErrors(nextErrors);
-        setFormError(copy.fixFields);
-        return;
-      }
-
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...formData, lang }),
-      });
-      const result = (await response.json()) as {
-        ok?: boolean;
-        message?: string;
-      };
-
-      if (!response.ok || !result.ok) {
-        throw new Error(result.message || copy.errors.generic);
-      }
-
-      setSubmitted(true);
-      setFieldErrors({});
-      setFormData(getInitialFormData(initialProductInterest));
-    } catch (error) {
-      setFormError(
-        error instanceof Error
-          ? getSubmitErrorMessage(error.message)
-          : copy.errors.generic,
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  const showExtraOption = hasInitialProductOption(initialProductInterest);
 
   return (
     <form
@@ -444,7 +192,7 @@ export function ContactForm({
             <option value="">
               {lang === "en" ? "Select product..." : "محصول را انتخاب کنید..."}
             </option>
-            {hasInitialProductOption && (
+            {showExtraOption && (
               <option value={initialProductInterest}>
                 {initialProductInterest}
               </option>
@@ -569,15 +317,5 @@ export function ContactForm({
         </div>
       )}
     </form>
-  );
-}
-
-function FieldError({ id, message }: { id: string; message?: string }) {
-  if (!message) return null;
-
-  return (
-    <p id={id} className="mt-2 text-xs text-destructive">
-      {message}
-    </p>
   );
 }

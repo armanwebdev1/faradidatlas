@@ -22,15 +22,9 @@ import {
   productTypeLabels,
   productTypes,
   products,
-  type Product,
-  type ProductBrand,
-  type ProductCategory,
-  type ProductType,
 } from "@/components/products/product-data";
 import {
   Briefcase,
-  ArrowLeft,
-  ArrowRight,
   ChevronDown,
   HelpCircle,
   Home,
@@ -40,80 +34,30 @@ import {
   ShoppingBag,
   X,
 } from "lucide-react";
-
-interface HeaderProps {
-  lang: Language;
-}
-
-type HeaderMode = "full" | "compact" | "hidden";
-
-const categoryDescriptions: Record<
-  ProductCategory,
-  { en: string; fa: string; ar: string }
-> = {
-  rice: {
-    en: "Branded basmati, jasmine, and long-grain rice lines.",
-    fa: "برنج‌های برنددار باسماتی، جاسمین و دانه‌بلند.",
-    ar: "خطوط أرز بسمتي وياسمين وذيل طويل من العلامات التجارية.",
-  },
-  legumes: {
-    en: "Everyday pulses prepared for retail and wholesale supply.",
-    fa: "حبوبات پرمصرف برای عرضه فروشگاهی و عمده.",
-    ar: "بقوليات يومية معدة للتوريد بالتجزئة والجملة.",
-  },
-  seeds: {
-    en: "Snack, bakery, and ingredient-ready kernels.",
-    fa: "دانه‌ها و مغز تخمه‌ها برای مصرف، تنقلات و تولید.",
-    ar: "بذور جاهزة للوجبات الخفيفة والمخابز والمكونات.",
-  },
-  nuts: {
-    en: "Packaged nut products for reliable commercial channels.",
-    fa: "مغزها و آجیل بسته‌بندی‌شده برای کانال‌های تجاری.",
-    ar: "منتجات مكسرات معبأة لقنوات تجارية موثوقة.",
-  },
-  spices: {
-    en: "Core spices and seasonings with consistent packaged supply.",
-    fa: "ادویه‌ها و چاشنی‌های اصلی با تأمین بسته‌بندی‌شده.",
-    ar: "توابل أساسية ونكهات مع توريد معبأ ثابت.",
-  },
-  sugar: {
-    en: "Sweetener supply options for staple food procurement.",
-    fa: "گزینه‌های تأمین شکر و شیرین‌کننده‌ها.",
-    ar: "خيارات توريد السكر والمحليات للأغذية الأساسية.",
-  },
-};
-
-const brandThumbnails: Record<ProductBrand, string> = {
-  "twenty-one": "/brands/twenty-one-4k.png",
-  mizban: "/brands/mizban-4k.png",
-  golbanoo: "/brands/golbanoo-4k.png",
-  hayat: "/brands/hayat-4k.png",
-};
+import {
+  type HeaderProps,
+  type HeaderMode,
+  categoryDescriptions,
+  brandThumbnails,
+} from "./header-data";
+import { normalizeSearchText, productSearchText, searchProducts } from "./search-utils";
+import { useHeaderScroll } from "./use-header-scroll";
+import { LanguagePicker } from "./language-picker";
+import { SearchResultsPopover } from "./search-results";
+import { ProductsMegaMenu, MenuFilterThumbnail } from "./products-mega-menu";
 
 export function Header({ lang }: HeaderProps) {
   const pathname = usePathname();
-  const [headerMode, setHeaderMode] = useState<HeaderMode>("full");
+  const headerMode = useHeaderScroll();
   const [searchValue, setSearchValue] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const desktopSearchRef = useRef<HTMLInputElement>(null);
   const mobileSearchRef = useRef<HTMLInputElement>(null);
   const desktopSearchBoxRef = useRef<HTMLDivElement>(null);
   const mobileSearchBoxRef = useRef<HTMLDivElement>(null);
-  const lastScrollYRef = useRef(0);
-  const downScrollStartYRef = useRef(0);
   const t = translations[lang];
   const isRTL = lang === "fa" || lang === "ar";
   const dir = isRTL ? "rtl" : "ltr";
-  const languageNames: Record<Language, string> = {
-    en: "English",
-    fa: "فارسی",
-    ar: "العربية",
-  };
-  const localeMarks: Record<Language, string> = {
-    en: "EN",
-    fa: "FA",
-    ar: "AR",
-  };
   const brandHomeLabel =
     lang === "en" ? "Faradid Atlas home" : lang === "fa" ? "خانه فرادید اطلس" : "الرئيسية فراديد اطلس";
   const brandPrimary = lang === "en" ? "Faradid" : lang === "fa" ? "فرادید" : "فراديد";
@@ -222,46 +166,6 @@ export function Header({ lang }: HeaderProps) {
         .filter((item) => item.count > 0),
     [lang, numberFormatter],
   );
-
-  useEffect(() => {
-    const topThreshold = 8;
-    const directionThreshold = 3;
-    const hideScrollDistance = 100;
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const scrollDelta = currentScrollY - lastScrollYRef.current;
-
-      if (currentScrollY <= topThreshold) {
-        setHeaderMode("full");
-        lastScrollYRef.current = currentScrollY;
-        downScrollStartYRef.current = currentScrollY;
-        return;
-      }
-
-      if (Math.abs(scrollDelta) < directionThreshold) return;
-
-      if (scrollDelta < 0) {
-        setHeaderMode("compact");
-        downScrollStartYRef.current = currentScrollY;
-        lastScrollYRef.current = currentScrollY;
-        return;
-      }
-
-      if (currentScrollY - downScrollStartYRef.current >= hideScrollDistance) {
-        setHeaderMode("hidden");
-      }
-
-      lastScrollYRef.current = currentScrollY;
-    };
-
-    lastScrollYRef.current = window.scrollY;
-    downScrollStartYRef.current = window.scrollY;
-    setHeaderMode(lastScrollYRef.current <= topThreshold ? "full" : "hidden");
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     if (!isSearchOpen) return;
@@ -470,54 +374,12 @@ export function Header({ lang }: HeaderProps) {
               </div>
             </form>
 
-            <details className="relative shrink-0 group/lang">
-              <summary
-                aria-label={t.header.selectLanguage}
-                className="flex cursor-pointer list-none items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-brand-navy/5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-navy/25 [&::-webkit-details-marker]:hidden"
-              >
-                <span className="text-base sm:text-lg">
-                  {localeMarks[lang]}
-                </span>
-                <span className="hidden sm:inline text-sm font-medium text-foreground">
-                  {languageNames[lang]}
-                </span>
-                <ChevronDown
-                  size={18}
-                  className="text-muted-foreground transition-transform duration-300 group-open/lang:rotate-180"
-                />
-              </summary>
-              <div
-                dir={dir}
-                className="absolute top-full mt-2 right-0 w-44 sm:w-48 bg-background/95 backdrop-blur-md border border-border/20 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200"
-                role="menu"
-              >
-                <div className="px-4 py-2 bg-linear-to-r from-primary/5 to-accent/5 border-b border-border/10">
-                  <p className="text-xs font-semibold text-muted-foreground tracking-wide uppercase">
-                    {t.common.language}
-                  </p>
-                </div>
-                <div className="py-2 space-y-1 px-2">
-                  {(["en", "fa", "ar"] as Language[]).map((l) => (
-                    <a
-                      key={l}
-                      href={`/${l}`}
-                      className={`flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${
-                        l === lang
-                          ? "bg-brand-navy/10 text-brand-navy shadow-sm"
-                          : "text-foreground hover:bg-muted/50"
-                      }`}
-                      role="menuitem"
-                    >
-                      <span className="text-lg">{localeMarks[l]}</span>
-                      <span>{languageNames[l]}</span>
-                      {l === lang && (
-                        <span className="ml-auto w-1.5 h-1.5 rounded-full bg-brand-navy" />
-                      )}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </details>
+            <LanguagePicker
+              lang={lang}
+              isRTL={isRTL}
+              dir={dir}
+              t={t}
+            />
 
             <details className="group/mobile-menu lg:hidden">
               <summary
@@ -881,419 +743,5 @@ export function Header({ lang }: HeaderProps) {
       </header>
       <div className="h-16 sm:h-16 md:h-28" />
     </>
-  );
-}
-
-type ProductCategoryMenuItem = {
-  category: ProductCategory;
-  label: string;
-  description: string;
-  count: number;
-  countLabel: string;
-  href: string;
-  image?: string;
-};
-
-type ProductFilterMenuItem = {
-  key: ProductBrand | ProductType;
-  label: string;
-  count: number;
-  countLabel: string;
-  href: string;
-  image?: string;
-  imageFit?: "contain" | "cover";
-};
-
-function ProductsMegaMenu({
-  lang,
-  isRTL,
-  categories,
-  brands,
-  types,
-}: {
-  lang: Language;
-  isRTL: boolean;
-  categories: ProductCategoryMenuItem[];
-  brands: ProductFilterMenuItem[];
-  types: ProductFilterMenuItem[];
-}) {
-  const t = translations[lang];
-  const dir = isRTL ? "rtl" : "ltr";
-  const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
-
-  return (
-    <div
-      className={`invisible absolute left-1/2 top-full z-75 hidden w-[min(92vw,64rem)] translate-y-2 pt-3 opacity-0 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/products:visible group-hover/products:translate-y-0 group-hover/products:opacity-100 group-hover/products:pointer-events-auto group-focus-within/products:visible group-focus-within/products:translate-y-0 group-focus-within/products:opacity-100 group-focus-within/products:pointer-events-auto lg:block ${
-        isRTL ? "-translate-x-[56%]" : "-translate-x-1/2"
-      }`}
-      dir={dir}
-    >
-      <div className="overflow-hidden rounded-2xl border border-border/70 bg-background/98 shadow-[0_24px_70px_rgba(12,18,24,0.14)] backdrop-blur-xl">
-        <div
-          className={`grid h-[min(23rem,calc(100vh-7rem))] min-h-70 ${
-            isRTL ? "grid-cols-[1fr_18rem]" : "grid-cols-[17rem_1fr]"
-          } ${isRTL ? "text-right" : "text-left"}`}
-          style={{ direction: "ltr" }}
-        >
-          <div
-            className={`flex min-h-0 flex-col justify-between bg-muted/20 p-6 ${
-              isRTL ? "order-2" : "border-r border-border/60"
-            }`}
-            dir={dir}
-            style={
-              isRTL
-                ? {
-                    borderLeft:
-                      "1px solid color-mix(in srgb, var(--border) 60%, transparent)",
-                  }
-                : undefined
-            }
-          >
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-                {t.nav.products}
-              </p>
-              <h3
-                className={`mt-4 font-hero font-semibold text-foreground ${
-                  isRTL
-                    ? "max-w-60 text-[1.45rem] leading-[1.35]"
-                    : "max-w-52 text-[1.7rem] leading-[1.08]"
-                }`}
-                style={{
-                  fontFamily: isRTL
-                    ? "Estedad, var(--font-hero)"
-                    : "var(--font-hero)",
-                }}
-              >
-                {t.header.explorePortfolio}
-              </h3>
-            </div>
-
-            <a
-              href={`/${lang}/products#product-catalog`}
-              className={`inline-flex w-fit items-center gap-2 rounded-full bg-background px-4 py-2.5 text-sm font-semibold text-foreground shadow-sm ring-1 ring-border/50 transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/15 ${
-                isRTL ? "flex-row-reverse" : ""
-              }`}
-            >
-              {t.header.seeAll}
-              <ArrowIcon className="h-4 w-4" strokeWidth={1.8} />
-            </a>
-          </div>
-
-          <div
-            className={`min-h-0 overflow-hidden p-6 ${isRTL ? "order-1" : "order-2"}`}
-            dir={dir}
-          >
-            <div className="grid h-full min-h-0 grid-cols-[1.15fr_0.8fr_1fr] gap-6">
-              <div className="flex min-h-0 flex-col">
-                <p className="mb-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                  {t.header.categories}
-                </p>
-                <div className="grid min-h-0 flex-1 content-start gap-1.5 overflow-y-auto pr-1 [scrollbar-color:rgba(12,18,24,0.18)_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-foreground/15 [&::-webkit-scrollbar-track]:bg-transparent">
-                  {categories.map((item) => (
-                    <a
-                      key={item.category}
-                      href={item.href}
-                      title={item.description}
-                      className="group/category flex min-w-0 items-center gap-3 rounded-lg p-1.5 transition-colors duration-200 hover:bg-muted/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/15"
-                    >
-                      <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-md bg-muted shadow-sm ring-1 ring-border/50">
-                        {item.image ? (
-                          <Image
-                            src={item.image}
-                            alt={item.label}
-                            fill
-                            sizes="32px"
-                            className="object-cover"
-                          />
-                        ) : (
-                          <span className="block h-full w-full bg-muted" />
-                        )}
-                      </span>
-                      <span className="min-w-0">
-                        <span
-                          className={`block text-sm font-semibold leading-snug text-foreground ${
-                            isRTL ? "" : "truncate"
-                          }`}
-                        >
-                          {item.label}
-                        </span>
-                      </span>
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              <MegaMenuFilterColumn
-                title={t.header.brands}
-                items={brands}
-              />
-
-              <MegaMenuFilterColumn
-                title={t.header.productType}
-                items={types}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function MegaMenuFilterColumn({
-  title,
-  items,
-}: {
-  title: string;
-  items: ProductFilterMenuItem[];
-}) {
-  return (
-    <div className="flex min-h-0 flex-col">
-      <p className="mb-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-        {title}
-      </p>
-      <div className="grid min-h-0 flex-1 content-start gap-1 overflow-y-auto pr-1 [scrollbar-color:rgba(12,18,24,0.18)_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-foreground/15 [&::-webkit-scrollbar-track]:bg-transparent">
-        {items.map((item) => (
-          <a
-            key={item.key}
-            href={item.href}
-            className="flex min-w-0 items-center gap-3 rounded-lg px-2.5 py-2 text-sm font-medium text-foreground transition-colors duration-200 hover:bg-muted/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/15"
-          >
-            <MenuFilterThumbnail item={item} />
-            <span className="min-w-0 flex-1 truncate">{item.label}</span>
-          </a>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function MenuFilterThumbnail({
-  item,
-  size = "md",
-}: {
-  item: ProductFilterMenuItem;
-  size?: "sm" | "md";
-}) {
-  const imageSize = size === "sm" ? 22 : 26;
-  const boxClass = size === "sm" ? "h-7 w-7" : "h-8 w-8";
-  const isLogo = item.imageFit === "contain";
-
-  return (
-    <span
-      className={`relative flex ${boxClass} shrink-0 items-center justify-center overflow-hidden rounded-md ${
-        isLogo ? "bg-white/90 p-1" : "bg-muted"
-      } shadow-sm ring-1 ring-border/50`}
-    >
-      {item.image ? (
-        isLogo ? (
-          <Image
-            src={item.image}
-            alt=""
-            width={imageSize}
-            height={imageSize}
-            sizes={`${imageSize}px`}
-            className="max-h-full max-w-full object-contain"
-          />
-        ) : (
-          <Image
-            src={item.image}
-            alt={item.label}
-            fill
-            sizes={size === "sm" ? "28px" : "32px"}
-            className="object-cover"
-          />
-        )
-      ) : (
-        <span className="block h-full w-full bg-muted" />
-      )}
-    </span>
-  );
-}
-
-function normalizeSearchText(value: string) {
-  return value
-    .toLocaleLowerCase()
-    .replace(/ي/g, "ی")
-    .replace(/ك/g, "ک")
-    .replace(/\u200c/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function productSearchText(product: Product) {
-  const category = categoryLabels[product.category];
-  const brand = productBrandLabels[getProductBrand(product)];
-  const type = productTypeLabels[getProductType(product)];
-
-  return [
-    product.slug,
-    product.nameEn,
-    product.nameFa,
-    product.aliasEn,
-    product.aliasFa,
-    product.descriptionEn,
-    product.descriptionFa,
-    category.en,
-    category.fa,
-    brand.en,
-    brand.fa,
-    type.en,
-    type.fa,
-    product.category,
-  ]
-    .filter(Boolean)
-    .join(" ");
-}
-
-type ProductSearchEntry = {
-  product: Product;
-  text: string;
-};
-
-function searchProducts(query: string, entries: ProductSearchEntry[]) {
-  const normalizedQuery = normalizeSearchText(query);
-
-  if (!normalizedQuery) return [];
-
-  return entries
-    .filter((entry) => entry.text.includes(normalizedQuery))
-    .map((entry) => entry.product);
-}
-
-function SearchResultsPopover({
-  lang,
-  query,
-  results,
-  onClose,
-  compact = false,
-}: {
-  lang: Language;
-  query: string;
-  results: Product[];
-  onClose: () => void;
-  compact?: boolean;
-}) {
-  const isRTL = lang === "fa" || lang === "ar";
-  const dir = isRTL ? "rtl" : "ltr";
-  const t = translations[lang];
-
-  return (
-    <div
-      dir={dir}
-      className={`absolute left-0 right-0 top-full z-100 mt-2 overflow-hidden rounded-lg border border-border/70 bg-background/98 shadow-2xl ${
-        compact ? "max-h-88" : "max-h-112"
-      }`}
-      role="dialog"
-      aria-modal="false"
-      aria-label={t.header.searchResults}
-    >
-      <div
-        className={`border-b border-border/60 px-3 py-2.5 ${
-          isRTL ? "text-right" : ""
-        }`}
-      >
-        <div className="min-w-0">
-          <p className="truncate text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-            {t.header.searchResults}
-          </p>
-          <p className="mt-0.5 truncate text-xs text-foreground/65">
-            {lang === "en"
-              ? `${results.length} matches for "${query}"`
-              : `${results.length} نتیجه برای «${query}»`}
-          </p>
-        </div>
-      </div>
-
-      <div className="max-h-84 overflow-y-auto p-2">
-        {results.length > 0 ? (
-          <div className="space-y-1.5">
-            {results.map((product) => (
-              <SearchResult
-                key={product.id}
-                product={product}
-                lang={lang}
-                onSelect={onClose}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="px-3 py-8 text-center text-sm text-muted-foreground">
-            {t.header.noMatchingProducts}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function SearchResult({
-  product,
-  lang,
-  onSelect,
-}: {
-  product: Product;
-  lang: Language;
-  onSelect: () => void;
-}) {
-  const isRTL = lang === "fa" || lang === "ar";
-  const name = lang === "en" ? product.nameEn : product.nameFa;
-  const alias = lang === "en" ? product.aliasEn : product.aliasFa;
-  const description =
-    lang === "en" ? product.descriptionEn : product.descriptionFa;
-  const category =
-    lang === "en"
-      ? categoryLabels[product.category].en
-      : categoryLabels[product.category].fa;
-
-  return (
-    <a
-      href={`/${lang}/products/${product.slug}`}
-      onClick={onSelect}
-      className={`flex gap-3 rounded-md border border-transparent p-2.5 transition-colors hover:border-border/70 hover:bg-muted/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 ${
-        isRTL ? "flex-row-reverse text-right" : ""
-      }`}
-    >
-      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-md bg-muted">
-        {product.image ? (
-          <Image
-            src={product.image}
-            alt={name}
-            fill
-            sizes="64px"
-            className="object-cover"
-            loading="lazy"
-          />
-        ) : (
-          <div className="h-full w-full bg-secondary" />
-        )}
-      </div>
-      <div className="min-w-0 flex-1">
-        <div
-          className={`mb-1 flex items-center gap-2 ${
-            isRTL ? "flex-row-reverse" : ""
-          }`}
-        >
-          <span className="truncate text-sm font-semibold text-foreground">
-            {name}
-          </span>
-          <span className="shrink-0 rounded-md bg-muted px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
-            {category}
-          </span>
-        </div>
-        {alias && (
-          <p className="truncate text-xs text-foreground/55">{alias}</p>
-        )}
-        <p
-          dir={isRTL ? "rtl" : "ltr"}
-          className={`mt-1 line-clamp-2 text-xs leading-relaxed text-muted-foreground ${
-            isRTL ? "text-right" : ""
-          }`}
-        >
-          {description}
-        </p>
-      </div>
-    </a>
   );
 }
