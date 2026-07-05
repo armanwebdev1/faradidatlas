@@ -104,16 +104,15 @@ export function Header({ lang }: HeaderProps) {
   const t = translations[lang];
   const isRTL = lang === "fa" || lang === "ar";
   const dir = isRTL ? "rtl" : "ltr";
-  const otherLang = lang === "en" ? "fa" : lang === "fa" ? "ar" : "en";
   const languageNames: Record<Language, string> = {
     en: "English",
     fa: "فارسی",
     ar: "العربية",
   };
   const localeMarks: Record<Language, string> = {
-    en: "US",
-    fa: "IR",
-    ar: "SA",
+    en: "EN",
+    fa: "FA",
+    ar: "AR",
   };
   const brandHomeLabel =
     lang === "en" ? "Faradid Atlas home" : lang === "fa" ? "خانه فرادید اطلس" : "الرئيسية فراديد اطلس";
@@ -498,23 +497,24 @@ export function Header({ lang }: HeaderProps) {
                   </p>
                 </div>
                 <div className="py-2 space-y-1 px-2">
-                  <a
-                    href={`/${lang}`}
-                    className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg bg-brand-navy/10 text-brand-navy shadow-sm"
-                    role="menuitem"
-                  >
-                    <span className="text-lg">{localeMarks[lang]}</span>
-                    <span>{languageNames[lang]}</span>
-                    <span className="ml-auto w-1.5 h-1.5 rounded-full bg-brand-navy" />
-                  </a>
-                  <a
-                    href={`/${otherLang}`}
-                    className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-foreground hover:bg-muted/50 transition-all duration-200"
-                    role="menuitem"
-                  >
-                    <span className="text-lg">{localeMarks[otherLang]}</span>
-                    <span>{languageNames[otherLang]}</span>
-                  </a>
+                  {(["en", "fa", "ar"] as Language[]).map((l) => (
+                    <a
+                      key={l}
+                      href={`/${l}`}
+                      className={`flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${
+                        l === lang
+                          ? "bg-brand-navy/10 text-brand-navy shadow-sm"
+                          : "text-foreground hover:bg-muted/50"
+                      }`}
+                      role="menuitem"
+                    >
+                      <span className="text-lg">{localeMarks[l]}</span>
+                      <span>{languageNames[l]}</span>
+                      {l === lang && (
+                        <span className="ml-auto w-1.5 h-1.5 rounded-full bg-brand-navy" />
+                      )}
+                    </a>
+                  ))}
                 </div>
               </div>
             </details>
