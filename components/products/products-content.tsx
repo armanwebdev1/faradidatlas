@@ -47,16 +47,22 @@ function productSearchText(product: Product) {
   return [
     product.nameEn,
     product.nameFa,
+    product.nameAr,
     product.aliasEn,
     product.aliasFa,
+    product.aliasAr,
     product.descriptionEn,
     product.descriptionFa,
+    product.descriptionAr,
     category.en,
     category.fa,
+    category.ar,
     productBrandLabels[getProductBrand(product)].en,
     productBrandLabels[getProductBrand(product)].fa,
+    productBrandLabels[getProductBrand(product)].ar,
     productTypeLabels[getProductType(product)].en,
     productTypeLabels[getProductType(product)].fa,
+    productTypeLabels[getProductType(product)].ar,
     product.category,
   ]
     .filter(Boolean)
@@ -73,14 +79,14 @@ function sortProducts(
   switch (sortValue) {
     case "name-asc":
       return sorted.sort((a, b) => {
-        const aName = lang === "en" ? a.nameEn : a.nameFa;
-        const bName = lang === "en" ? b.nameEn : b.nameFa;
+        const aName = lang === "en" ? a.nameEn : lang === "fa" ? a.nameFa : a.nameAr;
+        const bName = lang === "en" ? b.nameEn : lang === "fa" ? b.nameFa : b.nameAr;
         return aName.localeCompare(bName);
       });
     case "name-desc":
       return sorted.sort((a, b) => {
-        const aName = lang === "en" ? a.nameEn : a.nameFa;
-        const bName = lang === "en" ? b.nameEn : b.nameFa;
+        const aName = lang === "en" ? a.nameEn : lang === "fa" ? a.nameFa : a.nameAr;
+        const bName = lang === "en" ? b.nameEn : lang === "fa" ? b.nameFa : b.nameAr;
         return bName.localeCompare(aName);
       });
     case "newest":

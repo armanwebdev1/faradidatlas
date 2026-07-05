@@ -1,11 +1,11 @@
 export const productOptions = [
-  { value: "rice", labelEn: "Rice", labelFa: "برنج" },
-  { value: "legumes", labelEn: "Legumes", labelFa: "حبوبات" },
-  { value: "spices", labelEn: "Spices", labelFa: "ادویه‌جات" },
-  { value: "nuts", labelEn: "Nuts", labelFa: "آجیل" },
-  { value: "seeds", labelEn: "Seeds", labelFa: "دانه‌ها" },
-  { value: "sugar", labelEn: "Sugar", labelFa: "شکر" },
-  { value: "multiple", labelEn: "Multiple Products", labelFa: "چند محصول" },
+  { value: "rice", labelEn: "Rice", labelFa: "برنج", labelAr: "أرز" },
+  { value: "legumes", labelEn: "Legumes", labelFa: "حبوبات", labelAr: "بقوليات" },
+  { value: "spices", labelEn: "Spices", labelFa: "ادویه‌جات", labelAr: "توابل" },
+  { value: "nuts", labelEn: "Nuts", labelFa: "آجیل", labelAr: "مكسرات" },
+  { value: "seeds", labelEn: "Seeds", labelFa: "دانه‌ها", labelAr: "بذور" },
+  { value: "sugar", labelEn: "Sugar", labelFa: "شکر", labelAr: "سكر" },
+  { value: "multiple", labelEn: "Multiple Products", labelFa: "چند محصول", labelAr: "منتجات متعددة" },
 ];
 
 export function hasInitialProductOption(initialProductInterest?: string) {

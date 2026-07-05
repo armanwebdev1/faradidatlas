@@ -98,13 +98,13 @@ export default async function FAQPage({ params }: FAQPageProps) {
                   {
                     "@type": "ListItem",
                     position: 1,
-                    name: lang === "en" ? "Home" : "خانه",
+                    name: t.breadcrumbs.home,
                     item: absoluteUrl(localizedPath(lang)),
                   },
                   {
                     "@type": "ListItem",
                     position: 2,
-                    name: lang === "en" ? "FAQ" : "پرسش‌های متداول",
+                    name: t.pages.faq.title,
                     item: pageUrl,
                   },
                 ],

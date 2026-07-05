@@ -60,12 +60,14 @@ export function ProductPlaceholder({
 }: ProductPlaceholderProps) {
   const t = translations[lang];
   const isRTL = lang === "fa" || lang === "ar";
-  const name = lang === "en" ? product.nameEn : product.nameFa;
-  const alias = lang === "en" ? product.aliasEn : product.aliasFa;
+  const name = lang === "en" ? product.nameEn : lang === "fa" ? product.nameFa : product.nameAr;
+  const alias = lang === "en" ? product.aliasEn : lang === "fa" ? product.aliasFa : product.aliasAr;
   const category =
     lang === "en"
       ? categoryLabels[product.category].en
-      : categoryLabels[product.category].fa;
+      : lang === "fa"
+        ? categoryLabels[product.category].fa
+        : categoryLabels[product.category].ar;
   const theme = placeholderThemes[product.category];
   const style = {
     "--placeholder-accent": theme.accent,

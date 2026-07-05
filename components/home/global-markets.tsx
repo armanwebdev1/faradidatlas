@@ -1,4 +1,5 @@
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import { CountUp } from "@/components/shared/count-up";
 import { RevealSection } from "@/components/shared/reveal-section";
 
@@ -63,10 +64,41 @@ const markets = {
       suffix: "",
     },
   ],
+  ar: [
+    {
+      region: "علامات تجارية معترف بها",
+      countries:
+        "٢١ وميزبان وحياة وگلبانو؛ أسماء معروفة لسوق الجملة والاستهلاك المؤسسي",
+      value: 4,
+      suffix: "",
+    },
+    {
+      region: "مكاتب الشركة",
+      countries:
+        "طهران وأصفهان ودبي ومسقط؛ لمتابعة أفضل واستجابة أسرع ودعم أكثر موثوقية",
+      value: 4,
+      suffix: "",
+    },
+    {
+      region: "مسار التوريد",
+      countries:
+        "التركيز على التوريد المباشر من مصادر موثوقة مثل الهند وباكستان وتايلندا وكندا للوصول الأكثر استدامة إلى السلع الأساسية.",
+      value: 30,
+      suffix: "",
+    },
+    {
+      region: "فئة المنتجات",
+      countries:
+        "من الأرز والبقوليات إلى البذور والمكسرات والتوابل والسكر؛ لتلبية احتياجات السوق المتنوعة",
+      value: 25,
+      suffix: "",
+    },
+  ],
 };
 
 export function GlobalMarkets({ lang }: GlobalMarketsProps) {
-  const marketList = lang === "en" ? markets.en : markets.fa;
+  const t = translations[lang];
+  const marketList = lang === "en" ? markets.en : lang === "fa" ? markets.fa : markets.ar;
 
   return (
     <RevealSection
@@ -76,21 +108,19 @@ export function GlobalMarkets({ lang }: GlobalMarketsProps) {
       <div className="relative container-wide">
         <div className="text-center mb-14 sm:mb-16 md:mb-20">
           <p className="eyebrow text-brand-navy mb-4 sm:mb-5 md:mb-6">
-            {lang === "en" ? "Supply Footprint" : "گستره تأمین"}
+            {t.pages.home.marketsEyebrow}
           </p>
           <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 md:mb-8 animate-fade-in-up">
             <span className="inline-block">
-              {lang === "en" ? "Regional" : "شبکه فعال"}
+              {t.pages.home.marketsRegional}
             </span>
             <span className="inline-block ml-3 md:ml-4 text-transparent bg-clip-text bg-linear-to-r from-accent-warm-gold to-accent-warm-orange">
-              {lang === "en" ? "Reach" : "تأمین و توزیع"}
+              {t.pages.home.marketsReach}
             </span>
           </h2>
 
           <p className="text-responsive-body text-foreground/70 max-w-2xl mx-auto animate-fade-in-up">
-            {lang === "en"
-              ? "Our network connects first-tier suppliers with offices and distribution support across Iran and nearby regional markets."
-              : "شبکه ما مبدأهای معتبر تأمین را به دفاتر فعال، مسیرهای توزیع و پشتیبانی عملیاتی در ایران و بازارهای منطقه‌ای وصل می‌کند."}
+            {t.pages.home.marketsDescription}
           </p>
         </div>
 

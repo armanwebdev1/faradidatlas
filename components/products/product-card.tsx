@@ -12,13 +12,15 @@ interface ProductCardProps {
 
 export function ProductCard({ product, lang }: ProductCardProps) {
   const t = translations[lang];
-  const name = lang === "en" ? product.nameEn : product.nameFa;
-  const desc = lang === "en" ? product.descriptionEn : product.descriptionFa;
-  const alias = lang === "en" ? product.aliasEn : product.aliasFa;
+  const name = lang === "en" ? product.nameEn : lang === "fa" ? product.nameFa : product.nameAr;
+  const desc = lang === "en" ? product.descriptionEn : lang === "fa" ? product.descriptionFa : product.descriptionAr;
+  const alias = lang === "en" ? product.aliasEn : lang === "fa" ? product.aliasFa : product.aliasAr;
   const category =
     lang === "en"
       ? categoryLabels[product.category].en
-      : categoryLabels[product.category].fa;
+      : lang === "fa"
+        ? categoryLabels[product.category].fa
+        : categoryLabels[product.category].ar;
   const isRTL = lang === "fa" || lang === "ar";
 
   return (

@@ -143,13 +143,13 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
                 {
                   "@type": "ListItem",
                   position: 1,
-                  name: lang === "en" ? "Home" : "خانه",
+                  name: t.breadcrumbs.home,
                   item: absoluteUrl(localizedPath(lang)),
                 },
                 {
                   "@type": "ListItem",
                   position: 2,
-                  name: lang === "en" ? "Careers" : "فرصت‌های شغلی",
+                  name: t.breadcrumbs.careers,
                   item: absoluteUrl(localizedPath(lang, "careers")),
                 },
                 {

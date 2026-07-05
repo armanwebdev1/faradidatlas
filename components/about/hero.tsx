@@ -100,24 +100,28 @@ export function AboutHero({ lang }: AboutHeroProps) {
               value={2009}
               labelEn="Established"
               labelFa="سال آغاز فعالیت"
+              labelAr="سنة التأسيس"
               lang={lang}
             />
             <Stat
               value={4}
               labelEn="Rice brands"
               labelFa="برند برنج"
+              labelAr="علامات أرز تجارية"
               lang={lang}
             />
             <Stat
               value={4}
               labelEn="Company offices"
               labelFa="دفتر شرکت"
+              labelAr="مكاتب الشركة"
               lang={lang}
             />
             <Stat
               value={25}
               labelEn="Portfolio products"
               labelFa="محصول در سبد تامین"
+              labelAr="منتجات المحفظة"
               lang={lang}
             />
           </div>
@@ -133,6 +137,7 @@ function Stat({
   decimals = 0,
   labelEn,
   labelFa,
+  labelAr,
   lang,
 }: {
   value: number;
@@ -140,13 +145,14 @@ function Stat({
   decimals?: number;
   labelEn: string;
   labelFa: string;
+  labelAr: string;
   lang: Language;
 }) {
   return (
     <div>
       <CountUpValue target={value} suffix={suffix} decimals={decimals} />
       <p className="text-xs text-muted-foreground">
-        {lang === "en" ? labelEn : labelFa}
+        {lang === "en" ? labelEn : lang === "fa" ? labelFa : labelAr}
       </p>
     </div>
   );

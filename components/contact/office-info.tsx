@@ -44,10 +44,28 @@ const offices = {
       role: "دفتر عمان، بخشی از حضور منطقه‌ای شرکت و مسیر توسعه همکاری‌های تجاری در بازارهای نزدیک است.",
     },
   ],
+  ar: [
+    {
+      city: "طهران",
+      role: "مكتب طهران يدعم تنسيق المبيعات والوصول إلى سوق الأغذية الأساسية في إيران.",
+    },
+    {
+      city: "أصفهان",
+      role: "مكتب أصفهان يساعد في التنسيق الإقليمي وتحسين الوصول إلى قنوات التوزيع في إيران.",
+    },
+    {
+      city: "دبي",
+      role: "مكتب دبي يدعم مسار التواصل التجاري والأنشطة الإقليمية لفراديد أطلس في الإمارات العربية المتحدة.",
+    },
+    {
+      city: "مسقط",
+      role: "مكتب مسقط جزء من Presence الإقليمية للشركة ومسار تطوير التعاون التجاري في الأسواق القريبة.",
+    },
+  ],
 };
 
 export function OfficeInfo({ lang }: OfficeInfoProps) {
-  const officeList = lang === "en" ? offices.en : offices.fa;
+  const officeList = lang === "en" ? offices.en : lang === "fa" ? offices.fa : offices.ar;
   const t = translations[lang];
 
   return (

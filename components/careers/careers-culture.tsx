@@ -66,6 +66,32 @@ const cultureItems = {
       icon: Lightbulb,
     },
   ],
+  ar: [
+    {
+      title: "جودة عالية",
+      description:
+        "مراقبة الجودة عبر مراحل الاستيراد والتخزين والتوزيع تحافظ على ثقة المنتج والعلامة التجارية.",
+      icon: ShieldCheck,
+    },
+    {
+      title: "الأخلاق المهنية",
+      description:
+        "الشفافية والعقود العادلة والامتثال للوائح يُحددون طريقة عمل الفرق.",
+      icon: Scale,
+    },
+    {
+      title: "الاستدامة",
+      description:
+        "التوريد المسؤول وتقليل الهدر والتعبئة القابلة للتدوير ودعم المجتمع المحلي mattered لنا.",
+      icon: Leaf,
+    },
+    {
+      title: "الابتكار",
+      description:
+        "القنوات الرقمية والتتبع عبر سلسلة التوريد والتفكير الجديد في المنتجات يحافظ على مرونة الشركة وتكيفها.",
+      icon: Lightbulb,
+    },
+  ],
 };
 
 export function CareersCulture({ lang }: CareersCultureProps) {
@@ -129,7 +155,7 @@ export function CareersCulture({ lang }: CareersCultureProps) {
     return () => ctx.revert();
   }, []);
 
-  const items = lang === "en" ? cultureItems.en : cultureItems.fa;
+  const items = lang === "en" ? cultureItems.en : lang === "fa" ? cultureItems.fa : cultureItems.ar;
 
   return (
     <section

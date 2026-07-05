@@ -48,10 +48,30 @@ const offerings = {
         "دفاتر، شعب و پشتیبانی انبار در منطقه، برای پاسخ‌گویی به نیاز خرده‌فروشان، عمده‌فروشان، سازمان‌ها و خریداران تجاری.",
     },
   ],
+  ar: [
+    {
+      image: "/what-we-offer/optimized/sourcing-import.webp",
+      title: "التوريد والاستيراد",
+      description:
+        "التنسيق المباشر مع الموردين الموثوقين لتوريد الأرز والبقوليات والتوابل والمكسرات والبذور والسكر والسلع الغذائية الأساسية الأخرى.",
+    },
+    {
+      image: "/what-we-offer/optimized/featured2.webp",
+      title: "مراقبة الجودة والتوثيق",
+      description:
+        "فحوصات الجودة والالتزام بمعايير النظافة وإعداد وثائق الاستيراد ودفع العمليات بناءً على نظام تشغيل راقب ومعايير موثوقة.",
+    },
+    {
+      image: "/what-we-offer/optimized/quality-documentation.webp",
+      title: "التوزيع والوصول",
+      description:
+        "المكاتب والفرع والمستودعات الإقليمية لدعم تجار التجزئة والجملة والمؤسسات والمشترين التجاريين.",
+    },
+  ],
 };
 
 export function WhatWeOffer({ lang }: WhatWeOfferProps) {
-  const offers = lang === "en" ? offerings.en : offerings.fa;
+  const offers = lang === "en" ? offerings.en : lang === "fa" ? offerings.fa : offerings.ar;
   const t = translations[lang];
 
   return (

@@ -67,12 +67,8 @@ export default async function AboutPage({ params }: AboutPageProps) {
               "@type": "AboutPage",
               "@id": `${pageUrl}#webpage`,
               url: pageUrl,
-              name:
-                lang === "en" ? "About Faradid Atlas" : "درباره فرادید اطلس",
-              description:
-                lang === "en"
-                  ? "Learn how Faradid Atlas has built regional food sourcing, import, and distribution capabilities since 2009, guided by quality, continuity, and trust."
-                  : "با مسیر فرادید اطلس از سال ۱۳۸۸ تا امروز آشنا شوید؛ شرکتی که تأمین، واردات و توزیع مواد غذایی اساسی را با تمرکز بر کیفیت، تداوم و اعتماد دنبال می‌کند.",
+              name: t.pages.about.title,
+              description: t.seo.aboutDescription,
               inLanguage: lang,
               about: {
                 "@id": organizationId,
@@ -85,13 +81,13 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 {
                   "@type": "ListItem",
                   position: 1,
-                  name: lang === "en" ? "Home" : "خانه",
-                  item: absoluteUrl(localizedPath(lang)),
-                },
-                {
-                  "@type": "ListItem",
-                  position: 2,
-                  name: lang === "en" ? "About" : "درباره ما",
+                    name: t.breadcrumbs.home,
+                    item: absoluteUrl(localizedPath(lang)),
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: t.breadcrumbs.about,
                   item: pageUrl,
                 },
               ],

@@ -12,14 +12,14 @@ interface JobDetailProps {
 
 export function JobDetail({ job, lang }: JobDetailProps) {
   const t = translations[lang];
-  const title = lang === "en" ? job.titleEn : job.titleFa;
-  const description = lang === "en" ? job.descriptionEn : job.descriptionFa;
-  const department = lang === "en" ? job.departmentEn : job.departmentFa;
-  const location = lang === "en" ? job.locationEn : job.locationFa;
+  const title = lang === "en" ? job.titleEn : lang === "fa" ? job.titleFa : job.titleAr;
+  const description = lang === "en" ? job.descriptionEn : lang === "fa" ? job.descriptionFa : job.descriptionAr;
+  const department = lang === "en" ? job.departmentEn : lang === "fa" ? job.departmentFa : job.departmentAr;
+  const location = lang === "en" ? job.locationEn : lang === "fa" ? job.locationFa : job.locationAr;
   const responsibilities =
-    lang === "en" ? job.responsibilitiesEn : job.responsibilitiesFa;
-  const requirements = lang === "en" ? job.requirementsEn : job.requirementsFa;
-  const values = lang === "en" ? job.benefitsEn : job.benefitsFa;
+    lang === "en" ? job.responsibilitiesEn : lang === "fa" ? job.responsibilitiesFa : job.responsibilitiesAr;
+  const requirements = lang === "en" ? job.requirementsEn : lang === "fa" ? job.requirementsFa : job.requirementsAr;
+  const values = lang === "en" ? job.benefitsEn : lang === "fa" ? job.benefitsFa : job.benefitsAr;
   const typeLabel =
     job.type === "full-time"
       ? t.pages.careers.fullTime

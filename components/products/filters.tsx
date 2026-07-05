@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { ReactNode } from "react";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import {
   categoryLabels,
   productBrandLabels,
@@ -45,6 +46,7 @@ export function Filters({
     type: selectedType,
   });
   const isRTL = lang === "fa" || lang === "ar";
+  const t = translations[lang];
 
   const updatePendingFilter = <Key extends keyof ProductFilterSelection>(
     key: Key,
@@ -68,12 +70,12 @@ export function Filters({
       dir={isRTL ? "rtl" : "ltr"}
     >
       <h3 className="mb-6 text-lg font-semibold text-primary">
-        {lang === "en" ? "Filters" : "فیلتر محصولات"}
+        {t.pages.products.filters}
       </h3>
 
       <div className="space-y-5">
         <FilterSelect
-          label={lang === "en" ? "Category" : "دسته محصول"}
+          label={t.pages.products.filterCategory}
           value={pendingFilters.category ?? ""}
           onChange={(value) =>
             updatePendingFilter(
@@ -83,7 +85,7 @@ export function Filters({
           }
         >
           <option value="">
-            {lang === "en" ? "All categories" : "همه دسته‌ها"}
+            {t.pages.products.filterAllCategories}
           </option>
           {categoryOptions.map((category) => (
             <option key={category} value={category}>
@@ -93,14 +95,14 @@ export function Filters({
         </FilterSelect>
 
         <FilterSelect
-          label={lang === "en" ? "Brand" : "برند"}
+          label={t.pages.products.filterBrand}
           value={pendingFilters.brand ?? ""}
           onChange={(value) =>
             updatePendingFilter("brand", value ? (value as ProductBrand) : null)
           }
         >
           <option value="">
-            {lang === "en" ? "All brands" : "همه برندها"}
+            {t.pages.products.filterAllBrands}
           </option>
           {brandOptions.map((brand) => (
             <option key={brand} value={brand}>
@@ -110,14 +112,14 @@ export function Filters({
         </FilterSelect>
 
         <FilterSelect
-          label={lang === "en" ? "Product type" : "نوع محصول"}
+          label={t.pages.products.filterType}
           value={pendingFilters.type ?? ""}
           onChange={(value) =>
             updatePendingFilter("type", value ? (value as ProductType) : null)
           }
         >
           <option value="">
-            {lang === "en" ? "All product types" : "همه نوع‌ها"}
+            {t.pages.products.filterAllTypes}
           </option>
           {typeOptions.map((type) => (
             <option key={type} value={type}>
@@ -131,14 +133,14 @@ export function Filters({
         onClick={() => onFiltersChange(pendingFilters)}
         className="mt-6 w-full rounded bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
       >
-        {lang === "en" ? "Apply Filters" : "نمایش نتایج"}
+        {t.pages.products.applyFilters}
       </button>
 
       <button
         onClick={resetFilters}
         className="mt-2 w-full rounded border border-border px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
       >
-        {lang === "en" ? "Reset" : "حذف فیلترها"}
+        {t.pages.products.resetFilters}
       </button>
     </div>
   );

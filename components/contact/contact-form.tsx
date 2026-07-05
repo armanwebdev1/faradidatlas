@@ -1,6 +1,7 @@
 "use client";
 
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import { useContactForm } from "./use-contact-form";
 import { FieldError } from "./field-error";
 import { productOptions, hasInitialProductOption } from "./contact-form-types";
@@ -26,6 +27,8 @@ export function ContactForm({
     handleSubmit,
   } = useContactForm({ lang, initialProductInterest });
 
+  const t = translations[lang];
+
   const inputBase = "form-input";
   const labelBase = "form-label mb-2";
   const errorClass =
@@ -40,12 +43,10 @@ export function ContactForm({
     >
       <div className="pointer-events-none absolute -top-24 right-0 h-40 w-40 rounded-full bg-gradient-to-br from-accent/25 via-white to-transparent blur-3xl -z-10" />
       <h2 className="text-responsive-section text-primary mb-3">
-        {lang === "en" ? "B2B Inquiry Form" : "فرم درخواست همکاری"}
+        {t.pages.contact.b2bInquiryForm}
       </h2>
       <p className="text-responsive-body text-foreground/70 mb-6 sm:mb-8">
-        {lang === "en"
-          ? "Tell us about your product needs, destination, and expected volume so the team can review a practical supply path."
-          : "نوع محصول، مقصد و حجم تقریبی موردنیازتان را با ما در میان بگذارید تا تیم فرادید اطلس مسیر مناسب تأمین را بررسی کند."}
+        {t.pages.contact.formDescription}
       </p>
 
       <input
@@ -64,7 +65,7 @@ export function ContactForm({
         {/* Company */}
         <div>
           <label className={labelBase}>
-            {lang === "en" ? "Company Name" : "نام شرکت"}{" "}
+            {t.pages.contact.companyNameLabel}{" "}
             <span className="text-destructive">({copy.required})</span>
           </label>
           <input
@@ -74,7 +75,7 @@ export function ContactForm({
             onChange={handleChange}
             onBlur={handleBlur}
             className={`${inputBase} ${getError("company") ? errorClass : ""}`}
-            placeholder={lang === "en" ? "Your company" : "نام شرکت"}
+            placeholder={t.pages.contact.yourCompanyPlaceholder}
             aria-invalid={!!getError("company")}
             aria-describedby="company-error"
           />
@@ -84,7 +85,7 @@ export function ContactForm({
         {/* Name */}
         <div>
           <label className={labelBase}>
-            {lang === "en" ? "Contact Name" : "نام و نام خانوادگی"}{" "}
+            {t.pages.contact.contactNameLabel}{" "}
             <span className="text-destructive">({copy.required})</span>
           </label>
           <input
@@ -94,7 +95,7 @@ export function ContactForm({
             onChange={handleChange}
             onBlur={handleBlur}
             className={`${inputBase} ${getError("name") ? errorClass : ""}`}
-            placeholder={lang === "en" ? "Full name" : "نام کامل"}
+            placeholder={t.pages.contact.fullNamePlaceholder}
             aria-invalid={!!getError("name")}
             aria-describedby="name-error"
           />
@@ -104,7 +105,7 @@ export function ContactForm({
         {/* Email */}
         <div>
           <label className={labelBase}>
-            {lang === "en" ? "Email" : "ایمیل"}{" "}
+            {t.pages.contact.email}{" "}
             <span className="text-destructive">({copy.required})</span>
           </label>
           <input
@@ -124,7 +125,7 @@ export function ContactForm({
         {/* Phone */}
         <div>
           <label className={labelBase}>
-            {lang === "en" ? "Phone" : "شماره تماس"}{" "}
+            {t.pages.contact.phone}{" "}
             <span className="text-destructive">({copy.required})</span>
           </label>
           <input
@@ -144,7 +145,7 @@ export function ContactForm({
         {/* Role */}
         <div>
           <label className={labelBase}>
-            {lang === "en" ? "Your Role" : "نوع همکاری"}
+            {t.pages.contact.yourRole}
           </label>
           <select
             name="role"
@@ -154,30 +155,28 @@ export function ContactForm({
             className={inputBase}
           >
             <option value="">
-              {lang === "en"
-                ? "Select role..."
-                : "نوع همکاری را انتخاب کنید..."}
+              {t.pages.contact.selectRolePlaceholder}
             </option>
             <option value="individual">
-              {lang === "en" ? "Individual buyer" : "خریدار فردی"}
+              {t.pages.contact.individualBuyer}
             </option>
             <option value="wholesaler">
-              {lang === "en" ? "Wholesaler" : "عمده‌فروش"}
+              {t.pages.contact.wholesaler}
             </option>
             <option value="organization">
-              {lang === "en" ? "Organization" : "سازمان یا شرکت"}
+              {t.pages.contact.organization}
             </option>
             <option value="governmental-body">
-              {lang === "en" ? "Governmental body" : "نهاد دولتی"}
+              {t.pages.contact.governmentalBody}
             </option>
-            <option value="other">{lang === "en" ? "Other" : "سایر"}</option>
+            <option value="other">{t.pages.contact.other}</option>
           </select>
         </div>
 
         {/* Product Interest */}
         <div>
           <label className={labelBase}>
-            {lang === "en" ? "Product Interest" : "محصول موردنظر"}{" "}
+            {t.pages.contact.productInterestLabel}{" "}
             <span className="text-destructive">({copy.required})</span>
           </label>
           <select
@@ -190,7 +189,7 @@ export function ContactForm({
             aria-describedby="productInterest-error"
           >
             <option value="">
-              {lang === "en" ? "Select product..." : "محصول را انتخاب کنید..."}
+              {t.pages.contact.selectProductPlaceholder}
             </option>
             {showExtraOption && (
               <option value={initialProductInterest}>
@@ -199,7 +198,7 @@ export function ContactForm({
             )}
             {productOptions.map((option) => (
               <option key={option.value} value={option.value}>
-                {lang === "en" ? option.labelEn : option.labelFa}
+                {lang === "en" ? option.labelEn : lang === "fa" ? option.labelFa : option.labelAr}
               </option>
             ))}
           </select>
@@ -212,7 +211,7 @@ export function ContactForm({
         {/* Volume */}
         <div>
           <label className={labelBase}>
-            {lang === "en" ? "Expected Volume" : "حجم مورد نیاز"}
+            {t.pages.contact.expectedVolume}
           </label>
           <input
             type="text"
@@ -221,16 +220,14 @@ export function ContactForm({
             onChange={handleChange}
             onBlur={handleBlur}
             className={inputBase}
-            placeholder={
-              lang === "en" ? "Approximate quantity" : "مقدار تقریبی"
-            }
+            placeholder={t.pages.contact.approxQuantityPlaceholder}
           />
         </div>
 
         {/* Destination */}
         <div>
           <label className={labelBase}>
-            {lang === "en" ? "Destination Country" : "کشور مقصد"}
+            {t.pages.contact.destinationCountry}
           </label>
           <input
             type="text"
@@ -239,16 +236,14 @@ export function ContactForm({
             onChange={handleChange}
             onBlur={handleBlur}
             className={inputBase}
-            placeholder={
-              lang === "en" ? "Country" : "مثلاً ایران، عمان یا امارات"
-            }
+            placeholder={t.pages.contact.countryPlaceholder}
           />
         </div>
 
         {/* Timeline */}
         <div>
           <label className={labelBase}>
-            {lang === "en" ? "Timeline" : "زمان‌بندی"}
+            {t.pages.contact.timelineLabel}
           </label>
           <input
             type="text"
@@ -257,11 +252,7 @@ export function ContactForm({
             onChange={handleChange}
             onBlur={handleBlur}
             className={inputBase}
-            placeholder={
-              lang === "en"
-                ? "Expected purchase or delivery timing"
-                : "زمان مورد نظر برای خرید یا تحویل"
-            }
+            placeholder={t.pages.contact.timelinePlaceholder}
           />
         </div>
       </div>
@@ -269,7 +260,7 @@ export function ContactForm({
       {/* Message - responsive */}
       <div className="mb-6">
         <label className={labelBase}>
-          {lang === "en" ? "Additional Details" : "توضیحات تکمیلی"}
+          {t.pages.contact.additionalDetails}
         </label>
         <textarea
           name="message"
@@ -278,11 +269,7 @@ export function ContactForm({
           onBlur={handleBlur}
           rows={4}
           className={`${inputBase} resize-none ${getError("message") ? errorClass : ""}`}
-          placeholder={
-            lang === "en"
-              ? "Tell us more about your requirements..."
-              : "درباره نیاز، شرایط همکاری یا جزئیات سفارش بیشتر توضیح دهید..."
-          }
+          placeholder={t.pages.contact.additionalDetailsPlaceholder}
           aria-invalid={!!getError("message")}
           aria-describedby="message-error"
         />
@@ -296,12 +283,8 @@ export function ContactForm({
         className="btn btn-primary btn-lg w-full mb-4 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isSubmitting
-          ? lang === "en"
-            ? "Sending..."
-            : "در حال ارسال..."
-          : lang === "en"
-            ? "Send Inquiry"
-            : "ارسال درخواست"}
+          ? t.pages.contact.sending
+          : t.pages.contact.sendInquiry}
       </button>
 
       {formError && (

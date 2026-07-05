@@ -47,7 +47,8 @@
     "noMatchingProducts": "No matching products found.",
     "productCountLabel": "products",
     "navigation": "Navigation",
-    "toggleMenu": "Toggle menu"
+    "toggleMenu": "Toggle menu",
+    "searchMatchCount": "matches for"
   },
   "pages": {
     "about": {
@@ -100,6 +101,14 @@
         "nameDesc": "Name (Z-A)"
       },
       "filters": "Filters",
+      "filterCategory": "Category",
+      "filterAllCategories": "All categories",
+      "filterBrand": "Brand",
+      "filterAllBrands": "All brands",
+      "filterType": "Product type",
+      "filterAllTypes": "All product types",
+      "applyFilters": "Apply Filters",
+      "resetFilters": "Reset",
       "products": "Products",
       "viewDetails": "View Details",
       "available": "Available",
@@ -235,7 +244,34 @@
       "submit": "Submit",
       "ourOffices": "Our Offices",
       "responseSLA": "Response Time",
-      "trustPartner": "Your Reliable Supply Partner"
+      "sla": {
+        "title": "What Happens Next",
+        "description": "We keep the inquiry process direct so buyers can move from need to supply plan quickly.",
+        "steps": [
+          {
+            "title": "Initial Review",
+            "timeline": "Inquiry review",
+            "description": "We confirm product, volume, destination, and timing."
+          },
+          {
+            "title": "Supply Check",
+            "timeline": "Supply-chain review",
+            "description": "Our team checks sourcing options and practical distribution needs."
+          },
+          {
+            "title": "Commercial Terms",
+            "timeline": "Quote on request",
+            "description": "Pricing is prepared with clear assumptions and practical next steps."
+          },
+          {
+            "title": "Coordination",
+            "timeline": "Follow-up meeting",
+            "description": "We align delivery, quality expectations, and logistics responsibilities."
+          }
+        ]
+      },
+      "trustPartner": "Your Reliable Supply Partner",
+      "seoDescription": "Send Faradid Atlas your product, volume, destination, and timing details so the team can review a practical sourcing or distribution path."
     },
     "faq": {
       "title": "Frequently Asked Questions",
@@ -358,6 +394,11 @@
     "sitemap": "Sitemap",
     "haccp": "ISO-led Quality",
     "copyright": "All rights reserved",
-    "followUs": "Follow Us"
+      "followUs": "Follow Us"
+  },
+  "seo": {
+    "aboutDescription": "Learn how Faradid Atlas has built regional food sourcing, import, and distribution capabilities since 2009, guided by quality, continuity, and trust.",
+    "blogDescription": "Industry insights, market trends, quality standards, and supply chain perspectives.",
+    "contactTitle": "Contact Faradid Atlas"
   }
 }

@@ -59,10 +59,7 @@ export default async function CareersPage({ params }: CareersPageProps) {
               "@type": "CollectionPage",
               "@id": `${pageUrl}#webpage`,
               url: pageUrl,
-              name:
-                lang === "en"
-                  ? "Careers at Faradid Atlas"
-                  : "فرصت‌های همکاری در فرادید اطلس",
+              name: t.pages.careers.title,
               description:
                 lang === "en"
                   ? "Explore career paths at Faradid Atlas across supply chain, procurement, quality, food safety, sales, distribution, and customer relations."
@@ -85,13 +82,13 @@ export default async function CareersPage({ params }: CareersPageProps) {
                 {
                   "@type": "ListItem",
                   position: 1,
-                  name: lang === "en" ? "Home" : "خانه",
+                  name: t.breadcrumbs.home,
                   item: absoluteUrl(localizedPath(lang)),
                 },
                 {
                   "@type": "ListItem",
                   position: 2,
-                  name: lang === "en" ? "Careers" : "فرصت‌های همکاری",
+                  name: t.breadcrumbs.careers,
                   item: pageUrl,
                 },
               ],

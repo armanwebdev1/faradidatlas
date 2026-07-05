@@ -72,10 +72,42 @@ const values = {
         "کنترل دقیق در مراحل واردات، انبارداری و توزیع به ما کمک می‌کند کیفیت محصول، اعتماد خریداران و اعتبار برندها حفظ شود.",
     },
   ],
+  ar: [
+    {
+      icon: BadgeCheck,
+      title: "التركيز على العميل",
+      description:
+        "الاستجابة الدقيقة وفهم احتياجات المشترين وتقديم حلول مخصصة لكل تعاون هي أساس بناء الثقة طويلة الأمد مع عملائنا.",
+    },
+    {
+      icon: Leaf,
+      title: "الاستدامة",
+      description:
+        "نحرص على التوريد المسؤول وتقليل الهدر واستخدام الموارد بشكل أفضل ودعم المجتمعات المحلية على طول سلسلة التوريد.",
+    },
+    {
+      icon: Scale,
+      title: "الأخلاق المهنية",
+      description:
+        "الشفافية والنزاهة والعقود العادلة والامتثال للوائح الجمارك والالتزام بالمبادئ المهنية هي أساس تعاوننا.",
+    },
+    {
+      icon: Lightbulb,
+      title: "الابتكار",
+      description:
+        "توسيع قنوات المبيعات الرقمية وتحسين التتبع عبر سلسلة التوريد والاستجابة لاحتياجات السوق الجديدة هي جزء من رؤيتنا المبتكرة.",
+    },
+    {
+      icon: ShieldCheck,
+      title: "جودة عالية",
+      description:
+        "المراقبة الدقيقة في مراحل الاستيراد والتخزين والتوزيع تساعدنا على الحفاظ على جودة المنتج وثقة المشترين وسمعة العلامات التجارية.",
+    },
+  ],
 };
 
 export function TeamShowcase({ lang }: TeamShowcaseProps) {
-  const valueList = lang === "en" ? values.en : values.fa;
+  const valueList = lang === "en" ? values.en : lang === "fa" ? values.fa : values.ar;
   const isRTL = lang === "fa" || lang === "ar";
   const t = translations[lang];
   const sectionIntro = t.pages.about.valuesIntro;

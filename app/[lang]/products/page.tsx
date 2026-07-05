@@ -191,13 +191,13 @@ export default async function ProductsPage({
                   {
                     "@type": "ListItem",
                     position: 1,
-                    name: lang === "en" ? "Home" : "خانه",
+                    name: t.breadcrumbs.home,
                     item: absoluteUrl(localizedPath(lang)),
                   },
                   {
                     "@type": "ListItem",
                     position: 2,
-                    name: lang === "en" ? "Products" : "محصولات",
+                    name: t.breadcrumbs.products,
                     item: pageUrl,
                   },
                 ],

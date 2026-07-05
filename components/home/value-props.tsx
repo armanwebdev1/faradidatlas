@@ -1,4 +1,5 @@
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import { Globe, CheckCircle, Route, Package } from "lucide-react";
 
 interface ValuePropsProps {
@@ -66,11 +67,42 @@ const valueItems = {
       accentColor: "accent-warm-orange",
     },
   ],
+  ar: [
+    {
+      icon: Globe,
+      title: "توريد مباشر من المصدر",
+      description:
+        "نتعاون مع موردين موثوقين في أسواق إنتاج الغذاء الرئيسية، بما في ذلك الهند وباكستان، لضمان وصول منتجات عالية الجودة بسلسلة توريد أوضح إلى السوق.",
+      accentColor: "accent-warm-gold",
+    },
+    {
+      icon: CheckCircle,
+      title: "الجودة شرط التعاون الأول",
+      description:
+        "قبل أي تعاون، يتم فحص المنتج من حيث السلامة والجودة والاستقرار. المعايير مثل ISO 22000 هي جزء من نظام العمل في سلسلة توريد الغذاء.",
+      accentColor: "accent-warm-red",
+    },
+    {
+      icon: Route,
+      title: "توريد منتظم للشراء بالجملة",
+      description:
+        " بشبكة إقليمية من المكاتب والفرع والمستودعات، ندعم طلبات الجملة والمؤسسات بإيقاع موثوق.",
+      accentColor: "accent",
+    },
+    {
+      icon: Package,
+      title: "مسار أبسط للشراء",
+      description:
+        "من الاتصال المباشر إلى المبيعات الرقمية، نحافظ على مسار شراء بسيط وسريع للتجار بالجملة والمؤسسات ومشغلي خدمات الطعام.",
+      accentColor: "accent-warm-orange",
+    },
+  ],
 };
 
 export function ValueProps({ lang }: ValuePropsProps) {
+  const t = translations[lang];
   const isRTL = lang === "fa" || lang === "ar";
-  const items = lang === "en" ? valueItems.en : valueItems.fa;
+  const items = lang === "en" ? valueItems.en : lang === "fa" ? valueItems.fa : valueItems.ar;
   const marqueeGroups = [0, 1];
 
   return (
@@ -81,17 +113,13 @@ export function ValueProps({ lang }: ValuePropsProps) {
       <div className="container-wide relative z-10">
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
           <p className="eyebrow text-brand-navy mb-4 sm:mb-5 md:mb-6">
-            {lang === "en" ? "Why Faradid Atlas" : "چرا فرادید اطلس؟"}
+            {t.pages.home.valuePropsEyebrow}
           </p>
           <h2 className="text-responsive-title mb-5 sm:mb-7 md:mb-8 text-foreground">
-            {lang === "en"
-              ? "Built for Continuity, Quality, and Trust"
-              : "استمرار، کیفیت و اعتماد"}
+            {t.pages.home.valuePropsTitle}
           </h2>
           <p className="text-responsive-body text-foreground/70 max-w-2xl mx-auto">
-            {lang === "en"
-              ? "Our work is practical: reliable sourcing, fair pricing discipline, clear documentation, and steady access to essential foods."
-              : "کار ما بر پایه عمل و تجربه شکل گرفته است: تأمین قابل اتکا، قیمت‌گذاری منطقی، مستندسازی شفاف و دسترسی پایدار به مواد غذایی اساسی."}
+            {t.pages.home.valuePropsDescription}
           </p>
         </div>
 

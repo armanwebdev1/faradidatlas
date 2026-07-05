@@ -42,9 +42,7 @@ export function SearchResultsPopover({
             {t.header.searchResults}
           </p>
           <p className="mt-0.5 truncate text-xs text-foreground/65">
-            {lang === "en"
-              ? `${results.length} matches for "${query}"`
-              : `${results.length} نتیجه برای «${query}»`}
+            {results.length} {t.header.searchMatchCount} "{query}"
           </p>
         </div>
       </div>
@@ -81,14 +79,16 @@ function SearchResult({
   onSelect: () => void;
 }) {
   const isRTL = lang === "fa" || lang === "ar";
-  const name = lang === "en" ? product.nameEn : product.nameFa;
-  const alias = lang === "en" ? product.aliasEn : product.aliasFa;
+  const name = lang === "en" ? product.nameEn : lang === "fa" ? product.nameFa : product.nameAr;
+  const alias = lang === "en" ? product.aliasEn : lang === "fa" ? product.aliasFa : product.aliasAr;
   const description =
-    lang === "en" ? product.descriptionEn : product.descriptionFa;
+    lang === "en" ? product.descriptionEn : lang === "fa" ? product.descriptionFa : product.descriptionAr;
   const category =
     lang === "en"
       ? categoryLabels[product.category].en
-      : categoryLabels[product.category].fa;
+      : lang === "fa"
+        ? categoryLabels[product.category].fa
+        : categoryLabels[product.category].ar;
 
   return (
     <a

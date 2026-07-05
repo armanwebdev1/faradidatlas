@@ -69,19 +69,9 @@ export default async function BlogPage({ params }: BlogPageProps) {
                 "@type": "CollectionPage",
                 "@id": `${pageUrl}#webpage`,
                 url: pageUrl,
-                name:
-                  lang === "en"
-                    ? "Blog"
-                    : lang === "fa"
-                      ? "وبلاگ"
-                      : "المدونة",
+                name: t.pages.blog.title,
                 inLanguage: lang,
-                description:
-                  lang === "en"
-                    ? "Industry insights, market trends, quality standards, and supply chain perspectives."
-                    : lang === "fa"
-                      ? "بینش‌های صنعتی، روندهای بازار، استانداردهای کیفیت و دیدگاه‌های زنجیره تأمین."
-                      : "رؤى الصناعة واتجاهات السوق ومعايير الجودة ومنظورات سلسلة التوريد.",
+                description: t.seo.blogDescription,
               },
               {
                 "@context": "https://schema.org",
@@ -90,13 +80,13 @@ export default async function BlogPage({ params }: BlogPageProps) {
                   {
                     "@type": "ListItem",
                     position: 1,
-                    name: lang === "en" ? "Home" : "خانه",
+                    name: t.breadcrumbs.home,
                     item: absoluteUrl(localizedPath(lang)),
                   },
                   {
                     "@type": "ListItem",
                     position: 2,
-                    name: lang === "en" ? "Blog" : "وبلاگ",
+                    name: t.pages.blog.title,
                     item: pageUrl,
                   },
                 ],

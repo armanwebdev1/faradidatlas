@@ -108,10 +108,7 @@ export function Header({ lang }: HeaderProps) {
             label: categoryLabels[category][lang],
             description: categoryDescriptions[category][lang],
             count,
-            countLabel:
-              lang === "en"
-                ? `${numberFormatter.format(count)} products`
-                : `${numberFormatter.format(count)} محصول`,
+            countLabel: `${numberFormatter.format(count)} ${t.header.productCountLabel}`,
             href: `/${lang}/products?category=${category}#product-catalog`,
             image: categoryProducts.find((product) => product.image)?.image,
           };
@@ -131,10 +128,7 @@ export function Header({ lang }: HeaderProps) {
             key: brand,
             label: productBrandLabels[brand][lang],
             count,
-            countLabel:
-              lang === "en"
-                ? `${numberFormatter.format(count)} products`
-                : `${numberFormatter.format(count)} محصول`,
+            countLabel: `${numberFormatter.format(count)} ${t.header.productCountLabel}`,
             href: `/${lang}/products?brand=${brand}#product-catalog`,
             image: brandThumbnails[brand],
             imageFit: "contain" as const,
@@ -156,10 +150,7 @@ export function Header({ lang }: HeaderProps) {
             key: type,
             label: productTypeLabels[type][lang],
             count,
-            countLabel:
-              lang === "en"
-                ? `${numberFormatter.format(count)} products`
-                : `${numberFormatter.format(count)} محصول`,
+            countLabel: `${numberFormatter.format(count)} ${t.header.productCountLabel}`,
             href: `/${lang}/products?type=${type}#product-catalog`,
             image: typeProducts.find((product) => product.image)?.image,
             imageFit: "cover" as const,

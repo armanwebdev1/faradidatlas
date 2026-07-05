@@ -69,6 +69,7 @@ const brandLogos = [
 const brandLogoLoop = [...brandLogos, ...brandLogos];
 
 export function CTASection({ lang }: CTASectionProps) {
+  const t = translations[lang];
   const isRTL = lang === "fa" || lang === "ar";
 
   return (
@@ -76,7 +77,7 @@ export function CTASection({ lang }: CTASectionProps) {
       <div className="relative container-wide">
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <p className="eyebrow text-brand-navy">
-            {lang === "en" ? "B2B Cooperation" : "همکاری تجاری و سازمانی"}
+            {t.pages.home.ctaEyebrow}
           </p>
         </div>
 
@@ -89,11 +90,7 @@ export function CTASection({ lang }: CTASectionProps) {
             <div className="relative group overflow-hidden rounded-lg sm:rounded-2xl shadow-xl md:shadow-2xl h-full">
               <Image
                 src="/cta.jpg"
-                alt={
-                  lang === "en"
-                    ? "Food supply partnership"
-                    : "همکاری در تامین مواد غذایی"
-                }
+                alt={t.pages.home.ctaImageAlt}
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
@@ -114,14 +111,12 @@ export function CTASection({ lang }: CTASectionProps) {
                   <span className="italic font-light">food supply</span>
                 </>
               ) : (
-                "مسیر مطمئن‌تری برای تأمین مواد غذایی بسازید"
+                t.pages.home.ctaTitleFa
               )}
             </h2>
 
             <p className="text-responsive-body text-muted-foreground max-w-xl mb-6 sm:mb-8 md:mb-10 lg:mb-12 font-light">
-              {lang === "en"
-                ? "Share your product needs, destination, and volume. Our team will help shape a practical sourcing and distribution plan with clear next steps."
-                : "نوع محصول، مقصد و حجم موردنیازتان را با ما در میان بگذارید تا تیم فرادید اطلس، مسیر مناسب تأمین و توزیع را بررسی کرده و مراحل بعدی همکاری را روشن کند."}
+              {t.pages.home.ctaDescription}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
@@ -129,14 +124,14 @@ export function CTASection({ lang }: CTASectionProps) {
                 href={`/${lang}/contact`}
                 className="btn btn-primary btn-lg w-full sm:w-auto"
               >
-                {lang === "en" ? "Start an Inquiry" : "ثبت درخواست همکاری"}
+                {t.pages.home.ctaStartInquiry}
               </Link>
 
               <Link
                 href={`/${lang}/products`}
                 className="btn btn-outline btn-lg w-full sm:w-auto"
               >
-                {lang === "en" ? "View Products" : "مشاهده محصولات"}
+                {t.pages.home.ctaViewProducts}
               </Link>
             </div>
           </div>
@@ -145,13 +140,11 @@ export function CTASection({ lang }: CTASectionProps) {
         <div className="relative border-t border-foreground/10 pt-10 sm:pt-12 md:pt-16">
           <div className="mx-auto max-w-3xl text-center">
             <p className="eyebrow mb-4 text-brand-navy">
-              {lang === "en" ? "Our Brands" : "برندهای ما"}
+              {t.pages.home.ctaBrandsEyebrow}
             </p>
 
             <h2 className="text-responsive-section text-foreground">
-              {lang === "en"
-                ? "Recognized names in our rice portfolio"
-                : "نام‌های شناخته‌شده در سبد کالاهای ما"}
+              {t.pages.home.ctaBrandsTitle}
             </h2>
           </div>
 

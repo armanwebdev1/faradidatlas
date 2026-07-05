@@ -300,13 +300,13 @@ export default async function ProductDetailPage({
                   {
                     "@type": "ListItem",
                     position: 1,
-                    name: lang === "en" ? "Home" : "خانه",
+                    name: t.breadcrumbs.home,
                     item: absoluteUrl(localizedPath(lang)),
                   },
                   {
                     "@type": "ListItem",
                     position: 2,
-                    name: lang === "en" ? "Products" : "محصولات",
+                    name: t.breadcrumbs.products,
                     item: absoluteUrl(localizedPath(lang, "products")),
                   },
                   {

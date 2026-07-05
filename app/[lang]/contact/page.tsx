@@ -66,10 +66,7 @@ export default async function ContactPage({
     : undefined;
   const t = translations[lang];
   const pageUrl = absoluteUrl(localizedPath(lang, "contact"));
-  const pageDescription =
-    lang === "en"
-      ? "Send Faradid Atlas your product, volume, destination, and timing details so the team can review a practical sourcing or distribution path."
-      : "نوع محصول، حجم موردنیاز، مقصد و زمان‌بندی خود را برای فرادید اطلس ارسال کنید تا تیم ما مسیر عملی تأمین یا توزیع را بررسی کند.";
+  const pageDescription = t.pages.contact.seoDescription;
 
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
@@ -113,8 +110,7 @@ export default async function ContactPage({
               "@type": "ContactPage",
               "@id": `${pageUrl}#webpage`,
               url: pageUrl,
-              name:
-                lang === "en" ? "Contact Faradid Atlas" : "تماس با فرادید اطلس",
+              name: t.seo.contactTitle,
               description: pageDescription,
               inLanguage: lang,
               mainEntity: {
@@ -138,13 +134,13 @@ export default async function ContactPage({
                 {
                   "@type": "ListItem",
                   position: 1,
-                  name: lang === "en" ? "Home" : "خانه",
-                  item: absoluteUrl(localizedPath(lang)),
-                },
-                {
-                  "@type": "ListItem",
-                  position: 2,
-                  name: lang === "en" ? "Contact" : "تماس",
+                    name: t.breadcrumbs.home,
+                    item: absoluteUrl(localizedPath(lang)),
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: t.breadcrumbs.contact,
                   item: pageUrl,
                 },
               ],
