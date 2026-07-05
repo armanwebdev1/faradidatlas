@@ -35,15 +35,15 @@ export async function generateMetadata({ params }: ProductsPageProps) {
   return buildPageMetadata({
     lang,
     path: "products",
-    titleEn: "Food Products: Rice, Legumes, Nuts and Spices | Faradid Atlas",
-    titleFa: "محصولات غذایی؛ برنج، حبوبات، مغزها و ادویه | فرادید اطلس",
-    titleAr: "المنتجات الغذائية: الأرز والبقول والمكسرات والبهارات | فراديد أطلس",
+    titleEn: "Wholesale Food Products — Rice, Legumes, Nuts, Spices | Faradid Atlas",
+    titleFa: "محصولات غذایی عمده؛ برنج، حبوبات، مغزها، ادویه | فرادید اطلس",
+    titleAr: "منتجات غذائية بالجملة — أرز، بقول، مكسرات، بهارات | فراديد أطلس",
     descriptionEn:
-      "Browse Faradid Atlas food products, including branded rice, legumes, seeds, nuts, spices, and sugar for wholesale and B2B supply needs.",
+      "Browse Faradid Atlas wholesale food products: branded basmati rice, legumes, seeds, nuts, spices, and sugar for B2B buyers across Iran, UAE, and Oman.",
     descriptionFa:
-      "سبد محصولات فرادید اطلس را ببینید؛ از برنج‌های برنددار و حبوبات تا دانه‌ها، مغزها، ادویه و شکر برای نیازهای عمده و سازمانی.",
+      "سبد محصولات غذایی عمده فرادید اطلس را ببینید؛ برنج باسماتی برنددار، حبوبات، دانه‌ها، مغزها، ادویه و شکر برای خریداران B2B در ایران، امارات و عمان.",
     descriptionAr:
-      "تصفح منتجات فراديد أطلس الغذائية بما في ذلك الأرز والبقول والبذور والمكسرات والبهارات والسكر لتوريدات الجملة وB2B.",
+      "تصفح منتجات فراديد أطلس الغذائية بالجملة: أرز بسمتي بตรา تجاري، بقول، بذور، مكسرات، بهارات وسكر لمشتريات B2B عبر إيران والإمارات وعمان.",
   });
 }
 

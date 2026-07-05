@@ -25,15 +25,15 @@ export async function generateMetadata({ params }: BlogPageProps) {
   return buildPageMetadata({
     lang,
     path: "blog",
-    titleEn: "Blog | Faradid Atlas",
-    titleFa: "وبلاگ | فرادید اطلس",
-    titleAr: "المدونة | فراديد أطلس",
+    titleEn: "Food Industry Insights & Market Trends | Faradid Atlas Blog",
+    titleFa: "بینش‌های صنعت غذا و روندهای بازار | وبلاگ فرادید اطلس",
+    titleAr: "رؤى صناعة الغذاء واتجاهات السوق | مدونة فراديد أطلس",
     descriptionEn:
-      "Industry insights, market trends, quality standards, and supply chain perspectives from the Faradid Atlas team.",
+      "Industry insights, market trends, quality standards, and supply chain perspectives from the Faradid Atlas food sourcing team.",
     descriptionFa:
-      "بینش‌های صنعتی، روندهای بازار، استانداردهای کیفیت و دیدگاه‌های زنجیره تأمین از تیم فرادید اطلس.",
+      "بینش‌های صنعتی، روندهای بازار، استانداردهای کیفیت و دیدگاه‌های زنجیره تأمین از تیم تأمین مواد غذایی فرادید اطلس.",
     descriptionAr:
-      "رؤى الصناعة واتجاهات السوق ومعايير الجودة ومنظورات سلسلة التوريد من فريق فراديد اطلس.",
+      "رؤى الصناعة واتجاهات السوق ومعايير الجودة ومنظورات سلسلة التوريد من فريق تزوين الغذاء في فراديد أطلس.",
   });
 }
 

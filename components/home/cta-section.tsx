@@ -108,7 +108,7 @@ export function CTASection({ lang }: CTASectionProps) {
               {lang === "en" ? (
                 <>
                   Build a steadier{" "}
-                  <span className="italic font-light">food supply</span>
+                  <span className="italic font-light">wholesale food supply</span> for your B2B operations
                 </>
               ) : (
                 t.pages.home.ctaTitleFa

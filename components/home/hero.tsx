@@ -43,9 +43,9 @@ const slides: HeroSlide[] = [
       ar: "أمن غذائي عملي",
     },
     description: {
-      en: "Established in 2009, Faradid Atlas sources, imports, and distributes essential food products with disciplined quality standards and dependable regional operations.",
-      fa: "فرادید اطلس از سال ۱۳۸۸ در زمینه تأمین، واردات و توزیع مواد غذایی اساسی فعالیت می‌کند؛ با انتخاب دقیق محصولات، پایبندی به استانداردهای کیفی و شبکه‌ای منظم برای پاسخ‌گویی به نیاز بازار.",
-      ar: "تأسس فراديد أطلس عام ٢٠٠٩ لتوريد واستيراد وتوزيع المنتجات الغذائية الأساسية بمعايير جودة صارمة وعمليات إقليمية موثوقة.",
+      en: "Since 2009, Faradid Atlas has been a wholesale food supplier sourcing, importing, and distributing rice, legumes, nuts, seeds, spices, and sugar to B2B buyers across Iran, UAE, and Oman — with ISO 22000-aligned quality standards and dependable regional distribution.",
+      fa: "فرادید اطلس از سال ۱۳۸۸ به عنوان تأمین‌کننده عمده مواد غذایی، برنج، حبوبات، مغزها، دانه‌ها، ادویه‌ها و شکر را برای خریداران B2B در ایران، امارات و عمان تأمین، واردات و توزیع می‌کند؛ با استانداردهای کیفی ISO 22000 و عملیات توزیع منطقه‌ای قابل اتکا.",
+      ar: "منذ عام ٢٠٠٩، يعمل فراديد أطلس كمزود غذائي بالجملة يتوريد ويستورد ويوزع الأرز والبقوليات والمكسرات والبذور والتوابل والسكر للمشترين B2B في إيران والإمارات وعمان — بمعايير جودة متوافقة مع ISO 22000 وعمليات توزيع إقليمية موثوقة.",
     },
   },
   {
@@ -62,9 +62,9 @@ const slides: HeroSlide[] = [
       ar: "من المصدر إلى السوق",
     },
     description: {
-      en: "Supplier relationships across key food-producing markets help keep rice, legumes, nuts, seeds, spices, and sugar moving through clear, practical channels.",
-      fa: "ارتباط مستقیم با تأمین‌کنندگان معتبر در بازارهای اصلی تولید غذا، مسیر تأمین برنج، حبوبات، مغزها، دانه‌ها، ادویه‌ها و شکر را شفاف‌تر، سریع‌تر و قابل اتکاتر می‌کند.",
-      ar: "العلاقات المباشرة مع الموردين في أسواق الإنتاج الغذائي الرئيسية تساعد في ضمان تدفق الأرز والبقوليات والمكسرات والبذور والتوابل والسكر عبر قنوات واضحة وعملية.",
+      en: "Direct B2B sourcing relationships across India, Pakistan, and key food-producing markets keep wholesale supplies of rice, legumes, nuts, seeds, spices, and sugar moving through clear, practical distribution channels to the Middle East.",
+      fa: "ارتباط مستقیم تأمین B2B با تأمین‌کنندگان معتبر در هند، پاکستان و بازارهای اصلی تولید غذا، تأمین عمده برنج، حبوبات، مغزها، دانه‌ها، ادویه‌ها و شکر را به خاورمیانه از مسیرهای شفاف و عملی توزیع تضمین می‌کند.",
+      ar: "علاقات التوريد المباشرة B2B مع الموردين في الهند وباكستان وأسواق الإنتاج الغذائي الرئيسية تضمن تدفق إمدادات بالجملة من الأرز والبقوليات والمكسرات والبذور والتوابل والسكر إلى الشرق الأوسط عبر قنوات توزيع واضحة وعملية.",
     },
   },
   {
@@ -81,9 +81,9 @@ const slides: HeroSlide[] = [
       ar: "مصمم لاستمرارية الأعمال",
     },
     description: {
-      en: "Offices, branches, and warehouse support across the region give buyers a steadier path from product need to reliable delivery.",
-      fa: "دفاتر، شعب و پشتیبانی انبار در ایران و بازارهای منطقه‌ای، به خریداران کمک می‌کند از مرحله نیازسنجی تا تحویل محصول، مسیر مطمئن‌تر و منظم‌تری را تجربه کنند.",
-      ar: "المكاتب والفرع والدعم التخزيني في جميع أنحاء المنطقة يوفر للمشترين مساراً أكثر استقراراً من حاجتهم إلى المنتج إلى التسليم الموثوق.",
+      en: "Warehouses, branches, and offices in Tehran, Isfahan, Dubai, and Oman give wholesale buyers, B2B distributors, and foodservice partners a steadier path from product sourcing to reliable delivery across the region.",
+      fa: "دفاتر، شعب و انبارهای عملیاتی در تهران، اصفهان، دبی و عمان، به خریداران عمده، توزیع‌کنندگان B2B و فعالان خدمات غذایی کمک می‌کند از مرحله تأمین محصول تا تحویل مطمئن در سراسر منطقه، مسیر مطمئن‌تری را تجربه کنند.",
+      ar: "المكاتب والفرع والمستودعات في طهران وأصفهان ودبي وعمان توفر للمشترين بالجملة والموزعين B2B ومشغلي خدمات الطعام مساراً أكثر استقراراً من توريد المنتجات إلى التسليم الموثوق عبر المنطقة.",
     },
   },
 ];

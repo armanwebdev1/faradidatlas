@@ -4,8 +4,14 @@ import {
   categoryLabels,
   getProductBrand,
   productBrandLabels,
+  productCategories,
   products,
+  type ProductCategory,
 } from "@/components/products/product-data";
+import {
+  CategoryLanding,
+  categorySEOContent,
+} from "@/components/products/category-landing";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { ProductPlaceholder } from "@/components/products/product-placeholder";
 import { ProductSpecs } from "@/components/products/product-specs";
@@ -36,11 +42,20 @@ function findProductBySlugOrId(slug: string) {
   return products.find((item) => item.slug === slug);
 }
 
+const validCategories = new Set<string>(productCategories);
+
+function isCategorySlug(slug: string): slug is ProductCategory {
+  return validCategories.has(slug);
+}
+
 export async function generateStaticParams() {
   const langs: Language[] = ["en", "fa", "ar"];
-  const allParams = [];
+  const allParams: { lang: string; slug: string }[] = [];
 
   for (const lang of langs) {
+    for (const cat of productCategories) {
+      allParams.push({ lang, slug: cat });
+    }
     for (const product of products) {
       allParams.push({ lang, slug: product.slug });
     }
@@ -51,6 +66,24 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: ProductDetailProps) {
   const { lang, slug } = await params;
+
+  // Category landing page metadata
+  if (isCategorySlug(slug)) {
+    const catLabel = categoryLabels[slug];
+    const seo = categorySEOContent[slug];
+    return buildPageMetadata({
+      lang,
+      path: `products/${slug}`,
+      titleEn: `${catLabel.en} — Wholesale ${catLabel.en} Supplier | Faradid Atlas`,
+      titleFa: `${catLabel.fa} — تأمین عمده ${catLabel.fa} | فرادید اطلس`,
+      titleAr: `${catLabel.ar} — مورّد ${catLabel.ar} بالجملة | فراديد أطلس`,
+      descriptionEn: seo.content.en.slice(0, 160),
+      descriptionFa: seo.content.fa.slice(0, 160),
+      descriptionAr: seo.content.ar.slice(0, 160),
+    });
+  }
+
+  // Product detail metadata
   const product = findProductBySlugOrId(slug);
 
   if (!product) {
@@ -84,6 +117,20 @@ export default async function ProductDetailPage({
 }: ProductDetailProps) {
   const { lang, slug } = await params;
   const t = translations[lang];
+
+  // Render category landing page for category slugs
+  if (isCategorySlug(slug)) {
+    return (
+      <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
+        <Header lang={lang} />
+        <main>
+          <CategoryLanding category={slug} lang={lang} />
+        </main>
+        <Footer lang={lang} />
+      </div>
+    );
+  }
+
   const product = findProductBySlugOrId(slug);
 
   if (product && isNumericProductParam(slug)) {
@@ -145,6 +192,16 @@ export default async function ProductDetailPage({
               className="line-accent transition-colors hover:text-primary"
             >
               {t.breadcrumbs.products}
+            </Link>
+            <span
+              className="h-1.5 w-1.5 rounded-full bg-foreground/30"
+              aria-hidden="true"
+            />
+            <Link
+              href={`/${lang}/products/${product.category}`}
+              className="line-accent transition-colors hover:text-primary"
+            >
+              {category}
             </Link>
             <span
               className="h-1.5 w-1.5 rounded-full bg-foreground/30"
@@ -246,6 +303,32 @@ export default async function ProductDetailPage({
                 </p>
               </div>
 
+              <div className="mb-8">
+                <h2 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">
+                  {t.pages.products.relatedCategories}
+                </h2>
+                <p className="text-sm sm:text-base text-foreground/70 leading-relaxed mb-4">
+                  {t.pages.products.relatedCategoriesDescription}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {productCategories
+                    .filter((cat) => cat !== product.category)
+                    .map((cat) => (
+                      <Link
+                        key={cat}
+                        href={`/${lang}/products/${cat}`}
+                        className="px-3 py-1.5 text-xs sm:text-sm font-medium text-primary border border-primary/20 rounded-full hover:bg-primary/5 transition-colors"
+                      >
+                        {lang === "en"
+                          ? categoryLabels[cat].en
+                          : lang === "fa"
+                            ? categoryLabels[cat].fa
+                            : categoryLabels[cat].ar}
+                      </Link>
+                    ))}
+                </div>
+              </div>
+
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link
                   href={`/${lang}/contact?product=${product.slug}#contact-form`}
@@ -312,6 +395,12 @@ export default async function ProductDetailPage({
                   {
                     "@type": "ListItem",
                     position: 3,
+                    name: category,
+                    item: absoluteUrl(localizedPath(lang, `products/${product.category}`)),
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 4,
                     name,
                     item: productUrl,
                   },

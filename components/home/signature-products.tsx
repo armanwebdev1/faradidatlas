@@ -192,6 +192,23 @@ export function SignatureProducts() {
           >
             {t.pages.home.exploreAllProducts}
           </button>
+
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-6">
+            {(["rice", "legumes", "nuts", "seeds", "spices", "sugar"] as const).map((cat) => (
+              <button
+                key={cat}
+                onClick={() => router.push(`/${lang}/products?category=${cat}`)}
+                className="px-4 py-2 text-xs sm:text-sm font-medium rounded-full border border-foreground/15 bg-background/60 text-foreground/70 hover:bg-brand-navy/10 hover:text-brand-navy hover:border-brand-navy/30 transition-all duration-300"
+              >
+                {cat === "rice" && (lang === "en" ? "Rice" : lang === "fa" ? "برنج" : "أرز")}
+                {cat === "legumes" && (lang === "en" ? "Legumes" : lang === "fa" ? "حبوبات" : "بقوليات")}
+                {cat === "nuts" && (lang === "en" ? "Nuts" : lang === "fa" ? "مغزها" : "مكسرات")}
+                {cat === "seeds" && (lang === "en" ? "Seeds" : lang === "fa" ? "دانه‌ها" : "بذور")}
+                {cat === "spices" && (lang === "en" ? "Spices" : lang === "fa" ? "ادویه‌ها" : "توابل")}
+                {cat === "sugar" && (lang === "en" ? "Sugar" : lang === "fa" ? "شکر" : "سكر")}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="relative">

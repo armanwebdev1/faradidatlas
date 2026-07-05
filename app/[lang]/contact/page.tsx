@@ -10,6 +10,7 @@ import { publicContactEmail, publicPhoneNumbers } from "@/lib/contact-info";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
+import Link from "next/link";
 
 interface ContactSearchParams {
   product?: string;
@@ -32,15 +33,15 @@ export async function generateMetadata({ params }: ContactPageProps) {
   return buildPageMetadata({
     lang,
     path: "contact",
-    titleEn: "Contact Faradid Atlas for Food Supply Inquiries",
-    titleFa: "تماس با فرادید اطلس برای تأمین مواد غذایی",
-    titleAr: "اتصل بـ فراديد أطلس للاستفسارات عن تزوين الغذاء",
+    titleEn: "Contact Faradid Atlas — B2B Food Supply Inquiries | Iran, UAE, Oman",
+    titleFa: "تماس با فرادید اطلس — استفسارات تأمین مواد غذایی B2B | ایران، امارات، عمان",
+    titleAr: "اتصل بـ فراديد أطلس — استفسارات تزوين الغذاء B2B | إيران، الإمارات، عمان",
     descriptionEn:
-      "Send Faradid Atlas your product, volume, destination, and timing details so the team can review a practical sourcing or distribution path.",
+      "Contact Faradid Atlas for wholesale food sourcing, import, and distribution inquiries. Offices in Tehran, Isfahan, Dubai, and Oman.",
     descriptionFa:
-      "نوع محصول، حجم موردنیاز، مقصد و زمان‌بندی خود را برای فرادید اطلس ارسال کنید تا تیم ما مسیر عملی تأمین یا توزیع را بررسی کند.",
+      "برای استفسارات تأمین، واردات و توزیع عمده مواد غذایی با فرادید اطلس تماس بگیرید. دفاتر در تهران، اصفهان، دبی و عمان.",
     descriptionAr:
-      "أرسل إلى فراديد أطلس تفاصيل المنتج والكمية والوجهة والتوقيت حتى يتمكن الفريق من مراجعة مسار التزوين أو التوزيع العملي.",
+      "اتصل بـ فراديد أطلس للاستفسارات عن تزوين واستيراد وتوزيع الغذاء بالجملة. مكاتب في طهران وأصفهان ودبي وعمان.",
   });
 }
 
@@ -98,6 +99,23 @@ export default async function ContactPage({
         <section className="space-responsive px-4 sm:px-6 bg-background">
           <div className="container-wide">
             <ResponseSLA lang={lang} />
+          </div>
+        </section>
+
+        <section className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-background to-secondary/30">
+          <div className="container-wide text-center">
+            <h2 className="text-responsive-section text-primary mb-4">
+              {t.pages.contact.browseProducts}
+            </h2>
+            <p className="text-sm sm:text-base text-foreground/70 leading-relaxed mb-6 max-w-2xl mx-auto">
+              {t.pages.contact.browseProductsDescription}
+            </p>
+            <Link
+              href={`/${lang}/products`}
+              className="inline-flex px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-primary/90 transition-colors text-sm sm:text-base shadow-sm hover:shadow-md"
+            >
+              {t.common.exploreProducts}
+            </Link>
           </div>
         </section>
       </main>

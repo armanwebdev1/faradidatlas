@@ -264,11 +264,11 @@ export const products: Product[] = [
     aliasAr: "أرز بسمتي حب طويل",
     category: "rice",
     descriptionEn:
-      "Mizban Super Basmati is a premium long-grain rice pack selected for consistent cooking quality, clean aroma, and dependable retail-ready supply.",
+      "Mizban Super Basmati is a premium long-grain basmati rice for wholesale B2B supply, selected for consistent cooking quality, clean aroma, and dependable retail-ready packaging.",
     descriptionFa:
-      "برنج سوپر باسماتی میزبان، محصولی ممتاز و دانه‌بلند است که برای پخت یکنواخت، عطر مطلوب و عرضه‌ای قابل اتکا در بازار انتخاب می‌شود.",
+      "برنج سوپر باسماتی میزبان، برنج باسماتی دانه‌بلند ممتاز برای تأمین عمده و تجارت B2B، انتخاب‌شده برای پخت یکنواخت، عطر مطلوب و بسته‌بندی آماده عرضه در فروشگاه.",
     descriptionAr:
-      "أرز ميزبان سوبر بسمتي هو حزمة أرز بسمتي ممتازة من الحب الطويل مختارة لجودة الطهي المتسقة والرائحة النظيفة والإمداد الجاهز للبيع بالتجزئة.",
+      "أرز ميزبان سوبر بسمتي، أرز بسمتي ممتاز طويل الحب لتوريد الجملة والتجارة B2B، مختار لجودة الطهي المتسقة والرائحة النظيفة والعبوة الجاهزة للبيع.",
     ...imageSet(productImages.mizbanSuperBasmati),
     specs: [
       {
@@ -300,11 +300,11 @@ export const products: Product[] = [
     aliasAr: "بسمتي ١١٢١ ممتاز الجودة",
     category: "rice",
     descriptionEn:
-      "A Mizban-branded 1121 white basmati rice line for buyers who need long-grain rice with dependable branded packaging and steady availability.",
+      "Mizban 1121 White Basmati Rice is a wholesale premium basmati for B2B buyers who need long-grain rice with dependable branded packaging and steady regional availability.",
     descriptionFa:
-      "برنج سفید باسماتی ۱۱۲۱ میزبان برای خریدارانی عرضه می‌شود که به برنج دانه‌بلند، بسته‌بندی برنددار و موجودی پایدار نیاز دارند.",
+      "برنج سفید باسماتی ۱۱۲۱ میزبان برای تأمین عمده و تجارت B2B عرضه می‌شود؛ برنج دانه‌بلند با بسته‌بندی برنددار و موجودی پایدار برای خریداران تجاری.",
     descriptionAr:
-      "خط أرز ميزبان بسمتي أبيض ١١٢١ للمشترين الذين يحتاجون إلى أرز حب طويل مع تعبئة ماركة موثوقة وتوفر مستقر.",
+      "أرز ميزبان بسمتي أبيض ١١٢١ لتوريد الجملة والتجارة B2B، أرز حب طويل مع تعبئة ماركة موثوقة وتوفر مستقر للمشترين التجاريين.",
     ...imageSet(productImages.mizbanWhiteBasmati),
   },
   {
@@ -318,11 +318,11 @@ export const products: Product[] = [
     aliasAr: "فاصوليا بيضاء",
     category: "legumes",
     descriptionEn:
-      "A 21-branded white beans carton prepared for organized retail, wholesale, and B2B channels that need clean presentation and reliable legume supply.",
+      "21 White Beans are a wholesale bulk legume staple for B2B distributors and food service buyers across Iran, UAE, and the Middle East, offering clean presentation and reliable protein-rich supply.",
     descriptionFa:
-      "لوبیا سفید کارتنی برند ۲۱ برای فروشگاه‌ها، عمده‌فروشان و خریداران تجاری آماده شده است؛ محصولی با ارائه منظم و تأمین قابل اعتماد.",
+      "لوبیا سفید کارتنی برند ۲۱ برای عمده‌فروشی و تجارت B2B؛ حبوبات پروتئینی با تأمین قابل اعتماد، ارائه منظم و توزیع در ایران، امارات و خاورمیانه.",
     descriptionAr:
-      "كرتون فاصوليا بيضاء من ماركة ٢١ مُعَد للبيع بالتجزئة والجملة وقنوات B2B التي تحتاج إلى عرض نظيف وإمداد بقوليات موثوق.",
+      "فاصوليا بيضاء ٢١ بالجملة والتجارة B2B للتجار والموزعين في إيران والإمارات والشرق الأوسط، بقوليات بروتينية مع عرض نظيف وإمداد موثوق.",
     ...imageSet(productImages.whiteBeansBox),
     specs: [
       {
@@ -350,11 +350,11 @@ export const products: Product[] = [
     aliasAr: "أرز حب طويل",
     category: "rice",
     descriptionEn:
-      "Golbanoo 386 Basmati Rice is a long-grain rice pack positioned for everyday retail demand and steady commercial distribution.",
+      "Golbanoo 386 Basmati Rice is a wholesale long-grain basmati positioned for B2B retail demand, steady commercial distribution, and regional sourcing across the Middle East.",
     descriptionFa:
-      "برنج باسماتی ۳۸۶ گلبانو محصولی دانه‌بلند است که برای پاسخ‌گویی به تقاضای روزمره فروشگاهی و توزیع تجاری منظم عرضه می‌شود.",
+      "برنج باسماتی ۳۸۶ گلبانو برای تأمین عمده و تجارت B2B؛ برنج دانه‌بلند با توزیع تجاری منظم و تأمین پایدار در بازار خاورمیانه.",
     descriptionAr:
-      "أرز بسمتي گلبانو ٣٨٦ هو حزمة أرز حب طويل موجهة للاستهلاك اليومي في البيع بالتجزئة والتوزيع التجاري المستقر.",
+      "أرز بسمتي گلبانو ٣٨٦ للتجارة B2B وتوريد الجملة، أرز حب طويل مع توزيع تجاري مستقر وتوريد مستمر في الشرق الأوسط.",
     ...imageSet(productImages.golbanoo386Basmati),
   },
   {
@@ -368,11 +368,11 @@ export const products: Product[] = [
     aliasAr: "أرز ياسمين تايلندي حب طويل",
     category: "rice",
     descriptionEn:
-      "Hayat Thai Jasmine Rice is selected for buyers looking for aromatic long-grain rice with recognizable branded packaging.",
+      "Hayat Thai Jasmine Rice is an aromatic premium jasmine rice for wholesale buyers seeking long-grain quality with branded packaging and steady Middle East supply.",
     descriptionFa:
-      "برنج جاسمین تایلندی حیات برای خریدارانی انتخاب شده است که به برنج دانه‌بلند خوش‌عطر با بسته‌بندی برنددار و قابل تشخیص نیاز دارند.",
+      "برنج جاسمین تایلندی حیات برای تأمین عمده و تجارت B2B؛ برنج دانه‌بلند خوش‌عطر با بسته‌بندی برنددار و تأمین پایدار در خاورمیانه.",
     descriptionAr:
-      "أرز ياسمين تايلندي حياة مختار للمشترين الباحثين عن أرز حب طويل عطري مع تعبئة ماركة معترف بها.",
+      "أرز ياسمين تايلندي حياة لتوريد الجملة والتجارة B2B، أرز حب طويل عطري مع تعبئة ماركة موثوقة وتوريد مستمر في الشرق الأوسط.",
     ...imageSet(productImages.hayatThaiJasmine),
   },
   {
@@ -386,11 +386,11 @@ export const products: Product[] = [
     aliasAr: "كركم مطحون",
     category: "spices",
     descriptionEn:
-      "21 Turmeric is a core spice product for foodservice, retail, and wholesale buyers seeking consistent color, flavor, and packaged supply.",
+      "21 Turmeric is a wholesale ground turmeric for foodservice, retail, and B2B buyers seeking consistent aromatic color, culinary flavor, and bulk spice supply.",
     descriptionFa:
-      "زردچوبه ۲۱ از اقلام اصلی ادویه است و برای خریداران خدمات غذایی، فروشگاهی و عمده که به رنگ، طعم و بسته‌بندی یکدست نیاز دارند عرضه می‌شود.",
+      "زردچوبه ۲۱ برای عمده‌فروشی و تجارت B2B؛ ادویه اصلی با رنگ، طعم و کیفیت یکنواخت، مناسب خدمات غذایی و توزیع تجاری.",
     descriptionAr:
-      "كركم ٢١ هو منتج بهاري أساسي لخدمات الطعام والبيع بالتجزئة والجملة يبحثون عن لون وطعم وتعبئة متسقة.",
+      "كركم ٢١ للتجارة B2B والتوريد بالجملة، توابل أساسية بلون وطعم وجودة متسقة، مناسبة لخدمات الطعام والتوزيع التجاري.",
     ...imageSet(productImages.turmeric),
   },
   {
@@ -404,11 +404,11 @@ export const products: Product[] = [
     aliasAr: "لب جوز ممتاز",
     category: "nuts",
     descriptionEn:
-      "21 Walnut Kernels are packed for buyers who need ready-to-use nut kernels with clean branding and reliable commercial supply.",
+      "21 Walnut Kernels are premium roasted nuts for wholesale B2B buyers needing ready-to-use kernels with clean packaging and reliable commercial supply.",
     descriptionFa:
-      "مغز گردو ۲۱ برای خریدارانی بسته‌بندی شده است که به محصولی آماده مصرف، برندینگ منظم و تأمین تجاری قابل اعتماد نیاز دارند.",
+      "مغز گردو ۲۱ برای عمده‌فروشی و تجارت B2B؛ مغز گردوی ممتاز با بسته‌بندی منظم، تأمین قابل اعتماد و کیفیت تضمینی.",
     descriptionAr:
-      "لب جوز ٢١ معبأ للمشترين الذين يحتاجون إلى لب مكسرات جاهز للاستخدام مع علامة تجارية نظيفة وإمداد تجاري موثوق.",
+      "لب جوز ٢١ للتجارة B2B والتوريد بالجملة، لب جوز ممتاز مع تعبئة منظمة وإمداد موثوق وجودة مضمونة.",
     ...imageSet(productImages.walnutKernels),
     specs: [
       {
@@ -440,11 +440,11 @@ export const products: Product[] = [
     aliasAr: "لب عباد الشمس",
     category: "seeds",
     descriptionEn:
-      "21 Sunflower Seed Kernels support snack, bakery, retail, and ingredient buyers with packaged kernels and dependable availability.",
+      "21 Sunflower Seed Kernels are a wholesale snack and bakery ingredient for B2B buyers in retail and food service, with clean packaged kernels and dependable Middle East availability.",
     descriptionFa:
-      "مغز تخمه آفتابگردان ۲۱ برای خریداران حوزه تنقلات، نانوایی، فروشگاهی و مواد اولیه عرضه می‌شود؛ با بسته‌بندی منظم و دسترسی پایدار.",
+      "مغز تخمه آفتابگردان ۲۱ برای عمده‌فروشی و تجارت B2B؛ مغز تخمه با بسته‌بندی منظم، کیفیت یکنواخت و تأمین پایدار در خاورمیانه.",
     descriptionAr:
-      "لب بذور عباد الشمس ٢١ يدعم مشتري الوجبات الخفيفة والمخبوزات والبيع بالتجزئة والمكونات بالبذور المعبأة والإمداد الموثوق.",
+      "لب بذور عباد الشمس ٢١ للتجارة B2B والتوريد بالجملة، لب بذور مع تعبئة نظيفة وجودة متسقة وإمداد مستقر في الشرق الأوسط.",
     ...imageSet(productImages.sunflowerSeedKernels),
   },
   {
@@ -458,11 +458,11 @@ export const products: Product[] = [
     aliasAr: "لب يقطين",
     category: "seeds",
     descriptionEn:
-      "21 Pumpkin Seed Kernels are packaged for buyers who need a clean, ready-to-use seed kernel product for retail and food production.",
+      "21 Pumpkin Seed Kernels are wholesale snack and bakery ingredients for B2B buyers, offering a clean packaged seed kernel product for retail and commercial food production.",
     descriptionFa:
-      "مغز تخمه کدو ۲۱ برای خریدارانی عرضه می‌شود که به محصولی تمیز، آماده مصرف و مناسب فروشگاه یا تولید مواد غذایی نیاز دارند.",
+      "مغز تخمه کدو ۲۱ برای عمده‌فروشی و تجارت B2B؛ مغز تخمه تمیز با بسته‌بندی منظم، کیفیت یکنواخت و تأمین قابل اعتماد.",
     descriptionAr:
-      "لب بذور اليقطين ٢١ معبأ للمشترين الذين يحتاجون إلى منتج لب بذور نظيف جاهز للاستخدام للبيع بالتجزئة وإنتاج الطعام.",
+      "لب بذور اليقطين ٢١ للتجارة B2B والتوريد بالجملة، لب بذور نظيف مع تعبئة منظمة وجودة متسقة وإمداد موثوق.",
     ...imageSet(productImages.pumpkinSeedKernels),
   },
   {
@@ -476,11 +476,11 @@ export const products: Product[] = [
     aliasAr: "كاجو",
     category: "nuts",
     descriptionEn:
-      "21 Cashew Nuts are positioned for retail and wholesale buyers seeking a familiar nut product with polished packaging and steady supply.",
+      "21 Cashew Nuts are premium packaged nuts for wholesale B2B buyers across retail and food service, offering polished packaging and steady supply.",
     descriptionFa:
-      "بادام هندی ۲۱ برای خریداران فروشگاهی و عمده عرضه می‌شود؛ محصولی شناخته‌شده با بسته‌بندی مرتب و تأمین پایدار.",
+      "بادام هندی ۲۱ برای عمده‌فروشی و تجارت B2B؛ مغز بادام هندی ممتاز با بسته‌بندی مرتب، کیفیت یکنواخت و تأمین پایدار.",
     descriptionAr:
-      "مكسرات كاجو ٢١ موجهة للمشترين بالتجزئة والجملة يبحثون عن منتج مكسرات معروف مع تعبئة مصقولة وإمداد مستقر.",
+      "مكسرات كاجو ٢١ للتجارة B2B والتوريد بالجملة، مكسرات ممتازة مع تعبئة مصقولة وجودة متسقة وإمداد مستقر.",
     ...imageSet(productImages.cashewNuts),
   },
   {
@@ -494,11 +494,11 @@ export const products: Product[] = [
     aliasAr: "عدس أحمر",
     category: "legumes",
     descriptionEn:
-      "21 Red Lentil is a high-demand pulse product for everyday cooking, foodservice use, and B2B staple-food procurement.",
+      "21 Red Lentil is a protein-rich pulse staple for wholesale B2B buyers in food service and retail, ideal for everyday cooking and regional sourcing.",
     descriptionFa:
-      "عدس قرمز ۲۱ از حبوبات پرتقاضا برای مصرف روزمره، خدمات غذایی و تأمین عمده اقلام غذایی اساسی است.",
+      "عدس قرمز ۲۱ برای عمده‌فروشی و تجارت B2B؛ حبوبات پروتئینی پرتقاضا با تأمین قابل اعتماد برای خدمات غذایی و توزیع منطقه‌ای.",
     descriptionAr:
-      "عدس أحمر ٢١ هو منتج بقوليات عالي الطلب للطهي اليومي وخدمات الطعام ومشتريات الأغذية الأساسية B2B.",
+      "عدس أحمر ٢١ للتجارة B2B والتوريد بالجملة، بقوليات عالية البروتين مع توريد موثوق لخدمات الطعام والتوزيع الإقليمي.",
     ...imageSet(productImages.redLentil),
   },
   {
@@ -512,11 +512,11 @@ export const products: Product[] = [
     aliasAr: "حمص",
     category: "legumes",
     descriptionEn:
-      "21 Chickpeas are packed for buyers seeking a reliable pulse line for retail shelves, foodservice kitchens, and wholesale channels.",
+      "21 Chickpeas are a wholesale protein-rich pulse for B2B buyers in food service and retail, offering a reliable staple for wholesale distribution across the Middle East.",
     descriptionFa:
-      "نخود ۲۱ برای خریدارانی بسته‌بندی شده است که به تأمین قابل اتکای حبوبات برای فروشگاه‌ها، آشپزخانه‌های خدمات غذایی و کانال‌های عمده نیاز دارند.",
+      "نخود ۲۱ برای عمده‌فروشی و تجارت B2B؛ حبوبات پروتئینی با تأمین قابل اعتماد، مناسب فروشگاه‌ها، خدمات غذایی و توزیع در خاورمیانه.",
     descriptionAr:
-      "حمص ٢١ معبأ للمشترين يبحثون عن خط بقوليات موثوق للمتاجر ومطابخ خدمات الطعام وقنوات الجملة.",
+      "حمص ٢١ للتجارة B2B والتوريد بالجملة، بقوليات عالية البروتين مع توريد موثوق للمتاجر ومطابخ خدمات الطعام والتوزيع الإقليمي.",
     ...imageSet(productImages.chickpeas),
   },
   {
@@ -530,11 +530,11 @@ export const products: Product[] = [
     aliasAr: "فاصوليا بيضاء",
     category: "legumes",
     descriptionEn:
-      "21 White Bean Bag is a staple legume pack for buyers who need practical bagged supply across wholesale and retail distribution.",
+      "21 White Bean Bag is a wholesale bulk legume staple for B2B buyers, offering practical bagged supply across retail, food service, and regional distribution.",
     descriptionFa:
-      "لوبیا سفید کیسه‌ای ۲۱ از حبوبات پرمصرف است و برای خریدارانی عرضه می‌شود که به تأمین کیسه‌ای، کاربردی و مناسب توزیع عمده و فروشگاهی نیاز دارند.",
+      "لوبیا سفید کیسه‌ای ۲۱ برای عمده‌فروشی و تجارت B2B؛ حبوبات اصلی با تأمین کیسه‌ای قابل اعتماد و توزیع در فروشگاه‌ها و خدمات غذایی.",
     descriptionAr:
-      "كيس فاصوليا بيضاء ٢١ هو حزمة بقوليات أساسية للمشترين الذين يحتاجون إلى إمداد عملي في الأكياس عبر التوزيع بالجملة والتجزئة.",
+      "كيس فاصوليا بيضاء ٢١ للتجارة B2B والتوريد بالجملة، بقوليات أساسية مع إمداد عملي في الأكياس عبر التوزيع بالتجزئة والتجاري.",
     ...imageSet(productImages.whiteBeanBag),
   },
   {
@@ -548,11 +548,11 @@ export const products: Product[] = [
     aliasAr: "لوبيا مونغ",
     category: "legumes",
     descriptionEn:
-      "21 Mung Bean is a versatile pulse product selected for stable access to everyday food staples and clean packaged presentation.",
+      "21 Mung Bean is a wholesale protein-rich pulse staple for B2B buyers in food service and retail, offering stable sourcing and clean packaged presentation.",
     descriptionFa:
-      "ماش ۲۱ از حبوبات کاربردی است که برای دسترسی پایدار به اقلام غذایی روزمره و عرضه‌ای تمیز و بسته‌بندی‌شده انتخاب می‌شود.",
+      "ماش ۲۱ برای عمده‌فروشی و تجارت B2B؛ حبوبات کاربردی با تأمین پایدار، بسته‌بندی تمیز و توزیع قابل اعتماد.",
     descriptionAr:
-      "لوبيا مونغ ٢١ هو منتج بقوليات متعدد الاستخدامات مختار للوصول المستقر إلى الأغذية الأساسية اليومية والعرض النظيف المعبأ.",
+      "لوبيا مونغ ٢١ للتجارة B2B والتوريد بالجملة، بقوليات متعددة الاستخدامات مع توريد مستقر وتعبئة نظيفة وتوزيع موثوق.",
     ...imageSet(productImages.mungBean),
   },
   {
@@ -566,11 +566,11 @@ export const products: Product[] = [
     aliasAr: "فاصوليا كلية حمراء",
     category: "legumes",
     descriptionEn:
-      "21 Kidney Bean is a core legume product for retail, wholesale, and foodservice buyers looking for consistent packaged supply.",
+      "21 Kidney Bean is a wholesale protein-rich pulse staple for B2B buyers in retail, food service, and Middle East distribution, offering consistent packaged supply.",
     descriptionFa:
-      "لوبیا قرمز ۲۱ از اقلام اصلی حبوبات برای خریداران فروشگاهی، عمده و خدمات غذایی است که به تأمین بسته‌بندی‌شده و منظم نیاز دارند.",
+      "لوبیا قرمز ۲۱ برای عمده‌فروشی و تجارت B2B؛ حبوبات پروتئینی اصلی با تأمین بسته‌بندی‌شده و منظم برای فروشگاه‌ها و خدمات غذایی.",
     descriptionAr:
-      "فاصوليا كلية حمراء ٢١ هي منتج بقوليات أساسي للمشترين بالتجزئة والجملة وخدمات الطعام يبحثون عن إمداد معبأ متسق.",
+      "فاصوليا كلية حمراء ٢١ للتجارة B2B والتوريد بالجملة، بقوليات أساسية عالية البروتين مع إمداد معبأ متسق للمتاجر وخدمات الطعام.",
     ...imageSet(productImages.kidneyBean),
   },
   {
@@ -584,11 +584,11 @@ export const products: Product[] = [
     aliasAr: "حمص دesi",
     category: "legumes",
     descriptionEn:
-      "21 Desi Chickpea is a focused pulse product for buyers who need a darker chickpea variety with reliable branded packaging.",
+      "21 Desi Chickpea is a wholesale protein-rich pulse for B2B buyers seeking a darker chickpea variety with reliable branded packaging and consistent sourcing.",
     descriptionFa:
-      "نخود دسی ۲۱ محصولی تخصصی از گروه حبوبات است و برای خریدارانی عرضه می‌شود که به این رقم نخود با بسته‌بندی برنددار و قابل اتکا نیاز دارند.",
+      "نخود دسی ۲۱ برای عمده‌فروشی و تجارت B2B؛ نخود تخصصی با بسته‌بندی برنددار، کیفیت یکنواخت و تأمین قابل اعتماد.",
     descriptionAr:
-      "حمص دesi ٢١ هو منتج بقوليات مركّز للمشترين الذين يحتاجون إلى صنف حمص أغمق مع تعبئة ماركة موثوقة.",
+      "حمص دesi ٢١ للتجارة B2B والتوريد بالجملة، حمص متخصص مع تعبئة ماركة موثوقة وجودة متسقة وتوريد موثوق.",
     ...imageSet(productImages.desiChickpea),
   },
   {
@@ -602,11 +602,11 @@ export const products: Product[] = [
     aliasAr: "حبوب بوب كورن",
     category: "seeds",
     descriptionEn:
-      "21 Popcorn Corn is packaged for snack producers, retailers, and wholesale buyers seeking dependable popcorn kernel supply.",
+      "21 Popcorn Corn is a wholesale snack ingredient for B2B buyers, packaged for snack producers, retailers, and commercial food service across the Middle East.",
     descriptionFa:
-      "ذرت پاپ‌کورن ۲۱ برای تولیدکنندگان تنقلات، فروشگاه‌ها و خریداران عمده‌ای عرضه می‌شود که به تأمین قابل اتکای دانه پاپ‌کورن نیاز دارند.",
+      "ذرت پاپ‌کورن ۲۱ برای عمده‌فروشی و تجارت B2B؛ دانه پاپ‌کورن با تأمین قابل اتکا برای تولیدکنندگان تنقلات و توزیع تجاری.",
     descriptionAr:
-      "ذرة بوب كورن ٢١ معبأة لمنتجي الوجبات الخفيفة والتجار والمشترين بالجملة يبحثون عن إمداد حبوب بوب كورن موثوق.",
+      "ذرة بوب كورن ٢١ للتجارة B2B والتوريد بالجملة، حبوب بوب كورن مع توريد موثوق لمنتجي الوجبات الخفيفة والتوزيع التجاري.",
     ...imageSet(productImages.popcornCorn),
   },
   {
@@ -620,11 +620,11 @@ export const products: Product[] = [
     aliasAr: "أرز سلا حب طويل",
     category: "rice",
     descriptionEn:
-      "Golbanoo Sella Basmati Rice is a branded long-grain sella rice line for buyers who need consistent quality and strong shelf presence.",
+      "Golbanoo Sella Basmati Rice is a wholesale premium basmati for B2B buyers needing long-grain sella with consistent quality and strong regional shelf presence.",
     descriptionFa:
-      "برنج سیلا باسماتی گلبانو، محصولی دانه‌بلند و برنددار است که برای کیفیت یکنواخت و حضور مناسب در قفسه فروشگاهی عرضه می‌شود.",
+      "برنج سیلا باسماتی گلبانو برای تأمین عمده و تجارت B2B؛ برنج دانه‌بلند با کیفیت یکنواخت و حضور مناسب در قفسه فروشگاهی.",
     descriptionAr:
-      "أرز بسمتي سلا گلبانو هو خط أرز سلا حب طويل بماركة للمشترين الذين يحتاجون إلى جودة متسقة وحضور قوي على الرف.",
+      "أرز بسمتي سلا گلبانو للتجارة B2B وتوريد الجملة، أرز سلا حب طويل مع جودة متسقة وحضور قوي على الرف في الشرق الأوسط.",
     ...imageSet(productImages.golbanooSellaBasmati),
   },
   {
@@ -638,11 +638,11 @@ export const products: Product[] = [
     aliasAr: "أرز بسمتي سلا ١١٢١",
     category: "rice",
     descriptionEn:
-      "21 Sella Basmati Rice is a 1121 basmati sella product built for buyers seeking long-grain rice with recognizable 21 branding.",
+      "21 Sella Basmati Rice is a wholesale 1121 basmati sella for B2B buyers seeking premium long-grain rice with recognizable 21 branding.",
     descriptionFa:
-      "برنج سیلا باسماتی ۲۱ محصولی از نوع باسماتی ۱۱۲۱ است و برای خریدارانی عرضه می‌شود که به برنج دانه‌بلند با برند شناخته‌شده ۲۱ نیاز دارند.",
+      "برنج سیلا باسماتی ۲۱ برای عمده‌فروشی و تجارت B2B؛ باسماتی ۱۱۲۱ سلا با برند شناخته‌شده ۲۱ و تأمین قابل اعتماد.",
     descriptionAr:
-      "أرز بسمتي سلا ٢١ هو منتج بسمتي ١١٢١ سلا مصمم للمشترين يبحثون عن أرز حب طويل مع ماركة ٢١ المعروفة.",
+      "أرز بسمتي سلا ٢١ للتجارة B2B والتوريد بالجملة، بسمتي ١١٢١ سلا مع ماركة ٢١ المعروفة وتوريد موثوق.",
     ...imageSet(productImages.twentyOneSellaBasmati),
   },
   {
@@ -656,11 +656,11 @@ export const products: Product[] = [
     aliasAr: "فلفل أسود",
     category: "spices",
     descriptionEn:
-      "21 Black Pepper is a core seasoning product for retail and foodservice buyers who need reliable packaged spice supply.",
+      "21 Black Pepper is a wholesale aromatic spice for B2B buyers in retail and food service, offering consistent culinary flavor and packaged supply.",
     descriptionFa:
-      "فلفل سیاه ۲۱ از چاشنی‌های اصلی است و برای خریداران فروشگاهی و خدمات غذایی که به تأمین بسته‌بندی‌شده و قابل اعتماد ادویه نیاز دارند عرضه می‌شود.",
+      "فلفل سیاه ۲۱ برای عمده‌فروشی و تجارت B2B؛ ادویه معطر با طعم یکنواخت، مناسب فروشگاه‌ها، خدمات غذایی و توزیع تجاری.",
     descriptionAr:
-      "فلفل أسود ٢١ هو منتج بهاري أساسي للمشترين بالتجزئة وخدمات الطعام الذين يحتاجون إلى إمداد توابل معبأ موثوق.",
+      "فلفل أسود ٢١ للتجارة B2B والتوريد بالجملة، توابل عطرية بنكهة متسقة، مناسبة للبيع بالتجزئة وخدمات الطعام والتوزيع التجاري.",
     ...imageSet(productImages.blackPepper),
   },
   {
@@ -674,11 +674,11 @@ export const products: Product[] = [
     aliasAr: "فاصوليا بينتو",
     category: "legumes",
     descriptionEn:
-      "21 Pinto Beans are a staple legume product for retail, wholesale, and foodservice buyers seeking reliable packaged supply.",
+      "21 Pinto Beans are a wholesale protein-rich pulse staple for B2B buyers in retail, food service, and regional distribution.",
     descriptionFa:
-      "لوبیا چیتی ۲۱ از حبوبات پرمصرف است و برای خریداران فروشگاهی، عمده و خدمات غذایی که به تأمین بسته‌بندی‌شده و قابل اعتماد نیاز دارند عرضه می‌شود.",
+      "لوبیا چیتی ۲۱ برای عمده‌فروشی و تجارت B2B؛ حبوبات پروتئینی با تأمین قابل اعتماد، مناسب فروشگاه‌ها، خدمات غذایی و توزیع منطقه‌ای.",
     descriptionAr:
-      "فاصوليا بينتو ٢١ هي منتج بقوليات أساسية للمشترين بالتجزئة والجملة وخدمات الطعام يبحثون عن إمداد معبأ موثوق.",
+      "فاصوليا بينتو ٢١ للتجارة B2B والتوريد بالجملة، بقوليات أساسية عالية البروتين مع إمداد معبأ موثوق للمتاجر وخدمات الطعام والتوزيع الإقليمي.",
     ...imageSet(productImages.pintoBeans),
   },
   {
@@ -692,11 +692,11 @@ export const products: Product[] = [
     aliasAr: "لوبيا بقرة",
     category: "legumes",
     descriptionEn:
-      "21 Black-Eyed Peas are a versatile pulse line packaged for everyday cooking, foodservice use, and wholesale distribution.",
+      "21 Black-Eyed Peas are a wholesale protein-rich pulse staple for B2B buyers, packaged for everyday cooking, food service, and distribution.",
     descriptionFa:
-      "لوبیا چشم بلبلی ۲۱ از حبوبات کاربردی است که برای مصرف روزمره، خدمات غذایی و توزیع عمده بسته‌بندی می‌شود.",
+      "لوبیا چشم بلبلی ۲۱ برای عمده‌فروشی و تجارت B2B؛ حبوبات کاربردی با تأمین قابل اعتماد و بسته‌بندی مناسب توزیع تجاری.",
     descriptionAr:
-      "لوبيا بقرة ٢١ هي خط بقوليات متعددة الاستخدامات معبأة للطهي اليومي وخدمات الطعام والتوزيع بالجملة.",
+      "لوبيا بقرة ٢١ للتجارة B2B والتوريد بالجملة، بقوليات متعددة الاستخدامات مع إمداد موثوق وتوزيع تجاري مناسب.",
     ...imageSet(productImages.blackEyedPeas),
   },
   {
@@ -710,11 +710,11 @@ export const products: Product[] = [
     aliasAr: "عدس أخضر",
     category: "legumes",
     descriptionEn:
-      "21 Green Lentils are a high-demand pulse product for everyday cooking, foodservice kitchens, and B2B staple-food procurement.",
+      "21 Green Lentils are a wholesale protein-rich pulse staple for B2B buyers in food service and retail, ideal for everyday cooking and sourcing.",
     descriptionFa:
-      "عدس سبز ۲۱ از حبوبات پرتقاضا برای مصرف روزمره، آشپزخانه‌های خدمات غذایی و تأمین عمده اقلام غذایی اساسی است.",
+      "عدس سبز ۲۱ برای عمده‌فروشی و تجارت B2B؛ حبوبات پروتئینی پرتقاضا با تأمین قابل اعتماد برای خدمات غذایی و توزیع منطقه‌ای.",
     descriptionAr:
-      "عدس أخضر ٢١ هو منتج بقوليات عالي الطلب للطهي اليومي ومطابخ خدمات الطعام ومشتريات الأغذية الأساسية B2B.",
+      "عدس أخضر ٢١ للتجارة B2B والتوريد بالجملة، بقوليات عالية البروتين مع توريد موثوق لخدمات الطعام والتوزيع الإقليمي.",
     ...imageSet(productImages.greenLentils),
   },
   {
@@ -728,11 +728,11 @@ export const products: Product[] = [
     aliasAr: "بذور عباد الشمس",
     category: "seeds",
     descriptionEn:
-      "21 Sunflower Seeds are packaged whole for snack producers, retailers, and wholesale buyers seeking dependable seed supply.",
+      "21 Sunflower Seeds are a wholesale snack and bakery ingredient for B2B buyers, packaged whole for retailers and commercial food producers.",
     descriptionFa:
-      "تخمه آفتابگردان ۲۱ به‌صورت کامل برای تولیدکنندگان تنقلات، فروشگاه‌ها و خریداران عمده‌ای عرضه می‌شود که به تأمین قابل اتکای تخمه نیاز دارند.",
+      "تخمه آفتابگردان ۲۱ برای عمده‌فروشی و تجارت B2B؛ تخمه کامل با بسته‌بندی منظم، کیفیت یکنواخت و تأمین قابل اعتماد.",
     descriptionAr:
-      "بذور عباد الشمس ٢١ معبأة كاملة لمنتجي الوجبات الخفيفة والتجار والمشترين بالجملة يبحثون عن إمداد بذور موثوق.",
+      "بذور عباد الشمس ٢١ للتجارة B2B والتوريد بالجملة، بذور كاملة مع تعبئة منظمة وجودة متسقة وإمداد موثوق.",
     ...imageSet(productImages.sunflowerSeeds),
   },
   {
@@ -746,11 +746,11 @@ export const products: Product[] = [
     aliasAr: "بذور اليقطين",
     category: "seeds",
     descriptionEn:
-      "21 Pumpkin Seeds are packaged whole for snack, retail, and ingredient buyers who need consistent quality and steady availability.",
+      "21 Pumpkin Seeds are a wholesale snack and bakery ingredient for B2B buyers, packaged whole for retail and food service with consistent quality.",
     descriptionFa:
-      "تخمه کدو ۲۱ به‌صورت کامل برای خریداران حوزه تنقلات، فروشگاهی و مواد اولیه عرضه می‌شود که به کیفیت یکنواخت و دسترسی پایدار نیاز دارند.",
+      "تخمه کدو ۲۱ برای عمده‌فروشی و تجارت B2B؛ تخمه کامل با کیفیت یکنواخت، بسته‌بندی منظم و تأمین پایدار.",
     descriptionAr:
-      "بذور اليقطين ٢١ معبأة كاملة لمشتري الوجبات الخفيفة والتجزئة والمكونات الذين يحتاجون إلى جودة متسقة وإمداد مستقر.",
+      "بذور اليقطين ٢١ للتجارة B2B والتوريد بالجملة، بذور كاملة مع جودة متسقة وتعبئة منظمة وتوريد مستقر.",
     ...imageSet(productImages.pumpkinSeeds),
   },
   {
@@ -764,11 +764,11 @@ export const products: Product[] = [
     aliasAr: "سمسم",
     category: "seeds",
     descriptionEn:
-      "21 Sesame Seeds support bakery, foodservice, and ingredient buyers with clean packaged seeds and dependable availability.",
+      "21 Sesame Seeds are a wholesale bakery and food service ingredient for B2B buyers, offering clean packaged seeds and dependable regional supply.",
     descriptionFa:
-      "کنجد ۲۱ برای خریداران حوزه نانوایی، خدمات غذایی و مواد اولیه عرضه می‌شود؛ با بسته‌بندی تمیز و دسترسی پایدار.",
+      "کنجد ۲۱ برای عمده‌فروشی و تجارت B2B؛ کنجد با بسته‌بندی تمیز، کیفیت یکنواخت و تأمین پایدار برای نانوایی و خدمات غذایی.",
     descriptionAr:
-      "سمسم ٢١ يدعم مشتري المخبوزات وخدمات الطعام والمكونات بالبذور المعبأة النظيفة والإمداد الموثوق.",
+      "سمسم ٢١ للتجارة B2B والتوريد بالجملة، سمسم مع تعبئة نظيفة وجودة متسقة وتوريد موثوق للمخبوزات وخدمات الطعام.",
     ...imageSet(productImages.sesameSeeds),
   },
   {
@@ -782,11 +782,11 @@ export const products: Product[] = [
     aliasAr: "فول سوداني",
     category: "nuts",
     descriptionEn:
-      "21 Peanuts are positioned for snack producers, retail, and wholesale buyers who need a familiar nut product with steady supply.",
+      "21 Peanuts are wholesale premium roasted nuts for B2B snack producers, retail, and food service buyers needing steady regional supply.",
     descriptionFa:
-      "بادام زمینی ۲۱ برای تولیدکنندگان تنقلات، فروشگاه‌ها و خریداران عمده‌ای عرضه می‌شود که به محصولی شناخته‌شده با تأمین پایدار نیاز دارند.",
+      "بادام زمینی ۲۱ برای عمده‌فروشی و تجارت B2B؛ بادام زمینی بوداده ممتاز با تأمین پایدار برای تولیدکنندگان تنقلات و توزیع تجاری.",
     descriptionAr:
-      "فول سوداني ٢١ موجه لمنتجي الوجبات الخفيفة والتجزئة والجملة الذين يحتاجون إلى منتج مكسرات معروف مع إمداد مستقر.",
+      "فول سوداني ٢١ للتجارة B2B والتوريد بالجملة، مكسرات ممتازة مع إمداد مستقر لمنتجي الوجبات الخفيفة والتوزيع التجاري.",
     ...imageSet(productImages.peanuts),
   },
   {
@@ -800,11 +800,11 @@ export const products: Product[] = [
     aliasAr: "مسحوق جوز الهند",
     category: "nuts",
     descriptionEn:
-      "21 Desiccated Coconut is a packaged coconut powder for bakery, confectionery, and retail buyers seeking consistent quality and supply.",
+      "21 Desiccated Coconut is a wholesale packaged nut ingredient for B2B bakery, confectionery, and retail buyers seeking consistent quality and supply.",
     descriptionFa:
-      "پودر نارگیل ۲۱ محصولی بسته‌بندی‌شده برای خریداران حوزه نانوایی، شیرینی‌پزی و فروشگاهی است که به کیفیت و تأمین یکنواخت نیاز دارند.",
+      "پودر نارگیل ۲۱ برای عمده‌فروشی و تجارت B2B؛ پودر نارگیل بسته‌بندی‌شده با کیفیت یکنواخت و تأمین قابل اعتماد.",
     descriptionAr:
-      "مسحوق جوز الهند ٢١ هو منتج معبأ لمشتري المخبوزات والحلويات والتجزئة يبحثون عن جودة وإمداد متسقين.",
+      "مسحوق جوز الهند ٢١ للتجارة B2B والتوريد بالجملة، مسحوق جوز الهند المعبأ مع جودة متسقة وتوريد موثوق.",
     ...imageSet(productImages.desiccatedCoconut),
   },
   {
@@ -818,11 +818,11 @@ export const products: Product[] = [
     aliasAr: "هيل",
     category: "spices",
     descriptionEn:
-      "21 Cardamom is an aromatic spice product for foodservice, retail, and wholesale buyers seeking consistent flavor and packaged supply.",
+      "21 Cardamom is a wholesale aromatic spice for B2B food service, retail, and culinary buyers seeking consistent flavor and packaged supply.",
     descriptionFa:
-      "هل ۲۱ از ادویه‌های خوش‌عطر است و برای خریداران خدمات غذایی، فروشگاهی و عمده که به طعم یکدست و بسته‌بندی منظم نیاز دارند عرضه می‌شود.",
+      "هل ۲۱ برای عمده‌فروشی و تجارت B2B؛ ادویه خوش‌عطر با طعم یکنواخت، مناسب خدمات غذایی، فروشگاه‌ها و توزیع تجاری.",
     descriptionAr:
-      "هيل ٢١ هو منتج بهاري عطري لخدمات الطعام والبيع بالتجزئة والجملة يبحثون عن طعم متسق وتعبئة معبأة.",
+      "هيل ٢١ للتجارة B2B والتوريد بالجملة، توابل عطرية بنكهة متسقة، مناسبة لخدمات الطعام والبيع بالتجزئة والتوزيع التجاري.",
     ...imageSet(productImages.cardamom),
   },
   {
@@ -836,11 +836,11 @@ export const products: Product[] = [
     aliasAr: "سكر",
     category: "sugar",
     descriptionEn:
-      "21 Sugar is a core sweetener product for retail, foodservice, and wholesale buyers who need reliable packaged supply.",
+      "21 Sugar is a wholesale bulk sweetener for B2B retail, food service, and commercial buyers needing reliable packaged supply across the Middle East.",
     descriptionFa:
-      "شکر ۲۱ از شیرین‌کننده‌های اصلی است و برای خریداران فروشگاهی، خدمات غذایی و عمده که به تأمین بسته‌بندی‌شده و قابل اعتماد نیاز دارند عرضه می‌شود.",
+      "شکر ۲۱ برای عمده‌فروشی و تجارت B2B؛ شیرین‌کننده اصلی با تأمین بسته‌بندی‌شده و قابل اعتماد، مناسب فروشگاه‌ها و خدمات غذایی.",
     descriptionAr:
-      "سكر ٢١ هو منتج حلوى أساسي للمشترين بالتجزئة وخدمات الطعام والجملة الذين يحتاجون إلى إمداد معبأ موثوق.",
+      "سكر ٢١ للتجارة B2B والتوريد بالجملة، محليات أساسية مع إمداد معبأ موثوق، مناسبة للبيع بالتجزئة وخدمات الطعام.",
     ...imageSet(productImages.sugar),
   },
 ];

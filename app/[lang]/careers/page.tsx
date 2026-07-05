@@ -25,15 +25,15 @@ export async function generateMetadata({ params }: CareersPageProps) {
   return buildPageMetadata({
     lang,
     path: "careers",
-    titleEn: "Careers in Food Supply and Distribution | Faradid Atlas",
-    titleFa: "فرصت‌های همکاری در تأمین و توزیع مواد غذایی | فرادید اطلس",
-    titleAr: "فرص عملية في تزوين وتوزيع الغذاء | فراديد أطلس",
+    titleEn: "Careers in Food Supply & Distribution — Join Faradid Atlas",
+    titleFa: "فرصت‌های شغلی در تأمین و توزیع مواد غذایی — به فرادید اطلس بپیوندید",
+    titleAr: "وظائف في تزوين وتوزيع الغذاء — انضم إلى فراديد أطلس",
     descriptionEn:
-      "Explore career paths at Faradid Atlas across supply chain, procurement, quality, food safety, sales, distribution, and customer relations.",
+      "Join Faradid Atlas in food sourcing, procurement, quality control, and distribution roles across Iran, UAE, and Oman.",
     descriptionFa:
-      "با مسیرهای همکاری در فرادید اطلس آشنا شوید؛ از زنجیره تأمین، خرید و کنترل کیفیت تا فروش، توزیع و ارتباط با مشتریان.",
+      "در نقش‌های تأمین مواد غذایی، خرید، کنترل کیفیت و توزیع در فرادید اطلس مشغول شوید. دفاتر در ایران، امارات و عمان.",
     descriptionAr:
-      "استكشف مسارات الوظائف في فراديد أطلس عبر سلسلة التزوين والتوريد والجودة وسلامة الغذاء والمبيعات والتوزيع وعلاقات العملاء.",
+      "انضم إلى فراديد أطلس في وظائف تزوين وتوريد ورقابة الجودة وتوزيع الغذاء عبر إيران والإمارات وعمان.",
   });
 }
 
@@ -62,8 +62,8 @@ export default async function CareersPage({ params }: CareersPageProps) {
               name: t.pages.careers.title,
               description:
                 lang === "en"
-                  ? "Explore career paths at Faradid Atlas across supply chain, procurement, quality, food safety, sales, distribution, and customer relations."
-                  : "با مسیرهای همکاری در فرادید اطلس آشنا شوید؛ از زنجیره تأمین، خرید و کنترل کیفیت تا فروش، توزیع و ارتباط با مشتریان.",
+                  ? "Join Faradid Atlas in food sourcing, procurement, quality control, and distribution roles across Iran, UAE, and Oman."
+                  : "در نقش‌های تأمین مواد غذایی، خرید، کنترل کیفیت و توزیع در فرادید اطلس مشغول شوید. دفاتر در ایران، امارات و عمان.",
               inLanguage: lang,
               mainEntity: {
                 "@type": "ItemList",

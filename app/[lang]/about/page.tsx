@@ -28,15 +28,15 @@ export async function generateMetadata({ params }: AboutPageProps) {
   return buildPageMetadata({
     lang,
     path: "about",
-    titleEn: "About Faradid Atlas and Our Food Supply Network",
-    titleFa: "درباره فرادید اطلس و شبکه تأمین مواد غذایی",
-    titleAr: "عن فراديد أطلس وشبكتنا لتزوين الغذاء",
+    titleEn: "About Faradid Atlas — Food Sourcing & Distribution Since 2009 | Iran, UAE, Oman",
+    titleFa: "درباره فرادید اطلس — تأمین و توزیع مواد غذایی از سال ۲۰۰۹ | ایران، امارات، عمان",
+    titleAr: "عن فراديد أطلس — تزوين وتوزيع الغذاء منذ عام 2009 | إيران، الإمارات، عمان",
     descriptionEn:
-      "Learn how Faradid Atlas has built regional food sourcing, import, and distribution capabilities since 2009, guided by quality, continuity, and trust.",
+      "Learn how Faradid Atlas has built food sourcing, import, and distribution capabilities across Iran, UAE, and Oman since 2009. ISO 22000 quality standards.",
     descriptionFa:
-      "با مسیر فرادید اطلس از سال ۱۳۸۸ تا امروز آشنا شوید؛ شرکتی که تأمین، واردات و توزیع مواد غذایی اساسی را با تمرکز بر کیفیت، تداوم و اعتماد دنبال می‌کند.",
+      "با مسیر فرادید اطلس در تأمین، واردات و توزیع مواد غذایی در ایران، امارات و عمان از سال ۲۰۰۹ آشنا شوید. استاندارد کیفیت ISO 22000.",
     descriptionAr:
-      "تعرّف على كيفية بناء فراديد أطلس لقدرات区域性 لتزوين واستيراد وتوزيع الغذاء منذ عام 2009، بإشراف الجودة والاستمرارية والثقة.",
+      "تعرّف على كيفية بناء فراديد أطلس لقدرات تزوين واستيراد وتوزيع الغذاء عبر إيران والإمارات وعمان منذ عام 2009. معايير الجودة ISO 22000.",
   });
 }
 

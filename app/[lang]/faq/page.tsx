@@ -24,15 +24,15 @@ export async function generateMetadata({ params }: FAQPageProps) {
   return buildPageMetadata({
     lang,
     path: "faq",
-    titleEn: "Food Supply FAQ | Faradid Atlas",
-    titleFa: "پرسش‌های متداول تأمین مواد غذایی | فرادید اطلس",
-    titleAr: "الأسئلة الشائعة عن تزوين الغذاء | فراديد أطلس",
+    titleEn: "Food Supply FAQ — Sourcing, Quality & Distribution | Faradid Atlas",
+    titleFa: "پرسش‌های متداول تأمین مواد غذایی — تأمین، کیفیت و توزیع | فرادید اطلس",
+    titleAr: "الأسئلة الشائعة عن تزوين الغذاء — التزوين والجودة والتوزيع | فراديد أطلس",
     descriptionEn:
-      "Find clear answers about Faradid Atlas products, sourcing process, quality standards, offices, values, and how to start a supply inquiry.",
+      "Find answers about food sourcing, quality standards, ISO 22000, distribution, and B2B cooperation with Faradid Atlas across Iran, UAE, and Oman.",
     descriptionFa:
-      "پاسخ پرسش‌های رایج درباره محصولات، فرایند تأمین، استانداردهای کیفیت، دفاتر، ارزش‌ها و شروع همکاری با فرادید اطلس را بخوانید.",
+      "پاسخ پرسش‌های رایج درباره تأمین مواد غذایی، استانداردهای کیفیت، ISO 22000، توزیع و همکاری B2B با فرادید اطلس در ایران، امارات و عمان را بخوانید.",
     descriptionAr:
-      "اعثر على إجابات واضحة حول منتجات فراديد أطلس وعملية التزوين ومعايير الجودة والمكاتب والقيم وكيفية بدء استفسار التزوين.",
+      "اعثر على إجابات حول تزوين الغذاء ومعايير الجودة وISO 22000 والتوزيع والتعاون B2B مع فراديد أطلس عبر إيران والإمارات وعمان.",
   });
 }
 

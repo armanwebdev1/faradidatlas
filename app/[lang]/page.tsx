@@ -27,15 +27,15 @@ export async function generateMetadata({ params }: HomePageProps) {
 
   return buildPageMetadata({
     lang,
-    titleEn: "Reliable Food Sourcing and Distribution | Faradid Atlas",
-    titleFa: "تأمین و توزیع مطمئن مواد غذایی | فرادید اطلس",
-    titleAr: "تزوين و توزيع موثق مواد غذائية | فراديد أطلس",
+    titleEn: "Food Sourcing, Import & Distribution — Iran, UAE, Oman | Faradid Atlas",
+    titleFa: "تأمین، واردات و توزیع مواد غذایی — ایران، امارات، عمان | فرادید اطلس",
+    titleAr: "تزوين واستيراد وتوزيع الغذاء — إيران، الإمارات، عمان | فراديد أطلس",
     descriptionEn:
-      "Faradid Atlas connects businesses with reliable supply channels for rice, legumes, nuts, seeds, spices, sugar, and other essential food products.",
+      "Faradid Atlas sources, imports, and distributes essential foods — branded rice, legumes, nuts, seeds, spices, and sugar — across Iran, UAE, and Oman. B2B food supply since 2009.",
     descriptionFa:
-      "فرادید اطلس مسیر تأمین و توزیع مواد غذایی اساسی مانند برنج، حبوبات، مغزها، دانه‌ها، ادویه و شکر را برای کسب‌وکارها قابل اتکا و شفاف‌تر می‌کند.",
+      "فرادید اطلس تأمین، واردات و توزیع مواد غذایی اساسی شامل برنج برنددار، حبوبات، مغزها، دانه‌ها، ادویه و شکر را در ایران، امارات و عمان انجام می‌دهد. عرضه B2B از سال ۲۰۰۹.",
     descriptionAr:
-      "يربط فراديد أطلس الشركات بقنوات تزوين موثقة للأرز والبقول والمكسرات والبذور والبهارات والسكر وother المنتجات الغذائية الأساسية.",
+      "يقوم فراديد أطلس بتزوين واستيراد وتوزيع الغذاء الأساسي — أرز بตรา تجاري، بقول، مكسرات، بذور، بهارات وسكر — عبر إيران والإمارات وعمان. تزوين غذائي B2B منذ عام 2009.",
   });
 }
 
@@ -147,7 +147,7 @@ export default async function HomePage({ params }: HomePageProps) {
               name: siteConfig.name,
               alternateName: siteConfig.nameFa,
               url: siteConfig.url,
-              inLanguage: ["en", "fa"],
+              inLanguage: ["en", "fa", "ar"],
               publisher: {
                 "@id": organizationId,
               },
@@ -169,8 +169,8 @@ export default async function HomePage({ params }: HomePageProps) {
               url: pageUrl,
               name:
                 lang === "en"
-                  ? "Reliable Food Sourcing and Distribution"
-                  : "تأمین و توزیع مطمئن مواد غذایی",
+                  ? "Food Sourcing, Import & Distribution — Iran, UAE, Oman"
+                  : "تأمین، واردات و توزیع مواد غذایی — ایران، امارات، عمان",
               description: pageDescription,
               inLanguage: lang,
               isPartOf: {
