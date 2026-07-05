@@ -32,7 +32,7 @@ export function CEOProfile({ lang }: CEOProfileProps) {
   return (
     <AnimatedSection className="relative overflow-hidden bg-background px-4 py-20 sm:px-6 md:py-28">
       <div className="mx-auto max-w-7xl" dir={isRTL ? "rtl" : "ltr"}>
-        <div className="opacity-0 translate-y-6 mb-10" data-animate>
+        <div className="opacity-0 translate-y-6 mb-10 text-center" data-animate>
           <p className="eyebrow text-brand-navy">{data.eyebrow}</p>
         </div>
 
