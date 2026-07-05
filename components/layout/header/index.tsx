@@ -25,6 +25,7 @@ import {
 } from "@/components/products/product-data";
 import {
   Briefcase,
+  BookOpen,
   ChevronDown,
   HelpCircle,
   Home,
@@ -80,6 +81,7 @@ export function Header({ lang }: HeaderProps) {
       Icon: Briefcase,
     },
     { href: `/${lang}/faq`, label: t.nav.faq, key: "faq", Icon: HelpCircle },
+    { href: `/${lang}/blog`, label: t.nav.blog, key: "blog", Icon: BookOpen },
     {
       href: `/${lang}/contact`,
       label: t.nav.contact,

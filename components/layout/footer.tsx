@@ -61,6 +61,7 @@ export function Footer({ lang }: FooterProps) {
       label: t.pages.careers.openPositions,
     },
     { href: `/${lang}/faq`, label: t.nav.faq },
+    { href: `/${lang}/blog`, label: t.nav.blog },
   ];
   const resourceLinks: FooterLinkItem[] = [
     {
@@ -228,6 +229,12 @@ export function Footer({ lang }: FooterProps) {
                   className="text-xs text-white/60 hover:text-accent transition-colors duration-300"
                 >
                   {t.nav.faq}
+                </Link>
+                <Link
+                  href={`/${lang}/blog`}
+                  className="text-xs text-white/60 hover:text-accent transition-colors duration-300"
+                >
+                  {t.nav.blog}
                 </Link>
                 <Link
                   href={`/${lang}/contact`}

@@ -5,7 +5,8 @@
     "products": "Products",
     "careers": "Careers",
     "faq": "FAQ",
-    "contact": "Contact"
+    "contact": "Contact",
+    "blog": "Blog"
   },
   "common": {
     "viewMore": "View More",
@@ -248,6 +249,39 @@
       "contactTeam": "Contact our team directly so we can review your product, volume, destination, and timing.",
       "heroDescription": "Find answers about Faradid Atlas, its products, sourcing, quality standards, vision, values, offices, and inquiry steps.",
       "heroImageAlt": "Food supply support"
+    },
+    "blog": {
+      "title": "Blog",
+      "subtitle": "Insights",
+      "description": "Industry insights, market trends, quality standards, and supply chain perspectives from the Faradid Atlas team.",
+      "heroImageAlt": "Faradid Atlas blog insights",
+      "searchPlaceholder": "Search articles...",
+      "allTags": "All",
+      "tags": [
+        "Industry Trends",
+        "Quality Standards",
+        "Supply Chain",
+        "Market Insights",
+        "Company News"
+      ],
+      "emptyTitle": "Coming Soon",
+      "emptyDescription": "Our blog is launching soon with insights on food supply, market trends, quality standards, and industry perspectives.",
+      "emptyCta": "Contact Us",
+      "authorsTitle": "Written By",
+      "authors": [
+        {
+          "name": "Faradid Atlas Team",
+          "role": "Supply Chain & Operations",
+          "bio": "Delivering reliable food supply insights backed by years of regional sourcing and distribution experience."
+        },
+        {
+          "name": "Quality Assurance",
+          "role": "Quality Standards",
+          "bio": "Ensuring every product meets rigorous international quality and food safety standards."
+        }
+      ],
+      "readTime": "min read",
+      "datePrefix": "Published"
     },
     "home": {
       "description": "Faradid Atlas connects businesses with reliable supply channels for rice, legumes, nuts, seeds, spices, sugar, and other essential food products.",

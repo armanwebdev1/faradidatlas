@@ -8,7 +8,7 @@ import {
   supportedLanguages,
 } from "@/lib/site";
 
-const staticPaths = ["", "about", "products", "contact", "faq", "careers"];
+const staticPaths = ["", "about", "products", "contact", "faq", "careers", "blog"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
