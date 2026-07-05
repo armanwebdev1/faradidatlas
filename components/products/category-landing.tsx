@@ -25,14 +25,14 @@ export const categorySEOContent: Record<
 > = {
   rice: {
     title: {
-      en: "Wholesale Basmati Rice & Long Grain Rice Supplier",
-      fa: "تأمین و توزیع عمده برنج باسماتی و دانه‌بلند",
-      ar: "مورّد الأرز البسمتي بالجملة والأرز الحبّ الطويل",
+      en: "Rice — Basmati, Jasmine & Long Grain",
+      fa: "برنج — باسماتی، جاسمین و دانه‌بلند",
+      ar: "الأرز — بسمتي وياسمين وحبّ طويل",
     },
     subtitle: {
-      en: "Your Trusted Rice Import Partner",
-      fa: "شریک قابل اعتماد واردات برنج",
-      ar: "شريكك الموثوق في استيراد الأرز",
+      en: "Sourced from India and Pakistan, delivered across the Middle East",
+      fa: "تأمین از هند و پاکستان، توزیع در سراسر خاورمیانه",
+      ar: "مصدره من الهند وباكستان، يُسلّم عبر الشرق الأوسط",
     },
     content: {
       en: `Faradid Atlas is a leading wholesale rice supplier and rice import specialist, providing B2B buyers across Iran, the UAE, and Oman with a comprehensive range of premium rice varieties. Our wholesale basmati rice portfolio includes extra-long grain basmati, long grain sella basmati, aromatic jasmine rice, and parboiled rice sourced directly from India and Pakistan — the world's most respected rice-producing regions. As a dedicated rice supplier, we work closely with first-tier mills and agricultural cooperatives to ensure every shipment of wholesale rice meets strict quality and food safety standards, including ISO 22000 certification.\n\nOur long grain rice selection features the 1121 variety — widely regarded as the finest basmati in global markets — alongside premium sella, steam-processed, and white basmati options. Each product in our wholesale rice catalog undergoes rigorous quality verification before entering our supply chain, ensuring consistent grain length, clean aroma, and reliable cooking performance. Whether you are a wholesaler seeking bulk basmati rice for retail distribution, a foodservice operator sourcing long grain rice for institutional supply, or a retail chain looking for branded rice products, Faradid Atlas delivers dependable B2B rice supply with transparent documentation.\n\nWe offer flexible packaging options ranging from consumer-friendly 5 kg and 10 kg bags to industrial 25 kg and 50 kg sacks, all branded under our recognized labels — 21, Mizban, Golbanoo, and Hayat. Our regional warehousing network, including facilities in Tehran, Isfahan, Dubai, and Oman, ensures consistent availability and rapid fulfillment for wholesale rice orders across the Middle East. For businesses seeking a reliable wholesale rice import partner, Faradid Atlas provides the sourcing expertise, quality assurance, and supply chain reliability needed to maintain a steady flow of premium rice products to your market.`,
@@ -42,14 +42,14 @@ export const categorySEOContent: Record<
   },
   legumes: {
     title: {
-      en: "Wholesale Legumes & Pulses Supplier — Beans, Lentils, Chickpeas B2B",
-      fa: "تأمین عمده حبوبات و پالس؛ لوبیا، عدس، نخود B2B",
-      ar: "مورّد البقوليات بالجملة — فاصوليا، عدس، حمص B2B",
+      en: "Legumes — Beans, Lentils & Chickpeas",
+      fa: "حبوبات — لوبیا، عدس و نخود",
+      ar: "البقوليات — فاصوليا وعدس وحمص",
     },
     subtitle: {
-      en: "Comprehensive Pulse Supply for B2B Buyers",
-      fa: "تأمین جامع حبوبات برای خریداران B2B",
-      ar: "توريد شامل للبقوليات لمتاجر B2B",
+      en: "Essential staples for food manufacturers and wholesale buyers",
+      fa: "اقلام اساسی برای تولیدکنندگان غذا و خریداران عمده",
+      ar: "أساسيات للمصنعين والتجار بالجملة",
     },
     content: {
       en: `Faradid Atlas is a premier wholesale legumes supplier and pulses distributor, offering B2B buyers across Iran, the UAE, and Oman a diverse portfolio of high-quality beans, lentils, chickpeas, mung beans, kidney beans, and pinto beans. Our wholesale legumes are sourced from trusted origins including Canada, the USA, Turkey, and regional producers, ensuring reliable protein-rich staples for food manufacturers, wholesalers, foodservice operators, and retail distribution channels. As an experienced pulses supplier, we understand the critical importance of consistent quality, competitive pricing, and dependable supply in the B2B food industry.\n\nOur wholesale legumes catalog features navy beans, white beans in both carton and bag formats, red lentils, green lentils, chickpeas, desi chickpeas, mung beans, kidney beans, pinto beans, and black-eyed peas — each selected against strict quality benchmarks for size, purity, moisture content, and freedom from foreign matter. Every product in our pulses supply chain undergoes quality verification to meet international food safety standards, including ISO 22000 certification. Whether you are sourcing chickpeas for hummus production, lentils for institutional foodservice, or beans for retail packaging, Faradid Atlas delivers wholesale legumes with full traceability and transparent documentation.\n\nWe provide flexible packaging solutions tailored to B2B requirements, including bulk bags, consumer packs, and customized private-label options under our recognized brands — 21, Mizban, Golbanoo, and Hayat. Our regional warehousing and distribution network across Tehran, Isfahan, Dubai, and Oman enables efficient fulfillment and consistent availability for wholesale legume orders. For food manufacturers seeking chickpeas B2B supply, distributors looking for wholesale lentils, or retailers building a comprehensive pulses portfolio, Faradid Atlas provides the sourcing expertise, quality assurance, and supply chain reliability your business needs.`,
@@ -59,14 +59,14 @@ export const categorySEOContent: Record<
   },
   seeds: {
     title: {
-      en: "Wholesale Seeds & Kernels Supplier — Sunflower, Pumpkin, Sesame B2B",
-      fa: "تأمین عمده دانه‌ها و مغزها؛ آفتابگردان، کدو، کنجد B2B",
-      ar: "مورّد البذور بالجملة — عباد الشمس، يقطين، سمسم B2B",
+      en: "Seeds & Kernels — Sunflower, Pumpkin & Sesame",
+      fa: "دانه‌ها و مغزها — آفتابگردان، کدو و کنجد",
+      ar: "البذور واللبّ — عباد الشمس، يقطين وسمسم",
     },
     subtitle: {
-      en: "Premium Seeds & Kernels for Commercial Buyers",
-      fa: "دانه‌ها و مغزهای ممتاز برای خریداران تجاری",
-      ar: "بذور ومكسرات ممتازة للمشترين التجاريين",
+      en: "For snack producers, bakeries and food manufacturers",
+      fa: "برای تولیدکنندگان تنقلات، نانوایی‌ها و کارخانجات غذا",
+      ar: "لمصنعي الوجبات الخفيفة والمخابز والأغذية",
     },
     content: {
       en: `Faradid Atlas is a trusted wholesale seeds supplier and kernels distributor, providing B2B buyers across Iran, the UAE, and Oman with a comprehensive range of sunflower seeds, pumpkin seeds, sesame seeds, popcorn corn, and desiccated coconut. Our wholesale seeds portfolio is curated for snack manufacturers, bakery producers, foodservice operators, and retail distribution channels that demand consistent quality, competitive pricing, and reliable supply. As an experienced seeds supplier, we understand the specific requirements of commercial buyers who source bulk seeds and kernels for production and retail purposes.\n\nOur wholesale seeds catalog includes sunflower seed kernels, sunflower seeds in shell, pumpkin seed kernels, pumpkin seeds, sesame seeds, popcorn kernels, and desiccated coconut powder — each processed and packaged to maintain freshness, nutritional value, and clean presentation. Every product in our seeds supply chain undergoes strict quality verification for size uniformity, moisture content, oil quality, and freedom from contaminants, ensuring compliance with international food safety standards including ISO 22000. Whether you are a snack producer sourcing sunflower seeds for roasting and seasoning, a bakery buyer needing pumpkin seeds for specialty products, or a food manufacturer requiring sesame seeds for tahini and confectionery, Faradid Atlas delivers wholesale seeds with full traceability.\n\nWe offer flexible packaging solutions for wholesale seeds including bulk sacks, retail-ready bags, and customized private-label packaging under our recognized brands — 21, Mizban, Golbanoo, and Hayat. Our regional warehousing network across Tehran, Isfahan, Dubai, and Oman ensures consistent stock availability and efficient fulfillment for B2B seed orders. For popcorn corn buyers seeking commercial-grade kernels, snack manufacturers looking for wholesale sunflower seeds, or food producers building a diverse kernels portfolio, Faradid Atlas provides the sourcing expertise, quality assurance, and dependable supply chain your business requires.`,
@@ -76,14 +76,14 @@ export const categorySEOContent: Record<
   },
   nuts: {
     title: {
-      en: "Wholesale Nuts Supplier — Walnut Kernels, Cashew Nuts B2B",
-      fa: "تأمین عمده مغزها؛ مغز گردو، بادام هندی B2B",
-      ar: "مورّد المكسرات بالجملة — لبّ الجوز، كاجيو B2B",
+      en: "Nuts — Walnuts, Cashews & Peanuts",
+      fa: "مغزها — گردو، بادام هندی و بادام زمینی",
+      ar: "المكسرات — جوز وكاجيو وفول سوداني",
     },
     subtitle: {
-      en: "Premium Nuts for Wholesale & B2B Distribution",
-      fa: "مغزهای ممتاز برای عمده‌فروشی و توزیع B2B",
-      ar: "مكسرات ممتازة للتوزيع بالجملة وB2B",
+      en: "Premium quality from trusted origins",
+      fa: "کیفیت ممتاز از مبادی معتبر",
+      ar: "جودة ممتازة من مصادر موثوقة",
     },
     content: {
       en: `Faradid Atlas is a leading wholesale nuts supplier and distributor of premium nut varieties, serving B2B buyers across Iran, the UAE, and Oman with walnut kernels, cashew nuts, peanuts, desiccated coconut, and other high-value nut products. Our wholesale nuts portfolio is carefully curated for snack manufacturers, confectionery producers, bakery operators, foodservice chains, and retail distribution channels that demand consistent quality and reliable B2B supply. As an experienced nuts supplier, we source directly from first-tier producers and processing facilities to ensure every product meets rigorous food safety and quality benchmarks.\n\nOur wholesale nuts catalog features premium walnut kernels — sourced from Iran and the USA — available in halves, pieces, and light-grade selections; roasted cashew nuts in various grades; blanched and roasted peanuts; and desiccated coconut powder for bakery and confectionery applications. Each product in our nuts supply chain is processed under strict quality controls, with testing for size uniformity, moisture content, oil oxidation levels, and sensory characteristics to meet ISO 22000 food safety standards. Whether you are sourcing walnut kernels for premium snack packaging, cashew nuts for food manufacturing, or peanuts for wholesale distribution, Faradid Atlas delivers bulk nuts with full traceability and consistent quality.\n\nWe offer flexible packaging formats for wholesale nuts, including vacuum packs, cartons, bulk sacks, and customized private-label solutions under our recognized brands — 21, Mizban, Golbanoo, and Hayat. Our regional warehousing network in Tehran, Isfahan, Dubai, and Oman ensures consistent stock levels and rapid fulfillment for B2B nut orders across the Middle East. For confectionery producers seeking premium walnut kernels, snack manufacturers needing wholesale cashew nuts, or retailers building a comprehensive nuts portfolio, Faradid Atlas provides the sourcing expertise, quality assurance, and supply chain reliability essential for sustained commercial success.`,
@@ -93,14 +93,14 @@ export const categorySEOContent: Record<
   },
   spices: {
     title: {
-      en: "Wholesale Spices Supplier — Turmeric, Black Pepper, Cardamom B2B",
-      fa: "تأمین عمده ادویه‌ها؛ زردچوبه، فلفل سیاه، هل B2B",
-      ar: "مورّد التوابل بالجملة — كركم، فلفل أسود، هيل B2B",
+      en: "Spices — Turmeric, Pepper & Cardamom",
+      fa: "ادویه‌ها — زردچوبه، فلفل و هل",
+      ar: "التوابل — كركم وفلفل وهيل",
     },
     subtitle: {
-      en: "Premium Spices & Seasonings for B2B Buyers",
-      fa: "ادویه‌ها و چاشنی‌های ممتاز برای خریداران B2B",
-      ar: "توابل وبهارات ممتازة لمتاجر B2B",
+      en: "Aromatic flavors for foodservice and retail",
+      fa: "عطر و طعم برای خدمات غذایی و خرده‌فروشی",
+      ar: "نكهات عطرية لمطاعم ومتاجر التجزئة",
     },
     content: {
       en: `Faradid Atlas is a premier wholesale spices supplier and distributor, offering B2B buyers across Iran, the UAE, and Oman a comprehensive portfolio of premium turmeric, black pepper, cardamom, and other essential spice varieties. Our wholesale spices are sourced from reputable origins — including India, the world's largest spice producer — and processed under strict quality controls to preserve aroma, color, and culinary flavor. As an experienced spices supplier, we serve food manufacturers, foodservice operators, wholesalers, and retail distribution channels that demand consistent quality and dependable B2B supply in the global spice trade.\n\nOur wholesale spices catalog features ground turmeric in various grades, whole and ground black pepper, green and white cardamom, and complementary seasonings — each selected for purity, volatile oil content, curcumin levels (for turmeric), and piperine concentration (for black pepper). Every product in our spices supply chain undergoes rigorous quality verification, including laboratory testing for heavy metals, pesticide residues, and microbiological standards, ensuring compliance with ISO 22000 food safety certification. Whether you are sourcing turmeric for food coloring and flavoring, black pepper for commercial food production, or cardamom for premium beverage and confectionery applications, Faradid Atlas delivers wholesale spices with full traceability and transparent documentation.\n\nWe provide flexible packaging solutions for wholesale spices, ranging from small retail packs to bulk containers and customized private-label options under our recognized brands — 21, Mizban, Golbanoo, and Hayat. Our regional warehousing network across Tehran, Isfahan, Dubai, and Oman ensures consistent availability and efficient fulfillment for B2B spice orders. For food manufacturers seeking wholesale turmeric, foodservice operators sourcing black pepper in bulk, or retailers building a comprehensive spices portfolio, Faradid Atlas provides the sourcing expertise, quality assurance, and supply chain reliability your commercial operation requires.`,
@@ -110,14 +110,14 @@ export const categorySEOContent: Record<
   },
   sugar: {
     title: {
-      en: "Wholesale Sugar & Sweeteners Supplier — B2B Bulk Sugar",
-      fa: "تأمین عمده شکر و شیرین‌کننده‌ها؛ شکر صنعتی B2B",
-      ar: "مورّد السكر والمحليات بالجملة — سكر B2B",
+      en: "Sugar & Sweeteners",
+      fa: "شکر و شیرین‌کننده‌ها",
+      ar: "السكر والمحليات",
     },
     subtitle: {
-      en: "Reliable Wholesale Sugar Supply for Commercial Buyers",
-      fa: "تأمین شکر عمده قابل اعتماد برای خریداران تجاری",
-      ar: "توريد سكر بالجملة موثوق للمشترين التجاريين",
+      en: "Refined sugar for industrial and commercial use",
+      fa: "شکر تصفیه‌شده برای مصارف صنعتی و تجاری",
+      ar: "سكر مكرر للاستخدام الصناعي والتجاري",
     },
     content: {
       en: `Faradid Atlas is a trusted wholesale sugar supplier and sweeteners distributor, providing B2B buyers across Iran, the UAE, and Oman with high-quality refined sugar products for industrial, commercial, and retail applications. Our wholesale sugar portfolio includes white refined sugar, specialty sugar, and bulk sweeteners sourced from reputable global producers, ensuring consistent quality, competitive pricing, and reliable supply for food manufacturers, beverage producers, confectionery businesses, bakeries, and wholesale distribution channels. As an experienced sugar supplier, we understand the critical importance of purity, grain consistency, and dependable delivery schedules in the B2B sweetener market.\n\nOur wholesale sugar catalog features ICUMSA 45 white refined sugar, plantation white sugar, and specialty grades — each selected for strict compliance with international quality standards for color, polarization, moisture content, and ash content. Every product in our sugar supply chain undergoes rigorous quality verification and testing to meet ISO 22000 food safety certification and international trade specifications. Whether you are sourcing refined sugar for food and beverage manufacturing, bulk sugar for confectionery production, or packaged sugar for retail distribution, Faradid Atlas delivers wholesale sugar with full traceability, transparent documentation, and consistent product performance.\n\nWe offer flexible packaging and logistics solutions for wholesale sugar, including bulk shipments in jumbo bags, 50 kg polypropylene bags, and customized retail packaging under our recognized brands — 21, Mizban, Golbanoo, and Hayat. Our regional warehousing network across Tehran, Isfahan, Dubai, and Oman provides efficient storage and rapid distribution for B2B sugar orders, ensuring your supply chain remains uninterrupted. For beverage manufacturers seeking wholesale refined sugar, confectionery producers needing bulk sweeteners, or distributors building a comprehensive sugar portfolio, Faradid Atlas provides the sourcing expertise, quality assurance, and supply chain reliability essential for long-term commercial partnerships.`,
@@ -219,7 +219,15 @@ export function CategoryLanding({ category, lang }: CategoryLandingProps) {
       {/* Product Grid */}
       <section className="px-4 sm:px-6 py-10 sm:py-12 md:py-16">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-2 font-hero">
+          <h2
+            className="text-2xl sm:text-3xl font-bold text-primary mb-2 font-hero"
+            style={{
+              fontFamily:
+                lang === "fa"
+                  ? "Estedad, var(--font-hero)"
+                  : "var(--font-hero)",
+            }}
+          >
             {seoTitle}
           </h2>
           <p className="text-sm sm:text-base text-foreground/60 mb-8">
@@ -241,7 +249,15 @@ export function CategoryLanding({ category, lang }: CategoryLandingProps) {
       {/* Rich SEO Content */}
       <section className="py-24 px-6 bg-background">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-6 font-hero">
+          <h2
+            className="text-2xl sm:text-3xl font-bold text-primary mb-6 font-hero"
+            style={{
+              fontFamily:
+                lang === "fa"
+                  ? "Estedad, var(--font-hero)"
+                  : "var(--font-hero)",
+            }}
+          >
             {catLabel}
           </h2>
           <div className="prose prose-lg max-w-none text-foreground/80 leading-relaxed space-y-4">
@@ -252,7 +268,15 @@ export function CategoryLanding({ category, lang }: CategoryLandingProps) {
 
           {/* Internal Links */}
           <div className="mt-12 pt-8 border-t border-foreground/10">
-            <h3 className="text-xl font-semibold text-primary mb-4">
+            <h3
+              className="text-xl font-semibold text-primary mb-4 font-hero"
+              style={{
+                fontFamily:
+                  lang === "fa"
+                    ? "Estedad, var(--font-hero)"
+                    : "var(--font-hero)",
+              }}
+            >
               {lang === "en"
                 ? `Browse Our ${catLabel} Products`
                 : lang === "fa"
@@ -299,7 +323,15 @@ export function CategoryLanding({ category, lang }: CategoryLandingProps) {
       {/* CTA */}
       <section className="px-4 sm:px-6 py-12 sm:py-16 bg-secondary/20">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-4 font-hero">
+          <h2
+            className="text-2xl sm:text-3xl font-bold text-primary mb-4 font-hero"
+            style={{
+              fontFamily:
+                lang === "fa"
+                  ? "Estedad, var(--font-hero)"
+                  : "var(--font-hero)",
+            }}
+          >
             {lang === "en"
               ? `Need Wholesale ${catLabel}?`
               : lang === "fa"
