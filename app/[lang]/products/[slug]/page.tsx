@@ -8,6 +8,8 @@ import {
 } from "@/components/products/product-data";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { ProductPlaceholder } from "@/components/products/product-placeholder";
+import { ProductSpecs } from "@/components/products/product-specs";
+import { RelatedProducts } from "@/components/products/related-products";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath, siteConfig } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
@@ -227,10 +229,14 @@ export default async function ProductDetailPage({
                 </div>
               </div>
 
+              {product.specs && product.specs.length > 0 && (
+                <ProductSpecs lang={lang} specs={product.specs} />
+              )}
+
               <div className="mb-8">
-                <h3 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">
+                <h2 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">
                   {lang === "en" ? "How Faradid Atlas Supplies It" : "نحوه تامین توسط فرادید اطلس"}
-                </h3>
+                </h2>
                 <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">
                   {lang === "en"
                     ? "This product is part of the Faradid Atlas portfolio of essential foods. The team reviews product needs, destination, volume, and timing before proposing practical next steps."
@@ -253,6 +259,15 @@ export default async function ProductDetailPage({
                 </Link>
               </div>
             </div>
+          </div>
+        </section>
+        <section className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-gradient-to-b from-background to-secondary/30">
+          <div className="max-w-7xl mx-auto">
+            <RelatedProducts
+              lang={lang}
+              currentProduct={product}
+              allProducts={products}
+            />
           </div>
         </section>
         <script

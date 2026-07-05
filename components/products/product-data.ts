@@ -15,6 +15,11 @@ export const productCategories: ProductCategory[] = [
   "sugar",
 ];
 
+export interface ProductSpec {
+  label: { en: string; fa: string };
+  value: { en: string; fa: string };
+}
+
 export interface Product {
   id: number;
   slug: string;
@@ -27,6 +32,7 @@ export interface Product {
   descriptionFa: string;
   image?: string;
   images?: string[];
+  specs?: ProductSpec[];
 }
 
 export type ProductBrand = "twenty-one" | "mizban" | "golbanoo" | "hayat";
@@ -127,6 +133,72 @@ export const categoryLabels: Record<
   sugar: { en: "Sweeteners", fa: "شکر و شیرین‌کننده‌ها" },
 };
 
+export const categoryDescriptions: Record<
+  ProductCategory,
+  { h2: { en: string; fa: string }; description: { en: string; fa: string } }
+> = {
+  rice: {
+    h2: {
+      en: "Premium Rice Varieties",
+      fa: "انواع برنج مرغوب",
+    },
+    description: {
+      en: "Faradid Atlas sources and distributes premium basmati and jasmine rice varieties from trusted origins. Each product undergoes quality verification to meet international food safety standards, making it suitable for wholesale foodservice, retail distribution, and institutional supply chains.",
+      fa: "فرادید اطلس انواع برنج باسماتی و جاسمین مرغوب را از مبادی معتبر تأمین و توزیع می‌کند. هر محصول پیش از عرضه کیفیت‌سنجی می‌شود تا با استانداردهای بین‌المللی ایمنی غذایی مطابقت داشته باشد و برای توزیع عمده، خدمات غذایی و زنجیره‌های تأمین سازمانی مناسب باشد.",
+    },
+  },
+  legumes: {
+    h2: {
+      en: "Legumes & Pulses",
+      fa: "حبوبات و سبزیجات خشک",
+    },
+    description: {
+      en: "Our legumes portfolio includes beans, lentils, and chickpeas sourced from reliable regional and international suppliers. These essential staples are available in various packaging formats to serve B2B buyers across Iran, the UAE, and Oman.",
+      fa: "سبد حبوبات فرادید اطلس شامل لوبیا، عدس و نخود از تأمین‌کنندگان معتبر منطقه‌ای و بین‌المللی است. این اقلام اساسی در بسته‌بندی‌های مختلف برای خریداران عمده در ایران، امارات و عمان عرضه می‌شوند.",
+    },
+  },
+  seeds: {
+    h2: {
+      en: "Seeds & Kernels",
+      fa: "دانه‌ها و مغزها",
+    },
+    description: {
+      en: "Faradid Atlas provides sunflower seeds, pumpkin kernels, and other seed varieties for wholesale distribution. Our products are carefully selected and processed to maintain freshness and nutritional value throughout the supply chain.",
+      fa: "فرادید اطلس تخمه آفتابگردان، تخمه کدو و سایر انواع دانه‌ها را برای توزیع عمده عرضه می‌کند. محصولات ما با دقت انتخاب و فرآوری می‌شوند تا تازگی و ارزش غذایی آن‌ها در طول زنجیره تأمین حفظ شود.",
+    },
+  },
+  nuts: {
+    h2: {
+      en: "Premium Nuts",
+      fa: "مغزهای مرغوب",
+    },
+    description: {
+      en: "Our nut portfolio features walnut kernels, cashews, and other premium varieties. Each product is sourced from trusted origins and processed under strict quality controls to meet the demands of wholesale buyers and food manufacturers.",
+      fa: "سبد مغزهای فرادید اطلس شامل مغز گردو، بادام هندی و سایر انواع مرغوب است. هر محصول از مبادی معتبر تأمین و تحت کنترل کیفیت دقیق فرآوری می‌شود تا نیازهای خریداران عمده و تولیدکنندگان غذا را برآورده کند.",
+    },
+  },
+  spices: {
+    h2: {
+      en: "Spices & Seasonings",
+      fa: "ادویه‌ها و چاشنی‌ها",
+    },
+    description: {
+      en: "Faradid Atlas supplies a range of spices and seasonings including turmeric, saffron, and other essential varieties. Our products are sourced from reputable origins and packaged to preserve aroma and quality for commercial buyers.",
+      fa: "فرادید اطلس مجموعه‌ای از ادویه‌ها و چاشنی‌ها از جمله زردچوبه، زعفران و سایر انواع ضروری را عرضه می‌کند. محصولات ما از مبادی معتبر تأمین و بسته‌بندی می‌شوند تا عطر و کیفیت آن‌ها برای خریداران تجاری حفظ شود.",
+    },
+  },
+  sugar: {
+    h2: {
+      en: "Sweeteners",
+      fa: "شکر و شیرین‌کننده‌ها",
+    },
+    description: {
+      en: "Our sweeteners category includes refined and specialty sugar products for industrial and commercial use. Faradid Atlas ensures consistent supply and competitive pricing for B2B buyers across the region.",
+      fa: "دسته شیرین‌کننده‌های فرادید اطلس شامل شکر تصفیه‌شده و تخصصی برای مصارف صنعتی و تجاری است. فرادید اطلس تأمین پایدار و قیمت رقابتی را برای خریداران عمده در سراسر منطقه تضمین می‌کند.",
+    },
+  },
+};
+
 export const productImages = {
   mizbanSuperBasmati: "/product_images/optimized/mizban-super-basmati.webp",
   mizbanWhiteBasmati: "/product_images/optimized/mizban-white-basmati.webp",
@@ -179,6 +251,24 @@ export const products: Product[] = [
     descriptionFa:
       "برنج سوپر باسماتی میزبان، محصولی ممتاز و دانه‌بلند است که برای پخت یکنواخت، عطر مطلوب و عرضه‌ای قابل اتکا در بازار انتخاب می‌شود.",
     ...imageSet(productImages.mizbanSuperBasmati),
+    specs: [
+      {
+        label: { en: "Grain Length", fa: "طول دانه" },
+        value: { en: "Extra Long Grain", fa: "دانه‌بلند فوق‌العاده" },
+      },
+      {
+        label: { en: "Origin", fa: "مبدأ" },
+        value: { en: "India / Pakistan", fa: "هند / پاکستان" },
+      },
+      {
+        label: { en: "Processing", fa: "نوع فرآوری" },
+        value: { en: "Steam / Sella", fa: "بخاری / سلا" },
+      },
+      {
+        label: { en: "Packaging", fa: "بسته‌بندی" },
+        value: { en: "5kg / 10kg / 25kg bags", fa: "کیسه ۵ / ۱۰ / ۲۵ کیلوگرمی" },
+      },
+    ],
   },
   {
     id: 2,
@@ -207,6 +297,20 @@ export const products: Product[] = [
     descriptionFa:
       "لوبیا سفید کارتنی برند ۲۱ برای فروشگاه‌ها، عمده‌فروشان و خریداران تجاری آماده شده است؛ محصولی با ارائه منظم و تأمین قابل اعتماد.",
     ...imageSet(productImages.whiteBeansBox),
+    specs: [
+      {
+        label: { en: "Type", fa: "نوع" },
+        value: { en: "White Beans (Navy Beans)", fa: "لوبیا سفید" },
+      },
+      {
+        label: { en: "Origin", fa: "مبدأ" },
+        value: { en: "Canada / USA", fa: "کانادا / آمریکا" },
+      },
+      {
+        label: { en: "Packaging", fa: "بسته‌بندی" },
+        value: { en: "Carton / Poly bag", fa: "کارتن / کیسه پلی‌ایلین" },
+      },
+    ],
   },
   {
     id: 4,
@@ -263,6 +367,24 @@ export const products: Product[] = [
     descriptionFa:
       "مغز گردو ۲۱ برای خریدارانی بسته‌بندی شده است که به محصولی آماده مصرف، برندینگ منظم و تأمین تجاری قابل اعتماد نیاز دارند.",
     ...imageSet(productImages.walnutKernels),
+    specs: [
+      {
+        label: { en: "Type", fa: "نوع" },
+        value: { en: "Walnut Halves & Pieces", fa: "مغز گردو نیمه و پاره" },
+      },
+      {
+        label: { en: "Origin", fa: "مبدأ" },
+        value: { en: "Iran / USA", fa: "ایران / آمریکا" },
+      },
+      {
+        label: { en: "Grade", fa: "گرید" },
+        value: { en: "Premium / Extra Light Halves", fa: "ممتاز / نیمه روشن" },
+      },
+      {
+        label: { en: "Packaging", fa: "بسته‌بندی" },
+        value: { en: "10kg carton / vacuum pack", fa: "کارتن ۱۰ کیلویی / بسته خلاء" },
+      },
+    ],
   },
   {
     id: 8,

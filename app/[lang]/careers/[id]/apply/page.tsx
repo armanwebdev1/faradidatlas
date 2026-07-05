@@ -206,7 +206,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
 
             <aside className="space-y-6 lg:sticky lg:top-24 h-fit">
               <div className="rounded-3xl border border-foreground/10 bg-white/90 p-6 sm:p-7 shadow-[0_35px_80px_-60px_rgba(10,10,10,0.45)]">
-                <h3
+                <h2
                   className="text-lg sm:text-xl font-semibold text-foreground"
                   style={{
                     fontFamily:
@@ -216,7 +216,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
                   }}
                 >
                   {copy.checklistTitle}
-                </h3>
+                </h2>
                 <ul className="mt-5 space-y-3 text-sm sm:text-base text-foreground/70">
                   {copy.checklistItems.map((item) => (
                     <li key={item} className="flex gap-3">
@@ -228,7 +228,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
               </div>
 
               <div className="rounded-3xl border border-foreground/10 bg-gradient-to-br from-foreground to-foreground/90 p-6 sm:p-7 text-white shadow-[0_35px_80px_-60px_rgba(10,10,10,0.55)]">
-                <h3
+                <h2
                   className="text-lg sm:text-xl font-semibold"
                   style={{
                     fontFamily:
@@ -238,7 +238,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
                   }}
                 >
                   {copy.timelineTitle}
-                </h3>
+                </h2>
                 <ul className="mt-5 space-y-3 text-sm sm:text-base text-white/75">
                   {copy.timelineItems.map((item) => (
                     <li key={item} className="flex gap-3">
@@ -250,7 +250,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
               </div>
 
               <div className="rounded-3xl border border-foreground/10 bg-white/90 p-6 sm:p-7 shadow-[0_35px_80px_-60px_rgba(10,10,10,0.45)]">
-                <h3
+                <h2
                   className="text-lg sm:text-xl font-semibold text-foreground"
                   style={{
                     fontFamily:
@@ -260,7 +260,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
                   }}
                 >
                   {copy.privacyTitle}
-                </h3>
+                </h2>
                 <p className="mt-4 text-sm sm:text-base text-foreground/70">
                   {copy.privacyBody}
                 </p>

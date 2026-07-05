@@ -76,6 +76,8 @@ export default async function HomePage({ params }: HomePageProps) {
                   ? siteConfig.description
                   : siteConfig.descriptionFa,
               foundingDate: "2009",
+              foundingLocation: "Iran",
+              industry: "Food Distribution and Supply",
               contactPoint: {
                 "@type": "ContactPoint",
                 contactType: "customer service",
@@ -91,6 +93,46 @@ export default async function HomePage({ params }: HomePageProps) {
                 "Nuts",
                 "Spices",
                 "Sugar",
+                "Food Distribution",
+                "B2B Supply Chain",
+              ],
+              location: [
+                {
+                  "@type": "Place",
+                  name: "Tehran Office",
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: "Tehran",
+                    addressCountry: "IR",
+                  },
+                },
+                {
+                  "@type": "Place",
+                  name: "Isfahan Office",
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: "Isfahan",
+                    addressCountry: "IR",
+                  },
+                },
+                {
+                  "@type": "Place",
+                  name: "Dubai Office",
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: "Dubai",
+                    addressCountry: "AE",
+                  },
+                },
+                {
+                  "@type": "Place",
+                  name: "Oman Office",
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: "Oman",
+                    addressCountry: "OM",
+                  },
+                },
               ],
               ...(siteConfig.sameAs.length > 0
                 ? { sameAs: siteConfig.sameAs }

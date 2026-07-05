@@ -19,6 +19,7 @@ import {
 import { Filters, type ProductFilterSelection } from "./filters";
 import { Sorting, type ProductSortValue } from "./sorting";
 import { ProductCard } from "./product-card";
+import { CategoryDescription } from "./category-description";
 
 interface ProductsContentProps {
   lang: Language;
@@ -253,9 +254,9 @@ export function ProductsContent({
         <div className="flex flex-col lg:flex-row gap-10 md:gap-14 lg:gap-16">
           <div className="w-full lg:w-64 flex-shrink-0">
             <div className="lg:sticky lg:top-32">
-              <h3 className="text-sm font-bold text-primary mb-8 uppercase tracking-widest">
+              <h2 className="text-sm font-bold text-primary mb-8 uppercase tracking-widest">
                 {lang === "en" ? "Filter" : "فیلتر"}
-              </h3>
+              </h2>
               <Filters
                 key={`${selectedCategory ?? "all"}-${selectedBrand ?? "all"}-${
                   selectedType ?? "all"
@@ -273,6 +274,9 @@ export function ProductsContent({
           </div>
 
           <div className="flex-1">
+            {selectedCategory && (
+              <CategoryDescription lang={lang} category={selectedCategory} />
+            )}
             <div className="mb-10 sm:mb-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="min-w-0">
                 <span className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wide">
