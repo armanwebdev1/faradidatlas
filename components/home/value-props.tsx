@@ -158,7 +158,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
                         }`}
                         dir={isRTL ? "rtl" : "ltr"}
                       >
-                        <div className="h-full flex flex-col p-6 sm:p-8 rounded-lg border border-foreground/10 bg-background/90 backdrop-blur-md shadow-[0_24px_62px_-48px_rgba(12,18,24,0.44),0_10px_24px_-20px_rgba(12,18,24,0.18),0_1px_0_rgba(255,255,255,0.62)_inset]">
+                        <div className="h-full flex flex-col p-6 sm:p-8 rounded-lg border border-foreground/10 bg-background shadow-lg">
                           <div className="relative mb-6 sm:mb-8 inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20">
                             <div className="absolute inset-0 rounded-lg bg-linear-to-br from-brand-navy/10 to-brand-navy/4" />
                             <IconComponent
