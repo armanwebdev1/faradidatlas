@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import type { Job } from "./job-data";
 
 interface JobListingProps {
@@ -10,16 +11,17 @@ interface JobListingProps {
 }
 
 export function JobListing({ job, lang }: JobListingProps) {
-  const title = lang === "en" ? job.titleEn : job.titleFa;
-  const description = lang === "en" ? job.descriptionEn : job.descriptionFa;
-  const department = lang === "en" ? job.departmentEn : job.departmentFa;
-  const location = lang === "en" ? job.locationEn : job.locationFa;
-  const isRTL = lang === "fa";
+  const t = translations[lang];
+  const title = lang === "en" ? job.titleEn : lang === "ar" ? job.titleAr : job.titleFa;
+  const description = lang === "en" ? job.descriptionEn : lang === "ar" ? job.descriptionAr : job.descriptionFa;
+  const department = lang === "en" ? job.departmentEn : lang === "ar" ? job.departmentAr : job.departmentFa;
+  const location = lang === "en" ? job.locationEn : lang === "ar" ? job.locationAr : job.locationFa;
+  const isRTL = lang === "fa" || lang === "ar";
 
-  const typeLabels = {
-    "full-time": { en: "Full-time", fa: "تمام‌وقت" },
-    "part-time": { en: "Part-time", fa: "پاره‌وقت" },
-    contract: { en: "Contract", fa: "قراردادی" },
+  const typeLabels: Record<Job["type"], Record<Language, string>> = {
+    "full-time": { en: "Full-time", fa: "تمام‌وقت", ar: "دوام كامل" },
+    "part-time": { en: "Part-time", fa: "پاره‌وقت", ar: "دوام جزئي" },
+    contract: { en: "Contract", fa: "قراردادی", ar: "عقد" },
   };
 
   const typeClasses: Record<Job["type"], string> = {
@@ -134,7 +136,7 @@ export function JobListing({ job, lang }: JobListingProps) {
                   : "Shabnam, var(--font-body)",
             }}
           >
-            {lang === "en" ? "View Position" : "مشاهده جزئیات"}
+            {t.pages.careers.viewPosition}
           </span>
           <svg
             className={`h-4 w-4 text-accent-warm-gold transition-transform duration-300 ${

@@ -6,7 +6,7 @@ interface GetConnectedProps {
 }
 
 export function GetConnected({ lang }: GetConnectedProps) {
-  const isRTL = lang === "fa";
+  const isRTL = lang === "fa" || lang === "ar";
 
   return (
     <section className="relative bg-background overflow-hidden">

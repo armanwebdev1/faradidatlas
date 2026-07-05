@@ -1,4 +1,4 @@
-export const supportedLanguages = ["en", "fa"] as const;
+export const supportedLanguages = ["en", "fa", "ar"] as const;
 
 export type SupportedLanguage = (typeof supportedLanguages)[number];
 
@@ -13,6 +13,7 @@ export const siteConfig = {
   url: normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL),
   name: "Faradid Atlas",
   nameFa: "فرادید اطلس",
+  nameAr: "فرادید اطلس",
   legalName: "Faradid Atlas Foods",
   brandMarkPath: "/brand/faradid-atlas-mark.png",
   defaultOgImagePath: "/opengraph-image.svg",
@@ -20,6 +21,8 @@ export const siteConfig = {
     "Faradid Atlas helps businesses source, import, and distribute essential foods such as rice, legumes, nuts, seeds, spices, and sugar through reliable regional supply channels.",
   descriptionFa:
     "فرادید اطلس به کسب‌وکارها کمک می‌کند مواد غذایی اساسی مانند برنج، حبوبات، مغزها، دانه‌ها، ادویه و شکر را از مسیرهای تأمین قابل اتکا تهیه، وارد و توزیع کنند.",
+  descriptionAr:
+    "تساعد فرادید اطلس الشركات على توريد واستيراد وتوزيع الأغذية الأساسية مثل الأرز والبقوليات والمكسرات والبذور والتوابل والسكر من خلال قنوات توريد إقليمية موثوقة.",
   sameAs: [] as string[],
 };
 
@@ -39,6 +42,7 @@ export function localizedAlternates(path = "") {
   return {
     en: absoluteUrl(localizedPath("en", path)),
     fa: absoluteUrl(localizedPath("fa", path)),
+    ar: absoluteUrl(localizedPath("ar", path)),
     "x-default": absoluteUrl(localizedPath("en", path)),
   };
 }

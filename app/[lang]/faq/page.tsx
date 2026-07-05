@@ -6,6 +6,7 @@ import { faqs } from "@/components/faq/faq-data";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 
 interface FAQPageProps {
   params: Promise<{
@@ -14,7 +15,7 @@ interface FAQPageProps {
 }
 
 export async function generateStaticParams() {
-  return [{ lang: "en" }, { lang: "fa" }];
+  return [{ lang: "en" }, { lang: "fa" }, { lang: "ar" }];
 }
 
 export async function generateMetadata({ params }: FAQPageProps) {
@@ -25,19 +26,23 @@ export async function generateMetadata({ params }: FAQPageProps) {
     path: "faq",
     titleEn: "Food Supply FAQ | Faradid Atlas",
     titleFa: "پرسش‌های متداول تأمین مواد غذایی | فرادید اطلس",
+    titleAr: "الأسئلة الشائعة عن تزوين الغذاء | فراديد أطلس",
     descriptionEn:
       "Find clear answers about Faradid Atlas products, sourcing process, quality standards, offices, values, and how to start a supply inquiry.",
     descriptionFa:
       "پاسخ پرسش‌های رایج درباره محصولات، فرایند تأمین، استانداردهای کیفیت، دفاتر، ارزش‌ها و شروع همکاری با فرادید اطلس را بخوانید.",
+    descriptionAr:
+      "اعثر على إجابات واضحة حول منتجات فراديد أطلس وعملية التزوين ومعايير الجودة والمكاتب والقيم وكيفية بدء استفسار التزوين.",
   });
 }
 
 export default async function FAQPage({ params }: FAQPageProps) {
   const { lang } = await params;
+  const t = translations[lang];
   const pageUrl = absoluteUrl(localizedPath(lang, "faq"));
 
   return (
-    <div lang={lang} dir={lang === "fa" ? "rtl" : "ltr"}>
+    <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
         <FAQHero lang={lang} />
@@ -48,20 +53,16 @@ export default async function FAQPage({ params }: FAQPageProps) {
 
             <div className="relative mt-20 p-12 bg-gradient-to-br from-background to-secondary/30 rounded-2xl border border-border text-center overflow-hidden shadow-lg animate-fade-in-up">
               <h2 className="text-3xl font-bold text-primary mb-4 tracking-tight">
-                {lang === "en"
-                  ? "Need a product-specific answer?"
-                  : "پرسشی درباره محصول خاصی دارید؟"}
+                {t.faqPage.needProductAnswer}
               </h2>
               <p className="text-muted-foreground mb-8 text-lg">
-                {lang === "en"
-                  ? "Send us the product, volume, destination, and timeline so the team can review practical next steps."
-                  : "نوع محصول، حجم موردنیاز، مقصد و زمان‌بندی موردنظرتان را برای ما ارسال کنید تا تیم فرادید اطلس مراحل بعدی تأمین و توزیع را بررسی کند."}
+                {t.faqPage.needProductAnswerDesc}
               </p>
               <a
                 href={`/${lang}/contact`}
                 className="inline-block px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 hover:shadow-lg transition-all duration-300 group"
               >
-                {lang === "en" ? "Contact Us" : "تماس با ما"}
+                {t.faqPage.contactUs}
               </a>
             </div>
           </div>

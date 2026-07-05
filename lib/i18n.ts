@@ -1,11 +1,13 @@
 import enTranslations from "@/i18n/en.json"
 import faTranslations from "@/i18n/fa.json"
+import arTranslations from "@/i18n/ar.json"
 
-export type Language = "en" | "fa"
+export type Language = "en" | "fa" | "ar"
 
 export const translations = {
   en: enTranslations,
   fa: faTranslations,
+  ar: arTranslations,
 }
 
 export function getTranslation(lang: Language, key: string): string {
@@ -24,5 +26,5 @@ export function getTranslation(lang: Language, key: string): string {
 }
 
 export function isRTL(lang: Language): boolean {
-  return lang === "fa"
+  return lang === "fa" || lang === "ar"
 }

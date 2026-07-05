@@ -1,6 +1,6 @@
 import type React from "react";
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Geist } from "next/font/google";
+import { Playfair_Display, Geist, Noto_Sans_Arabic } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -18,6 +18,14 @@ const playfair = Playfair_Display({
 const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
+  preload: false,
+});
+
+const notoSansArabic = Noto_Sans_Arabic({
+  subsets: ["latin", "arabic"],
+  variable: "--font-noto-arabic",
+  weight: ["400", "600", "700"],
   display: "swap",
   preload: false,
 });
@@ -105,7 +113,7 @@ export const metadata: Metadata = {
     title: defaultTitle,
     description: siteConfig.description,
     locale: "en_US",
-    alternateLocale: ["fa_IR"],
+    alternateLocale: ["fa_IR", "ar_SA"],
     images: [
       {
         url: absoluteUrl(siteConfig.defaultOgImagePath),
@@ -139,7 +147,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${playfair.variable} ${estedad.variable} ${shabnam.variable}`}
+      className={`${geistSans.variable} ${playfair.variable} ${estedad.variable} ${shabnam.variable} ${notoSansArabic.variable}`}
     >
       <body className="antialiased">
         {children}

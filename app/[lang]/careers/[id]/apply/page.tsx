@@ -5,6 +5,7 @@ import { ApplicationForm } from "@/components/careers/application-form"
 import { jobs } from "@/components/careers/job-data"
 import { buildPageMetadata } from "@/lib/metadata"
 import type { Language } from "@/lib/i18n"
+import { translations } from "@/lib/i18n"
 
 interface ApplyPageProps {
   params: Promise<{
@@ -15,6 +16,7 @@ interface ApplyPageProps {
 
 export default async function ApplyPage({ params }: ApplyPageProps) {
   const { lang, id } = await params
+  const t = translations[lang]
   const job = jobs.find((j) => j.id === Number.parseInt(id))
 
   if (!job) {
@@ -22,7 +24,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
       <div>
         <Header lang={lang} />
         <div className="text-center py-16">
-          <p>{lang === "en" ? "Job not found" : "شغل پیدا نشد"}</p>
+          <p>{t.pages.careers.jobNotFound}</p>
         </div>
         <Footer lang={lang} />
       </div>
@@ -31,8 +33,8 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
 
   const jobTitle = lang === "en" ? job.titleEn : job.titleFa
   const department = lang === "en" ? job.departmentEn : job.departmentFa
-  const location = lang === "en" ? job.locationEn : job.locationFa
-  const isRTL = lang === "fa"
+  const location = lang === "en" ? job.locationEn : lang === "fa" ? job.locationFa : job.locationEn
+  const isRTL = lang === "fa" || lang === "ar"
   const typeLabel =
     job.type === "full-time"
       ? lang === "en"
@@ -106,7 +108,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
         }
 
   return (
-    <div lang={lang} dir={lang === "fa" ? "rtl" : "ltr"}>
+    <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
         <section
@@ -284,10 +286,13 @@ export async function generateMetadata({ params }: ApplyPageProps) {
       path: "careers",
       titleEn: "Career Application | Faradid Atlas",
       titleFa: "درخواست همکاری | فرادید اطلس",
+      titleAr: "طلب وظيفة | فراديد أطلس",
       descriptionEn:
         "Submit your details for review by the Faradid Atlas careers team.",
       descriptionFa:
         "درخواست همکاری خود را برای حوزه‌های همکاری فرادید اطلس ارسال کنید.",
+      descriptionAr:
+        "أرسل بياناتك للمراجعة من قبل فريق الوظائف في فراديد أطلس.",
       robots: {
         index: false,
         follow: true,
@@ -300,10 +305,13 @@ export async function generateMetadata({ params }: ApplyPageProps) {
     path: `careers/${job.id}/apply`,
     titleEn: `Apply for ${job.titleEn} | Faradid Atlas`,
     titleFa: `درخواست برای ${job.titleFa} | فرادید اطلس`,
+    titleAr: `تقديم طلب لوظيفة | فراديد أطلس`,
     descriptionEn:
       "Submit your details for review by the Faradid Atlas careers team.",
     descriptionFa:
       "اطلاعات خود را برای بررسی توسط تیم فرصت‌های شغلی فرادید اطلس ارسال کنید.",
+    descriptionAr:
+      "أرسل بياناتك للمراجعة من قبل فريق الوظائف في فراديد أطلس.",
     robots: {
       index: false,
       follow: true,

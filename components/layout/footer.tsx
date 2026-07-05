@@ -23,7 +23,7 @@ type FooterLinkItem = {
 
 export function Footer({ lang }: FooterProps) {
   const t = translations[lang];
-  const isRTL = lang === "fa";
+  const isRTL = lang === "fa" || lang === "ar";
   const dir = isRTL ? "rtl" : "ltr";
   const brandHomeLabel =
     lang === "en" ? "Faradid Atlas home" : "خانه فرادید اطلس";

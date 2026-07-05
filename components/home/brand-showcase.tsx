@@ -3,15 +3,17 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 
 interface BrandShowcaseProps {
   lang: Language;
 }
 
 export function BrandShowcase({ lang }: BrandShowcaseProps) {
-  const isRTL = lang === "fa";
+  const isRTL = lang === "fa" || lang === "ar";
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const t = translations[lang];
 
   useEffect(() => {
     const node = sectionRef.current;
@@ -33,10 +35,7 @@ export function BrandShowcase({ lang }: BrandShowcaseProps) {
     return () => observer.disconnect();
   }, []);
 
-  const alt =
-    lang === "en"
-      ? "Faradid Atlas, a leader in supplying food products, featuring the recognized brands Mizban, 21, Hayat, and Golbanoo."
-      : "شرکت فرادید اطلس، پیشرو در عرضه محصولات غذایی، با نام‌های شناخته‌شده میزبان، ۲۱، حیات و گلبانو.";
+  const alt = t.pages.home.brandsImageAlt;
 
   const image =
     lang === "en"
@@ -57,7 +56,7 @@ export function BrandShowcase({ lang }: BrandShowcaseProps) {
             isVisible ? "is-visible" : ""
           }`}
         >
-          {lang === "en" ? "Our Brands" : "برندهای ما"}
+          {t.pages.home.brandsEyebrow}
         </p>
         <div className="grid items-center gap-10 md:gap-12 lg:gap-16 md:grid-cols-2">
           <div
@@ -67,12 +66,10 @@ export function BrandShowcase({ lang }: BrandShowcaseProps) {
             style={{ ["--reveal-x" as string]: isRTL ? "48px" : "-48px" }}
           >
             <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 text-balance">
-              {lang === "en" ? "Trusted names" : "نام‌های آشنا"}
+              {t.pages.home.brandsTitle}
             </h2>
             <p className="text-responsive-body text-foreground/70 text-pretty">
-              {lang === "en"
-                ? "Mizban, 21, Hayat, and Golbanoo — recognized brands delivered through Faradid Atlas."
-                : "میزبان، ۲۱، حیات و گلبانو؛ برندهای شناخته‌شده که از طریق فرادید اطلس عرضه می‌شوند."}
+              {t.pages.home.brandsDescription}
             </p>
           </div>
 

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import { categoryLabels, type Product } from "./product-data";
 import { ProductPlaceholder } from "./product-placeholder";
 
@@ -10,6 +11,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, lang }: ProductCardProps) {
+  const t = translations[lang];
   const name = lang === "en" ? product.nameEn : product.nameFa;
   const desc = lang === "en" ? product.descriptionEn : product.descriptionFa;
   const alias = lang === "en" ? product.aliasEn : product.aliasFa;
@@ -17,7 +19,7 @@ export function ProductCard({ product, lang }: ProductCardProps) {
     lang === "en"
       ? categoryLabels[product.category].en
       : categoryLabels[product.category].fa;
-  const isRTL = lang === "fa";
+  const isRTL = lang === "fa" || lang === "ar";
 
   return (
     <Link href={`/${lang}/products/${product.slug}`}>
@@ -74,12 +76,12 @@ export function ProductCard({ product, lang }: ProductCardProps) {
 
           <div className="flex items-center justify-between gap-3">
             <span className="min-w-0 text-xs text-muted-foreground font-medium line-clamp-1">
-              {lang === "en" ? "Product profile" : "معرفی محصول"}
+              {t.pages.products.productProfile}
             </span>
             <span
               className={`shrink-0 text-xs font-semibold text-accent-warm-gold transition-colors duration-300 flex items-center gap-1 md:group-hover:text-accent-warm-gold/80 ${isRTL ? "flex-row-reverse" : ""}`}
             >
-              <span>{lang === "en" ? "View" : "مشاهده"}</span>
+              <span>{t.pages.products.view}</span>
               <svg
                 className={`w-3.5 h-3.5 transition-transform duration-300 ${isRTL ? "-scale-x-100 md:group-hover:-translate-x-1" : "md:group-hover:translate-x-1"}`}
                 fill="none"

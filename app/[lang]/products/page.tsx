@@ -12,7 +12,7 @@ import {
 } from "@/components/products/product-data";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
-import type { Language } from "@/lib/i18n";
+import { translations, type Language } from "@/lib/i18n";
 import Image from "next/image";
 
 type ProductSearchParams = {
@@ -37,10 +37,13 @@ export async function generateMetadata({ params }: ProductsPageProps) {
     path: "products",
     titleEn: "Food Products: Rice, Legumes, Nuts and Spices | Faradid Atlas",
     titleFa: "محصولات غذایی؛ برنج، حبوبات، مغزها و ادویه | فرادید اطلس",
+    titleAr: "المنتجات الغذائية: الأرز والبقول والمكسرات والبهارات | فراديد أطلس",
     descriptionEn:
       "Browse Faradid Atlas food products, including branded rice, legumes, seeds, nuts, spices, and sugar for wholesale and B2B supply needs.",
     descriptionFa:
       "سبد محصولات فرادید اطلس را ببینید؛ از برنج‌های برنددار و حبوبات تا دانه‌ها، مغزها، ادویه و شکر برای نیازهای عمده و سازمانی.",
+    descriptionAr:
+      "تصفح منتجات فراديد أطلس الغذائية بما في ذلك الأرز والبقول والبذور والمكسرات والبهارات والسكر لتوريدات الجملة وB2B.",
   });
 }
 
@@ -53,7 +56,8 @@ export default async function ProductsPage({
     params,
     searchParams ?? Promise.resolve(emptySearchParams),
   ]);
-  const isRTL = lang === "fa";
+  const isRTL = lang === "fa" || lang === "ar";
+  const t = translations[lang];
   const rawSearchQuery = resolvedSearchParams.q;
   const rawCategory = resolvedSearchParams.category;
   const rawBrand = resolvedSearchParams.brand;
@@ -115,20 +119,18 @@ export default async function ProductsPage({
                   <h1
                     className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight font-hero"
                     style={{
-                      fontFamily: isRTL
+                      fontFamily: lang === "fa"
                         ? "Estedad, var(--font-hero)"
                         : "var(--font-hero)",
                     }}
                   >
-                    {lang === "en" ? "Our Products" : "محصولات فرادید اطلس"}
+                    {t.pages.products.title}
                   </h1>
                 </div>
 
                 <div className="flex-1">
                   <p className="text-sm sm:text-base text-white/90 leading-relaxed max-w-md">
-                    {lang === "en"
-                      ? "Explore essential food products sourced, imported, and distributed through reliable B2B supply channels."
-                      : "با مجموعه‌ای از مواد غذایی اساسی آشنا شوید که با تمرکز بر کیفیت قابل اعتماد، تأمین پایدار و توزیع منظم انتخاب، وارد و عرضه می‌شوند."}
+                    {t.pages.products.description}
                   </p>
                 </div>
               </div>

@@ -4,6 +4,7 @@ import type React from "react";
 
 import { useRef, useState } from "react";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 
 interface ApplicationFormProps {
   lang: Language;
@@ -38,6 +39,7 @@ export function ApplicationForm({
   jobId,
   jobTitle,
 }: ApplicationFormProps) {
+  const t = translations[lang];
   const backendEnabled = process.env.NEXT_PUBLIC_ENABLE_BACKEND === "true";
   const initialFormData: FormValues = {
     firstName: "",
@@ -403,7 +405,7 @@ export function ApplicationForm({
       <div className="space-y-6">
         <div>
           <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-foreground/50 mb-4">
-            {lang === "en" ? "Personal details" : "اطلاعات شخصی"}
+            {t.pages.careers.personalDetails}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
             <div>
@@ -571,7 +573,7 @@ export function ApplicationForm({
 
         <div>
           <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-foreground/50 mb-4">
-            {lang === "en" ? "Resume" : "رزومه"}
+            {t.pages.careers.resume}
           </p>
           <div className="rounded-2xl border border-dashed border-foreground/20 bg-white/70 px-4 py-5">
             <label className={`${labelBase} mb-3`}>
@@ -611,9 +613,7 @@ export function ApplicationForm({
         className="btn btn-primary btn-lg w-full mt-8 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isSubmitting
-          ? lang === "en"
-            ? "Submitting..."
-            : "در حال ارسال..."
+          ? t.pages.careers.submitting
           : copy.submit}
       </button>
 
@@ -621,9 +621,7 @@ export function ApplicationForm({
         <div className="mt-5 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-xs sm:text-sm text-green-700 animate-fade-in-up">
           {backendEnabled
             ? copy.success
-            : lang === "en"
-              ? "Thank you! Email delivery is paused for now, so this application was not sent."
-              : "سپاسگزاریم. در حال حاضر ارسال ایمیل غیرفعال است؛ بنابراین این درخواست ارسال نشد."}
+            : t.pages.careers.emailPaused}
         </div>
       )}
     </form>

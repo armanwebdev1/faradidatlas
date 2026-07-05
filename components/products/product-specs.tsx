@@ -1,4 +1,5 @@
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import type { ProductSpec } from "./product-data";
 
 interface ProductSpecsProps {
@@ -8,11 +9,12 @@ interface ProductSpecsProps {
 
 export function ProductSpecs({ lang, specs }: ProductSpecsProps) {
   if (!specs || specs.length === 0) return null;
+  const t = translations[lang];
 
   return (
     <div className="mb-8">
       <h2 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">
-        {lang === "en" ? "Technical Specifications" : "مشخصات"}
+        {t.pages.products.technicalSpecs}
       </h2>
       <div className="rounded-2xl border border-foreground/10 bg-white/85 overflow-hidden">
         <dl className="divide-y divide-foreground/10">

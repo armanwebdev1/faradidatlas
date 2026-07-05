@@ -5,6 +5,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { Leaf, Lightbulb, Scale, ShieldCheck } from "lucide-react";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,6 +69,7 @@ const cultureItems = {
 };
 
 export function CareersCulture({ lang }: CareersCultureProps) {
+  const t = translations[lang];
   const sectionRef = useRef<HTMLElement>(null);
   const eyebrowRef = useRef<HTMLParagraphElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -144,7 +146,7 @@ export function CareersCulture({ lang }: CareersCultureProps) {
             ref={eyebrowRef}
             className="eyebrow text-brand-navy mb-4 sm:mb-5 md:mb-6"
           >
-            {lang === "en" ? "Culture" : "فرهنگ کاری"}
+            {t.pages.careers.cultureEyebrow}
           </p>
           <h2
             ref={titleRef}
@@ -158,7 +160,7 @@ export function CareersCulture({ lang }: CareersCultureProps) {
               letterSpacing: "-0.01em",
             }}
           >
-            {lang === "en" ? "Why Join Us" : "چرا با ما همکاری کنید؟"}
+            {t.pages.careers.cultureTitle}
           </h2>
           <p
             ref={subtitleRef}
@@ -172,9 +174,7 @@ export function CareersCulture({ lang }: CareersCultureProps) {
               fontWeight: "400",
             }}
           >
-            {lang === "en"
-              ? "Our workplace expectations are shaped by the same documented values that guide sourcing, quality, customer relationships, and sustainable growth."
-              : "فرهنگ کاری ما بر پایه همان ارزش‌هایی شکل گرفته که مسیر تأمین، کیفیت، ارتباط با مشتریان و رشد پایدار شرکت را هدایت می‌کند."}
+            {t.pages.careers.cultureSubtitle}
           </p>
         </div>
 

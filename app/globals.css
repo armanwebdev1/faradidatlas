@@ -404,9 +404,20 @@
 [dir="rtl"] {
   direction: rtl;
   text-align: right;
+}
+
+/* Persian font overrides */
+[dir="rtl"][lang="fa"] {
   --font-body: var(--font-shabnam);
   --font-hero: var(--font-estedad);
   --font-label: var(--font-shabnam);
+}
+
+/* Arabic font overrides */
+[dir="rtl"][lang="ar"] {
+  --font-body: var(--font-noto-arabic);
+  --font-hero: var(--font-noto-arabic);
+  --font-label: var(--font-noto-arabic);
 }
 
 [dir="ltr"] {

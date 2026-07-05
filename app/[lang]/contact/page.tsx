@@ -9,6 +9,7 @@ import { buildPageMetadata } from "@/lib/metadata";
 import { publicContactEmail, publicPhoneNumbers } from "@/lib/contact-info";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 
 interface ContactSearchParams {
   product?: string;
@@ -22,7 +23,7 @@ interface ContactPageProps {
 }
 
 export async function generateStaticParams() {
-  return [{ lang: "en" }, { lang: "fa" }];
+  return [{ lang: "en" }, { lang: "fa" }, { lang: "ar" }];
 }
 
 export async function generateMetadata({ params }: ContactPageProps) {
@@ -33,10 +34,13 @@ export async function generateMetadata({ params }: ContactPageProps) {
     path: "contact",
     titleEn: "Contact Faradid Atlas for Food Supply Inquiries",
     titleFa: "تماس با فرادید اطلس برای تأمین مواد غذایی",
+    titleAr: "اتصل بـ فراديد أطلس للاستفسارات عن تزوين الغذاء",
     descriptionEn:
       "Send Faradid Atlas your product, volume, destination, and timing details so the team can review a practical sourcing or distribution path.",
     descriptionFa:
       "نوع محصول، حجم موردنیاز، مقصد و زمان‌بندی خود را برای فرادید اطلس ارسال کنید تا تیم ما مسیر عملی تأمین یا توزیع را بررسی کند.",
+    descriptionAr:
+      "أرسل إلى فراديد أطلس تفاصيل المنتج والكمية والوجهة والتوقيت حتى يتمكن الفريق من مراجعة مسار التزوين أو التوزيع العملي.",
   });
 }
 
@@ -60,6 +64,7 @@ export default async function ContactPage({
       ? selectedProduct.nameEn
       : selectedProduct.nameFa
     : undefined;
+  const t = translations[lang];
   const pageUrl = absoluteUrl(localizedPath(lang, "contact"));
   const pageDescription =
     lang === "en"
@@ -67,7 +72,7 @@ export default async function ContactPage({
       : "نوع محصول، حجم موردنیاز، مقصد و زمان‌بندی خود را برای فرادید اطلس ارسال کنید تا تیم ما مسیر عملی تأمین یا توزیع را بررسی کند.";
 
   return (
-    <div lang={lang} dir={lang === "fa" ? "rtl" : "ltr"}>
+    <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
         <ContactHero lang={lang} />
@@ -86,7 +91,7 @@ export default async function ContactPage({
 
             <div id="contact-offices" className="lg:sticky lg:top-32">
               <h2 className="text-responsive-section text-primary mb-6 sm:mb-8 animate-fade-in-up">
-                {lang === "en" ? "Our Offices" : "دفاتر ما"}
+                {t.pages.contact.ourOffices}
               </h2>
               <OfficeInfo lang={lang} />
             </div>

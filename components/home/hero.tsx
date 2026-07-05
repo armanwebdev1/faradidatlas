@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 
 interface HeroProps {
   lang: Language;
@@ -34,14 +35,17 @@ const slides: HeroSlide[] = [
     title: {
       en: "Reliable Food Supply",
       fa: "تأمین مواد غذایی",
+      ar: "تزوين الغذاء الموثوق",
     },
     subtitle: {
       en: "Food Security in Practice",
       fa: "تأمین پایدار، فراتر از شعار",
+      ar: "أمن غذائي عملي",
     },
     description: {
       en: "Established in 2009, Faradid Atlas sources, imports, and distributes essential food products with disciplined quality standards and dependable regional operations.",
       fa: "فرادید اطلس از سال ۱۳۸۸ در زمینه تأمین، واردات و توزیع مواد غذایی اساسی فعالیت می‌کند؛ با انتخاب دقیق محصولات، پایبندی به استانداردهای کیفی و شبکه‌ای منظم برای پاسخ‌گویی به نیاز بازار.",
+      ar: "تأسس فراديد أطلس عام ٢٠٠٩ لتوريد واستيراد وتوزيع المنتجات الغذائية الأساسية بمعايير جودة صارمة وعمليات إقليمية موثوقة.",
     },
   },
   {
@@ -50,14 +54,17 @@ const slides: HeroSlide[] = [
     title: {
       en: "Direct Sourcing Network",
       fa: "ارتباط نزدیک با مبدا تامین",
+      ar: "شبكة التوريد المباشر",
     },
     subtitle: {
       en: "From Origin to Market",
       fa: "از مبدأ معتبر تا بازار مصرف",
+      ar: "من المصدر إلى السوق",
     },
     description: {
       en: "Supplier relationships across key food-producing markets help keep rice, legumes, nuts, seeds, spices, and sugar moving through clear, practical channels.",
       fa: "ارتباط مستقیم با تأمین‌کنندگان معتبر در بازارهای اصلی تولید غذا، مسیر تأمین برنج، حبوبات، مغزها، دانه‌ها، ادویه‌ها و شکر را شفاف‌تر، سریع‌تر و قابل اتکاتر می‌کند.",
+      ar: "العلاقات المباشرة مع الموردين في أسواق الإنتاج الغذائي الرئيسية تساعد في ضمان تدفق الأرز والبقوليات والمكسرات والبذور والتوابل والسكر عبر قنوات واضحة وعملية.",
     },
   },
   {
@@ -66,14 +73,17 @@ const slides: HeroSlide[] = [
     title: {
       en: "Steady Regional Reach",
       fa: "پشتیبانی مطمئن",
+      ar: "تغطية إقليمية موثوقة",
     },
     subtitle: {
       en: "Built for B2B Continuity",
       fa: "برای تأمین مستمر خریداران عمده و سازمانی",
+      ar: "مصمم لاستمرارية الأعمال",
     },
     description: {
       en: "Offices, branches, and warehouse support across the region give buyers a steadier path from product need to reliable delivery.",
       fa: "دفاتر، شعب و پشتیبانی انبار در ایران و بازارهای منطقه‌ای، به خریداران کمک می‌کند از مرحله نیازسنجی تا تحویل محصول، مسیر مطمئن‌تر و منظم‌تری را تجربه کنند.",
+      ar: "المكاتب والفرع والدعم التخزيني في جميع أنحاء المنطقة يوفر للمشترين مساراً أكثر استقراراً من حاجتهم إلى المنتج إلى التسليم الموثوق.",
     },
   },
 ];
@@ -83,7 +93,8 @@ export function Hero({ lang }: HeroProps) {
   const [loadedSlideIndexes, setLoadedSlideIndexes] = useState(() =>
     new Set([0]),
   );
-  const isRTL = lang === "fa";
+  const isRTL = lang === "fa" || lang === "ar";
+  const t = translations[lang];
   const activeSlide = slides[activeIndex];
   const titleParts = useMemo(
     () => activeSlide.title[lang].split(" "),
@@ -168,7 +179,7 @@ export function Hero({ lang }: HeroProps) {
           type="button"
           onClick={goToPrevious}
           className="pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white shadow-xl backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-brand-navy/70 hover:bg-brand-navy/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white/20 md:h-12 md:w-12"
-          aria-label={lang === "en" ? "Previous hero slide" : "اسلاید قبلی"}
+          aria-label={t.pages.home.prevSlide}
         >
           {isRTL ? (
             <ChevronRight className="h-5 w-5" strokeWidth={1.8} />
@@ -181,7 +192,7 @@ export function Hero({ lang }: HeroProps) {
           type="button"
           onClick={goToNext}
           className="pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white shadow-xl backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-brand-navy/70 hover:bg-brand-navy/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white/20 md:h-12 md:w-12"
-          aria-label={lang === "en" ? "Next hero slide" : "اسلاید بعدی"}
+          aria-label={t.pages.home.nextSlide}
         >
           {isRTL ? (
             <ChevronLeft className="h-5 w-5" strokeWidth={1.8} />
@@ -233,7 +244,7 @@ export function Hero({ lang }: HeroProps) {
               type="button"
               onClick={goToPrevious}
               className="mx-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/12 text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:border-brand-navy/70 hover:bg-brand-navy/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/50 sm:hidden"
-              aria-label={lang === "en" ? "Previous hero slide" : "اسلاید قبلی"}
+              aria-label={t.pages.home.prevSlide}
             >
               {isRTL ? (
                 <ChevronRight className="h-[18px] w-[18px]" strokeWidth={1.8} />
@@ -251,18 +262,14 @@ export function Hero({ lang }: HeroProps) {
                     ? "w-12 bg-brand-navy shadow-[0_0_0_1px_rgba(255,255,255,0.38),0_0_18px_rgba(48,59,112,0.45)]"
                     : "w-6 bg-white/40 hover:bg-white/65"
                 }`}
-                aria-label={
-                  lang === "en"
-                    ? `Go to hero slide ${index + 1}`
-                    : `رفتن به اسلاید ${index + 1}`
-                }
+                aria-label={`${t.pages.home.goToSlide} ${index + 1}`}
               />
             ))}
             <button
               type="button"
               onClick={goToNext}
               className="mx-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/12 text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:border-brand-navy/70 hover:bg-brand-navy/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/50 sm:hidden"
-              aria-label={lang === "en" ? "Next hero slide" : "اسلاید بعدی"}
+              aria-label={t.pages.home.nextSlide}
             >
               {isRTL ? (
                 <ChevronLeft className="h-[18px] w-[18px]" strokeWidth={1.8} />

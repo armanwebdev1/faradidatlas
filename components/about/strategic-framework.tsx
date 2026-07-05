@@ -1,4 +1,5 @@
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import {
   CheckCircle2,
   Compass,
@@ -78,7 +79,8 @@ const content = {
 
 export function StrategicFramework({ lang }: StrategicFrameworkProps) {
   const data = lang === "en" ? content.en : content.fa;
-  const isRTL = lang === "fa";
+  const isRTL = lang === "fa" || lang === "ar";
+  const t = translations[lang];
 
   return (
     <AnimatedSection className="relative overflow-hidden bg-background-alt px-4 py-20 sm:px-6 md:py-28">
@@ -88,7 +90,7 @@ export function StrategicFramework({ lang }: StrategicFrameworkProps) {
           dir={isRTL ? "rtl" : "ltr"}
         >
           <p className="eyebrow mb-4 text-brand-navy">
-            {lang === "en" ? "Vision & Mission" : "چشم‌انداز و مأموریت"}
+            {t.pages.about.visionMission}
           </p>
           <h2 className="mx-auto max-w-4xl text-center text-responsive-title text-primary">
             {data.title}

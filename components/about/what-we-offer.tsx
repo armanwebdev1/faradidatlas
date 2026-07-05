@@ -1,4 +1,5 @@
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import Image from "next/image";
 import { AnimatedSection } from "./animated-section";
 
@@ -51,6 +52,7 @@ const offerings = {
 
 export function WhatWeOffer({ lang }: WhatWeOfferProps) {
   const offers = lang === "en" ? offerings.en : offerings.fa;
+  const t = translations[lang];
 
   return (
     <AnimatedSection className="relative py-24 md:py-32 px-4 sm:px-6 bg-background overflow-hidden">
@@ -60,12 +62,10 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-8"
             style={{ fontFamily: "var(--font-hero)" }}
           >
-            {lang === "en" ? "What we offer" : "خدمات ما"}
+            {t.pages.about.whatWeOffer}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            {lang === "en"
-              ? "Practical food supply services designed for continuity, fair pricing, and dependable quality."
-              : "خدماتی کاربردی در تأمین مواد غذایی، با تمرکز بر تداوم عرضه، قیمت‌گذاری منطقی و کیفیت قابل اعتماد."}
+            {t.pages.about.whatWeOfferDescription}
           </p>
         </div>
 

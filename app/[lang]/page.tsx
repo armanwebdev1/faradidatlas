@@ -10,6 +10,7 @@ import { buildPageMetadata } from "@/lib/metadata";
 import { publicContactEmail, publicPhoneNumbers } from "@/lib/contact-info";
 import { absoluteUrl, localizedPath, siteConfig } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 
 interface HomePageProps {
   params: Promise<{
@@ -18,7 +19,7 @@ interface HomePageProps {
 }
 
 export async function generateStaticParams() {
-  return [{ lang: "en" }, { lang: "fa" }];
+  return [{ lang: "en" }, { lang: "fa" }, { lang: "ar" }];
 }
 
 export async function generateMetadata({ params }: HomePageProps) {
@@ -28,25 +29,26 @@ export async function generateMetadata({ params }: HomePageProps) {
     lang,
     titleEn: "Reliable Food Sourcing and Distribution | Faradid Atlas",
     titleFa: "تأمین و توزیع مطمئن مواد غذایی | فرادید اطلس",
+    titleAr: "تزوين و توزيع موثق مواد غذائية | فراديد أطلس",
     descriptionEn:
       "Faradid Atlas connects businesses with reliable supply channels for rice, legumes, nuts, seeds, spices, sugar, and other essential food products.",
     descriptionFa:
       "فرادید اطلس مسیر تأمین و توزیع مواد غذایی اساسی مانند برنج، حبوبات، مغزها، دانه‌ها، ادویه و شکر را برای کسب‌وکارها قابل اتکا و شفاف‌تر می‌کند.",
+    descriptionAr:
+      "يربط فراديد أطلس الشركات بقنوات تزوين موثقة للأرز والبقول والمكسرات والبذور والبهارات والسكر وother المنتجات الغذائية الأساسية.",
   });
 }
 
 export default async function HomePage({ params }: HomePageProps) {
   const { lang } = await params;
+  const t = translations[lang];
   const pageUrl = absoluteUrl(localizedPath(lang));
   const organizationId = absoluteUrl("/#organization");
   const websiteId = absoluteUrl("/#website");
-  const pageDescription =
-    lang === "en"
-      ? "Faradid Atlas connects businesses with reliable supply channels for rice, legumes, nuts, seeds, spices, sugar, and other essential food products."
-      : "فرادید اطلس مسیر تأمین و توزیع مواد غذایی اساسی مانند برنج، حبوبات، مغزها، دانه‌ها، ادویه و شکر را برای کسب‌وکارها قابل اتکا و شفاف‌تر می‌کند.";
+  const pageDescription = t.pages.home.description;
 
   return (
-    <div lang={lang} dir={lang === "fa" ? "rtl" : "ltr"}>
+    <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
         <Hero lang={lang} />

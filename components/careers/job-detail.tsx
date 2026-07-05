@@ -1,6 +1,7 @@
 "use client";
 
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import type { Job } from "./job-data";
 import Link from "next/link";
 
@@ -10,6 +11,7 @@ interface JobDetailProps {
 }
 
 export function JobDetail({ job, lang }: JobDetailProps) {
+  const t = translations[lang];
   const title = lang === "en" ? job.titleEn : job.titleFa;
   const description = lang === "en" ? job.descriptionEn : job.descriptionFa;
   const department = lang === "en" ? job.departmentEn : job.departmentFa;
@@ -20,16 +22,10 @@ export function JobDetail({ job, lang }: JobDetailProps) {
   const values = lang === "en" ? job.benefitsEn : job.benefitsFa;
   const typeLabel =
     job.type === "full-time"
-      ? lang === "en"
-        ? "Full-time"
-        : "تمام‌وقت"
+      ? t.pages.careers.fullTime
       : job.type === "part-time"
-        ? lang === "en"
-          ? "Part-time"
-          : "پاره‌وقت"
-        : lang === "en"
-          ? "Contract"
-          : "قراردادی";
+        ? t.pages.careers.partTime
+        : t.pages.careers.contract;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-10 lg:gap-16 items-start">
@@ -39,7 +35,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
       >
         <div>
           <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-accent-warm-gold">
-            {lang === "en" ? "Career Opportunity" : "فرصت همکاری"}
+            {t.pages.careers.careerOpportunity}
           </p>
           <h1
             className="mt-4 text-3xl sm:text-4xl md:text-5xl font-semibold text-foreground leading-tight tracking-tight"
@@ -78,7 +74,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
                   : "Estedad, var(--font-hero)",
             }}
           >
-            {lang === "en" ? "Responsibilities" : "مسئولیت‌ها"}
+            {t.pages.careers.responsibilities}
           </h2>
           <ul className="space-y-3 sm:space-y-4">
             {responsibilities.map((item, idx) => (
@@ -113,7 +109,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
                   : "Estedad, var(--font-hero)",
             }}
           >
-            {lang === "en" ? "Requirements" : "شرایط موردنیاز"}
+            {t.pages.careers.requirements}
           </h2>
           <ul className="space-y-3 sm:space-y-4">
             {requirements.map((item, idx) => (
@@ -150,7 +146,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
                   : "Estedad, var(--font-hero)",
             }}
           >
-            {lang === "en" ? "What We Value" : "ارزش‌های مورد توجه ما"}
+            {t.pages.careers.whatWeValue}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {values.map((value, idx) => (
@@ -181,12 +177,12 @@ export function JobDetail({ job, lang }: JobDetailProps) {
           style={{ animationDelay: "0.1s" }}
         >
           <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-foreground/50">
-            {lang === "en" ? "At a Glance" : "خلاصه موقعیت"}
+            {t.pages.careers.atAGlance}
           </h3>
           <div className="mt-6 space-y-4">
             <div className="flex items-start justify-between gap-4 border-b border-foreground/5 pb-3">
               <span className="shrink-0 text-xs font-semibold uppercase text-foreground/50">
-                {lang === "en" ? "Department" : "بخش"}
+                {t.pages.careers.department}
               </span>
               <span className="min-w-0 text-end text-sm font-semibold text-foreground">
                 {department}
@@ -194,7 +190,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
             </div>
             <div className="flex items-start justify-between gap-4 border-b border-foreground/5 pb-3">
               <span className="shrink-0 text-xs font-semibold uppercase text-foreground/50">
-                {lang === "en" ? "Location" : "محل فعالیت"}
+                {t.pages.careers.locationDetail}
               </span>
               <span className="min-w-0 text-end text-sm font-semibold text-foreground">
                 {location}
@@ -202,7 +198,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
             </div>
             <div className="flex items-start justify-between gap-4">
               <span className="shrink-0 text-xs font-semibold uppercase text-foreground/50">
-                {lang === "en" ? "Type" : "نوع همکاری"}
+                {t.pages.careers.type}
               </span>
               <span className="min-w-0 text-end text-sm font-semibold text-foreground">
                 {typeLabel}
@@ -224,14 +220,10 @@ export function JobDetail({ job, lang }: JobDetailProps) {
                   : "Estedad, var(--font-hero)",
             }}
           >
-            {lang === "en"
-              ? "Apply for this role"
-              : "ارسال درخواست برای این موقعیت"}
+            {t.pages.careers.applyForThisRole}
           </h3>
           <p className="mt-3 text-sm text-white/70">
-            {lang === "en"
-              ? "We review applications on a rolling basis."
-              : "درخواست‌ها به‌صورت مستمر بررسی می‌شوند."}
+            {t.pages.careers.reviewApplications}
           </p>
           <div className="mt-6 flex flex-col gap-3">
             <Link
@@ -244,7 +236,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
                     : "Shabnam, var(--font-body)",
               }}
             >
-              {lang === "en" ? "Apply Now" : "ارسال درخواست"}
+              {t.pages.careers.apply}
             </Link>
             <Link
               href={`/${lang}/careers`}
@@ -256,7 +248,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
                     : "Shabnam, var(--font-body)",
               }}
             >
-              {lang === "en" ? "View All Jobs" : "مشاهده همه فرصت‌ها"}
+              {t.pages.careers.viewAllJobs}
             </Link>
           </div>
         </div>

@@ -11,13 +11,13 @@ interface FAQAccordionProps {
 
 export function FAQAccordion({ items, lang }: FAQAccordionProps) {
   const [openId, setOpenId] = useState<number | null>(null);
-  const isRTL = lang === "fa";
+  const isRTL = lang === "fa" || lang === "ar";
 
   return (
     <div className="space-y-4 sm:space-y-5">
       {items.map((item, index) => {
-        const question = lang === "en" ? item.questionEn : item.questionFa;
-        const answer = lang === "en" ? item.answerEn : item.answerFa;
+        const question = lang === "en" ? item.questionEn : lang === "fa" ? item.questionFa : item.questionAr;
+        const answer = lang === "en" ? item.answerEn : lang === "fa" ? item.answerFa : item.answerAr;
         const isOpen = openId === item.id;
 
         return (

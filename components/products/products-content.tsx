@@ -2,6 +2,7 @@
 
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import {
   categoryLabels,
   getProductBrand,
@@ -131,6 +132,7 @@ export function ProductsContent({
     useState<ProductType | null>(initialType);
   const [sortValue, setSortValue] = useState<ProductSortValue>("relevance");
   const deferredQuery = useDeferredValue(clientQuery);
+  const t = translations[lang];
 
   useEffect(() => {
     const syncQueryFromUrl = () => {
@@ -255,7 +257,7 @@ export function ProductsContent({
           <div className="w-full lg:w-64 flex-shrink-0">
             <div className="lg:sticky lg:top-32">
               <h2 className="text-sm font-bold text-primary mb-8 uppercase tracking-widest">
-                {lang === "en" ? "Filter" : "فیلتر"}
+                {t.common.filter}
               </h2>
               <Filters
                 key={`${selectedCategory ?? "all"}-${selectedBrand ?? "all"}-${
@@ -280,11 +282,11 @@ export function ProductsContent({
             <div className="mb-10 sm:mb-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="min-w-0">
                 <span className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wide">
-                  {lang === "en" ? "Core Portfolio" : "سبد اصلی"}
+                  {t.pages.products.corePortfolio}
                 </span>
                 {query && (
                   <p className="mt-2 text-sm text-foreground/65">
-                    {lang === "en" ? "Search" : "جستجو"}:{" "}
+                    {t.common.search}:{" "}
                     <span className="font-medium text-foreground">
                       {query}
                     </span>
@@ -325,7 +327,7 @@ export function ProductsContent({
             ) : (
               <div className="text-center py-20 md:py-28">
                 <p className="text-base sm:text-lg text-muted-foreground">
-                  {lang === "en" ? "No products found" : "محصولی پیدا نشد"}
+                  {t.pages.products.noProducts}
                 </p>
               </div>
             )}

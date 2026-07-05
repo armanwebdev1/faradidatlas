@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import type { FAQItem } from "./faq-data";
 import { FAQAccordion } from "./faq-accordion";
 import { FAQFilter } from "./faq-filter";
@@ -13,6 +14,7 @@ interface FAQContentProps {
 
 export function FAQContent({ items, lang }: FAQContentProps) {
   const [filteredFaqs, setFilteredFaqs] = useState(items);
+  const t = translations[lang];
 
   return (
     <>
@@ -23,7 +25,7 @@ export function FAQContent({ items, lang }: FAQContentProps) {
       ) : (
         <div className="text-center py-16">
           <p className="text-lg text-muted-foreground">
-            {lang === "en" ? "No questions found" : "پرسشی پیدا نشد"}
+            {t.pages.faq.noQuestions}
           </p>
         </div>
       )}

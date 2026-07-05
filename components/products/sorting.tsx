@@ -1,6 +1,7 @@
 "use client";
 
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 
 export type ProductSortValue =
   | "relevance"
@@ -15,30 +16,18 @@ interface SortingProps {
 }
 
 export function Sorting({ lang, value, onChange }: SortingProps) {
-  const sortOptions: Record<
-    Language,
-    { value: ProductSortValue; label: string }[]
-  > = {
-    en: [
-      { value: "relevance", label: "Relevance" },
-      { value: "newest", label: "Newest" },
-      { value: "name-asc", label: "Name (A-Z)" },
-      { value: "name-desc", label: "Name (Z-A)" },
-    ],
-    fa: [
-      { value: "relevance", label: "مرتبط‌ترین" },
-      { value: "newest", label: "جدیدترین" },
-      { value: "name-asc", label: "نام (الف تا ی)" },
-      { value: "name-desc", label: "نام (ی تا الف)" },
-    ],
-  };
-
-  const options = lang === "en" ? sortOptions.en : sortOptions.fa;
+  const t = translations[lang];
+  const options = [
+    { value: "relevance" as const, label: t.pages.products.sort.relevance },
+    { value: "newest" as const, label: t.pages.products.sort.newest },
+    { value: "name-asc" as const, label: t.pages.products.sort.nameAsc },
+    { value: "name-desc" as const, label: t.pages.products.sort.nameDesc },
+  ];
 
   return (
     <div className="flex flex-wrap items-center gap-2 sm:gap-3">
       <label className="text-sm font-medium text-foreground whitespace-nowrap">
-        {lang === "en" ? "Sort by:" : "مرتب‌سازی:"}
+        {t.pages.products.sort.label}
       </label>
       <select
         value={value}

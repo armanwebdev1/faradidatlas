@@ -13,6 +13,7 @@ import { RelatedProducts } from "@/components/products/related-products";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath, siteConfig } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import { permanentRedirect } from "next/navigation";
 import Link from "next/link";
 
@@ -36,7 +37,7 @@ function findProductBySlugOrId(slug: string) {
 }
 
 export async function generateStaticParams() {
-  const langs: Language[] = ["en", "fa"];
+  const langs: Language[] = ["en", "fa", "ar"];
   const allParams = [];
 
   for (const lang of langs) {
@@ -58,8 +59,10 @@ export async function generateMetadata({ params }: ProductDetailProps) {
       path: "products",
       titleEn: "Product Not Found | Faradid Atlas",
       titleFa: "محصول پیدا نشد | فرادید اطلس",
+      titleAr: "لم يتم العثور على المنتج | فراديد أطلس",
       descriptionEn: siteConfig.description,
       descriptionFa: siteConfig.descriptionFa,
+      descriptionAr: siteConfig.descriptionAr,
     });
   }
 
@@ -68,8 +71,10 @@ export async function generateMetadata({ params }: ProductDetailProps) {
     path: `products/${product.slug}`,
     titleEn: `${product.nameEn} | Faradid Atlas Products`,
     titleFa: `${product.nameFa} | محصولات فرادید اطلس`,
+    titleAr: `${product.nameAr} | منتجات فراديد أطلس`,
     descriptionEn: product.descriptionEn,
     descriptionFa: product.descriptionFa,
+    descriptionAr: product.descriptionAr,
     image: product.image,
   });
 }
@@ -78,6 +83,7 @@ export default async function ProductDetailPage({
   params,
 }: ProductDetailProps) {
   const { lang, slug } = await params;
+  const t = translations[lang];
   const product = findProductBySlugOrId(slug);
 
   if (product && isNumericProductParam(slug)) {
@@ -89,7 +95,7 @@ export default async function ProductDetailPage({
       <div>
         <Header lang={lang} />
         <div className="text-center py-16">
-          <p>{lang === "en" ? "Product not found" : "محصول پیدا نشد"}</p>
+          <p>{t.pages.products.productNotFound}</p>
         </div>
         <Footer lang={lang} />
       </div>
@@ -116,7 +122,7 @@ export default async function ProductDetailPage({
   const productBrand = productBrandLabels[getProductBrand(product)][lang];
 
   return (
-    <div lang={lang} dir={lang === "fa" ? "rtl" : "ltr"}>
+    <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
         <nav
@@ -128,7 +134,7 @@ export default async function ProductDetailPage({
               href={`/${lang}`}
               className="line-accent transition-colors hover:text-primary"
             >
-              {lang === "en" ? "Home" : "خانه"}
+              {t.breadcrumbs.home}
             </Link>
             <span
               className="h-1.5 w-1.5 rounded-full bg-foreground/30"
@@ -138,7 +144,7 @@ export default async function ProductDetailPage({
               href={`/${lang}/products`}
               className="line-accent transition-colors hover:text-primary"
             >
-              {lang === "en" ? "Products" : "محصولات"}
+              {t.breadcrumbs.products}
             </Link>
             <span
               className="h-1.5 w-1.5 rounded-full bg-foreground/30"
@@ -195,7 +201,7 @@ export default async function ProductDetailPage({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6 mt-6 mb-8 sm:mb-10 p-4 sm:p-6 bg-secondary/30 rounded-2xl border border-foreground/10">
                 <div>
                   <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
-                    {lang === "en" ? "Category" : "دسته‌بندی"}
+                    {t.pages.products.category}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
                     {category}
@@ -203,28 +209,26 @@ export default async function ProductDetailPage({
                 </div>
                 <div>
                   <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
-                    {lang === "en" ? "Portfolio" : "سبد محصول"}
+                    {t.pages.products.portfolio}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
-                    {lang === "en" ? "Essential foods" : "مواد غذایی اساسی"}
+                    {t.pages.products.portfolioValue}
                   </p>
                 </div>
                 <div>
                   <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
-                    {lang === "en" ? "Supply Role" : "نقش در تامین"}
+                    {t.pages.products.supplyRole}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
-                    {lang === "en"
-                      ? "Import & distribution"
-                      : "واردات و توزیع"}
+                    {t.pages.products.supplyRoleValue}
                   </p>
                 </div>
                 <div>
                   <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
-                    {lang === "en" ? "Inquiry" : "درخواست"}
+                    {t.pages.products.inquiry}
                   </p>
                   <p className="text-base sm:text-lg font-semibold text-primary">
-                    {lang === "en" ? "B2B coordination" : "هماهنگی B2B"}
+                    {t.pages.products.inquiryValue}
                   </p>
                 </div>
               </div>
@@ -235,12 +239,10 @@ export default async function ProductDetailPage({
 
               <div className="mb-8">
                 <h2 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">
-                  {lang === "en" ? "How Faradid Atlas Supplies It" : "نحوه تامین توسط فرادید اطلس"}
+                  {t.pages.products.howWeSupply}
                 </h2>
                 <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">
-                  {lang === "en"
-                    ? "This product is part of the Faradid Atlas portfolio of essential foods. The team reviews product needs, destination, volume, and timing before proposing practical next steps."
-                    : "این محصول بخشی از سبد مواد غذایی اساسی فرادید اطلس طبق محتوای مرجع است. تیم ما محصول مورد نیاز، مقصد، حجم و زمان‌بندی را بررسی می‌کند و سپس گام‌های عملی بعدی را پیشنهاد می‌دهد."}
+                  {t.pages.products.howWeSupplyDescription}
                 </p>
               </div>
 
@@ -249,13 +251,13 @@ export default async function ProductDetailPage({
                   href={`/${lang}/contact?product=${product.slug}#contact-form`}
                   className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-primary/90 transition-colors text-center text-sm sm:text-base shadow-sm hover:shadow-md"
                 >
-                  {lang === "en" ? "Start an Inquiry" : "شروع درخواست"}
+                  {t.pages.products.startInquiry}
                 </Link>
                 <Link
                   href={`/${lang}/products`}
                   className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 border border-primary/30 text-primary font-semibold rounded-full hover:bg-background transition-colors text-center text-sm sm:text-base"
                 >
-                  {lang === "en" ? "Back to Catalog" : "بازگشت به کاتالوگ"}
+                  {t.pages.products.backToCatalog}
                 </Link>
               </div>
             </div>

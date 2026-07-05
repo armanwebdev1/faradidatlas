@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import { StaggeredFade } from "@/components/shared/staggered-fade";
 
 interface FAQHeroProps {
@@ -7,7 +8,8 @@ interface FAQHeroProps {
 }
 
 export function FAQHero({ lang }: FAQHeroProps) {
-  const isRTL = lang === "fa";
+  const isRTL = lang === "fa" || lang === "ar";
+  const t = translations[lang];
 
   return (
     <section
@@ -18,7 +20,7 @@ export function FAQHero({ lang }: FAQHeroProps) {
         <div className="max-w-6xl mx-auto space-y-12 md:space-y-16">
           <StaggeredFade className="text-center">
             <p className="eyebrow mb-4 text-brand-navy animate-fade-in-up">
-              {lang === "en" ? "Help Center" : "سوالات متداول"}
+              {t.pages.faq.subtitle}
             </p>
             <h1
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-5 animate-fade-in-up"
@@ -29,19 +31,17 @@ export function FAQHero({ lang }: FAQHeroProps) {
                     : "Estedad, var(--font-hero)",
               }}
             >
-              {lang === "en" ? "Frequently Asked Questions" : "پرسش‌های متداول"}
+              {t.pages.faq.title}
             </h1>
             <p className="text-base md:text-lg text-foreground/70 leading-relaxed max-w-3xl mx-auto animate-fade-in-up">
-              {lang === "en"
-                ? "Find answers about Faradid Atlas, its products, sourcing, quality standards, vision, values, offices, and inquiry steps."
-                : "پاسخ پرسش‌های رایج درباره فرادید اطلس، محصولات، تأمین، استانداردهای کیفیت، چشم‌انداز، ارزش‌ها، دفاتر و مراحل ثبت درخواست را در این بخش ببینید."}
+              {t.pages.faq.heroDescription}
             </p>
             <div className="mt-6 flex justify-center animate-fade-in-up">
               <a
                 href={`/${lang}/contact`}
                 className="inline-flex w-full items-center justify-center rounded-full bg-primary px-7 py-3 text-center text-sm font-semibold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg sm:w-auto sm:text-base"
               >
-                {lang === "en" ? "Contact Us" : "تماس با ما"}
+                {t.nav.contact}
               </a>
             </div>
           </StaggeredFade>
@@ -50,11 +50,7 @@ export function FAQHero({ lang }: FAQHeroProps) {
             <div className="relative w-full h-56 sm:h-64 md:h-80 rounded-3xl overflow-hidden shadow-2xl">
               <Image
                 src="/optimized/faq-image.webp"
-                alt={
-                  lang === "en"
-                    ? "Food supply support"
-                    : "پشتیبانی در تأمین مواد غذایی"
-                }
+                alt={t.pages.faq.heroImageAlt}
                 fill
                 sizes="100vw"
                 quality={84}

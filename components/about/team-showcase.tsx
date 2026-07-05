@@ -1,4 +1,5 @@
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import { AnimatedSection } from "./animated-section";
 import { BadgeCheck, Leaf, Lightbulb, Scale, ShieldCheck } from "lucide-react";
 
@@ -75,11 +76,9 @@ const values = {
 
 export function TeamShowcase({ lang }: TeamShowcaseProps) {
   const valueList = lang === "en" ? values.en : values.fa;
-  const isRTL = lang === "fa";
-  const sectionIntro =
-    lang === "en"
-      ? "A compact set of standards guides how the team selects partners, protects quality, and builds long-term commercial trust."
-      : "مجموعه‌ای روشن از ارزش‌ها، شیوه انتخاب همکاران، حفاظت از کیفیت و ایجاد اعتماد بلندمدت تجاری را هدایت می‌کند.";
+  const isRTL = lang === "fa" || lang === "ar";
+  const t = translations[lang];
+  const sectionIntro = t.pages.about.valuesIntro;
 
   return (
     <AnimatedSection className="relative overflow-hidden bg-white px-4 py-20 sm:px-6 md:py-28">
@@ -90,12 +89,10 @@ export function TeamShowcase({ lang }: TeamShowcaseProps) {
         <div className="mx-auto mb-14 max-w-3xl text-center md:mb-16">
           <div>
             <p className="eyebrow mb-4 text-brand-navy">
-            {lang === "en" ? "Core Values" : "ارزش‌های بنیادین"}
+            {t.pages.about.coreValues}
             </p>
             <h2 className="max-w-4xl text-responsive-title text-primary">
-            {lang === "en"
-              ? "The principles behind every decision"
-              : "اصولی که پشت هر تصمیم قرار دارد"}
+            {t.pages.about.principlesTitle}
             </h2>
           </div>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-foreground/70">

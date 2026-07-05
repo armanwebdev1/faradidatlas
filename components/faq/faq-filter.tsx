@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import type { FAQItem } from "./faq-data";
 import { faqCategories } from "./faq-data";
 
@@ -24,6 +25,7 @@ function getAvailableCategories(items: FAQItem[]) {
 export function FAQFilter({ items, lang, onFilter }: FAQFilterProps) {
   const [active, setActive] = useState<FilterKey>("all");
   const categories = useMemo(() => getAvailableCategories(items), [items]);
+  const t = translations[lang];
 
   useEffect(() => {
     if (active === "all") {
@@ -34,7 +36,7 @@ export function FAQFilter({ items, lang, onFilter }: FAQFilterProps) {
     onFilter(items.filter((item) => item.category === active));
   }, [active, items, onFilter]);
 
-  const allLabel = lang === "en" ? "All topics" : "همه موضوعات";
+  const allLabel = t.pages.faq.allTopics;
 
   return (
     <div className="mb-12 flex flex-wrap justify-center gap-3 sm:gap-4 animate-fade-in-up">
@@ -46,11 +48,7 @@ export function FAQFilter({ items, lang, onFilter }: FAQFilterProps) {
       {categories.map((category) => (
         <FilterChip
           key={category}
-          label={
-            lang === "en"
-              ? faqCategories[category].en
-              : faqCategories[category].fa
-          }
+          label={faqCategories[category][lang]}
           isActive={active === category}
           onClick={() => setActive(category)}
         />

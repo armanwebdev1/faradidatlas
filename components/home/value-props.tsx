@@ -69,7 +69,7 @@ const valueItems = {
 };
 
 export function ValueProps({ lang }: ValuePropsProps) {
-  const isRTL = lang === "fa";
+  const isRTL = lang === "fa" || lang === "ar";
   const items = lang === "en" ? valueItems.en : valueItems.fa;
   const marqueeGroups = [0, 1];
 

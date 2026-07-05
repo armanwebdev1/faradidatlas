@@ -49,31 +49,37 @@ type HeaderMode = "full" | "compact" | "hidden";
 
 const categoryDescriptions: Record<
   ProductCategory,
-  { en: string; fa: string }
+  { en: string; fa: string; ar: string }
 > = {
   rice: {
     en: "Branded basmati, jasmine, and long-grain rice lines.",
     fa: "برنج‌های برنددار باسماتی، جاسمین و دانه‌بلند.",
+    ar: "خطوط أرز بسمتي وياسمين وذيل طويل من العلامات التجارية.",
   },
   legumes: {
     en: "Everyday pulses prepared for retail and wholesale supply.",
     fa: "حبوبات پرمصرف برای عرضه فروشگاهی و عمده.",
+    ar: "بقوليات يومية معدة للتوريد بالتجزئة والجملة.",
   },
   seeds: {
     en: "Snack, bakery, and ingredient-ready kernels.",
     fa: "دانه‌ها و مغز تخمه‌ها برای مصرف، تنقلات و تولید.",
+    ar: "بذور جاهزة للوجبات الخفيفة والمخابز والمكونات.",
   },
   nuts: {
     en: "Packaged nut products for reliable commercial channels.",
     fa: "مغزها و آجیل بسته‌بندی‌شده برای کانال‌های تجاری.",
+    ar: "منتجات مكسرات معبأة لقنوات تجارية موثوقة.",
   },
   spices: {
     en: "Core spices and seasonings with consistent packaged supply.",
     fa: "ادویه‌ها و چاشنی‌های اصلی با تأمین بسته‌بندی‌شده.",
+    ar: "توابل أساسية ونكهات مع توريد معبأ ثابت.",
   },
   sugar: {
     en: "Sweetener supply options for staple food procurement.",
     fa: "گزینه‌های تأمین شکر و شیرین‌کننده‌ها.",
+    ar: "خيارات توريد السكر والمحليات للأغذية الأساسية.",
   },
 };
 
@@ -96,22 +102,24 @@ export function Header({ lang }: HeaderProps) {
   const lastScrollYRef = useRef(0);
   const downScrollStartYRef = useRef(0);
   const t = translations[lang];
-  const isRTL = lang === "fa";
+  const isRTL = lang === "fa" || lang === "ar";
   const dir = isRTL ? "rtl" : "ltr";
-  const otherLang = lang === "en" ? "fa" : "en";
+  const otherLang = lang === "en" ? "fa" : lang === "fa" ? "ar" : "en";
   const languageNames: Record<Language, string> = {
     en: "English",
     fa: "فارسی",
+    ar: "العربية",
   };
   const localeMarks: Record<Language, string> = {
     en: "US",
     fa: "IR",
+    ar: "SA",
   };
   const brandHomeLabel =
-    lang === "en" ? "Faradid Atlas home" : "خانه فرادید اطلس";
-  const brandPrimary = lang === "en" ? "Faradid" : "فرادید";
-  const brandSecondary = lang === "en" ? "Atlas" : "اطلس";
-  const brandFullName = lang === "en" ? "Faradid Atlas" : "فرادید اطلس";
+    lang === "en" ? "Faradid Atlas home" : lang === "fa" ? "خانه فرادید اطلس" : "الرئيسية فراديد اطلس";
+  const brandPrimary = lang === "en" ? "Faradid" : lang === "fa" ? "فرادید" : "فراديد";
+  const brandSecondary = lang === "en" ? "Atlas" : lang === "fa" ? "اطلس" : "اطلس";
+  const brandFullName = lang === "en" ? "Faradid Atlas" : lang === "fa" ? "فرادید اطلس" : "فراديد اطلس";
 
   const navItems = [
     { href: `/${lang}`, label: t.nav.home, key: "home", Icon: Home },
@@ -138,7 +146,7 @@ export function Header({ lang }: HeaderProps) {
   ];
 
   const numberFormatter = useMemo(
-    () => new Intl.NumberFormat(lang === "fa" ? "fa-IR" : "en-US"),
+    () => new Intl.NumberFormat(lang === "fa" ? "fa-IR" : lang === "ar" ? "ar-SA" : "en-US"),
     [lang],
   );
   const productCategoryMenuItems = useMemo(
@@ -293,7 +301,7 @@ export function Header({ lang }: HeaderProps) {
     setSearchValue("");
     setIsSearchOpen(false);
   };
-  const clearSearchLabel = lang === "en" ? "Clear search" : "پاک کردن جستجو";
+  const clearSearchLabel = t.header.clearSearch;
   const searchQuery = searchValue.trim();
   const deferredSearchQuery = useDeferredValue(searchQuery);
   const searchCorpus = useMemo(
@@ -465,7 +473,7 @@ export function Header({ lang }: HeaderProps) {
 
             <details className="relative shrink-0 group/lang">
               <summary
-                aria-label={lang === "en" ? "Select language" : "انتخاب زبان"}
+                aria-label={t.header.selectLanguage}
                 className="flex cursor-pointer list-none items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-brand-navy/5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-navy/25 [&::-webkit-details-marker]:hidden"
               >
                 <span className="text-base sm:text-lg">
@@ -486,7 +494,7 @@ export function Header({ lang }: HeaderProps) {
               >
                 <div className="px-4 py-2 bg-linear-to-r from-primary/5 to-accent/5 border-b border-border/10">
                   <p className="text-xs font-semibold text-muted-foreground tracking-wide uppercase">
-                    {isRTL ? t.common.language : "Language"}
+                    {t.common.language}
                   </p>
                 </div>
                 <div className="py-2 space-y-1 px-2">
@@ -526,7 +534,7 @@ export function Header({ lang }: HeaderProps) {
                 <div className="max-h-[calc(100svh-5.25rem)] overflow-y-auto">
                   <div className="border-b border-border/60 bg-muted/20 px-4 py-3">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                      {lang === "en" ? "Navigation" : "دسترسی سریع"}
+                      {t.footer.navigation}
                     </p>
                   </div>
                   <div className="px-4 pt-4">
@@ -634,9 +642,7 @@ export function Header({ lang }: HeaderProps) {
                                 className="mb-2 flex items-center justify-between rounded-lg px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:bg-muted/45 hover:text-foreground"
                               >
                                 <span>
-                                  {lang === "en"
-                                    ? "All products"
-                                    : "همه محصولات"}
+                                  {t.header.allProducts}
                                 </span>
                               </a>
 
@@ -672,7 +678,7 @@ export function Header({ lang }: HeaderProps) {
                               <div className="mt-3 grid gap-3 sm:grid-cols-2">
                                 <div className="rounded-lg border border-border/50 bg-background/80 p-2">
                                   <p className="px-2 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                                    {lang === "en" ? "Brands" : "برندها"}
+                                    {t.header.brands}
                                   </p>
                                   <div className="space-y-1">
                                     {productBrandMenuItems.map((item) => (
@@ -695,9 +701,7 @@ export function Header({ lang }: HeaderProps) {
 
                                 <div className="rounded-lg border border-border/50 bg-background/80 p-2">
                                   <p className="px-2 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                                    {lang === "en"
-                                      ? "Product type"
-                                      : "نوع محصول"}
+                                    {t.header.productType}
                                   </p>
                                   <div className="space-y-1">
                                     {productTypeMenuItems.map((item) => (
@@ -913,6 +917,7 @@ function ProductsMegaMenu({
   brands: ProductFilterMenuItem[];
   types: ProductFilterMenuItem[];
 }) {
+  const t = translations[lang];
   const dir = isRTL ? "rtl" : "ltr";
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
 
@@ -946,7 +951,7 @@ function ProductsMegaMenu({
           >
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-                {lang === "en" ? "Products" : "محصولات"}
+                {t.nav.products}
               </p>
               <h3
                 className={`mt-4 font-hero font-semibold text-foreground ${
@@ -960,9 +965,7 @@ function ProductsMegaMenu({
                     : "var(--font-hero)",
                 }}
               >
-                {lang === "en"
-                  ? "Explore our essential food portfolio"
-                  : "سبد محصولات غذایی ما را ببینید"}
+                {t.header.explorePortfolio}
               </h3>
             </div>
 
@@ -972,7 +975,7 @@ function ProductsMegaMenu({
                 isRTL ? "flex-row-reverse" : ""
               }`}
             >
-              {lang === "en" ? "See all" : "مشاهده همه"}
+              {t.header.seeAll}
               <ArrowIcon className="h-4 w-4" strokeWidth={1.8} />
             </a>
           </div>
@@ -984,7 +987,7 @@ function ProductsMegaMenu({
             <div className="grid h-full min-h-0 grid-cols-[1.15fr_0.8fr_1fr] gap-6">
               <div className="flex min-h-0 flex-col">
                 <p className="mb-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                  {lang === "en" ? "Categories" : "دسته‌بندی‌ها"}
+                  {t.header.categories}
                 </p>
                 <div className="grid min-h-0 flex-1 content-start gap-1.5 overflow-y-auto pr-1 [scrollbar-color:rgba(12,18,24,0.18)_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-foreground/15 [&::-webkit-scrollbar-track]:bg-transparent">
                   {categories.map((item) => (
@@ -1022,12 +1025,12 @@ function ProductsMegaMenu({
               </div>
 
               <MegaMenuFilterColumn
-                title={lang === "en" ? "Brands" : "برندها"}
+                title={t.header.brands}
                 items={brands}
               />
 
               <MegaMenuFilterColumn
-                title={lang === "en" ? "Product type" : "نوع محصول"}
+                title={t.header.productType}
                 items={types}
               />
             </div>
@@ -1172,8 +1175,9 @@ function SearchResultsPopover({
   onClose: () => void;
   compact?: boolean;
 }) {
-  const isRTL = lang === "fa";
+  const isRTL = lang === "fa" || lang === "ar";
   const dir = isRTL ? "rtl" : "ltr";
+  const t = translations[lang];
 
   return (
     <div
@@ -1183,7 +1187,7 @@ function SearchResultsPopover({
       }`}
       role="dialog"
       aria-modal="false"
-      aria-label={lang === "en" ? "Search results" : "نتایج جستجو"}
+      aria-label={t.header.searchResults}
     >
       <div
         className={`border-b border-border/60 px-3 py-2.5 ${
@@ -1192,7 +1196,7 @@ function SearchResultsPopover({
       >
         <div className="min-w-0">
           <p className="truncate text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-            {lang === "en" ? "Search results" : "نتایج جستجو"}
+            {t.header.searchResults}
           </p>
           <p className="mt-0.5 truncate text-xs text-foreground/65">
             {lang === "en"
@@ -1216,9 +1220,7 @@ function SearchResultsPopover({
           </div>
         ) : (
           <div className="px-3 py-8 text-center text-sm text-muted-foreground">
-            {lang === "en"
-              ? "No matching products found."
-              : "محصولی مطابق جستجو پیدا نشد."}
+            {t.header.noMatchingProducts}
           </div>
         )}
       </div>
@@ -1235,7 +1237,7 @@ function SearchResult({
   lang: Language;
   onSelect: () => void;
 }) {
-  const isRTL = lang === "fa";
+  const isRTL = lang === "fa" || lang === "ar";
   const name = lang === "en" ? product.nameEn : product.nameFa;
   const alias = lang === "en" ? product.aliasEn : product.aliasFa;
   const description =

@@ -1,4 +1,5 @@
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import Image from "next/image";
 
 interface CareersHeroProps {
@@ -6,7 +7,8 @@ interface CareersHeroProps {
 }
 
 export function CareersHero({ lang }: CareersHeroProps) {
-  const isRTL = lang === "fa";
+  const t = translations[lang];
+  const isRTL = lang === "fa" || lang === "ar";
   const revealClass =
     "opacity-0 translate-y-6 animate-fade-in-up motion-reduce:translate-y-0 motion-reduce:opacity-100";
 
@@ -36,7 +38,7 @@ export function CareersHero({ lang }: CareersHeroProps) {
             dir={isRTL ? "rtl" : "ltr"}
           >
             <p className={`eyebrow mb-4 text-accent-warm-gold ${revealClass}`}>
-              {lang === "en" ? "Careers" : "فرصت‌های همکاری"}
+              {t.nav.careers}
             </p>
             <h1
               className={`mb-8 font-hero text-white ${revealClass}`}
@@ -50,10 +52,10 @@ export function CareersHero({ lang }: CareersHeroProps) {
               }}
             >
               <span className="block">
-                {lang === "en" ? "Build" : "همکاری"}
+                {t.pages.careers.heroBuild}
               </span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold via-accent-warm-orange to-accent-warm-gold">
-                {lang === "en" ? "Continuity" : "ماندگار"}
+                {t.pages.careers.heroContinuity}
               </span>
             </h1>
 
@@ -69,9 +71,7 @@ export function CareersHero({ lang }: CareersHeroProps) {
                 animationDelay: "180ms",
               }}
             >
-              {lang === "en"
-                ? "Join a food supply organization shaped by quality, customer-centricity, sustainability, professional ethics, and practical innovation."
-                : "به مجموعه‌ای در زنجیره تأمین مواد غذایی بپیوندید که کیفیت، مشتری‌مداری، پایداری، اخلاق حرفه‌ای و نوآوری کاربردی را پایه کار خود می‌داند."}
+              {t.pages.careers.heroDescription}
             </p>
 
             <div
@@ -93,7 +93,7 @@ export function CareersHero({ lang }: CareersHeroProps) {
                   fontWeight: "600",
                 }}
               >
-                {lang === "en" ? "View Open Positions" : "مشاهده فرصت‌ها"}
+                {t.pages.careers.heroViewOpenPositions}
               </a>
               <a
                 href="#culture"
@@ -106,7 +106,7 @@ export function CareersHero({ lang }: CareersHeroProps) {
                   fontWeight: "600",
                 }}
               >
-                {lang === "en" ? "Our Culture" : "فرهنگ کاری ما"}
+                {t.pages.careers.culture}
               </a>
             </div>
           </div>

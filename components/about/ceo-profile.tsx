@@ -27,7 +27,7 @@ const content = {
 
 export function CEOProfile({ lang }: CEOProfileProps) {
   const data = lang === "en" ? content.en : content.fa;
-  const isRTL = lang === "fa";
+  const isRTL = lang === "fa" || lang === "ar";
 
   return (
     <AnimatedSection className="relative overflow-hidden bg-background px-4 py-20 sm:px-6 md:py-28">

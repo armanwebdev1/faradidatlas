@@ -44,7 +44,7 @@ export function Filters({
     brand: selectedBrand,
     type: selectedType,
   });
-  const isRTL = lang === "fa";
+  const isRTL = lang === "fa" || lang === "ar";
 
   const updatePendingFilter = <Key extends keyof ProductFilterSelection>(
     key: Key,

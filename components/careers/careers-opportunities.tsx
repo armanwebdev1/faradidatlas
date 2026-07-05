@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import type { Job } from "./job-data";
 import { JobListing } from "./job-listing";
 
@@ -18,6 +19,7 @@ export function CareersOpportunities({
   lang,
   jobs,
 }: CareersOpportunitiesProps) {
+  const t = translations[lang];
   const sectionRef = useRef<HTMLElement>(null);
   const eyebrowRef = useRef<HTMLParagraphElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -94,7 +96,7 @@ export function CareersOpportunities({
             ref={eyebrowRef}
             className="eyebrow text-brand-navy mb-4 sm:mb-5 md:mb-6"
           >
-            {lang === "en" ? "Opportunity Areas" : "حوزه‌های همکاری"}
+            {t.pages.careers.openPositions}
           </p>
           <h2
             ref={titleRef}
@@ -108,7 +110,7 @@ export function CareersOpportunities({
               letterSpacing: "-0.01em",
             }}
           >
-            {lang === "en" ? "Evergreen Roles" : "نقش‌های کلیدی و مستمر"}
+            {t.pages.careers.evergreenRoles}
           </h2>
           <p
             ref={subtitleRef}
@@ -122,9 +124,7 @@ export function CareersOpportunities({
               fontWeight: "400",
             }}
           >
-            {lang === "en"
-              ? "These conservative role areas reflect the work Faradid Atlas needs across supply continuity, quality, and customer relationships."
-              : "این حوزه‌های همکاری بر پایه نیازهای همیشگی فرادید اطلس در تأمین مستمر، کنترل کیفیت و ارتباط با مشتریان تعریف شده‌اند."}
+            {t.pages.careers.evergreenRolesSubtitle}
           </p>
         </div>
 

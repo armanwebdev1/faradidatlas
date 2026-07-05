@@ -1,4 +1,5 @@
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import Link from "next/link";
 
 interface JoinTeamProps {
@@ -6,6 +7,7 @@ interface JoinTeamProps {
 }
 
 export function JoinTeam({ lang }: JoinTeamProps) {
+  const t = translations[lang];
   return (
     <section className="relative py-16 md:py-24 px-4 sm:px-6 bg-background overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-border" />
@@ -13,30 +15,26 @@ export function JoinTeam({ lang }: JoinTeamProps) {
       <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight tracking-tight">
-            {lang === "en"
-              ? "Work with Faradid Atlas"
-              : "مسیر همکاری با فرادید اطلس را آغاز کنید"}
+            {t.pages.about.workWithUs}
           </h2>
 
           <div
-            dir={lang === "fa" ? "rtl" : "ltr"}
-            className={lang === "fa" ? "text-right" : "text-left"}
+            dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}
+            className={lang === "fa" || lang === "ar" ? "text-right" : "text-left"}
             style={{
-              direction: lang === "fa" ? "rtl" : "ltr",
-              textAlign: lang === "fa" ? "right" : "left",
+              direction: lang === "fa" || lang === "ar" ? "rtl" : "ltr",
+              textAlign: lang === "fa" || lang === "ar" ? "right" : "left",
             }}
           >
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-              {lang === "en"
-                ? "Whether you are a buyer, supplier, or future teammate, we value practical thinking, professional ethics, and long-term trust."
-                : "چه خریدار باشید، چه تأمین‌کننده یا همکار آینده، برای ما نگاه عملی، اخلاق حرفه‌ای و اعتماد بلندمدت پایه هر همکاری است."}
+              {t.pages.about.workWithUsDescription}
             </p>
 
             <Link
               href={`/${lang}/contact`}
               className="inline-flex items-center text-foreground hover:text-accent font-medium transition-colors"
             >
-              {lang === "en" ? "Start a Conversation" : "شروع گفتگو"}
+              {t.pages.about.startConversation}
               <span className="ml-1">&gt;</span>
             </Link>
           </div>

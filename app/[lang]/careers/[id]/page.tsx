@@ -5,6 +5,7 @@ import { jobs } from "@/components/careers/job-data";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import Link from "next/link";
 
 interface JobDetailPageProps {
@@ -15,7 +16,7 @@ interface JobDetailPageProps {
 }
 
 export async function generateStaticParams() {
-  const langs: Language[] = ["en", "fa"];
+  const langs: Language[] = ["en", "fa", "ar"];
   const allParams = [];
 
   for (const lang of langs) {
@@ -37,10 +38,13 @@ export async function generateMetadata({ params }: JobDetailPageProps) {
       path: "careers",
       titleEn: "Career Opportunity Not Found | Faradid Atlas",
       titleFa: "فرصت همکاری پیدا نشد | فرادید اطلس",
+      titleAr: "لم يتم العثور على فرصة وظيفية | فراديد أطلس",
       descriptionEn:
         "Explore career paths at Faradid Atlas across supply chain, quality, sales, distribution, and customer relations.",
       descriptionFa:
         "با مسیرهای همکاری در فرادید اطلس آشنا شوید؛ از زنجیره تأمین و کیفیت تا فروش، توزیع و ارتباط با مشتریان.",
+      descriptionAr:
+        "استكشف مسارات الوظائف في فراديد أطلس عبر سلسلة التزوين والجودة والمبيعات والتوزيع وعلاقات العملاء.",
     });
   }
 
@@ -49,13 +53,19 @@ export async function generateMetadata({ params }: JobDetailPageProps) {
     path: `careers/${job.id}`,
     titleEn: `${job.titleEn} Careers | Faradid Atlas`,
     titleFa: `${job.titleFa} | فرصت همکاری در فرادید اطلس`,
-    descriptionEn: job.descriptionEn,
-    descriptionFa: job.descriptionFa,
+    titleAr: `فرصة وظيفية | فراديد أطلس`,
+    descriptionEn:
+      "Explore career paths at Faradid Atlas across supply chain, quality, sales, distribution, and customer relations.",
+    descriptionFa:
+      "با مسیرهای همکاری در فرادید اطلس آشنا شوید؛ از زنجیره تأمین و کیفیت تا فروش، توزیع و ارتباط با مشتریان.",
+    descriptionAr:
+      "استكشف مسارات الوظائف في فراديد أطلس عبر سلسلة التزوين والجودة والمبيعات والتوزيع وعلاقات العملاء.",
   });
 }
 
 export default async function JobDetailPage({ params }: JobDetailPageProps) {
   const { lang, id } = await params;
+  const t = translations[lang];
   const job = jobs.find((j) => j.id === Number.parseInt(id));
 
   if (!job) {
@@ -63,7 +73,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
       <div>
         <Header lang={lang} />
         <div className="text-center py-16">
-          <p>{lang === "en" ? "Job not found" : "شغل پیدا نشد"}</p>
+          <p>{t.pages.careers.jobNotFound}</p>
         </div>
         <Footer lang={lang} />
       </div>
@@ -75,7 +85,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
   const description = lang === "en" ? job.descriptionEn : job.descriptionFa;
 
   return (
-    <div lang={lang} dir={lang === "fa" ? "rtl" : "ltr"}>
+    <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
         {/* Breadcrumb */}
@@ -88,7 +98,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
               href={`/${lang}`}
               className="line-accent transition-colors hover:text-primary"
             >
-              {lang === "en" ? "Home" : "خانه"}
+              {t.breadcrumbs.home}
             </Link>
             <span className="text-foreground/30" aria-hidden="true">
               •
@@ -97,7 +107,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
               href={`/${lang}/careers`}
               className="line-accent transition-colors hover:text-primary"
             >
-              {lang === "en" ? "Careers" : "فرصت‌های شغلی"}
+              {t.breadcrumbs.careers}
             </Link>
             <span className="text-foreground/30" aria-hidden="true">
               •

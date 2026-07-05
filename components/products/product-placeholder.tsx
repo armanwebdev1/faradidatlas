@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import { categoryLabels, type Product, type ProductCategory } from "./product-data";
 
 interface ProductPlaceholderProps {
@@ -57,7 +58,8 @@ export function ProductPlaceholder({
   className = "",
   variant = "card",
 }: ProductPlaceholderProps) {
-  const isRTL = lang === "fa";
+  const t = translations[lang];
+  const isRTL = lang === "fa" || lang === "ar";
   const name = lang === "en" ? product.nameEn : product.nameFa;
   const alias = lang === "en" ? product.aliasEn : product.aliasFa;
   const category =
@@ -109,7 +111,7 @@ export function ProductPlaceholder({
           aria-hidden="true"
         />
         <p className="mb-2 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-foreground/50">
-          {lang === "en" ? "Product profile" : "معرفی محصول"}
+          {t.pages.products.productProfile}
         </p>
         <p
           className={`${titleClass} font-semibold leading-tight text-primary`}

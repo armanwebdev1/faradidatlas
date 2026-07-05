@@ -10,6 +10,7 @@ import { JoinTeam } from "@/components/about/join-team";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 
 interface AboutPageProps {
   params: Promise<{
@@ -18,7 +19,7 @@ interface AboutPageProps {
 }
 
 export async function generateStaticParams() {
-  return [{ lang: "en" }, { lang: "fa" }];
+  return [{ lang: "en" }, { lang: "fa" }, { lang: "ar" }];
 }
 
 export async function generateMetadata({ params }: AboutPageProps) {
@@ -29,20 +30,24 @@ export async function generateMetadata({ params }: AboutPageProps) {
     path: "about",
     titleEn: "About Faradid Atlas and Our Food Supply Network",
     titleFa: "درباره فرادید اطلس و شبکه تأمین مواد غذایی",
+    titleAr: "عن فراديد أطلس وشبكتنا لتزوين الغذاء",
     descriptionEn:
       "Learn how Faradid Atlas has built regional food sourcing, import, and distribution capabilities since 2009, guided by quality, continuity, and trust.",
     descriptionFa:
       "با مسیر فرادید اطلس از سال ۱۳۸۸ تا امروز آشنا شوید؛ شرکتی که تأمین، واردات و توزیع مواد غذایی اساسی را با تمرکز بر کیفیت، تداوم و اعتماد دنبال می‌کند.",
+    descriptionAr:
+      "تعرّف على كيفية بناء فراديد أطلس لقدرات区域性 لتزوين واستيراد وتوزيع الغذاء منذ عام 2009، بإشراف الجودة والاستمرارية والثقة.",
   });
 }
 
 export default async function AboutPage({ params }: AboutPageProps) {
   const { lang } = await params;
+  const t = translations[lang];
   const pageUrl = absoluteUrl(localizedPath(lang, "about"));
   const organizationId = absoluteUrl("/#organization");
 
   return (
-    <div lang={lang} dir={lang === "fa" ? "rtl" : "ltr"}>
+    <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
         <AboutHero lang={lang} />

@@ -5,10 +5,13 @@ import Image from "next/image";
 import { useRouter, useParams } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 
 type LocalizedText = {
   en: string;
   fa: string;
+  ar: string;
 };
 
 interface Product {
@@ -32,52 +35,57 @@ function productImage(filename: string): ProductImage {
 const products: Product[] = [
   {
     id: 1,
-    name: { en: "21 Rice Brand", fa: "برنج ۲۱" },
-    category: { en: "Rice Portfolio", fa: "برندهای برنج" },
+    name: { en: "21 Rice Brand", fa: "برنج ۲۱", ar: "أرز ٢١" },
+    category: { en: "Rice Portfolio", fa: "برندهای برنج", ar: "سلسلة الأرز" },
     image: productImage("twenty-one.webp"),
     description: {
       en: "One of Faradid Atlas' recognized rice brands, built around dependable quality and everyday availability.",
       fa: "یکی از برندهای شناخته‌شده برنج فرادید اطلس؛ انتخابی برای تأمین روزمره با کیفیتی قابل اتکا و عرضه‌ای منظم.",
+      ar: "واحدة من علامات الأرز المعترف بها في فراديد أطلس، مبنية على جودة موثوقة وتوفر يومي.",
     },
   },
   {
     id: 2,
-    name: { en: "Mizban Rice", fa: "برنج میزبان" },
-    category: { en: "Rice Portfolio", fa: "برندهای برنج" },
+    name: { en: "Mizban Rice", fa: "برنج میزبان", ar: "أرز ميزبان" },
+    category: { en: "Rice Portfolio", fa: "برندهای برنج", ar: "سلسلة الأرز" },
     image: productImage("mizban.webp"),
     description: {
       en: "A trusted rice line designed for households, retailers, and foodservice partners.",
       fa: "نامی آشنا در سبد برنج فرادید اطلس؛ مناسب خانواده‌ها، فروشگاه‌ها و فعالان خدمات غذایی که به کیفیت پایدار نیاز دارند.",
+      ar: "خط أرز موثوق مصمم للأسر والتج retailers وشركاء خدمات الطعام.",
     },
   },
   {
     id: 3,
-    name: { en: "Hayat Rice", fa: "برنج حیات" },
-    category: { en: "Rice Portfolio", fa: "برندهای برنج" },
+    name: { en: "Hayat Rice", fa: "برنج حیات", ar: "أرز حياة" },
+    category: { en: "Rice Portfolio", fa: "برندهای برنج", ar: "سلسلة الأرز" },
     image: productImage("hayat.webp"),
     description: {
       en: "Selected for consistent cooking quality, clear sourcing, and steady market supply.",
       fa: "برندی با تمرکز بر کیفیت پخت یکنواخت، مسیر تأمین شفاف و عرضه‌ای پایدار برای بازار.",
+      ar: "مختار لجودة الطبخ المتسقة وتوريد واضح وعرض مستقر في السوق.",
     },
   },
   {
     id: 4,
-    name: { en: "Golbanou Rice", fa: "برنج گلبانو" },
-    category: { en: "Rice Portfolio", fa: "برندهای برنج" },
+    name: { en: "Golbanou Rice", fa: "برنج گلبانو", ar: "أرز گلبنو" },
+    category: { en: "Rice Portfolio", fa: "برندهای برنج", ar: "سلسلة الأرز" },
     image: productImage("golbanoo.webp"),
     description: {
       en: "A familiar rice brand serving demand across Iran and the wider Middle East region.",
       fa: "برندی آشنا در بازار برنج، برای پاسخ‌گویی به نیاز خریداران در ایران و بازارهای منطقه‌ای.",
+      ar: "علامة أرز معروفة تلبي الطلب في إيران والشرق الأوسط الأوسع.",
     },
   },
   {
     id: 5,
-    name: { en: "Essential Food Staples", fa: "مواد غذایی اساسی" },
-    category: { en: "Core Products", fa: "محصولات اصلی" },
+    name: { en: "Essential Food Staples", fa: "مواد غذایی اساسی", ar: "الأساسيات الغذائية" },
+    category: { en: "Core Products", fa: "محصولات اصلی", ar: "المنتجات الأساسية" },
     image: productImage("red-lentil.webp"),
     description: {
       en: "Legumes, spices, nuts, seeds, sugar, and other essentials selected for dependable B2B supply.",
       fa: "حبوبات، ادویه‌ها، مغزها، دانه‌ها، شکر و سایر اقلام ضروری؛ انتخاب‌شده برای تأمین قابل اتکا در همکاری‌های عمده و سازمانی.",
+      ar: "بقوليات وتوابل ومكسرات وبذور وسكر وأساسيات أخرى مختارة لتوريد B2B موثوق.",
     },
   },
 ];
@@ -85,9 +93,10 @@ const products: Product[] = [
 export function SignatureProducts() {
   const router = useRouter();
   const params = useParams();
-  const lang = (params.lang as "en" | "fa") ?? "en";
-  const isRTL = lang === "fa";
-  const t = (value: LocalizedText) => value[lang];
+  const lang = (params.lang as Language) ?? "en";
+  const isRTL = lang === "fa" || lang === "ar";
+  const t = translations[lang];
+  const localize = (value: LocalizedText) => value[lang];
   const textShiftClass = isRTL
     ? "-translate-x-4 sm:-translate-x-6 md:-translate-x-8 -translate-y-4 sm:-translate-y-6 md:-translate-y-8"
     : "translate-x-4 sm:translate-x-6 md:translate-x-8 -translate-y-4 sm:-translate-y-6 md:-translate-y-8";
@@ -168,24 +177,20 @@ export function SignatureProducts() {
       <div className="relative z-10 container-wide">
         <div className="text-center mb-10 sm:mb-12 md:mb-14 animate-fade-in">
           <p className="eyebrow text-brand-navy mb-4 sm:mb-5 md:mb-6">
-            {lang === "en" ? "Recognized Portfolio" : "سبد محصولات منتخب"}
+            {t.pages.home.recognizedPortfolio}
           </p>
           <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 md:mb-8">
-            {lang === "en"
-              ? "Brands and Core Products"
-              : "برندها و محصولات اصلی"}
+            {t.pages.home.brandsAndCoreProducts}
           </h2>
           <p className="text-responsive-body text-foreground/70 max-w-2xl mx-auto mb-8">
-            {lang === "en"
-              ? "From rice brands to essential staples, our portfolio is shaped around reliable supply and consistent quality."
-              : "از برندهای برنج تا اقلام غذایی اساسی، سبد محصولات ما با تمرکز بر تأمین پایدار، کیفیت قابل اعتماد و نیاز واقعی بازار شکل گرفته است."}
+            {t.pages.home.portfolioDescription}
           </p>
 
           <button
             onClick={() => router.push(`/${lang}/products`)}
             className="btn btn-outline btn-md"
           >
-            {lang === "en" ? "Explore All Products" : "مشاهده همه محصولات"}
+            {t.pages.home.exploreAllProducts}
           </button>
         </div>
 
@@ -201,16 +206,12 @@ export function SignatureProducts() {
                 <button
                   onClick={handleProductClick}
                   className="relative h-full w-full bg-muted overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-                  aria-label={
-                    lang === "en"
-                      ? `View ${t(product.name)} products`
-                      : `مشاهده محصولات ${t(product.name)}`
-                  }
+                  aria-label={`${t.pages.home.viewProductAria} ${localize(product.name)}`}
                 >
                   {hasEntered && (
                     <Image
                       src={product.image.src}
-                      alt={t(product.name)}
+                      alt={localize(product.name)}
                       fill
                       loading="lazy"
                       sizes="(min-width: 1024px) 48vw, 100vw"
@@ -236,13 +237,13 @@ export function SignatureProducts() {
                     }`}
                   >
                     <span className="eyebrow text-accent">
-                      {t(product.category)}
+                      {localize(product.category)}
                     </span>
                     <h3 className="text-responsive-subheading text-white my-3 sm:my-4">
-                      {t(product.name)}
+                      {localize(product.name)}
                     </h3>
                     <p className="text-primary-foreground/80 text-sm sm:text-base md:text-base leading-relaxed max-w-2xl">
-                      {t(product.description)}
+                      {localize(product.description)}
                     </p>
                   </div>
                 </div>
@@ -254,7 +255,7 @@ export function SignatureProducts() {
                 size="icon"
                 onClick={goToPrevious}
                 className="pointer-events-auto h-12 w-12 md:h-14 md:w-14 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 border border-white/20 flex items-center justify-center"
-                aria-label={lang === "en" ? "Previous product" : "محصول قبلی"}
+                aria-label={t.pages.home.prevProduct}
               >
                 {isRTL ? (
                   <ChevronRight className="h-6 w-6 md:h-7 md:w-7" />
@@ -267,7 +268,7 @@ export function SignatureProducts() {
                 size="icon"
                 onClick={goToNext}
                 className="pointer-events-auto h-12 w-12 md:h-14 md:w-14 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 border border-white/20 flex items-center justify-center"
-                aria-label={lang === "en" ? "Next product" : "محصول بعدی"}
+                aria-label={t.pages.home.nextProduct}
               >
                 {isRTL ? (
                   <ChevronLeft className="h-6 w-6 md:h-7 md:w-7" />
@@ -284,7 +285,7 @@ export function SignatureProducts() {
               size="icon"
               onClick={goToPrevious}
               className="h-10 w-10 rounded-full border border-border/70 bg-background/90 text-foreground shadow-sm backdrop-blur-md transition-all duration-300 hover:border-brand-navy/25 hover:bg-brand-navy/5 hover:text-brand-navy"
-              aria-label={lang === "en" ? "Previous product" : "محصول قبلی"}
+              aria-label={t.pages.home.prevProduct}
             >
               {isRTL ? (
                 <ChevronRight className="h-5 w-5" />
@@ -300,7 +301,7 @@ export function SignatureProducts() {
               size="icon"
               onClick={goToNext}
               className="h-10 w-10 rounded-full border border-border/70 bg-background/90 text-foreground shadow-sm backdrop-blur-md transition-all duration-300 hover:border-brand-navy/25 hover:bg-brand-navy/5 hover:text-brand-navy"
-              aria-label={lang === "en" ? "Next product" : "محصول بعدی"}
+              aria-label={t.pages.home.nextProduct}
             >
               {isRTL ? (
                 <ChevronLeft className="h-5 w-5" />
@@ -320,11 +321,7 @@ export function SignatureProducts() {
                     ? "w-8 sm:w-10 md:w-12 h-2 bg-foreground"
                     : "w-2 h-2 bg-foreground/25 hover:bg-foreground/40"
                 }`}
-                aria-label={
-                  lang === "en"
-                    ? `Go to product ${index + 1}`
-                    : `رفتن به محصول ${index + 1}`
-                }
+                aria-label={`${t.pages.home.goToProduct} ${index + 1}`}
               />
             ))}
           </div>
@@ -335,13 +332,7 @@ export function SignatureProducts() {
               size="sm"
               onClick={() => setIsAutoplay(!isAutoplay)}
             >
-              {isAutoplay
-                ? lang === "en"
-                  ? "Pause"
-                  : "توقف"
-                : lang === "en"
-                  ? "Play"
-                  : "پخش"}
+              {isAutoplay ? t.pages.home.pause : t.pages.home.play}
             </Button>
             <span className="hidden text-xs text-foreground/60 sm:inline sm:text-sm">
               {currentIndex + 1} / {products.length}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import NextImage from "next/image";
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 
 interface CTASectionProps {
   lang: Language;
@@ -68,7 +69,7 @@ const brandLogos = [
 const brandLogoLoop = [...brandLogos, ...brandLogos];
 
 export function CTASection({ lang }: CTASectionProps) {
-  const isRTL = lang === "fa";
+  const isRTL = lang === "fa" || lang === "ar";
 
   return (
     <section className="section relative overflow-hidden bg-background-alt">

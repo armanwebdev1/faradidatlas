@@ -1,4 +1,5 @@
 import type { Language } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
 import { publicContactEmail, publicPhoneNumbers } from "@/lib/contact-info";
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 
@@ -47,12 +48,13 @@ const offices = {
 
 export function OfficeInfo({ lang }: OfficeInfoProps) {
   const officeList = lang === "en" ? offices.en : offices.fa;
+  const t = translations[lang];
 
   return (
     <div className="space-y-6">
       <div className="p-6 sm:p-8 bg-background rounded-lg border border-border shadow-sm">
         <h3 className="text-xl sm:text-2xl font-bold text-primary mb-4">
-          {lang === "en" ? "Direct Contact" : "ارتباط مستقیم"}
+          {t.pages.contact.directContact}
         </h3>
         <div className="space-y-3 text-sm text-foreground/75">
           <a
@@ -100,9 +102,7 @@ export function OfficeInfo({ lang }: OfficeInfoProps) {
 
       <div className="p-5 sm:p-6 bg-secondary/40 rounded-lg border border-border">
         <p className="text-sm text-foreground/70 leading-relaxed">
-          {lang === "en"
-            ? "Shahrekord is treated as operational and warehouse support in Iran, not as a listed company office."
-            : "شهرکرد در ساختار فعالیت شرکت، به‌عنوان پشتیبانی عملیاتی و انباری در ایران در نظر گرفته می‌شود و جزو دفاتر معرفی‌شده شرکت نیست."}
+          {t.pages.contact.shahrekordNote}
         </p>
       </div>
     </div>
