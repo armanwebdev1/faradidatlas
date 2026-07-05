@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: ContactPageProps) {
     lang,
     path: "contact",
     titleEn: "Contact Faradid Atlas — B2B Food Supply Inquiries | Iran, UAE, Oman",
-    titleFa: "تماس با فرادید اطلس — استفسارات تأمین مواد غذایی B2B | ایران، امارات، عمان",
+    titleFa: "با فرادید اطلس در تماس باشید | تأمین و توزیع مواد غذایی",
     titleAr: "اتصل بـ فراديد أطلس — استفسارات تزوين الغذاء B2B | إيران، الإمارات، عمان",
     descriptionEn:
       "Contact Faradid Atlas for wholesale food sourcing, import, and distribution inquiries. Offices in Tehran, Isfahan, Dubai, and Oman.",

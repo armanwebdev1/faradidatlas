@@ -1,5 +1,3 @@
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
 import { ProductCard } from "@/components/products/product-card";
 import {
   categoryLabels,

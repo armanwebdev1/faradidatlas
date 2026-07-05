@@ -149,14 +149,16 @@ export default async function ProductDetailPage({
     );
   }
 
-  const name = lang === "en" ? product.nameEn : product.nameFa;
-  const alias = lang === "en" ? product.aliasEn : product.aliasFa;
+  const name = lang === "en" ? product.nameEn : lang === "fa" ? product.nameFa : product.nameAr;
+  const alias = lang === "en" ? product.aliasEn : lang === "fa" ? product.aliasFa : product.aliasAr;
   const description =
-    lang === "en" ? product.descriptionEn : product.descriptionFa;
+    lang === "en" ? product.descriptionEn : lang === "fa" ? product.descriptionFa : product.descriptionAr;
   const category =
     lang === "en"
       ? categoryLabels[product.category].en
-      : categoryLabels[product.category].fa;
+      : lang === "fa"
+        ? categoryLabels[product.category].fa
+        : categoryLabels[product.category].ar;
   const gallery =
     product.images && product.images.length > 0
       ? product.images

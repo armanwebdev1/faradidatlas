@@ -142,6 +142,18 @@ export default async function HomePage({ params }: HomePageProps) {
             },
             {
               "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: t.breadcrumbs.home,
+                  item: absoluteUrl(localizedPath(lang)),
+                },
+              ],
+            },
+            {
+              "@context": "https://schema.org",
               "@type": "WebSite",
               "@id": websiteId,
               name: siteConfig.name,

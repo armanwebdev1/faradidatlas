@@ -58,12 +58,20 @@ export default async function FAQPage({ params }: FAQPageProps) {
               <p className="text-muted-foreground mb-8 text-lg">
                 {t.faqPage.needProductAnswerDesc}
               </p>
-              <a
-                href={`/${lang}/contact`}
-                className="inline-block px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 hover:shadow-lg transition-all duration-300 group"
-              >
-                {t.faqPage.contactUs}
-              </a>
+              <div className="flex justify-center gap-4">
+                <a
+                  href={`/${lang}/products`}
+                  className="inline-block px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 hover:shadow-lg transition-all duration-300 group"
+                >
+                  {lang === "en" ? "Browse Products" : lang === "fa" ? "مشاهده محصولات" : "تصفح المنتجات"}
+                </a>
+                <a
+                  href={`/${lang}/contact`}
+                  className="inline-block px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 hover:shadow-lg transition-all duration-300 group"
+                >
+                  {t.faqPage.contactUs}
+                </a>
+              </div>
             </div>
           </div>
         </section>

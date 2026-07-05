@@ -63,7 +63,9 @@ export default async function CareersPage({ params }: CareersPageProps) {
               description:
                 lang === "en"
                   ? "Join Faradid Atlas in food sourcing, procurement, quality control, and distribution roles across Iran, UAE, and Oman."
-                  : "در نقش‌های تأمین مواد غذایی، خرید، کنترل کیفیت و توزیع در فرادید اطلس مشغول شوید. دفاتر در ایران، امارات و عمان.",
+                  : lang === "fa"
+                    ? "در نقش‌های تأمین مواد غذایی، خرید، کنترل کیفیت و توزیع در فرادید اطلس مشغول شوید. دفاتر در ایران، امارات و عمان."
+                    : "انضم إلى فراديد أطلس في وظائف تزوين وتوريد ورقابة الجودة وتوزيع الغذاء عبر إيران والإمارات وعمان.",
               inLanguage: lang,
               mainEntity: {
                 "@type": "ItemList",
@@ -71,7 +73,7 @@ export default async function CareersPage({ params }: CareersPageProps) {
                   "@type": "ListItem",
                   position: index + 1,
                   url: absoluteUrl(localizedPath(lang, `careers/${job.id}`)),
-                  name: lang === "en" ? job.titleEn : job.titleFa,
+                  name: lang === "en" ? job.titleEn : lang === "fa" ? job.titleFa : job.titleAr,
                 })),
               },
             },

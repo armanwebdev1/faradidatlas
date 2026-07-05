@@ -277,7 +277,7 @@ export function ApplicationForm({
       </button>
 
       {submitted && (
-        <div className="mt-5 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-xs sm:text-sm text-green-700 animate-fade-in-up">
+        <div className="mt-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs sm:text-sm text-emerald-700 animate-fade-in-up">
           {backendEnabled
             ? copy.success
             : t.pages.careers.emailPaused}

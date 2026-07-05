@@ -22,6 +22,10 @@ type ProductSearchParams = {
   type?: string | string[];
 };
 
+export async function generateStaticParams() {
+  return [{ lang: "en" }, { lang: "fa" }, { lang: "ar" }];
+}
+
 interface ProductsPageProps {
   params: Promise<{
     lang: Language;
@@ -89,7 +93,9 @@ export default async function ProductsPage({
   const pageDescription =
     lang === "en"
       ? "Browse Faradid Atlas food products, including branded rice, legumes, seeds, nuts, spices, and sugar for wholesale and B2B supply needs."
-      : "سبد محصولات فرادید اطلس را ببینید؛ از برنج‌های برنددار و حبوبات تا دانه‌ها، مغزها، ادویه و شکر برای نیازهای عمده و سازمانی.";
+      : lang === "fa"
+        ? "سبد محصولات فرادید اطلس را ببینید؛ از برنج‌های برنددار و حبوبات تا دانه‌ها، مغزها، ادویه و شکر برای نیازهای عمده و سازمانی."
+        : "تصفّح منتجات فراديد أطلس الغذائية، بما في ذلك الأرز والبقوليات والبذور والمكسرات والتوابل والسكر لتوريد بالجملة واحتياجات B2B.";
 
   return (
     <div lang={lang} dir={isRTL ? "rtl" : "ltr"}>
@@ -101,7 +107,9 @@ export default async function ProductsPage({
             alt={
               lang === "en"
                 ? "Food product portfolio"
-                : "سبد محصولات غذایی فرادید اطلس"
+                : lang === "fa"
+                  ? "سبد محصولات غذایی فرادید اطلس"
+                  : "مجموعة منتجات فراديد أطلس الغذائية"
             }
             fill
             sizes="100vw"
@@ -158,7 +166,9 @@ export default async function ProductsPage({
                 name:
                   lang === "en"
                     ? "Faradid Atlas Products"
-                    : "محصولات فرادید اطلس",
+                    : lang === "fa"
+                      ? "محصولات فرادید اطلس"
+                      : "منتجات فراديد أطلس",
                 description: pageDescription,
                 inLanguage: lang,
                 mainEntity: {
@@ -172,7 +182,9 @@ export default async function ProductsPage({
                 name:
                   lang === "en"
                     ? "Faradid Atlas Products"
-                    : "محصولات فرادید اطلس",
+                    : lang === "fa"
+                      ? "محصولات فرادید اطلس"
+                      : "منتجات فراديد أطلس",
                 description: pageDescription,
                 inLanguage: lang,
                 itemListElement: products.map((product, index) => ({
@@ -181,7 +193,7 @@ export default async function ProductsPage({
                   url: absoluteUrl(
                     localizedPath(lang, `products/${product.slug}`),
                   ),
-                  name: lang === "en" ? product.nameEn : product.nameFa,
+                  name: lang === "en" ? product.nameEn : lang === "fa" ? product.nameFa : product.nameAr,
                 })),
               },
               {

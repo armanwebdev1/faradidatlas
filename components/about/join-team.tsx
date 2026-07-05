@@ -35,7 +35,13 @@ export function JoinTeam({ lang }: JoinTeamProps) {
               className="inline-flex items-center text-foreground hover:text-accent font-medium transition-colors"
             >
               {t.pages.about.startConversation}
-              <span className="ml-1">&gt;</span>
+              <span className="ml-1" aria-hidden="true">
+                <svg className="h-4 w-4 inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+                <span className="sr-only">→</span>
+              </span>
             </Link>
           </div>
         </div>

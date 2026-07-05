@@ -80,9 +80,9 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
     );
   }
 
-  const title = lang === "en" ? job.titleEn : job.titleFa;
+  const title = lang === "en" ? job.titleEn : lang === "fa" ? job.titleFa : job.titleAr;
   const jobUrl = absoluteUrl(localizedPath(lang, `careers/${job.id}`));
-  const description = lang === "en" ? job.descriptionEn : job.descriptionFa;
+  const description = lang === "en" ? job.descriptionEn : lang === "fa" ? job.descriptionFa : job.descriptionAr;
 
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>

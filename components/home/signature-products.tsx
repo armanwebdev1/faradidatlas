@@ -347,6 +347,7 @@ export function SignatureProducts() {
             <Button
               variant="outline"
               size="sm"
+              aria-pressed={isAutoplay}
               onClick={() => setIsAutoplay(!isAutoplay)}
             >
               {isAutoplay ? t.pages.home.pause : t.pages.home.play}

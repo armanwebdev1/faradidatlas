@@ -6,6 +6,16 @@ import { jobs } from "@/components/careers/job-data"
 import { buildPageMetadata } from "@/lib/metadata"
 import type { Language } from "@/lib/i18n"
 import { translations } from "@/lib/i18n"
+import { absoluteUrl, localizedPath } from "@/lib/site"
+
+export async function generateStaticParams() {
+  return jobs.flatMap((job) =>
+    ["en", "fa", "ar"].map((lang) => ({
+      lang,
+      id: String(job.id),
+    }))
+  )
+}
 
 interface ApplyPageProps {
   params: Promise<{
@@ -31,8 +41,8 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
     )
   }
 
-  const jobTitle = lang === "en" ? job.titleEn : job.titleFa
-  const department = lang === "en" ? job.departmentEn : job.departmentFa
+  const jobTitle = lang === "en" ? job.titleEn : lang === "fa" ? job.titleFa : job.titleAr
+  const department = lang === "en" ? job.departmentEn : lang === "fa" ? job.departmentFa : job.departmentAr
   const location = lang === "en" ? job.locationEn : lang === "fa" ? job.locationFa : job.locationEn
   const isRTL = lang === "fa" || lang === "ar"
   const typeLabel =
@@ -179,6 +189,18 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
 
                 <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up">
                   <Link
+                    href={`/${lang}/careers`}
+                    className="inline-flex w-full items-center justify-center rounded-full border border-foreground/10 bg-white px-7 py-3 text-center text-sm sm:w-auto sm:text-base font-semibold text-foreground transition-all duration-300 hover:bg-foreground/5 hover:-translate-y-0.5 hover:shadow-lg"
+                    style={{
+                      fontFamily:
+                        lang === "en"
+                          ? "var(--font-body)"
+                          : "Shabnam, var(--font-body)",
+                    }}
+                  >
+                    {lang === "en" ? "View All Careers" : lang === "fa" ? "مشاهده همه موقعیت‌ها" : "عرض الوظائف"}
+                  </Link>
+                  <Link
                     href={`/${lang}/careers/${job.id}`}
                     className="inline-flex w-full items-center justify-center rounded-full bg-primary px-7 py-3 text-center text-sm sm:w-auto sm:text-base font-semibold text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg"
                     style={{
@@ -270,6 +292,36 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
             </aside>
           </div>
         </section>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: t.breadcrumbs.home,
+                  item: absoluteUrl(localizedPath(lang)),
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: t.breadcrumbs.careers ?? (lang === "en" ? "Careers" : lang === "fa" ? "فرصت‌های شغلی" : "الوظائف"),
+                  item: absoluteUrl(localizedPath(lang, "careers")),
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: jobTitle,
+                  item: absoluteUrl(localizedPath(lang, `careers/${job.id}/apply`)),
+                },
+              ],
+            }),
+          }}
+        />
       </main>
       <Footer lang={lang} />
     </div>

@@ -288,14 +288,14 @@ export function ContactForm({
       </button>
 
       {formError && (
-        <div className="mb-4 p-3 sm:p-4 bg-red-50 border border-red-200 rounded-2xl text-red-700 text-xs sm:text-sm animate-fade-in-up">
+        <div className="mb-4 p-3 sm:p-4 bg-destructive/5 border border-destructive/20 rounded-2xl text-destructive text-xs sm:text-sm animate-fade-in-up">
           {formError}
         </div>
       )}
 
       {/* Success message - responsive */}
       {submitted && (
-        <div className="p-3 sm:p-4 bg-green-50 border border-green-200 rounded-2xl text-green-700 text-xs sm:text-sm animate-fade-in-up">
+        <div className="p-3 sm:p-4 bg-emerald-50 border border-emerald-200 rounded-2xl text-emerald-700 text-xs sm:text-sm animate-fade-in-up">
           {copy.success}
         </div>
       )}

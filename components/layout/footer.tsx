@@ -26,9 +26,9 @@ export function Footer({ lang }: FooterProps) {
   const isRTL = lang === "fa" || lang === "ar";
   const dir = isRTL ? "rtl" : "ltr";
   const brandHomeLabel =
-    lang === "en" ? "Faradid Atlas home" : "خانه فرادید اطلس";
-  const brandPrimary = lang === "en" ? "Faradid" : "فرادید";
-  const brandSecondary = lang === "en" ? "Atlas" : "اطلس";
+    lang === "en" ? "Faradid Atlas home" : lang === "fa" ? "خانه فرادید اطلس" : "الرئيسية فراديد اطلس";
+  const brandPrimary = lang === "en" ? "Faradid" : lang === "fa" ? "فرادید" : "فراديد";
+  const brandSecondary = lang === "en" ? "Atlas" : lang === "fa" ? "اطلس" : "اطلس";
 
   const productCategoryLinks = productCategories
     .map((category) => ({
@@ -140,9 +140,9 @@ export function Footer({ lang }: FooterProps) {
 
             {/* Contact */}
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-widest mb-6 text-accent/90">
+              <p className="text-xs font-semibold uppercase tracking-widest mb-6 text-accent/90">
                 {t.pages.contact.subtitle}
-              </h4>
+              </p>
               <div className="space-y-4">
                 <div className="flex items-start gap-3 text-sm text-white/70">
                   <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
@@ -266,9 +266,9 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h4 className="text-xs font-semibold uppercase tracking-widest mb-4 sm:mb-6 text-accent/90">
+      <p className="text-xs font-semibold uppercase tracking-widest mb-4 sm:mb-6 text-accent/90">
         {title}
-      </h4>
+      </p>
       <ul className="space-y-4">
         {links.map((link) => (
           <li key={`${link.href}-${link.label}`}>
