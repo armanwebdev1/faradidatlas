@@ -106,7 +106,7 @@ export function ValueProps({ lang }: ValuePropsProps) {
   const marqueeGroups = [0, 1];
 
   return (
-    <section className="section bg-surface relative overflow-hidden">
+    <section className="section bg-surface relative">
       <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-brand-navy/25 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-foreground/10 to-transparent" />
 
