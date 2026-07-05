@@ -12,7 +12,7 @@ export function ProductSpecs({ lang, specs }: ProductSpecsProps) {
   return (
     <div className="mb-8">
       <h2 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">
-        {lang === "en" ? "Technical Specifications" : "مشخصات فنی"}
+        {lang === "en" ? "Technical Specifications" : "مشخصات"}
       </h2>
       <div className="rounded-2xl border border-foreground/10 bg-white/85 overflow-hidden">
         <dl className="divide-y divide-foreground/10">
