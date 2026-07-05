@@ -35,7 +35,7 @@ export function ProductsMegaMenu({
     >
       <div className="overflow-hidden rounded-2xl border border-border/70 bg-background/98 shadow-[0_24px_70px_rgba(12,18,24,0.14)] backdrop-blur-xl">
         <div
-          className={`grid h-[min(23rem,calc(100vh-7rem))] min-h-70 ${
+          className={`grid h-[min(26rem,calc(100vh-7rem))] min-h-70 ${
             isRTL ? "grid-cols-[1fr_18rem]" : "grid-cols-[17rem_1fr]"
           } ${isRTL ? "text-right" : "text-left"}`}
           style={{ direction: "ltr" }}

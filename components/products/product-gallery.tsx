@@ -3,13 +3,15 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import type { Language } from "@/lib/i18n";
 
 interface ProductGalleryProps {
   images: string[];
   alt: string;
+  lang: Language;
 }
 
-export function ProductGallery({ images, alt }: ProductGalleryProps) {
+export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
   const gallery = useMemo(
     () => (images && images.length > 0 ? images.slice(0, 4) : []),
     [images],
@@ -32,6 +34,9 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
 
   const activeImage = gallery[Math.min(activeIndex, gallery.length - 1)];
   const canNavigate = gallery.length > 1;
+  const isRTL = lang === "fa" || lang === "ar";
+  const PrevIcon = isRTL ? ChevronRight : ChevronLeft;
+  const NextIcon = isRTL ? ChevronLeft : ChevronRight;
 
   const goToPrev = () => {
     if (!canNavigate) return;
@@ -65,13 +70,13 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
           onClick={goToPrev}
           aria-label="Previous image"
           aria-disabled={!canNavigate}
-          className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
+          className={`absolute ${isRTL ? "right-0" : "left-0"} top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
             canNavigate
               ? "hover:-translate-y-[52%]"
               : "cursor-not-allowed opacity-40 pointer-events-none"
           }`}
         >
-          <ChevronLeft className="h-5 w-5 mx-auto" />
+          <PrevIcon className="h-5 w-5 mx-auto" />
         </button>
 
         <div
@@ -117,13 +122,13 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
           onClick={goToNext}
           aria-label="Next image"
           aria-disabled={!canNavigate}
-          className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
+          className={`absolute ${isRTL ? "left-0" : "right-0"} top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
             canNavigate
               ? "hover:-translate-y-[52%]"
               : "cursor-not-allowed opacity-40 pointer-events-none"
           }`}
         >
-          <ChevronRight className="h-5 w-5 mx-auto" />
+          <NextIcon className="h-5 w-5 mx-auto" />
         </button>
       </div>
 

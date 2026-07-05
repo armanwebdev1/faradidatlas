@@ -13,9 +13,9 @@ export function BlogHero({ lang }: BlogHeroProps) {
     "opacity-0 translate-y-6 animate-fade-in-up motion-reduce:translate-y-0 motion-reduce:opacity-100";
 
   return (
-    <section className="relative min-h-[70vh] w-full overflow-hidden bg-neutral-950">
+    <section className="relative min-h-screen w-full overflow-hidden bg-neutral-950">
       <Image
-        src="/optimized/products-hero.webp"
+        src="/blog-hero.png"
         alt=""
         fill
         sizes="100vw"
@@ -23,15 +23,16 @@ export function BlogHero({ lang }: BlogHeroProps) {
         priority
         className="object-cover"
       />
+      <div className="absolute inset-0 bg-black/40" />
       <div
         className={`absolute inset-0 ${
           isRTL
-            ? "bg-gradient-to-l from-black/80 via-black/60 to-black/10"
-            : "bg-gradient-to-r from-black/80 via-black/60 to-black/10"
+            ? "bg-gradient-to-l from-black/70 via-black/40 to-transparent"
+            : "bg-gradient-to-r from-black/70 via-black/40 to-transparent"
         }`}
       />
 
-      <div className="relative z-10 flex min-h-[70vh] items-center px-4 sm:px-6">
+      <div className="relative z-10 flex min-h-screen items-center px-4 sm:px-6">
         <div className="container-full">
           <div
             className={`max-w-2xl ${isRTL ? "text-right" : "text-left"}`}

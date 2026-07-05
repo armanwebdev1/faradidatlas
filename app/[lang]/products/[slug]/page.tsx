@@ -216,7 +216,7 @@ export default async function ProductDetailPage({
         <section className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-background via-background to-secondary/30">
           <div className="container-wide grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-10 lg:gap-16 items-start">
             {gallery.length > 0 ? (
-              <ProductGallery images={gallery} alt={name} />
+              <ProductGallery images={gallery} alt={name} lang={lang} />
             ) : (
               <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-[5/4] max-h-[520px] lg:max-h-[560px] bg-white/80 rounded-3xl overflow-hidden border border-foreground/10 shadow-[0_30px_80px_-60px_rgba(15,15,15,0.45)]">
                 <ProductPlaceholder
