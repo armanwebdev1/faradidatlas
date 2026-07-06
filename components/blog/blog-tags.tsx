@@ -17,7 +17,7 @@ export function BlogTags({ lang, activeTag, onTagChange }: BlogTagsProps) {
   return (
     <div
       dir={isRTL ? "rtl" : "ltr"}
-      className={`flex flex-wrap gap-2 ${isRTL ? "justify-end text-right" : "justify-start text-left"}`}
+      className={`flex flex-wrap gap-2 ${isRTL ? "flex-row-reverse justify-end text-right" : "justify-start text-left"}`}
     >
       <button
         onClick={() => onTagChange("")}
