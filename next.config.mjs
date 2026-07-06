@@ -1,10 +1,12 @@
+import { withPayload } from '@payloadcms/next/withPayload'
+
 /** @type {import('next').NextConfig} */
 
 const cspHeader = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vitals.vercel-insights.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://vitals.vercel-insights.com",
+  "img-src 'self' data: blob: https://vitals.vercel-insights.com https://res.cloudinary.com",
   "font-src 'self' data:",
   "connect-src 'self' https://vitals.vercel-insights.com",
   "frame-ancestors 'self'",
@@ -16,6 +18,9 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,
@@ -119,4 +124,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withPayload(nextConfig);

@@ -90,9 +90,6 @@ const slides: HeroSlide[] = [
 
 export function Hero({ lang }: HeroProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [loadedSlideIndexes, setLoadedSlideIndexes] = useState(() =>
-    new Set([0]),
-  );
   const isRTL = lang === "fa" || lang === "ar";
   const t = translations[lang];
   const activeSlide = slides[activeIndex];
@@ -103,16 +100,6 @@ export function Hero({ lang }: HeroProps) {
   const textShiftClass = isRTL
     ? "ml-auto w-full text-right -translate-x-4 sm:-translate-x-6 md:-translate-x-8"
     : "text-left translate-x-4 sm:translate-x-6 md:translate-x-8";
-
-  useEffect(() => {
-    setLoadedSlideIndexes((current) => {
-      if (current.has(activeIndex)) return current;
-
-      const next = new Set(current);
-      next.add(activeIndex);
-      return next;
-    });
-  }, [activeIndex]);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -140,7 +127,7 @@ export function Hero({ lang }: HeroProps) {
       <div className="absolute inset-0">
         {slides.map((slide, index) => {
           const isActive = index === activeIndex;
-          const isLoaded = loadedSlideIndexes.has(index) || isActive;
+          const isLoaded = index <= activeIndex || isActive;
 
           if (!isLoaded) return null;
 

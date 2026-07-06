@@ -1,5 +1,5 @@
 import type React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { Language } from "@/lib/i18n";
 import type { ContactFormData, ContactField, ContactErrors } from "./contact-form-types";
 import { getInitialFormData, toLatinDigits } from "./contact-form-types";
@@ -22,15 +22,15 @@ export function useContactForm({
   const [formError, setFormError] = useState("");
   const [fieldErrors, setFieldErrors] = useState<ContactErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [syncedInterest, setSyncedInterest] = useState(initialProductInterest);
 
-  useEffect(() => {
-    if (!initialProductInterest) return;
-
+  if (initialProductInterest && initialProductInterest !== syncedInterest) {
+    setSyncedInterest(initialProductInterest);
     setFormData((prev) => ({
       ...prev,
       productInterest: initialProductInterest,
     }));
-  }, [initialProductInterest]);
+  }
 
   const validateField = (name: ContactField, value: string) => {
     const trimmed = value.trim();

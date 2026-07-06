@@ -42,7 +42,7 @@ export function SearchResultsPopover({
             {t.header.searchResults}
           </p>
           <p className="mt-0.5 truncate text-xs text-foreground/65">
-            {results.length} {t.header.searchMatchCount} "{query}"
+            {results.length} {t.header.searchMatchCount} &ldquo;{query}&rdquo;
           </p>
         </div>
       </div>
