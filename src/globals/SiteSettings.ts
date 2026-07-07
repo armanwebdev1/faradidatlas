@@ -2,6 +2,9 @@ import type { GlobalConfig } from 'payload'
 
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
+  access: {
+    read: () => true,
+  },
   admin: {
     group: 'Settings',
   },
@@ -28,7 +31,8 @@ export const SiteSettings: GlobalConfig = {
     },
     {
       name: 'logo',
-      type: 'text',
+      type: 'upload',
+      relationTo: 'media',
     },
     {
       name: 'description',

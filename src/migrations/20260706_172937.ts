@@ -39,7 +39,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
   	"id" varchar PRIMARY KEY NOT NULL,
-  	"image" varchar
+  	"image_id" integer
   );
   
   CREATE TABLE "products" (
@@ -48,8 +48,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"category_id" integer,
   	"brand_id" integer,
   	"type" "enum_products_type",
-  	"featured_image" varchar,
-  	"seo_og_image" varchar,
+  	"featured_image_id" integer,
+  	"seo_og_image_id" integer,
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"_status" "enum_products_status" DEFAULT 'draft'
@@ -80,7 +80,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
   	"id" serial PRIMARY KEY NOT NULL,
-  	"image" varchar,
+  	"image_id" integer,
   	"_uuid" varchar
   );
   
@@ -91,8 +91,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"version_category_id" integer,
   	"version_brand_id" integer,
   	"version_type" "enum__products_v_version_type",
-  	"version_featured_image" varchar,
-  	"version_seo_og_image" varchar,
+  	"version_featured_image_id" integer,
+  	"version_seo_og_image_id" integer,
   	"version_updated_at" timestamp(3) with time zone,
   	"version_created_at" timestamp(3) with time zone,
   	"version__status" "enum__products_v_version_status" DEFAULT 'draft',
@@ -181,8 +181,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"id" serial PRIMARY KEY NOT NULL,
   	"slug" varchar,
   	"author" varchar,
-  	"featured_image" varchar,
-  	"seo_og_image" varchar,
+  	"featured_image_id" integer,
+  	"seo_og_image_id" integer,
   	"publish_date" timestamp(3) with time zone,
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
@@ -213,8 +213,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"parent_id" integer,
   	"version_slug" varchar,
   	"version_author" varchar,
-  	"version_featured_image" varchar,
-  	"version_seo_og_image" varchar,
+  	"version_featured_image_id" integer,
+  	"version_seo_og_image_id" integer,
   	"version_publish_date" timestamp(3) with time zone,
   	"version_updated_at" timestamp(3) with time zone,
   	"version_created_at" timestamp(3) with time zone,
@@ -470,7 +470,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
   	"id" varchar PRIMARY KEY NOT NULL,
-  	"image" varchar NOT NULL
+  	"image_id" integer NOT NULL
   );
   
   CREATE TABLE "homepage_hero_slides_locales" (
@@ -502,7 +502,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" integer NOT NULL,
   	"id" varchar PRIMARY KEY NOT NULL,
   	"brand_name" varchar NOT NULL,
-  	"logo" varchar
+  	"logo_id" integer
   );
   
   CREATE TABLE "homepage_brand_showcase_locales" (
@@ -563,7 +563,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" integer NOT NULL,
   	"id" varchar PRIMARY KEY NOT NULL,
   	"name" varchar NOT NULL,
-  	"image" varchar
+  	"image_id" integer
   );
   
   CREATE TABLE "company_info_team_locales" (
@@ -592,7 +592,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TABLE "company_info" (
   	"id" serial PRIMARY KEY NOT NULL,
   	"ceo_name" varchar NOT NULL,
-  	"ceo_image" varchar,
+  	"ceo_image_id" integer,
   	"updated_at" timestamp(3) with time zone,
   	"created_at" timestamp(3) with time zone
   );
@@ -710,7 +710,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"site_name_fa" varchar NOT NULL,
   	"site_name_ar" varchar NOT NULL,
   	"legal_name" varchar NOT NULL,
-  	"logo" varchar,
+  	"logo_id" integer,
   	"description" varchar NOT NULL,
   	"description_fa" varchar NOT NULL,
   	"description_ar" varchar NOT NULL,
@@ -756,24 +756,34 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   );
   
   ALTER TABLE "products_specs" ADD CONSTRAINT "products_specs_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."products"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "products_gallery" ADD CONSTRAINT "products_gallery_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "products_gallery" ADD CONSTRAINT "products_gallery_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."products"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "products" ADD CONSTRAINT "products_category_id_categories_id_fk" FOREIGN KEY ("category_id") REFERENCES "public"."categories"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "products" ADD CONSTRAINT "products_brand_id_product_brands_id_fk" FOREIGN KEY ("brand_id") REFERENCES "public"."product_brands"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "products" ADD CONSTRAINT "products_featured_image_id_media_id_fk" FOREIGN KEY ("featured_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "products" ADD CONSTRAINT "products_seo_og_image_id_media_id_fk" FOREIGN KEY ("seo_og_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "products_locales" ADD CONSTRAINT "products_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."products"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_products_v_version_specs" ADD CONSTRAINT "_products_v_version_specs_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_products_v_version_gallery" ADD CONSTRAINT "_products_v_version_gallery_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "_products_v_version_gallery" ADD CONSTRAINT "_products_v_version_gallery_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_products_v" ADD CONSTRAINT "_products_v_parent_id_products_id_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."products"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "_products_v" ADD CONSTRAINT "_products_v_version_category_id_categories_id_fk" FOREIGN KEY ("version_category_id") REFERENCES "public"."categories"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "_products_v" ADD CONSTRAINT "_products_v_version_brand_id_product_brands_id_fk" FOREIGN KEY ("version_brand_id") REFERENCES "public"."product_brands"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_products_v" ADD CONSTRAINT "_products_v_version_featured_image_id_media_id_fk" FOREIGN KEY ("version_featured_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_products_v" ADD CONSTRAINT "_products_v_version_seo_og_image_id_media_id_fk" FOREIGN KEY ("version_seo_og_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "_products_v_locales" ADD CONSTRAINT "_products_v_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "categories_locales" ADD CONSTRAINT "categories_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."categories"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_categories_v" ADD CONSTRAINT "_categories_v_parent_id_categories_id_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."categories"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "_categories_v_locales" ADD CONSTRAINT "_categories_v_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_categories_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "product_brands_locales" ADD CONSTRAINT "product_brands_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."product_brands"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "blog_posts_tags" ADD CONSTRAINT "blog_posts_tags_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."blog_posts"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "blog_posts" ADD CONSTRAINT "blog_posts_featured_image_id_media_id_fk" FOREIGN KEY ("featured_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "blog_posts" ADD CONSTRAINT "blog_posts_seo_og_image_id_media_id_fk" FOREIGN KEY ("seo_og_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "blog_posts_locales" ADD CONSTRAINT "blog_posts_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."blog_posts"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_blog_posts_v_version_tags" ADD CONSTRAINT "_blog_posts_v_version_tags_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_blog_posts_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_blog_posts_v" ADD CONSTRAINT "_blog_posts_v_parent_id_blog_posts_id_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."blog_posts"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_blog_posts_v" ADD CONSTRAINT "_blog_posts_v_version_featured_image_id_media_id_fk" FOREIGN KEY ("version_featured_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_blog_posts_v" ADD CONSTRAINT "_blog_posts_v_version_seo_og_image_id_media_id_fk" FOREIGN KEY ("version_seo_og_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "_blog_posts_v_locales" ADD CONSTRAINT "_blog_posts_v_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_blog_posts_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "faqs_locales" ADD CONSTRAINT "faqs_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."faqs"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_faqs_v" ADD CONSTRAINT "_faqs_v_parent_id_faqs_id_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."faqs"("id") ON DELETE set null ON UPDATE no action;
@@ -800,10 +810,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "payload_locked_documents_rels" ADD CONSTRAINT "payload_locked_documents_rels_users_fk" FOREIGN KEY ("users_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "payload_preferences_rels" ADD CONSTRAINT "payload_preferences_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."payload_preferences"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "payload_preferences_rels" ADD CONSTRAINT "payload_preferences_rels_users_fk" FOREIGN KEY ("users_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "homepage_hero_slides" ADD CONSTRAINT "homepage_hero_slides_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "homepage_hero_slides" ADD CONSTRAINT "homepage_hero_slides_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "homepage_hero_slides_locales" ADD CONSTRAINT "homepage_hero_slides_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage_hero_slides"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "homepage_value_props" ADD CONSTRAINT "homepage_value_props_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "homepage_value_props_locales" ADD CONSTRAINT "homepage_value_props_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage_value_props"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "homepage_brand_showcase" ADD CONSTRAINT "homepage_brand_showcase_logo_id_media_id_fk" FOREIGN KEY ("logo_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "homepage_brand_showcase" ADD CONSTRAINT "homepage_brand_showcase_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "homepage_brand_showcase_locales" ADD CONSTRAINT "homepage_brand_showcase_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage_brand_showcase"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "homepage_signature_products" ADD CONSTRAINT "homepage_signature_products_product_id_products_id_fk" FOREIGN KEY ("product_id") REFERENCES "public"."products"("id") ON DELETE set null ON UPDATE no action;
@@ -812,10 +824,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "homepage_global_markets_locales" ADD CONSTRAINT "homepage_global_markets_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage_global_markets"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "homepage_locales" ADD CONSTRAINT "homepage_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "company_info_values" ADD CONSTRAINT "company_info_values_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."company_info"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "company_info_team" ADD CONSTRAINT "company_info_team_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "company_info_team" ADD CONSTRAINT "company_info_team_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."company_info"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "company_info_team_locales" ADD CONSTRAINT "company_info_team_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."company_info_team"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "company_info_offices" ADD CONSTRAINT "company_info_offices_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."company_info"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "company_info_offices_locales" ADD CONSTRAINT "company_info_offices_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."company_info_offices"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "company_info" ADD CONSTRAINT "company_info_ceo_image_id_media_id_fk" FOREIGN KEY ("ceo_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "company_info_locales" ADD CONSTRAINT "company_info_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."company_info"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "contact_info_phones" ADD CONSTRAINT "contact_info_phones_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."contact_info"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "contact_info_offices" ADD CONSTRAINT "contact_info_offices_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."contact_info"("id") ON DELETE cascade ON UPDATE no action;
@@ -828,6 +842,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "navigation_footer_menu" ADD CONSTRAINT "navigation_footer_menu_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."navigation"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "navigation_footer_menu_locales" ADD CONSTRAINT "navigation_footer_menu_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."navigation_footer_menu"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "site_settings_social_links" ADD CONSTRAINT "site_settings_social_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."site_settings"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "site_settings" ADD CONSTRAINT "site_settings_logo_id_media_id_fk" FOREIGN KEY ("logo_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "redirects_redirects" ADD CONSTRAINT "redirects_redirects_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."redirects"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "translations_locales" ADD CONSTRAINT "translations_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."translations"("id") ON DELETE cascade ON UPDATE no action;
   CREATE INDEX "products_specs_order_idx" ON "products_specs" USING btree ("_order");
@@ -835,9 +850,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "products_specs_locale_idx" ON "products_specs" USING btree ("_locale");
   CREATE INDEX "products_gallery_order_idx" ON "products_gallery" USING btree ("_order");
   CREATE INDEX "products_gallery_parent_id_idx" ON "products_gallery" USING btree ("_parent_id");
+  CREATE INDEX "products_gallery_image_idx" ON "products_gallery" USING btree ("image_id");
   CREATE UNIQUE INDEX "products_slug_idx" ON "products" USING btree ("slug");
   CREATE INDEX "products_category_idx" ON "products" USING btree ("category_id");
   CREATE INDEX "products_brand_idx" ON "products" USING btree ("brand_id");
+  CREATE INDEX "products_featured_image_idx" ON "products" USING btree ("featured_image_id");
+  CREATE INDEX "products_seo_seo_og_image_idx" ON "products" USING btree ("seo_og_image_id");
   CREATE INDEX "products_updated_at_idx" ON "products" USING btree ("updated_at");
   CREATE INDEX "products_created_at_idx" ON "products" USING btree ("created_at");
   CREATE INDEX "products__status_idx" ON "products" USING btree ("_status");
@@ -847,10 +865,13 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "_products_v_version_specs_locale_idx" ON "_products_v_version_specs" USING btree ("_locale");
   CREATE INDEX "_products_v_version_gallery_order_idx" ON "_products_v_version_gallery" USING btree ("_order");
   CREATE INDEX "_products_v_version_gallery_parent_id_idx" ON "_products_v_version_gallery" USING btree ("_parent_id");
+  CREATE INDEX "_products_v_version_gallery_image_idx" ON "_products_v_version_gallery" USING btree ("image_id");
   CREATE INDEX "_products_v_parent_idx" ON "_products_v" USING btree ("parent_id");
   CREATE INDEX "_products_v_version_version_slug_idx" ON "_products_v" USING btree ("version_slug");
   CREATE INDEX "_products_v_version_version_category_idx" ON "_products_v" USING btree ("version_category_id");
   CREATE INDEX "_products_v_version_version_brand_idx" ON "_products_v" USING btree ("version_brand_id");
+  CREATE INDEX "_products_v_version_version_featured_image_idx" ON "_products_v" USING btree ("version_featured_image_id");
+  CREATE INDEX "_products_v_version_seo_version_seo_og_image_idx" ON "_products_v" USING btree ("version_seo_og_image_id");
   CREATE INDEX "_products_v_version_version_updated_at_idx" ON "_products_v" USING btree ("version_updated_at");
   CREATE INDEX "_products_v_version_version_created_at_idx" ON "_products_v" USING btree ("version_created_at");
   CREATE INDEX "_products_v_version_version__status_idx" ON "_products_v" USING btree ("version__status");
@@ -883,6 +904,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "blog_posts_tags_order_idx" ON "blog_posts_tags" USING btree ("_order");
   CREATE INDEX "blog_posts_tags_parent_id_idx" ON "blog_posts_tags" USING btree ("_parent_id");
   CREATE UNIQUE INDEX "blog_posts_slug_idx" ON "blog_posts" USING btree ("slug");
+  CREATE INDEX "blog_posts_featured_image_idx" ON "blog_posts" USING btree ("featured_image_id");
+  CREATE INDEX "blog_posts_seo_seo_og_image_idx" ON "blog_posts" USING btree ("seo_og_image_id");
   CREATE INDEX "blog_posts_updated_at_idx" ON "blog_posts" USING btree ("updated_at");
   CREATE INDEX "blog_posts_created_at_idx" ON "blog_posts" USING btree ("created_at");
   CREATE INDEX "blog_posts__status_idx" ON "blog_posts" USING btree ("_status");
@@ -891,6 +914,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "_blog_posts_v_version_tags_parent_id_idx" ON "_blog_posts_v_version_tags" USING btree ("_parent_id");
   CREATE INDEX "_blog_posts_v_parent_idx" ON "_blog_posts_v" USING btree ("parent_id");
   CREATE INDEX "_blog_posts_v_version_version_slug_idx" ON "_blog_posts_v" USING btree ("version_slug");
+  CREATE INDEX "_blog_posts_v_version_version_featured_image_idx" ON "_blog_posts_v" USING btree ("version_featured_image_id");
+  CREATE INDEX "_blog_posts_v_version_seo_version_seo_og_image_idx" ON "_blog_posts_v" USING btree ("version_seo_og_image_id");
   CREATE INDEX "_blog_posts_v_version_version_updated_at_idx" ON "_blog_posts_v" USING btree ("version_updated_at");
   CREATE INDEX "_blog_posts_v_version_version_created_at_idx" ON "_blog_posts_v" USING btree ("version_created_at");
   CREATE INDEX "_blog_posts_v_version_version__status_idx" ON "_blog_posts_v" USING btree ("version__status");
@@ -981,12 +1006,14 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "payload_migrations_created_at_idx" ON "payload_migrations" USING btree ("created_at");
   CREATE INDEX "homepage_hero_slides_order_idx" ON "homepage_hero_slides" USING btree ("_order");
   CREATE INDEX "homepage_hero_slides_parent_id_idx" ON "homepage_hero_slides" USING btree ("_parent_id");
+  CREATE INDEX "homepage_hero_slides_image_idx" ON "homepage_hero_slides" USING btree ("image_id");
   CREATE UNIQUE INDEX "homepage_hero_slides_locales_locale_parent_id_unique" ON "homepage_hero_slides_locales" USING btree ("_locale","_parent_id");
   CREATE INDEX "homepage_value_props_order_idx" ON "homepage_value_props" USING btree ("_order");
   CREATE INDEX "homepage_value_props_parent_id_idx" ON "homepage_value_props" USING btree ("_parent_id");
   CREATE UNIQUE INDEX "homepage_value_props_locales_locale_parent_id_unique" ON "homepage_value_props_locales" USING btree ("_locale","_parent_id");
   CREATE INDEX "homepage_brand_showcase_order_idx" ON "homepage_brand_showcase" USING btree ("_order");
   CREATE INDEX "homepage_brand_showcase_parent_id_idx" ON "homepage_brand_showcase" USING btree ("_parent_id");
+  CREATE INDEX "homepage_brand_showcase_logo_idx" ON "homepage_brand_showcase" USING btree ("logo_id");
   CREATE UNIQUE INDEX "homepage_brand_showcase_locales_locale_parent_id_unique" ON "homepage_brand_showcase_locales" USING btree ("_locale","_parent_id");
   CREATE INDEX "homepage_signature_products_order_idx" ON "homepage_signature_products" USING btree ("_order");
   CREATE INDEX "homepage_signature_products_parent_id_idx" ON "homepage_signature_products" USING btree ("_parent_id");
@@ -1000,10 +1027,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "company_info_values_locale_idx" ON "company_info_values" USING btree ("_locale");
   CREATE INDEX "company_info_team_order_idx" ON "company_info_team" USING btree ("_order");
   CREATE INDEX "company_info_team_parent_id_idx" ON "company_info_team" USING btree ("_parent_id");
+  CREATE INDEX "company_info_team_image_idx" ON "company_info_team" USING btree ("image_id");
   CREATE UNIQUE INDEX "company_info_team_locales_locale_parent_id_unique" ON "company_info_team_locales" USING btree ("_locale","_parent_id");
   CREATE INDEX "company_info_offices_order_idx" ON "company_info_offices" USING btree ("_order");
   CREATE INDEX "company_info_offices_parent_id_idx" ON "company_info_offices" USING btree ("_parent_id");
   CREATE UNIQUE INDEX "company_info_offices_locales_locale_parent_id_unique" ON "company_info_offices_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX "company_info_ceo_ceo_image_idx" ON "company_info" USING btree ("ceo_image_id");
   CREATE UNIQUE INDEX "company_info_locales_locale_parent_id_unique" ON "company_info_locales" USING btree ("_locale","_parent_id");
   CREATE INDEX "contact_info_phones_order_idx" ON "contact_info_phones" USING btree ("_order");
   CREATE INDEX "contact_info_phones_parent_id_idx" ON "contact_info_phones" USING btree ("_parent_id");
@@ -1022,6 +1051,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE UNIQUE INDEX "navigation_footer_menu_locales_locale_parent_id_unique" ON "navigation_footer_menu_locales" USING btree ("_locale","_parent_id");
   CREATE INDEX "site_settings_social_links_order_idx" ON "site_settings_social_links" USING btree ("_order");
   CREATE INDEX "site_settings_social_links_parent_id_idx" ON "site_settings_social_links" USING btree ("_parent_id");
+  CREATE INDEX "site_settings_logo_idx" ON "site_settings" USING btree ("logo_id");
   CREATE INDEX "redirects_redirects_order_idx" ON "redirects_redirects" USING btree ("_order");
   CREATE INDEX "redirects_redirects_parent_id_idx" ON "redirects_redirects" USING btree ("_parent_id");
   CREATE UNIQUE INDEX "translations_locales_locale_parent_id_unique" ON "translations_locales" USING btree ("_locale","_parent_id");`)

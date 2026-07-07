@@ -3,6 +3,7 @@ import Image from "next/image";
 
 interface GetConnectedProps {
   lang: Language;
+  companyInfo?: any;
 }
 
 export function GetConnected({ lang }: GetConnectedProps) {

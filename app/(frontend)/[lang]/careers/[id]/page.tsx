@@ -1,12 +1,14 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { JobDetail } from "@/components/careers/job-detail";
-import { jobs } from "@/components/careers/job-data";
+import { getJobs, getJobById } from "@/lib/fetch/jobs";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import Link from "next/link";
+
+export const revalidate = 60
 
 interface JobDetailPageProps {
   params: Promise<{
@@ -20,6 +22,7 @@ export async function generateStaticParams() {
   const allParams = [];
 
   for (const lang of langs) {
+    const jobs = await getJobs(lang);
     for (const job of jobs) {
       allParams.push({ lang, id: job.id.toString() });
     }
@@ -30,7 +33,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: JobDetailPageProps) {
   const { lang, id } = await params;
-  const job = jobs.find((j) => j.id === Number.parseInt(id));
+  const job = await getJobById(Number.parseInt(id), lang);
 
   if (!job) {
     return buildPageMetadata({
@@ -39,12 +42,9 @@ export async function generateMetadata({ params }: JobDetailPageProps) {
       titleEn: "Career Opportunity Not Found | Faradid Atlas",
       titleFa: "فرصت همکاری پیدا نشد | فرادید اطلس",
       titleAr: "لم يتم العثور على فرصة وظيفية | فراديد أطلس",
-      descriptionEn:
-        "Explore career paths at Faradid Atlas across supply chain, quality, sales, distribution, and customer relations.",
-      descriptionFa:
-        "با مسیرهای همکاری در فرادید اطلس آشنا شوید؛ از زنجیره تأمین و کیفیت تا فروش، توزیع و ارتباط با مشتریان.",
-      descriptionAr:
-        "استكشف مسارات الوظائف في فراديد أطلس عبر سلسلة التزوين والجودة والمبيعات والتوزيع وعلاقات العملاء.",
+      descriptionEn: "Explore career paths at Faradid Atlas.",
+      descriptionFa: "با مسیرهای همکاری در فرادید اطلس آشنا شوید.",
+      descriptionAr: "استكشف مسارات الوظائف في فراديد أطلس.",
     });
   }
 
@@ -54,19 +54,16 @@ export async function generateMetadata({ params }: JobDetailPageProps) {
     titleEn: `${job.titleEn} Careers | Faradid Atlas`,
     titleFa: `${job.titleFa} | فرصت همکاری در فرادید اطلس`,
     titleAr: `فرصة وظيفية | فراديد أطلس`,
-    descriptionEn:
-      "Explore career paths at Faradid Atlas across supply chain, quality, sales, distribution, and customer relations.",
-    descriptionFa:
-      "با مسیرهای همکاری در فرادید اطلس آشنا شوید؛ از زنجیره تأمین و کیفیت تا فروش، توزیع و ارتباط با مشتریان.",
-    descriptionAr:
-      "استكشف مسارات الوظائف في فراديد أطلس عبر سلسلة التزوين والجودة والمبيعات والتوزيع وعلاقات العملاء.",
+    descriptionEn: "Explore career paths at Faradid Atlas.",
+    descriptionFa: "با مسیرهای همکاری در فرادید اطلس آشنا شوید.",
+    descriptionAr: "استكشف مسارات الوظائف في فراديد أطلس.",
   });
 }
 
 export default async function JobDetailPage({ params }: JobDetailPageProps) {
   const { lang, id } = await params;
   const t = translations[lang];
-  const job = jobs.find((j) => j.id === Number.parseInt(id));
+  const job = await getJobById(Number.parseInt(id), lang);
 
   if (!job) {
     return (
@@ -80,41 +77,28 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
     );
   }
 
-  const title = lang === "en" ? job.titleEn : lang === "fa" ? job.titleFa : job.titleAr;
+  const title = job.titleEn;
   const jobUrl = absoluteUrl(localizedPath(lang, `careers/${job.id}`));
-  const description = lang === "en" ? job.descriptionEn : lang === "fa" ? job.descriptionFa : job.descriptionAr;
+  const description = job.descriptionEn;
 
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
-        {/* Breadcrumb */}
         <nav
           aria-label="Breadcrumb"
           className="container-wide px-4 sm:px-6 pt-6 sm:pt-8"
         >
           <div className="inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-foreground/10 bg-white/80 px-4 py-2 text-xs sm:text-sm text-foreground/70 shadow-sm backdrop-blur">
-            <Link
-              href={`/${lang}`}
-              className="line-accent transition-colors hover:text-primary"
-            >
+            <Link href={`/${lang}`} className="line-accent transition-colors hover:text-primary">
               {t.breadcrumbs.home}
             </Link>
-            <span className="text-foreground/30" aria-hidden="true">
-              •
-            </span>
-            <Link
-              href={`/${lang}/careers`}
-              className="line-accent transition-colors hover:text-primary"
-            >
+            <span className="text-foreground/30" aria-hidden="true">•</span>
+            <Link href={`/${lang}/careers`} className="line-accent transition-colors hover:text-primary">
               {t.breadcrumbs.careers}
             </Link>
-            <span className="text-foreground/30" aria-hidden="true">
-              •
-            </span>
-            <span className="text-foreground font-medium line-clamp-1">
-              {title}
-            </span>
+            <span className="text-foreground/30" aria-hidden="true">•</span>
+            <span className="text-foreground font-medium line-clamp-1">{title}</span>
           </div>
         </nav>
 
@@ -139,26 +123,11 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
               {
                 "@context": "https://schema.org",
                 "@type": "BreadcrumbList",
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  name: t.breadcrumbs.home,
-                  item: absoluteUrl(localizedPath(lang)),
-                },
-                {
-                  "@type": "ListItem",
-                  position: 2,
-                  name: t.breadcrumbs.careers,
-                  item: absoluteUrl(localizedPath(lang, "careers")),
-                },
-                {
-                  "@type": "ListItem",
-                  position: 3,
-                  name: title,
-                  item: jobUrl,
-                },
-              ],
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: t.breadcrumbs.home, item: absoluteUrl(localizedPath(lang)) },
+                  { "@type": "ListItem", position: 2, name: t.breadcrumbs.careers, item: absoluteUrl(localizedPath(lang, "careers")) },
+                  { "@type": "ListItem", position: 3, name: title, item: jobUrl },
+                ],
               },
             ]),
           }}

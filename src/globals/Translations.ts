@@ -2,6 +2,9 @@ import type { GlobalConfig } from 'payload'
 
 export const Translations: GlobalConfig = {
   slug: 'translations',
+  access: {
+    read: () => true,
+  },
   admin: {
     group: 'Settings',
   },

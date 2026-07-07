@@ -5,100 +5,52 @@ import { RevealSection } from "@/components/shared/reveal-section";
 
 interface GlobalMarketsProps {
   lang: Language;
+  markets?: Array<{
+    country?: any;
+    description?: any;
+  }>;
 }
 
-const markets = {
+function getLocalized(value: any, lang: Language): string {
+  if (!value) return ''
+  if (typeof value === 'string') return value
+  if (typeof value === 'object' && value[lang]) return value[lang]
+  if (typeof value === 'object' && value.en) return value.en
+  return ''
+}
+
+const defaultMarkets = {
   en: [
-    {
-      region: "Recognized Rice Brands",
-      countries: "21, Mizban, Hayat, and Golbanou",
-      value: 4,
-      suffix: "",
-    },
-    {
-      region: "Offices & Regional Presence",
-      countries: "Tehran, Isfahan, Dubai, and Oman",
-      value: 4,
-      suffix: "",
-    },
-    {
-      region: "Key Sourcing Origins",
-      countries: "Direct sourcing focus across India and Pakistan",
-      value: 30,
-      suffix: "",
-    },
-    {
-      region: "Product Portfolio",
-      countries: "Rice, legumes, seeds, nuts, spices, and sugar",
-      value: 25,
-      suffix: "",
-    },
+    { region: "Recognized Rice Brands", countries: "21, Mizban, Hayat, and Golbanou", value: 4, suffix: "" },
+    { region: "Offices & Regional Presence", countries: "Tehran, Isfahan, Dubai, and Oman", value: 4, suffix: "" },
+    { region: "Key Sourcing Origins", countries: "Direct sourcing focus across India and Pakistan", value: 30, suffix: "" },
+    { region: "Product Portfolio", countries: "Rice, legumes, seeds, nuts, spices, and sugar", value: 25, suffix: "" },
   ],
   fa: [
-    {
-      region: "برند معتبر",
-      countries:
-        "۲۱، میزبان، حیات و گلبانو؛ نام‌هایی آشنا برای بازار عمده و مصرف سازمانی",
-      value: 4,
-      suffix: "",
-    },
-    {
-      region: "دفاتر شرکت",
-      countries:
-        "تهران، اصفهان، دبی و عمان؛ برای پیگیری بهتر، پاسخ سریع‌تر و پشتیبانی مطمئن‌تر",
-      value: 4,
-      suffix: "",
-    },
-    {
-      region: "مسیر تأمین",
-      countries:
-        "تمرکز بر تأمین مستقیم از مبدأهای معتبر مانند هند، پاکستان، تایلند و کانادا برای دسترسی پایدارتر به کالاهای اساسی.",
-      value: 30,
-      suffix: "",
-    },
-    {
-      region: "گروه کالایی",
-      countries:
-        "از برنج و حبوبات تا دانه‌ها، مغزها، ادویه‌ها و شکر؛ برای نیازهای متنوع بازار",
-      value: 25,
-      suffix: "",
-    },
+    { region: "برند معتبر", countries: "۲۱، میزبان، حیات و گلبانو؛ نام‌هایی آشنا برای بازار عمده و مصرف سازمانی", value: 4, suffix: "" },
+    { region: "دفاتر شرکت", countries: "تهران، اصفهان، دبی و عمان؛ برای پیگیری بهتر، پاسخ سریع‌تر و پشتیبانی مطمئن‌تر", value: 4, suffix: "" },
+    { region: "مسیر تأمین", countries: "تمرکز بر تأمین مستقیم از مبدأهای معتبر مانند هند، پاکستان، تایلند و کانادا", value: 30, suffix: "" },
+    { region: "گروه کالایی", countries: "از برنج و حبوبات تا دانه‌ها، مغزها، ادویه‌ها و شکر", value: 25, suffix: "" },
   ],
   ar: [
-    {
-      region: "علامات تجارية معترف بها",
-      countries:
-        "٢١ وميزبان وحياة وگلبانو؛ أسماء معروفة لسوق الجملة والاستهلاك المؤسسي",
-      value: 4,
-      suffix: "",
-    },
-    {
-      region: "مكاتب الشركة",
-      countries:
-        "طهران وأصفهان ودبي ومسقط؛ لمتابعة أفضل واستجابة أسرع ودعم أكثر موثوقية",
-      value: 4,
-      suffix: "",
-    },
-    {
-      region: "مسار التوريد",
-      countries:
-        "التركيز على التوريد المباشر من مصادر موثوقة مثل الهند وباكستان وتايلندا وكندا للوصول الأكثر استدامة إلى السلع الأساسية.",
-      value: 30,
-      suffix: "",
-    },
-    {
-      region: "فئة المنتجات",
-      countries:
-        "من الأرز والبقوليات إلى البذور والمكسرات والتوابل والسكر؛ لتلبية احتياجات السوق المتنوعة",
-      value: 25,
-      suffix: "",
-    },
+    { region: "علامات تجارية معترف بها", countries: "٢١ وميزبان وحياة وگلبانو؛ أسماء معروفة لسوق الجملة والاستهلاك المؤسسي", value: 4, suffix: "" },
+    { region: "مكاتب الشركة", countries: "طهران وأصفهان ودبي ومسقط؛ لمتابعة أفضل واستجابة أسرع ودعم أكثر موثوقية", value: 4, suffix: "" },
+    { region: "مسار التوريد", countries: "التركيز على التوريد المباشر من مصادر موثوقة مثل الهند وباكستان وتايلندا وكندا", value: 30, suffix: "" },
+    { region: "فئة المنتجات", countries: "من الأرز والبقوليات إلى البذور والمكسرات والتوابل والسكر", value: 25, suffix: "" },
   ],
 };
 
-export function GlobalMarkets({ lang }: GlobalMarketsProps) {
+export function GlobalMarkets({ lang, markets: payloadMarkets }: GlobalMarketsProps) {
   const t = translations[lang];
-  const marketList = lang === "en" ? markets.en : lang === "fa" ? markets.fa : markets.ar;
+
+  const marketList = payloadMarkets?.length
+    ? payloadMarkets.map((m) => ({
+        region: getLocalized(m.country, lang),
+        countries: getLocalized(m.description, lang),
+        value: 4,
+        suffix: '',
+      }))
+    : defaultMarkets[lang] || defaultMarkets.en;
 
   return (
     <RevealSection

@@ -7,9 +7,29 @@ import { translations } from "@/lib/i18n";
 
 interface BrandShowcaseProps {
   lang: Language;
+  brands?: Array<{
+    brandName?: any;
+    logo?: any;
+    description?: any;
+  }>;
 }
 
-export function BrandShowcase({ lang }: BrandShowcaseProps) {
+function resolveMediaUrl(media: any): string {
+  if (!media) return '/brands/brands-banner/brands-showcase-banner-en.jpeg'
+  if (typeof media === 'string') return media
+  if (typeof media === 'object') return media.url ?? media.filename ?? '/brands/brands-banner/brands-showcase-banner-en.jpeg'
+  return '/brands/brands-banner/brands-showcase-banner-en.jpeg'
+}
+
+function getLocalized(value: any, lang: Language): string {
+  if (!value) return ''
+  if (typeof value === 'string') return value
+  if (typeof value === 'object' && value[lang]) return value[lang]
+  if (typeof value === 'object' && value.en) return value.en
+  return ''
+}
+
+export function BrandShowcase({ lang, brands }: BrandShowcaseProps) {
   const isRTL = lang === "fa" || lang === "ar";
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -37,10 +57,9 @@ export function BrandShowcase({ lang }: BrandShowcaseProps) {
 
   const alt = t.pages.home.brandsImageAlt;
 
-  const image =
-    lang === "en"
-      ? "/brands/brands-banner/brands-showcase-banner-en.jpeg"
-      : "/brands/brands-banner/brands-showcase-banner-fa.jpeg";
+  const image = lang === "en"
+    ? "/brands/brands-banner/brands-showcase-banner-en.jpeg"
+    : "/brands/brands-banner/brands-showcase-banner-fa.jpeg";
 
   return (
     <section

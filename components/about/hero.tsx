@@ -7,6 +7,7 @@ import { CountUpValue } from "./count-up-value";
 
 interface AboutHeroProps {
   lang: Language;
+  companyInfo?: any;
 }
 
 export function AboutHero({ lang }: AboutHeroProps) {

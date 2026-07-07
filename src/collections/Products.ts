@@ -2,6 +2,9 @@ import type { CollectionConfig } from 'payload'
 
 export const Products: CollectionConfig = {
   slug: 'products',
+  access: {
+    read: () => true,
+  },
   admin: {
     useAsTitle: 'name',
     group: 'Products',
@@ -93,7 +96,8 @@ export const Products: CollectionConfig = {
     },
     {
       name: 'featuredImage',
-      type: 'text',
+      type: 'upload',
+      relationTo: 'media',
     },
     {
       name: 'gallery',
@@ -101,7 +105,8 @@ export const Products: CollectionConfig = {
       fields: [
         {
           name: 'image',
-          type: 'text',
+          type: 'upload',
+          relationTo: 'media',
           required: true,
         },
       ],
@@ -122,7 +127,8 @@ export const Products: CollectionConfig = {
         },
         {
           name: 'ogImage',
-          type: 'text',
+          type: 'upload',
+          relationTo: 'media',
         },
       ],
     },

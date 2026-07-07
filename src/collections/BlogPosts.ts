@@ -2,6 +2,9 @@ import type { CollectionConfig } from 'payload'
 
 export const BlogPosts: CollectionConfig = {
   slug: 'blog-posts',
+  access: {
+    read: () => true,
+  },
   admin: {
     useAsTitle: 'title',
     group: 'Content',
@@ -54,7 +57,8 @@ export const BlogPosts: CollectionConfig = {
     },
     {
       name: 'featuredImage',
-      type: 'text',
+      type: 'upload',
+      relationTo: 'media',
     },
     {
       name: 'seo',
@@ -72,7 +76,8 @@ export const BlogPosts: CollectionConfig = {
         },
         {
           name: 'ogImage',
-          type: 'text',
+          type: 'upload',
+          relationTo: 'media',
         },
       ],
     },

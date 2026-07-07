@@ -4,6 +4,7 @@ import Link from "next/link";
 
 interface JoinTeamProps {
   lang: Language;
+  companyInfo?: any;
 }
 
 export function JoinTeam({ lang }: JoinTeamProps) {

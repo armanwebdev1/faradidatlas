@@ -4,7 +4,16 @@ import { useEffect, useMemo, useState } from "react";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import type { FAQItem } from "./faq-data";
-import { faqCategories } from "./faq-data";
+
+const faqCategories = {
+  company: { en: "Company", fa: "شرکت", ar: "الشركة" },
+  products: { en: "Products", fa: "محصولات", ar: "المنتجات" },
+  sourcing: { en: "Sourcing", fa: "تأمین", ar: "التوريد" },
+  quality: { en: "Quality", fa: "کیفیت", ar: "الجودة" },
+  vision: { en: "Vision", fa: "چشم‌انداز", ar: "الرؤية" },
+  values: { en: "Values", fa: "ارزش‌ها", ar: "القيم" },
+  inquiry: { en: "Inquiry", fa: "درخواست", ar: "الاستفسار" },
+};
 
 type CategoryKey = keyof typeof faqCategories;
 type FilterKey = "all" | CategoryKey;

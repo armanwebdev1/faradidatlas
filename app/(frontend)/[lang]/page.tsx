@@ -7,10 +7,14 @@ import { CTASection } from "@/components/home/cta-section";
 import { BrandShowcase } from "@/components/home/brand-showcase";
 import { SignatureProducts } from "@/components/home/signature-products";
 import { buildPageMetadata } from "@/lib/metadata";
-import { publicContactEmail, publicPhoneNumbers } from "@/lib/contact-info";
-import { absoluteUrl, localizedPath, siteConfig } from "@/lib/site";
+import { getContactInfo } from "@/lib/fetch/contact-info";
+import { getSiteSettings } from "@/lib/fetch/site-settings";
+import { getHomepage } from "@/lib/fetch/homepage";
+import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
+
+export const revalidate = 60
 
 interface HomePageProps {
   params: Promise<{
@@ -39,6 +43,13 @@ export async function generateMetadata({ params }: HomePageProps) {
   });
 }
 
+function resolveMediaUrl(media: any): string | undefined {
+  if (!media) return undefined
+  if (typeof media === 'string') return media
+  if (typeof media === 'object') return media.url ?? media.filename ?? undefined
+  return undefined
+}
+
 export default async function HomePage({ params }: HomePageProps) {
   const { lang } = await params;
   const t = translations[lang];
@@ -47,16 +58,36 @@ export default async function HomePage({ params }: HomePageProps) {
   const websiteId = absoluteUrl("/#website");
   const pageDescription = t.pages.home.description;
 
+  const [homepage, contactInfo, siteSettings] = await Promise.all([
+    getHomepage(lang),
+    getContactInfo(lang),
+    getSiteSettings(lang),
+  ]);
+
+  const publicContactEmail = contactInfo?.email ?? '';
+  const publicPhoneNumbers = (contactInfo?.phones ?? []).map((p: any) => ({
+    value: p.value ?? '',
+    display: p.display ?? '',
+    whatsappHref: p.whatsappHref ?? '',
+  }));
+
+  const heroSlides = (homepage as any)?.heroSlides ?? [];
+  const valueProps = (homepage as any)?.valueProps ?? [];
+  const brandShowcase = (homepage as any)?.brandShowcase ?? [];
+  const signatureProducts = (homepage as any)?.signatureProducts ?? [];
+  const globalMarkets = (homepage as any)?.globalMarkets ?? [];
+  const cta = (homepage as any)?.cta ?? {};
+
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
-        <Hero lang={lang} />
-        <ValueProps lang={lang} />
-        <BrandShowcase lang={lang} />
-        <SignatureProducts />
-        <GlobalMarkets lang={lang} />
-        <CTASection lang={lang} />
+        <Hero lang={lang} slides={heroSlides} />
+        <ValueProps lang={lang} items={valueProps} />
+        <BrandShowcase lang={lang} brands={brandShowcase} />
+        <SignatureProducts lang={lang} products={signatureProducts} />
+        <GlobalMarkets lang={lang} markets={globalMarkets} />
+        <CTASection lang={lang} cta={cta} brandShowcase={brandShowcase} />
       </main>
       <script
         type="application/ld+json"
@@ -66,17 +97,17 @@ export default async function HomePage({ params }: HomePageProps) {
               "@context": "https://schema.org",
               "@type": "Organization",
               "@id": organizationId,
-              name: siteConfig.name,
-              alternateName: siteConfig.nameFa,
-              legalName: siteConfig.legalName,
-              url: siteConfig.url,
-              logo: absoluteUrl(siteConfig.brandMarkPath),
+              name: (siteSettings as any)?.siteName ?? 'Faradid Atlas',
+              alternateName: (siteSettings as any)?.siteNameFa ?? 'فرادید اطلس',
+              legalName: (siteSettings as any)?.legalName ?? 'Faradid Atlas Trading LLC',
+              url: absoluteUrl(),
+              logo: resolveMediaUrl((siteSettings as any)?.logo) ?? absoluteUrl('/brand/faradid-atlas-mark.png'),
               email: publicContactEmail,
               telephone: publicPhoneNumbers.map((phone) => phone.value),
               description:
                 lang === "en"
-                  ? siteConfig.description
-                  : siteConfig.descriptionFa,
+                  ? (siteSettings as any)?.description ?? ''
+                  : (siteSettings as any)?.descriptionFa ?? '',
               foundingDate: "2009",
               foundingLocation: "Iran",
               industry: "Food Distribution and Supply",
@@ -136,8 +167,8 @@ export default async function HomePage({ params }: HomePageProps) {
                   },
                 },
               ],
-              ...(siteConfig.sameAs.length > 0
-                ? { sameAs: siteConfig.sameAs }
+              ...((siteSettings as any)?.socialLinks?.length > 0
+                ? { sameAs: (siteSettings as any).socialLinks.map((l: any) => l.url) }
                 : {}),
             },
             {
@@ -156,9 +187,9 @@ export default async function HomePage({ params }: HomePageProps) {
               "@context": "https://schema.org",
               "@type": "WebSite",
               "@id": websiteId,
-              name: siteConfig.name,
-              alternateName: siteConfig.nameFa,
-              url: siteConfig.url,
+              name: (siteSettings as any)?.siteName ?? 'Faradid Atlas',
+              alternateName: (siteSettings as any)?.siteNameFa ?? 'فرادید اطلس',
+              url: absoluteUrl(),
               inLanguage: ["en", "fa", "ar"],
               publisher: {
                 "@id": organizationId,

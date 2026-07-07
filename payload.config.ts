@@ -30,6 +30,13 @@ export default buildConfig({
     meta: {
       titleSuffix: " | Faradid Atlas CMS",
     },
+    components: {
+      views: {
+        Dashboard: {
+          Component: "@/src/admin/components/CustomDashboard#CustomDashboard",
+        },
+      },
+    },
   },
   collections: [
     Products,

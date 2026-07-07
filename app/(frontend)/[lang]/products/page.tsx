@@ -1,11 +1,11 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ProductsContent } from "@/components/products/products-content";
+import { getProducts } from "@/lib/fetch/products";
 import {
   productBrands,
   productCategories,
   productTypes,
-  products,
   type ProductBrand,
   type ProductCategory,
   type ProductType,
@@ -14,6 +14,8 @@ import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import { translations, type Language } from "@/lib/i18n";
 import Image from "next/image";
+
+export const revalidate = 60
 
 type ProductSearchParams = {
   q?: string | string[];
@@ -62,6 +64,7 @@ export default async function ProductsPage({
   ]);
   const isRTL = lang === "fa" || lang === "ar";
   const t = translations[lang];
+  const products = await getProducts(lang);
   const rawSearchQuery = resolvedSearchParams.q;
   const rawCategory = resolvedSearchParams.category;
   const rawBrand = resolvedSearchParams.brand;

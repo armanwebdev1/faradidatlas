@@ -7,6 +7,7 @@ import type {
 
 export interface HeaderProps {
   lang: Language;
+  products?: any[];
 }
 
 export type HeaderMode = "full" | "compact" | "hidden";

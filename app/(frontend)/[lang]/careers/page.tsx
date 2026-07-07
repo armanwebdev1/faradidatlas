@@ -3,11 +3,13 @@ import { Footer } from "@/components/layout/footer";
 import { CareersHero } from "@/components/careers/careers-hero";
 import { CareersCulture } from "@/components/careers/careers-culture";
 import { CareersOpportunities } from "@/components/careers/careers-opportunities";
-import { jobs } from "@/components/careers/job-data";
+import { getJobs } from "@/lib/fetch/jobs";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
+
+export const revalidate = 60
 
 interface CareersPageProps {
   params: Promise<{
@@ -41,6 +43,7 @@ export default async function CareersPage({ params }: CareersPageProps) {
   const { lang } = await params;
   const t = translations[lang];
   const pageUrl = absoluteUrl(localizedPath(lang, "careers"));
+  const jobs = await getJobs(lang);
 
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>

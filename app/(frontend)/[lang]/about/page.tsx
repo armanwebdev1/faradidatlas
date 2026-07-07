@@ -8,9 +8,12 @@ import { StrategicFramework } from "@/components/about/strategic-framework";
 import { TeamShowcase } from "@/components/about/team-showcase";
 import { JoinTeam } from "@/components/about/join-team";
 import { buildPageMetadata } from "@/lib/metadata";
+import { getCompanyInfo } from "@/lib/fetch/company-info";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
+
+export const revalidate = 60
 
 interface AboutPageProps {
   params: Promise<{
@@ -34,10 +37,17 @@ export async function generateMetadata({ params }: AboutPageProps) {
     descriptionEn:
       "Learn how Faradid Atlas has built food sourcing, import, and distribution capabilities across Iran, UAE, and Oman since 2009. ISO 22000 quality standards.",
     descriptionFa:
-      "با مسیر فرادید اطلس در تأمین، واردات و توزیع مواد غذایی در ایران، امارات و عمان از سال ۲۰۰۹ آشنا شوید. استاندارد کیفیت ISO 22000.",
+      "با مسیر فرادید اطلس در تأمین، واردات و توزیع مواد غذایی در ایران، امارات و عمان از سال ۲۰۰۹ آشنا شوید.",
     descriptionAr:
-      "تعرّف على كيفية بناء فراديد أطلس لقدرات تزوين واستيراد وتوزيع الغذاء عبر إيران والإمارات وعمان منذ عام 2009. معايير الجودة ISO 22000.",
+      "تعرّف على كيفية بناء فراديد أطلس لقدرات تزوين واستيراد وتوزيع الغذاء عبر إيران والإمارات وعمان منذ عام 2009.",
   });
+}
+
+function resolveMediaUrl(media: any): string | undefined {
+  if (!media) return undefined
+  if (typeof media === 'string') return media
+  if (typeof media === 'object') return media.url ?? media.filename ?? undefined
+  return undefined
 }
 
 export default async function AboutPage({ params }: AboutPageProps) {
@@ -46,16 +56,19 @@ export default async function AboutPage({ params }: AboutPageProps) {
   const pageUrl = absoluteUrl(localizedPath(lang, "about"));
   const organizationId = absoluteUrl("/#organization");
 
+  const companyInfo = await getCompanyInfo(lang);
+  const ci = companyInfo as any;
+
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
-        <AboutHero lang={lang} />
+        <AboutHero lang={lang} companyInfo={ci} />
         <GetConnected lang={lang} />
-        <StrategicFramework lang={lang} />
-        <CEOProfile lang={lang} />
+        <StrategicFramework lang={lang} companyInfo={ci} />
+        <CEOProfile lang={lang} companyInfo={ci} />
         <WhatWeOffer lang={lang} />
-        <TeamShowcase lang={lang} />
+        <TeamShowcase lang={lang} companyInfo={ci} />
         <JoinTeam lang={lang} />
       </main>
       <script
@@ -70,26 +83,14 @@ export default async function AboutPage({ params }: AboutPageProps) {
               name: t.pages.about.title,
               description: t.seo.aboutDescription,
               inLanguage: lang,
-              about: {
-                "@id": organizationId,
-              },
+              about: { "@id": organizationId },
             },
             {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                    name: t.breadcrumbs.home,
-                    item: absoluteUrl(localizedPath(lang)),
-                  },
-                  {
-                    "@type": "ListItem",
-                    position: 2,
-                    name: t.breadcrumbs.about,
-                  item: pageUrl,
-                },
+                { "@type": "ListItem", position: 1, name: t.breadcrumbs.home, item: absoluteUrl(localizedPath(lang)) },
+                { "@type": "ListItem", position: 2, name: t.breadcrumbs.about, item: pageUrl },
               ],
             },
           ]),

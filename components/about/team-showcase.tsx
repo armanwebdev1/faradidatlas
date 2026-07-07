@@ -5,6 +5,7 @@ import { BadgeCheck, Leaf, Lightbulb, Scale, ShieldCheck } from "lucide-react";
 
 interface TeamShowcaseProps {
   lang: Language;
+  companyInfo?: any;
 }
 
 const values = {
@@ -106,8 +107,26 @@ const values = {
   ],
 };
 
-export function TeamShowcase({ lang }: TeamShowcaseProps) {
-  const valueList = lang === "en" ? values.en : lang === "fa" ? values.fa : values.ar;
+function getLocalized(value: any, lang: Language): string {
+  if (!value) return ''
+  if (typeof value === 'string') return value
+  if (typeof value === 'object' && value[lang]) return value[lang]
+  if (typeof value === 'object' && value.en) return value.en
+  return ''
+}
+
+const iconArray = [BadgeCheck, Leaf, Scale, Lightbulb, ShieldCheck];
+
+export function TeamShowcase({ lang, companyInfo }: TeamShowcaseProps) {
+  const fallbackList = lang === "en" ? values.en : lang === "fa" ? values.fa : values.ar;
+  const payloadValues = companyInfo?.values;
+  const valueList = (payloadValues?.length > 0)
+    ? payloadValues.map((v: any, idx: number) => ({
+        icon: iconArray[idx % iconArray.length],
+        title: getLocalized(v.title, lang),
+        description: getLocalized(v.description, lang),
+      }))
+    : fallbackList;
   const isRTL = lang === "fa" || lang === "ar";
   const t = translations[lang];
   const sectionIntro = t.pages.about.valuesIntro;
@@ -133,7 +152,7 @@ export function TeamShowcase({ lang }: TeamShowcaseProps) {
         </div>
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {valueList.map((value, idx) => {
+          {valueList.map((value: any, idx: number) => {
             const Icon = value.icon;
             return (
               <div

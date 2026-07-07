@@ -4,13 +4,15 @@ import { ContactForm } from "@/components/contact/contact-form";
 import { OfficeInfo } from "@/components/contact/office-info";
 import { ResponseSLA } from "@/components/contact/response-sla";
 import { ContactHero } from "@/components/contact/contact-hero";
-import { products } from "@/components/products/product-data";
+import { getProductBySlug } from "@/lib/fetch/products";
+import { getContactInfo } from "@/lib/fetch/contact-info";
 import { buildPageMetadata } from "@/lib/metadata";
-import { publicContactEmail, publicPhoneNumbers } from "@/lib/contact-info";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import Link from "next/link";
+
+export const revalidate = 60
 
 interface ContactSearchParams {
   product?: string;
@@ -39,35 +41,36 @@ export async function generateMetadata({ params }: ContactPageProps) {
     descriptionEn:
       "Contact Faradid Atlas for wholesale food sourcing, import, and distribution inquiries. Offices in Tehran, Isfahan, Dubai, and Oman.",
     descriptionFa:
-      "برای استفسارات تأمین، واردات و توزیع عمده مواد غذایی با فرادید اطلس تماس بگیرید. دفاتر در تهران، اصفهان، دبی و عمان.",
+      "برای استفسارات تأمین، واردات و توزیع عمده مواد غذایی با فرادید اطلس تماس بگیرید.",
     descriptionAr:
-      "اتصل بـ فراديد أطلس للاستفسارات عن تزوين واستيراد وتوزيع الغذاء بالجملة. مكاتب في طهران وأصفهان ودبي وعمان.",
+      "اتصل بـ فراديد أطلس للاستفسارات عن تزوين واستيراد وتوزيع الغذاء بالجملة.",
   });
 }
 
-export default async function ContactPage({
-  params,
-  searchParams,
-}: ContactPageProps) {
+export default async function ContactPage({ params, searchParams }: ContactPageProps) {
   const { lang } = await params;
-  const resolvedSearchParams: ContactSearchParams = searchParams
-    ? await searchParams
-    : {};
+  const resolvedSearchParams: ContactSearchParams = searchParams ? await searchParams : {};
   const productParam = resolvedSearchParams.product;
-  const selectedProduct = productParam
-    ? products.find(
-        (product) =>
-          product.slug === productParam || String(product.id) === productParam,
-      )
-    : undefined;
+
+  const [selectedProduct, contactInfo] = await Promise.all([
+    productParam ? getProductBySlug(productParam, lang) : null,
+    getContactInfo(lang),
+  ]);
+
+  const ci = contactInfo as any;
   const initialProductInterest = selectedProduct
-    ? lang === "en"
-      ? selectedProduct.nameEn
-      : selectedProduct.nameFa
+    ? lang === "en" ? selectedProduct.nameEn : lang === "fa" ? selectedProduct.nameFa : selectedProduct.nameAr
     : undefined;
+
   const t = translations[lang];
   const pageUrl = absoluteUrl(localizedPath(lang, "contact"));
-  const pageDescription = t.pages.contact.seoDescription;
+
+  const publicContactEmail = ci?.email ?? '';
+  const publicPhoneNumbers = (ci?.phones ?? []).map((p: any) => ({
+    value: p.value ?? '',
+    display: p.display ?? '',
+    whatsappHref: p.whatsappHref ?? '',
+  }));
 
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
@@ -81,17 +84,14 @@ export default async function ContactPage({
         >
           <div className="container-wide grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
             <div className="lg:col-span-2">
-              <ContactForm
-                lang={lang}
-                initialProductInterest={initialProductInterest}
-              />
+              <ContactForm lang={lang} initialProductInterest={initialProductInterest} />
             </div>
 
             <div id="contact-offices" className="lg:sticky lg:top-32">
               <h2 className="text-responsive-section text-primary mb-6 sm:mb-8 animate-fade-in-up">
                 {t.pages.contact.ourOffices}
               </h2>
-              <OfficeInfo lang={lang} />
+              <OfficeInfo lang={lang} contactInfo={ci} />
             </div>
           </div>
         </section>
@@ -129,18 +129,18 @@ export default async function ContactPage({
               "@id": `${pageUrl}#webpage`,
               url: pageUrl,
               name: t.seo.contactTitle,
-              description: pageDescription,
+              description: t.pages.contact.seoDescription,
               inLanguage: lang,
               mainEntity: {
                 "@type": "Organization",
                 name: "Faradid Atlas",
                 email: publicContactEmail,
-                telephone: publicPhoneNumbers.map((phone) => phone.value),
+                telephone: publicPhoneNumbers.map((phone: any) => phone.value),
                 contactPoint: {
                   "@type": "ContactPoint",
                   contactType: "customer service",
                   email: publicContactEmail,
-                  telephone: publicPhoneNumbers.map((phone) => phone.value),
+                  telephone: publicPhoneNumbers.map((phone: any) => phone.value),
                   availableLanguage: ["English", "Persian"],
                 },
               },
@@ -149,18 +149,8 @@ export default async function ContactPage({
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                    name: t.breadcrumbs.home,
-                    item: absoluteUrl(localizedPath(lang)),
-                  },
-                  {
-                    "@type": "ListItem",
-                    position: 2,
-                    name: t.breadcrumbs.contact,
-                  item: pageUrl,
-                },
+                { "@type": "ListItem", position: 1, name: t.breadcrumbs.home, item: absoluteUrl(localizedPath(lang)) },
+                { "@type": "ListItem", position: 2, name: t.breadcrumbs.contact, item: pageUrl },
               ],
             },
           ]),

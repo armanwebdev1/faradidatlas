@@ -10,6 +10,7 @@ import { AnimatedSection } from "./animated-section";
 
 interface StrategicFrameworkProps {
   lang: Language;
+  companyInfo?: any;
 }
 
 const content = {
@@ -108,7 +109,7 @@ const content = {
   },
 };
 
-export function StrategicFramework({ lang }: StrategicFrameworkProps) {
+export function StrategicFramework({ lang, companyInfo }: StrategicFrameworkProps) {
   const data = lang === "en" ? content.en : lang === "fa" ? content.fa : content.ar;
   const isRTL = lang === "fa" || lang === "ar";
   const t = translations[lang];

@@ -2,19 +2,24 @@ import Link from "next/link"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { ApplicationForm } from "@/components/careers/application-form"
-import { jobs } from "@/components/careers/job-data"
+import { getJobs, getJobById } from "@/lib/fetch/jobs"
 import { buildPageMetadata } from "@/lib/metadata"
 import type { Language } from "@/lib/i18n"
 import { translations } from "@/lib/i18n"
 import { absoluteUrl, localizedPath } from "@/lib/site"
 
+export const revalidate = 60
+
 export async function generateStaticParams() {
-  return jobs.flatMap((job) =>
-    ["en", "fa", "ar"].map((lang) => ({
-      lang,
-      id: String(job.id),
-    }))
-  )
+  const langs = ["en", "fa", "ar"]
+  const allParams = []
+  for (const lang of langs) {
+    const jobs = await getJobs(lang)
+    for (const job of jobs) {
+      allParams.push({ lang, id: String(job.id) })
+    }
+  }
+  return allParams
 }
 
 interface ApplyPageProps {
@@ -27,7 +32,7 @@ interface ApplyPageProps {
 export default async function ApplyPage({ params }: ApplyPageProps) {
   const { lang, id } = await params
   const t = translations[lang]
-  const job = jobs.find((j) => j.id === Number.parseInt(id))
+  const job = await getJobById(Number.parseInt(id), lang)
 
   if (!job) {
     return (
@@ -330,7 +335,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
 
 export async function generateMetadata({ params }: ApplyPageProps) {
   const { lang, id } = await params
-  const job = jobs.find((j) => j.id === Number.parseInt(id))
+  const job = await getJobById(Number.parseInt(id), lang)
 
   if (!job) {
     return buildPageMetadata({

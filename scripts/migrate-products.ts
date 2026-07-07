@@ -4,6 +4,7 @@ import {
   productCategories,
   productBrands,
   categoryLabels,
+  categoryDescriptions,
   productBrandLabels,
   type ProductCategory,
 } from '../components/products/product-data'
@@ -11,14 +12,28 @@ import {
 export async function importCategories(payload: Payload) {
   for (const category of productCategories) {
     const labels = categoryLabels[category]
+    const descriptions = categoryDescriptions[category]
     try {
-      await payload.create({
+      const doc = await payload.create({
         collection: 'categories',
+        locale: 'en',
         data: {
           name: labels.en,
           slug: category,
-          description: `Browse our ${labels.en} products`,
+          description: descriptions.description.en,
         },
+      })
+      await payload.update({
+        collection: 'categories',
+        id: doc.id,
+        locale: 'fa',
+        data: { name: labels.fa, description: descriptions.description.fa },
+      })
+      await payload.update({
+        collection: 'categories',
+        id: doc.id,
+        locale: 'ar',
+        data: { name: labels.ar, description: descriptions.description.ar },
       })
       console.log(`  Created category: ${labels.en}`)
     } catch {
@@ -31,12 +46,22 @@ export async function importProductBrands(payload: Payload) {
   for (const brand of productBrands) {
     const labels = productBrandLabels[brand]
     try {
-      await payload.create({
+      const doc = await payload.create({
         collection: 'product-brands',
-        data: {
-          name: labels.en,
-          slug: brand,
-        },
+        locale: 'en',
+        data: { name: labels.en, slug: brand },
+      })
+      await payload.update({
+        collection: 'product-brands',
+        id: doc.id,
+        locale: 'fa',
+        data: { name: labels.fa },
+      })
+      await payload.update({
+        collection: 'product-brands',
+        id: doc.id,
+        locale: 'ar',
+        data: { name: labels.ar },
       })
       console.log(`  Created brand: ${labels.en}`)
     } catch {
@@ -65,23 +90,52 @@ export async function importProducts(payload: Payload) {
       where: { slug: { equals: brandName } },
     })
 
+    const productType = getProductType(product)
+
     try {
-      await payload.create({
+      const doc = await payload.create({
         collection: 'products',
+        locale: 'en',
         data: {
           name: product.nameEn,
           slug: product.slug,
           category: category.docs[0]?.id,
           brand: brand.docs[0]?.id,
-          type: getProductType(product) as 'basmati-rice' | 'jasmine-rice' | 'beans' | 'lentils' | 'chickpeas' | 'seeds-kernels' | 'nuts' | 'spices' | 'sweeteners',
+          type: productType as any,
           description: product.descriptionEn,
           alias: product.aliasEn || '',
-          featuredImage: product.image || '',
           specs: product.specs?.map((spec) => ({
             label: spec.label.en,
             value: spec.value.en,
           })) || [],
-          gallery: product.images?.map((img) => ({ image: img })) || [],
+        },
+      })
+      await payload.update({
+        collection: 'products',
+        id: doc.id,
+        locale: 'fa',
+        data: {
+          name: product.nameFa,
+          description: product.descriptionFa,
+          alias: product.aliasFa || '',
+          specs: product.specs?.map((spec) => ({
+            label: spec.label.fa,
+            value: spec.value.fa,
+          })) || [],
+        },
+      })
+      await payload.update({
+        collection: 'products',
+        id: doc.id,
+        locale: 'ar',
+        data: {
+          name: product.nameAr,
+          description: product.descriptionAr,
+          alias: product.aliasAr || '',
+          specs: product.specs?.map((spec) => ({
+            label: spec.label.ar,
+            value: spec.value.ar,
+          })) || [],
         },
       })
       console.log(`  Created product: ${product.nameEn}`)
@@ -93,10 +147,7 @@ export async function importProducts(payload: Payload) {
 
 function getProductType(product: { category: ProductCategory; nameEn: string; aliasEn?: string }): string {
   const searchText = `${product.nameEn} ${product.aliasEn ?? ''}`.toLowerCase()
-
-  if (product.category === 'rice') {
-    return searchText.includes('jasmine') ? 'jasmine-rice' : 'basmati-rice'
-  }
+  if (product.category === 'rice') return searchText.includes('jasmine') ? 'jasmine-rice' : 'basmati-rice'
   if (product.category === 'legumes') {
     if (searchText.includes('lentil')) return 'lentils'
     if (searchText.includes('chickpea')) return 'chickpeas'

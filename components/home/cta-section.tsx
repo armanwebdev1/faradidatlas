@@ -5,17 +5,35 @@ import { translations } from "@/lib/i18n";
 
 interface CTASectionProps {
   lang: Language;
+  cta?: {
+    headline?: any;
+    description?: any;
+    buttonText?: any;
+    buttonUrl?: string;
+  };
+  brandShowcase?: Array<{
+    brandName?: any;
+    logo?: any;
+    description?: any;
+  }>;
 }
 
-interface StaticCtaImageProps {
-  src: string;
-  alt: string;
-  fill?: boolean;
-  sizes?: string;
-  className?: string;
+function getLocalized(value: any, lang: Language): string {
+  if (!value) return ''
+  if (typeof value === 'string') return value
+  if (typeof value === 'object' && value[lang]) return value[lang]
+  if (typeof value === 'object' && value.en) return value.en
+  return ''
 }
 
-function Image({ alt, sizes, className }: StaticCtaImageProps) {
+function resolveMediaUrl(media: any): string | undefined {
+  if (!media) return undefined
+  if (typeof media === 'string') return media
+  if (typeof media === 'object') return media.url ?? media.filename ?? undefined
+  return undefined
+}
+
+function Image({ src, alt, sizes, className }: { src?: string; alt: string; sizes?: string; className?: string }) {
   return (
     <picture>
       <source
@@ -29,7 +47,7 @@ function Image({ alt, sizes, className }: StaticCtaImageProps) {
         sizes={sizes}
       />
       <img
-        src="/cta/partnership-640.webp"
+        src={src ?? "/cta/partnership-640.webp"}
         alt={alt}
         loading="lazy"
         decoding="async"
@@ -39,38 +57,32 @@ function Image({ alt, sizes, className }: StaticCtaImageProps) {
   );
 }
 
-const brandLogos = [
-  {
-    name: "Hayat",
-    src: "/brands/hayat-4k.png",
-    width: 147,
-    height: 80,
-  },
-  {
-    name: "Golbanoo",
-    src: "/brands/golbanoo-4k.png",
-    width: 165,
-    height: 80,
-  },
-  {
-    name: "Twenty One",
-    src: "/brands/twenty-one-4k.png",
-    width: 98,
-    height: 80,
-  },
-  {
-    name: "Mizban",
-    src: "/brands/mizban-4k.png",
-    width: 205,
-    height: 80,
-  },
+const defaultBrandLogos = [
+  { name: "Hayat", src: "/brands/hayat-4k.png", width: 147, height: 80 },
+  { name: "Golbanoo", src: "/brands/golbanoo-4k.png", width: 165, height: 80 },
+  { name: "Twenty One", src: "/brands/twenty-one-4k.png", width: 98, height: 80 },
+  { name: "Mizban", src: "/brands/mizban-4k.png", width: 205, height: 80 },
 ];
 
-const brandLogoLoop = [...brandLogos, ...brandLogos];
-
-export function CTASection({ lang }: CTASectionProps) {
+export function CTASection({ lang, cta, brandShowcase }: CTASectionProps) {
   const t = translations[lang];
   const isRTL = lang === "fa" || lang === "ar";
+
+  const ctaHeadline = getLocalized(cta?.headline, lang);
+  const ctaDescription = getLocalized(cta?.description, lang);
+  const ctaButtonText = getLocalized(cta?.buttonText, lang);
+  const ctaButtonUrl = cta?.buttonUrl ?? `/${lang}/contact`;
+
+  const brandLogos = brandShowcase?.length
+    ? brandShowcase.map((b) => ({
+        name: getLocalized(b.brandName, lang),
+        src: resolveMediaUrl(b.logo) ?? '/brands/twenty-one-4k.png',
+        width: 160,
+        height: 80,
+      }))
+    : defaultBrandLogos;
+
+  const brandLogoLoop = [...brandLogos, ...brandLogos];
 
   return (
     <section className="section relative overflow-hidden bg-background-alt">
@@ -89,9 +101,7 @@ export function CTASection({ lang }: CTASectionProps) {
           <div className="flex-1 lg:w-1/2 h-64 sm:h-80 md:h-96 lg:min-h-[26rem]">
             <div className="relative group overflow-hidden rounded-lg sm:rounded-2xl shadow-xl md:shadow-2xl h-full">
               <Image
-                src="/cta.jpg"
                 alt={t.pages.home.ctaImageAlt}
-                fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
@@ -105,26 +115,28 @@ export function CTASection({ lang }: CTASectionProps) {
             }`}
           >
             <h2 className="text-responsive-title mb-4 sm:mb-6 md:mb-8">
-              {lang === "en" ? (
-                <>
-                  Build a steadier{" "}
-                  <span className="italic font-light">wholesale food supply</span> for your B2B operations
-                </>
-              ) : (
-                t.pages.home.ctaTitleFa
+              {ctaHeadline || (
+                lang === "en" ? (
+                  <>
+                    Build a steadier{" "}
+                    <span className="italic font-light">wholesale food supply</span> for your B2B operations
+                  </>
+                ) : (
+                  t.pages.home.ctaTitleFa
+                )
               )}
             </h2>
 
             <p className="text-responsive-body text-muted-foreground max-w-xl mb-6 sm:mb-8 md:mb-10 lg:mb-12 font-light">
-              {t.pages.home.ctaDescription}
+              {ctaDescription || t.pages.home.ctaDescription}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
               <Link
-                href={`/${lang}/contact`}
+                href={ctaButtonUrl}
                 className="btn btn-primary btn-lg w-full sm:w-auto"
               >
-                {t.pages.home.ctaStartInquiry}
+                {ctaButtonText || t.pages.home.ctaStartInquiry}
               </Link>
 
               <Link

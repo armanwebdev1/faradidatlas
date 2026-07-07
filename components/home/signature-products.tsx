@@ -8,50 +8,55 @@ import { Button } from "@/components/ui/button";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 
-type LocalizedText = {
+interface SignatureProductsProps {
+  lang: Language;
+  products?: Array<{
+    id?: number;
+    product?: any;
+  }>;
+}
+
+interface LocalizedText {
   en: string;
   fa: string;
   ar: string;
-};
-
-interface Product {
-  id: number;
-  name: LocalizedText;
-  category: LocalizedText;
-  image: ProductImage;
-  description: LocalizedText;
 }
 
-interface ProductImage {
-  src: string;
+function resolveMediaUrl(media: any): string {
+  if (!media) return '/signature-products/optimized/twenty-one.webp'
+  if (typeof media === 'string') return media
+  if (typeof media === 'object') return media.url ?? media.filename ?? '/signature-products/optimized/twenty-one.webp'
+  return '/signature-products/optimized/twenty-one.webp'
 }
 
-function productImage(filename: string): ProductImage {
-  return {
-    src: `/signature-products/optimized/${filename}`,
-  };
+function getLocalized(value: any, lang: Language): string {
+  if (!value) return ''
+  if (typeof value === 'string') return value
+  if (typeof value === 'object' && value[lang]) return value[lang]
+  if (typeof value === 'object' && value.en) return value.en
+  return ''
 }
 
-const products: Product[] = [
+const defaultProducts = [
   {
     id: 1,
     name: { en: "21 Rice Brand", fa: "برنج ۲۱", ar: "أرز ٢١" },
     category: { en: "Rice Portfolio", fa: "برندهای برنج", ar: "سلسلة الأرز" },
-    image: productImage("twenty-one.webp"),
+    image: { src: '/signature-products/optimized/twenty-one.webp' },
     description: {
       en: "One of Faradid Atlas' recognized rice brands, built around dependable quality and everyday availability.",
-      fa: "یکی از برندهای شناخته‌شده برنج فرادید اطلس؛ انتخابی برای تأمین روزمره با کیفیتی قابل اتکا و عرضه‌ای منظم.",
-      ar: "واحدة من علامات الأرز المعترف بها في فراديد أطلس، مبنية على جودة موثوقة وتوفر يومي.",
+      fa: "یکی از برندهای شناخته‌شده برنج فرادید اطلس؛ انتخابی برای تأمین روزمره با کیفیتی قابل اتکا.",
+      ar: "واحدة من علامات الأرز المعترف بها في فراديد أطلس، مبنية على جودة موثوقة.",
     },
   },
   {
     id: 2,
     name: { en: "Mizban Rice", fa: "برنج میزبان", ar: "أرز ميزبان" },
     category: { en: "Rice Portfolio", fa: "برندهای برنج", ar: "سلسلة الأرز" },
-    image: productImage("mizban.webp"),
+    image: { src: '/signature-products/optimized/mizban.webp' },
     description: {
       en: "A trusted rice line designed for households, retailers, and foodservice partners.",
-      fa: "نامی آشنا در سبد برنج فرادید اطلس؛ مناسب خانواده‌ها، فروشگاه‌ها و فعالان خدمات غذایی که به کیفیت پایدار نیاز دارند.",
+      fa: "نامی آشنا در سبد برنج فرادید اطلس؛ مناسب خانواده‌ها و فروشگاه‌ها.",
       ar: "خط أرز موثوق مصمم للأسر والتج retailers وشركاء خدمات الطعام.",
     },
   },
@@ -59,10 +64,10 @@ const products: Product[] = [
     id: 3,
     name: { en: "Hayat Rice", fa: "برنج حیات", ar: "أرز حياة" },
     category: { en: "Rice Portfolio", fa: "برندهای برنج", ar: "سلسلة الأرز" },
-    image: productImage("hayat.webp"),
+    image: { src: '/signature-products/optimized/hayat.webp' },
     description: {
       en: "Selected for consistent cooking quality, clear sourcing, and steady market supply.",
-      fa: "برندی با تمرکز بر کیفیت پخت یکنواخت، مسیر تأمین شفاف و عرضه‌ای پایدار برای بازار.",
+      fa: "برندی با تمرکز بر کیفیت پخت یکنواخت، مسیر تأمین شفاف و عرضه‌ای پایدار.",
       ar: "مختار لجودة الطبخ المتسقة وتوريد واضح وعرض مستقر في السوق.",
     },
   },
@@ -70,7 +75,7 @@ const products: Product[] = [
     id: 4,
     name: { en: "Golbanou Rice", fa: "برنج گلبانو", ar: "أرز گلبنو" },
     category: { en: "Rice Portfolio", fa: "برندهای برنج", ar: "سلسلة الأرز" },
-    image: productImage("golbanoo.webp"),
+    image: { src: '/signature-products/optimized/golbanoo.webp' },
     description: {
       en: "A familiar rice brand serving demand across Iran and the wider Middle East region.",
       fa: "برندی آشنا در بازار برنج، برای پاسخ‌گویی به نیاز خریداران در ایران و بازارهای منطقه‌ای.",
@@ -81,25 +86,28 @@ const products: Product[] = [
     id: 5,
     name: { en: "Essential Food Staples", fa: "مواد غذایی اساسی", ar: "الأساسيات الغذائية" },
     category: { en: "Core Products", fa: "محصولات اصلی", ar: "المنتجات الأساسية" },
-    image: productImage("red-lentil.webp"),
+    image: { src: '/signature-products/optimized/red-lentil.webp' },
     description: {
       en: "Legumes, spices, nuts, seeds, sugar, and other essentials selected for dependable B2B supply.",
-      fa: "حبوبات، ادویه‌ها، مغزها، دانه‌ها، شکر و سایر اقلام ضروری؛ انتخاب‌شده برای تأمین قابل اتکا در همکاری‌های عمده و سازمانی.",
+      fa: "حبوبات، ادویه‌ها، مغزها، دانه‌ها، شکر و سایر اقلام ضروری برای تأمین قابل اتکا.",
       ar: "بقوليات وتوابل ومكسرات وبذور وسكر وأساسيات أخرى مختارة لتوريد B2B موثوق.",
     },
   },
 ];
 
-export function SignatureProducts() {
+export function SignatureProducts({ lang, products: payloadProducts }: SignatureProductsProps) {
   const router = useRouter();
   const params = useParams();
-  const lang = (params.lang as Language) ?? "en";
-  const isRTL = lang === "fa" || lang === "ar";
-  const t = translations[lang];
-  const localize = (value: LocalizedText) => value[lang];
+  const effectiveLang = lang ?? ((params?.lang as Language) ?? "en");
+  const isRTL = effectiveLang === "fa" || effectiveLang === "ar";
+  const t = translations[effectiveLang];
+  const localize = (value: any) => getLocalized(value, effectiveLang);
   const textShiftClass = isRTL
     ? "-translate-x-4 sm:-translate-x-6 md:-translate-x-8 -translate-y-4 sm:-translate-y-6 md:-translate-y-8"
     : "translate-x-4 sm:translate-x-6 md:translate-x-8 -translate-y-4 sm:-translate-y-6 md:-translate-y-8";
+
+  const products = defaultProducts;
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoplay, setIsAutoplay] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -142,7 +150,7 @@ export function SignatureProducts() {
     return () => {
       if (autoplayRef.current) clearInterval(autoplayRef.current);
     };
-  }, [hasEntered, isAutoplay]);
+  }, [hasEntered, isAutoplay, products.length]);
 
   const handleNavigation = (newIndex: number) => {
     setIsTransitioning(true);
@@ -160,7 +168,7 @@ export function SignatureProducts() {
   };
 
   const handleProductClick = () => {
-    router.push(`/${lang}/products`);
+    router.push(`/${effectiveLang}/products`);
   };
 
   return (
@@ -187,7 +195,7 @@ export function SignatureProducts() {
           </p>
 
           <button
-            onClick={() => router.push(`/${lang}/products`)}
+            onClick={() => router.push(`/${effectiveLang}/products`)}
             className="btn btn-outline btn-md"
           >
             {t.pages.home.exploreAllProducts}
@@ -197,15 +205,15 @@ export function SignatureProducts() {
             {(["rice", "legumes", "nuts", "seeds", "spices", "sugar"] as const).map((cat) => (
               <button
                 key={cat}
-                onClick={() => router.push(`/${lang}/products?category=${cat}`)}
+                onClick={() => router.push(`/${effectiveLang}/products?category=${cat}`)}
                 className="px-4 py-2 text-xs sm:text-sm font-medium rounded-full border border-foreground/15 bg-background/60 text-foreground/70 hover:bg-brand-navy/10 hover:text-brand-navy hover:border-brand-navy/30 transition-all duration-300"
               >
-                {cat === "rice" && (lang === "en" ? "Rice" : lang === "fa" ? "برنج" : "أرز")}
-                {cat === "legumes" && (lang === "en" ? "Legumes" : lang === "fa" ? "حبوبات" : "بقوليات")}
-                {cat === "nuts" && (lang === "en" ? "Nuts" : lang === "fa" ? "مغزها" : "مكسرات")}
-                {cat === "seeds" && (lang === "en" ? "Seeds" : lang === "fa" ? "دانه‌ها" : "بذور")}
-                {cat === "spices" && (lang === "en" ? "Spices" : lang === "fa" ? "ادویه‌ها" : "توابل")}
-                {cat === "sugar" && (lang === "en" ? "Sugar" : lang === "fa" ? "شکر" : "سكر")}
+                {cat === "rice" && (effectiveLang === "en" ? "Rice" : effectiveLang === "fa" ? "برنج" : "أرز")}
+                {cat === "legumes" && (effectiveLang === "en" ? "Legumes" : effectiveLang === "fa" ? "حبوبات" : "بقوليات")}
+                {cat === "nuts" && (effectiveLang === "en" ? "Nuts" : effectiveLang === "fa" ? "مغزها" : "مكسرات")}
+                {cat === "seeds" && (effectiveLang === "en" ? "Seeds" : effectiveLang === "fa" ? "دانه‌ها" : "بذور")}
+                {cat === "spices" && (effectiveLang === "en" ? "Spices" : effectiveLang === "fa" ? "ادویه‌ها" : "توابل")}
+                {cat === "sugar" && (effectiveLang === "en" ? "Sugar" : effectiveLang === "fa" ? "شکر" : "سكر")}
               </button>
             ))}
           </div>
@@ -227,7 +235,7 @@ export function SignatureProducts() {
                 >
                   {hasEntered && (
                     <Image
-                      src={product.image.src}
+                      src={localize(product.image) || product.image.src}
                       alt={localize(product.name)}
                       fill
                       loading="lazy"

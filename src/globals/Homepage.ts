@@ -2,6 +2,9 @@ import type { GlobalConfig } from 'payload'
 
 export const Homepage: GlobalConfig = {
   slug: 'homepage',
+  access: {
+    read: () => true,
+  },
   admin: {
     group: 'Homepage',
   },
@@ -13,7 +16,8 @@ export const Homepage: GlobalConfig = {
       fields: [
         {
           name: 'image',
-          type: 'text',
+          type: 'upload',
+          relationTo: 'media',
           required: true,
         },
         {
@@ -71,7 +75,8 @@ export const Homepage: GlobalConfig = {
         },
         {
           name: 'logo',
-          type: 'text',
+          type: 'upload',
+          relationTo: 'media',
         },
         {
           name: 'description',

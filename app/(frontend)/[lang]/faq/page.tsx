@@ -2,11 +2,13 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { FAQHero } from "@/components/faq/faq-hero";
 import { FAQContent } from "@/components/faq/faq-content";
-import { faqs } from "@/components/faq/faq-data";
+import { getFAQs } from "@/lib/fetch/faqs";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
+
+export const revalidate = 60
 
 interface FAQPageProps {
   params: Promise<{
@@ -40,6 +42,7 @@ export default async function FAQPage({ params }: FAQPageProps) {
   const { lang } = await params;
   const t = translations[lang];
   const pageUrl = absoluteUrl(localizedPath(lang, "faq"));
+  const faqs = await getFAQs(lang);
 
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>

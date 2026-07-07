@@ -1,13 +1,6 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import {
-  categoryLabels,
-  getProductBrand,
-  productBrandLabels,
-  productCategories,
-  products,
-  type ProductCategory,
-} from "@/components/products/product-data";
+import { getProductBySlug, getProducts, getCategories } from "@/lib/fetch/products";
 import {
   CategoryLanding,
   categorySEOContent,
@@ -17,11 +10,14 @@ import { ProductPlaceholder } from "@/components/products/product-placeholder";
 import { ProductSpecs } from "@/components/products/product-specs";
 import { RelatedProducts } from "@/components/products/related-products";
 import { buildPageMetadata } from "@/lib/metadata";
-import { absoluteUrl, localizedPath, siteConfig } from "@/lib/site";
+import { absoluteUrl, localizedPath } from "@/lib/site";
+import { getPayloadClient } from "@/lib/payload";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import { permanentRedirect } from "next/navigation";
 import Link from "next/link";
+
+export const revalidate = 60
 
 interface ProductDetailProps {
   params: Promise<{
@@ -30,33 +26,31 @@ interface ProductDetailProps {
   }>;
 }
 
+const validCategorySlugs = new Set(["rice", "legumes", "seeds", "nuts", "spices", "sugar"]);
+
+function isCategorySlug(slug: string): boolean {
+  return validCategorySlugs.has(slug);
+}
+
 function isNumericProductParam(value: string) {
   return /^[0-9]+$/.test(value);
-}
-
-function findProductBySlugOrId(slug: string) {
-  if (isNumericProductParam(slug)) {
-    return products.find((item) => item.id === Number.parseInt(slug, 10));
-  }
-
-  return products.find((item) => item.slug === slug);
-}
-
-const validCategories = new Set<string>(productCategories);
-
-function isCategorySlug(slug: string): slug is ProductCategory {
-  return validCategories.has(slug);
 }
 
 export async function generateStaticParams() {
   const langs: Language[] = ["en", "fa", "ar"];
   const allParams: { lang: string; slug: string }[] = [];
 
+  const payload = await getPayloadClient();
+  const [productsResult, categoriesResult] = await Promise.all([
+    payload.find({ collection: "products", limit: 100 }),
+    payload.find({ collection: "categories", limit: 100 }),
+  ]);
+
   for (const lang of langs) {
-    for (const cat of productCategories) {
-      allParams.push({ lang, slug: cat });
+    for (const cat of categoriesResult.docs) {
+      allParams.push({ lang, slug: cat.slug });
     }
-    for (const product of products) {
+    for (const product of productsResult.docs) {
       allParams.push({ lang, slug: product.slug });
     }
   }
@@ -67,10 +61,17 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: ProductDetailProps) {
   const { lang, slug } = await params;
 
-  // Category landing page metadata
   if (isCategorySlug(slug)) {
-    const catLabel = categoryLabels[slug];
-    const seo = categorySEOContent[slug];
+    const seo = categorySEOContent[slug as keyof typeof categorySEOContent];
+    const catLabels: Record<string, { en: string; fa: string; ar: string }> = {
+      rice: { en: "Rice", fa: "برنج", ar: "أرز" },
+      legumes: { en: "Legumes & Pulses", fa: "حبوبات", ar: "بقوليات" },
+      seeds: { en: "Seeds & Kernels", fa: "دانه‌ها و مغز تخمه‌ها", ar: "بذور ولب" },
+      nuts: { en: "Nuts", fa: "مغزها", ar: "مكسرات" },
+      spices: { en: "Spices & Seasonings", fa: "ادویه‌ها و چاشنی‌ها", ar: "توابل وبهارات" },
+      sugar: { en: "Sweeteners", fa: "شکر و شیرین‌کننده‌ها", ar: "سكر ومحليات" },
+    };
+    const catLabel = catLabels[slug] ?? catLabels.rice;
     return buildPageMetadata({
       lang,
       path: `products/${slug}`,
@@ -83,8 +84,7 @@ export async function generateMetadata({ params }: ProductDetailProps) {
     });
   }
 
-  // Product detail metadata
-  const product = findProductBySlugOrId(slug);
+  const product = await getProductBySlug(slug, lang);
 
   if (!product) {
     return buildPageMetadata({
@@ -93,9 +93,9 @@ export async function generateMetadata({ params }: ProductDetailProps) {
       titleEn: "Product Not Found | Faradid Atlas",
       titleFa: "محصول پیدا نشد | فرادید اطلس",
       titleAr: "لم يتم العثور على المنتج | فراديد أطلس",
-      descriptionEn: siteConfig.description,
-      descriptionFa: siteConfig.descriptionFa,
-      descriptionAr: siteConfig.descriptionAr,
+      descriptionEn: "Product not found",
+      descriptionFa: "محصول پیدا نشد",
+      descriptionAr: "لم يتم العثور على المنتج",
     });
   }
 
@@ -112,26 +112,32 @@ export async function generateMetadata({ params }: ProductDetailProps) {
   });
 }
 
-export default async function ProductDetailPage({
-  params,
-}: ProductDetailProps) {
+const categoryLabelsLocal: Record<string, { en: string; fa: string; ar: string }> = {
+  rice: { en: "Rice", fa: "برنج", ar: "أرز" },
+  legumes: { en: "Legumes & Pulses", fa: "حبوبات", ar: "بقوليات" },
+  seeds: { en: "Seeds & Kernels", fa: "دانه‌ها و مغز تخمه‌ها", ar: "بذور ولب" },
+  nuts: { en: "Nuts", fa: "مغزها", ar: "مكسرات" },
+  spices: { en: "Spices & Seasonings", fa: "ادویه‌ها و چاشنی‌ها", ar: "توابل وبهارات" },
+  sugar: { en: "Sweeteners", fa: "شکر و شیرین‌کننده‌ها", ar: "سكر ومحليات" },
+};
+
+export default async function ProductDetailPage({ params }: ProductDetailProps) {
   const { lang, slug } = await params;
   const t = translations[lang];
 
-  // Render category landing page for category slugs
   if (isCategorySlug(slug)) {
     return (
       <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
         <Header lang={lang} />
         <main>
-          <CategoryLanding category={slug} lang={lang} />
+          <CategoryLanding category={slug as any} lang={lang} />
         </main>
         <Footer lang={lang} />
       </div>
     );
   }
 
-  const product = findProductBySlugOrId(slug);
+  const product = await getProductBySlug(slug, lang);
 
   if (product && isNumericProductParam(slug)) {
     permanentRedirect(localizedPath(lang, `products/${product.slug}`));
@@ -149,26 +155,17 @@ export default async function ProductDetailPage({
     );
   }
 
-  const name = lang === "en" ? product.nameEn : lang === "fa" ? product.nameFa : product.nameAr;
-  const alias = lang === "en" ? product.aliasEn : lang === "fa" ? product.aliasFa : product.aliasAr;
-  const description =
-    lang === "en" ? product.descriptionEn : lang === "fa" ? product.descriptionFa : product.descriptionAr;
-  const category =
-    lang === "en"
-      ? categoryLabels[product.category].en
-      : lang === "fa"
-        ? categoryLabels[product.category].fa
-        : categoryLabels[product.category].ar;
-  const gallery =
-    product.images && product.images.length > 0
-      ? product.images
-      : product.image
-        ? [product.image]
-        : [];
-  const productUrl = absoluteUrl(
-    localizedPath(lang, `products/${product.slug}`),
-  );
-  const productBrand = productBrandLabels[getProductBrand(product)][lang];
+  const name = product.nameEn;
+  const alias = product.aliasEn;
+  const description = product.descriptionEn;
+  const catLabel = categoryLabelsLocal[product.category] ?? categoryLabelsLocal.rice;
+  const category = catLabel[lang as keyof typeof catLabel] ?? catLabel.en;
+  const gallery = (product.images && product.images.length > 0) ? product.images : product.image ? [product.image] : [];
+  const productUrl = absoluteUrl(localizedPath(lang, `products/${product.slug}`));
+
+  const categories = await getCategories(lang);
+  const otherCategories = categories.filter((c: any) => c.slug !== product.category);
+  const relatedProducts = await getProducts(lang);
 
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
@@ -185,33 +182,22 @@ export default async function ProductDetailPage({
             >
               {t.breadcrumbs.home}
             </Link>
-            <span
-              className="h-1.5 w-1.5 rounded-full bg-foreground/30"
-              aria-hidden="true"
-            />
+            <span className="h-1.5 w-1.5 rounded-full bg-foreground/30" aria-hidden="true" />
             <Link
               href={`/${lang}/products`}
               className="line-accent transition-colors hover:text-primary"
             >
               {t.breadcrumbs.products}
             </Link>
-            <span
-              className="h-1.5 w-1.5 rounded-full bg-foreground/30"
-              aria-hidden="true"
-            />
+            <span className="h-1.5 w-1.5 rounded-full bg-foreground/30" aria-hidden="true" />
             <Link
               href={`/${lang}/products/${product.category}`}
               className="line-accent transition-colors hover:text-primary"
             >
               {category}
             </Link>
-            <span
-              className="h-1.5 w-1.5 rounded-full bg-foreground/30"
-              aria-hidden="true"
-            />
-            <span className="text-foreground font-medium line-clamp-1">
-              {name}
-            </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-foreground/30" aria-hidden="true" />
+            <span className="text-foreground font-medium line-clamp-1">{name}</span>
           </div>
         </nav>
 
@@ -221,11 +207,7 @@ export default async function ProductDetailPage({
               <ProductGallery images={gallery} alt={name} lang={lang} />
             ) : (
               <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-[5/4] max-h-[520px] lg:max-h-[560px] bg-white/80 rounded-3xl overflow-hidden border border-foreground/10 shadow-[0_30px_80px_-60px_rgba(15,15,15,0.45)]">
-                <ProductPlaceholder
-                  product={product}
-                  lang={lang}
-                  variant="detail"
-                />
+                <ProductPlaceholder product={product as any} lang={lang} variant="detail" />
               </div>
             )}
 
@@ -234,61 +216,36 @@ export default async function ProductDetailPage({
                 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-primary tracking-tight font-hero leading-tight motion-safe:animate-fade-in-up"
                 style={{
                   animationDelay: "0.05s",
-                  fontFamily:
-                    lang === "en"
-                      ? "var(--font-hero)"
-                      : "Estedad, var(--font-hero)",
+                  fontFamily: lang === "en" ? "var(--font-hero)" : "Estedad, var(--font-hero)",
                 }}
               >
                 {name}
               </h1>
               {alias && (
-                <p
-                  className="mt-3 text-sm sm:text-base font-medium text-accent-warm-gold motion-safe:animate-fade-in-up"
-                  style={{ animationDelay: "0.1s" }}
-                >
+                <p className="mt-3 text-sm sm:text-base font-medium text-accent-warm-gold motion-safe:animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
                   {alias}
                 </p>
               )}
-              <p
-                className="mt-4 text-sm sm:text-base text-foreground/70 leading-relaxed motion-safe:animate-fade-in-up"
-                style={{ animationDelay: "0.12s" }}
-              >
+              <p className="mt-4 text-sm sm:text-base text-foreground/70 leading-relaxed motion-safe:animate-fade-in-up" style={{ animationDelay: "0.12s" }}>
                 {description}
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6 mt-6 mb-8 sm:mb-10 p-4 sm:p-6 bg-secondary/30 rounded-2xl border border-foreground/10">
                 <div>
-                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
-                    {t.pages.products.category}
-                  </p>
-                  <p className="text-base sm:text-lg font-semibold text-primary">
-                    {category}
-                  </p>
+                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">{t.pages.products.category}</p>
+                  <p className="text-base sm:text-lg font-semibold text-primary">{category}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
-                    {t.pages.products.portfolio}
-                  </p>
-                  <p className="text-base sm:text-lg font-semibold text-primary">
-                    {t.pages.products.portfolioValue}
-                  </p>
+                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">{t.pages.products.portfolio}</p>
+                  <p className="text-base sm:text-lg font-semibold text-primary">{t.pages.products.portfolioValue}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
-                    {t.pages.products.supplyRole}
-                  </p>
-                  <p className="text-base sm:text-lg font-semibold text-primary">
-                    {t.pages.products.supplyRoleValue}
-                  </p>
+                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">{t.pages.products.supplyRole}</p>
+                  <p className="text-base sm:text-lg font-semibold text-primary">{t.pages.products.supplyRoleValue}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
-                    {t.pages.products.inquiry}
-                  </p>
-                  <p className="text-base sm:text-lg font-semibold text-primary">
-                    {t.pages.products.inquiryValue}
-                  </p>
+                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">{t.pages.products.inquiry}</p>
+                  <p className="text-base sm:text-lg font-semibold text-primary">{t.pages.products.inquiryValue}</p>
                 </div>
               </div>
 
@@ -297,37 +254,23 @@ export default async function ProductDetailPage({
               )}
 
               <div className="mb-8">
-                <h2 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">
-                  {t.pages.products.howWeSupply}
-                </h2>
-                <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">
-                  {t.pages.products.howWeSupplyDescription}
-                </p>
+                <h2 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">{t.pages.products.howWeSupply}</h2>
+                <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">{t.pages.products.howWeSupplyDescription}</p>
               </div>
 
               <div className="mb-8">
-                <h2 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">
-                  {t.pages.products.relatedCategories}
-                </h2>
-                <p className="text-sm sm:text-base text-foreground/70 leading-relaxed mb-4">
-                  {t.pages.products.relatedCategoriesDescription}
-                </p>
+                <h2 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">{t.pages.products.relatedCategories}</h2>
+                <p className="text-sm sm:text-base text-foreground/70 leading-relaxed mb-4">{t.pages.products.relatedCategoriesDescription}</p>
                 <div className="flex flex-wrap gap-2">
-                  {productCategories
-                    .filter((cat) => cat !== product.category)
-                    .map((cat) => (
-                      <Link
-                        key={cat}
-                        href={`/${lang}/products/${cat}`}
-                        className="px-3 py-1.5 text-xs sm:text-sm font-medium text-primary border border-primary/20 rounded-full hover:bg-primary/5 transition-colors"
-                      >
-                        {lang === "en"
-                          ? categoryLabels[cat].en
-                          : lang === "fa"
-                            ? categoryLabels[cat].fa
-                            : categoryLabels[cat].ar}
-                      </Link>
-                    ))}
+                  {otherCategories.map((cat: any) => (
+                    <Link
+                      key={cat.id}
+                      href={`/${lang}/products/${cat.slug}`}
+                      className="px-3 py-1.5 text-xs sm:text-sm font-medium text-primary border border-primary/20 rounded-full hover:bg-primary/5 transition-colors"
+                    >
+                      {(cat.name as any)?.[lang] ?? (cat.name as any)?.en ?? cat.slug}
+                    </Link>
+                  ))}
                 </div>
               </div>
 
@@ -350,11 +293,7 @@ export default async function ProductDetailPage({
         </section>
         <section className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-gradient-to-b from-background to-secondary/30">
           <div className="max-w-7xl mx-auto">
-            <RelatedProducts
-              lang={lang}
-              currentProduct={product}
-              allProducts={products}
-            />
+            <RelatedProducts lang={lang} currentProduct={product as any} allProducts={relatedProducts as any[]} />
           </div>
         </section>
         <script
@@ -370,10 +309,6 @@ export default async function ProductDetailPage({
                 category,
                 sku: product.slug,
                 ...(product.image ? { image: absoluteUrl(product.image) } : {}),
-                brand: {
-                  "@type": "Brand",
-                  name: productBrand,
-                },
                 inLanguage: lang,
                 mainEntityOfPage: productUrl,
                 url: productUrl,
@@ -382,30 +317,10 @@ export default async function ProductDetailPage({
                 "@context": "https://schema.org",
                 "@type": "BreadcrumbList",
                 itemListElement: [
-                  {
-                    "@type": "ListItem",
-                    position: 1,
-                    name: t.breadcrumbs.home,
-                    item: absoluteUrl(localizedPath(lang)),
-                  },
-                  {
-                    "@type": "ListItem",
-                    position: 2,
-                    name: t.breadcrumbs.products,
-                    item: absoluteUrl(localizedPath(lang, "products")),
-                  },
-                  {
-                    "@type": "ListItem",
-                    position: 3,
-                    name: category,
-                    item: absoluteUrl(localizedPath(lang, `products/${product.category}`)),
-                  },
-                  {
-                    "@type": "ListItem",
-                    position: 4,
-                    name,
-                    item: productUrl,
-                  },
+                  { "@type": "ListItem", position: 1, name: t.breadcrumbs.home, item: absoluteUrl(localizedPath(lang)) },
+                  { "@type": "ListItem", position: 2, name: t.breadcrumbs.products, item: absoluteUrl(localizedPath(lang, "products")) },
+                  { "@type": "ListItem", position: 3, name: category, item: absoluteUrl(localizedPath(lang, `products/${product.category}`)) },
+                  { "@type": "ListItem", position: 4, name, item: productUrl },
                 ],
               },
             ]),

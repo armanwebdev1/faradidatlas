@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
-import { jobs } from "@/components/careers/job-data";
+import { getJobs } from "@/lib/fetch/jobs";
 import { parseEmailRecipients } from "@/lib/email";
 import { siteConfig } from "@/lib/site";
 
@@ -99,6 +99,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: true });
     }
 
+    const jobs = await getJobs("en");
     const job = jobs.find((item) => item.id === payload.jobId);
     if (!job) {
       return NextResponse.json(

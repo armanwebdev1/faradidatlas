@@ -1,72 +1,55 @@
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
-import { publicContactEmail, publicPhoneNumbers } from "@/lib/contact-info";
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 
 interface OfficeInfoProps {
   lang: Language;
+  contactInfo?: any;
 }
 
-const offices = {
-  en: [
-    {
-      city: "Tehran",
-      role: "Company office supporting sales coordination and access to Iran's essential food market.",
-    },
-    {
-      city: "Isfahan",
-      role: "Company office supporting regional coordination and distribution access in Iran.",
-    },
-    {
-      city: "Dubai",
-      role: "Company office supporting regional trade access through the United Arab Emirates.",
-    },
-    {
-      city: "Oman",
-      role: "Company office supporting regional presence and market expansion.",
-    },
-  ],
-  fa: [
-    {
-      city: "تهران",
-      role: "دفتر تهران، هماهنگی فروش و ارتباط با بازار مواد غذایی اساسی ایران را پشتیبانی می‌کند.",
-    },
-    {
-      city: "اصفهان",
-      role: "دفتر اصفهان، به هماهنگی منطقه‌ای و دسترسی منظم‌تر به مسیرهای توزیع در ایران کمک می‌کند.",
-    },
-    {
-      city: "دبی",
-      role: "دفتر دبی، مسیر ارتباطات تجاری و فعالیت‌های منطقه‌ای فرادید اطلس در امارات متحده عربی را پشتیبانی می‌کند.",
-    },
-    {
-      city: "عمان",
-      role: "دفتر عمان، بخشی از حضور منطقه‌ای شرکت و مسیر توسعه همکاری‌های تجاری در بازارهای نزدیک است.",
-    },
-  ],
-  ar: [
-    {
-      city: "طهران",
-      role: "مكتب طهران يدعم تنسيق المبيعات والوصول إلى سوق الأغذية الأساسية في إيران.",
-    },
-    {
-      city: "أصفهان",
-      role: "مكتب أصفهان يساعد في التنسيق الإقليمي وتحسين الوصول إلى قنوات التوزيع في إيران.",
-    },
-    {
-      city: "دبي",
-      role: "مكتب دبي يدعم مسار التواصل التجاري والأنشطة الإقليمية لفراديد أطلس في الإمارات العربية المتحدة.",
-    },
-    {
-      city: "مسقط",
-      role: "مكتب مسقط جزء من Presence الإقليمية للشركة ومسار تطوير التعاون التجاري في الأسواق القريبة.",
-    },
-  ],
-};
+function getLocalized(value: any, lang: Language): string {
+  if (!value) return ''
+  if (typeof value === 'string') return value
+  if (typeof value === 'object' && value[lang]) return value[lang]
+  if (typeof value === 'object' && value.en) return value.en
+  return ''
+}
 
-export function OfficeInfo({ lang }: OfficeInfoProps) {
-  const officeList = lang === "en" ? offices.en : lang === "fa" ? offices.fa : offices.ar;
+export function OfficeInfo({ lang, contactInfo }: OfficeInfoProps) {
   const t = translations[lang];
+  const ci = contactInfo as any;
+
+  const email = ci?.email ?? '';
+  const phones = ci?.phones ?? [];
+  const payloadOffices = ci?.offices ?? [];
+
+  const fallbackOffices = {
+    en: [
+      { city: "Tehran", role: "Company office supporting sales coordination and access to Iran's essential food market." },
+      { city: "Isfahan", role: "Company office supporting regional coordination and distribution access in Iran." },
+      { city: "Dubai", role: "Company office supporting regional trade access through the United Arab Emirates." },
+      { city: "Oman", role: "Company office supporting regional presence and market expansion." },
+    ],
+    fa: [
+      { city: "تهران", role: "دفتر تهران، هماهنگی فروش و ارتباط با بازار مواد غذایی اساسی ایران را پشتیبانی می‌کند." },
+      { city: "اصفهان", role: "دفتر اصفهان، به هماهنگی منطقه‌ای و دسترسی منظم‌تر به مسیرهای توزیع در ایران کمک می‌کند." },
+      { city: "دبی", role: "دفتر دبی، مسیر ارتباطات تجاری و فعالیت‌های منطقه‌ای فرادید اطلس در امارات متحده عربی را پشتیبانی می‌کند." },
+      { city: "عمان", role: "دفتر عمان، بخشی از حضور منطقه‌ای شرکت و مسیر توسعه همکاری‌های تجاری در بازارهای نزدیک است." },
+    ],
+    ar: [
+      { city: "طهران", role: "مكتب طهران يدعم تنسيق المبيعات والوصول إلى سوق الأغذية الأساسية في إيران." },
+      { city: "أصفهان", role: "مكتب أصفهان يساعد في التنسيق الإقليمي وتحسين الوصول إلى قنوات التوزيع في إيران." },
+      { city: "دبي", role: "مكتب دبي يدعم مسار التواصل التجاري والأنشطة الإقليمية لفراديد أطلس في الإمارات العربية المتحدة." },
+      { city: "مسقط", role: "مكتب مسقط جزء من الحضور الإقليمية للشركة ومسار تطوير التعاون التجاري في الأسواق القريبة." },
+    ],
+  };
+
+  const officeList = payloadOffices.length > 0
+    ? payloadOffices.map((o: any) => ({
+        city: getLocalized(o.city, lang) || o.city || '',
+        role: getLocalized(o.address, lang) || '',
+      }))
+    : (fallbackOffices[lang as keyof typeof fallbackOffices] || fallbackOffices.en);
 
   return (
     <div className="space-y-6">
@@ -75,38 +58,42 @@ export function OfficeInfo({ lang }: OfficeInfoProps) {
           {t.pages.contact.directContact}
         </h3>
         <div className="space-y-3 text-sm text-foreground/75">
-          <a
-            href={`mailto:${publicContactEmail}`}
-            className="block transition-colors hover:text-brand-navy"
-            dir="ltr"
-          >
-            {publicContactEmail}
-          </a>
+          {email && (
+            <a
+              href={`mailto:${email}`}
+              className="block transition-colors hover:text-brand-navy"
+              dir="ltr"
+            >
+              {email}
+            </a>
+          )}
           <div className="flex flex-col gap-2" dir="ltr">
-            {publicPhoneNumbers.map((phone) => (
+            {phones.map((phone: any) => (
               <div key={phone.value} className="flex items-center gap-3">
                 <a
-                  href={phone.href}
+                  href={`tel:${phone.value}`}
                   className="transition-colors hover:text-brand-navy"
                 >
                   {phone.display}
                 </a>
-                <a
-                  href={phone.whatsappHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Chat with ${phone.display} on WhatsApp`}
-                  className="transition-colors hover:text-[#25D366]"
-                >
-                  <WhatsAppIcon className="w-4 h-4 shrink-0" />
-                </a>
+                {phone.whatsappHref && (
+                  <a
+                    href={phone.whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Chat with ${phone.display} on WhatsApp`}
+                    className="transition-colors hover:text-[#25D366]"
+                  >
+                    <WhatsAppIcon className="w-4 h-4 shrink-0" />
+                  </a>
+                )}
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {officeList.map((office) => (
+      {officeList.map((office: any) => (
         <div
           key={office.city}
           className="p-6 sm:p-8 bg-background rounded-lg border border-border"

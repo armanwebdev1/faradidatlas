@@ -4,105 +4,68 @@ import { Globe, CheckCircle, Route, Package } from "lucide-react";
 
 interface ValuePropsProps {
   lang: Language;
+  items?: Array<{
+    icon?: string;
+    title?: any;
+    description?: any;
+  }>;
 }
 
-const valueItems = {
+const iconMap: Record<string, any> = {
+  Globe,
+  CheckCircle,
+  Route,
+  Package,
+};
+
+const defaultItems = {
   en: [
-    {
-      icon: Globe,
-      title: "Direct Global Sourcing",
-      description:
-        "First-tier supplier relationships in key food-producing markets, including India and Pakistan.",
-      accentColor: "accent-warm-gold",
-    },
-    {
-      icon: CheckCircle,
-      title: "Quality Before Volume",
-      description:
-        "Products are selected against international hygiene and quality standards such as ISO 22000.",
-      accentColor: "accent-warm-red",
-    },
-    {
-      icon: Route,
-      title: "Stable Supply Channels",
-      description:
-        "Regional branches, offices, and warehouses support continuous supply for B2B buyers.",
-      accentColor: "accent",
-    },
-    {
-      icon: Package,
-      title: "Accessible Buyer Channels",
-      description:
-        "Offices, regional operations, and digital sales channels support individuals, wholesalers, organizations, and foodservice buyers.",
-      accentColor: "accent-warm-orange",
-    },
+    { icon: 'Globe', title: 'Direct Global Sourcing', description: 'First-tier supplier relationships in key food-producing markets, including India and Pakistan.', accentColor: 'accent-warm-gold' },
+    { icon: 'CheckCircle', title: 'Quality Before Volume', description: 'Products are selected against international hygiene and quality standards such as ISO 22000.', accentColor: 'accent-warm-red' },
+    { icon: 'Route', title: 'Stable Supply Channels', description: 'Regional branches, offices, and warehouses support continuous supply for B2B buyers.', accentColor: 'accent' },
+    { icon: 'Package', title: 'Accessible Buyer Channels', description: 'Offices, regional operations, and digital sales channels support individuals, wholesalers, organizations, and foodservice buyers.', accentColor: 'accent-warm-orange' },
   ],
   fa: [
-    {
-      icon: Globe,
-      title: "تأمین مستقیم از مبدا",
-      description:
-        "با تأمین‌کنندگان معتبر در بازارهای اصلی تولید غذا، از جمله هند و پاکستان، همکاری می‌کنیم تا محصول باکیفیت با مسیر تأمین روشن‌تری به بازار برسد.",
-      accentColor: "accent-warm-gold",
-    },
-    {
-      icon: CheckCircle,
-      title: "کیفیت؛ شرط اول همکاری",
-      description:
-        "پیش از هر همکاری، محصول از نظر سلامت، کیفیت و ثبات بررسی می‌شود. استانداردهایی مانند ISO 22000 برای ما بخشی از نظم کاری در زنجیره تأمین غذاست.",
-      accentColor: "accent-warm-red",
-    },
-    {
-      icon: Route,
-      title: "تأمین منظم برای خرید عمده",
-      description:
-        "با شبکه منطقه‌ای دفتر، شعبه و انبار، سفارش‌های عمده و سازمانی را با ریتمی قابل اعتماد پشتیبانی می‌کنیم.",
-      accentColor: "accent",
-    },
-    {
-      icon: Package,
-      title: "مسیر ساده‌تر برای خرید",
-      description:
-        "از تماس حضوری تا فروش دیجیتال، مسیر خرید را برای عمده‌فروشان، سازمان‌ها و فعالان خدمات غذایی ساده و سریع نگه می‌داریم.",
-      accentColor: "accent-warm-orange",
-    },
+    { icon: 'Globe', title: 'تأمین مستقیم از مبدا', description: 'با تأمین‌کنندگان معتبر در بازارهای اصلی تولید غذا، از جمله هند و پاکستان، همکاری می‌کنیم.', accentColor: 'accent-warm-gold' },
+    { icon: 'CheckCircle', title: 'کیفیت؛ شرط اول همکاری', description: 'پیش از هر همکاری، محصول از نظر سلامت، کیفیت و ثبات بررسی می‌شود.', accentColor: 'accent-warm-red' },
+    { icon: 'Route', title: 'تأمین منظم برای خرید عمده', description: 'با شبکه منطقه‌ای دفتر، شعبه و انبار، سفارش‌های عمده و سازمانی را پشتیبانی می‌کنیم.', accentColor: 'accent' },
+    { icon: 'Package', title: 'مسیر ساده‌تر برای خرید', description: 'از تماس حضوری تا فروش دیجیتال، مسیر خرید را ساده و سریع نگه می‌داریم.', accentColor: 'accent-warm-orange' },
   ],
   ar: [
-    {
-      icon: Globe,
-      title: "توريد مباشر من المصدر",
-      description:
-        "نتعاون مع موردين موثوقين في أسواق إنتاج الغذاء الرئيسية، بما في ذلك الهند وباكستان، لضمان وصول منتجات عالية الجودة بسلسلة توريد أوضح إلى السوق.",
-      accentColor: "accent-warm-gold",
-    },
-    {
-      icon: CheckCircle,
-      title: "الجودة شرط التعاون الأول",
-      description:
-        "قبل أي تعاون، يتم فحص المنتج من حيث السلامة والجودة والاستقرار. المعايير مثل ISO 22000 هي جزء من نظام العمل في سلسلة توريد الغذاء.",
-      accentColor: "accent-warm-red",
-    },
-    {
-      icon: Route,
-      title: "توريد منتظم للشراء بالجملة",
-      description:
-        " بشبكة إقليمية من المكاتب والفرع والمستودعات، ندعم طلبات الجملة والمؤسسات بإيقاع موثوق.",
-      accentColor: "accent",
-    },
-    {
-      icon: Package,
-      title: "مسار أبسط للشراء",
-      description:
-        "من الاتصال المباشر إلى المبيعات الرقمية، نحافظ على مسار شراء بسيط وسريع للتجار بالجملة والمؤسسات ومشغلي خدمات الطعام.",
-      accentColor: "accent-warm-orange",
-    },
+    { icon: 'Globe', title: 'توريد مباشر من المصدر', description: 'نتعاون مع موردين موثوقين في أسواق إنتاج الغذاء الرئيسية.', accentColor: 'accent-warm-gold' },
+    { icon: 'CheckCircle', title: 'الجودة شرط التعاون الأول', description: 'قبل أي تعاون، يتم فحص المنتج من حيث السلامة والجودة والاستقرار.', accentColor: 'accent-warm-red' },
+    { icon: 'Route', title: 'توريد منتظم للشراء بالجملة', description: 'بشبكة إقليمية من المكاتب والفرع والمستودعات، ندعم طلبات الجملة والمؤسسات.', accentColor: 'accent' },
+    { icon: 'Package', title: 'مسار أبسط للشراء', description: 'من الاتصال المباشر إلى المبيعات الرقمية، نحافظ على مسار شراء بسيط وسريع.', accentColor: 'accent-warm-orange' },
   ],
 };
 
-export function ValueProps({ lang }: ValuePropsProps) {
+function getLocalized(value: any, lang: Language): string {
+  if (!value) return ''
+  if (typeof value === 'string') return value
+  if (typeof value === 'object' && value[lang]) return value[lang]
+  if (typeof value === 'object' && value.en) return value.en
+  return ''
+}
+
+export function ValueProps({ lang, items: payloadItems }: ValuePropsProps) {
   const t = translations[lang];
   const isRTL = lang === "fa" || lang === "ar";
-  const items = lang === "en" ? valueItems.en : lang === "fa" ? valueItems.fa : valueItems.ar;
+
+  const items = payloadItems?.length
+    ? payloadItems.map((item) => {
+        const iconName = item.icon ?? 'Globe';
+        const IconComponent = iconMap[iconName] ?? Globe;
+        return {
+          icon: IconComponent,
+          title: getLocalized(item.title, lang),
+          description: getLocalized(item.description, lang),
+        };
+      })
+    : (defaultItems[lang] || defaultItems.en).map((item) => ({
+        ...item,
+        icon: iconMap[item.icon] ?? Globe,
+      }));
+
   const marqueeGroups = [0, 1];
 
   return (

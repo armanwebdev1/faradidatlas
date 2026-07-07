@@ -2,6 +2,9 @@ import type { GlobalConfig } from 'payload'
 
 export const CompanyInfo: GlobalConfig = {
   slug: 'company-info',
+  access: {
+    read: () => true,
+  },
   admin: {
     group: 'Company',
   },
@@ -60,7 +63,8 @@ export const CompanyInfo: GlobalConfig = {
         },
         {
           name: 'image',
-          type: 'text',
+          type: 'upload',
+          relationTo: 'media',
         },
       ],
     },
@@ -81,7 +85,8 @@ export const CompanyInfo: GlobalConfig = {
         },
         {
           name: 'image',
-          type: 'text',
+          type: 'upload',
+          relationTo: 'media',
         },
       ],
     },

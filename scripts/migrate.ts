@@ -1,9 +1,16 @@
-import { getPayload } from 'payload'
-import config from '../payload.config'
-import { importCategories, importProductBrands, importProducts } from './migrate-products'
-import { importFAQs } from './migrate-faqs'
-import { importJobs } from './migrate-jobs'
-import { importTranslations } from './migrate-translations'
+// Load env first using Payload's built-in mechanism
+const { loadEnvConfig } = await import('@next/env')
+import { resolve } from 'path'
+loadEnvConfig(resolve(process.cwd()), process.env.NODE_ENV !== 'production')
+
+// Now import config AFTER env is loaded
+const { getPayload } = await import('payload')
+const { default: config } = await import('../payload.config')
+const { importCategories, importProductBrands, importProducts } = await import('./migrate-products')
+const { importFAQs } = await import('./migrate-faqs')
+const { importJobs } = await import('./migrate-jobs')
+const { importTranslations } = await import('./migrate-translations')
+const { importMedia } = await import('./migrate-media')
 
 async function migrate() {
   const payload = await getPayload({ config })
@@ -27,6 +34,9 @@ async function migrate() {
 
   console.log('Importing translations...')
   await importTranslations(payload)
+
+  console.log('Importing media...')
+  await importMedia(payload)
 
   console.log('Migration complete!')
   process.exit(0)

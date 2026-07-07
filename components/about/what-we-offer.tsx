@@ -5,6 +5,7 @@ import { AnimatedSection } from "./animated-section";
 
 interface WhatWeOfferProps {
   lang: Language;
+  companyInfo?: any;
 }
 
 const offerings = {

@@ -8,94 +8,56 @@ import { translations } from "@/lib/i18n";
 
 interface HeroProps {
   lang: Language;
+  slides: Array<{
+    id?: number;
+    image?: any;
+    title?: any;
+    subtitle?: any;
+    description?: any;
+  }>;
 }
 
-interface HeroImage {
-  src: string;
+function resolveMediaUrl(media: any): string {
+  if (!media) return '/hero/optimized/home-hero-1.webp'
+  if (typeof media === 'string') return media
+  if (typeof media === 'object') return media.url ?? media.filename ?? '/hero/optimized/home-hero-1.webp'
+  return '/hero/optimized/home-hero-1.webp'
 }
 
-interface HeroSlide {
-  id: number;
-  image: HeroImage;
-  title: Record<Language, string>;
-  subtitle: Record<Language, string>;
-  description: Record<Language, string>;
+function getLocalized(value: any, lang: Language): string {
+  if (!value) return ''
+  if (typeof value === 'string') return value
+  if (typeof value === 'object' && value[lang]) return value[lang]
+  if (typeof value === 'object' && value.en) return value.en
+  return ''
 }
 
-function heroImage(filename: string): HeroImage {
-  return {
-    src: `/hero/optimized/${filename}`,
-  };
-}
-
-const slides: HeroSlide[] = [
+const defaultSlides = [
   {
     id: 1,
-    image: heroImage("home-hero-1.webp"),
-    title: {
-      en: "Reliable Food Supply",
-      fa: "تأمین مواد غذایی",
-      ar: "تزوين الغذاء الموثوق",
-    },
-    subtitle: {
-      en: "Food Security in Practice",
-      fa: "تأمین پایدار، فراتر از شعار",
-      ar: "أمن غذائي عملي",
-    },
+    image: { url: '/hero/optimized/home-hero-1.webp' },
+    title: { en: 'Reliable Food Supply', fa: 'تأمین مواد غذایی', ar: 'تزوين الغذاء الموثوق' },
+    subtitle: { en: 'Food Security in Practice', fa: 'تأمین پایدار، فراتر از شعار', ar: 'أمن غذائي عملي' },
     description: {
-      en: "Since 2009, Faradid Atlas has been a wholesale food supplier sourcing, importing, and distributing rice, legumes, nuts, seeds, spices, and sugar to B2B buyers across Iran, UAE, and Oman — with ISO 22000-aligned quality standards and dependable regional distribution.",
-      fa: "فرادید اطلس از سال ۱۳۸۸ به عنوان تأمین‌کننده عمده مواد غذایی، برنج، حبوبات، مغزها، دانه‌ها، ادویه‌ها و شکر را برای خریداران B2B در ایران، امارات و عمان تأمین، واردات و توزیع می‌کند؛ با استانداردهای کیفی ISO 22000 و عملیات توزیع منطقه‌ای قابل اتکا.",
-      ar: "منذ عام ٢٠٠٩، يعمل فراديد أطلس كمزود غذائي بالجملة يتوريد ويستورد ويوزع الأرز والبقوليات والمكسرات والبذور والتوابل والسكر للمشترين B2B في إيران والإمارات وعمان — بمعايير جودة متوافقة مع ISO 22000 وعمليات توزيع إقليمية موثوقة.",
+      en: 'Since 2009, Faradid Atlas has been a wholesale food supplier sourcing, importing, and distributing rice, legumes, nuts, seeds, spices, and sugar to B2B buyers across Iran, UAE, and Oman.',
+      fa: 'فرادید اطلس از سال ۱۳۸۸ به عنوان تأمین‌کننده عمده مواد غذایی فعالیت می‌کند.',
+      ar: 'منذ عام ٢٠٠٩، يعمل فراديد أطلس كمزود غذائي بالجملة.',
     },
   },
-  {
-    id: 2,
-    image: heroImage("home-hero-2.webp"),
-    title: {
-      en: "Direct Sourcing Network",
-      fa: "ارتباط نزدیک با مبدا تامین",
-      ar: "شبكة التوريد المباشر",
-    },
-    subtitle: {
-      en: "From Origin to Market",
-      fa: "از مبدأ معتبر تا بازار مصرف",
-      ar: "من المصدر إلى السوق",
-    },
-    description: {
-      en: "Direct B2B sourcing relationships across India, Pakistan, and key food-producing markets keep wholesale supplies of rice, legumes, nuts, seeds, spices, and sugar moving through clear, practical distribution channels to the Middle East.",
-      fa: "ارتباط مستقیم تأمین B2B با تأمین‌کنندگان معتبر در هند، پاکستان و بازارهای اصلی تولید غذا، تأمین عمده برنج، حبوبات، مغزها، دانه‌ها، ادویه‌ها و شکر را به خاورمیانه از مسیرهای شفاف و عملی توزیع تضمین می‌کند.",
-      ar: "علاقات التوريد المباشرة B2B مع الموردين في الهند وباكستان وأسواق الإنتاج الغذائي الرئيسية تضمن تدفق إمدادات بالجملة من الأرز والبقوليات والمكسرات والبذور والتوابل والسكر إلى الشرق الأوسط عبر قنوات توزيع واضحة وعملية.",
-    },
-  },
-  {
-    id: 3,
-    image: heroImage("home-hero-3.webp"),
-    title: {
-      en: "Steady Regional Reach",
-      fa: "پشتیبانی مطمئن",
-      ar: "تغطية إقليمية موثوقة",
-    },
-    subtitle: {
-      en: "Built for B2B Continuity",
-      fa: "برای تأمین مستمر خریداران عمده و سازمانی",
-      ar: "مصمم لاستمرارية الأعمال",
-    },
-    description: {
-      en: "Warehouses, branches, and offices in Tehran, Isfahan, Dubai, and Oman give wholesale buyers, B2B distributors, and foodservice partners a steadier path from product sourcing to reliable delivery across the region.",
-      fa: "دفاتر، شعب و انبارهای عملیاتی در تهران، اصفهان، دبی و عمان، به خریداران عمده، توزیع‌کنندگان B2B و فعالان خدمات غذایی کمک می‌کند از مرحله تأمین محصول تا تحویل مطمئن در سراسر منطقه، مسیر مطمئن‌تری را تجربه کنند.",
-      ar: "المكاتب والفرع والمستودعات في طهران وأصفهان ودبي وعمان توفر للمشترين بالجملة والموزعين B2B ومشغلي خدمات الطعام مساراً أكثر استقراراً من توريد المنتجات إلى التسليم الموثوق عبر المنطقة.",
-    },
-  },
-];
+]
 
-export function Hero({ lang }: HeroProps) {
+export function Hero({ lang, slides: rawSlides }: HeroProps) {
+  const slides = rawSlides?.length ? rawSlides : defaultSlides;
   const [activeIndex, setActiveIndex] = useState(0);
   const isRTL = lang === "fa" || lang === "ar";
   const t = translations[lang];
   const activeSlide = slides[activeIndex];
+  const titleText = getLocalized(activeSlide?.title, lang);
+  const subtitleText = getLocalized(activeSlide?.subtitle, lang);
+  const descriptionText = getLocalized(activeSlide?.description, lang);
   const titleParts = useMemo(
-    () => activeSlide.title[lang].split(" "),
-    [activeSlide, lang],
+    () => titleText.split(" "),
+    [titleText],
   );
   const textShiftClass = isRTL
     ? "ml-auto w-full text-right -translate-x-4 sm:-translate-x-6 md:-translate-x-8"
@@ -113,7 +75,7 @@ export function Hero({ lang }: HeroProps) {
     }, 6200);
 
     return () => window.clearInterval(timer);
-  }, [activeIndex]);
+  }, [activeIndex, slides.length]);
 
   const goToSlide = (index: number) => {
     setActiveIndex((index + slides.length) % slides.length);
@@ -133,15 +95,15 @@ export function Hero({ lang }: HeroProps) {
 
           return (
             <div
-              key={slide.id}
+              key={slide.id ?? index}
               className={`absolute inset-0 block transition-opacity duration-1000 ease-out ${
                 isActive ? "opacity-100" : "opacity-0"
               }`}
             >
               <Image
                 key={`${slide.id}-${isActive ? "active" : "idle"}`}
-                src={slide.image.src}
-                alt={`${slide.title[lang]} – ${slide.subtitle[lang]}`}
+                src={resolveMediaUrl(slide.image)}
+                alt={`${getLocalized(slide.title, lang)} – ${getLocalized(slide.subtitle, lang)}`}
                 fill
                 priority={index === 0}
                 loading={index === 0 ? undefined : "lazy"}
@@ -191,7 +153,7 @@ export function Hero({ lang }: HeroProps) {
 
       <div className="absolute bottom-0 inset-x-0 z-20">
         <div
-          key={activeSlide.id}
+          key={activeSlide?.id ?? activeIndex}
           className={`max-w-5xl px-8 md:px-12 lg:px-20 pb-16 sm:pb-20 md:pb-24 transform-gpu ${textShiftClass}`}
           dir={isRTL ? "rtl" : "ltr"}
           aria-live="polite"
@@ -200,7 +162,7 @@ export function Hero({ lang }: HeroProps) {
             className="eyebrow mb-5 text-accent-warm-gold animate-fade-in-up"
             style={{ animationDelay: "0.05s" }}
           >
-            {activeSlide.subtitle[lang]}
+            {subtitleText}
           </p>
 
           <h1
@@ -217,7 +179,7 @@ export function Hero({ lang }: HeroProps) {
             }`}
             style={{ animationDelay: "0.2s" }}
           >
-            {activeSlide.description[lang]}
+            {descriptionText}
           </p>
 
           <div
@@ -241,7 +203,7 @@ export function Hero({ lang }: HeroProps) {
             </button>
             {slides.map((slide, index) => (
               <button
-                key={slide.id}
+                key={slide.id ?? index}
                 type="button"
                 onClick={() => goToSlide(index)}
                 className={`h-1.5 rounded-full transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white/20 ${
