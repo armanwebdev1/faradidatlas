@@ -95,10 +95,10 @@ export default async function FAQPage({ params }: FAQPageProps) {
                 inLanguage: lang,
                 mainEntity: faqs.map((faq) => ({
                   "@type": "Question",
-                  name: lang === "en" ? faq.questionEn : faq.questionFa,
+                  name: lang === "en" ? faq.questionEn : lang === "fa" ? faq.questionFa : faq.questionAr,
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: lang === "en" ? faq.answerEn : faq.answerFa,
+                    text: lang === "en" ? faq.answerEn : lang === "fa" ? faq.answerFa : faq.answerAr,
                   },
                 })),
               },

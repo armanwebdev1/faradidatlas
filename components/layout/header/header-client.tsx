@@ -40,6 +40,8 @@ import {
   type HeaderMode,
   categoryDescriptions,
   brandThumbnails,
+  categoryFallbackImages,
+  typeFallbackImages,
 } from "./header-data";
 import { normalizeSearchText, productSearchText, searchProducts } from "./search-utils";
 import { useHeaderScroll } from "./use-header-scroll";
@@ -111,13 +113,13 @@ export function Header({ lang, products: payloadProducts }: HeaderProps) {
             count,
             countLabel: `${numberFormatter.format(count)} ${t.header.productCountLabel}`,
             href: `/${lang}/products?category=${category}#product-catalog`,
-            image: categoryProducts.find((product) => product.image)?.image,
-          };
-        })
-        .filter((item) => item.count > 0),
-    [lang, numberFormatter],
-  );
-  const productBrandMenuItems = useMemo(
+          image: categoryProducts.find((product) => product.image)?.image ?? categoryFallbackImages[category],
+        };
+      })
+      .filter((item) => item.count > 0),
+  [lang, numberFormatter],
+);
+const productBrandMenuItems = useMemo(
     () =>
       productBrands
         .map((brand) => {
@@ -153,7 +155,7 @@ export function Header({ lang, products: payloadProducts }: HeaderProps) {
             count,
             countLabel: `${numberFormatter.format(count)} ${t.header.productCountLabel}`,
             href: `/${lang}/products?type=${type}#product-catalog`,
-            image: typeProducts.find((product) => product.image)?.image,
+            image: typeProducts.find((product) => product.image)?.image ?? typeFallbackImages[type],
             imageFit: "cover" as const,
           };
         })

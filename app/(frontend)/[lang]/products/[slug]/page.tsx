@@ -155,9 +155,9 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
     );
   }
 
-  const name = product.nameEn;
-  const alias = product.aliasEn;
-  const description = product.descriptionEn;
+  const name = lang === "en" ? product.nameEn : lang === "fa" ? product.nameFa : product.nameAr;
+  const alias = lang === "en" ? product.aliasEn : lang === "fa" ? product.aliasFa : product.aliasAr;
+  const description = lang === "en" ? product.descriptionEn : lang === "fa" ? product.descriptionFa : product.descriptionAr;
   const catLabel = categoryLabelsLocal[product.category] ?? categoryLabelsLocal.rice;
   const category = catLabel[lang as keyof typeof catLabel] ?? catLabel.en;
   const gallery = (product.images && product.images.length > 0) ? product.images : product.image ? [product.image] : [];

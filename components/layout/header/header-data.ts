@@ -55,6 +55,27 @@ export const brandThumbnails: Record<ProductBrand, string> = {
   hayat: "/brands/hayat-4k.png",
 };
 
+export const categoryFallbackImages: Record<ProductCategory, string> = {
+  rice: "/product_images/optimized/twenty-one-sella-basmati.webp",
+  legumes: "/product_images/optimized/red-lentil.webp",
+  seeds: "/product_images/optimized/sunflower-seeds.webp",
+  nuts: "/product_images/optimized/cashew-nuts.webp",
+  spices: "/product_images/optimized/cardamom.webp",
+  sugar: "/product_images/optimized/sugar.webp",
+};
+
+export const typeFallbackImages: Record<ProductType, string> = {
+  "basmati-rice": "/product_images/optimized/twenty-one-sella-basmati.webp",
+  "jasmine-rice": "/product_images/optimized/hayat-thai-jasmine.webp",
+  beans: "/product_images/optimized/pinto-beans.webp",
+  lentils: "/product_images/optimized/red-lentil.webp",
+  chickpeas: "/product_images/optimized/chickpeas.webp",
+  "seeds-kernels": "/product_images/optimized/sunflower-seed-kernels.webp",
+  nuts: "/product_images/optimized/cashew-nuts.webp",
+  spices: "/product_images/optimized/cardamom.webp",
+  sweeteners: "/product_images/optimized/sugar.webp",
+};
+
 export type ProductCategoryMenuItem = {
   category: ProductCategory;
   label: string;

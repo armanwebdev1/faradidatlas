@@ -15,8 +15,9 @@ export async function getProducts(locale: string = 'en') {
 
   const products = await payload.find({
     collection: 'products',
+    locale: locale as 'en' | 'fa' | 'ar',
     limit: 100,
-    depth: 1,
+    depth: 2,
   })
 
   return products.docs.map((p) => ({
@@ -47,8 +48,9 @@ export async function getProductBySlug(
   const products = await payload.find({
     collection: 'products',
     where: { slug: { equals: slug } },
+    locale: locale as 'en' | 'fa' | 'ar',
     limit: 1,
-    depth: 1,
+    depth: 2,
   })
 
   const p = products.docs[0]
@@ -90,8 +92,9 @@ export async function getProductsByCategory(
   const products = await payload.find({
     collection: 'products',
     where: { category: { equals: categories.docs[0].id } },
+    locale: locale as 'en' | 'fa' | 'ar',
     limit: 100,
-    depth: 1,
+    depth: 2,
   })
 
   return products.docs.map((p) => ({
