@@ -6,7 +6,6 @@ export async function getJobs(locale: string = 'en') {
 
   const jobs = await payload.find({
     collection: 'jobs',
-    locale: locale as 'en' | 'fa' | 'ar',
     limit: 100,
   })
 
@@ -46,7 +45,6 @@ export async function getJobById(
   const jobs = await payload.find({
     collection: 'jobs',
     where: { id: { equals: id } },
-    locale: locale as 'en' | 'fa' | 'ar',
     limit: 1,
   })
 

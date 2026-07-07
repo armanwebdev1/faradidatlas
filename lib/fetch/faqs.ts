@@ -9,7 +9,6 @@ export async function getFAQs(locale: string = 'en') {
 
   const faqs = await payload.find({
     collection: 'faqs',
-    locale: locale as 'en' | 'fa' | 'ar',
     limit: 100,
   })
 
@@ -34,7 +33,6 @@ export async function getFAQsByCategory(
   const faqs = await payload.find({
     collection: 'faqs',
     where: { category: { equals: category } },
-    locale: locale as 'en' | 'fa' | 'ar',
     limit: 100,
   })
 
