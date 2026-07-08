@@ -11,15 +11,20 @@ const categorySlugMap: Record<string, ProductCategory> = {
 }
 
 export async function getProducts(locale: string = 'en') {
+  console.log(`\n[INSTR] getProducts ENTER  caller=${new Error().stack?.split('\n')[2]?.trim()}`)
+  const t = Date.now()
   const payload = await getPayloadClient()
+  console.log(`[INSTR] getProducts payload ready  ${Date.now() - t}ms`)
 
+  const t2 = Date.now()
   const products = await payload.find({
     collection: 'products',
     limit: 100,
     depth: 2,
   })
+  console.log(`[INSTR] getProducts payload.find done  ${Date.now() - t2}ms`)
 
-  return products.docs.map((p) => ({
+  const result = products.docs.map((p) => ({
     id: p.id,
     slug: p.slug,
     nameEn: (p.name as any)?.en ?? '',
@@ -36,25 +41,36 @@ export async function getProducts(locale: string = 'en') {
     images: ((p.gallery as any[])?.map((g: any) => resolveImageUrl(g.image)).filter(Boolean) ?? []) as string[],
     specs: resolveSpecs(p.specs),
   })) as Product[]
+
+  console.log(`[INSTR] getProducts EXIT  ${Date.now() - t}ms  docs=${result.length}`)
+  return result
 }
 
 export async function getProductBySlug(
   slug: string,
   locale: string = 'en',
 ) {
+  console.log(`\n[INSTR] getProductBySlug("${slug}") ENTER  caller=${new Error().stack?.split('\n')[2]?.trim()}`)
+  const t = Date.now()
   const payload = await getPayloadClient()
+  console.log(`[INSTR] getProductBySlug payload ready  ${Date.now() - t}ms`)
 
+  const t2 = Date.now()
   const products = await payload.find({
     collection: 'products',
     where: { slug: { equals: slug } },
     limit: 1,
     depth: 2,
   })
+  console.log(`[INSTR] getProductBySlug payload.find done  ${Date.now() - t2}ms`)
 
   const p = products.docs[0]
-  if (!p) return null
+  if (!p) {
+    console.log(`[INSTR] getProductBySlug EXIT (not found)  ${Date.now() - t}ms`)
+    return null
+  }
 
-  return {
+  const mapped = {
     id: p.id,
     slug: p.slug,
     nameEn: (p.name as any)?.en ?? '',
@@ -71,12 +87,17 @@ export async function getProductBySlug(
     images: ((p.gallery as any[])?.map((g: any) => resolveImageUrl(g.image)).filter(Boolean) ?? []) as string[],
     specs: resolveSpecs(p.specs),
   } as Product
+
+  console.log(`[INSTR] getProductBySlug EXIT  ${Date.now() - t}ms`)
+  return mapped
 }
 
 export async function getProductsByCategory(
   category: string,
   locale: string = 'en',
 ) {
+  console.log(`\n[INSTR] getProductsByCategory("${category}") ENTER  caller=${new Error().stack?.split('\n')[2]?.trim()}`)
+  const t = Date.now()
   const payload = await getPayloadClient()
 
   const categories = await payload.find({
@@ -94,7 +115,7 @@ export async function getProductsByCategory(
     depth: 2,
   })
 
-  return products.docs.map((p) => ({
+  const result = products.docs.map((p) => ({
     id: p.id,
     slug: p.slug,
     nameEn: (p.name as any)?.en ?? '',
@@ -111,9 +132,14 @@ export async function getProductsByCategory(
     images: ((p.gallery as any[])?.map((g: any) => resolveImageUrl(g.image)).filter(Boolean) ?? []) as string[],
     specs: resolveSpecs(p.specs),
   })) as Product[]
+
+  console.log(`[INSTR] getProductsByCategory EXIT  ${Date.now() - t}ms`)
+  return result
 }
 
 export async function getCategories(locale: string = 'en') {
+  console.log(`\n[INSTR] getCategories ENTER  caller=${new Error().stack?.split('\n')[2]?.trim()}`)
+  const t = Date.now()
   const payload = await getPayloadClient()
 
   const categories = await payload.find({
@@ -122,6 +148,7 @@ export async function getCategories(locale: string = 'en') {
     limit: 100,
   })
 
+  console.log(`[INSTR] getCategories EXIT  ${Date.now() - t}ms`)
   return categories.docs
 }
 

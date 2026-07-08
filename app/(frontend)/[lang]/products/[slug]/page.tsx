@@ -37,6 +37,8 @@ function isNumericProductParam(value: string) {
 }
 
 export async function generateStaticParams() {
+  console.log(`\n[INSTR] generateStaticParams ENTER`)
+  const t = Date.now()
   const langs: Language[] = ["en", "fa", "ar"];
   const allParams: { lang: string; slug: string }[] = [];
 
@@ -55,11 +57,15 @@ export async function generateStaticParams() {
     }
   }
 
+  console.log(`[INSTR] generateStaticParams EXIT  ${Date.now() - t}ms  params=${allParams.length}`)
   return allParams;
 }
 
 export async function generateMetadata({ params }: ProductDetailProps) {
+  console.log(`\n[INSTR] generateMetadata ENTER`)
+  const t = Date.now()
   const { lang, slug } = await params;
+  console.log(`[INSTR] generateMetadata params resolved: lang=${lang} slug=${slug}`)
 
   if (isCategorySlug(slug)) {
     const seo = categorySEOContent[slug as keyof typeof categorySEOContent];
@@ -72,6 +78,7 @@ export async function generateMetadata({ params }: ProductDetailProps) {
       sugar: { en: "Sweeteners", fa: "شکر و شیرین‌کننده‌ها", ar: "سكر ومحليات" },
     };
     const catLabel = catLabels[slug] ?? catLabels.rice;
+    console.log(`[INSTR] generateMetadata EXIT (category)  ${Date.now() - t}ms`)
     return buildPageMetadata({
       lang,
       path: `products/${slug}`,
@@ -87,6 +94,7 @@ export async function generateMetadata({ params }: ProductDetailProps) {
   const product = await getProductBySlug(slug, lang);
 
   if (!product) {
+    console.log(`[INSTR] generateMetadata EXIT (not found)  ${Date.now() - t}ms`)
     return buildPageMetadata({
       lang,
       path: "products",
@@ -99,6 +107,7 @@ export async function generateMetadata({ params }: ProductDetailProps) {
     });
   }
 
+  console.log(`[INSTR] generateMetadata EXIT  ${Date.now() - t}ms`)
   return buildPageMetadata({
     lang,
     path: `products/${product.slug}`,
@@ -122,8 +131,11 @@ const categoryLabelsLocal: Record<string, { en: string; fa: string; ar: string }
 };
 
 export default async function ProductDetailPage({ params }: ProductDetailProps) {
+  console.log(`\n[INSTR] ProductDetailPage ENTER`)
+  const t_page = Date.now()
   const { lang, slug } = await params;
   const t = translations[lang];
+  console.log(`[INSTR] ProductDetailPage params: lang=${lang} slug=${slug}`)
 
   if (isCategorySlug(slug)) {
     return (
@@ -166,6 +178,8 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
   const categories = await getCategories(lang);
   const otherCategories = categories.filter((c: any) => c.slug !== product.category);
   const relatedProducts = await getProducts(lang);
+
+  console.log(`[INSTR] ProductDetailPage EXIT  ${Date.now() - t_page}ms`)
 
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>

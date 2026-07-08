@@ -147,17 +147,16 @@ export function CategoryLanding({ category, lang }: CategoryLandingProps) {
   return (
     <>
       {/* Hero */}
-      <section className="w-full h-48 sm:h-56 md:h-64 relative overflow-hidden bg-gradient-to-br from-secondary/40 to-secondary/60">
+      <section className="w-full h-48 sm:h-56 md:h-64 relative overflow-hidden bg-linear-to-br from-secondary/40 to-secondary/60">
         <Image
           src="/optimized/products-hero.webp"
           alt={catLabel}
           fill
           sizes="100vw"
-          quality={84}
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/55 to-black/10" />
+        <div className="absolute inset-0 bg-linear-to-r from-black/55 to-black/10" />
         <div className="absolute inset-0 px-4 sm:px-6 py-8 sm:py-10 md:py-12 flex items-center">
           <div className="max-w-7xl w-full mx-auto">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6 sm:gap-8">
@@ -230,11 +229,7 @@ export function CategoryLanding({ category, lang }: CategoryLandingProps) {
           </h2>
           <p className="text-sm sm:text-base text-foreground/60 mb-8">
             {categoryProducts.length}{" "}
-            {lang === "en"
-              ? "products"
-              : lang === "fa"
-                ? "محصول"
-                : "منتج"}
+            {lang === "en" ? "products" : lang === "fa" ? "محصول" : "منتج"}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {categoryProducts.map((product) => (
@@ -377,9 +372,7 @@ export function CategoryLanding({ category, lang }: CategoryLandingProps) {
               "@type": "ItemList",
               "@id": `${absoluteUrl(localizedPath(lang, `products/${category}`))}#products`,
               name:
-                lang === "en"
-                  ? `${catLabel} Products`
-                  : `محصولات ${catLabel}`,
+                lang === "en" ? `${catLabel} Products` : `محصولات ${catLabel}`,
               description: seoContent.slice(0, 160),
               inLanguage: lang,
               itemListElement: categoryProducts.map((product, index) => ({
@@ -416,7 +409,9 @@ export function CategoryLanding({ category, lang }: CategoryLandingProps) {
                   "@type": "ListItem",
                   position: 3,
                   name: catLabel,
-                  item: absoluteUrl(localizedPath(lang, `products/${category}`)),
+                  item: absoluteUrl(
+                    localizedPath(lang, `products/${category}`),
+                  ),
                 },
               ],
             },

@@ -15,7 +15,7 @@ import { absoluteUrl, localizedPath } from "@/lib/site";
 import { translations, type Language } from "@/lib/i18n";
 import Image from "next/image";
 
-export const revalidate = 60
+export const revalidate = 60;
 
 type ProductSearchParams = {
   q?: string | string[];
@@ -41,7 +41,8 @@ export async function generateMetadata({ params }: ProductsPageProps) {
   return buildPageMetadata({
     lang,
     path: "products",
-    titleEn: "Wholesale Food Products — Rice, Legumes, Nuts, Spices | Faradid Atlas",
+    titleEn:
+      "Wholesale Food Products — Rice, Legumes, Nuts, Spices | Faradid Atlas",
     titleFa: "محصولات غذایی عمده؛ برنج، حبوبات، مغزها، ادویه | فرادید اطلس",
     titleAr: "منتجات غذائية بالجملة — أرز، بقول، مكسرات، بهارات | فراديد أطلس",
     descriptionEn:
@@ -78,9 +79,7 @@ export default async function ProductsPage({
   const brand = Array.isArray(rawBrand)
     ? (rawBrand[0] ?? "")
     : (rawBrand ?? "");
-  const type = Array.isArray(rawType)
-    ? (rawType[0] ?? "")
-    : (rawType ?? "");
+  const type = Array.isArray(rawType) ? (rawType[0] ?? "") : (rawType ?? "");
   const initialCategory = productCategories.includes(
     category as ProductCategory,
   )
@@ -104,7 +103,7 @@ export default async function ProductsPage({
     <div lang={lang} dir={isRTL ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
-        <section className="w-full h-48 sm:h-56 md:h-64 relative overflow-hidden bg-gradient-to-br from-secondary/40 to-secondary/60">
+        <section className="w-full h-48 sm:h-56 md:h-64 relative overflow-hidden bg-linear-to-br from-secondary/40 to-secondary/60">
           <Image
             src="/optimized/products-hero.webp"
             alt={
@@ -116,12 +115,11 @@ export default async function ProductsPage({
             }
             fill
             sizes="100vw"
-            quality={84}
             className="object-cover"
             priority
           />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-black/55 to-black/10" />
+          <div className="absolute inset-0 bg-linear-to-r from-black/55 to-black/10" />
 
           <div className="absolute inset-0 px-4 sm:px-6 py-8 sm:py-10 md:py-12 flex items-center">
             <div className="max-w-7xl w-full mx-auto">
@@ -130,9 +128,10 @@ export default async function ProductsPage({
                   <h1
                     className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight font-hero"
                     style={{
-                      fontFamily: lang === "fa"
-                        ? "Estedad, var(--font-hero)"
-                        : "var(--font-hero)",
+                      fontFamily:
+                        lang === "fa"
+                          ? "Estedad, var(--font-hero)"
+                          : "var(--font-hero)",
                     }}
                   >
                     {t.pages.products.title}
@@ -196,7 +195,12 @@ export default async function ProductsPage({
                   url: absoluteUrl(
                     localizedPath(lang, `products/${product.slug}`),
                   ),
-                  name: lang === "en" ? product.nameEn : lang === "fa" ? product.nameFa : product.nameAr,
+                  name:
+                    lang === "en"
+                      ? product.nameEn
+                      : lang === "fa"
+                        ? product.nameFa
+                        : product.nameAr,
                 })),
               },
               {

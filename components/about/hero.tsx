@@ -51,7 +51,6 @@ export function AboutHero({ lang }: AboutHeroProps) {
                 fill
                 priority
                 sizes="100vw"
-                quality={84}
                 className="object-cover"
               />
             </div>

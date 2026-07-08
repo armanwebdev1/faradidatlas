@@ -19,7 +19,6 @@ export function BlogHero({ lang }: BlogHeroProps) {
         alt=""
         fill
         sizes="100vw"
-        quality={84}
         priority
         className="object-cover"
       />
@@ -27,8 +26,8 @@ export function BlogHero({ lang }: BlogHeroProps) {
       <div
         className={`absolute inset-0 ${
           isRTL
-            ? "bg-gradient-to-l from-black/70 via-black/40 to-transparent"
-            : "bg-gradient-to-r from-black/70 via-black/40 to-transparent"
+            ? "bg-linear-to-l from-black/70 via-black/40 to-transparent"
+            : "bg-linear-to-r from-black/70 via-black/40 to-transparent"
         }`}
       />
 

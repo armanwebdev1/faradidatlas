@@ -1,6 +1,8 @@
 import { getPayloadClient } from '../payload'
 
 export async function getContactInfo(locale: string = 'en') {
+  console.log(`\n[INSTR] getContactInfo ENTER  caller=${new Error().stack?.split('\n')[2]?.trim()}`)
+  const t = Date.now()
   const payload = await getPayloadClient()
 
   const info = await payload.findGlobal({
@@ -9,5 +11,6 @@ export async function getContactInfo(locale: string = 'en') {
     depth: 1,
   })
 
+  console.log(`[INSTR] getContactInfo EXIT  ${Date.now() - t}ms`)
   return info
 }

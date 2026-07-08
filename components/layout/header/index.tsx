@@ -7,6 +7,9 @@ interface HeaderServerProps {
 }
 
 export async function Header({ lang }: HeaderServerProps) {
+  console.log(`\n[INSTR] <Header> ENTER`)
+  const t = Date.now()
   const products = await getProducts(lang);
+  console.log(`[INSTR] <Header> EXIT  ${Date.now() - t}ms`)
   return <HeaderClient lang={lang} products={products} />;
 }

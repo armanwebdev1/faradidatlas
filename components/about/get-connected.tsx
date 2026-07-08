@@ -23,7 +23,6 @@ export function GetConnected({ lang }: GetConnectedProps) {
               }
               fill
               sizes="(min-width: 1152px) 1152px, 100vw"
-              quality={82}
               className="object-cover"
             />
           </div>

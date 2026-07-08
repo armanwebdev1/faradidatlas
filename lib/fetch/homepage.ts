@@ -8,6 +8,8 @@ function resolveMediaUrl(media: any): string | undefined {
 }
 
 export async function getHomepage(locale: string = 'en') {
+  console.log(`\n[INSTR] getHomepage ENTER  caller=${new Error().stack?.split('\n')[2]?.trim()}`)
+  const t = Date.now()
   const payload = await getPayloadClient()
 
   const homepage = await payload.findGlobal({
@@ -16,6 +18,7 @@ export async function getHomepage(locale: string = 'en') {
     depth: 2,
   })
 
+  console.log(`[INSTR] getHomepage EXIT  ${Date.now() - t}ms`)
   return homepage
 }
 

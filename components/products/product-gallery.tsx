@@ -57,7 +57,6 @@ export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
             alt={alt}
             fill
             sizes="(min-width: 1024px) 52vw, 100vw"
-            quality={82}
             className="object-cover"
             priority
           />
@@ -106,7 +105,6 @@ export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
                   alt={alt}
                   fill
                   sizes="(min-width: 640px) 96px, 80px"
-                  quality={70}
                   className="object-cover"
                 />
                 <span className="sr-only">

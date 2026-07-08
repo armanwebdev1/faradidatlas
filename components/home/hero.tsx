@@ -18,33 +18,42 @@ interface HeroProps {
 }
 
 function resolveMediaUrl(media: any): string {
-  if (!media) return '/hero/optimized/home-hero-1.webp'
-  if (typeof media === 'string') return media
-  if (typeof media === 'object') return media.url ?? media.filename ?? '/hero/optimized/home-hero-1.webp'
-  return '/hero/optimized/home-hero-1.webp'
+  if (!media) return "/hero/optimized/home-hero-1.webp";
+  if (typeof media === "string") return media;
+  if (typeof media === "object")
+    return media.url ?? media.filename ?? "/hero/optimized/home-hero-1.webp";
+  return "/hero/optimized/home-hero-1.webp";
 }
 
 function getLocalized(value: any, lang: Language): string {
-  if (!value) return ''
-  if (typeof value === 'string') return value
-  if (typeof value === 'object' && value[lang]) return value[lang]
-  if (typeof value === 'object' && value.en) return value.en
-  return ''
+  if (!value) return "";
+  if (typeof value === "string") return value;
+  if (typeof value === "object" && value[lang]) return value[lang];
+  if (typeof value === "object" && value.en) return value.en;
+  return "";
 }
 
 const defaultSlides = [
   {
     id: 1,
-    image: { url: '/hero/optimized/home-hero-1.webp' },
-    title: { en: 'Reliable Food Supply', fa: 'تأمین مواد غذایی', ar: 'تزوين الغذاء الموثوق' },
-    subtitle: { en: 'Food Security in Practice', fa: 'تأمین پایدار، فراتر از شعار', ar: 'أمن غذائي عملي' },
+    image: { url: "/hero/optimized/home-hero-1.webp" },
+    title: {
+      en: "Reliable Food Supply",
+      fa: "تأمین مواد غذایی",
+      ar: "تزوين الغذاء الموثوق",
+    },
+    subtitle: {
+      en: "Food Security in Practice",
+      fa: "تأمین پایدار، فراتر از شعار",
+      ar: "أمن غذائي عملي",
+    },
     description: {
-      en: 'Since 2009, Faradid Atlas has been a wholesale food supplier sourcing, importing, and distributing rice, legumes, nuts, seeds, spices, and sugar to B2B buyers across Iran, UAE, and Oman.',
-      fa: 'فرادید اطلس از سال ۱۳۸۸ به عنوان تأمین‌کننده عمده مواد غذایی فعالیت می‌کند.',
-      ar: 'منذ عام ٢٠٠٩، يعمل فراديد أطلس كمزود غذائي بالجملة.',
+      en: "Since 2009, Faradid Atlas has been a wholesale food supplier sourcing, importing, and distributing rice, legumes, nuts, seeds, spices, and sugar to B2B buyers across Iran, UAE, and Oman.",
+      fa: "فرادید اطلس از سال ۱۳۸۸ به عنوان تأمین‌کننده عمده مواد غذایی فعالیت می‌کند.",
+      ar: "منذ عام ٢٠٠٩، يعمل فراديد أطلس كمزود غذائي بالجملة.",
     },
   },
-]
+];
 
 export function Hero({ lang, slides: rawSlides }: HeroProps) {
   const slides = rawSlides?.length ? rawSlides : defaultSlides;
@@ -55,10 +64,7 @@ export function Hero({ lang, slides: rawSlides }: HeroProps) {
   const titleText = getLocalized(activeSlide?.title, lang);
   const subtitleText = getLocalized(activeSlide?.subtitle, lang);
   const descriptionText = getLocalized(activeSlide?.description, lang);
-  const titleParts = useMemo(
-    () => titleText.split(" "),
-    [titleText],
-  );
+  const titleParts = useMemo(() => titleText.split(" "), [titleText]);
   const textShiftClass = isRTL
     ? "ml-auto w-full text-right -translate-x-4 sm:-translate-x-6 md:-translate-x-8"
     : "text-left translate-x-4 sm:translate-x-6 md:translate-x-8";
@@ -85,7 +91,7 @@ export function Hero({ lang, slides: rawSlides }: HeroProps) {
   const goToNext = () => goToSlide(activeIndex + 1);
 
   return (
-    <div className="relative h-[calc(100svh-5rem)] min-h-[34rem] max-h-[820px] w-full overflow-hidden bg-neutral-950 md:h-[calc(100svh-9rem)]">
+    <div className="relative h-[calc(100svh-5rem)] min-h-136 max-h-[820px] w-full overflow-hidden bg-neutral-950 md:h-[calc(100svh-9rem)]">
       <div className="absolute inset-0">
         {slides.map((slide, index) => {
           const isActive = index === activeIndex;
@@ -108,7 +114,6 @@ export function Hero({ lang, slides: rawSlides }: HeroProps) {
                 priority={index === 0}
                 loading={index === 0 ? undefined : "lazy"}
                 sizes="100vw"
-                quality={84}
                 className={`h-full w-full object-cover transform-gpu ${
                   isActive
                     ? "md:scale-[1.03] motion-safe:md:animate-hero-image-zoom"
@@ -120,7 +125,7 @@ export function Hero({ lang, slides: rawSlides }: HeroProps) {
         })}
 
         <div className="hero-premium-sheen" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/45 to-black/90" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/5 via-black/45 to-black/90" />
       </div>
 
       <div className="absolute inset-x-0 top-1/2 z-30 hidden -translate-y-1/2 items-center justify-between px-4 sm:flex sm:px-6 md:px-8 pointer-events-none">
@@ -196,9 +201,9 @@ export function Hero({ lang, slides: rawSlides }: HeroProps) {
               aria-label={t.pages.home.prevSlide}
             >
               {isRTL ? (
-                <ChevronRight className="h-[18px] w-[18px]" strokeWidth={1.8} />
+                <ChevronRight className="h-4.5 w-4.5" strokeWidth={1.8} />
               ) : (
-                <ChevronLeft className="h-[18px] w-[18px]" strokeWidth={1.8} />
+                <ChevronLeft className="h-4.5 w-4.5" strokeWidth={1.8} />
               )}
             </button>
             {slides.map((slide, index) => (
@@ -221,9 +226,9 @@ export function Hero({ lang, slides: rawSlides }: HeroProps) {
               aria-label={t.pages.home.nextSlide}
             >
               {isRTL ? (
-                <ChevronLeft className="h-[18px] w-[18px]" strokeWidth={1.8} />
+                <ChevronLeft className="h-4.5 w-4/.5" strokeWidth={1.8} />
               ) : (
-                <ChevronRight className="h-[18px] w-[18px]" strokeWidth={1.8} />
+                <ChevronRight className="h-4.5 w-4.5" strokeWidth={1.8} />
               )}
             </button>
           </div>

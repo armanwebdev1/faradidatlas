@@ -8,18 +8,19 @@ interface CEOProfileProps {
 }
 
 function getLocalized(value: any, lang: Language): string {
-  if (!value) return ''
-  if (typeof value === 'string') return value
-  if (typeof value === 'object' && value[lang]) return value[lang]
-  if (typeof value === 'object' && value.en) return value.en
-  return ''
+  if (!value) return "";
+  if (typeof value === "string") return value;
+  if (typeof value === "object" && value[lang]) return value[lang];
+  if (typeof value === "object" && value.en) return value.en;
+  return "";
 }
 
 function resolveMediaUrl(media: any): string {
-  if (!media) return '/ceo.webp'
-  if (typeof media === 'string') return media
-  if (typeof media === 'object') return media.url ?? media.filename ?? '/ceo.webp'
-  return '/ceo.webp'
+  if (!media) return "/ceo.webp";
+  if (typeof media === "string") return media;
+  if (typeof media === "object")
+    return media.url ?? media.filename ?? "/ceo.webp";
+  return "/ceo.webp";
 }
 
 const fallbackContent = {
@@ -72,7 +73,6 @@ export function CEOProfile({ lang, companyInfo }: CEOProfileProps) {
                   alt={name}
                   fill
                   sizes="(min-width: 1024px) 40vw, 100vw"
-                  quality={90}
                   className="object-cover"
                 />
               </div>

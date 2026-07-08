@@ -29,12 +29,16 @@ const categoryLabelsLocal: Record<string, { en: string; fa: string; ar: string }
 const productCategoriesLocal = ["rice", "legumes", "seeds", "nuts", "spices", "sugar"];
 
 export async function Footer({ lang }: FooterProps) {
+  console.log(`\n[INSTR] <Footer> ENTER`)
+  const t = Date.now()
   const [products, contactInfo] = await Promise.all([
     getProducts(lang),
     getContactInfo(lang),
   ]);
+  console.log(`[INSTR] <Footer> data fetched  ${Date.now() - t}ms`)
 
-  const t = translations[lang];
+  const t2 = Date.now()
+  const t_trans = translations[lang];
   const isRTL = lang === "fa" || lang === "ar";
   const dir = isRTL ? "rtl" : "ltr";
   const brandHomeLabel =
@@ -60,28 +64,30 @@ export async function Footer({ lang }: FooterProps) {
     .map((item) => item.link);
 
   const productLinks: FooterLinkItem[] = [
-    { href: `/${lang}/products#product-catalog`, label: t.pages.products.title },
+    { href: `/${lang}/products#product-catalog`, label: t_trans.pages.products.title },
     ...productCategoryLinks,
   ];
   const navigationLinks: FooterLinkItem[] = [
-    { href: `/${lang}`, label: t.nav.home },
-    { href: `/${lang}/products#product-catalog`, label: t.nav.products },
-    { href: `/${lang}#products`, label: t.footer.featuredProducts },
-    { href: `/${lang}#markets`, label: t.footer.markets },
+    { href: `/${lang}`, label: t_trans.nav.home },
+    { href: `/${lang}/products#product-catalog`, label: t_trans.nav.products },
+    { href: `/${lang}#products`, label: t_trans.footer.featuredProducts },
+    { href: `/${lang}#markets`, label: t_trans.footer.markets },
   ];
   const companyLinks: FooterLinkItem[] = [
-    { href: `/${lang}/about`, label: t.nav.about },
-    { href: `/${lang}/careers`, label: t.nav.careers },
-    { href: `/${lang}/careers#open-roles`, label: t.pages.careers.openPositions },
-    { href: `/${lang}/faq`, label: t.nav.faq },
-    { href: `/${lang}/blog`, label: t.nav.blog },
+    { href: `/${lang}/about`, label: t_trans.nav.about },
+    { href: `/${lang}/careers`, label: t_trans.nav.careers },
+    { href: `/${lang}/careers#open-roles`, label: t_trans.pages.careers.openPositions },
+    { href: `/${lang}/faq`, label: t_trans.nav.faq },
+    { href: `/${lang}/blog`, label: t_trans.nav.blog },
   ];
   const resourceLinks: FooterLinkItem[] = [
-    { href: `/${lang}/contact#contact-form`, label: t.pages.contact.sendMessage },
-    { href: `/${lang}/contact#contact-offices`, label: t.pages.contact.ourOffices },
-    { href: `/${lang}/faq`, label: t.pages.faq.subtitle },
-    { href: "/sitemap.xml", label: t.footer.sitemap, external: true },
+    { href: `/${lang}/contact#contact-form`, label: t_trans.pages.contact.sendMessage },
+    { href: `/${lang}/contact#contact-offices`, label: t_trans.pages.contact.ourOffices },
+    { href: `/${lang}/faq`, label: t_trans.pages.faq.subtitle },
+    { href: "/sitemap.xml", label: t_trans.footer.sitemap, external: true },
   ];
+
+  console.log(`[INSTR] <Footer> EXIT (render)  ${Date.now() - t}ms`)
 
   return (
     <footer dir={dir} className="relative overflow-hidden border-t border-brand-navy/30 bg-[#111722] text-white">
@@ -98,22 +104,22 @@ export async function Footer({ lang }: FooterProps) {
                     <span className={`mt-1 text-xs font-medium text-white/65 transition-colors duration-300 group-hover:text-accent/80 ${isRTL ? "tracking-normal" : "tracking-[0.24em]"}`}>{brandSecondary}</span>
                   </span>
                 </Link>
-                <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-light">{t.footer.tagline}</p>
+                <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-light">{t_trans.footer.tagline}</p>
               </div>
-              <Link href={`/${lang}/contact`} className="inline-flex text-sm font-semibold text-accent hover:text-accent/80 transition-colors">{t.nav.contact}</Link>
+              <Link href={`/${lang}/contact`} className="inline-flex text-sm font-semibold text-accent hover:text-accent/80 transition-colors">{t_trans.nav.contact}</Link>
             </div>
 
-            <FooterColumn title={t.footer.navigation} links={navigationLinks} />
-            <FooterColumn title={t.footer.products} links={productLinks} />
-            <FooterColumn title={t.footer.company} links={companyLinks} />
-            <FooterColumn title={t.footer.resources} links={resourceLinks} />
+            <FooterColumn title={t_trans.footer.navigation} links={navigationLinks} />
+            <FooterColumn title={t_trans.footer.products} links={productLinks} />
+            <FooterColumn title={t_trans.footer.company} links={companyLinks} />
+            <FooterColumn title={t_trans.footer.resources} links={resourceLinks} />
 
             <div>
-              <p className="text-xs font-semibold uppercase tracking-widest mb-6 text-accent/90">{t.pages.contact.subtitle}</p>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-6 text-accent/90">{t_trans.pages.contact.subtitle}</p>
               <div className="space-y-4">
                 <div className="flex items-start gap-3 text-sm text-white/70">
                   <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
-                  <span>{t.footer.address}</span>
+                  <span>{t_trans.footer.address}</span>
                 </div>
                 {footerEmail && (
                   <a href={`mailto:${footerEmail}`} aria-label={`Email us at ${footerEmail}`} className="group/email flex items-center gap-3 text-sm text-white/70 transition-colors duration-300 hover:text-accent">
@@ -139,7 +145,7 @@ export async function Footer({ lang }: FooterProps) {
                     </div>
                   ))}
                 </div>
-                <Link href={`/${lang}/contact`} className="inline-flex text-sm text-white/70 hover:text-accent transition-colors duration-300">{t.pages.contact.sendMessage}</Link>
+                <Link href={`/${lang}/contact`} className="inline-flex text-sm text-white/70 hover:text-accent transition-colors duration-300">{t_trans.pages.contact.sendMessage}</Link>
               </div>
             </div>
           </div>
@@ -152,14 +158,14 @@ export async function Footer({ lang }: FooterProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="text-center md:text-start">
-              <p className="text-xs text-white/60 leading-relaxed font-light">&copy; 2026 Faradid Atlas Foods. {t.footer.copyright} | <span className="text-accent/80">ISO 22000</span></p>
+              <p className="text-xs text-white/60 leading-relaxed font-light">&copy; 2026 Faradid Atlas Foods. {t_trans.footer.copyright} | <span className="text-accent/80">ISO 22000</span></p>
             </div>
             <div className="text-center md:text-end">
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:justify-end">
-                <Link href={`/${lang}/faq`} className="text-xs text-white/60 hover:text-accent transition-colors duration-300">{t.nav.faq}</Link>
-                <Link href={`/${lang}/blog`} className="text-xs text-white/60 hover:text-accent transition-colors duration-300">{t.nav.blog}</Link>
-                <Link href={`/${lang}/contact`} className="text-xs text-white/60 hover:text-accent transition-colors duration-300">{t.nav.contact}</Link>
-                <a href="/sitemap.xml" className="text-xs text-white/60 hover:text-accent transition-colors duration-300">{t.footer.sitemap}</a>
+                <Link href={`/${lang}/faq`} className="text-xs text-white/60 hover:text-accent transition-colors duration-300">{t_trans.nav.faq}</Link>
+                <Link href={`/${lang}/blog`} className="text-xs text-white/60 hover:text-accent transition-colors duration-300">{t_trans.nav.blog}</Link>
+                <Link href={`/${lang}/contact`} className="text-xs text-white/60 hover:text-accent transition-colors duration-300">{t_trans.nav.contact}</Link>
+                <a href="/sitemap.xml" className="text-xs text-white/60 hover:text-accent transition-colors duration-300">{t_trans.footer.sitemap}</a>
               </div>
             </div>
           </div>

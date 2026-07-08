@@ -53,11 +53,10 @@ export function FAQHero({ lang }: FAQHeroProps) {
                 alt={t.pages.faq.heroImageAlt}
                 fill
                 sizes="100vw"
-                quality={84}
                 className="object-cover"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/5 to-black/30" />
+              <div className="absolute inset-0 bg-linear-to-b from-black/0 via-black/5 to-black/30" />
             </div>
           </div>
         </div>

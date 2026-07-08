@@ -72,7 +72,8 @@ const offerings = {
 };
 
 export function WhatWeOffer({ lang }: WhatWeOfferProps) {
-  const offers = lang === "en" ? offerings.en : lang === "fa" ? offerings.fa : offerings.ar;
+  const offers =
+    lang === "en" ? offerings.en : lang === "fa" ? offerings.fa : offerings.ar;
   const t = translations[lang];
 
   return (
@@ -102,22 +103,21 @@ export function WhatWeOffer({ lang }: WhatWeOfferProps) {
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
                 <div className="relative bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-500 border border-border h-full flex flex-col md:hover:border-accent-warm-gold md:hover:shadow-xl">
-                  <div className="relative h-64 overflow-hidden bg-gradient-to-br from-secondary/40 to-secondary/60">
+                  <div className="relative h-64 overflow-hidden bg-linear-to-br from-secondary/40 to-secondary/60">
                     <Image
                       src={offer.image}
                       alt={offer.title}
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      quality={82}
                       className="object-cover transition-transform duration-700 motion-safe:md:group-hover:scale-110"
                     />
                   </div>
 
-                  <div className="p-8 flex flex-col flex-grow">
+                  <div className="p-8 flex flex-col grow">
                     <h3 className="text-xl font-bold text-primary mb-3 transition-colors md:group-hover:text-accent-warm-gold">
                       {offer.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed flex-grow">
+                    <p className="text-muted-foreground leading-relaxed grow">
                       {offer.description}
                     </p>
                   </div>

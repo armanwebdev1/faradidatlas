@@ -12,9 +12,24 @@ interface ProductCardProps {
 
 export function ProductCard({ product, lang }: ProductCardProps) {
   const t = translations[lang];
-  const name = lang === "en" ? product.nameEn : lang === "fa" ? product.nameFa : product.nameAr;
-  const desc = lang === "en" ? product.descriptionEn : lang === "fa" ? product.descriptionFa : product.descriptionAr;
-  const alias = lang === "en" ? product.aliasEn : lang === "fa" ? product.aliasFa : product.aliasAr;
+  const name =
+    lang === "en"
+      ? product.nameEn
+      : lang === "fa"
+        ? product.nameFa
+        : product.nameAr;
+  const desc =
+    lang === "en"
+      ? product.descriptionEn
+      : lang === "fa"
+        ? product.descriptionFa
+        : product.descriptionAr;
+  const alias =
+    lang === "en"
+      ? product.aliasEn
+      : lang === "fa"
+        ? product.aliasFa
+        : product.aliasAr;
   const category =
     lang === "en"
       ? categoryLabels[product.category].en
@@ -26,27 +41,22 @@ export function ProductCard({ product, lang }: ProductCardProps) {
   return (
     <Link href={`/${lang}/products/${product.slug}`}>
       <div className="group relative h-full bg-white rounded-2xl overflow-hidden border border-border transition-all duration-500 md:hover:border-accent-warm-gold/60 md:hover:shadow-lg md:hover:-translate-y-1 cursor-pointer">
-        <div className="absolute inset-0 bg-gradient-to-br from-accent-warm-gold/3 to-transparent opacity-0 transition-opacity duration-500 md:group-hover:opacity-100 -z-10" />
+        <div className="absolute inset-0 bg-linear-to-br from-accent-warm-gold/3 to-transparent opacity-0 transition-opacity duration-500 md:group-hover:opacity-100 -z-10" />
 
-        <div className="relative aspect-square bg-gradient-to-br from-secondary/40 to-secondary/60 overflow-hidden">
+        <div className="relative aspect-square bg-linear-to-br from-secondary/40 to-secondary/60 overflow-hidden">
           {product.image ? (
             <Image
               src={product.image}
               alt={name}
               fill
               sizes="(min-width: 1280px) 360px, (min-width: 1024px) 31vw, (min-width: 640px) 46vw, 92vw"
-              quality={78}
               className="object-cover"
             />
           ) : (
-            <ProductPlaceholder
-              product={product}
-              lang={lang}
-              className=""
-            />
+            <ProductPlaceholder product={product} lang={lang} className="" />
           )}
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent opacity-0 transition-opacity duration-500 md:group-hover:opacity-100" />
+          <div className="absolute inset-0 bg-linearS-to-t from-black/15 via-transparent to-transparent opacity-0 transition-opacity duration-500 md:group-hover:opacity-100" />
 
           <div
             className={`absolute top-3 sm:top-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/90 text-primary text-xs sm:text-sm font-semibold rounded-lg shadow-md transition-all duration-300 md:group-hover:shadow-lg ${isRTL ? "left-3 sm:left-4" : "right-3 sm:right-4"}`}

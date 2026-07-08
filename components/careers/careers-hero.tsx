@@ -19,15 +19,14 @@ export function CareersHero({ lang }: CareersHeroProps) {
         alt=""
         fill
         sizes="100vw"
-        quality={84}
         priority
         className="object-cover"
       />
       <div
         className={`absolute inset-0 ${
           isRTL
-            ? "bg-gradient-to-l from-black/80 via-black/60 to-black/10"
-            : "bg-gradient-to-r from-black/80 via-black/60 to-black/10"
+            ? "bg-linear-to-l from-black/80 via-black/60 to-black/10"
+            : "bg-linear-to-r from-black/80 via-black/60 to-black/10"
         }`}
       />
 
@@ -51,10 +50,8 @@ export function CareersHero({ lang }: CareersHeroProps) {
                 animationDelay: "90ms",
               }}
             >
-              <span className="block">
-                {t.pages.careers.heroBuild}
-              </span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent-warm-gold via-accent-warm-orange to-accent-warm-gold">
+              <span className="block">{t.pages.careers.heroBuild}</span>
+              <span className="block text-transparent bg-clip-text bg-linear-to-r from-accent-warm-gold via-accent-warm-orange to-accent-warm-gold">
                 {t.pages.careers.heroContinuity}
               </span>
             </h1>

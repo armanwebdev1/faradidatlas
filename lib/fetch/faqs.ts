@@ -5,6 +5,8 @@ import {
 } from '../../components/faq/faq-data'
 
 export async function getFAQs(locale: string = 'en') {
+  console.log(`\n[INSTR] getFAQs ENTER  caller=${new Error().stack?.split('\n')[2]?.trim()}`)
+  const t = Date.now()
   const payload = await getPayloadClient()
 
   const faqs = await payload.find({
@@ -12,7 +14,7 @@ export async function getFAQs(locale: string = 'en') {
     limit: 100,
   })
 
-  return faqs.docs.map((faq) => ({
+  const result = faqs.docs.map((faq) => ({
     id: faq.id,
     questionEn: (faq.question as any)?.en ?? '',
     questionFa: (faq.question as any)?.fa ?? '',
@@ -22,12 +24,17 @@ export async function getFAQs(locale: string = 'en') {
     answerAr: (faq.answer as any)?.ar ?? '',
     category: faq.category as FAQItem['category'],
   }))
+
+  console.log(`[INSTR] getFAQs EXIT  ${Date.now() - t}ms`)
+  return result
 }
 
 export async function getFAQsByCategory(
   category: string,
   locale: string = 'en',
 ) {
+  console.log(`\n[INSTR] getFAQsByCategory("${category}") ENTER  caller=${new Error().stack?.split('\n')[2]?.trim()}`)
+  const t = Date.now()
   const payload = await getPayloadClient()
 
   const faqs = await payload.find({
@@ -36,7 +43,7 @@ export async function getFAQsByCategory(
     limit: 100,
   })
 
-  return faqs.docs.map((faq) => ({
+  const result = faqs.docs.map((faq) => ({
     id: faq.id,
     questionEn: (faq.question as any)?.en ?? '',
     questionFa: (faq.question as any)?.fa ?? '',
@@ -46,4 +53,7 @@ export async function getFAQsByCategory(
     answerAr: (faq.answer as any)?.ar ?? '',
     category: faq.category as FAQItem['category'],
   }))
+
+  console.log(`[INSTR] getFAQsByCategory EXIT  ${Date.now() - t}ms`)
+  return result
 }
