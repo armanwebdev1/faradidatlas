@@ -19,10 +19,12 @@ export async function getProducts(locale: string = 'en') {
   const t2 = Date.now()
   const products = await payload.find({
     collection: 'products',
+    locale: 'all',
     limit: 100,
     depth: 2,
   })
   console.log(`[INSTR] getProducts payload.find done  ${Date.now() - t2}ms`)
+  console.log(`[INSTR] getProducts sample typeof name=${typeof (products.docs[0] as any)?.name}  name=${JSON.stringify((products.docs[0] as any)?.name)}`)
 
   const result = products.docs.map((p) => ({
     id: p.id,
@@ -58,11 +60,13 @@ export async function getProductBySlug(
   const t2 = Date.now()
   const products = await payload.find({
     collection: 'products',
+    locale: 'all',
     where: { slug: { equals: slug } },
     limit: 1,
     depth: 2,
   })
   console.log(`[INSTR] getProductBySlug payload.find done  ${Date.now() - t2}ms`)
+  console.log(`[INSTR] getProductBySlug sample typeof name=${typeof (products.docs[0] as any)?.name}  name=${JSON.stringify((products.docs[0] as any)?.name)}`)
 
   const p = products.docs[0]
   if (!p) {
@@ -110,10 +114,12 @@ export async function getProductsByCategory(
 
   const products = await payload.find({
     collection: 'products',
+    locale: 'all',
     where: { category: { equals: categories.docs[0].id } },
     limit: 100,
     depth: 2,
   })
+  console.log(`[INSTR] getProductsByCategory sample typeof name=${typeof (products.docs[0] as any)?.name}  name=${JSON.stringify((products.docs[0] as any)?.name)}`)
 
   const result = products.docs.map((p) => ({
     id: p.id,
