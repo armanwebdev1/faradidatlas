@@ -91,7 +91,7 @@ export function Hero({ lang, slides: rawSlides }: HeroProps) {
   const goToNext = () => goToSlide(activeIndex + 1);
 
   return (
-    <div className="relative h-[calc(100svh-5rem)] min-h-136 max-h-[820px] w-full overflow-hidden bg-neutral-950 md:h-[calc(100svh-9rem)]">
+    <div className="relative h-[calc(100svh-5rem)] min-h-136 max-h-205 w-full overflow-hidden bg-neutral-950 md:h-[calc(100svh-9rem)]">
       <div className="absolute inset-0">
         {slides.map((slide, index) => {
           const isActive = index === activeIndex;

@@ -1,6 +1,7 @@
 import { buildConfig } from "payload";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -38,6 +39,7 @@ export default buildConfig({
       },
     },
   },
+
   collections: [
     Products,
     Categories,
@@ -48,6 +50,7 @@ export default buildConfig({
     Media,
     Users,
   ],
+
   globals: [
     Homepage,
     CompanyInfo,
@@ -57,16 +60,30 @@ export default buildConfig({
     Redirects,
     Translations,
   ],
+
   editor: lexicalEditor(),
+
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || "",
     },
   }),
+
+  plugins: [
+    vercelBlobStorage({
+      collections: {
+        media: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
+  ],
+
   secret: process.env.PAYLOAD_SECRET || "",
+
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
+
   localization: {
     locales: [
       { label: "English", code: "en" },
