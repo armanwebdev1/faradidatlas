@@ -1,4 +1,4 @@
-import { withPayload } from '@payloadcms/next/withPayload'
+import { withPayload } from "@payloadcms/next/withPayload";
 
 /** @type {import('next').NextConfig} */
 
@@ -6,9 +6,9 @@ const cspHeader = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vitals.vercel-insights.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://vitals.vercel-insights.com https://res.cloudinary.com",
+  "img-src 'self' data: blob: https://vitals.vercel-insights.com https://*.gravatar.com https://*.public.blob.vercel-storage.com",
   "font-src 'self' data:",
-  "connect-src 'self' https://vitals.vercel-insights.com",
+  "connect-src 'self' https://vitals.vercel-insights.com https://*.public.blob.vercel-storage.com",
   "frame-ancestors 'self'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -24,6 +24,13 @@ const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,
+    // Added: Allows Next.js <Image /> to display images hosted on Vercel Blob
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*.public.blob.vercel-storage.com",
+      },
+    ],
   },
   async headers() {
     return [
