@@ -185,10 +185,11 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
   let categories: any[] = [];
   let relatedProducts: any[] = [];
   try {
-    [categories, relatedProducts] = await Promise.all([
-      getCategories(lang),
-      getRelatedProducts(product.category, product.id, lang),
-    ]);
+    categories = await getCategories(lang);
+    const matchedCategory = categories.find((c: any) => c.slug === product.category);
+    if (matchedCategory) {
+      relatedProducts = await getRelatedProducts(matchedCategory.id, product.id, lang);
+    }
   } catch (err) {
     console.error(`[Products] related data fetch failed:`, err);
     // Related data is non-critical — page still renders with product info

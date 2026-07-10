@@ -16,7 +16,7 @@ export const getHomepage = cache(async function getHomepage(locale: string = 'en
   const homepage = await payload.findGlobal({
     slug: 'homepage',
     locale: locale as 'en' | 'fa' | 'ar',
-    depth: 2,
+    depth: 1,
   })
 
   console.log(`[INSTR] getHomepage EXIT  ${Date.now() - t}ms`)

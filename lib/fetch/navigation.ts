@@ -1,22 +1,21 @@
+import { cache } from 'react'
 import { getPayloadClient } from '../payload'
 
-export async function getNavigation(locale: string = 'en') {
-  console.log(`\n[INSTR] getNavigation ENTER  caller=${new Error().stack?.split('\n')[2]?.trim()}`)
+export const getNavigation = cache(async function getNavigation(locale: string = 'en') {
   const t = Date.now()
   const payload = await getPayloadClient()
 
   const navigation = await payload.findGlobal({
     slug: 'navigation',
     locale: locale as 'en' | 'fa' | 'ar',
-    depth: 2,
+    depth: 1,
   })
 
-  console.log(`[INSTR] getNavigation EXIT  ${Date.now() - t}ms`)
+  console.log(`[Navigation] fetched in ${Date.now() - t}ms`)
   return navigation
-}
+})
 
-export async function getNavigationWithCategories(locale: string = 'en') {
-  console.log(`\n[INSTR] getNavigationWithCategories ENTER  caller=${new Error().stack?.split('\n')[2]?.trim()}`)
+export const getNavigationWithCategories = cache(async function getNavigationWithCategories(locale: string = 'en') {
   const t = Date.now()
   const payload = await getPayloadClient()
 
@@ -24,7 +23,7 @@ export async function getNavigationWithCategories(locale: string = 'en') {
     payload.findGlobal({
       slug: 'navigation',
       locale: locale as 'en' | 'fa' | 'ar',
-      depth: 2,
+      depth: 1,
     }),
     payload.find({
       collection: 'categories',
@@ -33,6 +32,6 @@ export async function getNavigationWithCategories(locale: string = 'en') {
     }),
   ])
 
-  console.log(`[INSTR] getNavigationWithCategories EXIT  ${Date.now() - t}ms`)
+  console.log(`[Navigation+Cats] fetched in ${Date.now() - t}ms`)
   return { navigation, categories: categories.docs }
-}
+})

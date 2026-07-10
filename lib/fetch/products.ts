@@ -157,6 +157,8 @@ export async function getProductsByCategory(
     collection: "categories",
     where: { slug: { equals: category } },
     limit: 1,
+    depth: 0,
+    select: { id: true },
   });
 
   if (!categories.docs[0]) return [];
@@ -192,7 +194,7 @@ export async function getProductsByCategory(
   return result;
 }
 
-export async function getCategories(locale: string = "en") {
+export const getCategories = cache(async function getCategories(locale: string = "en") {
   const t = Date.now();
   const payload = await getPayloadClient();
 
@@ -204,10 +206,10 @@ export async function getCategories(locale: string = "en") {
 
   console.log(`[Products] categories fetched in ${Date.now() - t}ms`);
   return categories.docs;
-}
+})
 
-export async function getRelatedProducts(
-  category: string,
+export const getRelatedProducts = cache(async function getRelatedProducts(
+  categoryId: number,
   excludeId: number,
   locale: string = "en",
 ) {
@@ -221,15 +223,6 @@ export async function getRelatedProducts(
     throw err;
   }
 
-  // Find the category ID first
-  const categories = await payload.find({
-    collection: "categories",
-    where: { slug: { equals: category } },
-    limit: 1,
-  });
-
-  if (!categories.docs[0]) return [];
-
   let products;
   try {
     products = await payload.find({
@@ -237,7 +230,7 @@ export async function getRelatedProducts(
       locale: "all",
       where: {
         and: [
-          { category: { equals: categories.docs[0].id } },
+          { category: { equals: categoryId } },
           { id: { not_equals: excludeId } },
         ],
       },
@@ -268,9 +261,9 @@ export async function getRelatedProducts(
     specs: [] as ProductSpec[],
   })) as Product[];
 
-  console.log(`[Products] related=${category} exclude=${excludeId} fetched ${result.length} products in ${Date.now() - t}ms`);
+  console.log(`[Products] related=catId:${categoryId} exclude=${excludeId} fetched ${result.length} products in ${Date.now() - t}ms`);
   return result;
-}
+})
 
 function resolveCategory(category: any): ProductCategory {
   if (!category) return "rice";

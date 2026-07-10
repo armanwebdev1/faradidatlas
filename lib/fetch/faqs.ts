@@ -1,11 +1,10 @@
+import { cache } from 'react'
 import { getPayloadClient } from '../payload'
-import type { Payload } from 'payload'
-import {
-  type FAQItem,
+import type {
+  FAQItem,
 } from '../../components/faq/faq-data'
 
-export async function getFAQs(locale: string = 'en') {
-  console.log(`\n[INSTR] getFAQs ENTER  caller=${new Error().stack?.split('\n')[2]?.trim()}`)
+export const getFAQs = cache(async function getFAQs(locale: string = 'en') {
   const t = Date.now()
   const payload = await getPayloadClient()
 
@@ -25,15 +24,14 @@ export async function getFAQs(locale: string = 'en') {
     category: faq.category as FAQItem['category'],
   }))
 
-  console.log(`[INSTR] getFAQs EXIT  ${Date.now() - t}ms`)
+  console.log(`[FAQs] fetched ${result.length} in ${Date.now() - t}ms`)
   return result
-}
+})
 
-export async function getFAQsByCategory(
+export const getFAQsByCategory = cache(async function getFAQsByCategory(
   category: string,
   locale: string = 'en',
 ) {
-  console.log(`\n[INSTR] getFAQsByCategory("${category}") ENTER  caller=${new Error().stack?.split('\n')[2]?.trim()}`)
   const t = Date.now()
   const payload = await getPayloadClient()
 
@@ -54,6 +52,6 @@ export async function getFAQsByCategory(
     category: faq.category as FAQItem['category'],
   }))
 
-  console.log(`[INSTR] getFAQsByCategory EXIT  ${Date.now() - t}ms`)
+  console.log(`[FAQs:category=${category}] fetched ${result.length} in ${Date.now() - t}ms`)
   return result
-}
+})
