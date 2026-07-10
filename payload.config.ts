@@ -66,7 +66,7 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || "",
-      max: 5,
+      max: 2,
       idleTimeoutMillis: 10000,
     },
   }),
