@@ -1,6 +1,7 @@
+import { cache } from 'react'
 import { getPayloadClient } from '../payload'
 
-export async function getSiteSettings(locale: string = 'en') {
+export const getSiteSettings = cache(async function getSiteSettings(locale: string = 'en') {
   console.log(`\n[INSTR] getSiteSettings ENTER  caller=${new Error().stack?.split('\n')[2]?.trim()}`)
   const t = Date.now()
   const payload = await getPayloadClient()
@@ -13,4 +14,4 @@ export async function getSiteSettings(locale: string = 'en') {
 
   console.log(`[INSTR] getSiteSettings EXIT  ${Date.now() - t}ms`)
   return settings
-}
+})

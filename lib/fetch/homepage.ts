@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import { getPayloadClient } from '../payload'
 
 function resolveMediaUrl(media: any): string | undefined {
@@ -7,7 +8,7 @@ function resolveMediaUrl(media: any): string | undefined {
   return undefined
 }
 
-export async function getHomepage(locale: string = 'en') {
+export const getHomepage = cache(async function getHomepage(locale: string = 'en') {
   console.log(`\n[INSTR] getHomepage ENTER  caller=${new Error().stack?.split('\n')[2]?.trim()}`)
   const t = Date.now()
   const payload = await getPayloadClient()
@@ -20,7 +21,7 @@ export async function getHomepage(locale: string = 'en') {
 
   console.log(`[INSTR] getHomepage EXIT  ${Date.now() - t}ms`)
   return homepage
-}
+})
 
 export function resolveHomepageImage(homepage: any, field: string): string | undefined {
   const val = homepage?.[field]

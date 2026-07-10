@@ -1,6 +1,7 @@
+import { cache } from 'react'
 import { getPayloadClient } from '../payload'
 
-export async function getContactInfo(locale: string = 'en') {
+export const getContactInfo = cache(async function getContactInfo(locale: string = 'en') {
   console.log(`\n[INSTR] getContactInfo ENTER  caller=${new Error().stack?.split('\n')[2]?.trim()}`)
   const t = Date.now()
   const payload = await getPayloadClient()
@@ -13,4 +14,4 @@ export async function getContactInfo(locale: string = 'en') {
 
   console.log(`[INSTR] getContactInfo EXIT  ${Date.now() - t}ms`)
   return info
-}
+})

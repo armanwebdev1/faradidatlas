@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { getPayloadClient } from "../payload";
 import type {
   Product,
@@ -38,7 +39,7 @@ const detailSelect = {
   specs: true,
 } as const;
 
-export async function getProducts(locale: string = "en") {
+export const getProducts = cache(async function getProducts(locale: string = "en") {
   const t = Date.now();
   console.log(`[Products] list query started`);
 
@@ -86,9 +87,9 @@ export async function getProducts(locale: string = "en") {
 
   console.log(`[Products] prepared ${result.length} products in ${Date.now() - t}ms`);
   return result;
-}
+})
 
-export async function getProductBySlug(slug: string, locale: string = "en") {
+export const getProductBySlug = cache(async function getProductBySlug(slug: string, locale: string = "en") {
   const t = Date.now();
   console.log(`[Products] detail query started for slug="${slug}"`);
 
@@ -143,7 +144,7 @@ export async function getProductBySlug(slug: string, locale: string = "en") {
 
   console.log(`[Products] detail query completed in ${Date.now() - t}ms`);
   return mapped;
-}
+})
 
 export async function getProductsByCategory(
   category: string,
