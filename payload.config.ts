@@ -68,7 +68,6 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URL || "",
       max: 5,
       idleTimeoutMillis: 10000,
-      connectionTimeoutMillis: 5000,
     },
   }),
 

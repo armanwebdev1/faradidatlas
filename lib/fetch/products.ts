@@ -14,25 +14,57 @@ const categorySlugMap: Record<string, ProductCategory> = {
   sugar: "sugar",
 };
 
+// Listing: minimal fields for cards and search
+const listingSelect = {
+  name: true,
+  slug: true,
+  category: true,
+  brand: true,
+  featuredImage: true,
+  alias: true,
+  description: true,
+} as const;
+
+// Detail: full fields for product page
+const detailSelect = {
+  name: true,
+  slug: true,
+  category: true,
+  brand: true,
+  featuredImage: true,
+  gallery: true,
+  alias: true,
+  description: true,
+  specs: true,
+} as const;
+
 export async function getProducts(locale: string = "en") {
-  console.log(
-    `\n[INSTR] getProducts ENTER  caller=${new Error().stack?.split("\n")[2]?.trim()}`,
-  );
   const t = Date.now();
-  const payload = await getPayloadClient();
-  console.log(`[INSTR] getProducts payload ready  ${Date.now() - t}ms`);
+  console.log(`[Products] list query started`);
+
+  let payload;
+  try {
+    payload = await getPayloadClient();
+  } catch (err) {
+    console.error(`[Products] Payload initialization failed:`, err);
+    throw err;
+  }
 
   const t2 = Date.now();
-  const products = await payload.find({
-    collection: "products",
-    locale: "all",
-    limit: 100,
-    depth: 1,
-  });
-  console.log(`[INSTR] getProducts payload.find done  ${Date.now() - t2}ms`);
-  console.log(
-    `[INSTR] getProducts sample typeof name=${typeof (products.docs[0] as any)?.name}  name=${JSON.stringify((products.docs[0] as any)?.name)}`,
-  );
+  let products;
+  try {
+    products = await payload.find({
+      collection: "products",
+      locale: "all",
+      limit: 100,
+      depth: 1,
+      select: listingSelect,
+    });
+  } catch (err) {
+    console.error(`[Products] list query failed:`, err);
+    throw err;
+  }
+  console.log(`[Products] list query completed in ${Date.now() - t2}ms`);
 
   const result = products.docs.map((p) => ({
     id: p.id,
@@ -48,46 +80,44 @@ export async function getProducts(locale: string = "en") {
     descriptionFa: (p.description as any)?.fa ?? "",
     descriptionAr: (p.description as any)?.ar ?? "",
     image: resolveImageUrl(p.featuredImage),
-    images: ((p.gallery as any[])
-      ?.map((g: any) => resolveImageUrl(g.image))
-      .filter(Boolean) ?? []) as string[],
-    specs: resolveSpecs(p.specs),
+    images: [] as string[],
+    specs: [] as ProductSpec[],
   })) as Product[];
 
-  console.log(
-    `[INSTR] getProducts EXIT  ${Date.now() - t}ms  docs=${result.length}`,
-  );
+  console.log(`[Products] prepared ${result.length} products in ${Date.now() - t}ms`);
   return result;
 }
 
 export async function getProductBySlug(slug: string, locale: string = "en") {
-  console.log(
-    `\n[INSTR] getProductBySlug("${slug}") ENTER  caller=${new Error().stack?.split("\n")[2]?.trim()}`,
-  );
   const t = Date.now();
-  const payload = await getPayloadClient();
-  console.log(`[INSTR] getProductBySlug payload ready  ${Date.now() - t}ms`);
+  console.log(`[Products] detail query started for slug="${slug}"`);
 
-  const t2 = Date.now();
-  const products = await payload.find({
-    collection: "products",
-    locale: "all",
-    where: { slug: { equals: slug } },
-    limit: 1,
-    depth: 1,
-  });
-  console.log(
-    `[INSTR] getProductBySlug payload.find done  ${Date.now() - t2}ms`,
-  );
-  console.log(
-    `[INSTR] getProductBySlug sample typeof name=${typeof (products.docs[0] as any)?.name}  name=${JSON.stringify((products.docs[0] as any)?.name)}`,
-  );
+  let payload;
+  try {
+    payload = await getPayloadClient();
+  } catch (err) {
+    console.error(`[Products] Payload initialization failed:`, err);
+    throw err;
+  }
+
+  let products;
+  try {
+    products = await payload.find({
+      collection: "products",
+      locale: "all",
+      where: { slug: { equals: slug } },
+      limit: 1,
+      depth: 1,
+      select: detailSelect,
+    });
+  } catch (err) {
+    console.error(`[Products] detail query failed for slug="${slug}":`, err);
+    throw err;
+  }
 
   const p = products.docs[0];
   if (!p) {
-    console.log(
-      `[INSTR] getProductBySlug EXIT (not found)  ${Date.now() - t}ms`,
-    );
+    console.log(`[Products] slug="${slug}" not found in ${Date.now() - t}ms`);
     return null;
   }
 
@@ -111,7 +141,7 @@ export async function getProductBySlug(slug: string, locale: string = "en") {
     specs: resolveSpecs(p.specs),
   } as Product;
 
-  console.log(`[INSTR] getProductBySlug EXIT  ${Date.now() - t}ms`);
+  console.log(`[Products] detail query completed in ${Date.now() - t}ms`);
   return mapped;
 }
 
@@ -119,9 +149,6 @@ export async function getProductsByCategory(
   category: string,
   locale: string = "en",
 ) {
-  console.log(
-    `\n[INSTR] getProductsByCategory("${category}") ENTER  caller=${new Error().stack?.split("\n")[2]?.trim()}`,
-  );
   const t = Date.now();
   const payload = await getPayloadClient();
 
@@ -139,10 +166,8 @@ export async function getProductsByCategory(
     where: { category: { equals: categories.docs[0].id } },
     limit: 100,
     depth: 1,
+    select: listingSelect,
   });
-  console.log(
-    `[INSTR] getProductsByCategory sample typeof name=${typeof (products.docs[0] as any)?.name}  name=${JSON.stringify((products.docs[0] as any)?.name)}`,
-  );
 
   const result = products.docs.map((p) => ({
     id: p.id,
@@ -158,20 +183,15 @@ export async function getProductsByCategory(
     descriptionFa: (p.description as any)?.fa ?? "",
     descriptionAr: (p.description as any)?.ar ?? "",
     image: resolveImageUrl(p.featuredImage),
-    images: ((p.gallery as any[])
-      ?.map((g: any) => resolveImageUrl(g.image))
-      .filter(Boolean) ?? []) as string[],
-    specs: resolveSpecs(p.specs),
+    images: [] as string[],
+    specs: [] as ProductSpec[],
   })) as Product[];
 
-  console.log(`[INSTR] getProductsByCategory EXIT  ${Date.now() - t}ms`);
+  console.log(`[Products] category="${category}" fetched ${result.length} products in ${Date.now() - t}ms`);
   return result;
 }
 
 export async function getCategories(locale: string = "en") {
-  console.log(
-    `\n[INSTR] getCategories ENTER  caller=${new Error().stack?.split("\n")[2]?.trim()}`,
-  );
   const t = Date.now();
   const payload = await getPayloadClient();
 
@@ -181,8 +201,74 @@ export async function getCategories(locale: string = "en") {
     limit: 100,
   });
 
-  console.log(`[INSTR] getCategories EXIT  ${Date.now() - t}ms`);
+  console.log(`[Products] categories fetched in ${Date.now() - t}ms`);
   return categories.docs;
+}
+
+export async function getRelatedProducts(
+  category: string,
+  excludeId: number,
+  locale: string = "en",
+) {
+  const t = Date.now();
+
+  let payload;
+  try {
+    payload = await getPayloadClient();
+  } catch (err) {
+    console.error(`[Products] Payload initialization failed:`, err);
+    throw err;
+  }
+
+  // Find the category ID first
+  const categories = await payload.find({
+    collection: "categories",
+    where: { slug: { equals: category } },
+    limit: 1,
+  });
+
+  if (!categories.docs[0]) return [];
+
+  let products;
+  try {
+    products = await payload.find({
+      collection: "products",
+      locale: "all",
+      where: {
+        and: [
+          { category: { equals: categories.docs[0].id } },
+          { id: { not_equals: excludeId } },
+        ],
+      },
+      limit: 4,
+      depth: 1,
+      select: listingSelect,
+    });
+  } catch (err) {
+    console.error(`[Products] related query failed:`, err);
+    throw err;
+  }
+
+  const result = products.docs.map((p) => ({
+    id: p.id,
+    slug: p.slug,
+    nameEn: (p.name as any)?.en ?? "",
+    nameFa: (p.name as any)?.fa ?? "",
+    nameAr: (p.name as any)?.ar ?? "",
+    aliasEn: (p.alias as any)?.en ?? undefined,
+    aliasFa: (p.alias as any)?.fa ?? undefined,
+    aliasAr: (p.alias as any)?.ar ?? undefined,
+    category: resolveCategory(p.category),
+    descriptionEn: (p.description as any)?.en ?? "",
+    descriptionFa: (p.description as any)?.fa ?? "",
+    descriptionAr: (p.description as any)?.ar ?? "",
+    image: resolveImageUrl(p.featuredImage),
+    images: [] as string[],
+    specs: [] as ProductSpec[],
+  })) as Product[];
+
+  console.log(`[Products] related=${category} exclude=${excludeId} fetched ${result.length} products in ${Date.now() - t}ms`);
+  return result;
 }
 
 function resolveCategory(category: any): ProductCategory {

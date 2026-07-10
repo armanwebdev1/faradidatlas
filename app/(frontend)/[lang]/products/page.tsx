@@ -15,7 +15,7 @@ import { absoluteUrl, localizedPath } from "@/lib/site";
 import { translations, type Language } from "@/lib/i18n";
 import Image from "next/image";
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 type ProductSearchParams = {
   q?: string | string[];

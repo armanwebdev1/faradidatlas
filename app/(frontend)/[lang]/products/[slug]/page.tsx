@@ -1,6 +1,6 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { getProductBySlug, getProducts, getCategories } from "@/lib/fetch/products";
+import { getProductBySlug, getRelatedProducts, getCategories } from "@/lib/fetch/products";
 import {
   CategoryLanding,
   categorySEOContent,
@@ -17,7 +17,7 @@ import { translations } from "@/lib/i18n";
 import { permanentRedirect } from "next/navigation";
 import Link from "next/link";
 
-export const revalidate = 60
+export const revalidate = 300
 
 interface ProductDetailProps {
   params: Promise<{
@@ -37,7 +37,6 @@ function isNumericProductParam(value: string) {
 }
 
 export async function generateStaticParams() {
-  console.log(`\n[INSTR] generateStaticParams ENTER`)
   const t = Date.now()
   const langs: Language[] = ["en", "fa", "ar"];
   const allParams: { lang: string; slug: string }[] = [];
@@ -57,15 +56,13 @@ export async function generateStaticParams() {
     }
   }
 
-  console.log(`[INSTR] generateStaticParams EXIT  ${Date.now() - t}ms  params=${allParams.length}`)
+  console.log(`[Products] static params generated ${allParams.length} entries in ${Date.now() - t}ms`)
   return allParams;
 }
 
 export async function generateMetadata({ params }: ProductDetailProps) {
-  console.log(`\n[INSTR] generateMetadata ENTER`)
   const t = Date.now()
   const { lang, slug } = await params;
-  console.log(`[INSTR] generateMetadata params resolved: lang=${lang} slug=${slug}`)
 
   if (isCategorySlug(slug)) {
     const seo = categorySEOContent[slug as keyof typeof categorySEOContent];
@@ -78,7 +75,6 @@ export async function generateMetadata({ params }: ProductDetailProps) {
       sugar: { en: "Sweeteners", fa: "شکر و شیرین‌کننده‌ها", ar: "سكر ومحليات" },
     };
     const catLabel = catLabels[slug] ?? catLabels.rice;
-    console.log(`[INSTR] generateMetadata EXIT (category)  ${Date.now() - t}ms`)
     return buildPageMetadata({
       lang,
       path: `products/${slug}`,
@@ -94,7 +90,6 @@ export async function generateMetadata({ params }: ProductDetailProps) {
   const product = await getProductBySlug(slug, lang);
 
   if (!product) {
-    console.log(`[INSTR] generateMetadata EXIT (not found)  ${Date.now() - t}ms`)
     return buildPageMetadata({
       lang,
       path: "products",
@@ -107,7 +102,7 @@ export async function generateMetadata({ params }: ProductDetailProps) {
     });
   }
 
-  console.log(`[INSTR] generateMetadata EXIT  ${Date.now() - t}ms`)
+  console.log(`[Products] metadata generated in ${Date.now() - t}ms`)
   return buildPageMetadata({
     lang,
     path: `products/${product.slug}`,
@@ -131,11 +126,9 @@ const categoryLabelsLocal: Record<string, { en: string; fa: string; ar: string }
 };
 
 export default async function ProductDetailPage({ params }: ProductDetailProps) {
-  console.log(`\n[INSTR] ProductDetailPage ENTER`)
   const t_page = Date.now()
   const { lang, slug } = await params;
   const t = translations[lang];
-  console.log(`[INSTR] ProductDetailPage params: lang=${lang} slug=${slug}`)
 
   if (isCategorySlug(slug)) {
     return (
@@ -149,7 +142,14 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
     );
   }
 
-  const product = await getProductBySlug(slug, lang);
+  let product;
+  let dbError = false;
+  try {
+    product = await getProductBySlug(slug, lang);
+  } catch (err) {
+    dbError = true;
+    console.error(`[Products] database error for slug="${slug}":`, err);
+  }
 
   if (product && isNumericProductParam(slug)) {
     permanentRedirect(localizedPath(lang, `products/${product.slug}`));
@@ -160,7 +160,14 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
       <div>
         <Header lang={lang} />
         <div className="text-center py-16">
-          <p>{t.pages.products.productNotFound}</p>
+          {dbError ? (
+            <>
+              <p className="text-lg font-semibold text-red-600 mb-2">Something went wrong</p>
+              <p className="text-sm text-muted-foreground">Please try again later.</p>
+            </>
+          ) : (
+            <p>{t.pages.products.productNotFound}</p>
+          )}
         </div>
         <Footer lang={lang} />
       </div>
@@ -175,11 +182,20 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
   const gallery = (product.images && product.images.length > 0) ? product.images : product.image ? [product.image] : [];
   const productUrl = absoluteUrl(localizedPath(lang, `products/${product.slug}`));
 
-  const categories = await getCategories(lang);
+  let categories: any[] = [];
+  let relatedProducts: any[] = [];
+  try {
+    [categories, relatedProducts] = await Promise.all([
+      getCategories(lang),
+      getRelatedProducts(product.category, product.id, lang),
+    ]);
+  } catch (err) {
+    console.error(`[Products] related data fetch failed:`, err);
+    // Related data is non-critical — page still renders with product info
+  }
   const otherCategories = categories.filter((c: any) => c.slug !== product.category);
-  const relatedProducts = await getProducts(lang);
 
-  console.log(`[INSTR] ProductDetailPage EXIT  ${Date.now() - t_page}ms`)
+  console.log(`[Products] detail page rendered in ${Date.now() - t_page}ms`)
 
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
