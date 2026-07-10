@@ -27,7 +27,7 @@ export async function getProducts(locale: string = "en") {
     collection: "products",
     locale: "all",
     limit: 100,
-    depth: 2,
+    depth: 1,
   });
   console.log(`[INSTR] getProducts payload.find done  ${Date.now() - t2}ms`);
   console.log(
@@ -74,7 +74,7 @@ export async function getProductBySlug(slug: string, locale: string = "en") {
     locale: "all",
     where: { slug: { equals: slug } },
     limit: 1,
-    depth: 2,
+    depth: 1,
   });
   console.log(
     `[INSTR] getProductBySlug payload.find done  ${Date.now() - t2}ms`,
@@ -138,7 +138,7 @@ export async function getProductsByCategory(
     locale: "all",
     where: { category: { equals: categories.docs[0].id } },
     limit: 100,
-    depth: 2,
+    depth: 1,
   });
   console.log(
     `[INSTR] getProductsByCategory sample typeof name=${typeof (products.docs[0] as any)?.name}  name=${JSON.stringify((products.docs[0] as any)?.name)}`,
