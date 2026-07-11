@@ -41,7 +41,6 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ProductDetailProps) {
-  const t = Date.now()
   const { lang, slug } = await params;
 
   if (isCategorySlug(slug)) {
@@ -67,7 +66,12 @@ export async function generateMetadata({ params }: ProductDetailProps) {
     });
   }
 
-  const product = await getProductBySlug(slug, lang);
+  let product = null;
+  try {
+    product = await getProductBySlug(slug, lang);
+  } catch (err) {
+    console.error('[Products] metadata fetch failed:', err);
+  }
 
   if (!product) {
     return buildPageMetadata({
@@ -82,7 +86,7 @@ export async function generateMetadata({ params }: ProductDetailProps) {
     });
   }
 
-  console.log(`[Products] metadata generated in ${Date.now() - t}ms`)
+
   return buildPageMetadata({
     lang,
     path: `products/${product.slug}`,
@@ -106,7 +110,6 @@ const categoryLabelsLocal: Record<string, { en: string; fa: string; ar: string }
 };
 
 export default async function ProductDetailPage({ params }: ProductDetailProps) {
-  const t_page = Date.now()
   const { lang, slug } = await params;
   const t = translations[lang];
 
@@ -175,8 +178,6 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
     // Related data is non-critical — page still renders with product info
   }
   const otherCategories = categories.filter((c: any) => c.slug !== product.category);
-
-  console.log(`[Products] detail page rendered in ${Date.now() - t_page}ms`)
 
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>

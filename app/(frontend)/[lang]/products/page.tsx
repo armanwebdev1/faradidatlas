@@ -68,7 +68,12 @@ async function ProductGridSection({
   initialBrand: ProductBrand | null;
   initialType: ProductType | null;
 }) {
-  const products = await getProducts(lang);
+  let products: Product[] = [];
+  try {
+    products = await getProducts(lang);
+  } catch (err) {
+    console.error('[Products] list query failed:', err);
+  }
   const t = translations[lang];
   const pageUrl = absoluteUrl(localizedPath(lang, "products"));
   const pageDescription =

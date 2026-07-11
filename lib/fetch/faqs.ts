@@ -1,11 +1,8 @@
 import { cache } from 'react'
 import { getPayloadClient } from '../payload'
-import type {
-  FAQItem,
-} from '../../components/faq/faq-data'
+import type { FAQItem } from '../../components/faq/faq-data'
 
 export const getFAQs = cache(async function getFAQs(locale: string = 'en') {
-  const t = Date.now()
   const payload = await getPayloadClient()
 
   const faqs = await payload.find({
@@ -13,7 +10,7 @@ export const getFAQs = cache(async function getFAQs(locale: string = 'en') {
     limit: 100,
   })
 
-  const result = faqs.docs.map((faq) => ({
+  return faqs.docs.map((faq) => ({
     id: faq.id,
     questionEn: (faq.question as any)?.en ?? '',
     questionFa: (faq.question as any)?.fa ?? '',
@@ -23,16 +20,12 @@ export const getFAQs = cache(async function getFAQs(locale: string = 'en') {
     answerAr: (faq.answer as any)?.ar ?? '',
     category: faq.category as FAQItem['category'],
   }))
-
-  console.log(`[FAQs] fetched ${result.length} in ${Date.now() - t}ms`)
-  return result
 })
 
 export const getFAQsByCategory = cache(async function getFAQsByCategory(
   category: string,
   locale: string = 'en',
 ) {
-  const t = Date.now()
   const payload = await getPayloadClient()
 
   const faqs = await payload.find({
@@ -41,7 +34,7 @@ export const getFAQsByCategory = cache(async function getFAQsByCategory(
     limit: 100,
   })
 
-  const result = faqs.docs.map((faq) => ({
+  return faqs.docs.map((faq) => ({
     id: faq.id,
     questionEn: (faq.question as any)?.en ?? '',
     questionFa: (faq.question as any)?.fa ?? '',
@@ -51,7 +44,4 @@ export const getFAQsByCategory = cache(async function getFAQsByCategory(
     answerAr: (faq.answer as any)?.ar ?? '',
     category: faq.category as FAQItem['category'],
   }))
-
-  console.log(`[FAQs:category=${category}] fetched ${result.length} in ${Date.now() - t}ms`)
-  return result
 })

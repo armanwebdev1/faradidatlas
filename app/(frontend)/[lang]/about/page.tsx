@@ -56,7 +56,12 @@ export default async function AboutPage({ params }: AboutPageProps) {
   const pageUrl = absoluteUrl(localizedPath(lang, "about"));
   const organizationId = absoluteUrl("/#organization");
 
-  const companyInfo = await getCompanyInfo(lang);
+  let companyInfo: any = null;
+  try {
+    companyInfo = await getCompanyInfo(lang);
+  } catch (err) {
+    console.error('[About] company info fetch failed:', err);
+  }
   const ci = companyInfo as any;
 
   return (

@@ -24,7 +24,12 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: JobDetailPageProps) {
   const { lang, id } = await params;
-  const job = await getJobById(Number.parseInt(id), lang);
+  let job = null;
+  try {
+    job = await getJobById(Number.parseInt(id), lang);
+  } catch (err) {
+    console.error('[Job Detail] metadata fetch failed:', err);
+  }
 
   if (!job) {
     return buildPageMetadata({
@@ -54,7 +59,12 @@ export async function generateMetadata({ params }: JobDetailPageProps) {
 export default async function JobDetailPage({ params }: JobDetailPageProps) {
   const { lang, id } = await params;
   const t = translations[lang];
-  const job = await getJobById(Number.parseInt(id), lang);
+  let job = null;
+  try {
+    job = await getJobById(Number.parseInt(id), lang);
+  } catch (err) {
+    console.error('[Job Detail] fetch failed:', err);
+  }
 
   if (!job) {
     return (

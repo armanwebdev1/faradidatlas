@@ -58,11 +58,18 @@ export default async function HomePage({ params }: HomePageProps) {
   const websiteId = absoluteUrl("/#website");
   const pageDescription = t.pages.home.description;
 
-  const [homepage, contactInfo, siteSettings] = await Promise.all([
-    getHomepage(lang),
-    getContactInfo(lang),
-    getSiteSettings(lang),
-  ]);
+  let homepage: any = null;
+  let contactInfo: any = null;
+  let siteSettings: any = null;
+  try {
+    [homepage, contactInfo, siteSettings] = await Promise.all([
+      getHomepage(lang).catch(() => null),
+      getContactInfo(lang).catch(() => null),
+      getSiteSettings(lang).catch(() => null),
+    ]);
+  } catch (err) {
+    console.error('[HomePage] fetch failed:', err);
+  }
 
   const publicContactEmail = contactInfo?.email ?? '';
   const publicPhoneNumbers = (contactInfo?.phones ?? []).map((p: any) => ({
@@ -71,12 +78,12 @@ export default async function HomePage({ params }: HomePageProps) {
     whatsappHref: p.whatsappHref ?? '',
   }));
 
-  const heroSlides = (homepage as any)?.heroSlides ?? [];
-  const valueProps = (homepage as any)?.valueProps ?? [];
-  const brandShowcase = (homepage as any)?.brandShowcase ?? [];
-  const signatureProducts = (homepage as any)?.signatureProducts ?? [];
-  const globalMarkets = (homepage as any)?.globalMarkets ?? [];
-  const cta = (homepage as any)?.cta ?? {};
+  const heroSlides = homepage?.heroSlides ?? [];
+  const valueProps = homepage?.valueProps ?? [];
+  const brandShowcase = homepage?.brandShowcase ?? [];
+  const signatureProducts = homepage?.signatureProducts ?? [];
+  const globalMarkets = homepage?.globalMarkets ?? [];
+  const cta = homepage?.cta ?? {};
 
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>

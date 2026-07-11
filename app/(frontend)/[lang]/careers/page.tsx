@@ -41,9 +41,14 @@ export async function generateMetadata({ params }: CareersPageProps) {
 
 export default async function CareersPage({ params }: CareersPageProps) {
   const { lang } = await params;
+  let jobs: any[] = [];
+  try {
+    jobs = await getJobs(lang);
+  } catch (err) {
+    console.error('[Careers] jobs fetch failed:', err);
+  }
   const t = translations[lang];
   const pageUrl = absoluteUrl(localizedPath(lang, "careers"));
-  const jobs = await getJobs(lang);
 
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
