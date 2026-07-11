@@ -14,6 +14,7 @@ import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import { translations, type Language } from "@/lib/i18n";
 import Image from "next/image";
+import { Suspense } from "react";
 
 export const revalidate = 300;
 
@@ -54,6 +55,146 @@ export async function generateMetadata({ params }: ProductsPageProps) {
   });
 }
 
+async function ProductGridSection({
+  lang,
+  searchQuery,
+  initialCategory,
+  initialBrand,
+  initialType,
+}: {
+  lang: Language;
+  searchQuery: string;
+  initialCategory: ProductCategory | null;
+  initialBrand: ProductBrand | null;
+  initialType: ProductType | null;
+}) {
+  const products = await getProducts(lang);
+  const t = translations[lang];
+  const pageUrl = absoluteUrl(localizedPath(lang, "products"));
+  const pageDescription =
+    lang === "en"
+      ? "Browse Faradid Atlas food products, including branded rice, legumes, seeds, nuts, spices, and sugar for wholesale and B2B supply needs."
+      : lang === "fa"
+        ? "سبد محصولات فرادید اطلس را ببینید؛ از برنج‌های برنددار و حبوبات تا دانه‌ها، مغزها، ادویه و شکر برای نیازهای عمده و سازمانی."
+        : "تصفّح منتجات فراديد أطلس الغذائية، بما في ذلك الأرز والبقوليات والبذور والمكسرات والتوابل والسكر لتوريد بالجملة واحتياجات B2B.";
+
+  return (
+    <>
+      <ProductsContent
+        lang={lang}
+        products={products}
+        initialQuery={searchQuery}
+        initialCategory={initialCategory}
+        initialBrand={initialBrand}
+        initialType={initialType}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "CollectionPage",
+              "@id": `${pageUrl}#webpage`,
+              url: pageUrl,
+              name:
+                lang === "en"
+                  ? "Faradid Atlas Products"
+                  : lang === "fa"
+                    ? "محصولات فرادید اطلس"
+                    : "منتجات فراديد أطلس",
+              description: pageDescription,
+              inLanguage: lang,
+              mainEntity: {
+                "@id": `${pageUrl}#products`,
+              },
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              "@id": `${pageUrl}#products`,
+              name:
+                lang === "en"
+                  ? "Faradid Atlas Products"
+                  : lang === "fa"
+                    ? "محصولات فرادید اطلس"
+                    : "منتجات فراديد أطلس",
+              description: pageDescription,
+              inLanguage: lang,
+              itemListElement: products.map((product, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: absoluteUrl(
+                  localizedPath(lang, `products/${product.slug}`),
+                ),
+                name:
+                  lang === "en"
+                    ? product.nameEn
+                    : lang === "fa"
+                      ? product.nameFa
+                      : product.nameAr,
+              })),
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: t.breadcrumbs.home,
+                  item: absoluteUrl(localizedPath(lang)),
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: t.breadcrumbs.products,
+                  item: pageUrl,
+                },
+              ],
+            },
+          ]),
+        }}
+      />
+    </>
+  );
+}
+
+function ProductGridSkeleton() {
+  return (
+    <section className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-gradient-to-b from-background to-secondary/30">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-10 md:gap-14 lg:gap-16">
+          <div className="w-full lg:w-64 flex-shrink-0">
+            <div className="lg:sticky lg:top-32 space-y-4">
+              <div className="h-3 w-16 bg-foreground/10 rounded animate-pulse" />
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="h-10 bg-foreground/5 rounded-lg animate-pulse" />
+              ))}
+            </div>
+          </div>
+          <div className="flex-1">
+            <div className="h-3 w-32 bg-foreground/10 rounded animate-pulse mb-10" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="bg-white rounded-2xl overflow-hidden border border-border">
+                  <div className="aspect-square bg-secondary/40 animate-pulse" />
+                  <div className="p-4 sm:p-5 space-y-2.5">
+                    <div className="h-2 w-16 bg-foreground/8 rounded animate-pulse" />
+                    <div className="h-4 w-3/4 bg-foreground/10 rounded animate-pulse" />
+                    <div className="h-3 w-full bg-foreground/5 rounded animate-pulse" />
+                    <div className="h-3 w-2/3 bg-foreground/5 rounded animate-pulse" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default async function ProductsPage({
   params,
   searchParams,
@@ -65,7 +206,6 @@ export default async function ProductsPage({
   ]);
   const isRTL = lang === "fa" || lang === "ar";
   const t = translations[lang];
-  const products = await getProducts(lang);
   const rawSearchQuery = resolvedSearchParams.q;
   const rawCategory = resolvedSearchParams.category;
   const rawBrand = resolvedSearchParams.brand;
@@ -91,13 +231,6 @@ export default async function ProductsPage({
   const initialType = productTypes.includes(type as ProductType)
     ? (type as ProductType)
     : null;
-  const pageUrl = absoluteUrl(localizedPath(lang, "products"));
-  const pageDescription =
-    lang === "en"
-      ? "Browse Faradid Atlas food products, including branded rice, legumes, seeds, nuts, spices, and sugar for wholesale and B2B supply needs."
-      : lang === "fa"
-        ? "سبد محصولات فرادید اطلس را ببینید؛ از برنج‌های برنددار و حبوبات تا دانه‌ها، مغزها، ادویه و شکر برای نیازهای عمده و سازمانی."
-        : "تصفّح منتجات فراديد أطلس الغذائية، بما في ذلك الأرز والبقوليات والبذور والمكسرات والتوابل والسكر لتوريد بالجملة واحتياجات B2B.";
 
   return (
     <div lang={lang} dir={isRTL ? "rtl" : "ltr"}>
@@ -115,6 +248,7 @@ export default async function ProductsPage({
             }
             fill
             sizes="100vw"
+            unoptimized
             className="object-cover"
             priority
           />
@@ -148,82 +282,15 @@ export default async function ProductsPage({
           </div>
         </section>
 
-        <ProductsContent
-          lang={lang}
-          products={products}
-          initialQuery={searchQuery}
-          initialCategory={initialCategory}
-          initialBrand={initialBrand}
-          initialType={initialType}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify([
-              {
-                "@context": "https://schema.org",
-                "@type": "CollectionPage",
-                "@id": `${pageUrl}#webpage`,
-                url: pageUrl,
-                name:
-                  lang === "en"
-                    ? "Faradid Atlas Products"
-                    : lang === "fa"
-                      ? "محصولات فرادید اطلس"
-                      : "منتجات فراديد أطلس",
-                description: pageDescription,
-                inLanguage: lang,
-                mainEntity: {
-                  "@id": `${pageUrl}#products`,
-                },
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "ItemList",
-                "@id": `${pageUrl}#products`,
-                name:
-                  lang === "en"
-                    ? "Faradid Atlas Products"
-                    : lang === "fa"
-                      ? "محصولات فرادید اطلس"
-                      : "منتجات فراديد أطلس",
-                description: pageDescription,
-                inLanguage: lang,
-                itemListElement: products.map((product, index) => ({
-                  "@type": "ListItem",
-                  position: index + 1,
-                  url: absoluteUrl(
-                    localizedPath(lang, `products/${product.slug}`),
-                  ),
-                  name:
-                    lang === "en"
-                      ? product.nameEn
-                      : lang === "fa"
-                        ? product.nameFa
-                        : product.nameAr,
-                })),
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "BreadcrumbList",
-                itemListElement: [
-                  {
-                    "@type": "ListItem",
-                    position: 1,
-                    name: t.breadcrumbs.home,
-                    item: absoluteUrl(localizedPath(lang)),
-                  },
-                  {
-                    "@type": "ListItem",
-                    position: 2,
-                    name: t.breadcrumbs.products,
-                    item: pageUrl,
-                  },
-                ],
-              },
-            ]),
-          }}
-        />
+        <Suspense fallback={<ProductGridSkeleton />}>
+          <ProductGridSection
+            lang={lang}
+            searchQuery={searchQuery}
+            initialCategory={initialCategory}
+            initialBrand={initialBrand}
+            initialType={initialType}
+          />
+        </Suspense>
       </main>
       <Footer lang={lang} />
     </div>

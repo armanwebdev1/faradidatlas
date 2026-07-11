@@ -115,6 +115,7 @@ export function BrandShowcase({ lang, brands }: BrandShowcaseProps) {
                 height={1239}
                 loading="lazy"
                 sizes="(min-width: 768px) 28rem, 100vw"
+                unoptimized
                 className="h-auto w-full"
               />
             </div>

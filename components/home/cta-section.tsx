@@ -191,6 +191,7 @@ export function CTASection({ lang, cta, brandShowcase }: CTASectionProps) {
                           width={brand.width}
                           height={brand.height}
                           loading="lazy"
+                          unoptimized
                           className="h-14 w-auto object-contain drop-shadow-[0_10px_16px_rgba(30,35,39,0.10)] transition duration-500 group-hover/brand:scale-[1.04] group-hover/brand:drop-shadow-[0_0_18px_rgba(201,169,97,0.42)] sm:h-16 md:h-20"
                         />
                       </div>

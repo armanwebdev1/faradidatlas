@@ -50,6 +50,7 @@ export function ProductCard({ product, lang }: ProductCardProps) {
               alt={name}
               fill
               sizes="(min-width: 1280px) 360px, (min-width: 1024px) 31vw, (min-width: 640px) 46vw, 92vw"
+              unoptimized
               className="object-cover"
             />
           ) : (

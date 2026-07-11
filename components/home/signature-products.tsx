@@ -290,6 +290,7 @@ export function SignatureProducts({
                       fill
                       loading="lazy"
                       sizes="(min-width: 1024px) 48vw, 100vw"
+                      unoptimized
                       className={`absolute inset-0 h-full w-full object-cover transition-transform duration-700 ${
                         index === currentIndex && !isTransitioning
                           ? "scale-100"
