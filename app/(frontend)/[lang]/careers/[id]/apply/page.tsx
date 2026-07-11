@@ -2,24 +2,17 @@ import Link from "next/link"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { ApplicationForm } from "@/components/careers/application-form"
-import { getJobs, getJobById } from "@/lib/fetch/jobs"
+import { getJobById } from "@/lib/fetch/jobs"
 import { buildPageMetadata } from "@/lib/metadata"
 import type { Language } from "@/lib/i18n"
 import { translations } from "@/lib/i18n"
 import { absoluteUrl, localizedPath } from "@/lib/site"
 
 export const revalidate = 60
+export const dynamicParams = true
 
 export async function generateStaticParams() {
-  const langs = ["en", "fa", "ar"]
-  const allParams = []
-  for (const lang of langs) {
-    const jobs = await getJobs(lang)
-    for (const job of jobs) {
-      allParams.push({ lang, id: String(job.id) })
-    }
-  }
-  return allParams
+  return []
 }
 
 interface ApplyPageProps {

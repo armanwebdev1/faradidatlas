@@ -1,7 +1,7 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { JobDetail } from "@/components/careers/job-detail";
-import { getJobs, getJobById } from "@/lib/fetch/jobs";
+import { getJobById } from "@/lib/fetch/jobs";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
@@ -9,6 +9,7 @@ import { translations } from "@/lib/i18n";
 import Link from "next/link";
 
 export const revalidate = 60
+export const dynamicParams = true
 
 interface JobDetailPageProps {
   params: Promise<{
@@ -18,17 +19,7 @@ interface JobDetailPageProps {
 }
 
 export async function generateStaticParams() {
-  const langs: Language[] = ["en", "fa", "ar"];
-  const allParams = [];
-
-  for (const lang of langs) {
-    const jobs = await getJobs(lang);
-    for (const job of jobs) {
-      allParams.push({ lang, id: job.id.toString() });
-    }
-  }
-
-  return allParams;
+  return [];
 }
 
 export async function generateMetadata({ params }: JobDetailPageProps) {

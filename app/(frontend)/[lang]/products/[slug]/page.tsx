@@ -11,13 +11,13 @@ import { ProductSpecs } from "@/components/products/product-specs";
 import { RelatedProducts } from "@/components/products/related-products";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
-import { getPayloadClient } from "@/lib/payload";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import { permanentRedirect } from "next/navigation";
 import Link from "next/link";
 
 export const revalidate = 300
+export const dynamicParams = true
 
 interface ProductDetailProps {
   params: Promise<{
@@ -37,27 +37,7 @@ function isNumericProductParam(value: string) {
 }
 
 export async function generateStaticParams() {
-  const t = Date.now()
-  const langs: Language[] = ["en", "fa", "ar"];
-  const allParams: { lang: string; slug: string }[] = [];
-
-  const payload = await getPayloadClient();
-  const [productsResult, categoriesResult] = await Promise.all([
-    payload.find({ collection: "products", limit: 100 }),
-    payload.find({ collection: "categories", limit: 100 }),
-  ]);
-
-  for (const lang of langs) {
-    for (const cat of categoriesResult.docs) {
-      allParams.push({ lang, slug: cat.slug });
-    }
-    for (const product of productsResult.docs) {
-      allParams.push({ lang, slug: product.slug });
-    }
-  }
-
-  console.log(`[Products] static params generated ${allParams.length} entries in ${Date.now() - t}ms`)
-  return allParams;
+  return []
 }
 
 export async function generateMetadata({ params }: ProductDetailProps) {

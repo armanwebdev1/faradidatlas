@@ -2,8 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
-import { getProducts } from "@/lib/fetch/products";
-import { getContactInfo } from "@/lib/fetch/contact-info";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 
@@ -28,40 +26,22 @@ const categoryLabelsLocal: Record<string, { en: string; fa: string; ar: string }
 
 const productCategoriesLocal = ["rice", "legumes", "seeds", "nuts", "spices", "sugar"];
 
-export async function Footer({ lang }: FooterProps) {
-  console.log(`\n[INSTR] <Footer> ENTER`)
-  const t = Date.now()
-  const [products, contactInfo] = await Promise.all([
-    getProducts(lang),
-    getContactInfo(lang),
-  ]);
-  console.log(`[INSTR] <Footer> data fetched  ${Date.now() - t}ms`)
+const footerContactEmail = "info@faradidatlas.com";
+const footerPhones: { value: string; display: string; whatsappHref?: string }[] = [];
 
-  const t2 = Date.now()
+export async function Footer({ lang }: FooterProps) {
   const t_trans = translations[lang];
   const isRTL = lang === "fa" || lang === "ar";
   const dir = isRTL ? "rtl" : "ltr";
   const brandHomeLabel =
-    lang === "en" ? "Faradid Atlas home" : lang === "fa" ? "خانه فرادید اطلس" : "الرئيسية فراديد اطلس";
+    lang === "en" ? "Faradid Atlas home" : lang === "fa" ? "خانه فرادید اطلس" : "الرئيسية فراديد أطلس";
   const brandPrimary = lang === "en" ? "Faradid" : lang === "fa" ? "فرادید" : "فراديد";
   const brandSecondary = lang === "en" ? "Atlas" : lang === "fa" ? "اطلس" : "اطلس";
 
-  const ci = contactInfo as any;
-  const footerEmail = ci?.email ?? '';
-  const footerPhones = ci?.phones?.length
-    ? ci.phones.map((p: any) => ({ value: p.value ?? '', display: p.display ?? '', href: `tel:${p.value}`, whatsappHref: p.whatsappHref }))
-    : [];
-
-  const productCategoryLinks = productCategoriesLocal
-    .map((category) => ({
-      count: products.filter((product) => product.category === category).length,
-      link: {
-        href: `/${lang}/products?category=${category}#product-catalog`,
-        label: categoryLabelsLocal[category]?.[lang] ?? category,
-      },
-    }))
-    .filter((item) => item.count > 0)
-    .map((item) => item.link);
+  const productCategoryLinks = productCategoriesLocal.map((category) => ({
+    href: `/${lang}/products?category=${category}#product-catalog`,
+    label: categoryLabelsLocal[category]?.[lang] ?? category,
+  }));
 
   const productLinks: FooterLinkItem[] = [
     { href: `/${lang}/products#product-catalog`, label: t_trans.pages.products.title },
@@ -86,8 +66,6 @@ export async function Footer({ lang }: FooterProps) {
     { href: `/${lang}/faq`, label: t_trans.pages.faq.subtitle },
     { href: "/sitemap.xml", label: t_trans.footer.sitemap, external: true },
   ];
-
-  console.log(`[INSTR] <Footer> EXIT (render)  ${Date.now() - t}ms`)
 
   return (
     <footer dir={dir} className="relative overflow-hidden border-t border-brand-navy/30 bg-[#111722] text-white">
@@ -121,18 +99,18 @@ export async function Footer({ lang }: FooterProps) {
                   <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
                   <span>{t_trans.footer.address}</span>
                 </div>
-                {footerEmail && (
-                  <a href={`mailto:${footerEmail}`} aria-label={`Email us at ${footerEmail}`} className="group/email flex items-center gap-3 text-sm text-white/70 transition-colors duration-300 hover:text-accent">
+                {footerContactEmail && (
+                  <a href={`mailto:${footerContactEmail}`} aria-label={`Email us at ${footerContactEmail}`} className="group/email flex items-center gap-3 text-sm text-white/70 transition-colors duration-300 hover:text-accent">
                     <Mail className="w-4 h-4 shrink-0 text-inherit" />
-                    <span dir="ltr" className="text-inherit underline-offset-4 group-hover/email:underline">{footerEmail}</span>
+                    <span dir="ltr" className="text-inherit underline-offset-4 group-hover/email:underline">{footerContactEmail}</span>
                   </a>
                 )}
                 <div className="space-y-4">
-                  {footerPhones.map((phone: any) => (
+                  {footerPhones.map((phone) => (
                     <div key={phone.value} className="group/phone flex items-start gap-3 text-sm">
                       <Phone className="w-4 h-4 mt-0.5 shrink-0 text-white/70 transition-colors duration-300 group-hover/phone:text-accent" />
                       <div className="flex flex-col">
-                        <a href={phone.href} aria-label={`Call us at ${phone.display}`} className="text-sm text-white/70 transition-colors duration-300 hover:text-accent">
+                        <a href={`tel:${phone.value}`} aria-label={`Call us at ${phone.display}`} className="text-sm text-white/70 transition-colors duration-300 hover:text-accent">
                           <span dir="ltr" className="text-inherit tabular-nums underline-offset-4 hover:underline">{phone.display}</span>
                         </a>
                         {phone.whatsappHref && (
