@@ -42,7 +42,12 @@ export default async function FAQPage({ params }: FAQPageProps) {
   const { lang } = await params;
   const t = translations[lang];
   const pageUrl = absoluteUrl(localizedPath(lang, "faq"));
-  const faqs = await getFAQs(lang);
+  let faqs: any[] = [];
+  try {
+    faqs = await getFAQs(lang);
+  } catch (err) {
+    console.error('[FAQ] fetch failed:', err);
+  }
 
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>

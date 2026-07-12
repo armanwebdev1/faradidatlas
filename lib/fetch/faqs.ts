@@ -1,8 +1,6 @@
 import { cache } from 'react'
 import { getPayloadClient } from '../payload'
-import type {
-  FAQItem,
-} from '../../components/faq/faq-data'
+import type { FAQItem } from '../../components/faq/faq-data'
 
 export const getFAQs = cache(async function getFAQs(locale: string = 'en') {
   const payload = await getPayloadClient()

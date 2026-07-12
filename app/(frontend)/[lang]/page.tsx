@@ -13,7 +13,7 @@ import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 
-export const revalidate = 60
+export const revalidate = 60;
 
 interface HomePageProps {
   params: Promise<{
@@ -30,9 +30,12 @@ export async function generateMetadata({ params }: HomePageProps) {
 
   return buildPageMetadata({
     lang,
-    titleEn: "Food Sourcing, Import & Distribution — Iran, UAE, Oman | Faradid Atlas",
-    titleFa: "تأمین، واردات و توزیع مواد غذایی — ایران، امارات، عمان | فرادید اطلس",
-    titleAr: "تزوين واستيراد وتوزيع الغذاء — إيران، الإمارات، عمان | فراديد أطلس",
+    titleEn:
+      "Food Sourcing, Import & Distribution — Iran, UAE, Oman | Faradid Atlas",
+    titleFa:
+      "تأمین، واردات و توزیع مواد غذایی — ایران، امارات، عمان | فرادید اطلس",
+    titleAr:
+      "تزوين واستيراد وتوزيع الغذاء — إيران، الإمارات، عمان | فراديد أطلس",
     descriptionEn:
       "Faradid Atlas sources, imports, and distributes essential foods — branded rice, legumes, nuts, seeds, spices, and sugar — across Iran, UAE, and Oman. B2B food supply since 2009.",
     descriptionFa:
@@ -50,25 +53,23 @@ export default async function HomePage({ params }: HomePageProps) {
   const websiteId = absoluteUrl("/#website");
   const pageDescription = t.pages.home.description;
 
-  const [globals] = await Promise.all([
-    getAllGlobals(lang),
-  ]);
+  const [globals] = await Promise.all([getAllGlobals(lang)]);
 
   const { homepage, contactInfo, siteSettings } = globals;
 
-  const publicContactEmail = contactInfo?.email ?? '';
+  const publicContactEmail = contactInfo?.email ?? "";
   const publicPhoneNumbers = (contactInfo?.phones ?? []).map((p: any) => ({
-    value: p.value ?? '',
-    display: p.display ?? '',
-    whatsappHref: p.whatsappHref ?? '',
+    value: p.value ?? "",
+    display: p.display ?? "",
+    whatsappHref: p.whatsappHref ?? "",
   }));
 
-  const heroSlides = (homepage as any)?.heroSlides ?? [];
-  const valueProps = (homepage as any)?.valueProps ?? [];
-  const brandShowcase = (homepage as any)?.brandShowcase ?? [];
-  const signatureProducts = (homepage as any)?.signatureProducts ?? [];
-  const globalMarkets = (homepage as any)?.globalMarkets ?? [];
-  const cta = (homepage as any)?.cta ?? {};
+  const heroSlides = homepage?.heroSlides ?? [];
+  const valueProps = homepage?.valueProps ?? [];
+  const brandShowcase = homepage?.brandShowcase ?? [];
+  const signatureProducts = homepage?.signatureProducts ?? [];
+  const globalMarkets = homepage?.globalMarkets ?? [];
+  const cta = homepage?.cta ?? {};
 
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
@@ -89,17 +90,20 @@ export default async function HomePage({ params }: HomePageProps) {
               "@context": "https://schema.org",
               "@type": "Organization",
               "@id": organizationId,
-              name: (siteSettings as any)?.siteName ?? 'Faradid Atlas',
-              alternateName: (siteSettings as any)?.siteNameFa ?? 'فرادید اطلس',
-              legalName: (siteSettings as any)?.legalName ?? 'Faradid Atlas Trading LLC',
+              name: (siteSettings as any)?.siteName ?? "Faradid Atlas",
+              alternateName: (siteSettings as any)?.siteNameFa ?? "فرادید اطلس",
+              legalName:
+                (siteSettings as any)?.legalName ?? "Faradid Atlas Trading LLC",
               url: absoluteUrl(),
-              logo: resolveMediaUrl((siteSettings as any)?.logo) ?? absoluteUrl('/brand/faradid-atlas-mark.png'),
+              logo:
+                resolveMediaUrl((siteSettings as any)?.logo) ??
+                absoluteUrl("/brand/faradid-atlas-mark.png"),
               email: publicContactEmail,
               telephone: publicPhoneNumbers.map((phone) => phone.value),
               description:
                 lang === "en"
-                  ? (siteSettings as any)?.description ?? ''
-                  : (siteSettings as any)?.descriptionFa ?? '',
+                  ? ((siteSettings as any)?.description ?? "")
+                  : ((siteSettings as any)?.descriptionFa ?? ""),
               foundingDate: "2009",
               foundingLocation: "Iran",
               industry: "Food Distribution and Supply",
@@ -160,7 +164,11 @@ export default async function HomePage({ params }: HomePageProps) {
                 },
               ],
               ...((siteSettings as any)?.socialLinks?.length > 0
-                ? { sameAs: (siteSettings as any).socialLinks.map((l: any) => l.url) }
+                ? {
+                    sameAs: (siteSettings as any).socialLinks.map(
+                      (l: any) => l.url,
+                    ),
+                  }
                 : {}),
             },
             {
@@ -179,8 +187,8 @@ export default async function HomePage({ params }: HomePageProps) {
               "@context": "https://schema.org",
               "@type": "WebSite",
               "@id": websiteId,
-              name: (siteSettings as any)?.siteName ?? 'Faradid Atlas',
-              alternateName: (siteSettings as any)?.siteNameFa ?? 'فرادید اطلس',
+              name: (siteSettings as any)?.siteName ?? "Faradid Atlas",
+              alternateName: (siteSettings as any)?.siteNameFa ?? "فرادید اطلس",
               url: absoluteUrl(),
               inLanguage: ["en", "fa", "ar"],
               publisher: {

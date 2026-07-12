@@ -52,10 +52,16 @@ export default async function ContactPage({ params, searchParams }: ContactPageP
   const resolvedSearchParams: ContactSearchParams = searchParams ? await searchParams : {};
   const productParam = resolvedSearchParams.product;
 
-  const [selectedProduct, contactInfo] = await Promise.all([
-    productParam ? getProductBySlug(productParam, lang) : null,
-    getContactInfo(lang),
-  ]);
+  let selectedProduct = null;
+  let contactInfo = null;
+  try {
+    [selectedProduct, contactInfo] = await Promise.all([
+      productParam ? getProductBySlug(productParam, lang).catch(() => null) : null,
+      getContactInfo(lang).catch(() => null),
+    ]);
+  } catch (err) {
+    console.error('[Contact] fetch failed:', err);
+  }
 
   const ci = contactInfo as any;
   const initialProductInterest = selectedProduct

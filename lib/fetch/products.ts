@@ -15,7 +15,6 @@ const categorySlugMap: Record<string, ProductCategory> = {
   sugar: "sugar",
 };
 
-// Listing: minimal fields for cards and search
 const listingSelect = {
   name: true,
   slug: true,
@@ -26,7 +25,6 @@ const listingSelect = {
   description: true,
 } as const;
 
-// Detail: full fields for product page
 const detailSelect = {
   name: true,
   slug: true,
@@ -67,7 +65,7 @@ export const getProducts = cache(async function getProducts(locale: string = "en
     images: [] as string[],
     specs: [] as ProductSpec[],
   })) as Product[];
-})
+});
 
 export const getProductBySlug = cache(async function getProductBySlug(slug: string, locale: string = "en") {
   const payload = await getPayloadClient();
@@ -105,7 +103,7 @@ export const getProductBySlug = cache(async function getProductBySlug(slug: stri
   } as Product;
 
   return mapped;
-})
+});
 
 export async function getProductsByCategory(
   category: string,
@@ -151,7 +149,7 @@ export const getCategories = cache(async function getCategories(locale: string =
   });
 
   return categories.docs;
-})
+});
 
 export const getRelatedProducts = cache(async function getRelatedProducts(
   categoryId: number,
@@ -193,7 +191,7 @@ export const getRelatedProducts = cache(async function getRelatedProducts(
   })) as Product[];
 
   return result;
-})
+});
 
 function resolveCategory(category: any): ProductCategory {
   if (!category) return "rice";
