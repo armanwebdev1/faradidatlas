@@ -116,5 +116,92 @@ export const CompanyInfo: GlobalConfig = {
         },
       ],
     },
+    {
+      name: 'timeline',
+      type: 'array',
+      localized: true,
+      admin: {
+        description: 'Company history timeline milestones',
+      },
+      fields: [
+        {
+          name: 'year',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+        },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+        },
+      ],
+    },
+    {
+      name: 'certificates',
+      type: 'array',
+      admin: {
+        description: 'Company certifications and awards',
+      },
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+        },
+        {
+          name: 'issueDate',
+          type: 'date',
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          localized: true,
+        },
+      ],
+    },
+    {
+      name: 'banners',
+      type: 'array',
+      admin: {
+        description: 'About page promotional banners',
+      },
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          localized: true,
+        },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+        },
+        {
+          name: 'link',
+          type: 'text',
+        },
+      ],
+    },
   ],
 }

@@ -38,6 +38,30 @@ export const Homepage: GlobalConfig = {
           required: true,
           localized: true,
         },
+        {
+          name: 'ctaText',
+          type: 'text',
+          localized: true,
+          admin: {
+            description: 'CTA button text (optional)',
+          },
+        },
+        {
+          name: 'ctaUrl',
+          type: 'text',
+          admin: {
+            description: 'CTA button URL (optional)',
+          },
+        },
+        {
+          name: 'isActive',
+          type: 'checkbox',
+          defaultValue: true,
+          admin: {
+            description: 'Show/hide this slide',
+            position: 'sidebar',
+          },
+        },
       ],
     },
     {
@@ -62,6 +86,15 @@ export const Homepage: GlobalConfig = {
           required: true,
           localized: true,
         },
+        {
+          name: 'isActive',
+          type: 'checkbox',
+          defaultValue: true,
+          admin: {
+            description: 'Show/hide this item',
+            position: 'sidebar',
+          },
+        },
       ],
     },
     {
@@ -83,6 +116,15 @@ export const Homepage: GlobalConfig = {
           type: 'textarea',
           localized: true,
         },
+        {
+          name: 'isActive',
+          type: 'checkbox',
+          defaultValue: true,
+          admin: {
+            description: 'Show/hide this brand',
+            position: 'sidebar',
+          },
+        },
       ],
     },
     {
@@ -94,6 +136,15 @@ export const Homepage: GlobalConfig = {
           type: 'relationship',
           relationTo: 'products',
           required: true,
+        },
+        {
+          name: 'isActive',
+          type: 'checkbox',
+          defaultValue: true,
+          admin: {
+            description: 'Show/hide this product',
+            position: 'sidebar',
+          },
         },
       ],
     },
@@ -110,6 +161,22 @@ export const Homepage: GlobalConfig = {
           name: 'description',
           type: 'textarea',
           localized: true,
+        },
+        {
+          name: 'value',
+          type: 'number',
+          admin: {
+            description: 'Number to display in the stat card',
+          },
+        },
+        {
+          name: 'isActive',
+          type: 'checkbox',
+          defaultValue: true,
+          admin: {
+            description: 'Show/hide this stat',
+            position: 'sidebar',
+          },
         },
       ],
     },
@@ -138,6 +205,14 @@ export const Homepage: GlobalConfig = {
           name: 'buttonUrl',
           type: 'text',
           required: true,
+        },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          admin: {
+            description: 'CTA section image',
+          },
         },
       ],
     },

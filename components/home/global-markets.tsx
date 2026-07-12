@@ -8,6 +8,8 @@ interface GlobalMarketsProps {
   markets?: Array<{
     country?: any;
     description?: any;
+    value?: number | null;
+    isActive?: boolean | null;
   }>;
 }
 
@@ -44,12 +46,14 @@ export function GlobalMarkets({ lang, markets: payloadMarkets }: GlobalMarketsPr
   const t = translations[lang];
 
   const marketList = payloadMarkets?.length
-    ? payloadMarkets.map((m) => ({
-        region: getLocalized(m.country, lang),
-        countries: getLocalized(m.description, lang),
-        value: 4,
-        suffix: '',
-      }))
+    ? payloadMarkets
+        .filter((m: any) => m.isActive !== false)
+        .map((m) => ({
+          region: getLocalized(m.country, lang),
+          countries: getLocalized(m.description, lang),
+          value: m.value ?? 4,
+          suffix: '',
+        }))
     : defaultMarkets[lang] || defaultMarkets.en;
 
   return (

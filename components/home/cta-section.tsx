@@ -9,12 +9,14 @@ interface CTASectionProps {
     headline?: any;
     description?: any;
     buttonText?: any;
-    buttonUrl?: string;
+    buttonUrl?: string | null;
+    image?: any;
   };
   brandShowcase?: Array<{
     brandName?: any;
     logo?: any;
     description?: any;
+    isActive?: boolean | null;
   }>;
 }
 
@@ -72,14 +74,17 @@ export function CTASection({ lang, cta, brandShowcase }: CTASectionProps) {
   const ctaDescription = getLocalized(cta?.description, lang);
   const ctaButtonText = getLocalized(cta?.buttonText, lang);
   const ctaButtonUrl = cta?.buttonUrl ?? `/${lang}/contact`;
+  const ctaImageUrl = resolveMediaUrl(cta?.image);
 
   const brandLogos = brandShowcase?.length
-    ? brandShowcase.map((b) => ({
-        name: getLocalized(b.brandName, lang),
-        src: resolveMediaUrl(b.logo) ?? '/brands/twenty-one-4k.png',
-        width: 160,
-        height: 80,
-      }))
+    ? brandShowcase
+        .filter((b: any) => b.isActive !== false)
+        .map((b) => ({
+          name: getLocalized(b.brandName, lang),
+          src: resolveMediaUrl(b.logo) ?? '/brands/twenty-one-4k.png',
+          width: 160,
+          height: 80,
+        }))
     : defaultBrandLogos;
 
   const brandLogoLoop = [...brandLogos, ...brandLogos];
@@ -100,11 +105,21 @@ export function CTASection({ lang, cta, brandShowcase }: CTASectionProps) {
         >
           <div className="flex-1 lg:w-1/2 h-64 sm:h-80 md:h-96 lg:min-h-[26rem]">
             <div className="relative group overflow-hidden rounded-lg sm:rounded-2xl shadow-xl md:shadow-2xl h-full">
-              <Image
-                alt={t.pages.home.ctaImageAlt}
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-              />
+              {ctaImageUrl ? (
+                <NextImage
+                  src={ctaImageUrl}
+                  alt={t.pages.home.ctaImageAlt}
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                />
+              ) : (
+                <Image
+                  alt={t.pages.home.ctaImageAlt}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                />
+              )}
               <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-lg sm:rounded-2xl" />
             </div>
           </div>

@@ -60,5 +60,25 @@ export const Navigation: GlobalConfig = {
         },
       ],
     },
+    {
+      name: 'announcementBar',
+      type: 'group',
+      fields: [
+        {
+          name: 'enabled',
+          type: 'checkbox',
+          defaultValue: false,
+        },
+        {
+          name: 'text',
+          type: 'text',
+          localized: true,
+        },
+        {
+          name: 'link',
+          type: 'text',
+        },
+      ],
+    },
   ],
 }

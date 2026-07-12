@@ -4,6 +4,7 @@ import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
+import { getAllGlobals } from "@/lib/fetch/globals";
 
 interface FooterProps {
   lang: Language;
@@ -26,13 +27,19 @@ const categoryLabelsLocal: Record<string, { en: string; fa: string; ar: string }
 
 const productCategoriesLocal = ["rice", "legumes", "seeds", "nuts", "spices", "sugar"];
 
-const footerContactEmail = "info@faradidatlas.com";
-const footerPhones: { value: string; display: string; whatsappHref?: string }[] = [];
-
 export async function Footer({ lang }: FooterProps) {
   const t_trans = translations[lang];
   const isRTL = lang === "fa" || lang === "ar";
   const dir = isRTL ? "rtl" : "ltr";
+
+  const globals = await getAllGlobals(lang);
+  const contactInfo = globals.contactInfo;
+  const footerContactEmail = contactInfo?.email ?? "info@faradidatlas.com";
+  const footerPhones: { value: string; display: string; whatsappHref?: string }[] = (contactInfo?.phones ?? []).map((p: any) => ({
+    value: p.value ?? "",
+    display: p.display ?? "",
+    whatsappHref: p.whatsappHref ?? "",
+  }));
   const brandHomeLabel =
     lang === "en" ? "Faradid Atlas home" : lang === "fa" ? "خانه فرادید اطلس" : "الرئيسية فراديد أطلس";
   const brandPrimary = lang === "en" ? "Faradid" : lang === "fa" ? "فرادید" : "فراديد";

@@ -8,7 +8,7 @@ export const Products: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     group: 'Products',
-    defaultColumns: ['name', 'category', 'brand', 'status'],
+    defaultColumns: ['name', 'category', 'brand', 'featured', 'status'],
   },
   versions: {
     drafts: true,
@@ -65,6 +65,24 @@ export const Products: CollectionConfig = {
       },
     },
     {
+      name: 'featured',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        description: 'Mark as featured product',
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'ordering',
+      type: 'number',
+      defaultValue: 0,
+      admin: {
+        description: 'Display order (lower numbers first)',
+        position: 'sidebar',
+      },
+    },
+    {
       name: 'description',
       type: 'textarea',
       localized: true,
@@ -108,6 +126,35 @@ export const Products: CollectionConfig = {
           type: 'upload',
           relationTo: 'media',
           required: true,
+        },
+      ],
+    },
+    {
+      name: 'downloadableFiles',
+      type: 'array',
+      admin: {
+        description: 'Downloadable files (brochures, specs sheets, etc.)',
+      },
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'file',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+        {
+          name: 'category',
+          type: 'text',
+          localized: true,
+          admin: {
+            description: 'e.g. "Brochure", "Spec Sheet", "Certificate"',
+          },
         },
       ],
     },

@@ -11,8 +11,13 @@ import { translations } from "@/lib/i18n";
 interface SignatureProductsProps {
   lang: Language;
   products?: Array<{
-    id?: number;
+    id?: number | string | null;
     product?: any;
+    isActive?: boolean | null;
+    name?: any;
+    category?: any;
+    image?: any;
+    description?: any;
   }>;
 }
 
@@ -122,7 +127,20 @@ export function SignatureProducts({
     ? "-translate-x-4 sm:-translate-x-6 md:-translate-x-8 -translate-y-4 sm:-translate-y-6 md:-translate-y-8"
     : "translate-x-4 sm:translate-x-6 md:translate-x-8 -translate-y-4 sm:-translate-y-6 md:-translate-y-8";
 
-  const products = defaultProducts;
+  const products = payloadProducts?.length
+    ? payloadProducts
+        .filter((p: any) => p.isActive !== false)
+        .map((p: any) => {
+          const resolved = p.product && typeof p.product === 'object' ? p.product : p;
+          return {
+            id: resolved.id ?? p.id,
+            name: resolved.name ?? p.name,
+            category: resolved.category ?? p.category,
+            image: resolved.featuredImage ?? resolved.image ?? p.image,
+            description: resolved.description ?? p.description,
+          };
+        })
+    : defaultProducts;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoplay, setIsAutoplay] = useState(true);
@@ -285,7 +303,7 @@ export function SignatureProducts({
                 >
                   {hasEntered && (
                     <Image
-                      src={localize(product.image) || product.image.src}
+                      src={localize(product.image) || (typeof product.image === 'object' ? product.image?.src : '') || "/signature-products/optimized/twenty-one.webp"}
                       alt={localize(product.name)}
                       fill
                       loading="lazy"

@@ -34,6 +34,31 @@ export const Categories: CollectionConfig = {
       localized: true,
     },
     {
+      name: 'icon',
+      type: 'text',
+      admin: {
+        description: 'Lucide icon name (e.g. "Wheat", "Bean", "Nut")',
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Category display image',
+      },
+    },
+    {
+      name: 'ordering',
+      type: 'number',
+      defaultValue: 0,
+      admin: {
+        description: 'Display order (lower numbers first)',
+        position: 'sidebar',
+      },
+    },
+    {
       name: 'seo',
       type: 'group',
       fields: [

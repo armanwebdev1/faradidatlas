@@ -8,6 +8,7 @@ interface ValuePropsProps {
     icon?: string;
     title?: any;
     description?: any;
+    isActive?: boolean | null;
   }>;
 }
 
@@ -52,15 +53,17 @@ export function ValueProps({ lang, items: payloadItems }: ValuePropsProps) {
   const isRTL = lang === "fa" || lang === "ar";
 
   const items = payloadItems?.length
-    ? payloadItems.map((item) => {
-        const iconName = item.icon ?? 'Globe';
-        const IconComponent = iconMap[iconName] ?? Globe;
-        return {
-          icon: IconComponent,
-          title: getLocalized(item.title, lang),
-          description: getLocalized(item.description, lang),
-        };
-      })
+    ? payloadItems
+        .filter((item: any) => item.isActive !== false)
+        .map((item) => {
+          const iconName = item.icon ?? 'Globe';
+          const IconComponent = iconMap[iconName] ?? Globe;
+          return {
+            icon: IconComponent,
+            title: getLocalized(item.title, lang),
+            description: getLocalized(item.description, lang),
+          };
+        })
     : (defaultItems[lang] || defaultItems.en).map((item) => ({
         ...item,
         icon: iconMap[item.icon] ?? Globe,

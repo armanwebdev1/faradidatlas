@@ -11,6 +11,8 @@ import { ProductBrands } from "./src/collections/ProductBrands";
 import { BlogPosts } from "./src/collections/BlogPosts";
 import { FAQs } from "./src/collections/FAQs";
 import { Jobs } from "./src/collections/Jobs";
+import { Downloads } from "./src/collections/Downloads";
+import { Certificates } from "./src/collections/Certificates";
 import { Media } from "./src/collections/Media";
 import { Users } from "./src/collections/Users";
 
@@ -47,6 +49,8 @@ export default buildConfig({
     BlogPosts,
     FAQs,
     Jobs,
+    Downloads,
+    Certificates,
     Media,
     Users,
   ],

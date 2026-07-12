@@ -34,10 +34,6 @@ async function initPayload(): Promise<Payload> {
     connectPromise = null;
     throw err;
   }
-
-  payloadInstance = null;
-  connectPromise = null;
-  throw lastErr;
 }
 
 export async function getPayloadClient(): Promise<Payload> {

@@ -9,11 +9,14 @@ import { translations } from "@/lib/i18n";
 interface HeroProps {
   lang: Language;
   slides: Array<{
-    id?: number;
+    id?: number | string | null;
     image?: any;
     title?: any;
     subtitle?: any;
     description?: any;
+    ctaText?: any;
+    ctaUrl?: string | null;
+    isActive?: boolean | null;
   }>;
 }
 
@@ -52,11 +55,59 @@ const defaultSlides = [
       fa: "فرادید اطلس از سال ۱۳۸۸ به عنوان تأمین‌کننده عمده مواد غذایی فعالیت می‌کند.",
       ar: "منذ عام ٢٠٠٩، يعمل فراديد أطلس كمزود غذائي بالجملة.",
     },
+    ctaText: "",
+    ctaUrl: "",
+    isActive: true,
+  },
+  {
+    id: 2,
+    image: { url: "/hero/optimized/home-hero-2.webp" },
+    title: {
+      en: "Direct Sourcing Network",
+      fa: "ارتباط نزدیک با مبدا تامین",
+      ar: "شبكة التوريد المباشر",
+    },
+    subtitle: {
+      en: "From Origin to Market",
+      fa: "از مبدأ معتبر تا بازار مصرف",
+      ar: "من المصدر إلى السوق",
+    },
+    description: {
+      en: "Supplier relationships across key food-producing markets help keep rice, legumes, nuts, seeds, spices, and sugar moving through clear, practical channels.",
+      fa: "ارتباط مستقیم با تأمین‌کنندگان معتبر در بازارهای اصلی تولید غذا، مسیر تأمین برنج، حبوبات، مغزها، دانه‌ها، ادویه‌ها و شکر را شفاف‌تر، سریع‌تر و قابل اتکاتر می‌کند.",
+      ar: "علاقات الموردين عبر أسواق إنتاج الغذاء الرئيسية تساعد في الحفاظ على حركة الأرز والبقوليات والمكسرات والبذور والتوابل والسكر عبر قنوات واضحة وعملية.",
+    },
+    ctaText: "",
+    ctaUrl: "",
+    isActive: true,
+  },
+  {
+    id: 3,
+    image: { url: "/hero/optimized/home-hero-3.webp" },
+    title: {
+      en: "Steady Regional Reach",
+      fa: "پشتیبانی مطمئن",
+      ar: "وصول إقليمي مستقر",
+    },
+    subtitle: {
+      en: "Built for B2B Continuity",
+      fa: "برای تأمین مستمر خریداران عمده و سازمانی",
+      ar: "مصمم لاستمرارية الأعمال التجارية",
+    },
+    description: {
+      en: "Offices, branches, and warehouse support across the region give buyers a steadier path from product need to reliable delivery.",
+      fa: "دفاتر، شعب و پشتیبانی انبار در ایران و بازارهای منطقه‌ای، به خریداران کمک می‌کند از مرحله نیازسنجی تا تحویل محصول، مسیر مطمئن‌تر و منظم‌تری را تجربه کنند.",
+      ar: "المكاتب والفرع ودعم المستودعات عبر المنطقة يمنح المشترين مساراً أكثر استقراراً من الحاجة إلى التسليم الموثوق.",
+    },
+    ctaText: "",
+    ctaUrl: "",
+    isActive: true,
   },
 ];
 
 export function Hero({ lang, slides: rawSlides }: HeroProps) {
-  const slides = rawSlides?.length ? rawSlides : defaultSlides;
+  const allSlides = rawSlides?.length ? rawSlides : defaultSlides;
+  const slides = allSlides.filter((s) => s.isActive !== false);
   const [activeIndex, setActiveIndex] = useState(0);
   const isRTL = lang === "fa" || lang === "ar";
   const t = translations[lang];
@@ -64,6 +115,8 @@ export function Hero({ lang, slides: rawSlides }: HeroProps) {
   const titleText = getLocalized(activeSlide?.title, lang);
   const subtitleText = getLocalized(activeSlide?.subtitle, lang);
   const descriptionText = getLocalized(activeSlide?.description, lang);
+  const ctaText = getLocalized(activeSlide?.ctaText, lang);
+  const ctaUrl = activeSlide?.ctaUrl;
   const titleParts = useMemo(() => titleText.split(" "), [titleText]);
   const textShiftClass = isRTL
     ? "ml-auto w-full text-right -translate-x-4 sm:-translate-x-6 md:-translate-x-8"
@@ -186,6 +239,19 @@ export function Hero({ lang, slides: rawSlides }: HeroProps) {
           >
             {descriptionText}
           </p>
+
+          {ctaText && ctaUrl && (
+            <a
+              href={ctaUrl}
+              className={`mb-8 inline-flex items-center gap-2 rounded-full bg-white/15 px-6 py-3 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/25 hover:scale-105 animate-fade-in-up ${
+                isRTL ? "ml-auto mr-0" : ""
+              }`}
+              style={{ animationDelay: "0.25s" }}
+            >
+              {ctaText}
+              <span className={`text-lg ${isRTL ? "rotate-180" : ""}`}>&rarr;</span>
+            </a>
+          )}
 
           <div
             className={`flex items-center gap-2 animate-fade-in-up ${

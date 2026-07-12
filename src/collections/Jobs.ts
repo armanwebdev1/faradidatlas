@@ -33,6 +33,14 @@ export const Jobs: CollectionConfig = {
       localized: true,
     },
     {
+      name: 'salary',
+      type: 'text',
+      localized: true,
+      admin: {
+        description: 'Salary range or compensation info',
+      },
+    },
+    {
       name: 'type',
       type: 'select',
       required: true,
@@ -40,6 +48,19 @@ export const Jobs: CollectionConfig = {
         { label: 'Full-time', value: 'full-time' },
         { label: 'Part-time', value: 'part-time' },
         { label: 'Contract', value: 'contract' },
+      ],
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'status',
+      type: 'select',
+      defaultValue: 'active',
+      options: [
+        { label: 'Active', value: 'active' },
+        { label: 'Closed', value: 'closed' },
+        { label: 'On Hold', value: 'on-hold' },
       ],
       admin: {
         position: 'sidebar',

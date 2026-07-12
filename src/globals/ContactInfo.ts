@@ -56,6 +56,117 @@ export const ContactInfo: GlobalConfig = {
           name: 'email',
           type: 'email',
         },
+        {
+          name: 'googleMapsEmbed',
+          type: 'text',
+          admin: {
+            description: 'Google Maps embed URL for this office',
+          },
+        },
+      ],
+    },
+    {
+      name: 'workingHours',
+      type: 'group',
+      fields: [
+        {
+          name: 'weekdays',
+          type: 'text',
+          localized: true,
+          admin: {
+            description: 'e.g. "Saturday - Wednesday: 9:00 AM - 5:00 PM"',
+          },
+        },
+        {
+          name: 'weekends',
+          type: 'text',
+          localized: true,
+          admin: {
+            description: 'e.g. "Thursday: 9:00 AM - 1:00 PM"',
+          },
+        },
+        {
+          name: 'timezone',
+          type: 'text',
+          defaultValue: 'Asia/Tehran',
+        },
+      ],
+    },
+    {
+      name: 'socialMedia',
+      type: 'array',
+      admin: {
+        description: 'Social media links for the contact page',
+      },
+      fields: [
+        {
+          name: 'platform',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'url',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'label',
+          type: 'text',
+          localized: true,
+        },
+      ],
+    },
+    {
+      name: 'hero',
+      type: 'group',
+      localized: true,
+      fields: [
+        {
+          name: 'eyebrow',
+          type: 'text',
+        },
+        {
+          name: 'title',
+          type: 'text',
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+        },
+        {
+          name: 'badges',
+          type: 'array',
+          fields: [
+            {
+              name: 'text',
+              type: 'text',
+              required: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'cta',
+      type: 'group',
+      localized: true,
+      fields: [
+        {
+          name: 'headline',
+          type: 'text',
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+        },
+        {
+          name: 'buttonText',
+          type: 'text',
+        },
+        {
+          name: 'buttonUrl',
+          type: 'text',
+        },
       ],
     },
     {
@@ -72,6 +183,26 @@ export const ContactInfo: GlobalConfig = {
           name: 'description',
           type: 'textarea',
           localized: true,
+        },
+        {
+          name: 'steps',
+          type: 'array',
+          localized: true,
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'timeline',
+              type: 'text',
+            },
+            {
+              name: 'description',
+              type: 'textarea',
+            },
+          ],
         },
       ],
     },

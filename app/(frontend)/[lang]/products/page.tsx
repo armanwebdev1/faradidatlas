@@ -6,6 +6,7 @@ import {
   productBrands,
   productCategories,
   productTypes,
+  type Product,
   type ProductBrand,
   type ProductCategory,
   type ProductType,

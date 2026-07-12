@@ -1,46 +1,51 @@
 import type { CollectionConfig } from 'payload'
 
-export const FAQs: CollectionConfig = {
-  slug: 'faqs',
+export const Downloads: CollectionConfig = {
+  slug: 'downloads',
   access: {
     read: () => true,
   },
   admin: {
-    useAsTitle: 'question',
+    useAsTitle: 'title',
     group: 'Content',
+    defaultColumns: ['title', 'category', 'ordering'],
   },
   versions: {
     drafts: true,
   },
   fields: [
     {
-      name: 'question',
+      name: 'title',
       type: 'text',
       required: true,
       localized: true,
     },
     {
-      name: 'answer',
-      type: 'textarea',
+      name: 'file',
+      type: 'upload',
+      relationTo: 'media',
       required: true,
-      localized: true,
     },
     {
       name: 'category',
       type: 'select',
       required: true,
       options: [
-        { label: 'Company', value: 'company' },
-        { label: 'Products', value: 'products' },
-        { label: 'Sourcing', value: 'sourcing' },
-        { label: 'Quality', value: 'quality' },
-        { label: 'Vision', value: 'vision' },
-        { label: 'Values', value: 'values' },
-        { label: 'Inquiry', value: 'inquiry' },
+        { label: 'Brochure', value: 'brochure' },
+        { label: 'Spec Sheet', value: 'spec-sheet' },
+        { label: 'Certificate', value: 'certificate' },
+        { label: 'Catalog', value: 'catalog' },
+        { label: 'Price List', value: 'price-list' },
+        { label: 'Other', value: 'other' },
       ],
       admin: {
         position: 'sidebar',
       },
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+      localized: true,
     },
     {
       name: 'ordering',
@@ -56,7 +61,7 @@ export const FAQs: CollectionConfig = {
       type: 'checkbox',
       defaultValue: true,
       admin: {
-        description: 'Show/hide this FAQ item',
+        description: 'Show/hide this download',
         position: 'sidebar',
       },
     },
