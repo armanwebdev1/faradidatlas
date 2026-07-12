@@ -54,7 +54,7 @@ export const Jobs: CollectionConfig = {
       },
     },
     {
-      name: 'status',
+      name: 'jobStatus',
       type: 'select',
       defaultValue: 'active',
       options: [
