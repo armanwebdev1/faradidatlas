@@ -114,7 +114,6 @@ export function Hero({ lang, slides: rawSlides }: HeroProps) {
                 priority={index === 0}
                 loading={index === 0 ? undefined : "lazy"}
                 sizes="100vw"
-                unoptimized
                 className={`h-full w-full object-cover transform-gpu ${
                   isActive
                     ? "md:scale-[1.03] motion-safe:md:animate-hero-image-zoom"
