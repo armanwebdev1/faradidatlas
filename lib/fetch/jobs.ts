@@ -3,7 +3,6 @@ import { getPayloadClient } from '../payload'
 import type { Job } from '../../components/careers/job-data'
 
 export const getJobs = cache(async function getJobs(locale: string = 'en') {
-  const t = Date.now()
   const payload = await getPayloadClient()
 
   const jobs = await payload.find({
@@ -11,7 +10,7 @@ export const getJobs = cache(async function getJobs(locale: string = 'en') {
     limit: 100,
   })
 
-  const result = jobs.docs.map((job) => ({
+  return jobs.docs.map((job) => ({
     id: job.id,
     titleEn: (job.title as any)?.en ?? '',
     titleFa: (job.title as any)?.fa ?? '',
@@ -36,16 +35,12 @@ export const getJobs = cache(async function getJobs(locale: string = 'en') {
     benefitsFa: ((job.benefits as any)?.fa ?? []).map((r: any) => r.item ?? r),
     benefitsAr: ((job.benefits as any)?.ar ?? []).map((r: any) => r.item ?? r),
   }))
-
-  console.log(`[Jobs] fetched ${result.length} in ${Date.now() - t}ms`)
-  return result
 })
 
 export const getJobById = cache(async function getJobById(
   id: number,
   locale: string = 'en',
 ) {
-  const t = Date.now()
   const payload = await getPayloadClient()
 
   const jobs = await payload.find({
@@ -55,12 +50,8 @@ export const getJobById = cache(async function getJobById(
   })
 
   const job = jobs.docs[0]
-  if (!job) {
-    console.log(`[Jobs] id=${id} not found in ${Date.now() - t}ms`)
-    return null
-  }
+  if (!job) return null
 
-  console.log(`[Jobs] id=${id} fetched in ${Date.now() - t}ms`)
   return {
     id: job.id,
     titleEn: (job.title as any)?.en ?? '',

@@ -7,9 +7,8 @@ import { CTASection } from "@/components/home/cta-section";
 import { BrandShowcase } from "@/components/home/brand-showcase";
 import { SignatureProducts } from "@/components/home/signature-products";
 import { buildPageMetadata } from "@/lib/metadata";
-import { getContactInfo } from "@/lib/fetch/contact-info";
-import { getSiteSettings } from "@/lib/fetch/site-settings";
-import { getHomepage } from "@/lib/fetch/homepage";
+import { getAllGlobals } from "@/lib/fetch/globals";
+import { resolveMediaUrl } from "@/lib/media-url";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
@@ -43,13 +42,6 @@ export async function generateMetadata({ params }: HomePageProps) {
   });
 }
 
-function resolveMediaUrl(media: any): string | undefined {
-  if (!media) return undefined
-  if (typeof media === 'string') return media
-  if (typeof media === 'object') return media.url ?? media.filename ?? undefined
-  return undefined
-}
-
 export default async function HomePage({ params }: HomePageProps) {
   const { lang } = await params;
   const t = translations[lang];
@@ -58,11 +50,11 @@ export default async function HomePage({ params }: HomePageProps) {
   const websiteId = absoluteUrl("/#website");
   const pageDescription = t.pages.home.description;
 
-  const [homepage, contactInfo, siteSettings] = await Promise.all([
-    getHomepage(lang),
-    getContactInfo(lang),
-    getSiteSettings(lang),
+  const [globals] = await Promise.all([
+    getAllGlobals(lang),
   ]);
+
+  const { homepage, contactInfo, siteSettings } = globals;
 
   const publicContactEmail = contactInfo?.email ?? '';
   const publicPhoneNumbers = (contactInfo?.phones ?? []).map((p: any) => ({

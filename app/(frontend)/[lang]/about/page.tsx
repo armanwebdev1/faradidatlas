@@ -43,13 +43,6 @@ export async function generateMetadata({ params }: AboutPageProps) {
   });
 }
 
-function resolveMediaUrl(media: any): string | undefined {
-  if (!media) return undefined
-  if (typeof media === 'string') return media
-  if (typeof media === 'object') return media.url ?? media.filename ?? undefined
-  return undefined
-}
-
 export default async function AboutPage({ params }: AboutPageProps) {
   const { lang } = await params;
   const t = translations[lang];

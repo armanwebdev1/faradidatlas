@@ -113,26 +113,16 @@ export async function getProductsByCategory(
 ) {
   const payload = await getPayloadClient();
 
-  const categories = await payload.find({
-    collection: "categories",
-    where: { slug: { equals: category } },
-    limit: 1,
-    depth: 0,
-    select: { id: true },
-  });
-
-  if (!categories.docs[0]) return [];
-
   const products = await payload.find({
     collection: "products",
     locale: "all",
-    where: { category: { equals: categories.docs[0].id } },
+    where: { "category.slug": { equals: category } },
     limit: 100,
     depth: 1,
     select: listingSelect,
   });
 
-  const result = products.docs.map((p) => ({
+  return products.docs.map((p) => ({
     id: p.id,
     slug: p.slug,
     nameEn: (p.name as any)?.en ?? "",
@@ -149,8 +139,6 @@ export async function getProductsByCategory(
     images: [] as string[],
     specs: [] as ProductSpec[],
   })) as Product[];
-
-  return result;
 }
 
 export const getCategories = cache(async function getCategories(locale: string = "en") {
