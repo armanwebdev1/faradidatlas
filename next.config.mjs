@@ -4,11 +4,11 @@ import { withPayload } from "@payloadcms/next/withPayload";
 
 const cspHeader = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vitals.vercel-insights.com",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vitals.vercel-insights.com https://www.googletagmanager.com https://www.google-analytics.com https://clarity.ms",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://vitals.vercel-insights.com https://*.gravatar.com https://*.public.blob.vercel-storage.com",
+  "img-src 'self' data: blob: https://vitals.vercel-insights.com https://*.gravatar.com https://*.public.blob.vercel-storage.com https://www.google-analytics.com https://www.googletagmanager.com",
   "font-src 'self' data:",
-  "connect-src 'self' https://vitals.vercel-insights.com https://*.public.blob.vercel-storage.com",
+  "connect-src 'self' https://vitals.vercel-insights.com https://*.public.blob.vercel-storage.com https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com https://region1.analytics.google.com https://clarity.ms",
   "frame-ancestors 'self'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -124,6 +124,10 @@ const nextConfig = {
             key: "Permissions-Policy",
             value:
               "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+          },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
           },
         ],
       },

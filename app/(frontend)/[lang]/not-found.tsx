@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import type { Language } from "@/lib/i18n";
@@ -19,6 +18,12 @@ export default async function NotFoundPage({
   const t = translations[lang];
   const isRTL = lang === "fa" || lang === "ar";
 
+  const title = lang === "fa"
+    ? "صفحه پیدا نشد"
+    : lang === "ar"
+      ? "الصفحة غير موجودة"
+      : "Page Not Found";
+
   return (
     <div lang={lang} dir={isRTL ? "rtl" : "ltr"}>
       <Header lang={lang} />
@@ -28,7 +33,7 @@ export default async function NotFoundPage({
             404
           </div>
           <h1 className="text-3xl sm:text-4xl font-semibold text-primary mb-4">
-            {t.pages.about?.title ?? "Page Not Found"}
+            {title}
           </h1>
           <p className="text-foreground/70 mb-8 leading-relaxed">
             {lang === "en"
