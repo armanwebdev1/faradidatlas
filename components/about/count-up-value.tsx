@@ -26,6 +26,16 @@ export function CountUpValue({
       (entries) => {
         if (entries[0]?.isIntersecting && !hasAnimated.current) {
           hasAnimated.current = true;
+
+          const prefersReducedMotion =
+            typeof window !== "undefined" &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+          if (prefersReducedMotion) {
+            setCount(target);
+            return;
+          }
+
           const duration = 1.2;
           const steps = 60;
           const increment = target / steps;

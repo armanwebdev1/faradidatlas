@@ -237,7 +237,7 @@ export function CareersCulture({ lang, careersInfo }: CareersCultureProps) {
                 ref={(el) => {
                   cardRefs.current[idx] = el;
                 }}
-                className="group rounded-3xl border border-foreground/10 bg-gradient-to-br from-foreground/[0.03] to-transparent p-6 sm:p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-foreground/5"
+                className="group rounded-2xl border border-foreground/10 bg-gradient-to-br from-foreground/[0.03] to-transparent p-6 sm:p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-foreground/5"
               >
                 <div className="flex items-center justify-between">
                   <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm">

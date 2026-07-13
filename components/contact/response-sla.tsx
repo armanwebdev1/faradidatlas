@@ -34,7 +34,7 @@ export function ResponseSLA({ lang, contactInfo }: ResponseSLAProps) {
     : fallbackData;
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-foreground/10 bg-white px-6 py-12 sm:px-10 sm:py-14 lg:px-12 text-foreground shadow-[0_50px_120px_-90px_rgba(15,23,42,0.35)]">
+    <div className="relative overflow-hidden rounded-3xl border border-foreground/10 bg-white px-6 py-12 sm:px-10 sm:py-14 lg:px-12 text-foreground shadow-lg">
       <div className="relative">
         <h3 className="text-3xl sm:text-4xl font-semibold text-center tracking-tight text-primary">
           {data.title}
@@ -47,7 +47,7 @@ export function ResponseSLA({ lang, contactInfo }: ResponseSLAProps) {
           {data.steps.map((sla: { title: string; timeline: string; description: string }, idx: number) => (
             <div
               key={idx}
-              className="rounded-2xl border border-foreground/10 bg-white/90 px-5 py-6 sm:px-6 sm:py-7 shadow-[0_20px_60px_-45px_rgba(15,23,42,0.25)]"
+              className="rounded-2xl border border-foreground/10 bg-white/90 px-5 py-6 sm:px-6 sm:py-7 shadow-sm"
             >
               <h4 className="text-base sm:text-lg font-semibold text-foreground">
                 {sla.title}

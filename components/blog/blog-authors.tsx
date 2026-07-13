@@ -20,7 +20,7 @@ export function BlogAuthors({ lang }: BlogAuthorsProps) {
           {authors.map((author) => (
             <div
               key={author.name}
-              className="rounded-3xl border border-foreground/10 bg-white/90 p-6 sm:p-7 shadow-[0_35px_80px_-60px_rgba(10,10,10,0.45)]"
+              className="rounded-2xl border border-foreground/10 bg-white/90 p-6 sm:p-7 shadow-sm"
             >
               <h3 className="text-lg font-bold text-primary mb-1">
                 {author.name}

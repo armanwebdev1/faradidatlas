@@ -30,6 +30,7 @@ import {
   HelpCircle,
   Home,
   Info,
+  Menu,
   Phone,
   Search,
   ShoppingBag,
@@ -266,9 +267,9 @@ const productBrandMenuItems = useMemo(
     <>
       <header
         dir={dir}
-        className={`fixed top-0 inset-x-0 z-60 transform-gpu will-change-transform transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${headerVisibilityClass}`}
+        className={`fixed top-0 inset-x-0 z-60 transform-gpu will-change-transform transition-[opacity,transform] duration-700 ease-[var(--ease-decelerate)] ${headerVisibilityClass}`}
       >
-        <div className="relative z-50 border-b border-border/35 bg-background/85 shadow-[0_18px_55px_-45px_rgba(12,18,24,0.55)] backdrop-blur-xl">
+        <div className="relative z-50 border-b border-border/35 bg-background/85 shadow-md backdrop-blur-xl">
           <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
             <a
               href={`/${lang}`}
@@ -382,13 +383,10 @@ const productBrandMenuItems = useMemo(
                 className="relative inline-flex h-11 w-11 shrink-0 cursor-pointer list-none items-center justify-center rounded-full border border-border/60 bg-background/75 text-foreground shadow-sm backdrop-blur-md transition-all duration-300 hover:border-brand-navy/25 hover:bg-brand-navy/5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25 [&::-webkit-details-marker]:hidden"
                 aria-label="Toggle menu"
               >
-                <span className="relative h-4 w-5">
-                  <span className="absolute left-0 top-0 h-px w-5 rounded-full bg-current transition-transform duration-300 group-open/mobile-menu:translate-y-1.75 group-open/mobile-menu:rotate-45" />
-                  <span className="absolute left-0 top-1.75 h-px w-5 rounded-full bg-current transition-all duration-300 group-open/mobile-menu:scale-x-0 group-open/mobile-menu:opacity-0" />
-                  <span className="absolute left-0 top-3.5 h-px w-5 rounded-full bg-current transition-transform duration-300 group-open/mobile-menu:-translate-y-1/75 group-open/mobile-menu:-rotate-45" />
-                </span>
+                <Menu className="h-5 w-5 transition-transform duration-300 group-open/mobile-menu:rotate-90 group-open/mobile-menu:scale-0" />
+                <X className="absolute h-5 w-5 transition-transform duration-300 -rotate-90 scale-0 group-open/mobile-menu:rotate-0 group-open/mobile-menu:scale-100" />
               </summary>
-              <div className="fixed inset-x-3 top-[4.55rem] z-70 max-h-[calc(100svh-5.25rem)] overflow-hidden rounded-2xl border border-border/70 bg-background/96 shadow-[0_28px_90px_rgba(12,18,24,0.18)] backdrop-blur-2xl animate-in fade-in slide-in-from-top-4 zoom-in-95 duration-300">
+              <div className="fixed inset-x-3 top-[4.55rem] z-70 max-h-[calc(100svh-5.25rem)] overflow-hidden rounded-2xl border border-border/70 bg-background/96 shadow-lg backdrop-blur-2xl animate-in fade-in slide-in-from-top-4 zoom-in-95 duration-300">
                 <div className="max-h-[calc(100svh-5.25rem)] overflow-y-auto">
                   <div className="border-b border-border/60 bg-muted/20 px-4 py-3">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
@@ -617,9 +615,9 @@ const productBrandMenuItems = useMemo(
         </div>
 
         <nav
-          className={`relative z-10 hidden border-b backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:block ${
+          className={`relative z-10 hidden border-b backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-500 ease-[var(--ease-decelerate)] lg:block ${
             effectiveHeaderMode === "compact"
-              ? "border-border/40 bg-background/92 shadow-[0_18px_44px_-30px_rgba(12,18,24,0.45)]"
+              ? "border-border/40 bg-background/92 shadow-md"
               : "border-border/30 bg-background/70 shadow-none"
           }`}
         >
@@ -629,7 +627,7 @@ const productBrandMenuItems = useMemo(
               aria-label={brandHomeLabel}
               dir={dir}
               style={compactBrandPositionStyle}
-              className={`site-brand-transition absolute top-1/2 hidden transform-gpu items-center gap-2 rounded-lg px-2 py-1 text-brand-navy lg:flex ${compactBrandVisibilityClass}`}
+              className={`site-brand-transition absolute top-1/2 flex transform-gpu items-center gap-2 rounded-lg px-2 py-1 text-brand-navy ${compactBrandVisibilityClass}`}
             >
               <Image
                 src="/brand/faradid-atlas-mark.png"
@@ -680,7 +678,7 @@ const productBrandMenuItems = useMemo(
                       <ChevronDown
                         size={16}
                         strokeWidth={1.7}
-                        className="shrink-0 origin-center transform-gpu text-muted-foreground transition-[transform,color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform group-hover:text-brand-navy group-hover/products:rotate-180"
+                        className="shrink-0 origin-center transform-gpu text-muted-foreground transition-[transform,color] duration-500 ease-[var(--ease-decelerate)] will-change-transform group-hover:text-brand-navy group-hover/products:rotate-180"
                       />
                       <span
                         className={`absolute bottom-0 inset-x-0 h-1 rounded-t-md bg-brand-navy transition-opacity duration-200 ${

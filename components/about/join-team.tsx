@@ -1,5 +1,6 @@
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 interface JoinTeamProps {
@@ -37,10 +38,7 @@ export function JoinTeam({ lang }: JoinTeamProps) {
             >
               {t.pages.about.startConversation}
               <span className="ml-1" aria-hidden="true">
-                <svg className="h-4 w-4 inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
+                <ArrowRight className="h-4 w-4 inline" />
                 <span className="sr-only">→</span>
               </span>
             </Link>

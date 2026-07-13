@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import { categoryLabels, type Product } from "./product-data";
@@ -94,19 +95,9 @@ export function ProductCard({ product, lang }: ProductCardProps) {
               className={`shrink-0 text-xs font-semibold text-accent-warm-gold transition-colors duration-300 flex items-center gap-1 md:group-hover:text-accent-warm-gold/80 ${isRTL ? "flex-row-reverse" : ""}`}
             >
               <span>{t.pages.products.view}</span>
-              <svg
+              <ArrowRight
                 className={`w-3.5 h-3.5 transition-transform duration-300 ${isRTL ? "-scale-x-100 md:group-hover:-translate-x-1" : "md:group-hover:translate-x-1"}`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
+              />
             </span>
           </div>
         </div>

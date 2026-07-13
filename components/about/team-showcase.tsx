@@ -161,7 +161,7 @@ export function TeamShowcase({ lang, companyInfo }: TeamShowcaseProps) {
                 data-animate
                 style={{ animationDelay: `${idx * 0.05}s` }}
               >
-                <div className="relative flex h-full min-h-[260px] flex-col rounded-xl border border-foreground/10 bg-white p-6 shadow-[0_14px_35px_rgba(30,35,39,0.055)] sm:p-7">
+                <div className="relative flex h-full min-h-[260px] flex-col rounded-xl border border-foreground/10 bg-white p-6 shadow-sm sm:p-7">
                   <div className="mb-6 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-accent-warm-gold/25 bg-accent-warm-gold/10 text-accent-warm-gold">
                     <Icon className="h-5 w-5" strokeWidth={1.7} />
                   </div>

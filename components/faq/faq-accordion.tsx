@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import type { Language } from "@/lib/i18n";
 import type { FAQItem } from "./faq-data";
 
@@ -42,22 +43,12 @@ export function FAQAccordion({ items, lang }: FAQAccordionProps) {
               <h3 className="text-sm sm:text-base font-semibold text-primary flex-1 leading-snug">
                 {question}
               </h3>
-              <svg
+              <ChevronDown
                 className={`w-5 h-5 sm:w-6 sm:h-6 text-brand-navy flex-shrink-0 transition-transform duration-300 ${
                   isOpen ? "rotate-180" : ""
                 }`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
                 aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
+              />
             </button>
 
             <div

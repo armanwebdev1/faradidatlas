@@ -107,7 +107,7 @@ export function BrandShowcase({ lang, brands }: BrandShowcaseProps) {
               transitionDelay: "0.12s",
             }}
           >
-            <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-2xl sm:rounded-3xl border border-border/40 bg-background shadow-[0_40px_90px_-60px_rgba(12,18,24,0.5),0_16px_40px_-30px_rgba(12,18,24,0.2)]">
+            <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-2xl sm:rounded-3xl border border-border/40 bg-background shadow-lg">
               <Image
                 src={image}
                 alt={alt}

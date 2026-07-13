@@ -28,12 +28,12 @@ export function ProductsMegaMenu({
 
   return (
     <div
-      className={`invisible absolute left-1/2 top-full z-75 hidden w-[min(92vw,64rem)] translate-y-2 pt-3 opacity-0 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/products:visible group-hover/products:translate-y-0 group-hover/products:opacity-100 group-hover/products:pointer-events-auto group-focus-within/products:visible group-focus-within/products:translate-y-0 group-focus-within/products:opacity-100 group-focus-within/products:pointer-events-auto lg:block ${
+      className={`invisible absolute left-1/2 top-full z-75 hidden w-[min(92vw,64rem)] translate-y-2 pt-3 opacity-0 pointer-events-none transition-all duration-300 ease-[var(--ease-decelerate)] group-hover/products:visible group-hover/products:translate-y-0 group-hover/products:opacity-100 group-hover/products:pointer-events-auto group-focus-within/products:visible group-focus-within/products:translate-y-0 group-focus-within/products:opacity-100 group-focus-within/products:pointer-events-auto lg:block ${
         isRTL ? "-translate-x-[56%]" : "-translate-x-1/2"
       }`}
       dir={dir}
     >
-      <div className="overflow-hidden rounded-2xl border border-border/70 bg-background/98 shadow-[0_24px_70px_rgba(12,18,24,0.14)] backdrop-blur-xl">
+      <div className="overflow-hidden rounded-2xl border border-border/70 bg-background/98 shadow-lg backdrop-blur-xl">
         <div
           className={`grid h-[min(26rem,calc(100vh-7rem))] min-h-70 ${
             isRTL ? "grid-cols-[1fr_18rem]" : "grid-cols-[17rem_1fr]"

@@ -106,7 +106,7 @@ export function ProductPlaceholder({
         <span className="shrink-0">Faradid Atlas</span>
       </div>
 
-      <div className="absolute left-1/2 top-1/2 w-[78%] max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/70 bg-white/78 p-5 text-center shadow-[0_24px_60px_-38px_rgba(20,20,20,0.55)] backdrop-blur">
+      <div className="absolute left-1/2 top-1/2 w-[78%] max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/70 bg-white/78 p-5 text-center shadow-lg backdrop-blur">
         <span
           className="mx-auto mb-4 block h-1.5 w-20 rounded-full"
           style={{ backgroundColor: "var(--placeholder-accent)" }}

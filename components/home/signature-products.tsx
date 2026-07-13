@@ -148,20 +148,20 @@ export function SignatureProducts({
   const [hasEntered, setHasEntered] = useState(false);
   const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useRef(
+    typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
 
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
-    const reduceMotion =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
     const observer = new IntersectionObserver(
       (entries) => {
         if (!entries[0]?.isIntersecting) return;
         setHasEntered(true);
-        if (!reduceMotion) {
+        if (!prefersReducedMotion.current) {
           section.classList.add("animate-fade-in-up");
         }
         section.classList.remove("opacity-0", "translate-y-6");
@@ -175,7 +175,7 @@ export function SignatureProducts({
   }, []);
 
   useEffect(() => {
-    if (!isAutoplay || !hasEntered) return;
+    if (!isAutoplay || !hasEntered || prefersReducedMotion.current) return;
 
     autoplayRef.current = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % products.length);

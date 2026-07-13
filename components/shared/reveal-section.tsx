@@ -1,4 +1,6 @@
-import type { PropsWithChildren } from "react";
+"use client";
+
+import { useEffect, useRef, type PropsWithChildren } from "react";
 
 interface RevealSectionProps {
   className?: string;
@@ -12,15 +14,38 @@ export function RevealSection({
   id,
   threshold = 0.2,
 }: PropsWithChildren<RevealSectionProps>) {
-  void threshold;
+  const sectionRef = useRef<HTMLElement>(null);
 
-  const visibleClassName = className
-    .replace(/\bopacity-0\b/g, "")
-    .replace(/\btranslate-y-6\b/g, "")
-    .trim();
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion) {
+      section.classList.remove("opacity-0", "translate-y-6");
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          section.classList.add("animate-fade-in-up");
+          section.classList.remove("opacity-0", "translate-y-6");
+          observer.unobserve(section);
+        }
+      },
+      { threshold },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [threshold]);
 
   return (
-    <section id={id} className={visibleClassName}>
+    <section ref={sectionRef} id={id} className={className}>
       {children}
     </section>
   );

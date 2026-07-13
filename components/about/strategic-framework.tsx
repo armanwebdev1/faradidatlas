@@ -214,7 +214,7 @@ function FrameworkPanel({
 }) {
   return (
     <article
-      className={`relative h-full overflow-hidden rounded-xl border border-foreground/10 bg-white/90 p-6 shadow-[0_18px_45px_rgba(30,35,39,0.06)] sm:p-8 md:p-9 ${
+      className={`relative h-full overflow-hidden rounded-xl border border-foreground/10 bg-white/90 p-6 shadow-sm sm:p-8 md:p-9 ${
         isRTL ? "text-right" : "text-left"
       }`}
       dir={isRTL ? "rtl" : "ltr"}

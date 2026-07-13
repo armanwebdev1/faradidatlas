@@ -30,7 +30,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-10 lg:gap-16 items-start">
       <div
-        className="rounded-3xl border border-foreground/10 bg-white/85 p-6 sm:p-8 shadow-[0_35px_80px_-60px_rgba(10,10,10,0.5)] backdrop-blur motion-safe:animate-fade-in-up"
+        className="rounded-2xl border border-foreground/10 bg-white/85 p-6 sm:p-8 shadow-sm backdrop-blur motion-safe:animate-fade-in-up"
         style={{ animationDelay: "0.05s" }}
       >
         <div>
@@ -173,7 +173,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
 
       <aside className="space-y-6 lg:sticky lg:top-28 h-fit">
         <div
-          className="rounded-3xl border border-foreground/10 bg-white/85 p-6 sm:p-7 shadow-[0_35px_80px_-60px_rgba(10,10,10,0.5)] motion-safe:animate-fade-in-up"
+          className="rounded-2xl border border-foreground/10 bg-white/85 p-6 sm:p-7 shadow-sm motion-safe:animate-fade-in-up"
           style={{ animationDelay: "0.1s" }}
         >
           <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-foreground/50">
@@ -208,7 +208,7 @@ export function JobDetail({ job, lang }: JobDetailProps) {
         </div>
 
         <div
-          className="rounded-3xl border border-foreground/10 bg-gradient-to-br from-foreground to-foreground/90 p-6 sm:p-7 text-white shadow-[0_35px_80px_-60px_rgba(10,10,10,0.55)] motion-safe:animate-fade-in-up"
+          className="rounded-2xl border border-foreground/10 bg-gradient-to-br from-foreground to-foreground/90 p-6 sm:p-7 text-white shadow-lg motion-safe:animate-fade-in-up"
           style={{ animationDelay: "0.2s" }}
         >
           <h3

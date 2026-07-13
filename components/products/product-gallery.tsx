@@ -50,7 +50,7 @@ export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
 
   return (
     <div className="space-y-4 sm:space-y-5">
-      <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-[5/4] max-h-[520px] lg:max-h-[560px] bg-white/80 rounded-3xl overflow-hidden border border-foreground/10 shadow-[0_30px_80px_-60px_rgba(15,15,15,0.45)]">
+      <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-[5/4] max-h-[520px] lg:max-h-[560px] bg-white/80 rounded-3xl overflow-hidden border border-foreground/10 shadow-lg">
         <div key={activeImage} className="absolute inset-0 image-swap">
           <Image
             src={activeImage}

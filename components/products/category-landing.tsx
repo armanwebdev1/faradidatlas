@@ -6,6 +6,7 @@ import {
 } from "@/components/products/product-data";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import { translations, type Language } from "@/lib/i18n";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -300,19 +301,9 @@ export function CategoryLanding({ category, lang, categoryData }: CategoryLandin
                       href={`/${lang}/products/${product.slug}`}
                       className="flex items-center gap-2 text-sm text-foreground/70 hover:text-accent-warm-gold transition-colors py-1"
                     >
-                      <svg
+                      <ArrowRight
                         className={`w-3.5 h-3.5 shrink-0 ${isRTL ? "rotate-180" : ""}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
+                      />
                       {productName}
                     </Link>
                   </li>

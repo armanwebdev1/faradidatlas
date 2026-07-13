@@ -68,7 +68,7 @@ export function CEOProfile({ lang, companyInfo }: CEOProfileProps) {
 
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="opacity-0 translate-y-6 lg:col-span-5" data-animate>
-            <div className="overflow-hidden rounded-2xl border border-foreground/10 bg-white shadow-[0_18px_45px_rgba(30,35,39,0.06)]">
+            <div className="overflow-hidden rounded-2xl border border-foreground/10 bg-white shadow-sm">
               <div className="relative aspect-4/5 w-full">
                 <Image
                   src={image}
