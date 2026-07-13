@@ -66,9 +66,6 @@ export const metadata: Metadata = {
     images: [absoluteUrl(siteConfig.defaultOgImagePath)],
   },
   generator: "Next.js",
-  verification: {
-    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || undefined,
-  },
 };
 
 export const viewport: Viewport = {

@@ -4,11 +4,11 @@ import { withPayload } from "@payloadcms/next/withPayload";
 
 const cspHeader = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vitals.vercel-insights.com https://www.googletagmanager.com https://www.google-analytics.com https://clarity.ms",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vitals.vercel-insights.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://vitals.vercel-insights.com https://*.gravatar.com https://*.public.blob.vercel-storage.com https://www.google-analytics.com https://www.googletagmanager.com",
+  "img-src 'self' data: blob: https://vitals.vercel-insights.com https://*.gravatar.com https://*.public.blob.vercel-storage.com",
   "font-src 'self' data:",
-  "connect-src 'self' https://vitals.vercel-insights.com https://*.public.blob.vercel-storage.com https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com https://region1.analytics.google.com https://clarity.ms",
+  "connect-src 'self' https://vitals.vercel-insights.com https://*.public.blob.vercel-storage.com",
   "frame-ancestors 'self'",
   "base-uri 'self'",
   "form-action 'self'",

@@ -3,7 +3,6 @@ import { Playfair_Display, Geist, Noto_Sans_Arabic } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics as CustomAnalytics } from "@/components/analytics";
 import "../globals.css";
 
 const playfair = Playfair_Display({
@@ -83,7 +82,6 @@ export default function FrontendLayout({
           Skip to content
         </a>
         {children}
-        <CustomAnalytics />
         <Analytics />
         <SpeedInsights />
       </body>
