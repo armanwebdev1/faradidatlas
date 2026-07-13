@@ -44,7 +44,7 @@ export function ResponseSLA({ lang, contactInfo }: ResponseSLAProps) {
         </p>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-          {data.steps.map((sla, idx) => (
+          {data.steps.map((sla: { title: string; timeline: string; description: string }, idx: number) => (
             <div
               key={idx}
               className="rounded-2xl border border-foreground/10 bg-white/90 px-5 py-6 sm:px-6 sm:py-7 shadow-[0_20px_60px_-45px_rgba(15,23,42,0.25)]"

@@ -116,7 +116,7 @@ export function WhatWeOffer({ lang, companyInfo }: WhatWeOfferProps) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
-          {offers.map((offer, idx) => {
+          {offers.map((offer: { image: string; title: string; description: string }, idx: number) => {
             const offsetClass =
               idx === 0 ? "lg:mt-0" : idx === 1 ? "lg:mt-12" : "lg:mt-24";
             return (

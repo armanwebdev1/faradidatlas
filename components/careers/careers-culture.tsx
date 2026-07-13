@@ -229,7 +229,7 @@ export function CareersCulture({ lang, careersInfo }: CareersCultureProps) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {items.map((item, idx) => {
+          {items.map((item: { icon: any; title: string; description: string }, idx: number) => {
             const Icon = item.icon;
             return (
               <div
