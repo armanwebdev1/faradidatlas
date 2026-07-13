@@ -7,7 +7,7 @@ export const getSiteSettings = cache(async function getSiteSettings(locale: stri
   const settings = await payload.findGlobal({
     slug: 'site-settings',
     locale: locale as 'en' | 'fa' | 'ar',
-    depth: 1,
+    depth: 0,
   })
 
   return settings

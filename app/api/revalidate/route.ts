@@ -45,6 +45,15 @@ export async function POST(req: NextRequest) {
         case 'site-settings':
           revalidatePath('/')
           break
+        case 'company-info':
+          revalidatePath('/about')
+          break
+        case 'contact-info':
+          revalidatePath('/contact')
+          break
+        case 'careers-info':
+          revalidatePath('/careers')
+          break
         default:
           revalidatePath('/')
       }

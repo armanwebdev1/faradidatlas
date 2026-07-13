@@ -10,7 +10,7 @@ import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 
-export const revalidate = 60
+export const revalidate = 300
 
 interface CareersPageProps {
   params: Promise<{

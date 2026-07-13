@@ -7,7 +7,7 @@ export const getNavigation = cache(async function getNavigation(locale: string =
   const navigation = await payload.findGlobal({
     slug: 'navigation',
     locale: locale as 'en' | 'fa' | 'ar',
-    depth: 1,
+    depth: 0,
   })
 
   return navigation
@@ -20,12 +20,20 @@ export const getNavigationWithCategories = cache(async function getNavigationWit
     payload.findGlobal({
       slug: 'navigation',
       locale: locale as 'en' | 'fa' | 'ar',
-      depth: 1,
+      depth: 0,
     }),
     payload.find({
       collection: 'categories',
       locale: locale as 'en' | 'fa' | 'ar',
       limit: 100,
+      depth: 0,
+      select: {
+        id: true,
+        name: true,
+        slug: true,
+        icon: true,
+        image: true,
+      },
     }),
   ])
 

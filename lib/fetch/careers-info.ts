@@ -7,7 +7,7 @@ export const getCareersInfo = cache(async function getCareersInfo(locale: string
   const info = await payload.findGlobal({
     slug: 'careers-info',
     locale: locale as 'en' | 'fa' | 'ar',
-    depth: 1,
+    depth: 0,
   })
 
   return info

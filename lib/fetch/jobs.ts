@@ -9,6 +9,18 @@ export const getJobs = cache(async function getJobs(locale: string = 'en') {
     collection: 'jobs',
     limit: 100,
     locale: 'all',
+    depth: 0,
+    select: {
+      id: true,
+      title: true,
+      department: true,
+      location: true,
+      type: true,
+      description: true,
+      responsibilities: true,
+      requirements: true,
+      benefits: true,
+    },
   })
 
   return jobs.docs.map((job) => ({
@@ -49,6 +61,18 @@ export const getJobById = cache(async function getJobById(
     where: { id: { equals: id } },
     limit: 1,
     locale: 'all',
+    depth: 0,
+    select: {
+      id: true,
+      title: true,
+      department: true,
+      location: true,
+      type: true,
+      description: true,
+      responsibilities: true,
+      requirements: true,
+      benefits: true,
+    },
   })
 
   const job = jobs.docs[0]

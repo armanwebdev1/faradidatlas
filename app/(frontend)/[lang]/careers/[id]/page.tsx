@@ -8,7 +8,7 @@ import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import Link from "next/link";
 
-export const revalidate = 60
+export const revalidate = 300
 export const dynamicParams = true
 
 interface JobDetailPageProps {

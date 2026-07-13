@@ -7,7 +7,7 @@ export const getHomepage = cache(async function getHomepage(locale: string = 'en
   const homepage = await payload.findGlobal({
     slug: 'homepage',
     locale: locale as 'en' | 'fa' | 'ar',
-    depth: 1,
+    depth: 0,
   })
 
   return homepage

@@ -146,6 +146,17 @@ export const getCategories = cache(async function getCategories(locale: string =
     collection: "categories",
     locale: locale as "en" | "fa" | "ar",
     limit: 100,
+    depth: 0,
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      description: true,
+      icon: true,
+      image: true,
+      ordering: true,
+      seo: true,
+    },
   });
 
   return categories.docs;

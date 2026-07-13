@@ -9,6 +9,13 @@ export const getFAQs = cache(async function getFAQs(locale: string = 'en') {
     collection: 'faqs',
     limit: 100,
     locale: 'all',
+    depth: 0,
+    select: {
+      id: true,
+      question: true,
+      answer: true,
+      category: true,
+    },
   })
 
   return faqs.docs.map((faq) => ({
@@ -34,6 +41,13 @@ export const getFAQsByCategory = cache(async function getFAQsByCategory(
     where: { category: { equals: category } },
     limit: 100,
     locale: 'all',
+    depth: 0,
+    select: {
+      id: true,
+      question: true,
+      answer: true,
+      category: true,
+    },
   })
 
   return faqs.docs.map((faq) => ({

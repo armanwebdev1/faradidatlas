@@ -7,7 +7,7 @@ export const getCompanyInfo = cache(async function getCompanyInfo(locale: string
   const info = await payload.findGlobal({
     slug: 'company-info',
     locale: locale as 'en' | 'fa' | 'ar',
-    depth: 1,
+    depth: 0,
   })
 
   return info

@@ -22,7 +22,7 @@ const TrustStats = dynamic(
   { ssr: true }
 );
 
-export const revalidate = 60
+export const revalidate = 300
 
 function getLocalized(value: any, lang: Language): string {
   if (!value) return ""
