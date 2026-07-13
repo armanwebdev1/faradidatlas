@@ -8,6 +8,7 @@ export const getJobs = cache(async function getJobs(locale: string = 'en') {
   const jobs = await payload.find({
     collection: 'jobs',
     limit: 100,
+    locale: 'all',
   })
 
   return jobs.docs.map((job) => ({
@@ -47,6 +48,7 @@ export const getJobById = cache(async function getJobById(
     collection: 'jobs',
     where: { id: { equals: id } },
     limit: 1,
+    locale: 'all',
   })
 
   const job = jobs.docs[0]

@@ -8,6 +8,7 @@ export const getFAQs = cache(async function getFAQs(locale: string = 'en') {
   const faqs = await payload.find({
     collection: 'faqs',
     limit: 100,
+    locale: 'all',
   })
 
   return faqs.docs.map((faq) => ({
@@ -32,6 +33,7 @@ export const getFAQsByCategory = cache(async function getFAQsByCategory(
     collection: 'faqs',
     where: { category: { equals: category } },
     limit: 100,
+    locale: 'all',
   })
 
   return faqs.docs.map((faq) => ({
