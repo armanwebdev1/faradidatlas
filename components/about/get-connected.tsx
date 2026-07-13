@@ -29,27 +29,37 @@ export function GetConnected({ lang, companyInfo }: GetConnectedProps) {
   const altText = getLocalized(gc?.alt, lang) || (
     lang === "en"
       ? "Regional supply chain operations"
-      : "زنجیره تامین منطقه‌ای فرادید اطلس"
+      : lang === "fa"
+        ? "زنجیره تامین منطقه‌ای فرادید اطلس"
+        : "عمليات سلسلة التوريد الإقليمية لفراديد أطلس"
   );
   const heading = getLocalized(gc?.heading, lang) || (
     lang === "en"
       ? "A supply network shaped by access and accountability"
-      : "شبکه‌ای برای تأمین منظم، در دسترس و قابل اتکا"
+      : lang === "fa"
+        ? "شبکه‌ای برای تأمین منظم، در دسترس و قابل اتکا"
+        : "شبكة توريد تشكلت بالوصول والمساءلة"
   );
   const paragraph1 = getLocalized(gc?.paragraph1, lang) || (
     lang === "en"
       ? "Our company offices are listed in Tehran, Isfahan, Dubai, and Oman, with operational and storage support in Iran including Shahrekord."
-      : "فرادید اطلس در تهران، اصفهان، دبی و عمان دفتر دارد و با پشتیبانی عملیاتی و انباری در ایران، از جمله شهرکرد، مسیر تأمین را منظم‌تر و قابل اتکاتر می‌کند."
+      : lang === "fa"
+        ? "فرادید اطلس در تهران، اصفهان، دبی و عمان دفتر دارد و با پشتیبانی عملیاتی و انباری در ایران، از جمله شهرکرد، مسیر تأمین را منظم‌تر و قابل اتکاتر می‌کند."
+        : "يوجد لمجموعتنا مكاتب في طهران وأصفهان ودبي وعمان، مع دعم تشغيلي وتخزيني في إيران بما في ذلك شهركرد."
   );
   const paragraph2 = getLocalized(gc?.paragraph2, lang) || (
     lang === "en"
       ? "This footprint helps the company manage procurement, storage, and distribution so top-grade food products can move continuously and on time across Iran."
-      : "این گستره به شرکت کمک می‌کند فرایند تأمین، نگهداری و توزیع را با هماهنگی بیشتری مدیریت کند تا محصولات غذایی باکیفیت، به‌موقع و به‌صورت مستمر در اختیار بازار قرار بگیرند."
+      : lang === "fa"
+        ? "این گستره به شرکت کمک می‌کند فرایند تأمین، نگهداری و توزیع را با هماهنگی بیشتری مدیریت کند تا محصولات غذایی باکیفیت، به‌موقع و به‌صورت مستمر در اختیار بازار قرار بگیرند."
+        : "تساعد هذه الشبكة الشركة على إدارة المشتريات والتخزين والتوزيع بحيث يمكن لمنتجات الغذاء عالية الجودة التحرك باستمرار وفي الوقت المناسب عبر إيران."
   );
   const quote = getLocalized(gc?.quote, lang) || (
     lang === "en"
       ? "The goal is simple: keep high-quality essential food products available, fairly priced, and ready for the buyers who depend on them."
-      : "هدف روشن است: تأمین مواد غذایی اساسی با کیفیت قابل اعتماد، قیمت‌گذاری منطقی و آمادگی برای پاسخ‌گویی به خریدارانی که به عرضه منظم نیاز دارند."
+      : lang === "fa"
+        ? "هدف روشن است: تأمین مواد غذایی اساسی با کیفیت قابل اعتماد، قیمت‌گذاری منطقی و آمادگی برای پاسخ‌گویی به خریدارانی که به عرضه منظم نیاز دارند."
+        : "الهدف بسيط: الحفاظ على توفر المنتجات الغذائية الأساسية عالية الجودة بأسعار عادلة وجاهزة للمشترين الذين يعتمدون عليها."
   );
 
   return (

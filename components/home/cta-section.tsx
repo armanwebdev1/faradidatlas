@@ -137,7 +137,7 @@ export function CTASection({ lang, cta, brandShowcase }: CTASectionProps) {
                     <span className="italic font-light">wholesale food supply</span> for your B2B operations
                   </>
                 ) : (
-                  t.pages.home.ctaTitleFa
+                  t.pages.home.ctaTitle
                 )
               )}
             </h2>

@@ -382,7 +382,7 @@ export function CategoryLanding({ category, lang, categoryData }: CategoryLandin
               "@type": "ItemList",
               "@id": `${absoluteUrl(localizedPath(lang, `products/${category}`))}#products`,
               name:
-                lang === "en" ? `${catLabel} Products` : `محصولات ${catLabel}`,
+                lang === "en" ? `${catLabel} Products` : lang === "fa" ? `محصولات ${catLabel}` : `منتجات ${catLabel}`,
               description: seoContent.slice(0, 160),
               inLanguage: lang,
               itemListElement: categoryProducts.map((product, index) => ({
