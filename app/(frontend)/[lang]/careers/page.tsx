@@ -4,6 +4,7 @@ import { CareersHero } from "@/components/careers/careers-hero";
 import { CareersCulture } from "@/components/careers/careers-culture";
 import { CareersOpportunities } from "@/components/careers/careers-opportunities";
 import { getJobs } from "@/lib/fetch/jobs";
+import { getCareersInfo } from "@/lib/fetch/careers-info";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
@@ -42,10 +43,14 @@ export async function generateMetadata({ params }: CareersPageProps) {
 export default async function CareersPage({ params }: CareersPageProps) {
   const { lang } = await params;
   let jobs: any[] = [];
+  let careersInfo: any = null;
   try {
-    jobs = await getJobs(lang);
+    [jobs, careersInfo] = await Promise.all([
+      getJobs(lang),
+      getCareersInfo(lang).catch(() => null),
+    ]);
   } catch (err) {
-    console.error('[Careers] jobs fetch failed:', err);
+    console.error('[Careers] fetch failed:', err);
   }
   const t = translations[lang];
   const pageUrl = absoluteUrl(localizedPath(lang, "careers"));
@@ -55,7 +60,7 @@ export default async function CareersPage({ params }: CareersPageProps) {
       <Header lang={lang} />
       <main>
         <CareersHero lang={lang} />
-        <CareersCulture lang={lang} />
+        <CareersCulture lang={lang} careersInfo={careersInfo} />
         <CareersOpportunities lang={lang} jobs={jobs} />
       </main>
       <script

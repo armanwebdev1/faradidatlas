@@ -132,16 +132,26 @@ export const categorySEOContent: Record<
 interface CategoryLandingProps {
   category: ProductCategory;
   lang: Language;
+  categoryData?: any;
 }
 
-export function CategoryLanding({ category, lang }: CategoryLandingProps) {
+function getLocalized(value: any, lang: Language): string {
+  if (!value) return ""
+  if (typeof value === "string") return value
+  if (typeof value === "object" && value[lang]) return value[lang]
+  if (typeof value === "object" && value.en) return value.en
+  return ""
+}
+
+export function CategoryLanding({ category, lang, categoryData }: CategoryLandingProps) {
   const t = translations[lang];
   const isRTL = lang === "fa" || lang === "ar";
   const catLabel = categoryLabels[category][lang];
-  const seo = categorySEOContent[category];
-  const seoTitle = seo.title[lang];
-  const seoSubtitle = seo.subtitle[lang];
-  const seoContent = seo.content[lang];
+  const fallbackSeo = categorySEOContent[category];
+
+  const seoTitle = getLocalized(categoryData?.seo?.title, lang) || fallbackSeo.title[lang];
+  const seoSubtitle = getLocalized(categoryData?.seo?.subtitle, lang) || fallbackSeo.subtitle[lang];
+  const seoContent = getLocalized(categoryData?.seo?.content, lang) || fallbackSeo.content[lang];
   const categoryProducts = products.filter((p) => p.category === category);
 
   return (

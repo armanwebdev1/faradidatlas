@@ -3,8 +3,9 @@ import { Footer } from "@/components/layout/footer";
 import { ContactForm } from "@/components/contact/contact-form";
 import { OfficeInfo } from "@/components/contact/office-info";
 import { ResponseSLA } from "@/components/contact/response-sla";
+import { TrustStats } from "@/components/contact/trust-stats";
 import { ContactHero } from "@/components/contact/contact-hero";
-import { getProductBySlug } from "@/lib/fetch/products";
+import { getProductBySlug, getCategories } from "@/lib/fetch/products";
 import { getContactInfo } from "@/lib/fetch/contact-info";
 import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
@@ -13,6 +14,14 @@ import { translations } from "@/lib/i18n";
 import Link from "next/link";
 
 export const revalidate = 60
+
+function getLocalized(value: any, lang: Language): string {
+  if (!value) return ""
+  if (typeof value === "string") return value
+  if (typeof value === "object" && value[lang]) return value[lang]
+  if (typeof value === "object" && value.en) return value.en
+  return ""
+}
 
 interface ContactSearchParams {
   product?: string;
@@ -54,10 +63,12 @@ export default async function ContactPage({ params, searchParams }: ContactPageP
 
   let selectedProduct = null;
   let contactInfo = null;
+  let categories: any[] = [];
   try {
-    [selectedProduct, contactInfo] = await Promise.all([
+    [selectedProduct, contactInfo, categories] = await Promise.all([
       productParam ? getProductBySlug(productParam, lang).catch(() => null) : null,
       getContactInfo(lang).catch(() => null),
+      getCategories(lang).catch(() => []),
     ]);
   } catch (err) {
     console.error('[Contact] fetch failed:', err);
@@ -67,6 +78,26 @@ export default async function ContactPage({ params, searchParams }: ContactPageP
   const initialProductInterest = selectedProduct
     ? lang === "en" ? selectedProduct.nameEn : lang === "fa" ? selectedProduct.nameFa : selectedProduct.nameAr
     : undefined;
+
+  const productOptions = categories.length > 0
+    ? [
+        ...categories.map((c: any) => ({
+          value: c.slug,
+          labelEn: (c.name as any)?.en ?? c.slug,
+          labelFa: (c.name as any)?.fa ?? c.slug,
+          labelAr: (c.name as any)?.ar ?? c.slug,
+        })),
+        { value: "multiple", labelEn: "Multiple Products", labelFa: "چند محصول", labelAr: "منتجات متعددة" },
+      ]
+    : undefined;
+
+  const trustStats = ci?.trustStats?.length > 0
+    ? ci.trustStats.map((s: any) => ({
+        value: s.value,
+        suffix: s.suffix ?? undefined,
+        label: getLocalized(s.label, lang) || "",
+      }))
+    : [];
 
   const t = translations[lang];
   const pageUrl = absoluteUrl(localizedPath(lang, "contact"));
@@ -90,7 +121,7 @@ export default async function ContactPage({ params, searchParams }: ContactPageP
         >
           <div className="container-wide grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
             <div className="lg:col-span-2">
-              <ContactForm lang={lang} initialProductInterest={initialProductInterest} />
+              <ContactForm lang={lang} initialProductInterest={initialProductInterest} productOptions={productOptions} />
             </div>
 
             <div id="contact-offices" className="lg:sticky lg:top-32">
@@ -104,9 +135,17 @@ export default async function ContactPage({ params, searchParams }: ContactPageP
 
         <section className="space-responsive px-4 sm:px-6 bg-background">
           <div className="container-wide">
-            <ResponseSLA lang={lang} />
+            <ResponseSLA lang={lang} contactInfo={ci} />
           </div>
         </section>
+
+        {trustStats.length > 0 && (
+          <section className="space-responsive px-4 sm:px-6 bg-background">
+            <div className="container-wide">
+              <TrustStats stats={trustStats} />
+            </div>
+          </section>
+        )}
 
         <section className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-background to-secondary/30">
           <div className="container-wide text-center">

@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: ProductDetailProps) {
   const { lang, slug } = await params;
 
   if (isCategorySlug(slug)) {
-    const seo = categorySEOContent[slug as keyof typeof categorySEOContent];
+    const fallbackSeo = categorySEOContent[slug as keyof typeof categorySEOContent];
     const catLabels: Record<string, { en: string; fa: string; ar: string }> = {
       rice: { en: "Rice", fa: "برنج", ar: "أرز" },
       legumes: { en: "Legumes & Pulses", fa: "حبوبات", ar: "بقوليات" },
@@ -60,9 +60,9 @@ export async function generateMetadata({ params }: ProductDetailProps) {
       titleEn: `${catLabel.en} — Wholesale ${catLabel.en} Supplier | Faradid Atlas`,
       titleFa: `${catLabel.fa} — تأمین عمده ${catLabel.fa} | فرادید اطلس`,
       titleAr: `${catLabel.ar} — مورّد ${catLabel.ar} بالجملة | فراديد أطلس`,
-      descriptionEn: seo.content.en.slice(0, 160),
-      descriptionFa: seo.content.fa.slice(0, 160),
-      descriptionAr: seo.content.ar.slice(0, 160),
+      descriptionEn: fallbackSeo.content.en.slice(0, 160),
+      descriptionFa: fallbackSeo.content.fa.slice(0, 160),
+      descriptionAr: fallbackSeo.content.ar.slice(0, 160),
     });
   }
 
@@ -114,11 +114,18 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
   const t = translations[lang];
 
   if (isCategorySlug(slug)) {
+    let categoryData: any = null;
+    try {
+      const cats = await getCategories(lang);
+      categoryData = cats.find((c: any) => c.slug === slug) ?? null;
+    } catch (err) {
+      // Category data is non-critical
+    }
     return (
       <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
         <Header lang={lang} />
         <main>
-          <CategoryLanding category={slug as any} lang={lang} />
+          <CategoryLanding category={slug as any} lang={lang} categoryData={categoryData} />
         </main>
         <Footer lang={lang} />
       </div>

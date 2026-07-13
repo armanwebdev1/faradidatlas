@@ -46,6 +46,16 @@ export const CompanyInfo: GlobalConfig = {
       type: 'group',
       fields: [
         {
+          name: 'eyebrow',
+          type: 'text',
+          localized: true,
+        },
+        {
+          name: 'heading',
+          type: 'text',
+          localized: true,
+        },
+        {
           name: 'name',
           type: 'text',
           required: true,
@@ -200,6 +210,215 @@ export const CompanyInfo: GlobalConfig = {
         {
           name: 'link',
           type: 'text',
+        },
+      ],
+    },
+    {
+      name: 'strategicFramework',
+      type: 'group',
+      admin: {
+        description: 'Vision, Mission, Values section on the About page',
+      },
+      fields: [
+        {
+          name: 'eyebrow',
+          type: 'text',
+          localized: true,
+        },
+        {
+          name: 'title',
+          type: 'text',
+          localized: true,
+        },
+        {
+          name: 'intro',
+          type: 'textarea',
+          localized: true,
+        },
+        {
+          name: 'vision',
+          type: 'group',
+          fields: [
+            {
+              name: 'label',
+              type: 'text',
+              localized: true,
+            },
+            {
+              name: 'title',
+              type: 'text',
+              localized: true,
+            },
+            {
+              name: 'body',
+              type: 'textarea',
+              localized: true,
+            },
+            {
+              name: 'notes',
+              type: 'array',
+              localized: true,
+              fields: [
+                {
+                  name: 'text',
+                  type: 'text',
+                  required: true,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: 'mission',
+          type: 'group',
+          fields: [
+            {
+              name: 'label',
+              type: 'text',
+              localized: true,
+            },
+            {
+              name: 'title',
+              type: 'text',
+              localized: true,
+            },
+            {
+              name: 'body',
+              type: 'textarea',
+              localized: true,
+            },
+            {
+              name: 'notes',
+              type: 'array',
+              localized: true,
+              fields: [
+                {
+                  name: 'text',
+                  type: 'text',
+                  required: true,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: 'valuesSection',
+          type: 'group',
+          fields: [
+            {
+              name: 'label',
+              type: 'text',
+              localized: true,
+            },
+            {
+              name: 'title',
+              type: 'text',
+              localized: true,
+            },
+            {
+              name: 'body',
+              type: 'textarea',
+              localized: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'offerings',
+      type: 'array',
+      admin: {
+        description: 'What We Offer section on the About page',
+      },
+      fields: [
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+        },
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          required: true,
+          localized: true,
+        },
+      ],
+    },
+    {
+      name: 'getConnected',
+      type: 'group',
+      admin: {
+        description: 'Get Connected section on the About page',
+      },
+      fields: [
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+        },
+        {
+          name: 'alt',
+          type: 'text',
+          localized: true,
+        },
+        {
+          name: 'heading',
+          type: 'text',
+          localized: true,
+        },
+        {
+          name: 'paragraph1',
+          type: 'textarea',
+          localized: true,
+        },
+        {
+          name: 'paragraph2',
+          type: 'textarea',
+          localized: true,
+        },
+        {
+          name: 'quote',
+          type: 'textarea',
+          localized: true,
+        },
+      ],
+    },
+    {
+      name: 'aboutStats',
+      type: 'array',
+      admin: {
+        description: 'Stats displayed in the About hero section',
+      },
+      fields: [
+        {
+          name: 'value',
+          type: 'number',
+          required: true,
+        },
+        {
+          name: 'suffix',
+          type: 'text',
+        },
+        {
+          name: 'labelEn',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'labelFa',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'labelAr',
+          type: 'text',
+          required: true,
         },
       ],
     },

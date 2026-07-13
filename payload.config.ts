@@ -19,6 +19,7 @@ import { Users } from "./src/collections/Users";
 import { Homepage } from "./src/globals/Homepage";
 import { CompanyInfo } from "./src/globals/CompanyInfo";
 import { ContactInfo } from "./src/globals/ContactInfo";
+import { CareersInfo } from "./src/globals/CareersInfo";
 import { Navigation } from "./src/globals/Navigation";
 import { SiteSettings } from "./src/globals/SiteSettings";
 import { Redirects } from "./src/globals/Redirects";
@@ -59,6 +60,7 @@ export default buildConfig({
     Homepage,
     CompanyInfo,
     ContactInfo,
+    CareersInfo,
     Navigation,
     SiteSettings,
     Redirects,

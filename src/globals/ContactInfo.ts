@@ -206,5 +206,29 @@ export const ContactInfo: GlobalConfig = {
         },
       ],
     },
+    {
+      name: 'trustStats',
+      type: 'array',
+      admin: {
+        description: 'Trust statistics displayed on the contact page',
+      },
+      fields: [
+        {
+          name: 'value',
+          type: 'number',
+          required: true,
+        },
+        {
+          name: 'suffix',
+          type: 'text',
+        },
+        {
+          name: 'label',
+          type: 'text',
+          required: true,
+          localized: true,
+        },
+      ],
+    },
   ],
 }

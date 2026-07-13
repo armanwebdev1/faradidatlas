@@ -56,12 +56,14 @@ export function CEOProfile({ lang, companyInfo }: CEOProfileProps) {
   const role = getLocalized(ceo?.title, lang) || fallback.role;
   const bio = getLocalized(ceo?.bio, lang) || fallback.bio;
   const image = resolveMediaUrl(ceo?.image);
+  const eyebrow = getLocalized(ceo?.eyebrow, lang) || fallback.eyebrow;
+  const heading = getLocalized(ceo?.heading, lang) || fallback.heading;
 
   return (
     <AnimatedSection className="relative overflow-hidden bg-background px-4 py-20 sm:px-6 md:py-28">
       <div className="mx-auto max-w-7xl" dir={isRTL ? "rtl" : "ltr"}>
         <div className="opacity-0 translate-y-6 mb-10 text-center" data-animate>
-          <p className="eyebrow text-brand-navy">{fallback.eyebrow}</p>
+          <p className="eyebrow text-brand-navy">{eyebrow}</p>
         </div>
 
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
@@ -82,7 +84,7 @@ export function CEOProfile({ lang, companyInfo }: CEOProfileProps) {
           <div className="lg:col-span-7">
             <div className="opacity-0 translate-y-6" data-animate>
               <h2 className="text-responsive-subheading text-primary">
-                {fallback.heading}
+                {heading}
               </h2>
             </div>
 

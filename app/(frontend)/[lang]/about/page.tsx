@@ -62,10 +62,10 @@ export default async function AboutPage({ params }: AboutPageProps) {
       <Header lang={lang} />
       <main>
         <AboutHero lang={lang} companyInfo={ci} />
-        <GetConnected lang={lang} />
+        <GetConnected lang={lang} companyInfo={ci} />
         <StrategicFramework lang={lang} companyInfo={ci} />
         <CEOProfile lang={lang} companyInfo={ci} />
-        <WhatWeOffer lang={lang} />
+        <WhatWeOffer lang={lang} companyInfo={ci} />
         <TeamShowcase lang={lang} companyInfo={ci} />
         <JoinTeam lang={lang} />
       </main>

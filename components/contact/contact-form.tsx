@@ -4,17 +4,20 @@ import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import { useContactForm } from "./use-contact-form";
 import { FieldError } from "./field-error";
-import { productOptions, hasInitialProductOption } from "./contact-form-types";
+import { productOptions as defaultProductOptions, hasInitialProductOption } from "./contact-form-types";
 
 interface ContactFormProps {
   lang: Language;
   initialProductInterest?: string;
+  productOptions?: Array<{ value: string; labelEn: string; labelFa: string; labelAr: string }>;
 }
 
 export function ContactForm({
   lang,
   initialProductInterest,
+  productOptions: cmsProductOptions,
 }: ContactFormProps) {
+  const productOptions = cmsProductOptions ?? defaultProductOptions;
   const {
     formData,
     submitted,

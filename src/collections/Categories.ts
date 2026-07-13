@@ -68,9 +68,22 @@ export const Categories: CollectionConfig = {
           localized: true,
         },
         {
+          name: 'subtitle',
+          type: 'text',
+          localized: true,
+        },
+        {
           name: 'description',
           type: 'textarea',
           localized: true,
+        },
+        {
+          name: 'content',
+          type: 'textarea',
+          localized: true,
+          admin: {
+            description: 'Long-form SEO content for the category landing page',
+          },
         },
       ],
     },

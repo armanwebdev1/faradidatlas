@@ -109,8 +109,46 @@ const content = {
   },
 };
 
+function getLocalized(value: any, lang: Language): string {
+  if (!value) return ""
+  if (typeof value === "string") return value
+  if (typeof value === "object" && value[lang]) return value[lang]
+  if (typeof value === "object" && value.en) return value.en
+  return ""
+}
+
 export function StrategicFramework({ lang, companyInfo }: StrategicFrameworkProps) {
-  const data = lang === "en" ? content.en : lang === "fa" ? content.fa : content.ar;
+  const fallback = lang === "en" ? content.en : lang === "fa" ? content.fa : content.ar;
+  const sf = companyInfo?.strategicFramework;
+
+  const data = sf?.title
+    ? {
+        eyebrow: getLocalized(sf.eyebrow, lang) || fallback.eyebrow,
+        title: getLocalized(sf.title, lang) || fallback.title,
+        intro: getLocalized(sf.intro, lang) || fallback.intro,
+        vision: {
+          label: getLocalized(sf.vision?.label, lang) || fallback.vision.label,
+          title: getLocalized(sf.vision?.title, lang) || fallback.vision.title,
+          body: getLocalized(sf.vision?.body, lang) || fallback.vision.body,
+          notes: sf.vision?.notes?.length
+            ? sf.vision.notes.map((n: any) => getLocalized(n.text, lang) || "")
+            : fallback.vision.notes,
+        },
+        mission: {
+          label: getLocalized(sf.mission?.label, lang) || fallback.mission.label,
+          title: getLocalized(sf.mission?.title, lang) || fallback.mission.title,
+          body: getLocalized(sf.mission?.body, lang) || fallback.mission.body,
+          notes: sf.mission?.notes?.length
+            ? sf.mission.notes.map((n: any) => getLocalized(n.text, lang) || "")
+            : fallback.mission.notes,
+        },
+        values: {
+          label: getLocalized(sf.valuesSection?.label, lang) || fallback.values.label,
+          title: getLocalized(sf.valuesSection?.title, lang) || fallback.values.title,
+          body: getLocalized(sf.valuesSection?.body, lang) || fallback.values.body,
+        },
+      }
+    : fallback;
   const isRTL = lang === "fa" || lang === "ar";
   const t = translations[lang];
 

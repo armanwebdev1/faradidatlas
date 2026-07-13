@@ -71,10 +71,34 @@ const offerings = {
   ],
 };
 
-export function WhatWeOffer({ lang }: WhatWeOfferProps) {
-  const offers =
+function getLocalized(value: any, lang: Language): string {
+  if (!value) return ""
+  if (typeof value === "string") return value
+  if (typeof value === "object" && value[lang]) return value[lang]
+  if (typeof value === "object" && value.en) return value.en
+  return ""
+}
+
+function resolveMediaUrl(media: any): string | undefined {
+  if (!media) return undefined
+  if (typeof media === "string") return media
+  if (typeof media === "object") return media.url ?? media.filename ?? undefined
+  return undefined
+}
+
+export function WhatWeOffer({ lang, companyInfo }: WhatWeOfferProps) {
+  const fallback =
     lang === "en" ? offerings.en : lang === "fa" ? offerings.fa : offerings.ar;
   const t = translations[lang];
+
+  const cmsOfferings = companyInfo?.offerings;
+  const offers = cmsOfferings?.length > 0
+    ? cmsOfferings.map((o: any) => ({
+        image: resolveMediaUrl(o.image) || fallback[0]?.image || "",
+        title: getLocalized(o.title, lang) || "",
+        description: getLocalized(o.description, lang) || "",
+      }))
+    : fallback;
 
   return (
     <AnimatedSection className="relative py-24 md:py-32 px-4 sm:px-6 bg-background overflow-hidden">

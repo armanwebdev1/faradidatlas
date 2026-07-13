@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface CareersCultureProps {
   lang: Language;
+  careersInfo?: any;
 }
 
 const cultureItems = {
@@ -94,7 +95,22 @@ const cultureItems = {
   ],
 };
 
-export function CareersCulture({ lang }: CareersCultureProps) {
+function getLocalized(value: any, lang: Language): string {
+  if (!value) return ''
+  if (typeof value === 'string') return value
+  if (typeof value === 'object' && value[lang]) return value[lang]
+  if (typeof value === 'object' && value.en) return value.en
+  return ''
+}
+
+const iconMap: Record<string, typeof ShieldCheck> = {
+  ShieldCheck,
+  Scale,
+  Leaf,
+  Lightbulb,
+};
+
+export function CareersCulture({ lang, careersInfo }: CareersCultureProps) {
   const t = translations[lang];
   const sectionRef = useRef<HTMLElement>(null);
   const eyebrowRef = useRef<HTMLParagraphElement>(null);
@@ -155,7 +171,15 @@ export function CareersCulture({ lang }: CareersCultureProps) {
     return () => ctx.revert();
   }, []);
 
-  const items = lang === "en" ? cultureItems.en : lang === "fa" ? cultureItems.fa : cultureItems.ar;
+  const fallbackItems = lang === "en" ? cultureItems.en : lang === "fa" ? cultureItems.fa : cultureItems.ar;
+  const cmsCulture = careersInfo?.culture;
+  const items = cmsCulture?.length > 0
+    ? cmsCulture.map((c: any, idx: number) => ({
+        icon: iconMap[c.icon] || fallbackItems[idx % fallbackItems.length]?.icon || ShieldCheck,
+        title: getLocalized(c.title, lang) || "",
+        description: getLocalized(c.description, lang) || "",
+      }))
+    : fallbackItems;
 
   return (
     <section

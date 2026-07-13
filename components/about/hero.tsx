@@ -10,9 +10,17 @@ interface AboutHeroProps {
   companyInfo?: any;
 }
 
-export function AboutHero({ lang }: AboutHeroProps) {
+const defaultStats = [
+  { value: 2009, labelEn: "Established", labelFa: "سال آغاز فعالیت", labelAr: "سنة التأسيس" },
+  { value: 4, labelEn: "Rice brands", labelFa: "برند برنج", labelAr: "علامات أرز تجارية" },
+  { value: 4, labelEn: "Company offices", labelFa: "دفتر شرکت", labelAr: "مكاتب الشركة" },
+  { value: 25, labelEn: "Portfolio products", labelFa: "محصول در سبد تامین", labelAr: "منتجات المحفظة" },
+];
+
+export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
   const isRTL = lang === "fa" || lang === "ar";
   const t = translations[lang];
+  const stats = companyInfo?.aboutStats?.length > 0 ? companyInfo.aboutStats : defaultStats;
 
   return (
     <section
@@ -96,34 +104,18 @@ export function AboutHero({ lang }: AboutHeroProps) {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-            <Stat
-              value={2009}
-              labelEn="Established"
-              labelFa="سال آغاز فعالیت"
-              labelAr="سنة التأسيس"
-              lang={lang}
-            />
-            <Stat
-              value={4}
-              labelEn="Rice brands"
-              labelFa="برند برنج"
-              labelAr="علامات أرز تجارية"
-              lang={lang}
-            />
-            <Stat
-              value={4}
-              labelEn="Company offices"
-              labelFa="دفتر شرکت"
-              labelAr="مكاتب الشركة"
-              lang={lang}
-            />
-            <Stat
-              value={25}
-              labelEn="Portfolio products"
-              labelFa="محصول در سبد تامین"
-              labelAr="منتجات المحفظة"
-              lang={lang}
-            />
+            {stats.map((stat: any, idx: number) => (
+              <Stat
+                key={idx}
+                value={stat.value}
+                suffix={stat.suffix}
+                decimals={0}
+                labelEn={stat.labelEn}
+                labelFa={stat.labelFa}
+                labelAr={stat.labelAr}
+                lang={lang}
+              />
+            ))}
           </div>
         </div>
       </div>

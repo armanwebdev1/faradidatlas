@@ -3,11 +3,35 @@ import { translations } from "@/lib/i18n";
 
 interface ResponseSLAProps {
   lang: Language;
+  contactInfo?: any;
 }
 
-export function ResponseSLA({ lang }: ResponseSLAProps) {
+function getLocalized(value: any, lang: Language): string {
+  if (!value) return ""
+  if (typeof value === "string") return value
+  if (typeof value === "object" && value[lang]) return value[lang]
+  if (typeof value === "object" && value.en) return value.en
+  return ""
+}
+
+export function ResponseSLA({ lang, contactInfo }: ResponseSLAProps) {
   const t = translations[lang];
-  const data = t.pages.contact.sla;
+  const fallbackData = t.pages.contact.sla;
+  const sla = contactInfo?.responseSLA;
+
+  const data = sla?.title
+    ? {
+        title: getLocalized(sla.title, lang) || fallbackData.title,
+        description: getLocalized(sla.description, lang) || fallbackData.description,
+        steps: sla.steps?.length > 0
+          ? sla.steps.map((s: any) => ({
+              title: getLocalized(s.title, lang) || "",
+              timeline: getLocalized(s.timeline, lang) || "",
+              description: getLocalized(s.description, lang) || "",
+            }))
+          : fallbackData.steps,
+      }
+    : fallbackData;
 
   return (
     <div className="relative overflow-hidden rounded-3xl border border-foreground/10 bg-white px-6 py-12 sm:px-10 sm:py-14 lg:px-12 text-foreground shadow-[0_50px_120px_-90px_rgba(15,23,42,0.35)]">
