@@ -9,9 +9,11 @@ export const Jobs: CollectionConfig = {
     useAsTitle: 'title',
     group: 'Content',
     defaultColumns: ['title', 'department', 'location', 'status'],
+    description: 'Job listings with multilingual titles, descriptions, and application requirements',
   },
   versions: {
     drafts: true,
+    maxPerDoc: 10,
   },
   fields: [
     {

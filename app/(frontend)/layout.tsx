@@ -3,6 +3,7 @@ import { Playfair_Display, Geist, Noto_Sans_Arabic } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics as CustomAnalytics } from "@/components/analytics";
 import "../globals.css";
 
 const playfair = Playfair_Display({
@@ -75,7 +76,14 @@ export default function FrontendLayout({
       className={`${geistSans.variable} ${playfair.variable} ${estedad.variable} ${shabnam.variable} ${notoSansArabic.variable}`}
     >
       <body className="antialiased">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg focus:shadow-lg focus:outline-none"
+        >
+          Skip to content
+        </a>
         {children}
+        <CustomAnalytics />
         <Analytics />
         <SpeedInsights />
       </body>

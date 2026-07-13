@@ -8,6 +8,7 @@ export const Categories: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     group: 'Products',
+    description: 'Product categories with SEO content, display ordering, and icon settings',
   },
   versions: {
     drafts: true,

@@ -1,9 +1,8 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { ContactForm } from "@/components/contact/contact-form";
+import dynamic from "next/dynamic";
 import { OfficeInfo } from "@/components/contact/office-info";
 import { ResponseSLA } from "@/components/contact/response-sla";
-import { TrustStats } from "@/components/contact/trust-stats";
 import { ContactHero } from "@/components/contact/contact-hero";
 import { getProductBySlug, getCategories } from "@/lib/fetch/products";
 import { getContactInfo } from "@/lib/fetch/contact-info";
@@ -12,6 +11,16 @@ import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import Link from "next/link";
+
+const ContactForm = dynamic(
+  () => import("@/components/contact/contact-form").then((m) => m.ContactForm),
+  { ssr: true }
+);
+
+const TrustStats = dynamic(
+  () => import("@/components/contact/trust-stats").then((m) => m.TrustStats),
+  { ssr: true }
+);
 
 export const revalidate = 60
 
@@ -112,7 +121,7 @@ export default async function ContactPage({ params, searchParams }: ContactPageP
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
-      <main>
+      <main id="main-content">
         <ContactHero lang={lang} />
 
         <section

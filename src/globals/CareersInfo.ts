@@ -7,6 +7,7 @@ export const CareersInfo: GlobalConfig = {
   },
   admin: {
     group: 'Company',
+    description: 'Careers page content: culture values with icons and descriptions',
   },
   fields: [
     {

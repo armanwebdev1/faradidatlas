@@ -9,9 +9,11 @@ export const Products: CollectionConfig = {
     useAsTitle: 'name',
     group: 'Products',
     defaultColumns: ['name', 'category', 'brand', 'featured', 'status'],
+    description: 'Manage your product catalog with multilingual names, descriptions, specs, and images',
   },
   versions: {
     drafts: true,
+    maxPerDoc: 10,
   },
   fields: [
     {

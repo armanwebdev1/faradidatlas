@@ -1,6 +1,5 @@
-'use client'
-
 import React from 'react'
+import { getPayloadClient } from '@/lib/payload'
 
 const boxStyle: React.CSSProperties = {
   padding: '1.5rem',
@@ -39,7 +38,70 @@ const QuickLink: React.FC<{ href: string; title: string; description: string }> 
   </a>
 )
 
-export const CustomDashboard: React.FC = () => {
+async function getCollectionCounts() {
+  try {
+    const payload = await getPayloadClient()
+    const [products, categories, faqs, jobs, blogPosts, media] = await Promise.all([
+      payload.count({ collection: 'products' }),
+      payload.count({ collection: 'categories' }),
+      payload.count({ collection: 'faqs' }),
+      payload.count({ collection: 'jobs' }),
+      payload.count({ collection: 'blog-posts' }),
+      payload.count({ collection: 'media' }),
+    ])
+    return {
+      products: products.totalDocs,
+      categories: categories.totalDocs,
+      faqs: faqs.totalDocs,
+      jobs: jobs.totalDocs,
+      blogPosts: blogPosts.totalDocs,
+      media: media.totalDocs,
+    }
+  } catch {
+    return { products: 0, categories: 0, faqs: 0, jobs: 0, blogPosts: 0, media: 0 }
+  }
+}
+
+async function getRecentEdits() {
+  try {
+    const payload = await getPayloadClient()
+    const [products, jobs, faqs] = await Promise.all([
+      payload.find({ collection: 'products', limit: 3, sort: '-updatedAt' }),
+      payload.find({ collection: 'jobs', limit: 2, sort: '-updatedAt' }),
+      payload.find({ collection: 'faqs', limit: 2, sort: '-updatedAt' }),
+    ])
+    const items = [
+      ...products.docs.map((p: any) => ({
+        type: 'Product',
+        name: (p.name as any)?.en ?? p.name ?? 'Untitled',
+        updatedAt: p.updatedAt,
+        href: `/admin/collections/products/${p.id}`,
+      })),
+      ...jobs.docs.map((j: any) => ({
+        type: 'Job',
+        name: (j.title as any)?.en ?? j.title ?? 'Untitled',
+        updatedAt: j.updatedAt,
+        href: `/admin/collections/jobs/${j.id}`,
+      })),
+      ...faqs.docs.map((f: any) => ({
+        type: 'FAQ',
+        name: (f.question as any)?.en ?? f.question ?? 'Untitled',
+        updatedAt: f.updatedAt,
+        href: `/admin/collections/faqs/${f.id}`,
+      })),
+    ]
+    return items
+      .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
+      .slice(0, 5)
+  } catch {
+    return []
+  }
+}
+
+export const CustomDashboard: React.FC = async () => {
+  const counts = await getCollectionCounts()
+  const recentEdits = await getRecentEdits()
+
   return (
     <div style={{ padding: '2rem', maxWidth: '1000px' }}>
       <h1 style={{ margin: '0 0 0.25rem 0' }}>Faradid Atlas CMS</h1>
@@ -49,22 +111,61 @@ export const CustomDashboard: React.FC = () => {
 
       <div style={gridStyle}>
         <div style={statCardStyle}>
-          <div style={{ fontSize: '2rem', fontWeight: 700 }}>30</div>
+          <div style={{ fontSize: '2rem', fontWeight: 700 }}>{counts.products}</div>
           <div style={{ color: 'var(--theme-elevation-500)', fontSize: '0.9rem' }}>Products</div>
         </div>
         <div style={statCardStyle}>
-          <div style={{ fontSize: '2rem', fontWeight: 700 }}>6</div>
+          <div style={{ fontSize: '2rem', fontWeight: 700 }}>{counts.categories}</div>
           <div style={{ color: 'var(--theme-elevation-500)', fontSize: '0.9rem' }}>Categories</div>
         </div>
         <div style={statCardStyle}>
-          <div style={{ fontSize: '2rem', fontWeight: 700 }}>10</div>
+          <div style={{ fontSize: '2rem', fontWeight: 700 }}>{counts.faqs}</div>
           <div style={{ color: 'var(--theme-elevation-500)', fontSize: '0.9rem' }}>FAQs</div>
         </div>
         <div style={statCardStyle}>
-          <div style={{ fontSize: '2rem', fontWeight: 700 }}>3</div>
+          <div style={{ fontSize: '2rem', fontWeight: 700 }}>{counts.jobs}</div>
           <div style={{ color: 'var(--theme-elevation-500)', fontSize: '0.9rem' }}>Jobs</div>
         </div>
+        <div style={statCardStyle}>
+          <div style={{ fontSize: '2rem', fontWeight: 700 }}>{counts.blogPosts}</div>
+          <div style={{ color: 'var(--theme-elevation-500)', fontSize: '0.9rem' }}>Blog Posts</div>
+        </div>
+        <div style={statCardStyle}>
+          <div style={{ fontSize: '2rem', fontWeight: 700 }}>{counts.media}</div>
+          <div style={{ color: 'var(--theme-elevation-500)', fontSize: '0.9rem' }}>Media Files</div>
+        </div>
       </div>
+
+      {recentEdits.length > 0 && (
+        <>
+          <h2 style={{ marginTop: '2.5rem', marginBottom: '0.25rem' }}>Recently Edited</h2>
+          <div style={{ ...gridStyle, gridTemplateColumns: '1fr' }}>
+            {recentEdits.map((item, i) => (
+              <a key={i} href={item.href} style={{ ...boxStyle, padding: '1rem 1.25rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div>
+                    <span style={{
+                      fontSize: '0.75rem',
+                      fontWeight: 600,
+                      color: 'var(--theme-elevation-400)',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                    }}>
+                      {item.type}
+                    </span>
+                    <div style={{ fontSize: '1rem', fontWeight: 500, marginTop: '0.25rem' }}>
+                      {item.name}
+                    </div>
+                  </div>
+                  <span style={{ fontSize: '0.8rem', color: 'var(--theme-elevation-400)' }}>
+                    {new Date(item.updatedAt).toLocaleDateString()}
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </>
+      )}
 
       <h2 style={{ marginTop: '2.5rem', marginBottom: '0.25rem' }}>Quick Links</h2>
 
@@ -77,7 +178,7 @@ export const CustomDashboard: React.FC = () => {
         <QuickLink
           href="/admin/collections/categories"
           title="Categories"
-          description="Product categories and descriptions"
+          description="Product categories, SEO content, and display settings"
         />
         <QuickLink
           href="/admin/globals/homepage"
@@ -107,12 +208,17 @@ export const CustomDashboard: React.FC = () => {
         <QuickLink
           href="/admin/globals/company-info"
           title="Company Info"
-          description="About, CEO profile, team, and offices"
+          description="About, CEO profile, team, offices, strategic framework"
         />
         <QuickLink
           href="/admin/globals/contact-info"
           title="Contact"
-          description="Email, phones, addresses, and response SLA"
+          description="Email, phones, addresses, response SLA, trust stats"
+        />
+        <QuickLink
+          href="/admin/globals/careers-info"
+          title="Careers Info"
+          description="Culture values and careers page content"
         />
         <QuickLink
           href="/admin/globals/site-settings"
@@ -127,7 +233,7 @@ export const CustomDashboard: React.FC = () => {
         <QuickLink
           href="/admin/collections/media"
           title="Media Library"
-          description="Uploaded images and files"
+          description="Uploaded images with alt text, titles, and captions"
         />
       </div>
     </div>

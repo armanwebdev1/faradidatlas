@@ -52,7 +52,7 @@ export default async function FAQPage({ params }: FAQPageProps) {
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
-      <main>
+      <main id="main-content">
         <FAQHero lang={lang} />
 
         <section className="py-24 px-4 sm:px-6 bg-background">

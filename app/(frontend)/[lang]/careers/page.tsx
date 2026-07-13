@@ -58,7 +58,7 @@ export default async function CareersPage({ params }: CareersPageProps) {
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
-      <main>
+      <main id="main-content">
         <CareersHero lang={lang} />
         <CareersCulture lang={lang} careersInfo={careersInfo} />
         <CareersOpportunities lang={lang} jobs={jobs} />

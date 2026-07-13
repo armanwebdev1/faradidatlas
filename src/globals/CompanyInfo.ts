@@ -7,6 +7,7 @@ export const CompanyInfo: GlobalConfig = {
   },
   admin: {
     group: 'Company',
+    description: 'Company information for the About page: CEO profile, team, offices, strategic framework, and offerings',
   },
   fields: [
     {

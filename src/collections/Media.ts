@@ -21,6 +21,14 @@ export const Media: CollectionConfig = {
       localized: true,
     },
     {
+      name: 'title',
+      type: 'text',
+      localized: true,
+      admin: {
+        description: 'Optional title attribute for the image',
+      },
+    },
+    {
       name: 'caption',
       type: 'text',
       localized: true,

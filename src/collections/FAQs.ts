@@ -8,6 +8,7 @@ export const FAQs: CollectionConfig = {
   admin: {
     useAsTitle: 'question',
     group: 'Content',
+    description: 'Frequently asked questions organized by category for the FAQ page',
   },
   versions: {
     drafts: true,

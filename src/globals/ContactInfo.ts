@@ -7,6 +7,7 @@ export const ContactInfo: GlobalConfig = {
   },
   admin: {
     group: 'Contact',
+    description: 'Contact information: email, phone numbers, office addresses, response SLA, and trust statistics',
   },
   fields: [
     {

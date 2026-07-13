@@ -241,7 +241,7 @@ export default async function ProductsPage({
   return (
     <div lang={lang} dir={isRTL ? "rtl" : "ltr"}>
       <Header lang={lang} />
-      <main>
+      <main id="main-content">
         <section className="w-full h-48 sm:h-56 md:h-64 relative overflow-hidden bg-linear-to-br from-secondary/40 to-secondary/60">
           <Image
             src="/optimized/products-hero.webp"

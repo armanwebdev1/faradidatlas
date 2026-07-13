@@ -9,9 +9,11 @@ export const BlogPosts: CollectionConfig = {
     useAsTitle: 'title',
     group: 'Content',
     defaultColumns: ['title', 'author', 'status'],
+    description: 'Blog articles with multilingual content, authors, and publishing workflow',
   },
   versions: {
     drafts: true,
+    maxPerDoc: 10,
   },
   fields: [
     {

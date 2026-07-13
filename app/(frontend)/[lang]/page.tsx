@@ -74,7 +74,7 @@ export default async function HomePage({ params }: HomePageProps) {
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
-      <main>
+      <main id="main-content">
         <Hero lang={lang} slides={heroSlides} />
         <ValueProps lang={lang} items={valueProps} />
         <BrandShowcase lang={lang} brands={brandShowcase} />
