@@ -12,9 +12,10 @@ export const metadata = {
 export default async function NotFoundPage({
   params,
 }: {
-  params: Promise<{ lang: Language }>;
+  params?: Promise<{ lang: Language }>;
 }) {
-  const { lang } = await params;
+  const resolved = params ? await params : { lang: "en" as Language };
+  const lang = resolved.lang;
   const t = translations[lang];
   const isRTL = lang === "fa" || lang === "ar";
 

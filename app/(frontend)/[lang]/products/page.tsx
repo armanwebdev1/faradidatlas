@@ -205,11 +205,8 @@ export default async function ProductsPage({
   params,
   searchParams,
 }: ProductsPageProps) {
-  const emptySearchParams: ProductSearchParams = {};
-  const [{ lang }, resolvedSearchParams] = await Promise.all([
-    params,
-    searchParams ?? Promise.resolve(emptySearchParams),
-  ]);
+  const { lang } = await params;
+  const resolvedSearchParams = searchParams ? await searchParams : {} as ProductSearchParams;
   const isRTL = lang === "fa" || lang === "ar";
   const t = translations[lang];
   const rawSearchQuery = resolvedSearchParams.q;
