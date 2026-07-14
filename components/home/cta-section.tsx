@@ -35,7 +35,7 @@ function resolveMediaUrl(media: any): string | undefined {
   return undefined
 }
 
-function Image({ src, alt, sizes, className }: { src?: string; alt: string; sizes?: string; className?: string }) {
+function CtaFallbackImage({ alt, sizes, className }: { alt: string; sizes?: string; className?: string }) {
   return (
     <picture>
       <source
@@ -49,7 +49,7 @@ function Image({ src, alt, sizes, className }: { src?: string; alt: string; size
         sizes={sizes}
       />
       <img
-        src={src ?? "/cta/partnership-640.webp"}
+        src="/cta/partnership-640.webp"
         alt={alt}
         loading="lazy"
         decoding="async"
@@ -114,7 +114,7 @@ export function CTASection({ lang, cta, brandShowcase }: CTASectionProps) {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
               ) : (
-                <Image
+                <CtaFallbackImage
                   alt={t.pages.home.ctaImageAlt}
                   sizes="(min-width: 1024px) 50vw, 100vw"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
