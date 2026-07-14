@@ -159,17 +159,20 @@ export function Hero({ lang, slides: rawSlides }: HeroProps) {
                 isActive ? "opacity-100" : "opacity-0"
               }`}
             >
-              {isActive && (
-                <Image
-                  key={`${slide.id}-active`}
-                  src={resolveMediaUrl(slide.image)}
-                  alt={`${getLocalized(slide.title, lang)} – ${getLocalized(slide.subtitle, lang)}`}
-                  fill
-                  priority={index === 0}
-                  sizes="100vw"
-                  className="h-full w-full object-cover transform-gpu md:scale-[1.03] motion-safe:md:animate-hero-image-zoom"
-                />
-              )}
+              <Image
+                key={`${slide.id}-${isActive ? "active" : "idle"}`}
+                src={resolveMediaUrl(slide.image)}
+                alt={`${getLocalized(slide.title, lang)} – ${getLocalized(slide.subtitle, lang)}`}
+                fill
+                priority={index === 0}
+                loading={index === 0 ? undefined : "lazy"}
+                sizes="100vw"
+                className={`h-full w-full object-cover transform-gpu ${
+                  isActive
+                    ? "md:scale-[1.03] motion-safe:md:animate-hero-image-zoom"
+                    : "md:scale-[1.08]"
+                }`}
+              />
             </div>
           );
         })}

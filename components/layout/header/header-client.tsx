@@ -21,6 +21,7 @@ import {
   productCategories,
   productTypeLabels,
   productTypes,
+  products,
 } from "@/components/products/product-data";
 import {
   Briefcase,
@@ -50,7 +51,7 @@ import { SearchResultsPopover } from "./search-results";
 import { ProductsMegaMenu, MenuFilterThumbnail } from "./products-mega-menu";
 
 export function Header({ lang, products: payloadProducts }: HeaderProps) {
-  const activeProducts = payloadProducts ?? [];
+  const activeProducts = payloadProducts?.length ? payloadProducts : products;
   const pathname = usePathname();
   const headerMode = useHeaderScroll();
   const [searchValue, setSearchValue] = useState("");
@@ -283,7 +284,6 @@ const productBrandMenuItems = useMemo(
                 width={44}
                 height={44}
                 priority
-                sizes="44px"
                 className="relative z-10 h-9 w-9 object-contain drop-shadow-[0_8px_16px_rgba(30,35,39,0.12)] transition duration-300 group-hover:scale-105 sm:h-10 sm:w-10"
               />
               <span className="relative z-10 flex flex-col leading-none">
@@ -634,7 +634,6 @@ const productBrandMenuItems = useMemo(
                 alt=""
                 width={32}
                 height={32}
-                sizes="32px"
                 className="h-7 w-7 object-contain drop-shadow-[0_8px_14px_rgba(30,35,39,0.12)]"
               />
               <span

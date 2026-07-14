@@ -4,7 +4,7 @@ import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
-import { getContactInfo } from "@/lib/fetch/contact-info";
+import { getAllGlobals } from "@/lib/fetch/globals";
 
 interface FooterProps {
   lang: Language;
@@ -32,7 +32,8 @@ export async function Footer({ lang }: FooterProps) {
   const isRTL = lang === "fa" || lang === "ar";
   const dir = isRTL ? "rtl" : "ltr";
 
-  const contactInfo = await getContactInfo(lang);
+  const globals = await getAllGlobals(lang);
+  const contactInfo = globals.contactInfo;
   const footerContactEmail = contactInfo?.email ?? "info@faradidatlas.com";
   const footerPhones: { value: string; display: string; whatsappHref?: string }[] = (contactInfo?.phones ?? []).map((p: any) => ({
     value: p.value ?? "",

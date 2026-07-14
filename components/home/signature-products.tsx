@@ -301,7 +301,7 @@ export function SignatureProducts({
                   className="relative h-full w-full bg-muted overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                   aria-label={`${t.pages.home.viewProductAria} ${localize(product.name)}`}
                 >
-                  {hasEntered && index === currentIndex && (
+                  {hasEntered && (
                     <Image
                       src={localize(product.image) || (typeof product.image === 'object' ? product.image?.src : '') || "/signature-products/optimized/twenty-one.webp"}
                       alt={localize(product.name)}
@@ -309,7 +309,7 @@ export function SignatureProducts({
                       loading="lazy"
                       sizes="(min-width: 1024px) 48vw, 100vw"
                       className={`absolute inset-0 h-full w-full object-cover transition-transform duration-700 ${
-                        !isTransitioning
+                        index === currentIndex && !isTransitioning
                           ? "scale-100"
                           : "scale-105"
                       }`}
