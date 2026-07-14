@@ -6,10 +6,11 @@ import { useRouter, useParams } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 
 interface SignatureProductsProps {
   lang: Language;
+  t: (typeof translations)[Language];
   products?: Array<{
     id?: number | string | null;
     product?: any;
@@ -115,13 +116,13 @@ const defaultProducts = [
 
 export function SignatureProducts({
   lang,
+  t,
   products: payloadProducts,
 }: SignatureProductsProps) {
   const router = useRouter();
   const params = useParams();
   const effectiveLang = lang ?? (params?.lang as Language) ?? "en";
   const isRTL = effectiveLang === "fa" || effectiveLang === "ar";
-  const t = translations[effectiveLang];
   const localize = (value: any) => getLocalized(value, effectiveLang);
   const textShiftClass = isRTL
     ? "-translate-x-4 sm:-translate-x-6 md:-translate-x-8 -translate-y-4 sm:-translate-y-6 md:-translate-y-8"

@@ -1,7 +1,7 @@
 "use client";
 
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 
 export type ProductSortValue =
   | "relevance"
@@ -11,12 +11,12 @@ export type ProductSortValue =
 
 interface SortingProps {
   lang: Language;
+  t: (typeof translations)[Language];
   value: ProductSortValue;
   onChange: (value: ProductSortValue) => void;
 }
 
-export function Sorting({ lang, value, onChange }: SortingProps) {
-  const t = translations[lang];
+export function Sorting({ lang, t, value, onChange }: SortingProps) {
   const options = [
     { value: "relevance" as const, label: t.pages.products.sort.relevance },
     { value: "newest" as const, label: t.pages.products.sort.newest },

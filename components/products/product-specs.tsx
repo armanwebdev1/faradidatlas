@@ -1,15 +1,15 @@
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import type { ProductSpec } from "./product-data";
 
 interface ProductSpecsProps {
   lang: Language;
+  t: (typeof translations)[Language];
   specs: ProductSpec[];
 }
 
-export function ProductSpecs({ lang, specs }: ProductSpecsProps) {
+export function ProductSpecs({ lang, t, specs }: ProductSpecsProps) {
   if (!specs || specs.length === 0) return null;
-  const t = translations[lang];
 
   return (
     <div className="mb-8">

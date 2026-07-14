@@ -1,11 +1,12 @@
 import type { CSSProperties } from "react";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import { categoryLabels, type Product, type ProductCategory } from "./product-data";
 
 interface ProductPlaceholderProps {
   product: Product;
   lang: Language;
+  t: (typeof translations)[Language];
   className?: string;
   variant?: "card" | "detail";
 }
@@ -55,10 +56,10 @@ const placeholderThemes: Record<
 export function ProductPlaceholder({
   product,
   lang,
+  t,
   className = "",
   variant = "card",
 }: ProductPlaceholderProps) {
-  const t = translations[lang];
   const isRTL = lang === "fa" || lang === "ar";
   const name = lang === "en" ? product.nameEn : lang === "fa" ? product.nameFa : product.nameAr;
   const alias = lang === "en" ? product.aliasEn : lang === "fa" ? product.aliasFa : product.aliasAr;

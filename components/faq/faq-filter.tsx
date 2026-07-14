@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import type { FAQItem } from "./faq-data";
 
 const faqCategories = {
@@ -21,6 +21,7 @@ type FilterKey = "all" | CategoryKey;
 interface FAQFilterProps {
   items: FAQItem[];
   lang: Language;
+  t: (typeof translations)[Language];
   onFilter: (items: FAQItem[]) => void;
 }
 
@@ -31,10 +32,9 @@ function getAvailableCategories(items: FAQItem[]) {
   );
 }
 
-export function FAQFilter({ items, lang, onFilter }: FAQFilterProps) {
+export function FAQFilter({ items, lang, t, onFilter }: FAQFilterProps) {
   const [active, setActive] = useState<FilterKey>("all");
   const categories = useMemo(() => getAvailableCategories(items), [items]);
-  const t = translations[lang];
 
   useEffect(() => {
     if (active === "all") {

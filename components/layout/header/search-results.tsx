@@ -3,16 +3,18 @@
 import Image from "next/image";
 import { categoryLabels, type Product } from "@/components/products/product-data";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 
 export function SearchResultsPopover({
   lang,
+  t,
   query,
   results,
   onClose,
   compact = false,
 }: {
   lang: Language;
+  t: (typeof translations)[Language];
   query: string;
   results: Product[];
   onClose: () => void;
@@ -20,7 +22,6 @@ export function SearchResultsPopover({
 }) {
   const isRTL = lang === "fa" || lang === "ar";
   const dir = isRTL ? "rtl" : "ltr";
-  const t = translations[lang];
 
   return (
     <div

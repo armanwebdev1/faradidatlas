@@ -60,8 +60,8 @@ export default async function CareersPage({ params }: CareersPageProps) {
       <Header lang={lang} />
       <main id="main-content">
         <CareersHero lang={lang} />
-        <CareersCulture lang={lang} careersInfo={careersInfo} />
-        <CareersOpportunities lang={lang} jobs={jobs} />
+        <CareersCulture lang={lang} t={t} careersInfo={careersInfo} />
+        <CareersOpportunities lang={lang} t={t} jobs={jobs} />
       </main>
       <script
         type="application/ld+json"

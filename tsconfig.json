@@ -43,6 +43,7 @@
     "tests",
     "playwright.config.ts",
     "src/migrations",
-    "scripts"
+    "scripts",
+    "public/faradidatlas_old"
   ]
 }

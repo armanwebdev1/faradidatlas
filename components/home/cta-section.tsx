@@ -60,10 +60,10 @@ function CtaFallbackImage({ alt, sizes, className }: { alt: string; sizes?: stri
 }
 
 const defaultBrandLogos = [
-  { name: "Hayat", src: "/brands/hayat-4k.png", width: 147, height: 80 },
-  { name: "Golbanoo", src: "/brands/golbanoo-4k.png", width: 165, height: 80 },
-  { name: "Twenty One", src: "/brands/twenty-one-4k.png", width: 98, height: 80 },
-  { name: "Mizban", src: "/brands/mizban-4k.png", width: 205, height: 80 },
+  { name: "Hayat", src: "/brands/hayat-4k.webp", width: 147, height: 80 },
+  { name: "Golbanoo", src: "/brands/golbanoo-4k.webp", width: 165, height: 80 },
+  { name: "Twenty One", src: "/brands/twenty-one-4k.webp", width: 98, height: 80 },
+  { name: "Mizban", src: "/brands/mizban-4k.webp", width: 205, height: 80 },
 ];
 
 export function CTASection({ lang, cta, brandShowcase }: CTASectionProps) {
@@ -81,7 +81,7 @@ export function CTASection({ lang, cta, brandShowcase }: CTASectionProps) {
         .filter((b: any) => b.isActive !== false)
         .map((b) => ({
           name: getLocalized(b.brandName, lang),
-          src: resolveMediaUrl(b.logo) ?? '/brands/twenty-one-4k.png',
+          src: resolveMediaUrl(b.logo) ?? '/brands/twenty-one-4k.webp',
           width: 160,
           height: 80,
         }))

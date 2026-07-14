@@ -2,17 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import { categoryLabels, type Product } from "./product-data";
 import { ProductPlaceholder } from "./product-placeholder";
 
 interface ProductCardProps {
   product: Product;
   lang: Language;
+  t: (typeof translations)[Language];
 }
 
-export function ProductCard({ product, lang }: ProductCardProps) {
-  const t = translations[lang];
+export function ProductCard({ product, lang, t }: ProductCardProps) {
   const name =
     lang === "en"
       ? product.nameEn
@@ -54,7 +54,7 @@ export function ProductCard({ product, lang }: ProductCardProps) {
               className="object-cover"
             />
           ) : (
-            <ProductPlaceholder product={product} lang={lang} className="" />
+            <ProductPlaceholder product={product} lang={lang} t={t} className="" />
           )}
 
           <div className="absolute inset-0 bg-linearS-to-t from-black/15 via-transparent to-transparent opacity-0 transition-opacity duration-500 md:group-hover:opacity-100" />

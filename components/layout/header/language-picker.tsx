@@ -2,7 +2,7 @@
 
 import { ChevronDown } from "lucide-react";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 
 const languageNames: Record<Language, string> = {
   en: "English",

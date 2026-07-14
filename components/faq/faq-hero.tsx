@@ -1,15 +1,15 @@
 import Image from "next/image";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import { StaggeredFade } from "@/components/shared/staggered-fade";
 
 interface FAQHeroProps {
   lang: Language;
+  t: (typeof translations)[Language];
 }
 
-export function FAQHero({ lang }: FAQHeroProps) {
+export function FAQHero({ lang, t }: FAQHeroProps) {
   const isRTL = lang === "fa" || lang === "ar";
-  const t = translations[lang];
 
   return (
     <section

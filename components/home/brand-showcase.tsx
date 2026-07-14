@@ -3,10 +3,11 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 
 interface BrandShowcaseProps {
   lang: Language;
+  t: (typeof translations)[Language];
   brands?: Array<{
     brandName?: any;
     logo?: any;
@@ -34,11 +35,10 @@ function getLocalized(value: any, lang: Language): string {
   return "";
 }
 
-export function BrandShowcase({ lang, brands }: BrandShowcaseProps) {
+export function BrandShowcase({ lang, t, brands }: BrandShowcaseProps) {
   const isRTL = lang === "fa" || lang === "ar";
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const t = translations[lang];
 
   useEffect(() => {
     const node = sectionRef.current;

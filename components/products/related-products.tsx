@@ -1,10 +1,11 @@
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import type { Product } from "./product-data";
 import { ProductCard } from "./product-card";
 
 interface RelatedProductsProps {
   lang: Language;
+  t: (typeof translations)[Language];
   currentProduct: Product;
   allProducts: Product[];
   maxItems?: number;
@@ -12,11 +13,11 @@ interface RelatedProductsProps {
 
 export function RelatedProducts({
   lang,
+  t,
   currentProduct,
   allProducts,
   maxItems = 3,
 }: RelatedProductsProps) {
-  const t = translations[lang];
   const related = allProducts
     .filter(
       (p) =>
@@ -33,7 +34,7 @@ export function RelatedProducts({
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {related.map((product) => (
-          <ProductCard key={product.id} product={product} lang={lang} />
+          <ProductCard key={product.id} product={product} lang={lang} t={t} />
         ))}
       </div>
     </section>

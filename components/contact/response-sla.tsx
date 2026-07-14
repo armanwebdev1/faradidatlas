@@ -1,8 +1,9 @@
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 
 interface ResponseSLAProps {
   lang: Language;
+  t: (typeof translations)[Language];
   contactInfo?: any;
 }
 
@@ -14,8 +15,7 @@ function getLocalized(value: any, lang: Language): string {
   return ""
 }
 
-export function ResponseSLA({ lang, contactInfo }: ResponseSLAProps) {
-  const t = translations[lang];
+export function ResponseSLA({ lang, t, contactInfo }: ResponseSLAProps) {
   const fallbackData = t.pages.contact.sla;
   const sla = contactInfo?.responseSLA;
 

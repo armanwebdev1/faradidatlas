@@ -4,10 +4,11 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 
 interface HeroProps {
   lang: Language;
+  t: (typeof translations)[Language];
   slides: Array<{
     id?: number | string | null;
     image?: any;
@@ -105,12 +106,11 @@ const defaultSlides = [
   },
 ];
 
-export function Hero({ lang, slides: rawSlides }: HeroProps) {
+export function Hero({ lang, t, slides: rawSlides }: HeroProps) {
   const allSlides = rawSlides?.length ? rawSlides : defaultSlides;
   const slides = allSlides.filter((s) => s.isActive !== false);
   const [activeIndex, setActiveIndex] = useState(0);
   const isRTL = lang === "fa" || lang === "ar";
-  const t = translations[lang];
   const activeSlide = slides[activeIndex];
   const titleText = getLocalized(activeSlide?.title, lang);
   const subtitleText = getLocalized(activeSlide?.subtitle, lang);

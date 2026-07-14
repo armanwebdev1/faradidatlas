@@ -2,17 +2,17 @@
 
 import { Search } from "lucide-react";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 
 interface BlogSearchProps {
   lang: Language;
+  t: (typeof translations)[Language];
   onSearch: (value: string) => void;
   value: string;
 }
 
-export function BlogSearch({ lang, onSearch, value }: BlogSearchProps) {
+export function BlogSearch({ lang, t, onSearch, value }: BlogSearchProps) {
   const isRTL = lang === "fa" || lang === "ar";
-  const t = translations[lang];
 
   return (
     <div dir={isRTL ? "rtl" : "ltr"} className="relative w-full max-w-md mx-auto">

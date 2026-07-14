@@ -11,7 +11,7 @@ import {
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import {
   categoryLabels,
   getProductBrand,
@@ -49,7 +49,7 @@ import { LanguagePicker } from "./language-picker";
 import { SearchResultsPopover } from "./search-results";
 import { ProductsMegaMenu, MenuFilterThumbnail } from "./products-mega-menu";
 
-export function Header({ lang, products: payloadProducts }: HeaderProps) {
+export function Header({ lang, t, products: payloadProducts }: HeaderProps) {
   const activeProducts = payloadProducts ?? [];
   const pathname = usePathname();
   const headerMode = useHeaderScroll();
@@ -59,7 +59,6 @@ export function Header({ lang, products: payloadProducts }: HeaderProps) {
   const mobileSearchRef = useRef<HTMLInputElement>(null);
   const desktopSearchBoxRef = useRef<HTMLDivElement>(null);
   const mobileSearchBoxRef = useRef<HTMLDivElement>(null);
-  const t = translations[lang];
   const isRTL = lang === "fa" || lang === "ar";
   const dir = isRTL ? "rtl" : "ltr";
   const brandHomeLabel =
@@ -363,6 +362,7 @@ const productBrandMenuItems = useMemo(
                 {shouldShowSearchResults && (
                   <SearchResultsPopover
                     lang={lang}
+                    t={t}
                     query={searchQuery}
                     results={searchResults}
                     onClose={() => setIsSearchOpen(false)}
@@ -447,6 +447,7 @@ const productBrandMenuItems = useMemo(
                         {shouldShowSearchResults && (
                           <SearchResultsPopover
                             lang={lang}
+                            t={t}
                             query={searchQuery}
                             results={searchResults}
                             onClose={() => setIsSearchOpen(false)}
@@ -691,6 +692,7 @@ const productBrandMenuItems = useMemo(
                     </a>
                     <ProductsMegaMenu
                       lang={lang}
+                      t={t}
                       isRTL={isRTL}
                       categories={productCategoryMenuItems}
                       brands={productBrandMenuItems}

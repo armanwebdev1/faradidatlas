@@ -1,25 +1,23 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import type gsap from "gsap";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import type { Job } from "./job-data";
 import { JobListing } from "./job-listing";
 
-gsap.registerPlugin(ScrollTrigger);
-
 interface CareersOpportunitiesProps {
   lang: Language;
+  t: (typeof translations)[Language];
   jobs: Job[];
 }
 
 export function CareersOpportunities({
   lang,
+  t,
   jobs,
 }: CareersOpportunitiesProps) {
-  const t = translations[lang];
   const sectionRef = useRef<HTMLElement>(null);
   const eyebrowRef = useRef<HTMLParagraphElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -27,61 +25,72 @@ export function CareersOpportunities({
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const reduceMotion =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const smallViewport =
-      typeof window !== "undefined" &&
-      window.matchMedia("(max-width: 767px)").matches;
+    let ctx: gsap.Context | null = null;
 
-    const cards = cardRefs.current.filter(Boolean);
+    async function init() {
+      const gsapModule = await import("gsap");
+      const gsap = gsapModule.default;
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
 
-    const ctx = gsap.context(() => {
-      if (reduceMotion || smallViewport) {
-        gsap.set(
-          [eyebrowRef.current, titleRef.current, subtitleRef.current, ...cards],
-          {
-            opacity: 1,
-            y: 0,
+      const reduceMotion =
+        typeof window !== "undefined" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const smallViewport =
+        typeof window !== "undefined" &&
+        window.matchMedia("(max-width: 767px)").matches;
+
+      const cards = cardRefs.current.filter(Boolean);
+
+      ctx = gsap.context(() => {
+        if (reduceMotion || smallViewport) {
+          gsap.set(
+            [eyebrowRef.current, titleRef.current, subtitleRef.current, ...cards],
+            {
+              opacity: 1,
+              y: 0,
+            },
+          );
+          return;
+        }
+
+        gsap.set([eyebrowRef.current, titleRef.current, subtitleRef.current], {
+          opacity: 0,
+          y: 18,
+        });
+        gsap.set(cards, { opacity: 0, y: 26 });
+
+        const timeline = gsap.timeline({
+          defaults: { ease: "cubic-bezier(0.22, 1, 0.36, 1)" },
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
           },
-        );
-        return;
-      }
+        });
 
-      gsap.set([eyebrowRef.current, titleRef.current, subtitleRef.current], {
-        opacity: 0,
-        y: 18,
-      });
-      gsap.set(cards, { opacity: 0, y: 26 });
-
-      const timeline = gsap.timeline({
-        defaults: { ease: "cubic-bezier(0.22, 1, 0.36, 1)" },
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-        },
-      });
-
-      timeline
-        .to([eyebrowRef.current, titleRef.current, subtitleRef.current], {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.1,
-        })
-        .to(
-          cards,
-          {
+        timeline
+          .to([eyebrowRef.current, titleRef.current, subtitleRef.current], {
             opacity: 1,
             y: 0,
-            duration: 0.8,
+            duration: 0.7,
             stagger: 0.1,
-          },
-          "-=0.2",
-        );
-    }, sectionRef);
+          })
+          .to(
+            cards,
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              stagger: 0.1,
+            },
+            "-=0.2",
+          );
+      }, sectionRef);
+    }
 
-    return () => ctx.revert();
+    init();
+
+    return () => ctx?.revert();
   }, []);
 
   return (
@@ -137,7 +146,7 @@ export function CareersOpportunities({
               }}
               className="h-full"
             >
-              <JobListing job={job} lang={lang} />
+              <JobListing job={job} lang={lang} t={t} />
             </div>
           ))}
         </div>

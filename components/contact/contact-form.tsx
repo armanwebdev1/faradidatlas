@@ -1,19 +1,21 @@
 "use client";
 
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import { useContactForm } from "./use-contact-form";
 import { FieldError } from "./field-error";
 import { productOptions as defaultProductOptions, hasInitialProductOption } from "./contact-form-types";
 
 interface ContactFormProps {
   lang: Language;
+  t: (typeof translations)[Language];
   initialProductInterest?: string;
   productOptions?: Array<{ value: string; labelEn: string; labelFa: string; labelAr: string }>;
 }
 
 export function ContactForm({
   lang,
+  t,
   initialProductInterest,
   productOptions: cmsProductOptions,
 }: ContactFormProps) {
@@ -29,8 +31,6 @@ export function ContactForm({
     handleBlur,
     handleSubmit,
   } = useContactForm({ lang, initialProductInterest });
-
-  const t = translations[lang];
 
   const inputBase = "form-input";
   const labelBase = "form-label mb-2";

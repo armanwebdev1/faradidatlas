@@ -577,12 +577,6 @@
   margin-left: 2rem;
 }
 
-/* Optimize mobile viewport */
-@viewport {
-  width: device-width;
-  zoom: 1;
-}
-
 /* Responsive design */
 
 /* Container utilities */

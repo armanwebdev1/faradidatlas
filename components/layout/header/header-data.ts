@@ -1,4 +1,5 @@
 import type { Language } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import type {
   ProductBrand,
   ProductCategory,
@@ -7,6 +8,7 @@ import type {
 
 export interface HeaderProps {
   lang: Language;
+  t: (typeof translations)[Language];
   products?: any[];
 }
 

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import type { FAQItem } from "./faq-data";
 import { FAQAccordion } from "./faq-accordion";
 import { FAQFilter } from "./faq-filter";
@@ -10,15 +10,15 @@ import { FAQFilter } from "./faq-filter";
 interface FAQContentProps {
   items: FAQItem[];
   lang: Language;
+  t: (typeof translations)[Language];
 }
 
-export function FAQContent({ items, lang }: FAQContentProps) {
+export function FAQContent({ items, lang, t }: FAQContentProps) {
   const [filteredFaqs, setFilteredFaqs] = useState(items);
-  const t = translations[lang];
 
   return (
     <>
-      <FAQFilter items={items} lang={lang} onFilter={setFilteredFaqs} />
+      <FAQFilter items={items} lang={lang} t={t} onFilter={setFilteredFaqs} />
 
       {filteredFaqs.length > 0 ? (
         <FAQAccordion items={filteredFaqs} lang={lang} />

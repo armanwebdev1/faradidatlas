@@ -1,14 +1,14 @@
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import { StaggeredFade } from "@/components/shared/staggered-fade";
 
 interface ContactHeroProps {
   lang: Language;
+  t: (typeof translations)[Language];
 }
 
-export function ContactHero({ lang }: ContactHeroProps) {
+export function ContactHero({ lang, t }: ContactHeroProps) {
   const isRTL = lang === "fa" || lang === "ar";
-  const t = translations[lang];
 
   const badges = [
     { text: t.pages.contact.badgeInquiryReview },

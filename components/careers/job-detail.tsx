@@ -1,17 +1,17 @@
 "use client";
 
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import type { Job } from "./job-data";
 import Link from "next/link";
 
 interface JobDetailProps {
   job: Job;
   lang: Language;
+  t: (typeof translations)[Language];
 }
 
-export function JobDetail({ job, lang }: JobDetailProps) {
-  const t = translations[lang];
+export function JobDetail({ job, lang, t }: JobDetailProps) {
   const title = lang === "en" ? job.titleEn : lang === "fa" ? job.titleFa : job.titleAr;
   const description = lang === "en" ? job.descriptionEn : lang === "fa" ? job.descriptionFa : job.descriptionAr;
   const department = lang === "en" ? job.departmentEn : lang === "fa" ? job.departmentFa : job.departmentAr;

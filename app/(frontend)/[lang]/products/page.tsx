@@ -88,6 +88,7 @@ async function ProductGridSection({
     <>
       <ProductsContent
         lang={lang}
+        t={t}
         products={products}
         initialQuery={searchQuery}
         initialCategory={initialCategory}

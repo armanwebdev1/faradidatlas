@@ -53,11 +53,11 @@ export default async function FAQPage({ params }: FAQPageProps) {
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main id="main-content">
-        <FAQHero lang={lang} />
+        <FAQHero lang={lang} t={t} />
 
         <section className="py-24 px-4 sm:px-6 bg-background">
           <div className="max-w-4xl mx-auto">
-            <FAQContent items={faqs} lang={lang} />
+            <FAQContent items={faqs} lang={lang} t={t} />
 
             <div className="relative mt-20 p-12 bg-gradient-to-br from-background to-secondary/30 rounded-2xl border border-border text-center overflow-hidden shadow-lg animate-fade-in-up">
               <h2 className="text-3xl font-bold text-primary mb-4 tracking-tight">

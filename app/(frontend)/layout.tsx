@@ -1,27 +1,36 @@
 import type React from "react";
-import { Playfair_Display, Geist, Noto_Sans_Arabic } from "next/font/google";
 import localFont from "next/font/local";
 import "../globals.css";
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  weight: ["400", "600"],
-  display: "swap",
-  preload: false,
-});
-
-const geistSans = Geist({
-  subsets: ["latin"],
+const geistSans = localFont({
+  src: [
+    { path: "../fonts/geist/Geist-Regular.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/geist/Geist-Medium.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/geist/Geist-SemiBold.woff2", weight: "600", style: "normal" },
+    { path: "../fonts/geist/Geist-Bold.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-sans",
   display: "swap",
   preload: true,
 });
 
-const notoSansArabic = Noto_Sans_Arabic({
-  subsets: ["latin", "arabic"],
+const playfair = localFont({
+  src: [
+    { path: "../fonts/playfair-display/PlayfairDisplay-Regular.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/playfair-display/PlayfairDisplay-SemiBold.woff2", weight: "600", style: "normal" },
+  ],
+  variable: "--font-serif",
+  display: "swap",
+  preload: false,
+});
+
+const notoSansArabic = localFont({
+  src: [
+    { path: "../fonts/noto-sans-arabic/NotoSansArabic-Regular.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/noto-sans-arabic/NotoSansArabic-SemiBold.woff2", weight: "600", style: "normal" },
+    { path: "../fonts/noto-sans-arabic/NotoSansArabic-Bold.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-noto-arabic",
-  weight: ["400", "600", "700"],
   display: "swap",
   preload: false,
 });

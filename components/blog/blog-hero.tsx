@@ -1,13 +1,13 @@
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import Image from "next/image";
 
 interface BlogHeroProps {
   lang: Language;
+  t: (typeof translations)[Language];
 }
 
-export function BlogHero({ lang }: BlogHeroProps) {
-  const t = translations[lang];
+export function BlogHero({ lang, t }: BlogHeroProps) {
   const isRTL = lang === "fa" || lang === "ar";
   const revealClass =
     "opacity-0 translate-y-6 animate-fade-in-up motion-reduce:translate-y-0 motion-reduce:opacity-100";

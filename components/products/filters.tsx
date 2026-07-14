@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { ReactNode } from "react";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import {
   categoryLabels,
   productBrandLabels,
@@ -21,6 +21,7 @@ export type ProductFilterSelection = {
 
 interface FiltersProps {
   lang: Language;
+  t: (typeof translations)[Language];
   selectedCategory: ProductCategory | null;
   selectedBrand: ProductBrand | null;
   selectedType: ProductType | null;
@@ -32,6 +33,7 @@ interface FiltersProps {
 
 export function Filters({
   lang,
+  t,
   selectedCategory,
   selectedBrand,
   selectedType,
@@ -46,7 +48,6 @@ export function Filters({
     type: selectedType,
   });
   const isRTL = lang === "fa" || lang === "ar";
-  const t = translations[lang];
 
   const updatePendingFilter = <Key extends keyof ProductFilterSelection>(
     key: Key,

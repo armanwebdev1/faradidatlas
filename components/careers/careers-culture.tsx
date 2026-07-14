@@ -1,16 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import type gsap from "gsap";
 import { Leaf, Lightbulb, Scale, ShieldCheck } from "lucide-react";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
-
-gsap.registerPlugin(ScrollTrigger);
+import type { translations } from "@/lib/i18n";
 
 interface CareersCultureProps {
   lang: Language;
+  t: (typeof translations)[Language];
   careersInfo?: any;
 }
 
@@ -110,8 +108,7 @@ const iconMap: Record<string, typeof ShieldCheck> = {
   Lightbulb,
 };
 
-export function CareersCulture({ lang, careersInfo }: CareersCultureProps) {
-  const t = translations[lang];
+export function CareersCulture({ lang, t, careersInfo }: CareersCultureProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const eyebrowRef = useRef<HTMLParagraphElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -119,56 +116,67 @@ export function CareersCulture({ lang, careersInfo }: CareersCultureProps) {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const reduceMotion =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const smallViewport =
-      typeof window !== "undefined" &&
-      window.matchMedia("(max-width: 767px)").matches;
+    let ctx: gsap.Context | null = null;
 
-    const cards = cardRefs.current.filter(Boolean);
-    const textTargets = [
-      eyebrowRef.current,
-      titleRef.current,
-      subtitleRef.current,
-    ].filter(Boolean);
+    async function init() {
+      const gsapModule = await import("gsap");
+      const gsap = gsapModule.default;
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
 
-    const ctx = gsap.context(() => {
-      if (reduceMotion || smallViewport) {
-        gsap.set([...textTargets, ...cards], { opacity: 1, y: 0 });
-        return;
-      }
+      const reduceMotion =
+        typeof window !== "undefined" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const smallViewport =
+        typeof window !== "undefined" &&
+        window.matchMedia("(max-width: 767px)").matches;
 
-      gsap.set(textTargets, { opacity: 0, y: 40 });
-      gsap.set(cards, { opacity: 0, y: 30 });
+      const cards = cardRefs.current.filter(Boolean);
+      const textTargets = [
+        eyebrowRef.current,
+        titleRef.current,
+        subtitleRef.current,
+      ].filter(Boolean);
 
-      const timeline = gsap.timeline({
-        defaults: { ease: "cubic-bezier(0.22, 1, 0.36, 1)" },
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 98%",
-        },
-      });
+      ctx = gsap.context(() => {
+        if (reduceMotion || smallViewport) {
+          gsap.set([...textTargets, ...cards], { opacity: 1, y: 0 });
+          return;
+        }
 
-      timeline
-        .to(textTargets, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.12,
-        })
-        .to(
-          cards,
-          {
+        gsap.set(textTargets, { opacity: 0, y: 40 });
+        gsap.set(cards, { opacity: 0, y: 30 });
+
+        const timeline = gsap.timeline({
+          defaults: { ease: "cubic-bezier(0.22, 1, 0.36, 1)" },
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 98%",
+          },
+        });
+
+        timeline
+          .to(textTargets, {
             opacity: 1,
             y: 0,
-            duration: 0.45,
-          },
-          "-=0.2",
-        );
-    }, sectionRef);
+            duration: 0.8,
+            stagger: 0.12,
+          })
+          .to(
+            cards,
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.45,
+            },
+            "-=0.2",
+          );
+      }, sectionRef);
+    }
 
-    return () => ctx.revert();
+    init();
+
+    return () => ctx?.revert();
   }, []);
 
   const fallbackItems = lang === "en" ? cultureItems.en : lang === "fa" ? cultureItems.fa : cultureItems.ar;

@@ -226,7 +226,7 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
               <ProductGallery images={gallery} alt={name} lang={lang} />
             ) : (
               <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-[5/4] max-h-[520px] lg:max-h-[560px] bg-white/80 rounded-3xl overflow-hidden border border-foreground/10 shadow-[0_30px_80px_-60px_rgba(15,15,15,0.45)]">
-                <ProductPlaceholder product={product as any} lang={lang} variant="detail" />
+                <ProductPlaceholder product={product as any} lang={lang} t={t} variant="detail" />
               </div>
             )}
 
@@ -269,7 +269,7 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
               </div>
 
               {product.specs && product.specs.length > 0 && (
-                <ProductSpecs lang={lang} specs={product.specs} />
+                <ProductSpecs lang={lang} t={t} specs={product.specs} />
               )}
 
               <div className="mb-8">
@@ -312,7 +312,7 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
         </section>
         <section className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-gradient-to-b from-background to-secondary/30">
           <div className="max-w-7xl mx-auto">
-            <RelatedProducts lang={lang} currentProduct={product as any} allProducts={relatedProducts as any[]} />
+            <RelatedProducts lang={lang} t={t} currentProduct={product as any} allProducts={relatedProducts as any[]} />
           </div>
         </section>
         <script

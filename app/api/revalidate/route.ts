@@ -1,6 +1,17 @@
 import { revalidatePath } from 'next/cache'
 import { NextRequest, NextResponse } from 'next/server'
 
+const LOCALES = ['en', 'fa', 'ar']
+
+function revalidateLocalized(path: string, slug?: string) {
+  for (const locale of LOCALES) {
+    revalidatePath(`/${locale}${path}`)
+    if (slug) {
+      revalidatePath(`/${locale}${path}/${slug}`)
+    }
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
@@ -9,53 +20,49 @@ export async function POST(req: NextRequest) {
     if (collection) {
       switch (collection) {
         case 'products':
-          revalidatePath('/products')
-          if (doc?.slug) {
-            revalidatePath(`/products/${doc.slug}`)
-          }
+          revalidateLocalized('/products', doc?.slug)
           break
         case 'categories':
-          revalidatePath('/products')
+          revalidateLocalized('/products')
           break
         case 'blog-posts':
-          revalidatePath('/blog')
-          if (doc?.slug) {
-            revalidatePath(`/blog/${doc.slug}`)
-          }
+          revalidateLocalized('/blog', doc?.slug)
           break
         case 'faqs':
-          revalidatePath('/faq')
+          revalidateLocalized('/faq')
           break
         case 'jobs':
-          revalidatePath('/careers')
+          revalidateLocalized('/careers')
           break
         default:
-          revalidatePath('/')
+          for (const locale of LOCALES) {
+            revalidatePath(`/${locale}`)
+          }
       }
     }
 
     if (global) {
       switch (global) {
         case 'homepage':
-          revalidatePath('/')
-          break
         case 'navigation':
-          revalidatePath('/')
-          break
         case 'site-settings':
-          revalidatePath('/')
+          for (const locale of LOCALES) {
+            revalidatePath(`/${locale}`)
+          }
           break
         case 'company-info':
-          revalidatePath('/about')
+          revalidateLocalized('/about')
           break
         case 'contact-info':
-          revalidatePath('/contact')
+          revalidateLocalized('/contact')
           break
         case 'careers-info':
-          revalidatePath('/careers')
+          revalidateLocalized('/careers')
           break
         default:
-          revalidatePath('/')
+          for (const locale of LOCALES) {
+            revalidatePath(`/${locale}`)
+          }
       }
     }
 

@@ -1,17 +1,17 @@
 "use client";
 
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 
 interface BlogTagsProps {
   lang: Language;
+  t: (typeof translations)[Language];
   activeTag: string;
   onTagChange: (tag: string) => void;
 }
 
-export function BlogTags({ lang, activeTag, onTagChange }: BlogTagsProps) {
+export function BlogTags({ lang, t, activeTag, onTagChange }: BlogTagsProps) {
   const isRTL = lang === "fa" || lang === "ar";
-  const t = translations[lang];
   const tags = t.pages.blog.tags;
 
   return (

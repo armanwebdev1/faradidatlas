@@ -122,7 +122,7 @@ export default async function ContactPage({ params, searchParams }: ContactPageP
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main id="main-content">
-        <ContactHero lang={lang} />
+        <ContactHero lang={lang} t={t} />
 
         <section
           id="contact-form"
@@ -130,21 +130,21 @@ export default async function ContactPage({ params, searchParams }: ContactPageP
         >
           <div className="container-wide grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
             <div className="lg:col-span-2">
-              <ContactForm lang={lang} initialProductInterest={initialProductInterest} productOptions={productOptions} />
+              <ContactForm lang={lang} t={t} initialProductInterest={initialProductInterest} productOptions={productOptions} />
             </div>
 
             <div id="contact-offices" className="lg:sticky lg:top-32">
               <h2 className="text-responsive-section text-primary mb-6 sm:mb-8 animate-fade-in-up">
                 {t.pages.contact.ourOffices}
               </h2>
-              <OfficeInfo lang={lang} contactInfo={ci} />
+              <OfficeInfo lang={lang} t={t} contactInfo={ci} />
             </div>
           </div>
         </section>
 
         <section className="space-responsive px-4 sm:px-6 bg-background">
           <div className="container-wide">
-            <ResponseSLA lang={lang} contactInfo={ci} />
+            <ResponseSLA lang={lang} t={t} contactInfo={ci} />
           </div>
         </section>
 

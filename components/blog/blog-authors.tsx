@@ -1,13 +1,13 @@
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 
 interface BlogAuthorsProps {
   lang: Language;
+  t: (typeof translations)[Language];
 }
 
-export function BlogAuthors({ lang }: BlogAuthorsProps) {
+export function BlogAuthors({ lang, t }: BlogAuthorsProps) {
   const isRTL = lang === "fa" || lang === "ar";
-  const t = translations[lang];
   const authors = t.pages.blog.authors;
 
   return (

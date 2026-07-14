@@ -2,7 +2,7 @@
 
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import {
   categoryLabels,
   getProductBrand,
@@ -24,6 +24,7 @@ import { CategoryDescription } from "./category-description";
 
 interface ProductsContentProps {
   lang: Language;
+  t: (typeof translations)[Language];
   products: Product[];
   initialQuery?: string;
   initialCategory?: ProductCategory | null;
@@ -123,6 +124,7 @@ function readTypeFromUrl(searchParams: URLSearchParams) {
 
 export function ProductsContent({
   lang,
+  t,
   products,
   initialQuery = "",
   initialCategory = null,
@@ -138,7 +140,6 @@ export function ProductsContent({
     useState<ProductType | null>(initialType);
   const [sortValue, setSortValue] = useState<ProductSortValue>("relevance");
   const deferredQuery = useDeferredValue(clientQuery);
-  const t = translations[lang];
 
   useEffect(() => {
     const syncQueryFromUrl = () => {
@@ -270,6 +271,7 @@ export function ProductsContent({
                   selectedType ?? "all"
                 }`}
                 lang={lang}
+                t={t}
                 selectedCategory={selectedCategory}
                 selectedBrand={selectedBrand}
                 selectedType={selectedType}
@@ -313,6 +315,7 @@ export function ProductsContent({
               </div>
               <Sorting
                 lang={lang}
+                t={t}
                 value={sortValue}
                 onChange={setSortValue}
               />
@@ -326,7 +329,7 @@ export function ProductsContent({
                     className="animate-fade-in-up"
                     style={{ animationDelay: `${idx * 0.08}s` }}
                   >
-                    <ProductCard product={product} lang={lang} />
+                    <ProductCard product={product} lang={lang} t={t} />
                   </div>
                 ))}
               </div>

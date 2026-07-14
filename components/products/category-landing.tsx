@@ -1,7 +1,6 @@
 import { ProductCard } from "@/components/products/product-card";
 import {
   categoryLabels,
-  products,
   type ProductCategory,
 } from "@/components/products/product-data";
 import { absoluteUrl, localizedPath } from "@/lib/site";
@@ -153,7 +152,7 @@ export function CategoryLanding({ category, lang, categoryData }: CategoryLandin
   const seoTitle = getLocalized(categoryData?.seo?.title, lang) || fallbackSeo.title[lang];
   const seoSubtitle = getLocalized(categoryData?.seo?.subtitle, lang) || fallbackSeo.subtitle[lang];
   const seoContent = getLocalized(categoryData?.seo?.content, lang) || fallbackSeo.content[lang];
-  const categoryProducts = products.filter((p) => p.category === category);
+  const categoryProducts: any[] = [];
 
   return (
     <>
@@ -243,8 +242,8 @@ export function CategoryLanding({ category, lang, categoryData }: CategoryLandin
             {lang === "en" ? "products" : lang === "fa" ? "محصول" : "منتج"}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {categoryProducts.map((product) => (
-              <ProductCard key={product.id} product={product} lang={lang} />
+            {categoryProducts.map((product: any) => (
+              <ProductCard key={product.id} product={product} lang={lang} t={t} />
             ))}
           </div>
         </div>
@@ -288,7 +287,7 @@ export function CategoryLanding({ category, lang, categoryData }: CategoryLandin
                   : `تصفح منتجات ${catLabel}`}
             </h3>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {categoryProducts.map((product) => {
+              {categoryProducts.map((product: any) => {
                 const productName =
                   lang === "en"
                     ? product.nameEn
@@ -376,7 +375,7 @@ export function CategoryLanding({ category, lang, categoryData }: CategoryLandin
                 lang === "en" ? `${catLabel} Products` : lang === "fa" ? `محصولات ${catLabel}` : `منتجات ${catLabel}`,
               description: seoContent.slice(0, 160),
               inLanguage: lang,
-              itemListElement: categoryProducts.map((product, index) => ({
+              itemListElement: categoryProducts.map((product: any, index: number) => ({
                 "@type": "ListItem",
                 position: index + 1,
                 url: absoluteUrl(

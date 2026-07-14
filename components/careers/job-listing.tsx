@@ -3,16 +3,16 @@
 import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import type { Job } from "./job-data";
 
 interface JobListingProps {
   job: Job;
   lang: Language;
+  t: (typeof translations)[Language];
 }
 
-export function JobListing({ job, lang }: JobListingProps) {
-  const t = translations[lang];
+export function JobListing({ job, lang, t }: JobListingProps) {
   const title = lang === "en" ? job.titleEn : lang === "ar" ? job.titleAr : job.titleFa;
   const description = lang === "en" ? job.descriptionEn : lang === "ar" ? job.descriptionAr : job.descriptionFa;
   const department = lang === "en" ? job.departmentEn : lang === "ar" ? job.departmentAr : job.departmentFa;

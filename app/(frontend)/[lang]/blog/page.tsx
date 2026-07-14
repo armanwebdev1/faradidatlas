@@ -48,19 +48,19 @@ export default async function BlogPage({ params }: BlogPageProps) {
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main id="main-content">
-        <BlogHero lang={lang} />
+        <BlogHero lang={lang} t={t} />
 
         <section className="py-24 px-4 sm:px-6 bg-background">
           <div className="max-w-6xl mx-auto">
-            <BlogFilters lang={lang} />
+            <BlogFilters lang={lang} t={t} />
 
             <div className="mt-12">
-              <BlogEmpty lang={lang} />
+              <BlogEmpty lang={lang} t={t} />
             </div>
           </div>
         </section>
 
-        <BlogAuthors lang={lang} />
+        <BlogAuthors lang={lang} t={t} />
 
         <script
           type="application/ld+json"

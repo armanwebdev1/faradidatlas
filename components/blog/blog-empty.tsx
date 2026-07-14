@@ -1,14 +1,14 @@
 import { BookOpen } from "lucide-react";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 
 interface BlogEmptyProps {
   lang: Language;
+  t: (typeof translations)[Language];
 }
 
-export function BlogEmpty({ lang }: BlogEmptyProps) {
+export function BlogEmpty({ lang, t }: BlogEmptyProps) {
   const isRTL = lang === "fa" || lang === "ar";
-  const t = translations[lang];
 
   return (
     <div

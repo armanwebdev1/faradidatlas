@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import type {
   ProductCategoryMenuItem,
   ProductFilterMenuItem,
@@ -11,18 +11,19 @@ import type {
 
 export function ProductsMegaMenu({
   lang,
+  t,
   isRTL,
   categories,
   brands,
   types,
 }: {
   lang: Language;
+  t: (typeof translations)[Language];
   isRTL: boolean;
   categories: ProductCategoryMenuItem[];
   brands: ProductFilterMenuItem[];
   types: ProductFilterMenuItem[];
 }) {
-  const t = translations[lang];
   const dir = isRTL ? "rtl" : "ltr";
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
 

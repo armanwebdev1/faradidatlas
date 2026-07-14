@@ -105,7 +105,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
 
         <section className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-background via-background to-secondary/30">
           <div className="container-wide">
-            <JobDetail job={job} lang={lang} />
+            <JobDetail job={job} lang={lang} t={t} />
           </div>
         </section>
         <script

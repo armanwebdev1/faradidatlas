@@ -1,9 +1,10 @@
 import type { Language } from "@/lib/i18n";
-import { translations } from "@/lib/i18n";
+import type { translations } from "@/lib/i18n";
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 
 interface OfficeInfoProps {
   lang: Language;
+  t: (typeof translations)[Language];
   contactInfo?: any;
 }
 
@@ -15,8 +16,7 @@ function getLocalized(value: any, lang: Language): string {
   return ''
 }
 
-export function OfficeInfo({ lang, contactInfo }: OfficeInfoProps) {
-  const t = translations[lang];
+export function OfficeInfo({ lang, t, contactInfo }: OfficeInfoProps) {
   const ci = contactInfo as any;
 
   const email = ci?.email ?? '';
