@@ -18,6 +18,9 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  experimental: {
+    optimizePackageImports: ["lucide-react"],
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -90,6 +93,15 @@ const nextConfig = {
       },
       {
         source: "/fonts/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/brand/:path*",
         headers: [
           {
             key: "Cache-Control",
