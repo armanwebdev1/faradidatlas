@@ -1,18 +1,7 @@
 import type React from "react";
-import dynamic from "next/dynamic";
 import { Playfair_Display, Geist, Noto_Sans_Arabic } from "next/font/google";
 import localFont from "next/font/local";
 import "../globals.css";
-
-const Analytics = dynamic(
-  () => import("@vercel/analytics/next").then((mod) => mod.Analytics),
-  { ssr: false },
-);
-
-const SpeedInsights = dynamic(
-  () => import("@vercel/speed-insights/next").then((mod) => mod.SpeedInsights),
-  { ssr: false },
-);
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -91,8 +80,6 @@ export default function FrontendLayout({
           Skip to content
         </a>
         {children}
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );

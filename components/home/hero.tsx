@@ -148,9 +148,8 @@ export function Hero({ lang, slides: rawSlides }: HeroProps) {
       <div className="absolute inset-0">
         {slides.map((slide, index) => {
           const isActive = index === activeIndex;
-          const isLoaded = index <= activeIndex || isActive;
 
-          if (!isLoaded) return null;
+          if (!isActive && index > activeIndex) return null;
 
           return (
             <div
@@ -291,7 +290,7 @@ export function Hero({ lang, slides: rawSlides }: HeroProps) {
               aria-label={t.pages.home.nextSlide}
             >
               {isRTL ? (
-                <ChevronLeft className="h-4.5 w-4/.5" strokeWidth={1.8} />
+                <ChevronLeft className="h-4.5 w-4.5" strokeWidth={1.8} />
               ) : (
                 <ChevronRight className="h-4.5 w-4.5" strokeWidth={1.8} />
               )}

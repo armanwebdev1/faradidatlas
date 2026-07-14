@@ -82,7 +82,7 @@ export async function Footer({ lang }: FooterProps) {
             <div className="lg:col-span-1 flex flex-col justify-between">
               <div className="mb-8">
                 <Link href={`/${lang}`} aria-label={brandHomeLabel} className={`group mb-4 inline-flex items-center gap-3 ${isRTL ? "flex-row-reverse text-right" : "text-left"}`}>
-                  <Image src="/brand/faradid-atlas-mark-light.png" alt="" width={56} height={56} className="h-11 w-11 object-contain opacity-95 transition duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_18px_rgba(48,59,112,0.55)] sm:h-12 sm:w-12" />
+                  <Image src="/brand/faradid-atlas-mark-light.png" alt="" width={56} height={56} sizes="56px" className="h-11 w-11 object-contain opacity-95 transition duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_18px_rgba(48,59,112,0.55)] sm:h-12 sm:w-12" />
                   <span className="flex flex-col leading-none">
                     <span className="text-xl font-bold text-white transition-colors duration-300 group-hover:text-accent sm:text-2xl">{brandPrimary}</span>
                     <span className={`mt-1 text-xs font-medium text-white/65 transition-colors duration-300 group-hover:text-accent/80 ${isRTL ? "tracking-normal" : "tracking-[0.24em]"}`}>{brandSecondary}</span>
