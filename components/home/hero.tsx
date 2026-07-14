@@ -97,7 +97,7 @@ const defaultSlides = [
     description: {
       en: "Offices, branches, and warehouse support across the region give buyers a steadier path from product need to reliable delivery.",
       fa: "دفاتر، شعب و پشتیبانی انبار در ایران و بازارهای منطقه‌ای، به خریداران کمک می‌کند از مرحله نیازسنجی تا تحویل محصول، مسیر مطمئن‌تر و منظم‌تری را تجربه کنند.",
-      ar: "المكاتب والفرع ودعم المستو دعات عبر المنطقة يمنح المشترين مساراً أكثر استقراراً من الحاجة إلى التسليم الموثوق.",
+      ar: "المكاتب والفرع ودعم المستودعات عبر المنطقة يمنح المشترين مساراً أكثر استقراراً من الحاجة إلى التسليم الموثوق.",
     },
     ctaText: "",
     ctaUrl: "",
@@ -246,9 +246,7 @@ export function Hero({ lang, slides: rawSlides }: HeroProps) {
               style={{ animationDelay: "0.25s" }}
             >
               {ctaText}
-              <span className={`text-lg ${isRTL ? "rotate-180" : ""}`}>
-                &rarr;
-              </span>
+              <span className={`text-lg ${isRTL ? "rotate-180" : ""}`}>&rarr;</span>
             </a>
           )}
 
