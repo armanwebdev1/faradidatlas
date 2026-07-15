@@ -6,7 +6,7 @@ import { CvUploadField } from "./cv-upload-field";
 
 interface ApplicationFormProps {
   lang: Language;
-  jobId: number;
+  jobId: string | number;
   jobTitle: string;
 }
 

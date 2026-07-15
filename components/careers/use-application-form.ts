@@ -12,7 +12,7 @@ import { getApplicationCopy } from "./application-form-copy";
 
 interface UseApplicationFormProps {
   lang: Language;
-  jobId: number;
+  jobId: string | number;
   jobTitle: string;
 }
 
