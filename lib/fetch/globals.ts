@@ -11,12 +11,13 @@ export interface AllGlobals {
 
 export const getAllGlobals = cache(async function getAllGlobals(locale: string = 'en'): Promise<AllGlobals> {
   const payload = await getPayloadClient()
+  const loc = locale as 'en' | 'fa' | 'ar'
 
   const [homepage, contactInfo, siteSettings, navigation] = await Promise.all([
-    payload.findGlobal({ slug: 'homepage', locale: locale as 'en' | 'fa' | 'ar', depth: 0 }),
-    payload.findGlobal({ slug: 'contact-info', locale: locale as 'en' | 'fa' | 'ar', depth: 0 }),
-    payload.findGlobal({ slug: 'site-settings', locale: locale as 'en' | 'fa' | 'ar', depth: 0 }),
-    payload.findGlobal({ slug: 'navigation', locale: locale as 'en' | 'fa' | 'ar', depth: 0 }),
+    payload.findGlobal({ slug: 'homepage', locale: loc, depth: 0 }) as Promise<Homepage>,
+    payload.findGlobal({ slug: 'contact-info', locale: loc, depth: 0 }) as Promise<ContactInfo>,
+    payload.findGlobal({ slug: 'site-settings', locale: loc, depth: 0 }) as Promise<SiteSetting>,
+    payload.findGlobal({ slug: 'navigation', locale: loc, depth: 0 }) as Promise<Navigation>,
   ])
 
   return { homepage, contactInfo, siteSettings, navigation }

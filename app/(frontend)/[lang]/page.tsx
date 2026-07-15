@@ -58,7 +58,7 @@ export default async function HomePage({ params }: HomePageProps) {
   const { homepage, contactInfo, siteSettings } = globals;
 
   const publicContactEmail = contactInfo?.email ?? "";
-  const publicPhoneNumbers = (contactInfo?.phones ?? []).map((p) => ({
+  const publicPhoneNumbers = (contactInfo?.phones ?? []).map((p: { value?: string | null; display?: string | null; whatsappHref?: string | null }) => ({
     value: p.value ?? "",
     display: p.display ?? "",
     whatsappHref: p.whatsappHref ?? "",
