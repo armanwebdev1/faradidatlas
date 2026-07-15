@@ -13,10 +13,10 @@ interface JobListingProps {
 }
 
 export function JobListing({ job, lang, t }: JobListingProps) {
-  const title = lang === "en" ? job.titleEn : lang === "ar" ? job.titleAr : job.titleFa;
-  const description = lang === "en" ? job.descriptionEn : lang === "ar" ? job.descriptionAr : job.descriptionFa;
-  const department = lang === "en" ? job.departmentEn : lang === "ar" ? job.departmentAr : job.departmentFa;
-  const location = lang === "en" ? job.locationEn : lang === "ar" ? job.locationAr : job.locationFa;
+  const title = (lang === "en" ? job.titleEn : lang === "ar" ? job.titleAr : job.titleFa) || job.titleEn || job.titleFa;
+  const description = (lang === "en" ? job.descriptionEn : lang === "ar" ? job.descriptionAr : job.descriptionFa) || job.descriptionEn || job.descriptionFa;
+  const department = (lang === "en" ? job.departmentEn : lang === "ar" ? job.departmentAr : job.departmentFa) || job.departmentEn || job.departmentFa;
+  const location = (lang === "en" ? job.locationEn : lang === "ar" ? job.locationAr : job.locationFa) || job.locationEn || job.locationFa;
   const isRTL = lang === "fa" || lang === "ar";
 
   const typeLabels: Record<Job["type"], Record<Language, string>> = {

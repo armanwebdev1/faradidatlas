@@ -17,8 +17,8 @@ export function FAQAccordion({ items, lang }: FAQAccordionProps) {
   return (
     <div className="space-y-4 sm:space-y-5">
       {items.map((item, index) => {
-        const question = lang === "en" ? item.questionEn : lang === "fa" ? item.questionFa : item.questionAr;
-        const answer = lang === "en" ? item.answerEn : lang === "fa" ? item.answerFa : item.answerAr;
+        const question = (lang === "en" ? item.questionEn : lang === "fa" ? item.questionFa : item.questionAr) || item.questionEn || item.questionFa;
+        const answer = (lang === "en" ? item.answerEn : lang === "fa" ? item.answerFa : item.answerAr) || item.answerEn || item.answerFa;
         const isOpen = openId === item.id;
 
         return (

@@ -12,14 +12,14 @@ interface JobDetailProps {
 }
 
 export function JobDetail({ job, lang, t }: JobDetailProps) {
-  const title = lang === "en" ? job.titleEn : lang === "fa" ? job.titleFa : job.titleAr;
-  const description = lang === "en" ? job.descriptionEn : lang === "fa" ? job.descriptionFa : job.descriptionAr;
-  const department = lang === "en" ? job.departmentEn : lang === "fa" ? job.departmentFa : job.departmentAr;
-  const location = lang === "en" ? job.locationEn : lang === "fa" ? job.locationFa : job.locationAr;
+  const title = (lang === "en" ? job.titleEn : lang === "fa" ? job.titleFa : job.titleAr) || job.titleEn || job.titleFa;
+  const description = (lang === "en" ? job.descriptionEn : lang === "fa" ? job.descriptionFa : job.descriptionAr) || job.descriptionEn || job.descriptionFa;
+  const department = (lang === "en" ? job.departmentEn : lang === "fa" ? job.departmentFa : job.departmentAr) || job.departmentEn || job.departmentFa;
+  const location = (lang === "en" ? job.locationEn : lang === "fa" ? job.locationFa : job.locationAr) || job.locationEn || job.locationFa;
   const responsibilities =
-    lang === "en" ? job.responsibilitiesEn : lang === "fa" ? job.responsibilitiesFa : job.responsibilitiesAr;
-  const requirements = lang === "en" ? job.requirementsEn : lang === "fa" ? job.requirementsFa : job.requirementsAr;
-  const values = lang === "en" ? job.benefitsEn : lang === "fa" ? job.benefitsFa : job.benefitsAr;
+    (lang === "en" ? job.responsibilitiesEn : lang === "fa" ? job.responsibilitiesFa : job.responsibilitiesAr) || job.responsibilitiesEn || job.responsibilitiesFa;
+  const requirements = (lang === "en" ? job.requirementsEn : lang === "fa" ? job.requirementsFa : job.requirementsAr) || job.requirementsEn || job.requirementsFa;
+  const values = (lang === "en" ? job.benefitsEn : lang === "fa" ? job.benefitsFa : job.benefitsAr) || job.benefitsEn || job.benefitsFa;
   const typeLabel =
     job.type === "full-time"
       ? t.pages.careers.fullTime
