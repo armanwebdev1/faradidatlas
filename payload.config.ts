@@ -22,10 +22,8 @@ import { Homepage } from "./src/globals/Homepage";
 import { CompanyInfo } from "./src/globals/CompanyInfo";
 import { ContactInfo } from "./src/globals/ContactInfo";
 import { CareersInfo } from "./src/globals/CareersInfo";
-import { Navigation } from "./src/globals/Navigation";
 import { SiteSettings } from "./src/globals/SiteSettings";
 import { Redirects } from "./src/globals/Redirects";
-import { Translations } from "./src/globals/Translations";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -70,10 +68,8 @@ export default buildConfig({
     CompanyInfo,
     ContactInfo,
     CareersInfo,
-    Navigation,
     SiteSettings,
     Redirects,
-    Translations,
   ],
 
   editor: lexicalEditor({

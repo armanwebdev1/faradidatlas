@@ -9,7 +9,7 @@ export const CompanyInfo: GlobalConfig = {
   },
   admin: {
     group: 'Company',
-    description: 'Company information for the About page: CEO profile, team, offices, strategic framework, and offerings',
+    description: 'Company information for the About page: CEO profile, values, strategic framework, offerings, and get-connected section',
   },
   fields: [
     {
@@ -18,38 +18,6 @@ export const CompanyInfo: GlobalConfig = {
         {
           label: 'About',
           fields: [
-            {
-              name: 'about',
-              type: 'richText',
-              localized: true,
-            },
-            {
-              name: 'mission',
-              type: 'textarea',
-              localized: true,
-            },
-            {
-              name: 'vision',
-              type: 'textarea',
-              localized: true,
-            },
-            {
-              name: 'values',
-              type: 'array',
-              localized: true,
-              fields: [
-                {
-                  name: 'title',
-                  type: 'text',
-                  required: true,
-                },
-                {
-                  name: 'description',
-                  type: 'textarea',
-                  required: true,
-                },
-              ],
-            },
             {
               name: 'aboutStats',
               type: 'array',
@@ -128,74 +96,13 @@ export const CompanyInfo: GlobalConfig = {
           ],
         },
         {
-          label: 'Team',
+          label: 'Values',
           fields: [
             {
-              name: 'team',
-              type: 'array',
-              fields: [
-                {
-                  name: 'name',
-                  type: 'text',
-                  required: true,
-                },
-                {
-                  name: 'title',
-                  type: 'text',
-                  required: true,
-                  localized: true,
-                },
-                {
-                  name: 'image',
-                  type: 'upload',
-                  relationTo: 'media',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          label: 'Offices & Timeline',
-          fields: [
-            {
-              name: 'offices',
-              type: 'array',
-              fields: [
-                {
-                  name: 'city',
-                  type: 'text',
-                  required: true,
-                },
-                {
-                  name: 'country',
-                  type: 'text',
-                  required: true,
-                },
-                {
-                  name: 'address',
-                  type: 'textarea',
-                  localized: true,
-                },
-                {
-                  name: 'isHeadquarters',
-                  type: 'checkbox',
-                  defaultValue: false,
-                },
-              ],
-            },
-            {
-              name: 'timeline',
+              name: 'values',
               type: 'array',
               localized: true,
-              admin: {
-                description: 'Company history timeline milestones',
-              },
               fields: [
-                {
-                  name: 'year',
-                  type: 'text',
-                  required: true,
-                },
                 {
                   name: 'title',
                   type: 'text',
@@ -204,11 +111,7 @@ export const CompanyInfo: GlobalConfig = {
                 {
                   name: 'description',
                   type: 'textarea',
-                },
-                {
-                  name: 'image',
-                  type: 'upload',
-                  relationTo: 'media',
+                  required: true,
                 },
               ],
             },
@@ -356,64 +259,6 @@ export const CompanyInfo: GlobalConfig = {
                   type: 'textarea',
                   required: true,
                   localized: true,
-                },
-              ],
-            },
-            {
-              name: 'certificates',
-              type: 'array',
-              admin: {
-                description: 'Company certifications and awards',
-              },
-              fields: [
-                {
-                  name: 'title',
-                  type: 'text',
-                  required: true,
-                  localized: true,
-                },
-                {
-                  name: 'image',
-                  type: 'upload',
-                  relationTo: 'media',
-                },
-                {
-                  name: 'issueDate',
-                  type: 'date',
-                },
-                {
-                  name: 'description',
-                  type: 'textarea',
-                  localized: true,
-                },
-              ],
-            },
-            {
-              name: 'banners',
-              type: 'array',
-              admin: {
-                description: 'About page promotional banners',
-              },
-              fields: [
-                {
-                  name: 'title',
-                  type: 'text',
-                  required: true,
-                  localized: true,
-                },
-                {
-                  name: 'description',
-                  type: 'textarea',
-                  localized: true,
-                },
-                {
-                  name: 'image',
-                  type: 'upload',
-                  relationTo: 'media',
-                },
-                {
-                  name: 'link',
-                  type: 'text',
                 },
               ],
             },

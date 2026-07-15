@@ -43,57 +43,6 @@ export const ContactInfo: GlobalConfig = {
                 },
               ],
             },
-            {
-              name: 'workingHours',
-              type: 'group',
-              fields: [
-                {
-                  name: 'weekdays',
-                  type: 'text',
-                  localized: true,
-                  admin: {
-                    description: 'e.g. "Saturday - Wednesday: 9:00 AM - 5:00 PM"',
-                  },
-                },
-                {
-                  name: 'weekends',
-                  type: 'text',
-                  localized: true,
-                  admin: {
-                    description: 'e.g. "Thursday: 9:00 AM - 1:00 PM"',
-                  },
-                },
-                {
-                  name: 'timezone',
-                  type: 'text',
-                  defaultValue: 'Asia/Tehran',
-                },
-              ],
-            },
-            {
-              name: 'socialMedia',
-              type: 'array',
-              admin: {
-                description: 'Social media links for the contact page',
-              },
-              fields: [
-                {
-                  name: 'platform',
-                  type: 'text',
-                  required: true,
-                },
-                {
-                  name: 'url',
-                  type: 'text',
-                  required: true,
-                },
-                {
-                  name: 'label',
-                  type: 'text',
-                  localized: true,
-                },
-              ],
-            },
           ],
         },
         {
