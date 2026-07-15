@@ -58,7 +58,7 @@ export default async function HomePage({ params }: HomePageProps) {
   const { homepage, contactInfo, siteSettings } = globals;
 
   const publicContactEmail = contactInfo?.email ?? "";
-  const publicPhoneNumbers = (contactInfo?.phones ?? []).map((p: any) => ({
+  const publicPhoneNumbers = (contactInfo?.phones ?? []).map((p) => ({
     value: p.value ?? "",
     display: p.display ?? "",
     whatsappHref: p.whatsappHref ?? "",
@@ -90,20 +90,20 @@ export default async function HomePage({ params }: HomePageProps) {
               "@context": "https://schema.org",
               "@type": "Organization",
               "@id": organizationId,
-              name: (siteSettings as any)?.siteName ?? "Faradid Atlas",
-              alternateName: (siteSettings as any)?.siteNameFa ?? "فرادید اطلس",
+              name: siteSettings?.siteName ?? "Faradid Atlas",
+              alternateName: siteSettings?.siteNameFa ?? "فرادید اطلس",
               legalName:
-                (siteSettings as any)?.legalName ?? "Faradid Atlas Trading LLC",
+                siteSettings?.legalName ?? "Faradid Atlas Trading LLC",
               url: absoluteUrl(),
               logo:
-                resolveMediaUrl((siteSettings as any)?.logo) ??
+                resolveMediaUrl(siteSettings?.logo) ??
                 absoluteUrl("/brand/faradid-atlas-mark.png"),
               email: publicContactEmail,
               telephone: publicPhoneNumbers.map((phone) => phone.value),
               description:
                 lang === "en"
-                  ? ((siteSettings as any)?.description ?? "")
-                  : ((siteSettings as any)?.descriptionFa ?? ""),
+                  ? (siteSettings?.description ?? "")
+                  : (siteSettings?.descriptionFa ?? ""),
               foundingDate: "2009",
               foundingLocation: "Iran",
               industry: "Food Distribution and Supply",
@@ -163,10 +163,10 @@ export default async function HomePage({ params }: HomePageProps) {
                   },
                 },
               ],
-              ...((siteSettings as any)?.socialLinks?.length > 0
+              ...(siteSettings?.socialLinks && siteSettings.socialLinks.length > 0
                 ? {
-                    sameAs: (siteSettings as any).socialLinks.map(
-                      (l: any) => l.url,
+                    sameAs: siteSettings.socialLinks.map(
+                      (l) => l.url,
                     ),
                   }
                 : {}),
@@ -187,8 +187,8 @@ export default async function HomePage({ params }: HomePageProps) {
               "@context": "https://schema.org",
               "@type": "WebSite",
               "@id": websiteId,
-              name: (siteSettings as any)?.siteName ?? "Faradid Atlas",
-              alternateName: (siteSettings as any)?.siteNameFa ?? "فرادید اطلس",
+              name: siteSettings?.siteName ?? "Faradid Atlas",
+              alternateName: siteSettings?.siteNameFa ?? "فرادید اطلس",
               url: absoluteUrl(),
               inLanguage: ["en", "fa", "ar"],
               publisher: {

@@ -1,7 +1,15 @@
 import { cache } from 'react'
 import { getPayloadClient } from '../payload'
+import type { Homepage, ContactInfo, SiteSetting, Navigation } from '@/payload-types'
 
-export const getAllGlobals = cache(async function getAllGlobals(locale: string = 'en') {
+export interface AllGlobals {
+  homepage: Homepage
+  contactInfo: ContactInfo
+  siteSettings: SiteSetting
+  navigation: Navigation
+}
+
+export const getAllGlobals = cache(async function getAllGlobals(locale: string = 'en'): Promise<AllGlobals> {
   const payload = await getPayloadClient()
 
   const [homepage, contactInfo, siteSettings, navigation] = await Promise.all([
