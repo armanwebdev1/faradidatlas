@@ -82,13 +82,9 @@ export function CEOProfile({ lang, companyInfo }: CEOProfileProps) {
             </div>
 
             <div className="mt-10 opacity-0 translate-y-6" data-animate>
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent-warm-gold">
-                {role}
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-primary">
+                {role} of {name}
               </p>
-
-              <h3 className="mt-3 text-3xl font-semibold leading-tight text-primary md:text-4xl">
-                {name}
-              </h3>
 
               <p className="mt-8 max-w-3xl text-base leading-8 text-foreground/75">
                 {bio}
