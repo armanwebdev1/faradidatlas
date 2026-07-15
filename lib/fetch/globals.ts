@@ -14,7 +14,7 @@ export const getAllGlobals = cache(async function getAllGlobals(locale: string =
   const loc = locale as 'en' | 'fa' | 'ar'
 
   const [homepage, contactInfo, siteSettings, navigation] = await Promise.all([
-    payload.findGlobal({ slug: 'homepage', locale: loc, depth: 0 }) as Promise<Homepage>,
+    payload.findGlobal({ slug: 'homepage', locale: loc, depth: 1 }) as Promise<Homepage>,
     payload.findGlobal({ slug: 'contact-info', locale: loc, depth: 0 }) as Promise<ContactInfo>,
     payload.findGlobal({ slug: 'site-settings', locale: loc, depth: 0 }) as Promise<SiteSetting>,
     payload.findGlobal({ slug: 'navigation', locale: loc, depth: 0 }) as Promise<Navigation>,

@@ -62,7 +62,6 @@ export async function Footer({ lang }: FooterProps) {
   const companyLinks: FooterLinkItem[] = [
     { href: `/${lang}/about`, label: t_trans.nav.about },
     { href: `/${lang}/careers`, label: t_trans.nav.careers },
-    { href: `/${lang}#markets`, label: t_trans.footer.markets },
     { href: `/${lang}/faq`, label: t_trans.nav.faq },
     { href: `/${lang}/blog`, label: t_trans.nav.blog },
   ];
