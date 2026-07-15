@@ -2,6 +2,7 @@ import Link from "next/link";
 import NextImage from "next/image";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
+import { getLocalized } from "@/lib/localized";
 
 interface CTASectionProps {
   lang: Language;
@@ -18,14 +19,6 @@ interface CTASectionProps {
     description?: any;
     isActive?: boolean | null;
   }>;
-}
-
-function getLocalized(value: any, lang: Language): string {
-  if (!value) return ''
-  if (typeof value === 'string') return value
-  if (typeof value === 'object' && value[lang]) return value[lang]
-  if (typeof value === 'object' && value.en) return value.en
-  return ''
 }
 
 function resolveMediaUrl(media: any): string | undefined {

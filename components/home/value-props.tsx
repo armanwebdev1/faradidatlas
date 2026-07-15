@@ -1,6 +1,7 @@
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import { Globe, CheckCircle, Route, Package } from "lucide-react";
+import { getLocalized } from "@/lib/localized";
 
 interface ValuePropsProps {
   lang: Language;
@@ -39,14 +40,6 @@ const defaultItems = {
     { icon: 'Package', title: 'مسار أبسط للشراء', description: 'من الاتصال المباشر إلى المبيعات الرقمية، نحافظ على مسار شراء بسيط وسريع.', accentColor: 'accent-warm-orange' },
   ],
 };
-
-function getLocalized(value: any, lang: Language): string {
-  if (!value) return ''
-  if (typeof value === 'string') return value
-  if (typeof value === 'object' && value[lang]) return value[lang]
-  if (typeof value === 'object' && value.en) return value.en
-  return ''
-}
 
 export function ValueProps({ lang, items: payloadItems }: ValuePropsProps) {
   const t = translations[lang];

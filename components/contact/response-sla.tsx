@@ -1,18 +1,11 @@
 import type { Language } from "@/lib/i18n";
 import type { translations } from "@/lib/i18n";
+import { getLocalized } from "@/lib/localized";
 
 interface ResponseSLAProps {
   lang: Language;
   t: (typeof translations)[Language];
   contactInfo?: any;
-}
-
-function getLocalized(value: any, lang: Language): string {
-  if (!value) return ""
-  if (typeof value === "string") return value
-  if (typeof value === "object" && value[lang]) return value[lang]
-  if (typeof value === "object" && value.en) return value.en
-  return ""
 }
 
 export function ResponseSLA({ lang, t, contactInfo }: ResponseSLAProps) {

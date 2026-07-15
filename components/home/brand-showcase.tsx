@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { Language } from "@/lib/i18n";
 import type { translations } from "@/lib/i18n";
+import { getLocalized } from "@/lib/localized";
 
 interface BrandShowcaseProps {
   lang: Language;
@@ -25,14 +26,6 @@ function resolveMediaUrl(media: any): string {
       "/brands/brands-banner/brands-showcase-banner-en.jpeg"
     );
   return "/brands/brands-banner/brands-showcase-banner-en.jpeg";
-}
-
-function getLocalized(value: any, lang: Language): string {
-  if (!value) return "";
-  if (typeof value === "string") return value;
-  if (typeof value === "object" && value[lang]) return value[lang];
-  if (typeof value === "object" && value.en) return value.en;
-  return "";
 }
 
 export function BrandShowcase({ lang, t, brands }: BrandShowcaseProps) {

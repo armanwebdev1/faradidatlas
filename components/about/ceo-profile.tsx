@@ -1,18 +1,11 @@
 import type { Language } from "@/lib/i18n";
 import Image from "next/image";
 import { AnimatedSection } from "./animated-section";
+import { getLocalized } from "@/lib/localized";
 
 interface CEOProfileProps {
   lang: Language;
   companyInfo?: any;
-}
-
-function getLocalized(value: any, lang: Language): string {
-  if (!value) return "";
-  if (typeof value === "string") return value;
-  if (typeof value === "object" && value[lang]) return value[lang];
-  if (typeof value === "object" && value.en) return value.en;
-  return "";
 }
 
 function resolveMediaUrl(media: any): string {
@@ -29,21 +22,21 @@ const fallbackContent = {
     heading: "Leadership grounded in strategy and experience",
     role: "Chief Executive Officer",
     name: "Dr. Sohrab Bakhtiar",
-    bio: "Dr. Sohrab Bakhtiar, Chief Executive Officer of Faradid Atlas, combines decades of executive leadership and economic policymaking experience with a strong academic foundation in international economics and strategic management.",
+    bio: "Dr. Sohrab Bakhtiar, CEO of Faradid Atlas, holds a Ph.D. in International Economics from the University of Tehran and a Ph.D. in Strategic Management from Vrije Universiteit Brussel (VUB), Belgium. With decades of experience in senior policy-making and executive management positions, he is recognized as an experienced leader and expert in the field of macroeconomic strategies. Furthermore, backed by three generations of continuous family involvement in the trade of essential commodities, he possesses valuable theoretical knowledge and practical expertise in commerce, international trade, and supply chain management.",
   },
   fa: {
     eyebrow: "مدیریت",
     heading: "رهبری مبتنی بر تجربه، دانش و نگاه راهبردی",
     role: "مدیرعامل",
     name: "دکتر سهراب بختیار",
-    bio: "دکتر سهراب بختیار، مدیرعامل شرکت فرادید اطلس، دانش‌آموخته دکترای اقتصاد بین‌الملل از دانشگاه تهران و دکترای مدیریت استراتژیک از دانشگاه (VUB) بروکسل بلژیک است.",
+    bio: "دکتر سهراب بختیار، مدیرعامل شرکت فرادید اطلس، دانش‌آموخته دکترای اقتصاد بین‌الملل از دانشگاه تهران و دکترای مدیریت استراتژیک از دانشگاه (VUB) بروکسل بلژیک است. ایشان با بهره‌گیری از دهه‌ها تجربه در سطوح عالی سیاست‌گذاری و مدیریت، از مدیران باسابقه و صاحب‌نظر در حوزه راهبردهای کلان اقتصادی به شمار می‌روند. همچنین، با پشتوانه سه نسل فعالیت مستمر خانوادگی در حوزه تجارت کالاهای اساسی، از دانش نظری و تجربه عملی ارزشمندی در عرصه بازرگانی، و مدیریت زنجیره تأمین برخوردار هستند.",
   },
   ar: {
     eyebrow: "القيادة",
     heading: "قيادة مبنية على الاستراتيجية والخبرة",
     role: "الرئيس التنفيذي",
     name: "الدكتور سهراب بختيار",
-    bio: "الدكتور سهراب بختيار، الرئيس التنفيذي لشركة فراديد أطلس، يجمع بين عقود من القيادة التنفيذية وصنع السياسات الاقتصادية.",
+    bio: "الدکتور سهراب بختيار، الرئيس التنفيذي لشركة فراديد أطلس، حاصل على درجة الدكتوراه في الاقتصاد الدولي من جامعة طهران، ودرجة الدكتوراه في الإدارة الاستراتيجية من جامعة بروكسل الحرة (VUB) في بلجيكا. وبفضل عقود من الخبرة في المستويات العليا لصنع السياسات والإدارة التنفيذية، يُعدّ من القيادات ذات الخبرة والرؤية المتخصصة في مجال الاستراتيجيات الاقتصادية الكلية. كما يمتلك، مستندًا إلى ثلاثة أجيال من النشاط العائلي المتواصل في مجال تجارة السلع الأساسية، مزيجًا قيّمًا من المعرفة الأكاديمية والخبرة العملية في مجالات التجارة، وإدارة سلسلة التوريد.",
   },
 };
 

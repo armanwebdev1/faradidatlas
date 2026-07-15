@@ -2,6 +2,7 @@ import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import { CountUp } from "@/components/shared/count-up";
 import { RevealSection } from "@/components/shared/reveal-section";
+import { getLocalized } from "@/lib/localized";
 
 interface GlobalMarketsProps {
   lang: Language;
@@ -11,14 +12,6 @@ interface GlobalMarketsProps {
     value?: number | null;
     isActive?: boolean | null;
   }>;
-}
-
-function getLocalized(value: any, lang: Language): string {
-  if (!value) return ''
-  if (typeof value === 'string') return value
-  if (typeof value === 'object' && value[lang]) return value[lang]
-  if (typeof value === 'object' && value.en) return value.en
-  return ''
 }
 
 const defaultMarkets = {
