@@ -16,26 +16,95 @@ interface GlobalMarketsProps {
 
 const defaultMarkets = {
   en: [
-    { region: "Recognized Rice Brands", countries: "21, Mizban, Hayat, and Golbanou", value: 4, suffix: "" },
-    { region: "Offices & Regional Presence", countries: "Tehran, Isfahan, Dubai, and Oman", value: 4, suffix: "" },
-    { region: "Key Sourcing Origins", countries: "Direct sourcing focus across India and Pakistan", value: 30, suffix: "" },
-    { region: "Product Portfolio", countries: "Rice, legumes, seeds, nuts, spices, and sugar", value: 25, suffix: "" },
+    {
+      region: "Recognized Rice Brands",
+      countries: "21, Mizban, Hayat, and Golbanou",
+      value: 4,
+      suffix: "",
+    },
+    {
+      region: "Offices & Regional Presence",
+      countries: "Tehran, Isfahan, Dubai, and Oman",
+      value: 4,
+      suffix: "",
+    },
+    {
+      region: "Key Sourcing Origins",
+      countries: "Direct sourcing focus across India and Pakistan",
+      value: 30,
+      suffix: "",
+    },
+    {
+      region: "Product Portfolio",
+      countries: "Rice, legumes, seeds, nuts, spices, and sugar",
+      value: 25,
+      suffix: "",
+    },
   ],
   fa: [
-    { region: "برند معتبر", countries: "۲۱، میزبان، حیات و گلبانو؛ نام‌هایی آشنا برای بازار عمده و مصرف سازمانی", value: 4, suffix: "" },
-    { region: "دفاتر شرکت", countries: "تهران، اصفهان، دبی و عمان؛ برای پیگیری بهتر، پاسخ سریع‌تر و پشتیبانی مطمئن‌تر", value: 4, suffix: "" },
-    { region: "مسیر تأمین", countries: "تمرکز بر تأمین مستقیم از مبدأهای معتبر مانند هند، پاکستان، تایلند و کانادا", value: 30, suffix: "" },
-    { region: "گروه کالایی", countries: "از برنج و حبوبات تا دانه‌ها، مغزها، ادویه‌ها و شکر", value: 25, suffix: "" },
+    {
+      region: "برند معتبر",
+      countries:
+        "۲۱، میزبان، حیات و گلبانو؛ نام‌هایی آشنا برای بازار عمده و مصرف سازمانی",
+      value: 4,
+      suffix: "",
+    },
+    {
+      region: "دفاتر شرکت",
+      countries:
+        "تهران، اصفهان، دبی و عمان؛ برای پیگیری بهتر، پاسخ سریع‌تر و پشتیبانی مطمئن‌تر",
+      value: 4,
+      suffix: "",
+    },
+    {
+      region: "مسیر تأمین",
+      countries:
+        "تمرکز بر تأمین مستقیم از مبدأهای معتبر مانند هند، پاکستان، تایلند و کانادا",
+      value: 30,
+      suffix: "",
+    },
+    {
+      region: "گروه کالایی",
+      countries: "از برنج و حبوبات تا دانه‌ها، مغزها، ادویه‌ها و شکر",
+      value: 25,
+      suffix: "",
+    },
   ],
   ar: [
-    { region: "علامات تجارية معترف بها", countries: "٢١ وميزبان وحياة وگلبانو؛ أسماء معروفة لسوق الجملة والاستهلاك المؤسسي", value: 4, suffix: "" },
-    { region: "مكاتب الشركة", countries: "طهران وأصفهان ودبي ومسقط؛ لمتابعة أفضل واستجابة أسرع ودعم أكثر موثوقية", value: 4, suffix: "" },
-    { region: "مسار التوريد", countries: "التركيز على التوريد المباشر من مصادر موثوقة مثل الهند وباكستان وتايلندا وكندا", value: 30, suffix: "" },
-    { region: "فئة المنتجات", countries: "من الأرز والبقوليات إلى البذور والمكسرات والتوابل والسكر", value: 25, suffix: "" },
+    {
+      region: "علامات تجارية معترف بها",
+      countries:
+        "٢١ وميزبان وحياة وگلبانو؛  معروفة لسوق الجملة والاستهلاك المؤسسي",
+      value: 4,
+      suffix: "",
+    },
+    {
+      region: "مكاتب الشركة",
+      countries:
+        "طهران وأصفهان ودبي ومسقط؛ لمتابعة أفضل واستجابة أسرع ودعم أكثر موثوقية",
+      value: 4,
+      suffix: "",
+    },
+    {
+      region: "مسار التوريد",
+      countries:
+        "التركيز على التوريد المباشر من مصادر موثوقة مثل الهند وباكستان وتايلندا وكندا",
+      value: 30,
+      suffix: "",
+    },
+    {
+      region: "فئة المنتجات",
+      countries: "من الأرز والبقوليات إلى البذور والمكسرات والتوابل والسكر",
+      value: 25,
+      suffix: "",
+    },
   ],
 };
 
-export function GlobalMarkets({ lang, markets: payloadMarkets }: GlobalMarketsProps) {
+export function GlobalMarkets({
+  lang,
+  markets: payloadMarkets,
+}: GlobalMarketsProps) {
   const t = translations[lang];
 
   const marketList = payloadMarkets?.length
@@ -45,7 +114,7 @@ export function GlobalMarkets({ lang, markets: payloadMarkets }: GlobalMarketsPr
           region: getLocalized(m.country, lang),
           countries: getLocalized(m.description, lang),
           value: m.value ?? 4,
-          suffix: '',
+          suffix: "",
         }))
     : defaultMarkets[lang] || defaultMarkets.en;
 
@@ -60,9 +129,7 @@ export function GlobalMarkets({ lang, markets: payloadMarkets }: GlobalMarketsPr
             {t.pages.home.marketsEyebrow}
           </p>
           <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 md:mb-8 animate-fade-in-up">
-            <span className="inline-block">
-              {t.pages.home.marketsRegional}
-            </span>
+            <span className="inline-block">{t.pages.home.marketsRegional}</span>
             <span className="inline-block ml-3 md:ml-4 text-transparent bg-clip-text bg-linear-to-r from-accent-warm-gold to-accent-warm-orange">
               {t.pages.home.marketsReach}
             </span>
