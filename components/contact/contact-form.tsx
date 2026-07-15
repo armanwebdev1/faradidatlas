@@ -138,7 +138,7 @@ export function ContactForm({
             onChange={handleChange}
             onBlur={handleBlur}
             className={`${inputBase} ${getError("phone") ? errorClass : ""}`}
-            placeholder="+1 (555) 123-4567"
+            placeholder={lang === "ar" ? "+٩٧١ ٥٥٥ ١٢٣ ٤٥٦٧" : lang === "fa" ? "+۹۸ ۹۱۲ ۱۲۳ ۴۵۶۷" : "+1 (555) 123-4567"}
             aria-invalid={!!getError("phone")}
             aria-describedby="phone-error"
           />

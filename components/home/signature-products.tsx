@@ -68,7 +68,7 @@ const defaultProducts = [
     description: {
       en: "A trusted rice line designed for households, retailers, and foodservice partners.",
       fa: "نامی آشنا در سبد برنج فرادید اطلس؛ مناسب خانواده‌ها و فروشگاه‌ها.",
-      ar: "خط أرز موثوق مصمم للأسر والتج retailers وشركاء خدمات الطعام.",
+      ar: "خط أرز موثوق مصمم للأسر والتجار وشركاء خدمات الطعام.",
     },
   },
   {

@@ -381,7 +381,7 @@ const productBrandMenuItems = useMemo(
             <details className="group/mobile-menu lg:hidden">
               <summary
                 className="relative inline-flex h-11 w-11 shrink-0 cursor-pointer list-none items-center justify-center rounded-full border border-border/60 bg-background/75 text-foreground shadow-sm backdrop-blur-md transition-all duration-300 hover:border-brand-navy/25 hover:bg-brand-navy/5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25 [&::-webkit-details-marker]:hidden"
-                aria-label="Toggle menu"
+                aria-label={lang === "ar" ? "تبديل القائمة" : lang === "fa" ? "تغییر منو" : "Toggle menu"}
               >
                 <Menu className="h-5 w-5 transition-transform duration-300 group-open/mobile-menu:rotate-90 group-open/mobile-menu:scale-0" />
                 <X className="absolute h-5 w-5 transition-transform duration-300 -rotate-90 scale-0 group-open/mobile-menu:rotate-0 group-open/mobile-menu:scale-100" />

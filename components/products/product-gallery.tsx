@@ -67,7 +67,7 @@ export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
         <button
           type="button"
           onClick={goToPrev}
-          aria-label="Previous image"
+          aria-label={lang === "ar" ? "الصورة السابقة" : lang === "fa" ? "تصویر قبلی" : "Previous image"}
           aria-disabled={!canNavigate}
           className={`absolute ${isRTL ? "right-0" : "left-0"} top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
             canNavigate
@@ -80,7 +80,7 @@ export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
 
         <div
           className="flex items-center justify-center gap-3 sm:gap-4 overflow-x-auto px-10 pb-1 scroll-smooth snap-x snap-mandatory"
-          aria-label="Product image gallery"
+          aria-label={lang === "ar" ? "معرض صور المنتج" : lang === "fa" ? "گالری تصاویر محصول" : "Product image gallery"}
         >
           {gallery.map((image, index) => {
             const isActive = index === activeIndex;
@@ -108,7 +108,7 @@ export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
                   className="object-cover"
                 />
                 <span className="sr-only">
-                  {`View image ${index + 1}`}
+                  {lang === "ar" ? `عرض الصورة ${index + 1}` : lang === "fa" ? `تصویر ${index + 1}` : `View image ${index + 1}`}
                 </span>
               </button>
             );
@@ -118,7 +118,7 @@ export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
         <button
           type="button"
           onClick={goToNext}
-          aria-label="Next image"
+          aria-label={lang === "ar" ? "الصورة التالية" : lang === "fa" ? "تصویر بعدی" : "Next image"}
           aria-disabled={!canNavigate}
           className={`absolute ${isRTL ? "left-0" : "right-0"} top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
             canNavigate

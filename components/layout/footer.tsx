@@ -106,7 +106,7 @@ export async function Footer({ lang }: FooterProps) {
                   <span>{t_trans.footer.address}</span>
                 </div>
                 {footerContactEmail && (
-                  <a href={`mailto:${footerContactEmail}`} aria-label={`Email us at ${footerContactEmail}`} className="group/email flex items-center gap-3 text-sm text-white/70 transition-colors duration-300 hover:text-accent">
+                  <a href={`mailto:${footerContactEmail}`} aria-label={lang === "ar" ? `أرسل إلينا على ${footerContactEmail}` : lang === "fa" ? `ایمیل به ${footerContactEmail}` : `Email us at ${footerContactEmail}`} className="group/email flex items-center gap-3 text-sm text-white/70 transition-colors duration-300 hover:text-accent">
                     <Mail className="w-4 h-4 shrink-0 text-inherit" />
                     <span dir="ltr" className="text-inherit underline-offset-4 group-hover/email:underline">{footerContactEmail}</span>
                   </a>
@@ -116,13 +116,13 @@ export async function Footer({ lang }: FooterProps) {
                     <div key={phone.value} className="group/phone flex items-start gap-3 text-sm">
                       <Phone className="w-4 h-4 mt-0.5 shrink-0 text-white/70 transition-colors duration-300 group-hover/phone:text-accent" />
                       <div className="flex flex-col">
-                        <a href={`tel:${phone.value}`} aria-label={`Call us at ${phone.display}`} className="text-sm text-white/70 transition-colors duration-300 hover:text-accent">
+                        <a href={`tel:${phone.value}`} aria-label={lang === "ar" ? `اتصل على ${phone.display}` : lang === "fa" ? `تماس با ${phone.display}` : `Call us at ${phone.display}`} className="text-sm text-white/70 transition-colors duration-300 hover:text-accent">
                           <span dir="ltr" className="text-inherit tabular-nums underline-offset-4 hover:underline">{phone.display}</span>
                         </a>
                         {phone.whatsappHref && (
-                          <a href={phone.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label={`Chat with ${phone.display} on WhatsApp`} className="mt-1 inline-flex items-center gap-1 text-xs text-white/60 transition-colors duration-300 hover:text-[#25D366]">
+                          <a href={phone.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label={lang === "ar" ? `تحدث مع ${phone.display} عبر WhatsApp` : lang === "fa" ? `چت با ${phone.display} در WhatsApp` : `Chat with ${phone.display} on WhatsApp`} className="mt-1 inline-flex items-center gap-1 text-xs text-white/60 transition-colors duration-300 hover:text-[#25D366]">
                             <WhatsAppIcon className="h-3.5 w-3.5 shrink-0" />
-                            <span>WhatsApp ↗</span>
+                            <span>{lang === "ar" ? "واتساب ↗" : lang === "fa" ? "واتساپ ↗" : "WhatsApp ↗"}</span>
                           </a>
                         )}
                       </div>

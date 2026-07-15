@@ -1,6 +1,6 @@
 export default function JobDetailLoading() {
   return (
-    <div lang="en" dir="ltr">
+    <div>
       <div className="h-16 bg-white/80 border-b border-border" />
       <main className="px-4 sm:px-6 py-8">
         <div className="max-w-4xl mx-auto">

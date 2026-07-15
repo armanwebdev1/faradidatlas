@@ -1,6 +1,6 @@
 export default function ProductDetailLoading() {
   return (
-    <div lang="en" dir="ltr">
+    <div>
       {/* Header skeleton */}
       <div className="h-16 bg-white/80 border-b border-border" />
 

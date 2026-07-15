@@ -81,7 +81,7 @@ export function OfficeInfo({ lang, t, contactInfo }: OfficeInfoProps) {
                     href={phone.whatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Chat with ${phone.display} on WhatsApp`}
+                    aria-label={lang === "ar" ? `تحدث مع ${phone.display} عبر WhatsApp` : lang === "fa" ? `چت با ${phone.display} در WhatsApp` : `Chat with ${phone.display} on WhatsApp`}
                     className="transition-colors hover:text-[#25D366]"
                   >
                     <WhatsAppIcon className="w-4 h-4 shrink-0" />

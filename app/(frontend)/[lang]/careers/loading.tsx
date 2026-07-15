@@ -1,6 +1,6 @@
 export default function CareersLoading() {
   return (
-    <div lang="en" dir="ltr">
+    <div>
       <div className="h-16 bg-white/80 border-b border-border" />
       <main>
         {/* Hero skeleton */}
