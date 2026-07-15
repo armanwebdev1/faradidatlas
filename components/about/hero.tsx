@@ -34,7 +34,7 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
       dir={isRTL ? "rtl" : "ltr"}
     >
       <div className="container-full">
-        <div className="space-y-20">
+        <div className="space-y-28">
           <AnimatedHeadline className="text-center">
             <p
               className="eyebrow mb-4 text-brand-navy opacity-0 translate-y-6"
