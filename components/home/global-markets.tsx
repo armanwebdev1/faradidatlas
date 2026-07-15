@@ -123,6 +123,13 @@ export function GlobalMarkets({
       id="markets"
       className="section relative overflow-hidden bg-surface opacity-0 translate-y-6"
     >
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-1/3 h-1/3 bg-accent-warm-gold/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-1/2 h-1/2 bg-accent-warm-gold/3 rounded-full blur-3xl" />
+      </div>
+      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-brand-navy/25 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-foreground/10 to-transparent" />
+
       <div className="relative container-wide">
         <div className="text-center mb-14 sm:mb-16 md:mb-20">
           <p className="eyebrow text-brand-navy mb-4 sm:mb-5 md:mb-6">
@@ -147,22 +154,24 @@ export function GlobalMarkets({
               className="group relative animate-fade-in-up h-full"
               style={{ animationDelay: `${idx * 100}ms` }}
             >
-              <div className="relative h-full p-6 sm:p-8 md:p-10 border border-border/30 rounded-2xl sm:rounded-2xl bg-card/50 transition-all duration-500 ease-out group-hover:border-accent-warm-gold/50 group-hover:shadow-lg hover:bg-linear-to-br hover:from-foreground/2 hover:to-foreground/1 flex flex-col">
+              <div className="relative h-full p-6 sm:p-8 md:p-10 rounded-2xl bg-background border border-foreground/8 shadow-sm transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:shadow-md group-hover:border-accent-warm-gold/40 flex flex-col">
+                <div className="absolute top-0 left-6 right-6 h-px bg-linear-to-r from-transparent via-accent-warm-gold/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
                 <div className="mb-6 relative">
                   <CountUp
                     target={market.value}
                     suffix={market.suffix}
-                    className="text-responsive-section text-accent-warm-gold"
+                    className="text-responsive-section font-semibold text-brand-navy"
                   />
                 </div>
 
-                <div className="mb-4 pb-4 border-b border-border/30">
-                  <h3 className="text-responsive-subheading text-foreground">
+                <div className="mb-4">
+                  <h3 className="text-responsive-subheading font-semibold text-foreground">
                     {market.region}
                   </h3>
                 </div>
 
-                <p className="text-sm sm:text-base text-foreground/65 leading-relaxed">
+                <p className="text-sm sm:text-base text-foreground/60 leading-relaxed">
                   {market.countries}
                 </p>
               </div>
