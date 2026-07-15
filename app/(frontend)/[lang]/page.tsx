@@ -71,8 +71,15 @@ export default async function HomePage({ params }: HomePageProps) {
   const globalMarkets = homepage?.globalMarkets ?? [];
   const cta = homepage?.cta ?? {};
 
+  const heroImageUrls = heroSlides.length > 0
+    ? heroSlides.map((slide) => resolveMediaUrl(slide.image))
+    : ["/hero/optimized/home-hero-1.webp", "/hero/optimized/home-hero-2.webp", "/hero/optimized/home-hero-3.webp"];
+
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
+      {heroImageUrls.map((url) => (
+        <link key={url} rel="preload" as="image" href={url} />
+      ))}
       <Header lang={lang} />
       <main id="main-content">
         <Hero lang={lang} t={t} slides={heroSlides} />
