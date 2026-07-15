@@ -1,5 +1,5 @@
 export interface Job {
-  id: number;
+  id: string | number;
   titleEn: string;
   titleFa: string;
   titleAr: string;
