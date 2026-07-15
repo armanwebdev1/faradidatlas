@@ -1,12 +1,14 @@
 import type { GlobalConfig } from 'payload'
+import { isRole } from '../access/isRole'
 
 export const Navigation: GlobalConfig = {
   slug: 'navigation',
   access: {
     read: () => true,
+    update: isRole('super-admin', 'company-admin'),
   },
   admin: {
-    group: 'Settings',
+    group: 'Company',
   },
   fields: [
     {

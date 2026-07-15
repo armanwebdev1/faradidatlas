@@ -1,13 +1,17 @@
 import type { CollectionConfig } from 'payload'
+import { isRole } from '../access/isRole'
 
 export const Categories: CollectionConfig = {
   slug: 'categories',
   access: {
     read: () => true,
+    create: isRole('super-admin', 'company-admin'),
+    update: isRole('super-admin', 'company-admin', 'editor'),
+    delete: isRole('super-admin', 'company-admin'),
   },
   admin: {
     useAsTitle: 'name',
-    group: 'Products',
+    group: 'Catalog',
     description: 'Product categories with SEO content, display ordering, and icon settings',
   },
   versions: {

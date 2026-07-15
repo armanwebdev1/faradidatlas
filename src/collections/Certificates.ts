@@ -1,13 +1,17 @@
 import type { CollectionConfig } from 'payload'
+import { isRole } from '../access/isRole'
 
 export const Certificates: CollectionConfig = {
   slug: 'certificates',
   access: {
     read: () => true,
+    create: isRole('super-admin', 'company-admin'),
+    update: isRole('super-admin', 'company-admin', 'editor'),
+    delete: isRole('super-admin', 'company-admin'),
   },
   admin: {
     useAsTitle: 'title',
-    group: 'Company',
+    group: 'Catalog',
     defaultColumns: ['title', 'issueDate', 'ordering'],
   },
   versions: {

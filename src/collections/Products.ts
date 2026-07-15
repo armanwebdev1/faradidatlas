@@ -1,15 +1,33 @@
 import type { CollectionConfig } from 'payload'
+import { isRole } from '../access/isRole'
 
 export const Products: CollectionConfig = {
   slug: 'products',
   access: {
     read: () => true,
+    create: isRole('super-admin', 'company-admin'),
+    update: isRole('super-admin', 'company-admin', 'editor'),
+    delete: isRole('super-admin', 'company-admin'),
   },
   admin: {
     useAsTitle: 'name',
-    group: 'Products',
+    group: 'Catalog',
     defaultColumns: ['name', 'category', 'brand', 'featured', 'status'],
     description: 'Manage your product catalog with multilingual names, descriptions, specs, and images',
+    livePreview: {
+      url: ({ data, locale }) => {
+        const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://faradidatlas.com'
+        const lang = locale || 'en'
+        const slug = data?.slug || ''
+        return `${base}/${lang}/products/${slug}`
+      },
+    },
+    preview: (doc, { locale }) => {
+      const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://faradidatlas.com'
+      const lang = locale || 'en'
+      const slug = doc?.slug || ''
+      return `${base}/${lang}/products/${slug}`
+    },
   },
   versions: {
     drafts: true,

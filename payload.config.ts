@@ -1,6 +1,8 @@
 import { buildConfig } from "payload";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { BlocksFeature } from "@payloadcms/richtext-lexical";
+import { richTextBlocks } from "./src/admin/blocks";
 import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -33,8 +35,15 @@ export default buildConfig({
     user: "users",
     meta: {
       titleSuffix: " | Faradid Atlas CMS",
+      description: "Content management for faradidatlas.com",
     },
     components: {
+      graphics: {
+        Logo: "@/src/admin/components/CustomLogo#CustomLogo",
+      },
+      beforeNavLinks: [
+        "@/src/admin/components/GlobalSearch#GlobalSearch",
+      ],
       views: {
         Dashboard: {
           Component: "@/src/admin/components/CustomDashboard#CustomDashboard",
@@ -67,7 +76,14 @@ export default buildConfig({
     Translations,
   ],
 
-  editor: lexicalEditor(),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [
+      ...defaultFeatures,
+      BlocksFeature({
+        blocks: richTextBlocks,
+      }),
+    ],
+  }),
 
   db: postgresAdapter({
     pool: {

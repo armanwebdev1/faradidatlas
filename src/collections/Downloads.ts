@@ -1,13 +1,17 @@
 import type { CollectionConfig } from 'payload'
+import { isRole } from '../access/isRole'
 
 export const Downloads: CollectionConfig = {
   slug: 'downloads',
   access: {
     read: () => true,
+    create: isRole('super-admin', 'company-admin'),
+    update: isRole('super-admin', 'company-admin', 'editor'),
+    delete: isRole('super-admin', 'company-admin'),
   },
   admin: {
     useAsTitle: 'title',
-    group: 'Content',
+    group: 'Catalog',
     defaultColumns: ['title', 'category', 'ordering'],
   },
   versions: {

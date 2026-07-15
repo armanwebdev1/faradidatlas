@@ -1,1 +1,333 @@
-/* Custom Payload admin styles - Faradid Atlas CMS */
+/* Faradid Atlas CMS — Premium Admin Theme */
+
+/* ─── Base Typography ─── */
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ─── Sidebar ─── */
+.payload-sidebar {
+  .payload-sidebar__nav-group-header {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--theme-elevation-400);
+    padding: 1.25rem 1rem 0.375rem;
+  }
+}
+
+/* ─── Document Controls ─── */
+.doc-controls__publish {
+  border-radius: 6px;
+}
+
+/* ─── List View Refinements ─── */
+.list-header {
+  .list-header__title {
+    font-weight: 600;
+  }
+}
+
+.cell-label {
+  font-weight: 500;
+}
+
+/* ─── Form Fields ─── */
+.field-type__text,
+.field-type__textarea,
+.field-type__number,
+.field-type__email,
+.field-type__select,
+.field-type__date {
+  border-radius: 6px;
+}
+
+/* ─── Buttons ─── */
+.btn--style-primary {
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.btn--style-secondary {
+  border-radius: 6px;
+}
+
+/* ─── Cards & Panels ─── */
+.card {
+  border-radius: 8px;
+  border: 1px solid var(--theme-elevation-100);
+}
+
+/* ─── Table ─── */
+.table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* ─── Tabs ─── */
+.tabs-field__tab-button {
+  font-weight: 500;
+  font-size: 0.875rem;
+
+  &--active {
+    border-bottom-color: var(--theme-elevation-900);
+    color: var(--theme-elevation-900);
+  }
+}
+
+/* ─── Edit View ─── */
+.edit-view {
+  .edit-view__header {
+    border-bottom-color: var(--theme-elevation-100);
+  }
+}
+
+/* ─── Array / Block Fields ─── */
+.array-field__draggableRows {
+  border: 1px solid var(--theme-elevation-100);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.array-field__row {
+  border-bottom-color: var(--theme-elevation-100);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+/* ─── Relationship Fields ─── */
+.relationship--single-value {
+  border-radius: 6px;
+}
+
+/* ─── Upload Fields ─── */
+.upload--has-file {
+  border-radius: 8px;
+}
+
+/* ─── Rich Text Editor ─── */
+.lexical-rich-text {
+  border-radius: 8px;
+  border: 1px solid var(--theme-elevation-150);
+}
+
+/* ─── Global Search (when implemented) ─── */
+.admin-global-search {
+  border-radius: 8px;
+  background: var(--theme-elevation-50);
+  border: 1px solid var(--theme-elevation-100);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+
+  &:focus-within {
+    border-color: var(--theme-elevation-300);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.04);
+  }
+}
+
+/* ─── Empty States ─── */
+.payload-empty-state {
+  text-align: center;
+  padding: 3rem 1.5rem;
+
+  h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.375rem;
+  }
+
+  p {
+    color: var(--theme-elevation-400);
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* ─── Login ─── */
+.login {
+  .login__form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .login__brand {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+}
+
+/* ─── Tooltip / Popover ─── */
+.tooltip {
+  border-radius: 6px;
+  font-size: 0.8125rem;
+}
+
+/* ─── Global Translations Toggle (locale switcher) ─── */
+.locale-toggler {
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+/* ─── Lexical Custom Blocks ─── */
+.block-callout {
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin: 0.5rem 0;
+  border-left: 3px solid;
+
+  &--info {
+    background: #eff6ff;
+    border-color: #3b82f6;
+  }
+
+  &--warning {
+    background: #fffbeb;
+    border-color: #f59e0b;
+  }
+
+  &--success {
+    background: #f0fdf4;
+    border-color: #22c55e;
+  }
+
+  &--tip {
+    background: #faf5ff;
+    border-color: #a855f7;
+  }
+}
+
+.block-cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.15s;
+
+  &--primary {
+    background: var(--theme-elevation-900);
+    color: white;
+  }
+
+  &--secondary {
+    background: var(--theme-elevation-100);
+    color: var(--theme-elevation-800);
+  }
+
+  &--outline {
+    background: transparent;
+    border: 1px solid var(--theme-elevation-300);
+    color: var(--theme-elevation-800);
+  }
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.block-embed {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  margin: 0.75rem 0;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+}
+
+.block-image-gallery {
+  margin: 0.75rem 0;
+
+  &--grid {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  &--columns-2 { grid-template-columns: repeat(2, 1fr); }
+  &--columns-3 { grid-template-columns: repeat(3, 1fr); }
+  &--columns-4 { grid-template-columns: repeat(4, 1fr); }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+}
+
+.block-accordion {
+  margin: 0.75rem 0;
+
+  .accordion-item {
+    border: 1px solid var(--theme-elevation-100);
+    border-radius: 8px;
+    overflow: hidden;
+
+    & + .accordion-item {
+      margin-top: 0.5rem;
+    }
+  }
+
+  .accordion-heading {
+    padding: 0.875rem 1rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .accordion-content {
+    padding: 0 1rem 1rem;
+    font-size: 0.875rem;
+    color: var(--theme-elevation-600);
+    line-height: 1.6;
+  }
+}
+
+.block-feature-table {
+  margin: 0.75rem 0;
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  th, td {
+    padding: 0.625rem 0.875rem;
+    border: 1px solid var(--theme-elevation-100);
+    text-align: left;
+  }
+
+  th {
+    background: var(--theme-elevation-50);
+    font-weight: 600;
+    font-size: 0.8125rem;
+  }
+
+  tr:hover td {
+    background: var(--theme-elevation-25, rgba(0,0,0,0.01));
+  }
+}

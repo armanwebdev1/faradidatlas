@@ -1,7 +1,12 @@
 import type { GlobalConfig } from 'payload'
+import { isRole } from '../access/isRole'
 
 export const Redirects: GlobalConfig = {
   slug: 'redirects',
+  access: {
+    read: () => true,
+    update: isRole('super-admin'),
+  },
   admin: {
     group: 'Settings',
   },

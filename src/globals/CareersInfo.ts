@@ -1,9 +1,11 @@
 import type { GlobalConfig } from 'payload'
+import { isRole } from '../access/isRole'
 
 export const CareersInfo: GlobalConfig = {
   slug: 'careers-info',
   access: {
     read: () => true,
+    update: isRole('super-admin', 'company-admin'),
   },
   admin: {
     group: 'Company',

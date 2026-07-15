@@ -1,9 +1,13 @@
 import type { CollectionConfig } from 'payload'
+import { isRole } from '../access/isRole'
 
 export const Media: CollectionConfig = {
   slug: 'media',
   access: {
     read: () => true,
+    create: isRole('super-admin', 'company-admin', 'editor'),
+    update: isRole('super-admin', 'company-admin', 'editor'),
+    delete: isRole('super-admin', 'company-admin'),
   },
   admin: {
     group: 'Media',
