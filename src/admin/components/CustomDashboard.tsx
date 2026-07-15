@@ -1,7 +1,8 @@
-import React from 'react'
-import { getPayloadClient } from '@/lib/payload'
-import { TranslationStatus } from './TranslationStatus'
+'use client'
+
+import React, { useState, useEffect } from 'react'
 import { getAdminTranslation, type AdminLang } from '../i18n'
+import { TranslationStatus } from './TranslationStatus'
 
 const card: React.CSSProperties = {
   padding: '1.5rem',
@@ -50,107 +51,11 @@ interface CountResult {
 }
 
 interface RecentItem {
-  type: string
   typeKey: string
   name: string
   updatedAt: string
   href: string
   status?: string
-}
-
-async function getCounts() {
-  try {
-    const payload = await getPayloadClient()
-    const results = await Promise.all([
-      payload.count({ collection: 'products' }),
-      payload.count({ collection: 'blog-posts' }),
-      payload.count({ collection: 'jobs' }),
-      payload.count({ collection: 'downloads' }),
-      payload.count({ collection: 'certificates' }),
-      payload.count({ collection: 'categories' }),
-      payload.count({ collection: 'faqs' }),
-      payload.count({ collection: 'media' }),
-    ])
-    const counts = (r: CountResult) => r.totalDocs
-    return {
-      products: counts(results[0]),
-      blogPosts: counts(results[1]),
-      jobs: counts(results[2]),
-      downloads: counts(results[3]),
-      certificates: counts(results[4]),
-      categories: counts(results[5]),
-      faqs: counts(results[6]),
-      media: counts(results[7]),
-      total: counts(results[0]) + counts(results[1]) + counts(results[2]) + counts(results[3]) + counts(results[4]) + counts(results[5]) + counts(results[6]),
-    }
-  } catch {
-    return { products: 0, blogPosts: 0, jobs: 0, downloads: 0, certificates: 0, categories: 0, faqs: 0, media: 0, total: 0 }
-  }
-}
-
-async function getRecentEdits(): Promise<RecentItem[]> {
-  try {
-    const payload = await getPayloadClient()
-    const [products, jobs, blogPosts, downloads] = await Promise.all([
-      payload.find({ collection: 'products', limit: 3, sort: '-updatedAt' }),
-      payload.find({ collection: 'jobs', limit: 2, sort: '-updatedAt' }),
-      payload.find({ collection: 'blog-posts', limit: 3, sort: '-updatedAt' }),
-      payload.find({ collection: 'downloads', limit: 2, sort: '-updatedAt' }),
-    ])
-    const items: RecentItem[] = [
-      ...products.docs.map((p: any) => ({
-        type: 'Product',
-        typeKey: 'recent.type.product',
-        name: (p.name as any)?.en ?? p.name ?? 'Untitled',
-        updatedAt: p.updatedAt,
-        href: `/admin/collections/products/${p.id}`,
-        status: p._status,
-      })),
-      ...jobs.docs.map((j: any) => ({
-        type: 'Job',
-        typeKey: 'recent.type.job',
-        name: (j.title as any)?.en ?? j.title ?? 'Untitled',
-        updatedAt: j.updatedAt,
-        href: `/admin/collections/jobs/${j.id}`,
-        status: j._status,
-      })),
-      ...blogPosts.docs.map((b: any) => ({
-        type: 'Blog Post',
-        typeKey: 'recent.type.blogPost',
-        name: (b.title as any)?.en ?? b.title ?? 'Untitled',
-        updatedAt: b.updatedAt,
-        href: `/admin/collections/blog-posts/${b.id}`,
-        status: b._status,
-      })),
-      ...downloads.docs.map((d: any) => ({
-        type: 'Download',
-        typeKey: 'recent.type.download',
-        name: (d.title as any)?.en ?? d.title ?? 'Untitled',
-        updatedAt: d.updatedAt,
-        href: `/admin/collections/downloads/${d.id}`,
-        status: d._status,
-      })),
-    ]
-    return items
-      .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
-      .slice(0, 8)
-  } catch {
-    return []
-  }
-}
-
-async function getDraftCounts(): Promise<number> {
-  try {
-    const payload = await getPayloadClient()
-    const results = await Promise.all([
-      payload.count({ collection: 'products', where: { _status: { equals: 'draft' } } }),
-      payload.count({ collection: 'blog-posts', where: { _status: { equals: 'draft' } } }),
-      payload.count({ collection: 'jobs', where: { _status: { equals: 'draft' } } }),
-    ])
-    return results.reduce((sum, r) => sum + r.totalDocs, 0)
-  } catch {
-    return 0
-  }
 }
 
 function timeAgo(dateStr: string, lang: AdminLang): string {
@@ -174,12 +79,125 @@ const PlusIcon: React.FC = () => (
   </svg>
 )
 
-// This is a server component, so we pass lang as a prop from a client wrapper
-async function DashboardContent({ lang }: { lang: AdminLang }) {
-  const t = (key: string, params?: Record<string, string | number>) => getAdminTranslation(lang, key, params)
-  const counts = await getCounts()
-  const recentEdits = await getRecentEdits()
-  const draftCount = await getDraftCounts()
+export const CustomDashboard: React.FC = () => {
+  const [lang, setLang] = useState<AdminLang>('en')
+  const [counts, setCounts] = useState({ products: 0, blogPosts: 0, jobs: 0, downloads: 0, certificates: 0, categories: 0, faqs: 0, media: 0, total: 0 })
+  const [recentEdits, setRecentEdits] = useState<RecentItem[]>([])
+  const [draftCount, setDraftCount] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const stored = localStorage.getItem('admin-lang') as AdminLang
+    if (stored === 'en' || stored === 'fa') setLang(stored)
+  }, [])
+
+  const t = (key: string, params?: Record<string, string | number>) =>
+    getAdminTranslation(lang, key, params)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [productsRes, blogRes, jobsRes, downloadsRes, certsRes, catsRes, faqsRes, mediaRes] = await Promise.all([
+          fetch('/api/products?limit=0&depth=0'),
+          fetch('/api/blog-posts?limit=0&depth=0'),
+          fetch('/api/jobs?limit=0&depth=0'),
+          fetch('/api/downloads?limit=0&depth=0'),
+          fetch('/api/certificates?limit=0&depth=0'),
+          fetch('/api/categories?limit=0&depth=0'),
+          fetch('/api/faqs?limit=0&depth=0'),
+          fetch('/api/media?limit=0&depth=0'),
+        ])
+
+        const getCount = async (res: Response) => {
+          if (!res.ok) return 0
+          const data = await res.json()
+          return data.totalDocs || 0
+        }
+
+        const [products, blogPosts, jobs, downloads, certificates, categories, faqs, media] = await Promise.all([
+          getCount(productsRes),
+          getCount(blogRes),
+          getCount(jobsRes),
+          getCount(downloadsRes),
+          getCount(certsRes),
+          getCount(catsRes),
+          getCount(faqsRes),
+          getCount(mediaRes),
+        ])
+
+        setCounts({ products, blogPosts, jobs, downloads, certificates, categories, faqs, media, total: products + blogPosts + jobs + downloads + certificates + categories + faqs })
+
+        // Recent edits
+        const [recentProducts, recentJobs, recentBlogs, recentDownloads] = await Promise.all([
+          fetch('/api/products?limit=3&sort=-updatedAt').then(r => r.ok ? r.json() : { docs: [] }),
+          fetch('/api/jobs?limit=2&sort=-updatedAt').then(r => r.ok ? r.json() : { docs: [] }),
+          fetch('/api/blog-posts?limit=3&sort=-updatedAt').then(r => r.ok ? r.json() : { docs: [] }),
+          fetch('/api/downloads?limit=2&sort=-updatedAt').then(r => r.ok ? r.json() : { docs: [] }),
+        ])
+
+        const items: RecentItem[] = [
+          ...(recentProducts.docs || []).map((p: any) => ({
+            typeKey: 'recent.type.product',
+            name: (p.name as any)?.en ?? p.name ?? 'Untitled',
+            updatedAt: p.updatedAt,
+            href: `/admin/collections/products/${p.id}`,
+            status: p._status,
+          })),
+          ...(recentJobs.docs || []).map((j: any) => ({
+            typeKey: 'recent.type.job',
+            name: (j.title as any)?.en ?? j.title ?? 'Untitled',
+            updatedAt: j.updatedAt,
+            href: `/admin/collections/jobs/${j.id}`,
+            status: j._status,
+          })),
+          ...(recentBlogs.docs || []).map((b: any) => ({
+            typeKey: 'recent.type.blogPost',
+            name: (b.title as any)?.en ?? b.title ?? 'Untitled',
+            updatedAt: b.updatedAt,
+            href: `/admin/collections/blog-posts/${b.id}`,
+            status: b._status,
+          })),
+          ...(recentDownloads.docs || []).map((d: any) => ({
+            typeKey: 'recent.type.download',
+            name: (d.title as any)?.en ?? d.title ?? 'Untitled',
+            updatedAt: d.updatedAt,
+            href: `/admin/collections/downloads/${d.id}`,
+            status: d._status,
+          })),
+        ]
+
+        setRecentEdits(
+          items
+            .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
+            .slice(0, 8)
+        )
+
+        // Draft count
+        const [draftProducts, draftBlogs, draftJobs] = await Promise.all([
+          fetch('/api/products?limit=0&where[_status][equals]=draft').then(r => r.ok ? r.json() : { totalDocs: 0 }),
+          fetch('/api/blog-posts?limit=0&where[_status][equals]=draft').then(r => r.ok ? r.json() : { totalDocs: 0 }),
+          fetch('/api/jobs?limit=0&where[_status][equals]=draft').then(r => r.ok ? r.json() : { totalDocs: 0 }),
+        ])
+        setDraftCount((draftProducts.totalDocs || 0) + (draftBlogs.totalDocs || 0) + (draftJobs.totalDocs || 0))
+      } catch {
+        // Silent fail
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  if (isLoading) {
+    return (
+      <div style={{ padding: '2rem', maxWidth: '1100px' }}>
+        <div style={{ color: 'var(--theme-elevation-400)', fontSize: '0.9rem' }}>
+          {t('misc.loading')}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div style={{ padding: '2rem', maxWidth: '1100px' }}>
@@ -303,17 +321,6 @@ async function DashboardContent({ lang }: { lang: AdminLang }) {
         <TranslationStatus />
       </div>
     </div>
-  )
-}
-
-// Server component can't use context, so we use a client wrapper
-import { ServerLangReader } from './ServerLangReader'
-
-export const CustomDashboard: React.FC = async () => {
-  return (
-    <ServerLangReader>
-      {(lang) => <DashboardContent lang={lang} />}
-    </ServerLangReader>
   )
 }
 

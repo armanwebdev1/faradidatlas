@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { useAdminLang } from '../providers/AdminLang'
+import { getAdminTranslation, type AdminLang } from '../i18n'
 
 interface TranslationInfo {
   collection: string
@@ -10,9 +10,17 @@ interface TranslationInfo {
 }
 
 export const TranslationStatus: React.FC = () => {
-  const { t } = useAdminLang()
+  const [lang, setLang] = useState<AdminLang>('en')
   const [data, setData] = useState<TranslationInfo[]>([])
   const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const stored = localStorage.getItem('admin-lang') as AdminLang
+    if (stored === 'en' || stored === 'fa') setLang(stored)
+  }, [])
+
+  const t = (key: string, params?: Record<string, string | number>) =>
+    getAdminTranslation(lang, key, params)
 
   useEffect(() => {
     const fetchTranslationStatus = async () => {

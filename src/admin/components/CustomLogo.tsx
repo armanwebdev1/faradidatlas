@@ -1,11 +1,16 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { useAdminLang } from '../providers/AdminLang'
+import type { AdminLang } from '../i18n'
 
 export const CustomLogo: React.FC = () => {
-  const { lang } = useAdminLang()
+  const [lang, setLang] = useState<AdminLang>('en')
+
+  useEffect(() => {
+    const stored = localStorage.getItem('admin-lang') as AdminLang
+    if (stored === 'en' || stored === 'fa') setLang(stored)
+  }, [])
 
   return (
     <div

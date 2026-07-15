@@ -1,8 +1,7 @@
 'use client'
 
-import React from 'react'
-import { useAdminLang, type AdminLang } from '../providers/AdminLang'
-import { adminTranslations } from '../i18n'
+import React, { useState, useEffect } from 'react'
+import type { AdminLang } from '../i18n'
 
 const languages: { code: AdminLang; label: string; flag: string }[] = [
   { code: 'en', label: 'English', flag: '🇺🇸' },
@@ -10,7 +9,18 @@ const languages: { code: AdminLang; label: string; flag: string }[] = [
 ]
 
 export const LanguageSwitcher: React.FC = () => {
-  const { lang, setLang } = useAdminLang()
+  const [lang, setLangState] = useState<AdminLang>('en')
+
+  useEffect(() => {
+    const stored = localStorage.getItem('admin-lang') as AdminLang
+    if (stored === 'en' || stored === 'fa') setLangState(stored)
+  }, [])
+
+  const setLang = (newLang: AdminLang) => {
+    setLangState(newLang)
+    localStorage.setItem('admin-lang', newLang)
+    window.location.reload()
+  }
 
   return (
     <div style={{ display: 'flex', gap: '2px', borderRadius: '6px', overflow: 'hidden', border: '1px solid var(--theme-elevation-150)' }}>

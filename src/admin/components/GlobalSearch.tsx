@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useCallback, useRef, useEffect } from 'react'
-import { useAdminLang } from '../providers/AdminLang'
+import { getAdminTranslation, type AdminLang } from '../i18n'
 
 interface SearchResult {
   id: string
@@ -12,13 +12,24 @@ interface SearchResult {
 }
 
 export const GlobalSearch: React.FC = () => {
-  const { t } = useAdminLang()
+  const [lang, setLang] = useState<AdminLang>('en')
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchResult[]>([])
   const [isOpen, setIsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const stored = localStorage.getItem('admin-lang') as AdminLang
+    if (stored === 'en' || stored === 'fa') setLang(stored)
+  }, [])
+
+  const t = useCallback(
+    (key: string, params?: Record<string, string | number>) =>
+      getAdminTranslation(lang, key, params),
+    [lang],
+  )
 
   const search = useCallback(async (q: string) => {
     if (q.length < 2) {

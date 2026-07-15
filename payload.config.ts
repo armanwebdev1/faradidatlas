@@ -39,9 +39,6 @@ export default buildConfig({
       graphics: {
         Logo: "@/src/admin/components/CustomLogo#CustomLogo",
       },
-      providers: [
-        "@/src/admin/components/AdminProvider#AdminProvider",
-      ],
       beforeNavLinks: [
         "@/src/admin/components/GlobalSearch#GlobalSearch",
         "@/src/admin/components/LanguageSwitcher#LanguageSwitcher",
