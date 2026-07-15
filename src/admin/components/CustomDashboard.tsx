@@ -202,13 +202,16 @@ export const CustomDashboard: React.FC = () => {
   return (
     <div style={{ padding: '2rem', maxWidth: '1100px' }}>
       {/* Header */}
-      <div style={{ marginBottom: '2rem' }}>
-        <h1 style={{ margin: '0 0 0.25rem 0', fontSize: '1.5rem', fontWeight: 600 }}>
-          {t('dashboard.title')}
-        </h1>
-        <p style={{ color: 'var(--theme-elevation-450)', margin: 0, fontSize: '0.9rem' }}>
-          {t('dashboard.subtitle')}
-        </p>
+      <div style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
+        <div>
+          <h1 style={{ margin: '0 0 0.25rem 0', fontSize: '1.5rem', fontWeight: 600 }}>
+            {t('dashboard.title')}
+          </h1>
+          <p style={{ color: 'var(--theme-elevation-450)', margin: 0, fontSize: '0.9rem' }}>
+            {t('dashboard.subtitle')}
+          </p>
+        </div>
+        <DashboardLanguageSwitcher />
       </div>
 
       {/* Quick Actions */}
@@ -351,5 +354,53 @@ function QuickLink({ href, title, description }: { href: string; title: string; 
       <div style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.25rem' }}>{title}</div>
       <div style={{ color: 'var(--theme-elevation-450)', fontSize: '0.8125rem', lineHeight: 1.4 }}>{description}</div>
     </a>
+  )
+}
+
+const languages: { code: AdminLang; label: string; flag: string }[] = [
+  { code: 'en', label: 'English', flag: '🇺🇸' },
+  { code: 'fa', label: 'فارسی', flag: '🇮🇷' },
+]
+
+function DashboardLanguageSwitcher() {
+  const [lang, setLangState] = useState<AdminLang>('en')
+
+  useEffect(() => {
+    const stored = localStorage.getItem('admin-lang') as AdminLang
+    if (stored === 'en' || stored === 'fa') setLangState(stored)
+  }, [])
+
+  const setLang = (newLang: AdminLang) => {
+    setLangState(newLang)
+    localStorage.setItem('admin-lang', newLang)
+    window.location.reload()
+  }
+
+  return (
+    <div style={{ display: 'flex', gap: '2px', borderRadius: '6px', overflow: 'hidden', border: '1px solid var(--theme-elevation-150)' }}>
+      {languages.map((l) => (
+        <button
+          key={l.code}
+          onClick={() => setLang(l.code)}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.375rem',
+            padding: '0.375rem 0.625rem',
+            fontSize: '0.75rem',
+            fontWeight: lang === l.code ? 600 : 400,
+            border: 'none',
+            cursor: 'pointer',
+            transition: 'background 0.15s',
+            background: lang === l.code ? 'var(--theme-elevation-100)' : 'transparent',
+            color: lang === l.code ? 'var(--theme-elevation-800)' : 'var(--theme-elevation-450)',
+            fontFamily: 'inherit',
+          }}
+        >
+          <span style={{ fontSize: '0.875rem' }}>{l.flag}</span>
+          {l.label}
+        </button>
+      ))}
+    </div>
   )
 }

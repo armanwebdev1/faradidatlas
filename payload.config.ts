@@ -41,7 +41,6 @@ export default buildConfig({
       },
       beforeNavLinks: [
         "@/src/admin/components/GlobalSearch#GlobalSearch",
-        "@/src/admin/components/LanguageSwitcher#LanguageSwitcher",
       ],
       views: {
         Dashboard: {
