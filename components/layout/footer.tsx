@@ -62,7 +62,7 @@ export async function Footer({ lang }: FooterProps) {
   const companyLinks: FooterLinkItem[] = [
     { href: `/${lang}/about`, label: t_trans.nav.about },
     { href: `/${lang}/careers`, label: t_trans.nav.careers },
-    { href: `/${lang}/careers#open-roles`, label: t_trans.pages.careers.openPositions },
+    { href: `/${lang}#markets`, label: t_trans.footer.markets },
     { href: `/${lang}/faq`, label: t_trans.nav.faq },
     { href: `/${lang}/blog`, label: t_trans.nav.blog },
   ];
@@ -90,7 +90,6 @@ export async function Footer({ lang }: FooterProps) {
                 </Link>
                 <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-light">{t_trans.footer.tagline}</p>
               </div>
-              <Link href={`/${lang}/contact`} className="inline-flex text-sm font-semibold text-accent hover:text-accent/80 transition-colors">{t_trans.nav.contact}</Link>
             </div>
 
             <FooterColumn title={t_trans.footer.navigation} links={navigationLinks} />
@@ -140,17 +139,13 @@ export async function Footer({ lang }: FooterProps) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="text-center md:text-start">
-              <p className="text-xs text-white/60 leading-relaxed font-light">&copy; 2026 Faradid Atlas Foods. {t_trans.footer.copyright} | <span className="text-accent/80">ISO 22000</span></p>
-            </div>
-            <div className="text-center md:text-end">
-              <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:justify-end">
-                <Link href={`/${lang}/faq`} className="text-xs text-white/60 hover:text-accent transition-colors duration-300">{t_trans.nav.faq}</Link>
-                <Link href={`/${lang}/blog`} className="text-xs text-white/60 hover:text-accent transition-colors duration-300">{t_trans.nav.blog}</Link>
-                <Link href={`/${lang}/contact`} className="text-xs text-white/60 hover:text-accent transition-colors duration-300">{t_trans.nav.contact}</Link>
-                <a href="/sitemap.xml" className="text-xs text-white/60 hover:text-accent transition-colors duration-300">{t_trans.footer.sitemap}</a>
-              </div>
+          <div className="flex flex-col items-center gap-4">
+            <p className="text-xs text-white/40 leading-relaxed font-light">&copy; 2026 Faradid Atlas Foods. {t_trans.footer.copyright} | <span className="text-white/50">ISO 22000</span></p>
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+              <Link href={`/${lang}/faq`} className="text-xs text-white/60 hover:text-accent transition-colors duration-300">{t_trans.nav.faq}</Link>
+              <Link href={`/${lang}/blog`} className="text-xs text-white/60 hover:text-accent transition-colors duration-300">{t_trans.nav.blog}</Link>
+              <Link href={`/${lang}/contact`} className="text-xs text-white/60 hover:text-accent transition-colors duration-300">{t_trans.nav.contact}</Link>
+              <a href="/sitemap.xml" className="text-xs text-white/60 hover:text-accent transition-colors duration-300">{t_trans.footer.sitemap}</a>
             </div>
           </div>
         </div>
