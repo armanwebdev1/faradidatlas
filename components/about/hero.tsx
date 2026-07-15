@@ -53,7 +53,7 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
             </p>
             <Link
               href={`/${lang}/contact`}
-              className="btn btn-primary btn-md opacity-0 translate-y-6"
+              className="btn btn-primary btn-md mt-8 opacity-0 translate-y-6"
               data-animate
             >
               {t.nav.contact}
