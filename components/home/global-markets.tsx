@@ -135,9 +135,9 @@ export function GlobalMarkets({
           <p className="eyebrow text-brand-navy mb-4 sm:mb-5 md:mb-6">
             {t.pages.home.marketsEyebrow}
           </p>
-          <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 md:mb-8 animate-fade-in-up">
+          <h2 className="text-responsive-title text-primary mb-5 sm:mb-6 md:mb-8 animate-fade-in-up">
             <span className="inline-block">{t.pages.home.marketsRegional}</span>
-            <span className="inline-block ml-3 md:ml-4 text-transparent bg-clip-text bg-linear-to-r from-accent-warm-gold to-accent-warm-orange">
+            <span className="inline-block ml-3 md:ml-4 text-transparent bg-clip-text bg-linear-to-r from-accent-warm-gold to-accent-warm-orange leading-[1.1]">
               {t.pages.home.marketsReach}
             </span>
           </h2>
