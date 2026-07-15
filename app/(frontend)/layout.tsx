@@ -37,6 +37,30 @@ const notoSansArabic = localFont({
   preload: false,
 });
 
+const tajawal = localFont({
+  src: [
+    { path: "../fonts/tajawal/Tajawal-Regular.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/tajawal/Tajawal-Medium.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/tajawal/Tajawal-Bold.woff2", weight: "700", style: "normal" },
+    { path: "../fonts/tajawal/Tajawal-ExtraBold.woff2", weight: "800", style: "normal" },
+  ],
+  variable: "--font-tajawal",
+  display: "swap",
+  preload: false,
+});
+
+const cairo = localFont({
+  src: [
+    { path: "../fonts/cairo/Cairo-Regular.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/cairo/Cairo-SemiBold.woff2", weight: "600", style: "normal" },
+    { path: "../fonts/cairo/Cairo-Bold.woff2", weight: "700", style: "normal" },
+    { path: "../fonts/cairo/Cairo-ExtraBold.woff2", weight: "800", style: "normal" },
+  ],
+  variable: "--font-cairo",
+  display: "swap",
+  preload: false,
+});
+
 const estedad = localFont({
   src: [
     {
@@ -81,7 +105,7 @@ export default function FrontendLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${playfair.variable} ${estedad.variable} ${shabnam.variable} ${notoSansArabic.variable}`}
+      className={`${geistSans.variable} ${playfair.variable} ${estedad.variable} ${shabnam.variable} ${notoSansArabic.variable} ${tajawal.variable} ${cairo.variable}`}
     >
       <body className="antialiased">
         <LivePreviewHandler />
