@@ -1,6 +1,5 @@
 import type { Language } from "@/lib/i18n";
 import Image from "next/image";
-import { AnimatedSection } from "./animated-section";
 
 interface GetConnectedProps {
   lang: Language;
@@ -58,23 +57,17 @@ export function GetConnected({ lang, companyInfo }: GetConnectedProps) {
   );
 
   return (
-    <AnimatedSection className="relative bg-background overflow-hidden" type="fade-up">
-      {/* Ambient blob */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 right-0 w-1/3 h-1/3 bg-accent-warm-gold/5 rounded-full blur-3xl" />
-      </div>
-
+    <section className="relative bg-background overflow-hidden">
       <div className="w-full px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl opacity-0" data-animate>
+          <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
             <Image
               src={imageSrc}
               alt={altText}
               fill
               sizes="(min-width: 1152px) 1152px, 100vw"
-              className="object-cover transition-transform duration-700 hover:scale-105"
+              className="object-cover"
             />
-            <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-2xl" />
           </div>
         </div>
       </div>
@@ -82,9 +75,8 @@ export function GetConnected({ lang, companyInfo }: GetConnectedProps) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <h2
-            className="lg:col-span-5 text-4xl md:text-5xl font-bold font-hero text-primary leading-tight tracking-tight opacity-0"
+            className="lg:col-span-5 text-4xl md:text-5xl font-bold font-hero text-primary leading-tight tracking-tight"
             style={{ fontFamily: "var(--font-hero)" }}
-            data-animate
           >
             {heading}
           </h2>
@@ -97,19 +89,18 @@ export function GetConnected({ lang, companyInfo }: GetConnectedProps) {
               textAlign: isRTL ? "right" : "left",
             }}
           >
-            <p className="text-base md:text-lg font-semibold text-foreground leading-relaxed opacity-0" data-animate>
+            <p className="text-base md:text-lg font-semibold text-foreground leading-relaxed">
               {paragraph1}
             </p>
 
-            <p className="text-sm md:text-base text-muted-foreground leading-relaxed opacity-0" data-animate>
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
               {paragraph2}
             </p>
 
             <div
-              className={`border-accent-warm-gold mt-8 opacity-0 ${
+              className={`border-accent-warm-gold mt-8 ${
                 isRTL ? "border-r-2 pr-8" : "border-l-2 pl-6"
               }`}
-              data-animate
             >
               <p className="text-sm md:text-base text-muted-foreground leading-relaxed italic">
                 {quote}
@@ -118,6 +109,6 @@ export function GetConnected({ lang, companyInfo }: GetConnectedProps) {
           </div>
         </div>
       </div>
-    </AnimatedSection>
+    </section>
   );
 }

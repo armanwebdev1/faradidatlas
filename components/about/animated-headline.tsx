@@ -5,25 +5,11 @@ import { useEffect, useRef } from "react";
 
 interface AnimatedHeadlineProps {
   className?: string;
-  type?: "fade-up" | "scale" | "blur";
 }
-
-const animationClasses: Record<string, string> = {
-  "fade-up": "animate-fade-in-up",
-  "scale": "animate-scale-reveal",
-  "blur": "animate-blur-reveal",
-};
-
-const initialClasses: Record<string, string> = {
-  "fade-up": "opacity-0 translate-y-6",
-  "scale": "opacity-0",
-  "blur": "opacity-0",
-};
 
 export function AnimatedHeadline({
   children,
   className = "",
-  type = "fade-up",
 }: PropsWithChildren<AnimatedHeadlineProps>) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -36,12 +22,12 @@ export function AnimatedHeadline({
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
           const el = entry.target as HTMLElement;
-          el.classList.add(animationClasses[type]);
-          el.classList.remove(...initialClasses[type].split(" "));
+          el.classList.add("animate-fade-in-up");
+          el.classList.remove("opacity-0", "translate-y-6");
           observer.unobserve(el);
         });
       },
-      { threshold: 0.15 },
+      { threshold: 0.2 },
     );
 
     const elements = node.querySelectorAll("[data-animate]");
@@ -51,7 +37,7 @@ export function AnimatedHeadline({
     });
 
     return () => observer.disconnect();
-  }, [type]);
+  }, []);
 
   return (
     <div ref={containerRef} className={className}>
