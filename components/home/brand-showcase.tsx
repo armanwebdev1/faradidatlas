@@ -57,7 +57,7 @@ export function BrandShowcase({ lang, t, brands }: BrandShowcaseProps) {
 
   const image =
     lang === "ar"
-      ? "/brands/brands-banner/brands-showcase-ar.jpeg"
+      ? "/brands/brands-banner/brands-showcase-banner-ar.jpeg"
       : lang === "en"
         ? "/brands/brands-banner/brands-showcase-banner-en.jpeg"
         : "/brands/brands-banner/brands-showcase-banner-fa.jpeg";
