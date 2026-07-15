@@ -137,7 +137,7 @@ export function GlobalMarkets({
           </p>
           <h2 className="text-responsive-title text-primary mb-5 sm:mb-6 md:mb-8 animate-fade-in-up">
             <span className="inline-block">{t.pages.home.marketsRegional}</span>
-            <span className="inline-block ml-3 md:ml-4 text-transparent bg-clip-text bg-linear-to-r from-accent-warm-gold to-accent-warm-orange leading-[1.1]">
+            <span className="inline-block ml-3 md:ml-4 text-transparent bg-clip-text bg-[length:100%_120%] bg-[position:center_40%] bg-linear-to-r from-accent-warm-gold to-accent-warm-orange">
               {t.pages.home.marketsReach}
             </span>
           </h2>
