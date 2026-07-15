@@ -95,7 +95,6 @@ export const GlobalSearch: React.FC = () => {
           border: '1px solid var(--theme-elevation-150)',
           fontSize: '0.8125rem',
           cursor: 'text',
-          minWidth: '200px',
         }}
         onClick={() => { inputRef.current?.focus(); setIsOpen(true) }}
       >

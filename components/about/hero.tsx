@@ -10,6 +10,12 @@ interface AboutHeroProps {
   companyInfo?: any;
 }
 
+const heroDescription: Record<Language, string> = {
+  en: "With over fifteen years of experience in food sourcing and trading, Faradid Atlas provide reliable import and distribution solutions through a strong network of suppliers and business partners.",
+  fa: "با بیش از پانزده سال تجربه در تأمین و تجارت مواد غذایی، فرادید اطلس راهکارهای قابل اعتماد واردات و توزیع را از طریق شبکه‌ای قوی از تأمین‌کنندگان و شرکای تجاری ارائه می‌دهد.",
+  ar: "بخبرة تمتد لأكثر من خمسة عشر عامًا في تزوين وتجارة المواد الغذائية، توفر فراديد أطلس حلول استيراد وتوزيع موثوقة من خلال شبكة قوية من الموردين وشركاء الأعمال.",
+};
+
 const defaultStats = [
   { value: 2009, labelEn: "Established", labelFa: "سال آغاز فعالیت", labelAr: "سنة التأسيس" },
   { value: 4, labelEn: "Rice brands", labelFa: "برند برنج", labelAr: "علامات أرز تجارية" },
@@ -37,11 +43,14 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
               {t.pages.about.heroEyebrow}
             </p>
             <h1
-              className="font-semibold text-[clamp(2.2rem,2.45vw+1.05rem,3.75rem)] leading-[1.18] sm:leading-[1.16] md:leading-[1.14] tracking-normal text-primary mb-8 max-w-5xl mx-auto opacity-0 translate-y-6"
+              className="font-semibold text-[clamp(2.2rem,2.45vw+1.05rem,3.75rem)] leading-[1.18] sm:leading-[1.16] md:leading-[1.14] tracking-normal text-primary mb-5 max-w-5xl mx-auto opacity-0 translate-y-6"
               data-animate
             >
               {t.pages.about.heroHeadline}
             </h1>
+            <p className="text-responsive-body text-foreground/70 max-w-3xl mx-auto opacity-0 translate-y-6" data-animate>
+              {heroDescription[lang]}
+            </p>
             <Link
               href={`/${lang}/contact`}
               className="btn btn-primary btn-md opacity-0 translate-y-6"

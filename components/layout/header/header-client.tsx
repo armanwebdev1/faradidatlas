@@ -222,7 +222,7 @@ const productBrandMenuItems = useMemo(
     effectiveHeaderMode === "hidden"
       ? "-translate-y-[calc(100%+0.75rem)] opacity-0 pointer-events-none"
       : effectiveHeaderMode === "compact"
-        ? "-translate-y-16 opacity-100"
+        ? "sm:-translate-y-16 translate-y-0 opacity-100"
         : "translate-y-0 opacity-100";
   const topBrandVisibilityClass =
     effectiveHeaderMode === "full"

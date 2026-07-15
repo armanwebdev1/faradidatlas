@@ -232,10 +232,12 @@ export const CustomDashboard: React.FC = async () => {
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
+                  flexWrap: 'wrap',
+                  gap: '0.5rem',
                   background: 'var(--theme-elevation-0)',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', minWidth: 0 }}>
                   <span style={{
                     fontSize: '0.6875rem',
                     fontWeight: 600,
@@ -243,10 +245,11 @@ export const CustomDashboard: React.FC = async () => {
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em',
                     minWidth: '5rem',
+                    flexShrink: 0,
                   }}>
                     {item.type}
                   </span>
-                  <span style={{ fontSize: '0.875rem', fontWeight: 500 }}>
+                  <span style={{ fontSize: '0.875rem', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                     {item.name}
                   </span>
                   {item.status && item.status === 'draft' && (

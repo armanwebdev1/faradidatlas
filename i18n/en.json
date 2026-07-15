@@ -61,7 +61,7 @@
       "qualityCommitment": "ISO-led Quality Standards",
       "description": "Faradid Atlas connects dependable global supply with Iran's essential food market through disciplined sourcing, quality control, and distribution.",
       "heroEyebrow": "About Faradid Atlas",
-      "heroHeadline": "Since 2009, Faradid Atlas has connected reliable global food sourcing with the essential needs of the Iranian market — importing and distributing rice, legumes, nuts, seeds, spices, and sugar.",
+      "heroHeadline": "Faradid Atlas, since 2009, has been a trusted partener in the supply of essential food commodities.",
       "heroImageAlt": "Faradid Atlas food import and distribution operations",
       "foodSecurityPractical": "Food security through sourcing, import, and distribution",
       "storyP1": "Faradid Atlas was established in 2009 to strengthen food security across Iran, UAE, and Oman. We source and import rice, legumes, nuts, seeds, spices, and sugar from India and Pakistan, applying ISO 22000 food safety standards throughout our supply chain to deliver consistent quality to wholesalers, foodservice operators, and organizations.",
@@ -282,11 +282,11 @@
       "title": "Frequently Asked Questions",
       "subtitle": "Help Center",
       "description": "Find answers about sourcing, products, quality standards, logistics, and B2B cooperation.",
-    "noQuestions": "No questions found",
-    "showing": "Showing",
-    "questions": "questions",
-    "allTopics": "All topics",
-    "didntFind": "Didn't find your answer?",
+      "noQuestions": "No questions found",
+      "showing": "Showing",
+      "questions": "questions",
+      "allTopics": "All topics",
+      "didntFind": "Didn't find your answer?",
       "contactTeam": "Contact our team directly so we can review your product, volume, destination, and timing.",
       "heroDescription": "Find answers about Faradid Atlas, its products, sourcing, quality standards, vision, values, offices, and inquiry steps.",
       "heroImageAlt": "Food supply support"
@@ -341,7 +341,7 @@
       "viewProductAria": "View",
       "brandsEyebrow": "Our Brands",
       "brandsTitle": "Trusted names",
-      "brandsDescription": "Mizban, 21, Hayat, and Golbanoo — recognized brands delivered through Faradid Atlas.",
+      "brandsDescription": "Faradid Atlas, through collaboration with Mizban, 21, Hayat, and Golbanoo, provides essential food products through reliable sourcing and distribution channels. These partnerships are built on trust, quality, and long-term commercial relationships.",
       "brandsImageAlt": "Faradid Atlas, a leader in supplying food products, featuring the recognized brands Mizban, 21, Hayat, and Golbanoo.",
       "ctaEyebrow": "B2B Cooperation",
       "ctaImageAlt": "Food supply partnership",
@@ -399,7 +399,7 @@
     "sitemap": "Sitemap",
     "haccp": "ISO-led Quality",
     "copyright": "All rights reserved",
-      "followUs": "Follow Us"
+    "followUs": "Follow Us"
   },
   "seo": {
     "aboutDescription": "Learn how Faradid Atlas has built regional food sourcing, import, and distribution capabilities since 2009, guided by quality, continuity, and trust.",
