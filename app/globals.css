@@ -417,7 +417,7 @@
 /* Arabic font overrides */
 [dir="rtl"][lang="ar"] {
   --font-body: var(--font-tajawal);
-  --font-hero: var(--font-cairo);
+  --font-hero: var(--font-noto-arabic);
   --font-label: var(--font-tajawal);
 }
 
