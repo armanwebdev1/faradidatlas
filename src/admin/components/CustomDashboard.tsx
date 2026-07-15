@@ -1,6 +1,7 @@
 import React from 'react'
 import { getPayloadClient } from '@/lib/payload'
 import { TranslationStatus } from './TranslationStatus'
+import { getAdminTranslation, type AdminLang } from '../i18n'
 
 const card: React.CSSProperties = {
   padding: '1.5rem',
@@ -50,6 +51,7 @@ interface CountResult {
 
 interface RecentItem {
   type: string
+  typeKey: string
   name: string
   updatedAt: string
   href: string
@@ -98,6 +100,7 @@ async function getRecentEdits(): Promise<RecentItem[]> {
     const items: RecentItem[] = [
       ...products.docs.map((p: any) => ({
         type: 'Product',
+        typeKey: 'recent.type.product',
         name: (p.name as any)?.en ?? p.name ?? 'Untitled',
         updatedAt: p.updatedAt,
         href: `/admin/collections/products/${p.id}`,
@@ -105,6 +108,7 @@ async function getRecentEdits(): Promise<RecentItem[]> {
       })),
       ...jobs.docs.map((j: any) => ({
         type: 'Job',
+        typeKey: 'recent.type.job',
         name: (j.title as any)?.en ?? j.title ?? 'Untitled',
         updatedAt: j.updatedAt,
         href: `/admin/collections/jobs/${j.id}`,
@@ -112,6 +116,7 @@ async function getRecentEdits(): Promise<RecentItem[]> {
       })),
       ...blogPosts.docs.map((b: any) => ({
         type: 'Blog Post',
+        typeKey: 'recent.type.blogPost',
         name: (b.title as any)?.en ?? b.title ?? 'Untitled',
         updatedAt: b.updatedAt,
         href: `/admin/collections/blog-posts/${b.id}`,
@@ -119,6 +124,7 @@ async function getRecentEdits(): Promise<RecentItem[]> {
       })),
       ...downloads.docs.map((d: any) => ({
         type: 'Download',
+        typeKey: 'recent.type.download',
         name: (d.title as any)?.en ?? d.title ?? 'Untitled',
         updatedAt: d.updatedAt,
         href: `/admin/collections/downloads/${d.id}`,
@@ -147,17 +153,18 @@ async function getDraftCounts(): Promise<number> {
   }
 }
 
-function timeAgo(dateStr: string): string {
+function timeAgo(dateStr: string, lang: AdminLang): string {
+  const t = (key: string, params?: Record<string, string | number>) => getAdminTranslation(lang, key, params)
   const now = Date.now()
   const then = new Date(dateStr).getTime()
   const diffMs = now - then
   const mins = Math.floor(diffMs / 60000)
-  if (mins < 1) return 'Just now'
-  if (mins < 60) return `${mins}m ago`
+  if (mins < 1) return t('recent.justNow')
+  if (mins < 60) return t('recent.minutesAgo', { n: mins })
   const hours = Math.floor(mins / 60)
-  if (hours < 24) return `${hours}h ago`
+  if (hours < 24) return t('recent.hoursAgo', { n: hours })
   const days = Math.floor(hours / 24)
-  if (days < 7) return `${days}d ago`
+  if (days < 7) return t('recent.daysAgo', { n: days })
   return new Date(dateStr).toLocaleDateString()
 }
 
@@ -167,7 +174,9 @@ const PlusIcon: React.FC = () => (
   </svg>
 )
 
-export const CustomDashboard: React.FC = async () => {
+// This is a server component, so we pass lang as a prop from a client wrapper
+async function DashboardContent({ lang }: { lang: AdminLang }) {
+  const t = (key: string, params?: Record<string, string | number>) => getAdminTranslation(lang, key, params)
   const counts = await getCounts()
   const recentEdits = await getRecentEdits()
   const draftCount = await getDraftCounts()
@@ -177,10 +186,10 @@ export const CustomDashboard: React.FC = async () => {
       {/* Header */}
       <div style={{ marginBottom: '2rem' }}>
         <h1 style={{ margin: '0 0 0.25rem 0', fontSize: '1.5rem', fontWeight: 600 }}>
-          Dashboard
+          {t('dashboard.title')}
         </h1>
         <p style={{ color: 'var(--theme-elevation-450)', margin: 0, fontSize: '0.9rem' }}>
-          Content overview for faradidatlas.com — EN / FA / AR
+          {t('dashboard.subtitle')}
         </p>
       </div>
 
@@ -188,36 +197,36 @@ export const CustomDashboard: React.FC = async () => {
       <div style={{ marginBottom: '2rem' }}>
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
           <a href="/admin/collections/products/create" style={quickActionBtn}>
-            <PlusIcon /> Product
+            <PlusIcon /> {t('quickActions.product')}
           </a>
           <a href="/admin/collections/blog-posts/create" style={quickActionBtn}>
-            <PlusIcon /> Blog Post
+            <PlusIcon /> {t('quickActions.blogPost')}
           </a>
           <a href="/admin/collections/jobs/create" style={quickActionBtn}>
-            <PlusIcon /> Job
+            <PlusIcon /> {t('quickActions.job')}
           </a>
           <a href="/admin/collections/downloads/create" style={quickActionBtn}>
-            <PlusIcon /> Download
+            <PlusIcon /> {t('quickActions.download')}
           </a>
         </div>
       </div>
 
       {/* Stat Cards */}
       <div style={{ ...grid, gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', marginBottom: '2rem' }}>
-        <StatCard label="Products" value={counts.products} href="/admin/collections/products" />
-        <StatCard label="Blog Posts" value={counts.blogPosts} href="/admin/collections/blog-posts" />
-        <StatCard label="Jobs" value={counts.jobs} href="/admin/collections/jobs" />
-        <StatCard label="Downloads" value={counts.downloads} href="/admin/collections/downloads" />
-        <StatCard label="Certificates" value={counts.certificates} href="/admin/collections/certificates" />
-        <StatCard label="Categories" value={counts.categories} href="/admin/collections/categories" />
-        <StatCard label="Drafts" value={draftCount} accent />
+        <StatCard label={t('stats.products')} value={counts.products} href="/admin/collections/products" />
+        <StatCard label={t('stats.blogPosts')} value={counts.blogPosts} href="/admin/collections/blog-posts" />
+        <StatCard label={t('stats.jobs')} value={counts.jobs} href="/admin/collections/jobs" />
+        <StatCard label={t('stats.downloads')} value={counts.downloads} href="/admin/collections/downloads" />
+        <StatCard label={t('stats.certificates')} value={counts.certificates} href="/admin/collections/certificates" />
+        <StatCard label={t('stats.categories')} value={counts.categories} href="/admin/collections/categories" />
+        <StatCard label={t('stats.drafts')} value={draftCount} accent />
       </div>
 
       {/* Recent Edits */}
       {recentEdits.length > 0 && (
         <div style={{ marginBottom: '2rem' }}>
           <h2 style={{ margin: '0 0 0.75rem 0', fontSize: '1rem', fontWeight: 600 }}>
-            Recent Edits
+            {t('recent.title')}
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', background: 'var(--theme-elevation-100)', borderRadius: '10px', overflow: 'hidden' }}>
             {recentEdits.map((item, i) => (
@@ -247,7 +256,7 @@ export const CustomDashboard: React.FC = async () => {
                     minWidth: '5rem',
                     flexShrink: 0,
                   }}>
-                    {item.type}
+                    {t(item.typeKey)}
                   </span>
                   <span style={{ fontSize: '0.875rem', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                     {item.name}
@@ -261,12 +270,12 @@ export const CustomDashboard: React.FC = async () => {
                       padding: '0.125rem 0.5rem',
                       borderRadius: '4px',
                     }}>
-                      Draft
+                      {t('recent.status.draft')}
                     </span>
                   )}
                 </div>
                 <span style={{ fontSize: '0.8125rem', color: 'var(--theme-elevation-400)' }}>
-                  {timeAgo(item.updatedAt)}
+                  {timeAgo(item.updatedAt, lang)}
                 </span>
               </a>
             ))}
@@ -277,17 +286,15 @@ export const CustomDashboard: React.FC = async () => {
       {/* Quick Links */}
       <div>
         <h2 style={{ margin: '0 0 0.75rem 0', fontSize: '1rem', fontWeight: 600 }}>
-          Quick Links
+          {t('quickLinks.title')}
         </h2>
         <div style={grid}>
-          <QuickLink href="/admin/globals/homepage" title="Homepage" description="Hero, value props, products, CTA" />
-          <QuickLink href="/admin/collections/products" title="Products" description="Catalog with specs and images" />
-          <QuickLink href="/admin/collections/blog-posts" title="Blog" description="Articles and content" />
-          <QuickLink href="/admin/globals/company-info" title="Company Info" description="About page content" />
-          <QuickLink href="/admin/globals/navigation" title="Navigation" description="Menu items" />
-          <QuickLink href="/admin/globals/site-settings" title="Settings" description="Site config, SEO, analytics" />
-          <QuickLink href="/admin/collections/media" title="Media" description="Image library" />
-          <QuickLink href="/admin/globals/translations" title="Translations" description="UI strings" />
+          <QuickLink href="/admin/globals/homepage" title={t('quickLinks.homepage')} description={t('quickLinks.homepageDesc')} />
+          <QuickLink href="/admin/collections/products" title={t('quickLinks.products')} description={t('quickLinks.productsDesc')} />
+          <QuickLink href="/admin/collections/blog-posts" title={t('quickLinks.blog')} description={t('quickLinks.blogDesc')} />
+          <QuickLink href="/admin/globals/company-info" title={t('quickLinks.companyInfo')} description={t('quickLinks.companyInfoDesc')} />
+          <QuickLink href="/admin/globals/site-settings" title={t('quickLinks.settings')} description={t('quickLinks.settingsDesc')} />
+          <QuickLink href="/admin/collections/media" title={t('quickLinks.media')} description={t('quickLinks.mediaDesc')} />
         </div>
       </div>
 
@@ -296,6 +303,17 @@ export const CustomDashboard: React.FC = async () => {
         <TranslationStatus />
       </div>
     </div>
+  )
+}
+
+// Server component can't use context, so we use a client wrapper
+import { ServerLangReader } from './ServerLangReader'
+
+export const CustomDashboard: React.FC = async () => {
+  return (
+    <ServerLangReader>
+      {(lang) => <DashboardContent lang={lang} />}
+    </ServerLangReader>
   )
 }
 

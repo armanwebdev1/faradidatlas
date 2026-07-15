@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useCallback, useRef, useEffect } from 'react'
+import { useAdminLang } from '../providers/AdminLang'
 
 interface SearchResult {
   id: string
@@ -11,6 +12,7 @@ interface SearchResult {
 }
 
 export const GlobalSearch: React.FC = () => {
+  const { t } = useAdminLang()
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchResult[]>([])
   const [isOpen, setIsOpen] = useState(false)
@@ -107,7 +109,7 @@ export const GlobalSearch: React.FC = () => {
           value={query}
           onChange={(e) => { setQuery(e.target.value); setIsOpen(true) }}
           onFocus={() => setIsOpen(true)}
-          placeholder="Search..."
+          placeholder={t('search.placeholder')}
           style={{
             border: 'none',
             background: 'transparent',
@@ -148,12 +150,12 @@ export const GlobalSearch: React.FC = () => {
         }}>
           {isLoading && (
             <div style={{ padding: '1rem', textAlign: 'center', color: 'var(--theme-elevation-400)', fontSize: '0.8125rem' }}>
-              Searching...
+              {t('search.searching')}
             </div>
           )}
           {!isLoading && results.length === 0 && query.length >= 2 && (
             <div style={{ padding: '1rem', textAlign: 'center', color: 'var(--theme-elevation-400)', fontSize: '0.8125rem' }}>
-              No results found
+              {t('search.noResults')}
             </div>
           )}
           {!isLoading && results.map((result) => (

@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import { useAdminLang } from '../providers/AdminLang'
 
 interface TranslationInfo {
   collection: string
@@ -9,6 +10,7 @@ interface TranslationInfo {
 }
 
 export const TranslationStatus: React.FC = () => {
+  const { t } = useAdminLang()
   const [data, setData] = useState<TranslationInfo[]>([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -56,9 +58,9 @@ export const TranslationStatus: React.FC = () => {
   if (isLoading || data.length === 0) return null
 
   const collectionLabels: Record<string, string> = {
-    products: 'Products',
-    'blog-posts': 'Blog',
-    jobs: 'Jobs',
+    products: t('translation.products'),
+    'blog-posts': t('translation.blog'),
+    jobs: t('translation.jobs'),
   }
 
   const localeInfo = [
@@ -75,14 +77,14 @@ export const TranslationStatus: React.FC = () => {
       background: 'var(--theme-elevation-0)',
     }}>
       <h3 style={{ margin: '0 0 0.75rem 0', fontSize: '0.875rem', fontWeight: 600 }}>
-        Translation Coverage
+        {t('translation.title')}
       </h3>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
         {data.map((item) => (
           <div key={item.collection}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
               <span style={{ fontSize: '0.8125rem', fontWeight: 500 }}>{collectionLabels[item.collection] || item.collection}</span>
-              <span style={{ fontSize: '0.75rem', color: 'var(--theme-elevation-400)' }}>{item.total} items</span>
+              <span style={{ fontSize: '0.75rem', color: 'var(--theme-elevation-400)' }}>{t('translation.items', { n: item.total })}</span>
             </div>
             <div style={{ display: 'flex', gap: '0.375rem' }}>
               {localeInfo.map((locale) => {

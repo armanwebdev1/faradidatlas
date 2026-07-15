@@ -2,8 +2,11 @@
 
 import React from 'react'
 import Image from 'next/image'
+import { useAdminLang } from '../providers/AdminLang'
 
 export const CustomLogo: React.FC = () => {
+  const { lang } = useAdminLang()
+
   return (
     <div
       style={{
@@ -38,7 +41,7 @@ export const CustomLogo: React.FC = () => {
           lineHeight: 1.2,
         }}
       >
-        Faradid Atlas
+        {lang === 'fa' ? 'فرادید اطلس' : 'Faradid Atlas'}
       </span>
     </div>
   )

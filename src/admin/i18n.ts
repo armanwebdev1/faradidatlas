@@ -1,0 +1,442 @@
+export type AdminLang = 'en' | 'fa'
+
+export const adminTranslations: Record<AdminLang, Record<string, string>> = {
+  en: {
+    // ── Dashboard ──────────────────────────────────────────
+    'dashboard.title': 'Dashboard',
+    'dashboard.subtitle': 'Content overview for faradidatlas.com — EN / FA / AR',
+
+    // ── Quick Actions ──────────────────────────────────────
+    'quickActions.product': 'Product',
+    'quickActions.blogPost': 'Blog Post',
+    'quickActions.job': 'Job',
+    'quickActions.download': 'Download',
+
+    // ── Stats ──────────────────────────────────────────────
+    'stats.products': 'Products',
+    'stats.blogPosts': 'Blog Posts',
+    'stats.jobs': 'Jobs',
+    'stats.downloads': 'Downloads',
+    'stats.certificates': 'Certificates',
+    'stats.categories': 'Categories',
+    'stats.drafts': 'Drafts',
+
+    // ── Recent Edits ───────────────────────────────────────
+    'recent.title': 'Recent Edits',
+    'recent.type.product': 'Product',
+    'recent.type.job': 'Job',
+    'recent.type.blogPost': 'Blog Post',
+    'recent.type.download': 'Download',
+    'recent.status.draft': 'Draft',
+    'recent.justNow': 'Just now',
+    'recent.minutesAgo': '{n}m ago',
+    'recent.hoursAgo': '{n}h ago',
+    'recent.daysAgo': '{n}d ago',
+
+    // ── Quick Links ────────────────────────────────────────
+    'quickLinks.title': 'Quick Links',
+    'quickLinks.homepage': 'Homepage',
+    'quickLinks.homepageDesc': 'Hero, value props, products, CTA',
+    'quickLinks.products': 'Products',
+    'quickLinks.productsDesc': 'Catalog with specs and images',
+    'quickLinks.blog': 'Blog',
+    'quickLinks.blogDesc': 'Articles and content',
+    'quickLinks.companyInfo': 'Company Info',
+    'quickLinks.companyInfoDesc': 'About page content',
+    'quickLinks.settings': 'Settings',
+    'quickLinks.settingsDesc': 'Site config and SEO',
+    'quickLinks.media': 'Media',
+    'quickLinks.mediaDesc': 'Image library',
+
+    // ── Search ─────────────────────────────────────────────
+    'search.placeholder': 'Search...',
+    'search.searching': 'Searching...',
+    'search.noResults': 'No results found',
+    'search.untitled': 'Untitled',
+
+    // ── Language ───────────────────────────────────────────
+    'lang.en': 'English',
+    'lang.fa': 'فارسی',
+
+    // ── Translation Status ─────────────────────────────────
+    'translation.title': 'Translation Coverage',
+    'translation.items': '{n} items',
+    'translation.products': 'Products',
+    'translation.blog': 'Blog',
+    'translation.jobs': 'Jobs',
+
+    // ── Payload Admin Groups ───────────────────────────────
+    'group.website': 'Website',
+    'group.company': 'Company',
+    'group.settings': 'Settings',
+    'group.catalog': 'Catalog',
+    'group.content': 'Content',
+
+    // ── Collection Labels ──────────────────────────────────
+    'collection.products': 'Products',
+    'collection.categories': 'Categories',
+    'collection.productBrands': 'Product Brands',
+    'collection.blogPosts': 'Blog Posts',
+    'collection.faqs': 'FAQs',
+    'collection.jobs': 'Jobs',
+    'collection.downloads': 'Downloads',
+    'collection.certificates': 'Certificates',
+    'collection.media': 'Media',
+    'collection.users': 'Users',
+
+    // ── Global Labels ──────────────────────────────────────
+    'global.homepage': 'Homepage',
+    'global.companyInfo': 'Company Info',
+    'global.contactInfo': 'Contact Info',
+    'global.careersInfo': 'Careers Info',
+    'global.siteSettings': 'Site Settings',
+    'global.redirects': 'Redirects',
+
+    // ── Common Actions ─────────────────────────────────────
+    'action.save': 'Save',
+    'action.publish': 'Publish',
+    'action.draft': 'Save as Draft',
+    'action.delete': 'Delete',
+    'action.edit': 'Edit',
+    'action.create': 'Create',
+    'action.cancel': 'Cancel',
+    'action.confirm': 'Confirm',
+    'action.back': 'Back',
+    'action.viewAll': 'View All',
+    'action.view': 'View',
+    'action.addNew': 'Add New',
+    'action.duplicate': 'Duplicate',
+    'action.unpublish': 'Unpublish',
+    'action.restore': 'Restore',
+    'action.leaveWithoutSaving': 'Leave without saving?',
+    'action.unsavedChanges': 'You have unsaved changes.',
+
+    // ── Status Labels ──────────────────────────────────────
+    'status.draft': 'Draft',
+    'status.published': 'Published',
+    'status.active': 'Active',
+    'status.inactive': 'Inactive',
+    'status.closed': 'Closed',
+
+    // ── Field Labels ───────────────────────────────────────
+    'field.title': 'Title',
+    'field.name': 'Name',
+    'field.description': 'Description',
+    'field.image': 'Image',
+    'field.images': 'Images',
+    'field.slug': 'Slug',
+    'field.category': 'Category',
+    'field.brand': 'Brand',
+    'field.type': 'Type',
+    'field.value': 'Value',
+    'field.label': 'Label',
+    'field.url': 'URL',
+    'field.email': 'Email',
+    'field.phone': 'Phone',
+    'field.ordering': 'Ordering',
+    'field.isActive': 'Active',
+    'field.featured': 'Featured',
+    'field.content': 'Content',
+    'field.question': 'Question',
+    'field.answer': 'Answer',
+    'field.author': 'Author',
+    'field.tags': 'Tags',
+    'field.excerpt': 'Excerpt',
+    'field department': 'Department',
+    'field.location': 'Location',
+    'field.salary': 'Salary',
+    'field.type.select': 'Type',
+    'field.responsibilities': 'Responsibilities',
+    'field.requirements': 'Requirements',
+    'field.benefits': 'Benefits',
+    'field.seo': 'SEO',
+    'field.seo.title': 'SEO Title',
+    'field.seo.description': 'SEO Description',
+    'field.seo.ogImage': 'OG Image',
+
+    // ── Global Tab Labels ──────────────────────────────────
+    'tab.hero': 'Hero',
+    'tab.valueProps': 'Value Props',
+    'tab.brandsProducts': 'Brands & Products',
+    'tab.marketsCta': 'Markets & CTA',
+    'tab.about': 'About',
+    'tab.ceo': 'CEO',
+    'tab.values': 'Values',
+    'tab.strategicFramework': 'Strategic Framework',
+    'tab.offeringsContent': 'Offerings & Content',
+    'tab.contactDetails': 'Contact Details',
+    'tab.offices': 'Offices',
+    'tab.pageContent': 'Page Content',
+    'tab.responseTrust': 'Response & Trust',
+    'tab.branding': 'Branding',
+    'tab.seo': 'SEO',
+    'tab.analytics': 'Analytics',
+
+    // ── Block Labels ───────────────────────────────────────
+    'block.callout': 'Callout',
+    'block.ctaButton': 'CTA Button',
+    'block.embed': 'Embed',
+    'block.imageGallery': 'Image Gallery',
+    'block.accordion': 'Accordion',
+    'block.featureTable': 'Feature Table',
+
+    // ── Block Variant Labels ───────────────────────────────
+    'block.variant.info': 'Info',
+    'block.variant.warning': 'Warning',
+    'block.variant.success': 'Success',
+    'block.variant.tip': 'Tip',
+    'block.variant.primary': 'Primary',
+    'block.variant.secondary': 'Secondary',
+    'block.variant.outline': 'Outline',
+    'block.variant.grid': 'Grid',
+    'block.variant.carousel': 'Carousel',
+
+    // ── Block Descriptions ─────────────────────────────────
+    'block.embed.urlDesc': 'Video URL or embed URL',
+    'block.gallery.columnsDesc': 'Number of columns (grid only)',
+    'block.accordion.openDesc': 'Start expanded',
+
+    // ── Misc ───────────────────────────────────────────────
+    'misc.loading': 'Loading...',
+    'misc.error': 'Something went wrong',
+    'misc.noData': 'No data',
+    'misc.required': 'Required',
+    'misc.optional': 'Optional',
+    'misc.localized': 'Localized',
+    'misc.relationship': 'Relationship',
+    'misc.upload': 'Upload',
+    'misc.array': 'Array',
+    'misc.group': 'Group',
+    'misc.tabs': 'Tabs',
+    'misc.selectLocale': 'Select locale',
+    'misc.allLocales': 'All locales',
+    'misc.autosave': 'Autosaved',
+    'misc.lastEdited': 'Last edited',
+    'misc.createdAt': 'Created at',
+    'misc.updatedAt': 'Updated at',
+  },
+
+  fa: {
+    // ── داشبورد ────────────────────────────────────────────
+    'dashboard.title': 'داشبورد',
+    'dashboard.subtitle': 'نمای کلی محتوای faradidatlas.com — EN / FA / AR',
+
+    // ── دسترسی سریع ───────────────────────────────────────
+    'quickActions.product': 'محصول',
+    'quickActions.blogPost': 'مقاله وبلاگ',
+    'quickActions.job': 'شغل',
+    'quickActions.download': 'دانلود',
+
+    // ── آمار ──────────────────────────────────────────────
+    'stats.products': 'محصولات',
+    'stats.blogPosts': 'مقالات',
+    'stats.jobs': 'مشاغل',
+    'stats.downloads': 'دانلودها',
+    'stats.certificates': 'گواهینامه‌ها',
+    'stats.categories': 'دسته‌بندی‌ها',
+    'stats.drafts': 'پیش‌نویس‌ها',
+
+    // ── ویرایش‌های اخیر ────────────────────────────────────
+    'recent.title': 'ویرایش‌های اخیر',
+    'recent.type.product': 'محصول',
+    'recent.type.job': 'شغل',
+    'recent.type.blogPost': 'مقاله',
+    'recent.type.download': 'دانلود',
+    'recent.status.draft': 'پیش‌نویس',
+    'recent.justNow': 'همین الان',
+    'recent.minutesAgo': '{n} دقیقه پیش',
+    'recent.hoursAgo': '{n} ساعت پیش',
+    'recent.daysAgo': '{n} روز پیش',
+
+    // ── دسترسی سریع ───────────────────────────────────────
+    'quickLinks.title': 'دسترسی سریع',
+    'quickLinks.homepage': 'صفحه اصلی',
+    'quickLinks.homepageDesc': 'هیرو، مزایا، محصولات، CTA',
+    'quickLinks.products': 'محصولات',
+    'quickLinks.productsDesc': 'کاتالوگ با مشخصات و تصاویر',
+    'quickLinks.blog': 'وبلاگ',
+    'quickLinks.blogDesc': 'مقالات و محتوا',
+    'quickLinks.companyInfo': 'اطلاعات شرکت',
+    'quickLinks.companyInfoDesc': 'محتوای صفحه درباره ما',
+    'quickLinks.settings': 'تنظیمات',
+    'quickLinks.settingsDesc': 'پیکربندی سایت و SEO',
+    'quickLinks.media': 'رسانه',
+    'quickLinks.mediaDesc': 'کتابخانه تصاویر',
+
+    // ── جستجو ──────────────────────────────────────────────
+    'search.placeholder': 'جستجو...',
+    'search.searching': 'در حال جستجو...',
+    'search.noResults': 'نتیجه‌ای یافت نشد',
+    'search.untitled': 'بدون عنوان',
+
+    // ── زبان ───────────────────────────────────────────────
+    'lang.en': 'English',
+    'lang.fa': 'فارسی',
+
+    // ── وضعیت ترجمه ───────────────────────────────────────
+    'translation.title': 'وضعیت ترجمه',
+    'translation.items': '{n} مورد',
+    'translation.products': 'محصولات',
+    'translation.blog': 'وبلاگ',
+    'translation.jobs': 'مشاغل',
+
+    // ── گروه‌های پنل مدیریت ────────────────────────────────
+    'group.website': 'وبسایت',
+    'group.company': 'شرکت',
+    'group.settings': 'تنظیمات',
+    'group.catalog': 'کاتالوگ',
+    'group.content': 'محتوا',
+
+    // ── برچسب مجموعه‌ها ────────────────────────────────────
+    'collection.products': 'محصولات',
+    'collection.categories': 'دسته‌بندی‌ها',
+    'collection.productBrands': 'برندهای محصول',
+    'collection.blogPosts': 'مقالات وبلاگ',
+    'collection.faqs': 'سوالات متداول',
+    'collection.jobs': 'مشاغل',
+    'collection.downloads': 'دانلودها',
+    'collection.certificates': 'گواهینامه‌ها',
+    'collection.media': 'رسانه',
+    'collection.users': 'کاربران',
+
+    // ── برچسب متغیرهای سراسری ──────────────────────────────
+    'global.homepage': 'صفحه اصلی',
+    'global.companyInfo': 'اطلاعات شرکت',
+    'global.contactInfo': 'اطلاعات تماس',
+    'global.careersInfo': 'اطلاعات استخدام',
+    'global.siteSettings': 'تنظیمات سایت',
+    'global.redirects': 'تغییر مسیرها',
+
+    // ── عملیات رایج ────────────────────────────────────────
+    'action.save': 'ذخیره',
+    'action.publish': 'انتشار',
+    'action.draft': 'ذخیره به عنوان پیش‌نویس',
+    'action.delete': 'حذف',
+    'action.edit': 'ویرایش',
+    'action.create': 'ایجاد',
+    'action.cancel': 'لغو',
+    'action.confirm': 'تأیید',
+    'action.back': 'بازگشت',
+    'action.viewAll': 'مشاهده همه',
+    'action.view': 'مشاهده',
+    'action.addNew': 'افزودن جدید',
+    'action.duplicate': 'تکثیر',
+    'action.unpublish': 'لغو انتشار',
+    'action.restore': 'بازیابی',
+    'action.leaveWithoutSaving': 'بدون ذخیره خارج شوید؟',
+    'action.unsavedChanges': 'تغییرات ذخیره نشده دارید.',
+
+    // ── برچسب وضعیت ───────────────────────────────────────
+    'status.draft': 'پیش‌نویس',
+    'status.published': 'منتشر شده',
+    'status.active': 'فعال',
+    'status.inactive': 'غیرفعال',
+    'status.closed': 'بسته شده',
+
+    // ── برچسب فیلدها ──────────────────────────────────────
+    'field.title': 'عنوان',
+    'field.name': 'نام',
+    'field.description': 'توضیحات',
+    'field.image': 'تصویر',
+    'field.images': 'تصاویر',
+    'field.slug': 'نامک',
+    'field.category': 'دسته‌بندی',
+    'field.brand': 'برند',
+    'field.type': 'نوع',
+    'field.value': 'مقدار',
+    'field.label': 'برچسب',
+    'field.url': 'آدرس',
+    'field.email': 'ایمیل',
+    'field.phone': 'تلفن',
+    'field.ordering': 'ترتیب',
+    'field.isActive': 'فعال',
+    'field.featured': 'ویژه',
+    'field.content': 'محتوا',
+    'field.question': 'سوال',
+    'field.answer': 'پاسخ',
+    'field.author': 'نویسنده',
+    'field.tags': 'برچسب‌ها',
+    'field.excerpt': 'خلاصه',
+    'field.department': 'بخش',
+    'field.location': 'مکان',
+    'field.salary': 'حقوق',
+    'field.type.select': 'نوع',
+    'field.responsibilities': 'مسئولیت‌ها',
+    'field.requirements': 'الزامات',
+    'field.benefits': 'مزایا',
+    'field.seo': 'SEO',
+    'field.seo.title': 'عنوان SEO',
+    'field.seo.description': 'توضیحات SEO',
+    'field.seo.ogImage': 'تصویر OG',
+
+    // ── برچسب تب‌های متغیرهای سراسری ──────────────────────
+    'tab.hero': 'هیرو',
+    'tab.valueProps': 'مزایا',
+    'tab.brandsProducts': 'برندها و محصولات',
+    'tab.marketsCta': 'بازارها و CTA',
+    'tab.about': 'درباره ما',
+    'tab.ceo': 'مدیرعامل',
+    'tab.values': 'ارزش‌ها',
+    'tab.strategicFramework': 'چارچوب استراتژیک',
+    'tab.offeringsContent': 'خدمات و محتوا',
+    'tab.contactDetails': 'اطلاعات تماس',
+    'tab.offices': 'دفاتر',
+    'tab.pageContent': 'محتوای صفحه',
+    'tab.responseTrust': 'پاسخگویی و اعتماد',
+    'tab.branding': 'برندینگ',
+    'tab.seo': 'SEO',
+    'tab.analytics': 'آنالیتیکس',
+
+    // ── برچسب بلاک‌ها ──────────────────────────────────────
+    'block.callout': 'یادداشت',
+    'block.ctaButton': 'دکمه CTA',
+    'block.embed': 'جاسازی',
+    'block.imageGallery': 'گالری تصاویر',
+    'block.accordion': 'آکاردئون',
+    'block.featureTable': 'جدول ویژگی‌ها',
+
+    // ── برچسب متغیرهای بلاک ───────────────────────────────
+    'block.variant.info': 'اطلاعات',
+    'block.variant.warning': 'هشدار',
+    'block.variant.success': 'موفقیت',
+    'block.variant.tip': 'نکته',
+    'block.variant.primary': 'اصلی',
+    'block.variant.secondary': 'ثانویه',
+    'block.variant.outline': 'حاشیه‌ای',
+    'block.variant.grid': 'شبکه‌ای',
+    'block.variant.carousel': 'چرخان',
+
+    // ── توضیحات بلاک ──────────────────────────────────────
+    'block.embed.urlDesc': 'آدرس ویدیو یا کد جاسازی',
+    'block.gallery.columnsDesc': 'تعداد ستون‌ها (فقط شبکه‌ای)',
+    'block.accordion.openDesc': 'شروع به حالت باز',
+
+    // ── سایر ───────────────────────────────────────────────
+    'misc.loading': 'در حال بارگذاری...',
+    'misc.error': 'خطایی رخ داد',
+    'misc.noData': 'داده‌ای موجود نیست',
+    'misc.required': 'الزامی',
+    'misc.optional': 'اختیاری',
+    'misc.localized': 'چندزبانه',
+    'misc.relationship': 'ارتباط',
+    'misc.upload': 'بارگذاری',
+    'misc.array': 'آرایه',
+    'misc.group': 'گروه',
+    'misc.tabs': 'تب‌ها',
+    'misc.selectLocale': 'انتخاب زبان',
+    'misc.allLocales': 'همه زبان‌ها',
+    'misc.autosave': 'ذخیره خودکار',
+    'misc.lastEdited': 'آخرین ویرایش',
+    'misc.createdAt': 'تاریخ ایجاد',
+    'misc.updatedAt': 'تاریخ به‌روزرسانی',
+  },
+}
+
+export function getAdminTranslation(lang: AdminLang, key: string, params?: Record<string, string | number>): string {
+  const value = adminTranslations[lang]?.[key] ?? adminTranslations.en[key] ?? key
+  if (!params) return value
+  return Object.entries(params).reduce(
+    (str, [k, v]) => str.replace(new RegExp(`\\{${k}\\}`, 'g'), String(v)),
+    value,
+  )
+}
