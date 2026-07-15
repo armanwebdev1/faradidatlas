@@ -53,14 +53,14 @@ export function CEOProfile({ lang, companyInfo }: CEOProfileProps) {
   const heading = getLocalized(ceo?.heading, lang) || fallback.heading;
 
   return (
-    <AnimatedSection className="relative overflow-hidden bg-background px-4 py-20 sm:px-6 md:py-28">
+    <AnimatedSection className="relative overflow-hidden bg-background px-4 py-20 sm:px-6 md:py-28" type="fade-up">
       <div className="mx-auto max-w-7xl" dir={isRTL ? "rtl" : "ltr"}>
-        <div className="opacity-0 translate-y-6 mb-10 text-center" data-animate>
+        <div className="opacity-0 mb-10 text-center" data-animate>
           <p className="eyebrow text-brand-navy">{eyebrow}</p>
         </div>
 
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="opacity-0 translate-y-6 lg:col-span-5" data-animate>
+          <div className="opacity-0 lg:col-span-5" data-animate>
             <div className="overflow-hidden rounded-2xl border border-foreground/10 bg-white shadow-sm">
               <div className="relative aspect-4/5 w-full">
                 <Image
@@ -68,20 +68,21 @@ export function CEOProfile({ lang, companyInfo }: CEOProfileProps) {
                   alt={name}
                   fill
                   sizes="(min-width: 1024px) 40vw, 100vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 hover:scale-105"
                 />
+                <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-2xl" />
               </div>
             </div>
           </div>
 
           <div className="lg:col-span-7">
-            <div className="opacity-0 translate-y-6" data-animate>
+            <div className="opacity-0" data-animate>
               <h2 className="text-responsive-subheading text-primary">
                 {heading}
               </h2>
             </div>
 
-            <div className="mt-10 opacity-0 translate-y-6" data-animate>
+            <div className="mt-10 opacity-0" data-animate>
               <p className="text-sm font-semibold uppercase tracking-[0.25em] text-foreground">
                 {role} {lang === "en" ? "of" : lang === "fa" ? "شرکت" : "لشركة"}{" "}
                 {name}

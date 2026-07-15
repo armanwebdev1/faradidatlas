@@ -95,16 +95,22 @@ export function WhatWeOffer({ lang, companyInfo }: WhatWeOfferProps) {
     : fallback;
 
   return (
-    <AnimatedSection className="relative py-24 md:py-32 px-4 sm:px-6 bg-background overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <AnimatedSection className="relative py-24 md:py-32 px-4 sm:px-6 bg-background overflow-hidden" type="scale">
+      {/* Ambient blob */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute bottom-0 left-1/4 w-1/3 h-1/3 bg-accent-warm-gold/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="max-w-7xl mx-auto relative">
         <div className="text-center mb-16">
           <h2
-            className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-8"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-8 opacity-0"
             style={{ fontFamily: "var(--font-hero)" }}
+            data-animate
           >
             {t.pages.about.whatWeOffer}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto opacity-0" data-animate>
             {t.pages.about.whatWeOfferDescription}
           </p>
         </div>
@@ -116,11 +122,11 @@ export function WhatWeOffer({ lang, companyInfo }: WhatWeOfferProps) {
             return (
               <div
                 key={idx}
-                className={`group ${offsetClass} opacity-0 translate-y-6`}
+                className={`group ${offsetClass} opacity-0`}
                 data-animate
-                style={{ animationDelay: `${idx * 0.1}s` }}
+                style={{ animationDelay: `${idx * 0.12}s` }}
               >
-                <div className="relative bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-500 border border-border h-full flex flex-col md:hover:border-accent-warm-gold md:hover:shadow-xl">
+                <div className="relative bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-500 border border-border h-full flex flex-col md:hover:border-accent-warm-gold md:hover:shadow-xl md:hover:-translate-y-1">
                   <div className="relative h-64 overflow-hidden bg-linear-to-br from-secondary/40 to-secondary/60">
                     <Image
                       src={offer.image}
@@ -129,6 +135,7 @@ export function WhatWeOffer({ lang, companyInfo }: WhatWeOfferProps) {
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                       className="object-cover transition-transform duration-700 motion-safe:md:group-hover:scale-110"
                     />
+                    <div className="absolute inset-0 ring-1 ring-inset ring-black/5" />
                   </div>
 
                   <div className="p-8 flex flex-col grow">

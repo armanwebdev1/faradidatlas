@@ -147,19 +147,19 @@ export function StrategicFramework({ lang, companyInfo }: StrategicFrameworkProp
   const t = translations[lang];
 
   return (
-    <AnimatedSection className="relative overflow-hidden bg-background-alt px-4 py-20 sm:px-6 md:py-28">
+    <AnimatedSection className="relative overflow-hidden bg-background-alt px-4 py-20 sm:px-6 md:py-28" type="fade-up">
       <div className="mx-auto max-w-7xl">
         <div
           className="mx-auto max-w-4xl py-10 text-center md:py-14"
           dir={isRTL ? "rtl" : "ltr"}
         >
-          <p className="eyebrow mb-4 text-brand-navy">
+          <p className="eyebrow mb-4 text-brand-navy opacity-0" data-animate>
             {t.pages.about.visionMission}
           </p>
-          <h2 className="mx-auto max-w-4xl text-center text-responsive-title text-primary">
+          <h2 className="mx-auto max-w-4xl text-center text-responsive-title text-primary opacity-0" data-animate>
             {data.title}
           </h2>
-          <p className="mx-auto mt-5 max-w-3xl text-center text-responsive-body leading-relaxed text-foreground/70 md:mt-6">
+          <p className="mx-auto mt-5 max-w-3xl text-center text-responsive-body leading-relaxed text-foreground/70 md:mt-6 opacity-0" data-animate>
             {data.intro}
           </p>
         </div>
@@ -173,6 +173,7 @@ export function StrategicFramework({ lang, companyInfo }: StrategicFrameworkProp
             title={data.vision.title}
             body={data.vision.body}
             notes={data.vision.notes}
+            animationType="slide-left"
           />
           <FrameworkPanel
             number="02"
@@ -182,6 +183,7 @@ export function StrategicFramework({ lang, companyInfo }: StrategicFrameworkProp
             title={data.mission.title}
             body={data.mission.body}
             notes={data.mission.notes}
+            animationType="slide-right"
           />
         </div>
       </div>
@@ -197,6 +199,7 @@ function FrameworkPanel({
   title,
   body,
   notes,
+  animationType,
 }: {
   number: string;
   Icon: LucideIcon;
@@ -205,13 +208,17 @@ function FrameworkPanel({
   title: string;
   body: string;
   notes: string[];
+  animationType: "slide-left" | "slide-right";
 }) {
+  const animClass = animationType === "slide-left" ? "animate-slide-left" : "animate-slide-right";
+
   return (
     <article
-      className={`relative h-full overflow-hidden rounded-xl border border-foreground/10 bg-white/90 p-6 shadow-sm sm:p-8 md:p-9 ${
+      className={`relative h-full overflow-hidden rounded-xl border border-foreground/10 bg-white/90 p-6 shadow-sm sm:p-8 md:p-9 opacity-0 ${
         isRTL ? "text-right" : "text-left"
       }`}
       dir={isRTL ? "rtl" : "ltr"}
+      data-animate
     >
       <div className="mb-8 flex items-start justify-between gap-5">
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-accent-warm-gold/25 bg-accent-warm-gold/10 text-accent-warm-gold">
@@ -233,10 +240,12 @@ function FrameworkPanel({
       </p>
 
       <ul className="space-y-4 pt-2">
-        {notes.map((note) => (
+        {notes.map((note, idx) => (
           <li
             key={note}
-            className="flex gap-3 text-sm leading-relaxed text-foreground/70"
+            className="flex gap-3 text-sm leading-relaxed text-foreground/70 opacity-0"
+            data-animate
+            style={{ animationDelay: `${0.3 + idx * 0.1}s` }}
           >
             <CheckCircle2
               className="mt-1 h-4 w-4 shrink-0 text-accent-warm-gold"

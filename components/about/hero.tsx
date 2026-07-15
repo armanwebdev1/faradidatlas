@@ -60,20 +60,19 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
             </Link>
           </AnimatedHeadline>
 
-          <div>
-            <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
-              <Image
-                src="/optimized/about-hero.webp"
-                alt={t.pages.about.heroImageAlt}
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover"
-              />
-            </div>
+          <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl opacity-0" data-animate>
+            <Image
+              src="/optimized/about-hero.webp"
+              alt={t.pages.about.heroImageAlt}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover transition-transform duration-700 hover:scale-105"
+            />
+            <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-2xl" />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 opacity-0" data-animate>
             <h2 className="text-responsive-title text-primary">
               {t.pages.about.foodSecurityPractical}
             </h2>
@@ -97,7 +96,7 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start opacity-0" data-animate>
             <div>
               <p className="text-xs font-semibold text-primary uppercase tracking-wide mb-3">
                 {t.pages.about.missionLabel}
@@ -123,6 +122,7 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
                 labelFa={stat.labelFa}
                 labelAr={stat.labelAr}
                 lang={lang}
+                delay={idx * 0.1}
               />
             ))}
           </div>
@@ -140,6 +140,7 @@ function Stat({
   labelFa,
   labelAr,
   lang,
+  delay = 0,
 }: {
   value: number;
   suffix?: string;
@@ -148,9 +149,14 @@ function Stat({
   labelFa: string;
   labelAr: string;
   lang: Language;
+  delay?: number;
 }) {
   return (
-    <div>
+    <div
+      className="opacity-0"
+      data-animate
+      style={{ animationDelay: `${delay}s` }}
+    >
       <CountUpValue target={value} suffix={suffix} decimals={decimals} />
       <p className="text-xs text-muted-foreground">
         {lang === "en" ? labelEn : lang === "fa" ? labelFa : labelAr}
