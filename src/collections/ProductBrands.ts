@@ -3,6 +3,10 @@ import { isRole } from '../access/isRole'
 
 export const ProductBrands: CollectionConfig = {
   slug: 'product-brands',
+  labels: {
+    singular: { en: 'Product Brand', fa: 'برند محصول' },
+    plural: { en: 'Product Brands', fa: 'برندهای محصول' },
+  },
   access: {
     read: () => true,
     create: isRole('super-admin', 'company-admin'),
@@ -11,8 +15,7 @@ export const ProductBrands: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
-    group: 'Catalog',
-
+    group: { en: 'Catalog', fa: 'کاتالوگ' },
   },
   fields: [
     {

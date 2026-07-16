@@ -331,3 +331,82 @@
     background: var(--theme-elevation-25, rgba(0,0,0,0.01));
   }
 }
+
+/* ─── RTL Support for Persian Admin ─── */
+[dir="rtl"] {
+  .payload-sidebar {
+    border-right: none;
+    border-left: 1px solid var(--theme-elevation-100);
+  }
+
+  .list-header__title {
+    text-align: right;
+  }
+
+  .cell-label {
+    text-align: right;
+  }
+
+  .field-type__text,
+  .field-type__textarea,
+  .field-type__number,
+  .field-type__email,
+  .field-type__select,
+  .field-type__date {
+    text-align: right;
+  }
+
+  .edit-view__header {
+    text-align: right;
+  }
+
+  .tabs-field__tab-button {
+    text-align: right;
+  }
+
+  .block-callout {
+    border-left: none;
+    border-right: 3px solid;
+  }
+
+  .block-embed iframe {
+    left: auto;
+    right: 0;
+  }
+
+  .block-accordion .accordion-heading {
+    text-align: right;
+    flex-direction: row-reverse;
+  }
+
+  .block-feature-table {
+    th, td {
+      text-align: right;
+    }
+  }
+
+  .btn--style-primary,
+  .btn--style-secondary {
+    text-align: right;
+  }
+
+  .doc-controls__publish {
+    text-align: right;
+  }
+
+  .upload--has-file {
+    text-align: right;
+  }
+
+  .relationship--single-value {
+    text-align: right;
+  }
+
+  .payload-empty-state {
+    text-align: center;
+  }
+
+  .login .login__form {
+    text-align: right;
+  }
+}

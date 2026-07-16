@@ -3,6 +3,10 @@ import { isRole } from '../access/isRole'
 
 export const Certificates: CollectionConfig = {
   slug: 'certificates',
+  labels: {
+    singular: { en: 'Certificate', fa: 'گواهینامه' },
+    plural: { en: 'Certificates', fa: 'گواهینامه‌ها' },
+  },
   access: {
     read: () => true,
     create: isRole('super-admin', 'company-admin'),
@@ -11,7 +15,7 @@ export const Certificates: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    group: 'Catalog',
+    group: { en: 'Catalog', fa: 'کاتالوگ' },
     defaultColumns: ['title', 'issueDate', 'ordering'],
   },
   versions: {

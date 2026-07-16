@@ -3,11 +3,15 @@ import { isRole } from '../access/isRole'
 
 export const Users: CollectionConfig = {
   slug: 'users',
+  labels: {
+    singular: { en: 'User', fa: 'کاربر' },
+    plural: { en: 'Users', fa: 'کاربران' },
+  },
   auth: true,
   admin: {
     useAsTitle: 'email',
-    group: 'Settings',
-    description: 'Manage admin users and their roles',
+    group: { en: 'Settings', fa: 'تنظیمات' },
+    description: { en: 'Manage admin users and their roles', fa: 'مدیریت کاربران مدیریت و نقش‌های آن‌ها' },
   },
   access: {
     create: isRole('super-admin'),
@@ -30,9 +34,9 @@ export const Users: CollectionConfig = {
       name: 'role',
       type: 'select',
       options: [
-        { label: 'Super Admin', value: 'super-admin' },
-        { label: 'Company Admin', value: 'company-admin' },
-        { label: 'Editor', value: 'editor' },
+        { label: { en: 'Super Admin', fa: 'مدیر ارشد' }, value: 'super-admin' },
+        { label: { en: 'Company Admin', fa: 'مدیر شرکت' }, value: 'company-admin' },
+        { label: { en: 'Editor', fa: 'ویرایشگر' }, value: 'editor' },
       ],
       defaultValue: 'editor',
       required: true,

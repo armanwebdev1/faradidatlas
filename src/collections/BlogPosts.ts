@@ -3,6 +3,10 @@ import { isRole } from '../access/isRole'
 
 export const BlogPosts: CollectionConfig = {
   slug: 'blog-posts',
+  labels: {
+    singular: { en: 'Blog Post', fa: 'مقاله وبلاگ' },
+    plural: { en: 'Blog Posts', fa: 'مقالات وبلاگ' },
+  },
   access: {
     read: () => true,
     create: isRole('super-admin', 'company-admin', 'editor'),
@@ -11,9 +15,9 @@ export const BlogPosts: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    group: 'Content',
+    group: { en: 'Content', fa: 'محتوا' },
     defaultColumns: ['title', 'author', 'status'],
-    description: 'Blog articles with multilingual content, authors, and publishing workflow',
+    description: { en: 'Blog articles with multilingual content, authors, and publishing workflow', fa: 'مقالات وبلاگ با محتوای چندزبانه، نویسندگان و فرآیند انتشار' },
     livePreview: {
       url: ({ data, locale }) => {
         const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://faradidatlas.com'

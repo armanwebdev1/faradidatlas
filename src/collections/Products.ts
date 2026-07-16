@@ -3,6 +3,10 @@ import { isRole } from '../access/isRole'
 
 export const Products: CollectionConfig = {
   slug: 'products',
+  labels: {
+    singular: { en: 'Product', fa: 'محصول' },
+    plural: { en: 'Products', fa: 'محصولات' },
+  },
   access: {
     read: () => true,
     create: isRole('super-admin', 'company-admin'),
@@ -11,9 +15,9 @@ export const Products: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
-    group: 'Catalog',
+    group: { en: 'Catalog', fa: 'کاتالوگ' },
     defaultColumns: ['name', 'category', 'brand', 'featured', 'status'],
-    description: 'Manage your product catalog with multilingual names, descriptions, specs, and images',
+    description: { en: 'Manage your product catalog with multilingual names, descriptions, specs, and images', fa: 'مدیریت کاتالوگ محصولات با نام‌ها، توضیحات، مشخصات و تصاویر چندزبانه' },
     livePreview: {
       url: ({ data, locale }) => {
         const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://faradidatlas.com'

@@ -3,13 +3,14 @@ import { isRole } from '../access/isRole'
 
 export const CareersInfo: GlobalConfig = {
   slug: 'careers-info',
+  label: { en: 'Careers Info', fa: 'اطلاعات استخدام' },
   access: {
     read: () => true,
     update: isRole('super-admin', 'company-admin'),
   },
   admin: {
-    group: 'Company',
-    description: 'Careers page content: culture values with icons and descriptions',
+    group: { en: 'Company', fa: 'شرکت' },
+    description: { en: 'Careers page content: culture values with icons and descriptions', fa: 'محتوای صفحه استخدام: ارزش‌های فرهنگی با آیکون‌ها و توضیحات' },
   },
   fields: [
     {

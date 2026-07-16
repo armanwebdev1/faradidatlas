@@ -3,12 +3,13 @@ import { isRole } from '../access/isRole'
 
 export const Redirects: GlobalConfig = {
   slug: 'redirects',
+  label: { en: 'Redirects', fa: 'تغییر مسیرها' },
   access: {
     read: () => true,
     update: isRole('super-admin'),
   },
   admin: {
-    group: 'Settings',
+    group: { en: 'Settings', fa: 'تنظیمات' },
   },
   fields: [
     {
@@ -30,8 +31,8 @@ export const Redirects: GlobalConfig = {
           type: 'select',
           required: true,
           options: [
-            { label: '301 Permanent', value: '301' },
-            { label: '302 Temporary', value: '302' },
+            { label: { en: '301 Permanent', fa: '301 دائمی' }, value: '301' },
+            { label: { en: '302 Temporary', fa: '302 موقت' }, value: '302' },
           ],
           defaultValue: '301',
         },

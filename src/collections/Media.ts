@@ -3,6 +3,10 @@ import { isRole } from '../access/isRole'
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  labels: {
+    singular: { en: 'Media', fa: 'رسانه' },
+    plural: { en: 'Media', fa: 'رسانه‌ها' },
+  },
   access: {
     read: () => true,
     create: isRole('super-admin', 'company-admin', 'editor'),
@@ -10,7 +14,7 @@ export const Media: CollectionConfig = {
     delete: isRole('super-admin', 'company-admin'),
   },
   admin: {
-    group: 'Media',
+    group: { en: 'Media', fa: 'رسانه' },
     defaultColumns: ['alt', 'filename', 'mimeType', 'filesize'],
   },
   upload: {

@@ -3,6 +3,10 @@ import { isRole } from '../access/isRole'
 
 export const FAQs: CollectionConfig = {
   slug: 'faqs',
+  labels: {
+    singular: { en: 'FAQ', fa: 'سوال متداول' },
+    plural: { en: 'FAQs', fa: 'سوالات متداول' },
+  },
   access: {
     read: () => true,
     create: isRole('super-admin', 'company-admin', 'editor'),
@@ -11,8 +15,8 @@ export const FAQs: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'question',
-    group: 'Content',
-    description: 'Frequently asked questions organized by category for the FAQ page',
+    group: { en: 'Content', fa: 'محتوا' },
+    description: { en: 'Frequently asked questions organized by category for the FAQ page', fa: 'سوالات متداول دسته‌بندی شده برای صفحه سوالات متداول' },
   },
   versions: {
     drafts: true,
@@ -35,13 +39,13 @@ export const FAQs: CollectionConfig = {
       type: 'select',
       required: true,
       options: [
-        { label: 'Company', value: 'company' },
-        { label: 'Products', value: 'products' },
-        { label: 'Sourcing', value: 'sourcing' },
-        { label: 'Quality', value: 'quality' },
-        { label: 'Vision', value: 'vision' },
-        { label: 'Values', value: 'values' },
-        { label: 'Inquiry', value: 'inquiry' },
+        { label: { en: 'Company', fa: 'شرکت' }, value: 'company' },
+        { label: { en: 'Products', fa: 'محصولات' }, value: 'products' },
+        { label: { en: 'Sourcing', fa: 'تأمین' }, value: 'sourcing' },
+        { label: { en: 'Quality', fa: 'کیفیت' }, value: 'quality' },
+        { label: { en: 'Vision', fa: 'چشم‌انداز' }, value: 'vision' },
+        { label: { en: 'Values', fa: 'ارزش‌ها' }, value: 'values' },
+        { label: { en: 'Inquiry', fa: 'استعلام' }, value: 'inquiry' },
       ],
       admin: {
         position: 'sidebar',

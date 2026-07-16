@@ -3,6 +3,10 @@ import { isRole } from '../access/isRole'
 
 export const Downloads: CollectionConfig = {
   slug: 'downloads',
+  labels: {
+    singular: { en: 'Download', fa: 'دانلود' },
+    plural: { en: 'Downloads', fa: 'دانلودها' },
+  },
   access: {
     read: () => true,
     create: isRole('super-admin', 'company-admin'),
@@ -11,7 +15,7 @@ export const Downloads: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    group: 'Catalog',
+    group: { en: 'Catalog', fa: 'کاتالوگ' },
     defaultColumns: ['title', 'category', 'ordering'],
   },
   versions: {
@@ -35,12 +39,12 @@ export const Downloads: CollectionConfig = {
       type: 'select',
       required: true,
       options: [
-        { label: 'Brochure', value: 'brochure' },
-        { label: 'Spec Sheet', value: 'spec-sheet' },
-        { label: 'Certificate', value: 'certificate' },
-        { label: 'Catalog', value: 'catalog' },
-        { label: 'Price List', value: 'price-list' },
-        { label: 'Other', value: 'other' },
+        { label: { en: 'Brochure', fa: 'بروشور' }, value: 'brochure' },
+        { label: { en: 'Spec Sheet', fa: 'مشخصات فنی' }, value: 'spec-sheet' },
+        { label: { en: 'Certificate', fa: 'گواهینامه' }, value: 'certificate' },
+        { label: { en: 'Catalog', fa: 'کاتالوگ' }, value: 'catalog' },
+        { label: { en: 'Price List', fa: 'لیست قیمت' }, value: 'price-list' },
+        { label: { en: 'Other', fa: 'سایر' }, value: 'other' },
       ],
       admin: {
         position: 'sidebar',

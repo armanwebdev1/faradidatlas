@@ -3,12 +3,13 @@ import { isRole } from '../access/isRole'
 
 export const Homepage: GlobalConfig = {
   slug: 'homepage',
+  label: { en: 'Homepage', fa: 'صفحه اصلی' },
   access: {
     read: () => true,
     update: isRole('super-admin', 'company-admin'),
   },
   admin: {
-    group: 'Website',
+    group: { en: 'Website', fa: 'وبسایت' },
     livePreview: {
       url: ({ locale }) => {
         const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://faradidatlas.com'
@@ -27,7 +28,7 @@ export const Homepage: GlobalConfig = {
       type: 'tabs',
       tabs: [
         {
-          label: 'Hero',
+          label: { en: 'Hero', fa: 'هیرو' },
           fields: [
             {
               name: 'heroSlides',
@@ -87,7 +88,7 @@ export const Homepage: GlobalConfig = {
           ],
         },
         {
-          label: 'Value Props',
+          label: { en: 'Value Props', fa: 'مزایا' },
           fields: [
             {
               name: 'valueProps',
@@ -125,7 +126,7 @@ export const Homepage: GlobalConfig = {
           ],
         },
         {
-          label: 'Brands & Products',
+          label: { en: 'Brands & Products', fa: 'برندها و محصولات' },
           fields: [
             {
               name: 'brandShowcase',
@@ -181,7 +182,7 @@ export const Homepage: GlobalConfig = {
           ],
         },
         {
-          label: 'Markets & CTA',
+          label: { en: 'Markets & CTA', fa: 'بازارها و CTA' },
           fields: [
             {
               name: 'globalMarkets',

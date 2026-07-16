@@ -3,6 +3,10 @@ import { isRole } from '../access/isRole'
 
 export const Categories: CollectionConfig = {
   slug: 'categories',
+  labels: {
+    singular: { en: 'Category', fa: 'دسته‌بندی' },
+    plural: { en: 'Categories', fa: 'دسته‌بندی‌ها' },
+  },
   access: {
     read: () => true,
     create: isRole('super-admin', 'company-admin'),
@@ -11,8 +15,8 @@ export const Categories: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
-    group: 'Catalog',
-    description: 'Product categories with SEO content, display ordering, and icon settings',
+    group: { en: 'Catalog', fa: 'کاتالوگ' },
+    description: { en: 'Product categories with SEO content, display ordering, and icon settings', fa: 'دسته‌بندی محصولات با محتوای SEO، ترتیب نمایش و تنظیمات آیکون' },
   },
   versions: {
     drafts: true,

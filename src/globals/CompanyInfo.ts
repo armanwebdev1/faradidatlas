@@ -3,20 +3,21 @@ import { isRole } from '../access/isRole'
 
 export const CompanyInfo: GlobalConfig = {
   slug: 'company-info',
+  label: { en: 'Company Info', fa: 'اطلاعات شرکت' },
   access: {
     read: () => true,
     update: isRole('super-admin', 'company-admin'),
   },
   admin: {
-    group: 'Company',
-    description: 'Company information for the About page: CEO profile, values, strategic framework, offerings, and get-connected section',
+    group: { en: 'Company', fa: 'شرکت' },
+    description: { en: 'Company information for the About page: CEO profile, values, strategic framework, offerings, and get-connected section', fa: 'اطلاعات شرکت برای صفحه درباره ما: پروفایل مدیرعامل، ارزش‌ها، چارچوب استراتژیک، خدمات و بخش ارتباط' },
   },
   fields: [
     {
       type: 'tabs',
       tabs: [
         {
-          label: 'About',
+          label: { en: 'About', fa: 'درباره ما' },
           fields: [
             {
               name: 'aboutStats',
@@ -54,7 +55,7 @@ export const CompanyInfo: GlobalConfig = {
           ],
         },
         {
-          label: 'CEO',
+          label: { en: 'CEO', fa: 'مدیرعامل' },
           fields: [
             {
               name: 'ceo',
@@ -96,7 +97,7 @@ export const CompanyInfo: GlobalConfig = {
           ],
         },
         {
-          label: 'Values',
+          label: { en: 'Values', fa: 'ارزش‌ها' },
           fields: [
             {
               name: 'values',
@@ -118,7 +119,7 @@ export const CompanyInfo: GlobalConfig = {
           ],
         },
         {
-          label: 'Strategic Framework',
+          label: { en: 'Strategic Framework', fa: 'چارچوب استراتژیک' },
           fields: [
             {
               name: 'strategicFramework',
@@ -234,7 +235,7 @@ export const CompanyInfo: GlobalConfig = {
           ],
         },
         {
-          label: 'Offerings & Content',
+          label: { en: 'Offerings & Content', fa: 'خدمات و محتوا' },
           fields: [
             {
               name: 'offerings',

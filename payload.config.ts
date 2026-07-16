@@ -4,6 +4,8 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { BlocksFeature } from "@payloadcms/richtext-lexical";
 import { richTextBlocks } from "./src/admin/blocks";
 import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
+import { en } from "@payloadcms/translations/languages/en";
+import { fa } from "@payloadcms/translations/languages/fa";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -116,5 +118,10 @@ export default buildConfig({
     ],
     defaultLocale: "en",
     fallback: true,
+  },
+
+  i18n: {
+    fallbackLanguage: "en",
+    supportedLanguages: { en, fa },
   },
 });

@@ -3,20 +3,21 @@ import { isRole } from '../access/isRole'
 
 export const ContactInfo: GlobalConfig = {
   slug: 'contact-info',
+  label: { en: 'Contact Info', fa: 'اطلاعات تماس' },
   access: {
     read: () => true,
     update: isRole('super-admin', 'company-admin'),
   },
   admin: {
-    group: 'Company',
-    description: 'Contact information: email, phone numbers, office addresses, response SLA, and trust statistics',
+    group: { en: 'Company', fa: 'شرکت' },
+    description: { en: 'Contact information: email, phone numbers, office addresses, response SLA, and trust statistics', fa: 'اطلاعات تماس: ایمیل، شماره تلفن‌ها، آدرس دفاتر، زمان پاسخگویی و آمار اعتماد' },
   },
   fields: [
     {
       type: 'tabs',
       tabs: [
         {
-          label: 'Contact Details',
+          label: { en: 'Contact Details', fa: 'اطلاعات تماس' },
           fields: [
             {
               name: 'email',
@@ -46,7 +47,7 @@ export const ContactInfo: GlobalConfig = {
           ],
         },
         {
-          label: 'Offices',
+          label: { en: 'Offices', fa: 'دفاتر' },
           fields: [
             {
               name: 'offices',
@@ -82,7 +83,7 @@ export const ContactInfo: GlobalConfig = {
           ],
         },
         {
-          label: 'Page Content',
+          label: { en: 'Page Content', fa: 'محتوای صفحه' },
           fields: [
             {
               name: 'hero',
@@ -140,7 +141,7 @@ export const ContactInfo: GlobalConfig = {
           ],
         },
         {
-          label: 'Response & Trust',
+          label: { en: 'Response & Trust', fa: 'پاسخگویی و اعتماد' },
           fields: [
             {
               name: 'responseSLA',

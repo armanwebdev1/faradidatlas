@@ -3,19 +3,20 @@ import { isRole } from '../access/isRole'
 
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
+  label: { en: 'Site Settings', fa: 'تنظیمات سایت' },
   access: {
     read: () => true,
     update: isRole('super-admin'),
   },
   admin: {
-    group: 'Settings',
+    group: { en: 'Settings', fa: 'تنظیمات' },
   },
   fields: [
     {
       type: 'tabs',
       tabs: [
         {
-          label: 'Branding',
+          label: { en: 'Branding', fa: 'برندینگ' },
           fields: [
             {
               name: 'siteName',
@@ -84,7 +85,7 @@ export const SiteSettings: GlobalConfig = {
           ],
         },
         {
-          label: 'SEO',
+          label: { en: 'SEO', fa: 'SEO' },
           fields: [
             {
               name: 'defaultSEO',

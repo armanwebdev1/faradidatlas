@@ -3,6 +3,10 @@ import { isRole } from '../access/isRole'
 
 export const Jobs: CollectionConfig = {
   slug: 'jobs',
+  labels: {
+    singular: { en: 'Job', fa: 'شغل' },
+    plural: { en: 'Jobs', fa: 'مشاغل' },
+  },
   access: {
     read: () => true,
     create: isRole('super-admin', 'company-admin', 'editor'),
@@ -11,9 +15,9 @@ export const Jobs: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    group: 'Content',
+    group: { en: 'Content', fa: 'محتوا' },
     defaultColumns: ['title', 'department', 'location', 'status'],
-    description: 'Job listings with multilingual titles, descriptions, and application requirements',
+    description: { en: 'Job listings with multilingual titles, descriptions, and application requirements', fa: 'آگهی‌های استخدام با عناوین، توضیحات و الزامات درخواست چندزبانه' },
   },
   versions: {
     drafts: true,
@@ -51,9 +55,9 @@ export const Jobs: CollectionConfig = {
       type: 'select',
       required: true,
       options: [
-        { label: 'Full-time', value: 'full-time' },
-        { label: 'Part-time', value: 'part-time' },
-        { label: 'Contract', value: 'contract' },
+        { label: { en: 'Full-time', fa: 'تمام‌وقت' }, value: 'full-time' },
+        { label: { en: 'Part-time', fa: 'پاره‌وقت' }, value: 'part-time' },
+        { label: { en: 'Contract', fa: 'قراردادی' }, value: 'contract' },
       ],
       admin: {
         position: 'sidebar',
@@ -64,9 +68,9 @@ export const Jobs: CollectionConfig = {
       type: 'select',
       defaultValue: 'active',
       options: [
-        { label: 'Active', value: 'active' },
-        { label: 'Closed', value: 'closed' },
-        { label: 'On Hold', value: 'on-hold' },
+        { label: { en: 'Active', fa: 'فعال' }, value: 'active' },
+        { label: { en: 'Closed', fa: 'بسته شده' }, value: 'closed' },
+        { label: { en: 'On Hold', fa: 'در انتظار' }, value: 'on-hold' },
       ],
       admin: {
         position: 'sidebar',
