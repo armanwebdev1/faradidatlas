@@ -83,8 +83,9 @@ export const CompanyInfo: GlobalConfig = {
                 {
                   name: 'name',
                   type: 'text',
-                  label: { en: 'Name', fa: 'نام' },
+                  label: { en: 'Company Name', fa: 'نام شرکت' },
                   required: true,
+                  localized: true,
                 },
                 {
                   name: 'title',

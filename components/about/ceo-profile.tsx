@@ -45,7 +45,7 @@ export function CEOProfile({ lang, companyInfo }: CEOProfileProps) {
   const fallback = fallbackContent[lang] || fallbackContent.en;
 
   const ceo = companyInfo?.ceo;
-  const name = getLocalized(ceo?.name, lang) || fallback.name;
+  const companyName = getLocalized(ceo?.name, lang) || fallback.name;
   const role = getLocalized(ceo?.title, lang) || fallback.role;
   const bio = getLocalized(ceo?.bio, lang) || fallback.bio;
   const image = resolveMediaUrl(ceo?.image);
@@ -65,7 +65,7 @@ export function CEOProfile({ lang, companyInfo }: CEOProfileProps) {
               <div className="relative aspect-4/5 w-full">
                 <Image
                   src={image}
-                  alt={name}
+                  alt={companyName}
                   fill
                   sizes="(min-width: 1024px) 40vw, 100vw"
                   className="object-cover"
@@ -84,7 +84,7 @@ export function CEOProfile({ lang, companyInfo }: CEOProfileProps) {
             <div className="mt-10 opacity-0 translate-y-6" data-animate>
               <p className="text-sm font-semibold uppercase tracking-[0.25em] text-foreground">
                 {role} {lang === "en" ? "of" : lang === "fa" ? "شرکت" : "لشركة"}{" "}
-                {name}
+                {companyName}
               </p>
 
               <p className="mt-8 max-w-3xl text-base leading-8 text-foreground/75">
