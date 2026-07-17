@@ -60,6 +60,7 @@ export const BlogPosts: CollectionConfig = {
       type: 'text',
       label: { en: 'Author', fa: 'نویسنده' },
       required: true,
+      localized: true,
     },
     {
       name: 'tags',
@@ -71,6 +72,7 @@ export const BlogPosts: CollectionConfig = {
           type: 'text',
           label: { en: 'Tag', fa: 'برچسب' },
           required: true,
+          localized: true,
         },
       ],
     },

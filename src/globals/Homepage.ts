@@ -151,6 +151,7 @@ export const Homepage: GlobalConfig = {
                   type: 'text',
                   label: { en: 'Brand Name', fa: 'نام برند' },
                   required: true,
+                  localized: true,
                 },
                 {
                   name: 'logo',
@@ -215,6 +216,7 @@ export const Homepage: GlobalConfig = {
                   type: 'text',
                   label: { en: 'Country', fa: 'کشور' },
                   required: true,
+                  localized: true,
                 },
                 {
                   name: 'description',
