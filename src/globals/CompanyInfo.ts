@@ -22,32 +22,38 @@ export const CompanyInfo: GlobalConfig = {
             {
               name: 'aboutStats',
               type: 'array',
+              label: { en: 'About Stats', fa: 'آمار درباره ما' },
               admin: {
-                description: 'Stats displayed in the About hero section',
+                description: { en: 'Stats displayed in the About hero section', fa: 'آمار نمایشی در بخش هیروی درباره ما' },
               },
               fields: [
                 {
                   name: 'value',
                   type: 'number',
+                  label: { en: 'Value', fa: 'مقدار' },
                   required: true,
                 },
                 {
                   name: 'suffix',
                   type: 'text',
+                  label: { en: 'Suffix', fa: 'پسوند' },
                 },
                 {
                   name: 'labelEn',
                   type: 'text',
+                  label: { en: 'Label (English)', fa: 'برچسب (انگلیسی)' },
                   required: true,
                 },
                 {
                   name: 'labelFa',
                   type: 'text',
+                  label: { en: 'Label (Persian)', fa: 'برچسب (فارسی)' },
                   required: true,
                 },
                 {
                   name: 'labelAr',
                   type: 'text',
+                  label: { en: 'Label (Arabic)', fa: 'برچسب (عربی)' },
                   required: true,
                 },
               ],
@@ -60,36 +66,43 @@ export const CompanyInfo: GlobalConfig = {
             {
               name: 'ceo',
               type: 'group',
+              label: { en: 'CEO', fa: 'مدیرعامل' },
               fields: [
                 {
                   name: 'eyebrow',
                   type: 'text',
+                  label: { en: 'Eyebrow', fa: 'تیتر بالا' },
                   localized: true,
                 },
                 {
                   name: 'heading',
                   type: 'text',
+                  label: { en: 'Heading', fa: 'عنوان اصلی' },
                   localized: true,
                 },
                 {
                   name: 'name',
                   type: 'text',
+                  label: { en: 'Name', fa: 'نام' },
                   required: true,
                 },
                 {
                   name: 'title',
                   type: 'text',
+                  label: { en: 'Title', fa: 'سمت' },
                   required: true,
                   localized: true,
                 },
                 {
                   name: 'bio',
                   type: 'textarea',
+                  label: { en: 'Bio', fa: 'بیوگرافی' },
                   localized: true,
                 },
                 {
                   name: 'image',
                   type: 'upload',
+                  label: { en: 'Image', fa: 'تصویر' },
                   relationTo: 'media',
                 },
               ],
@@ -102,16 +115,19 @@ export const CompanyInfo: GlobalConfig = {
             {
               name: 'values',
               type: 'array',
+              label: { en: 'Values', fa: 'ارزش‌ها' },
               localized: true,
               fields: [
                 {
                   name: 'title',
                   type: 'text',
+                  label: { en: 'Title', fa: 'عنوان' },
                   required: true,
                 },
                 {
                   name: 'description',
                   type: 'textarea',
+                  label: { en: 'Description', fa: 'توضیحات' },
                   required: true,
                 },
               ],
@@ -124,52 +140,62 @@ export const CompanyInfo: GlobalConfig = {
             {
               name: 'strategicFramework',
               type: 'group',
+              label: { en: 'Strategic Framework', fa: 'چارچوب استراتژیک' },
               admin: {
-                description: 'Vision, Mission, Values section on the About page',
+                description: { en: 'Vision, Mission, Values section on the About page', fa: 'بخش چشم‌انداز، مأموریت و ارزش‌ها در صفحه درباره ما' },
               },
               fields: [
                 {
                   name: 'eyebrow',
                   type: 'text',
+                  label: { en: 'Eyebrow', fa: 'تیتر بالا' },
                   localized: true,
                 },
                 {
                   name: 'title',
                   type: 'text',
+                  label: { en: 'Title', fa: 'عنوان' },
                   localized: true,
                 },
                 {
                   name: 'intro',
                   type: 'textarea',
+                  label: { en: 'Introduction', fa: 'مقدمه' },
                   localized: true,
                 },
                 {
                   name: 'vision',
                   type: 'group',
+                  label: { en: 'Vision', fa: 'چشم‌انداز' },
                   fields: [
                     {
                       name: 'label',
                       type: 'text',
+                      label: { en: 'Label', fa: 'برچسب' },
                       localized: true,
                     },
                     {
                       name: 'title',
                       type: 'text',
+                      label: { en: 'Title', fa: 'عنوان' },
                       localized: true,
                     },
                     {
                       name: 'body',
                       type: 'textarea',
+                      label: { en: 'Body', fa: 'متن اصلی' },
                       localized: true,
                     },
                     {
                       name: 'notes',
                       type: 'array',
+                      label: { en: 'Notes', fa: 'یادداشت‌ها' },
                       localized: true,
                       fields: [
                         {
                           name: 'text',
                           type: 'text',
+                          label: { en: 'Text', fa: 'متن' },
                           required: true,
                         },
                       ],
@@ -179,30 +205,36 @@ export const CompanyInfo: GlobalConfig = {
                 {
                   name: 'mission',
                   type: 'group',
+                  label: { en: 'Mission', fa: 'مأموریت' },
                   fields: [
                     {
                       name: 'label',
                       type: 'text',
+                      label: { en: 'Label', fa: 'برچسب' },
                       localized: true,
                     },
                     {
                       name: 'title',
                       type: 'text',
+                      label: { en: 'Title', fa: 'عنوان' },
                       localized: true,
                     },
                     {
                       name: 'body',
                       type: 'textarea',
+                      label: { en: 'Body', fa: 'متن اصلی' },
                       localized: true,
                     },
                     {
                       name: 'notes',
                       type: 'array',
+                      label: { en: 'Notes', fa: 'یادداشت‌ها' },
                       localized: true,
                       fields: [
                         {
                           name: 'text',
                           type: 'text',
+                          label: { en: 'Text', fa: 'متن' },
                           required: true,
                         },
                       ],
@@ -212,20 +244,24 @@ export const CompanyInfo: GlobalConfig = {
                 {
                   name: 'valuesSection',
                   type: 'group',
+                  label: { en: 'Values', fa: 'ارزش‌ها' },
                   fields: [
                     {
                       name: 'label',
                       type: 'text',
+                      label: { en: 'Label', fa: 'برچسب' },
                       localized: true,
                     },
                     {
                       name: 'title',
                       type: 'text',
+                      label: { en: 'Title', fa: 'عنوان' },
                       localized: true,
                     },
                     {
                       name: 'body',
                       type: 'textarea',
+                      label: { en: 'Body', fa: 'متن اصلی' },
                       localized: true,
                     },
                   ],
@@ -240,24 +276,28 @@ export const CompanyInfo: GlobalConfig = {
             {
               name: 'offerings',
               type: 'array',
+              label: { en: 'Offerings', fa: 'خدمات' },
               admin: {
-                description: 'What We Offer section on the About page',
+                description: { en: 'What We Offer section on the About page', fa: 'بخش خدمات ما در صفحه درباره ما' },
               },
               fields: [
                 {
                   name: 'image',
                   type: 'upload',
+                  label: { en: 'Image', fa: 'تصویر' },
                   relationTo: 'media',
                 },
                 {
                   name: 'title',
                   type: 'text',
+                  label: { en: 'Title', fa: 'عنوان' },
                   required: true,
                   localized: true,
                 },
                 {
                   name: 'description',
                   type: 'textarea',
+                  label: { en: 'Description', fa: 'توضیحات' },
                   required: true,
                   localized: true,
                 },
@@ -266,38 +306,45 @@ export const CompanyInfo: GlobalConfig = {
             {
               name: 'getConnected',
               type: 'group',
+              label: { en: 'Get Connected', fa: 'ارتباط با ما' },
               admin: {
-                description: 'Get Connected section on the About page',
+                description: { en: 'Get Connected section on the About page', fa: 'بخش ارتباط با ما در صفحه درباره ما' },
               },
               fields: [
                 {
                   name: 'image',
                   type: 'upload',
+                  label: { en: 'Image', fa: 'تصویر' },
                   relationTo: 'media',
                 },
                 {
                   name: 'alt',
                   type: 'text',
+                  label: { en: 'Alt Text', fa: 'متن جایگزین' },
                   localized: true,
                 },
                 {
                   name: 'heading',
                   type: 'text',
+                  label: { en: 'Heading', fa: 'عنوان' },
                   localized: true,
                 },
                 {
                   name: 'paragraph1',
                   type: 'textarea',
+                  label: { en: 'Paragraph 1', fa: 'پاراگراف اول' },
                   localized: true,
                 },
                 {
                   name: 'paragraph2',
                   type: 'textarea',
+                  label: { en: 'Paragraph 2', fa: 'پاراگراف دوم' },
                   localized: true,
                 },
                 {
                   name: 'quote',
                   type: 'textarea',
+                  label: { en: 'Quote', fa: 'نقل‌قول' },
                   localized: true,
                 },
               ],

@@ -23,16 +23,19 @@ export const Users: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
+      label: { en: 'Name', fa: 'نام' },
     },
     {
       name: 'email',
       type: 'email',
+      label: { en: 'Email', fa: 'ایمیل' },
       required: true,
       unique: true,
     },
     {
       name: 'role',
       type: 'select',
+      label: { en: 'Role', fa: 'نقش' },
       options: [
         { label: { en: 'Super Admin', fa: 'مدیر ارشد' }, value: 'super-admin' },
         { label: { en: 'Company Admin', fa: 'مدیر شرکت' }, value: 'company-admin' },

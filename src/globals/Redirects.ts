@@ -15,20 +15,24 @@ export const Redirects: GlobalConfig = {
     {
       name: 'redirects',
       type: 'array',
+      label: { en: 'Redirects', fa: 'تغییر مسیرها' },
       fields: [
         {
           name: 'from',
           type: 'text',
+          label: { en: 'From', fa: 'از' },
           required: true,
         },
         {
           name: 'to',
           type: 'text',
+          label: { en: 'To', fa: 'به' },
           required: true,
         },
         {
           name: 'type',
           type: 'select',
+          label: { en: 'Type', fa: 'نوع' },
           required: true,
           options: [
             { label: { en: '301 Permanent', fa: '301 دائمی' }, value: '301' },

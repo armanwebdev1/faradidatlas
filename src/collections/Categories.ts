@@ -25,12 +25,14 @@ export const Categories: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
+      label: { en: 'Name', fa: 'نام' },
       required: true,
       localized: true,
     },
     {
       name: 'slug',
       type: 'text',
+      label: { en: 'Slug', fa: 'نامک' },
       required: true,
       unique: true,
       admin: {
@@ -40,58 +42,67 @@ export const Categories: CollectionConfig = {
     {
       name: 'description',
       type: 'textarea',
+      label: { en: 'Description', fa: 'توضیحات' },
       localized: true,
     },
     {
       name: 'icon',
       type: 'text',
+      label: { en: 'Icon', fa: 'آیکون' },
       admin: {
-        description: 'Lucide icon name (e.g. "Wheat", "Bean", "Nut")',
+        description: { en: 'Lucide icon name (e.g. "Wheat", "Bean", "Nut")', fa: 'نام آیکون Lucide (مثلاً "Wheat"، "Bean"، "Nut")' },
         position: 'sidebar',
       },
     },
     {
       name: 'image',
       type: 'upload',
+      label: { en: 'Image', fa: 'تصویر' },
       relationTo: 'media',
       admin: {
-        description: 'Category display image',
+        description: { en: 'Category display image', fa: 'تصویر نمایشی دسته‌بندی' },
       },
     },
     {
       name: 'ordering',
       type: 'number',
+      label: { en: 'Ordering', fa: 'ترتیب نمایش' },
       defaultValue: 0,
       admin: {
-        description: 'Display order (lower numbers first)',
+        description: { en: 'Display order (lower numbers first)', fa: 'ترتیب نمایش (اعداد کمتر اول)' },
         position: 'sidebar',
       },
     },
     {
       name: 'seo',
       type: 'group',
+      label: { en: 'SEO', fa: 'سئو' },
       fields: [
         {
           name: 'title',
           type: 'text',
+          label: { en: 'SEO Title', fa: 'عنوان سئو' },
           localized: true,
         },
         {
           name: 'subtitle',
           type: 'text',
+          label: { en: 'Subtitle', fa: 'زیرعنوان' },
           localized: true,
         },
         {
           name: 'description',
           type: 'textarea',
+          label: { en: 'SEO Description', fa: 'توضیحات سئو' },
           localized: true,
         },
         {
           name: 'content',
           type: 'textarea',
+          label: { en: 'Content', fa: 'محتوا' },
           localized: true,
           admin: {
-            description: 'Long-form SEO content for the category landing page',
+            description: { en: 'Long-form SEO content for the category landing page', fa: 'محتوای بلند سئو برای صفحه لندینگ دسته‌بندی' },
           },
         },
       ],

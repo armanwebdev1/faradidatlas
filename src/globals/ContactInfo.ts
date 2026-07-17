@@ -22,25 +22,30 @@ export const ContactInfo: GlobalConfig = {
             {
               name: 'email',
               type: 'email',
+              label: { en: 'Email', fa: 'ایمیل' },
               required: true,
             },
             {
               name: 'phones',
               type: 'array',
+              label: { en: 'Phones', fa: 'تلفن‌ها' },
               fields: [
                 {
                   name: 'value',
                   type: 'text',
+                  label: { en: 'Number', fa: 'شماره' },
                   required: true,
                 },
                 {
                   name: 'display',
                   type: 'text',
+                  label: { en: 'Display Name', fa: 'نام نمایشی' },
                   required: true,
                 },
                 {
                   name: 'whatsappHref',
                   type: 'text',
+                  label: { en: 'WhatsApp Link', fa: 'لینک واتساپ' },
                 },
               ],
             },
@@ -52,30 +57,36 @@ export const ContactInfo: GlobalConfig = {
             {
               name: 'offices',
               type: 'array',
+              label: { en: 'Offices', fa: 'دفاتر' },
               fields: [
                 {
                   name: 'city',
                   type: 'text',
+                  label: { en: 'City', fa: 'شهر' },
                   required: true,
                 },
                 {
                   name: 'address',
                   type: 'textarea',
+                  label: { en: 'Address', fa: 'آدرس' },
                   localized: true,
                 },
                 {
                   name: 'phone',
                   type: 'text',
+                  label: { en: 'Phone', fa: 'تلفن' },
                 },
                 {
                   name: 'email',
                   type: 'email',
+                  label: { en: 'Email', fa: 'ایمیل' },
                 },
                 {
                   name: 'googleMapsEmbed',
                   type: 'text',
+                  label: { en: 'Google Maps Embed', fa: 'کد نقشه گوگل' },
                   admin: {
-                    description: 'Google Maps embed URL for this office',
+                    description: { en: 'Google Maps embed URL for this office', fa: 'آدرس کد جاسازی نقشه گوگل برای این دفتر' },
                   },
                 },
               ],
@@ -88,27 +99,33 @@ export const ContactInfo: GlobalConfig = {
             {
               name: 'hero',
               type: 'group',
+              label: { en: 'Hero', fa: 'هیرو' },
               localized: true,
               fields: [
                 {
                   name: 'eyebrow',
                   type: 'text',
+                  label: { en: 'Eyebrow', fa: 'تیتر بالا' },
                 },
                 {
                   name: 'title',
                   type: 'text',
+                  label: { en: 'Title', fa: 'عنوان' },
                 },
                 {
                   name: 'description',
                   type: 'textarea',
+                  label: { en: 'Description', fa: 'توضیحات' },
                 },
                 {
                   name: 'badges',
                   type: 'array',
+                  label: { en: 'Badges', fa: 'نشان‌ها' },
                   fields: [
                     {
                       name: 'text',
                       type: 'text',
+                      label: { en: 'Text', fa: 'متن' },
                       required: true,
                     },
                   ],
@@ -118,23 +135,28 @@ export const ContactInfo: GlobalConfig = {
             {
               name: 'cta',
               type: 'group',
+              label: { en: 'CTA', fa: 'دعوت به اقدام' },
               localized: true,
               fields: [
                 {
                   name: 'headline',
                   type: 'text',
+                  label: { en: 'Headline', fa: 'تیتر' },
                 },
                 {
                   name: 'description',
                   type: 'textarea',
+                  label: { en: 'Description', fa: 'توضیحات' },
                 },
                 {
                   name: 'buttonText',
                   type: 'text',
+                  label: { en: 'Button Text', fa: 'متن دکمه' },
                 },
                 {
                   name: 'buttonUrl',
                   type: 'text',
+                  label: { en: 'Button URL', fa: 'آدرس دکمه' },
                 },
               ],
             },
@@ -146,35 +168,42 @@ export const ContactInfo: GlobalConfig = {
             {
               name: 'responseSLA',
               type: 'group',
+              label: { en: 'Response SLA', fa: 'زمان پاسخگویی' },
               fields: [
                 {
                   name: 'title',
                   type: 'text',
+                  label: { en: 'Title', fa: 'عنوان' },
                   required: true,
                   localized: true,
                 },
                 {
                   name: 'description',
                   type: 'textarea',
+                  label: { en: 'Description', fa: 'توضیحات' },
                   localized: true,
                 },
                 {
                   name: 'steps',
                   type: 'array',
+                  label: { en: 'Steps', fa: 'مراحل' },
                   localized: true,
                   fields: [
                     {
                       name: 'title',
                       type: 'text',
+                      label: { en: 'Title', fa: 'عنوان' },
                       required: true,
                     },
                     {
                       name: 'timeline',
                       type: 'text',
+                      label: { en: 'Timeline', fa: 'زمان‌بندی' },
                     },
                     {
                       name: 'description',
                       type: 'textarea',
+                      label: { en: 'Description', fa: 'توضیحات' },
                     },
                   ],
                 },
@@ -183,22 +212,26 @@ export const ContactInfo: GlobalConfig = {
             {
               name: 'trustStats',
               type: 'array',
+              label: { en: 'Trust Stats', fa: 'آمار اعتماد' },
               admin: {
-                description: 'Trust statistics displayed on the contact page',
+                description: { en: 'Trust statistics displayed on the contact page', fa: 'آمار اعتماد نمایشی در صفحه تماس' },
               },
               fields: [
                 {
                   name: 'value',
                   type: 'number',
+                  label: { en: 'Value', fa: 'مقدار' },
                   required: true,
                 },
                 {
                   name: 'suffix',
                   type: 'text',
+                  label: { en: 'Suffix', fa: 'پسوند' },
                 },
                 {
                   name: 'label',
                   type: 'text',
+                  label: { en: 'Label', fa: 'برچسب' },
                   required: true,
                   localized: true,
                 },

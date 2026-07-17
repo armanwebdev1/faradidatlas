@@ -27,32 +27,37 @@ export const Jobs: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
+      label: { en: 'Title', fa: 'عنوان' },
       required: true,
       localized: true,
     },
     {
       name: 'department',
       type: 'text',
+      label: { en: 'Department', fa: 'بخش' },
       required: true,
       localized: true,
     },
     {
       name: 'location',
       type: 'text',
+      label: { en: 'Location', fa: 'موقعیت' },
       required: true,
       localized: true,
     },
     {
       name: 'salary',
       type: 'text',
+      label: { en: 'Salary', fa: 'حقوق' },
       localized: true,
       admin: {
-        description: 'Salary range or compensation info',
+        description: { en: 'Salary range or compensation info', fa: 'محدوده حقوق یا اطلاعات جبران خدمت' },
       },
     },
     {
       name: 'type',
       type: 'select',
+      label: { en: 'Type', fa: 'نوع' },
       required: true,
       options: [
         { label: { en: 'Full-time', fa: 'تمام‌وقت' }, value: 'full-time' },
@@ -66,6 +71,7 @@ export const Jobs: CollectionConfig = {
     {
       name: 'jobStatus',
       type: 'select',
+      label: { en: 'Job Status', fa: 'وضعیت شغل' },
       defaultValue: 'active',
       options: [
         { label: { en: 'Active', fa: 'فعال' }, value: 'active' },
@@ -79,17 +85,20 @@ export const Jobs: CollectionConfig = {
     {
       name: 'description',
       type: 'textarea',
+      label: { en: 'Description', fa: 'توضیحات' },
       required: true,
       localized: true,
     },
     {
       name: 'responsibilities',
       type: 'array',
+      label: { en: 'Responsibilities', fa: 'مسئولیت‌ها' },
       localized: true,
       fields: [
         {
           name: 'item',
           type: 'text',
+          label: { en: 'Item', fa: 'مورد' },
           required: true,
         },
       ],
@@ -97,11 +106,13 @@ export const Jobs: CollectionConfig = {
     {
       name: 'requirements',
       type: 'array',
+      label: { en: 'Requirements', fa: 'شرایط موردنیاز' },
       localized: true,
       fields: [
         {
           name: 'item',
           type: 'text',
+          label: { en: 'Item', fa: 'مورد' },
           required: true,
         },
       ],
@@ -109,11 +120,13 @@ export const Jobs: CollectionConfig = {
     {
       name: 'benefits',
       type: 'array',
+      label: { en: 'Benefits', fa: 'مزایا' },
       localized: true,
       fields: [
         {
           name: 'item',
           type: 'text',
+          label: { en: 'Item', fa: 'مورد' },
           required: true,
         },
       ],

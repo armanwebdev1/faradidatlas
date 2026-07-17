@@ -25,18 +25,21 @@ export const Downloads: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
+      label: { en: 'Title', fa: 'عنوان' },
       required: true,
       localized: true,
     },
     {
       name: 'file',
       type: 'upload',
+      label: { en: 'File', fa: 'فایل' },
       relationTo: 'media',
       required: true,
     },
     {
       name: 'category',
       type: 'select',
+      label: { en: 'Category', fa: 'دسته‌بندی' },
       required: true,
       options: [
         { label: { en: 'Brochure', fa: 'بروشور' }, value: 'brochure' },
@@ -53,23 +56,26 @@ export const Downloads: CollectionConfig = {
     {
       name: 'description',
       type: 'textarea',
+      label: { en: 'Description', fa: 'توضیحات' },
       localized: true,
     },
     {
       name: 'ordering',
       type: 'number',
+      label: { en: 'Ordering', fa: 'ترتیب نمایش' },
       defaultValue: 0,
       admin: {
-        description: 'Display order (lower numbers first)',
+        description: { en: 'Display order (lower numbers first)', fa: 'ترتیب نمایش (اعداد کمتر اول)' },
         position: 'sidebar',
       },
     },
     {
       name: 'isActive',
       type: 'checkbox',
+      label: { en: 'Active', fa: 'فعال' },
       defaultValue: true,
       admin: {
-        description: 'Show/hide this download',
+        description: { en: 'Show/hide this download', fa: 'نمایش/مخفی‌کردن این دانلود' },
         position: 'sidebar',
       },
     },

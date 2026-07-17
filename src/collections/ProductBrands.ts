@@ -21,18 +21,21 @@ export const ProductBrands: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
+      label: { en: 'Name', fa: 'نام' },
       required: true,
       localized: true,
     },
     {
       name: 'slug',
       type: 'text',
+      label: { en: 'Slug', fa: 'نامک' },
       required: true,
       unique: true,
     },
     {
       name: 'logo',
       type: 'upload',
+      label: { en: 'Logo', fa: 'لوگو' },
       relationTo: 'media',
     },
   ],

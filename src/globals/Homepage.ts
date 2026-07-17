@@ -33,53 +33,61 @@ export const Homepage: GlobalConfig = {
             {
               name: 'heroSlides',
               type: 'array',
+              label: { en: 'Hero Slides', fa: 'اسلایدهای هیرو' },
               maxRows: 5,
               fields: [
                 {
                   name: 'image',
                   type: 'upload',
+                  label: { en: 'Image', fa: 'تصویر' },
                   relationTo: 'media',
                   required: true,
                 },
                 {
                   name: 'title',
                   type: 'text',
+                  label: { en: 'Title', fa: 'عنوان' },
                   required: true,
                   localized: true,
                 },
                 {
                   name: 'subtitle',
                   type: 'text',
+                  label: { en: 'Subtitle', fa: 'زیرعنوان' },
                   required: true,
                   localized: true,
                 },
                 {
                   name: 'description',
                   type: 'textarea',
+                  label: { en: 'Description', fa: 'توضیحات' },
                   required: true,
                   localized: true,
                 },
                 {
                   name: 'ctaText',
                   type: 'text',
+                  label: { en: 'CTA Text', fa: 'متن دکمه' },
                   localized: true,
                   admin: {
-                    description: 'CTA button text (optional)',
+                    description: { en: 'CTA button text (optional)', fa: 'متن دکمه CTA (اختیاری)' },
                   },
                 },
                 {
                   name: 'ctaUrl',
                   type: 'text',
+                  label: { en: 'CTA URL', fa: 'آدرس دکمه' },
                   admin: {
-                    description: 'CTA button URL (optional)',
+                    description: { en: 'CTA button URL (optional)', fa: 'آدرس دکمه CTA (اختیاری)' },
                   },
                 },
                 {
                   name: 'isActive',
                   type: 'checkbox',
+                  label: { en: 'Active', fa: 'فعال' },
                   defaultValue: true,
                   admin: {
-                    description: 'Show/hide this slide',
+                    description: { en: 'Show/hide this slide', fa: 'نمایش/مخفی‌کردن این اسلاید' },
                     position: 'sidebar',
                   },
                 },
@@ -93,31 +101,36 @@ export const Homepage: GlobalConfig = {
             {
               name: 'valueProps',
               type: 'array',
+              label: { en: 'Value Propositions', fa: 'پیشنهادات ارزش' },
               maxRows: 4,
               fields: [
                 {
                   name: 'icon',
                   type: 'text',
+                  label: { en: 'Icon', fa: 'آیکون' },
                   required: true,
                 },
                 {
                   name: 'title',
                   type: 'text',
+                  label: { en: 'Title', fa: 'عنوان' },
                   required: true,
                   localized: true,
                 },
                 {
                   name: 'description',
                   type: 'textarea',
+                  label: { en: 'Description', fa: 'توضیحات' },
                   required: true,
                   localized: true,
                 },
                 {
                   name: 'isActive',
                   type: 'checkbox',
+                  label: { en: 'Active', fa: 'فعال' },
                   defaultValue: true,
                   admin: {
-                    description: 'Show/hide this item',
+                    description: { en: 'Show/hide this item', fa: 'نمایش/مخفی‌کردن این مورد' },
                     position: 'sidebar',
                   },
                 },
@@ -131,28 +144,33 @@ export const Homepage: GlobalConfig = {
             {
               name: 'brandShowcase',
               type: 'array',
+              label: { en: 'Brand Showcase', fa: 'نمایش برندها' },
               fields: [
                 {
                   name: 'brandName',
                   type: 'text',
+                  label: { en: 'Brand Name', fa: 'نام برند' },
                   required: true,
                 },
                 {
                   name: 'logo',
                   type: 'upload',
+                  label: { en: 'Logo', fa: 'لوگو' },
                   relationTo: 'media',
                 },
                 {
                   name: 'description',
                   type: 'textarea',
+                  label: { en: 'Description', fa: 'توضیحات' },
                   localized: true,
                 },
                 {
                   name: 'isActive',
                   type: 'checkbox',
+                  label: { en: 'Active', fa: 'فعال' },
                   defaultValue: true,
                   admin: {
-                    description: 'Show/hide this brand',
+                    description: { en: 'Show/hide this brand', fa: 'نمایش/مخفی‌کردن این برند' },
                     position: 'sidebar',
                   },
                 },
@@ -161,19 +179,22 @@ export const Homepage: GlobalConfig = {
             {
               name: 'signatureProducts',
               type: 'array',
+              label: { en: 'Signature Products', fa: 'محصولات ویژه' },
               fields: [
                 {
                   name: 'product',
                   type: 'relationship',
+                  label: { en: 'Product', fa: 'محصول' },
                   relationTo: 'products',
                   required: true,
                 },
                 {
                   name: 'isActive',
                   type: 'checkbox',
+                  label: { en: 'Active', fa: 'فعال' },
                   defaultValue: true,
                   admin: {
-                    description: 'Show/hide this product',
+                    description: { en: 'Show/hide this product', fa: 'نمایش/مخفی‌کردن این محصول' },
                     position: 'sidebar',
                   },
                 },
@@ -187,30 +208,35 @@ export const Homepage: GlobalConfig = {
             {
               name: 'globalMarkets',
               type: 'array',
+              label: { en: 'Global Markets', fa: 'بازارهای جهانی' },
               fields: [
                 {
                   name: 'country',
                   type: 'text',
+                  label: { en: 'Country', fa: 'کشور' },
                   required: true,
                 },
                 {
                   name: 'description',
                   type: 'textarea',
+                  label: { en: 'Description', fa: 'توضیحات' },
                   localized: true,
                 },
                 {
                   name: 'value',
                   type: 'number',
+                  label: { en: 'Value', fa: 'مقدار' },
                   admin: {
-                    description: 'Number to display in the stat card',
+                    description: { en: 'Number to display in the stat card', fa: 'عدد نمایشی در کارت آمار' },
                   },
                 },
                 {
                   name: 'isActive',
                   type: 'checkbox',
+                  label: { en: 'Active', fa: 'فعال' },
                   defaultValue: true,
                   admin: {
-                    description: 'Show/hide this stat',
+                    description: { en: 'Show/hide this stat', fa: 'نمایش/مخفی‌کردن این آمار' },
                     position: 'sidebar',
                   },
                 },
@@ -219,35 +245,41 @@ export const Homepage: GlobalConfig = {
             {
               name: 'cta',
               type: 'group',
+              label: { en: 'CTA', fa: ' دعوت به اقدام' },
               fields: [
                 {
                   name: 'headline',
                   type: 'text',
+                  label: { en: 'Headline', fa: 'تیتر' },
                   required: true,
                   localized: true,
                 },
                 {
                   name: 'description',
                   type: 'textarea',
+                  label: { en: 'Description', fa: 'توضیحات' },
                   localized: true,
                 },
                 {
                   name: 'buttonText',
                   type: 'text',
+                  label: { en: 'Button Text', fa: 'متن دکمه' },
                   required: true,
                   localized: true,
                 },
                 {
                   name: 'buttonUrl',
                   type: 'text',
+                  label: { en: 'Button URL', fa: 'آدرس دکمه' },
                   required: true,
                 },
                 {
                   name: 'image',
                   type: 'upload',
+                  label: { en: 'Image', fa: 'تصویر' },
                   relationTo: 'media',
                   admin: {
-                    description: 'CTA section image',
+                    description: { en: 'CTA section image', fa: 'تصویر بخش دعوت به اقدام' },
                   },
                 },
               ],

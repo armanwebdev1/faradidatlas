@@ -25,20 +25,23 @@ export const Media: CollectionConfig = {
     {
       name: 'alt',
       type: 'text',
+      label: { en: 'Alt Text', fa: 'متن جایگزین' },
       required: true,
       localized: true,
     },
     {
       name: 'title',
       type: 'text',
+      label: { en: 'Title', fa: 'عنوان' },
       localized: true,
       admin: {
-        description: 'Optional title attribute for the image',
+        description: { en: 'Optional title attribute for the image', fa: 'ویژگی عنوان اختیاری برای تصویر' },
       },
     },
     {
       name: 'caption',
       type: 'text',
+      label: { en: 'Caption', fa: 'کپشن' },
       localized: true,
     },
   ],

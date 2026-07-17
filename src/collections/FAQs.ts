@@ -25,18 +25,21 @@ export const FAQs: CollectionConfig = {
     {
       name: 'question',
       type: 'text',
+      label: { en: 'Question', fa: 'سوال' },
       required: true,
       localized: true,
     },
     {
       name: 'answer',
       type: 'textarea',
+      label: { en: 'Answer', fa: 'پاسخ' },
       required: true,
       localized: true,
     },
     {
       name: 'category',
       type: 'select',
+      label: { en: 'Category', fa: 'دسته‌بندی' },
       required: true,
       options: [
         { label: { en: 'Company', fa: 'شرکت' }, value: 'company' },
@@ -54,18 +57,20 @@ export const FAQs: CollectionConfig = {
     {
       name: 'ordering',
       type: 'number',
+      label: { en: 'Ordering', fa: 'ترتیب نمایش' },
       defaultValue: 0,
       admin: {
-        description: 'Display order (lower numbers first)',
+        description: { en: 'Display order (lower numbers first)', fa: 'ترتیب نمایش (اعداد کمتر اول)' },
         position: 'sidebar',
       },
     },
     {
       name: 'isActive',
       type: 'checkbox',
+      label: { en: 'Active', fa: 'فعال' },
       defaultValue: true,
       admin: {
-        description: 'Show/hide this FAQ item',
+        description: { en: 'Show/hide this FAQ item', fa: 'نمایش/مخفی‌کردن این سوال متداول' },
         position: 'sidebar',
       },
     },

@@ -41,12 +41,14 @@ export const BlogPosts: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
+      label: { en: 'Title', fa: 'عنوان' },
       required: true,
       localized: true,
     },
     {
       name: 'slug',
       type: 'text',
+      label: { en: 'Slug', fa: 'نامک' },
       required: true,
       unique: true,
       admin: {
@@ -56,15 +58,18 @@ export const BlogPosts: CollectionConfig = {
     {
       name: 'author',
       type: 'text',
+      label: { en: 'Author', fa: 'نویسنده' },
       required: true,
     },
     {
       name: 'tags',
       type: 'array',
+      label: { en: 'Tags', fa: 'برچسب‌ها' },
       fields: [
         {
           name: 'tag',
           type: 'text',
+          label: { en: 'Tag', fa: 'برچسب' },
           required: true,
         },
       ],
@@ -72,35 +77,42 @@ export const BlogPosts: CollectionConfig = {
     {
       name: 'excerpt',
       type: 'textarea',
+      label: { en: 'Excerpt', fa: 'خلاصه' },
       localized: true,
     },
     {
       name: 'content',
       type: 'richText',
+      label: { en: 'Content', fa: 'محتوا' },
       localized: true,
     },
     {
       name: 'featuredImage',
       type: 'upload',
+      label: { en: 'Featured Image', fa: 'تصویر شاخص' },
       relationTo: 'media',
     },
     {
       name: 'seo',
       type: 'group',
+      label: { en: 'SEO', fa: 'سئو' },
       fields: [
         {
           name: 'title',
           type: 'text',
+          label: { en: 'SEO Title', fa: 'عنوان سئو' },
           localized: true,
         },
         {
           name: 'description',
           type: 'textarea',
+          label: { en: 'SEO Description', fa: 'توضیحات سئو' },
           localized: true,
         },
         {
           name: 'ogImage',
           type: 'upload',
+          label: { en: 'OG Image', fa: 'تصویر OG' },
           relationTo: 'media',
         },
       ],
@@ -108,6 +120,7 @@ export const BlogPosts: CollectionConfig = {
     {
       name: 'publishDate',
       type: 'date',
+      label: { en: 'Publish Date', fa: 'تاریخ انتشار' },
       admin: {
         position: 'sidebar',
         date: {

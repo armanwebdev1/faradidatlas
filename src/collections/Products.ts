@@ -41,12 +41,14 @@ export const Products: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
+      label: { en: 'Name', fa: 'نام' },
       required: true,
       localized: true,
     },
     {
       name: 'slug',
       type: 'text',
+      label: { en: 'Slug', fa: 'نامک' },
       required: true,
       unique: true,
       admin: {
@@ -56,6 +58,7 @@ export const Products: CollectionConfig = {
     {
       name: 'category',
       type: 'relationship',
+      label: { en: 'Category', fa: 'دسته‌بندی' },
       relationTo: 'categories',
       required: true,
       admin: {
@@ -65,6 +68,7 @@ export const Products: CollectionConfig = {
     {
       name: 'brand',
       type: 'relationship',
+      label: { en: 'Brand', fa: 'برند' },
       relationTo: 'product-brands',
       admin: {
         position: 'sidebar',
@@ -73,16 +77,17 @@ export const Products: CollectionConfig = {
     {
       name: 'type',
       type: 'select',
+      label: { en: 'Type', fa: 'نوع' },
       options: [
-        { label: 'Basmati Rice', value: 'basmati-rice' },
-        { label: 'Jasmine Rice', value: 'jasmine-rice' },
-        { label: 'Beans', value: 'beans' },
-        { label: 'Lentils', value: 'lentils' },
-        { label: 'Chickpeas', value: 'chickpeas' },
-        { label: 'Seeds & Kernels', value: 'seeds-kernels' },
-        { label: 'Nuts', value: 'nuts' },
-        { label: 'Spices', value: 'spices' },
-        { label: 'Sweeteners', value: 'sweeteners' },
+        { label: { en: 'Basmati Rice', fa: 'برنج باسماتی' }, value: 'basmati-rice' },
+        { label: { en: 'Jasmine Rice', fa: 'برنج یاسمین' }, value: 'jasmine-rice' },
+        { label: { en: 'Beans', fa: 'حبوبات' }, value: 'beans' },
+        { label: { en: 'Lentils', fa: 'عدس' }, value: 'lentils' },
+        { label: { en: 'Chickpeas', fa: 'نخود' }, value: 'chickpeas' },
+        { label: { en: 'Seeds & Kernels', fa: 'دانه‌ها و مغزها' }, value: 'seeds-kernels' },
+        { label: { en: 'Nuts', fa: 'آجیل' }, value: 'nuts' },
+        { label: { en: 'Spices', fa: 'ادویه‌ها' }, value: 'spices' },
+        { label: { en: 'Sweeteners', fa: 'شیرین‌کننده‌ها' }, value: 'sweeteners' },
       ],
       admin: {
         position: 'sidebar',
@@ -91,47 +96,54 @@ export const Products: CollectionConfig = {
     {
       name: 'featured',
       type: 'checkbox',
+      label: { en: 'Featured', fa: 'ویژه' },
       defaultValue: false,
       admin: {
-        description: 'Mark as featured product',
+        description: { en: 'Mark as featured product', fa: 'نشان‌دادن به‌عنوان محصول ویژه' },
         position: 'sidebar',
       },
     },
     {
       name: 'ordering',
       type: 'number',
+      label: { en: 'Ordering', fa: 'ترتیب نمایش' },
       defaultValue: 0,
       admin: {
-        description: 'Display order (lower numbers first)',
+        description: { en: 'Display order (lower numbers first)', fa: 'ترتیب نمایش (اعداد کمتر اول)' },
         position: 'sidebar',
       },
     },
     {
       name: 'description',
       type: 'textarea',
+      label: { en: 'Description', fa: 'توضیحات' },
       localized: true,
     },
     {
       name: 'alias',
       type: 'text',
+      label: { en: 'Alias', fa: 'نام جایگزین' },
       localized: true,
       admin: {
-        description: 'Alternative name for search',
+        description: { en: 'Alternative name for search', fa: 'نام جایگزین برای جستجو' },
       },
     },
     {
       name: 'specs',
       type: 'array',
+      label: { en: 'Specifications', fa: 'مشخصات' },
       localized: true,
       fields: [
         {
           name: 'label',
           type: 'text',
+          label: { en: 'Label', fa: 'عنوان' },
           required: true,
         },
         {
           name: 'value',
           type: 'text',
+          label: { en: 'Value', fa: 'مقدار' },
           required: true,
         },
       ],
@@ -139,15 +151,18 @@ export const Products: CollectionConfig = {
     {
       name: 'featuredImage',
       type: 'upload',
+      label: { en: 'Featured Image', fa: 'تصویر شاخص' },
       relationTo: 'media',
     },
     {
       name: 'gallery',
       type: 'array',
+      label: { en: 'Gallery', fa: 'گالری تصاویر' },
       fields: [
         {
           name: 'image',
           type: 'upload',
+          label: { en: 'Image', fa: 'تصویر' },
           relationTo: 'media',
           required: true,
         },
@@ -156,28 +171,32 @@ export const Products: CollectionConfig = {
     {
       name: 'downloadableFiles',
       type: 'array',
+      label: { en: 'Downloadable Files', fa: 'فایل‌های قابل دانلود' },
       admin: {
-        description: 'Downloadable files (brochures, specs sheets, etc.)',
+        description: { en: 'Downloadable files (brochures, specs sheets, etc.)', fa: 'فایل‌های قابل دانلود (بروشور، برگه مشخصات و غیره)' },
       },
       fields: [
         {
           name: 'title',
           type: 'text',
+          label: { en: 'Title', fa: 'عنوان' },
           required: true,
           localized: true,
         },
         {
           name: 'file',
           type: 'upload',
+          label: { en: 'File', fa: 'فایل' },
           relationTo: 'media',
           required: true,
         },
         {
           name: 'category',
           type: 'text',
+          label: { en: 'Category', fa: 'دسته‌بندی' },
           localized: true,
           admin: {
-            description: 'e.g. "Brochure", "Spec Sheet", "Certificate"',
+            description: { en: 'e.g. "Brochure", "Spec Sheet", "Certificate"', fa: 'مثلاً "بروشور"، "برگه مشخصات"، "گواهینامه"' },
           },
         },
       ],
@@ -185,20 +204,24 @@ export const Products: CollectionConfig = {
     {
       name: 'seo',
       type: 'group',
+      label: { en: 'SEO', fa: 'سئو' },
       fields: [
         {
           name: 'title',
           type: 'text',
+          label: { en: 'SEO Title', fa: 'عنوان سئو' },
           localized: true,
         },
         {
           name: 'description',
           type: 'textarea',
+          label: { en: 'SEO Description', fa: 'توضیحات سئو' },
           localized: true,
         },
         {
           name: 'ogImage',
           type: 'upload',
+          label: { en: 'OG Image', fa: 'تصویر OG' },
           relationTo: 'media',
         },
       ],
