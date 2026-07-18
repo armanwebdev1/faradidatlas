@@ -334,9 +334,16 @@
 
 /* ─── RTL Support for Persian Admin ─── */
 [dir="rtl"] {
-  .payload-sidebar {
+  .nav {
     border-right: none;
     border-left: 1px solid var(--theme-elevation-100);
+  }
+
+  @media (max-width: 768px) {
+    .nav {
+      left: auto;
+      right: 0;
+    }
   }
 
   .list-header__title {
