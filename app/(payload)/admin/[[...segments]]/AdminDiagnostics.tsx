@@ -9,12 +9,12 @@ export function AdminDiagnostics() {
   useEffect(() => {
     setUrl(window.location.href)
     fetch('/api/blog-posts?limit=1&depth=0')
-      .then(r => r.json())
-      .then(data => {
-        setInfo(`API OK. totalDocs: ${data.totalDocs}`)
+      .then(async r => {
+        const text = await r.text()
+        setInfo(`Status: ${r.status} | Body: ${text.substring(0, 300)}`)
       })
       .catch(err => {
-        setInfo(`API ERROR: ${err.message}`)
+        setInfo(`FETCH ERROR: ${err.message}`)
       })
   }, [])
 
@@ -30,8 +30,10 @@ export function AdminDiagnostics() {
       padding: '12px 16px',
       fontFamily: 'monospace',
       fontSize: '13px',
+      whiteSpace: 'pre-wrap',
+      wordBreak: 'break-all',
     }}>
-      DIAGNOSTICS: {info} | {url}
+      {info} | {url}
     </div>
   )
 }
