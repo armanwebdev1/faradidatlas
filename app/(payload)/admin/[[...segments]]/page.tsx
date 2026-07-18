@@ -5,7 +5,6 @@ import type { Metadata } from "next";
 import config from "@payload-config";
 import { RootPage, generatePageMetadata } from "@payloadcms/next/views";
 import { importMap } from "../../importMap.js";
-import { AdminErrorBoundary } from "./AdminErrorBoundary";
 
 type Args = {
   params: Promise<{
@@ -26,15 +25,20 @@ export const generateMetadata = ({
     searchParams,
   });
 
-const Page = ({ params, searchParams }: Args) => (
-  <AdminErrorBoundary>
-    {RootPage({
-      config,
-      importMap,
-      params,
-      searchParams,
-    })}
-  </AdminErrorBoundary>
-);
+const Page = ({ params, searchParams }: Args) => {
+  return (
+    <div>
+      <div style={{ padding: '4px 8px', background: 'yellow', fontFamily: 'monospace', fontSize: '11px' }}>
+        DEBUG: page.tsx rendered for admin
+      </div>
+      {RootPage({
+        config,
+        importMap,
+        params,
+        searchParams,
+      })}
+    </div>
+  );
+};
 
 export default Page;
