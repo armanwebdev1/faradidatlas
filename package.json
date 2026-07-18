@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "next build --webpack",
+    "build": "payload generate:importmap && next build --webpack",
     "dev": "next dev --webpack",
     "lint": "eslint .",
     "start": "next start",
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.85.2",
+    "@payloadcms/live-preview-react": "3.85.2",
     "@payloadcms/next": "^3.85.2",
     "@payloadcms/plugin-redirects": "^3.85.2",
     "@payloadcms/plugin-seo": "^3.85.2",
