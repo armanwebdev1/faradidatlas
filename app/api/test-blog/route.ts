@@ -6,35 +6,24 @@ export async function GET() {
   try {
     const payload = await getPayload({ config })
 
-    // List all registered collections
-    const collections = Object.keys(payload.collections)
+    // Check if blog_posts_tags_locales table exists
+    const db = payload.db
 
-    // Try blog-posts
-    let blogResult = null
-    let blogError = null
+    let tableCheck: any = null
     try {
-      blogResult = await payload.find({
-        collection: 'blog-posts' as any,
-        limit: 1,
-        depth: 0,
-      })
+      const result = await (db as any).pool.query(`
+        SELECT table_name FROM information_schema.tables
+        WHERE table_name = 'blog_posts_tags_locales'
+      `)
+      tableCheck = result.rows
     } catch (e: any) {
-      blogError = e.message
+      tableCheck = { error: e.message }
     }
 
     return NextResponse.json({
-      registeredCollections: collections,
-      blogResult: blogResult ? { totalDocs: blogResult.totalDocs } : null,
-      blogError,
+      tableExists: tableCheck,
     })
   } catch (error: any) {
-    console.error('=== BLOG TEST ERROR ===')
-    console.error('Message:', error.message)
-    console.error('Stack:', error.stack)
-
-    return NextResponse.json({
-      error: error.message,
-      stack: error.stack?.substring(0, 500),
-    }, { status: 500 })
+    return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }
