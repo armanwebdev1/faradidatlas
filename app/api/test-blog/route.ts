@@ -1,30 +1,38 @@
 import { NextResponse } from 'next/server'
+import { getPayload } from 'payload'
 import config from '@payload-config'
 
 export async function GET() {
   try {
-    const payload = await import('payload').then(m => m.default)
+    const payload = await getPayload({ config })
 
-    // Try to find blog posts
-    const result = await payload.find({
-      collection: 'blog-posts',
-      limit: 1,
-      depth: 0,
-    })
+    // List all registered collections
+    const collections = Object.keys(payload.collections)
+
+    // Try blog-posts
+    let blogResult = null
+    let blogError = null
+    try {
+      blogResult = await payload.find({
+        collection: 'blog-posts' as any,
+        limit: 1,
+        depth: 0,
+      })
+    } catch (e: any) {
+      blogError = e.message
+    }
 
     return NextResponse.json({
-      success: true,
-      totalDocs: result.totalDocs,
-      docs: result.docs.length,
+      registeredCollections: collections,
+      blogResult: blogResult ? { totalDocs: blogResult.totalDocs } : null,
+      blogError,
     })
   } catch (error: any) {
     console.error('=== BLOG TEST ERROR ===')
     console.error('Message:', error.message)
     console.error('Stack:', error.stack)
-    console.error('Full error:', JSON.stringify(error, Object.getOwnPropertyNames(error), 2))
 
     return NextResponse.json({
-      success: false,
       error: error.message,
       stack: error.stack?.substring(0, 500),
     }, { status: 500 })
