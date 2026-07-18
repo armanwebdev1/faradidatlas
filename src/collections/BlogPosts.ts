@@ -70,7 +70,7 @@ export const BlogPosts: CollectionConfig = {
     },
     {
       name: 'content',
-      type: 'richText',
+      type: 'textarea',
       label: { en: 'Content', fa: 'محتوا' },
       localized: true,
     },
