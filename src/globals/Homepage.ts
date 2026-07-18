@@ -10,13 +10,6 @@ export const Homepage: GlobalConfig = {
   },
   admin: {
     group: { en: 'Website', fa: 'وبسایت' },
-    livePreview: {
-      url: ({ locale }) => {
-        const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://faradidatlas.com'
-        const lang = locale || 'en'
-        return `${base}/${lang}`
-      },
-    },
     preview: (_doc, { locale }) => {
       const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://faradidatlas.com'
       const lang = locale || 'en'

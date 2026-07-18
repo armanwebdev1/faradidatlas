@@ -18,14 +18,6 @@ export const Products: CollectionConfig = {
     group: { en: 'Catalog', fa: 'کاتالوگ' },
     defaultColumns: ['name', 'category', 'brand', 'featured', 'status'],
     description: { en: 'Manage your product catalog with multilingual names, descriptions, specs, and images', fa: 'مدیریت کاتالوگ محصولات با نام‌ها، توضیحات، مشخصات و تصاویر چندزبانه' },
-    livePreview: {
-      url: ({ data, locale }) => {
-        const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://faradidatlas.com'
-        const lang = locale || 'en'
-        const slug = data?.slug || ''
-        return `${base}/${lang}/products/${slug}`
-      },
-    },
     preview: (doc, { locale }) => {
       const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://faradidatlas.com'
       const lang = locale || 'en'

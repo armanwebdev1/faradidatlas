@@ -33,13 +33,6 @@ const dirname = path.dirname(filename);
 export default buildConfig({
   admin: {
     user: "users",
-    livePreview: {
-      url: ({ locale }) => {
-        const base = process.env.NEXT_PUBLIC_SITE_URL || "https://faradidatlas.com"
-        const lang = locale || "en"
-        return `${base}/${lang}`
-      },
-    },
     meta: {
       titleSuffix: " | Faradid Atlas CMS",
       description: "Content management for faradidatlas.com",
