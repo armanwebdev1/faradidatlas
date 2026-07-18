@@ -2,20 +2,41 @@
 
 import { useEffect, useState } from 'react'
 
+async function testAPI(path: string): Promise<string> {
+  try {
+    const r = await fetch(path)
+    const text = await r.text()
+    return `${r.status}: ${text.substring(0, 200)}`
+  } catch (err: any) {
+    return `FETCH_ERR: ${err.message}`
+  }
+}
+
 export function AdminDiagnostics() {
-  const [info, setInfo] = useState<string>('loading...')
+  const [results, setResults] = useState<string>('testing...')
   const [url, setUrl] = useState('')
 
   useEffect(() => {
     setUrl(window.location.href)
-    fetch('/api/blog-posts?limit=1&depth=0')
-      .then(async r => {
-        const text = await r.text()
-        setInfo(`Status: ${r.status} | Body: ${text.substring(0, 300)}`)
-      })
-      .catch(err => {
-        setInfo(`FETCH ERROR: ${err.message}`)
-      })
+    Promise.all([
+      testAPI('/api/products?limit=1&depth=0'),
+      testAPI('/api/categories?limit=1&depth=0'),
+      testAPI('/api/jobs?limit=1&depth=0'),
+      testAPI('/api/faqs?limit=1&depth=0'),
+      testAPI('/api/blog-posts?limit=1&depth=0'),
+      testAPI('/api/blog-posts?limit=1&depth=0&locale=all'),
+      testAPI('/api/blog-posts?limit=0'),
+    ]).then(([products, categories, jobs, faqs, blog, blogAll, blogZero]) => {
+      setResults(
+        `products: ${products}\n` +
+        `categories: ${categories}\n` +
+        `jobs: ${jobs}\n` +
+        `faqs: ${faqs}\n` +
+        `blog-posts: ${blog}\n` +
+        `blog-posts(locale=all): ${blogAll}\n` +
+        `blog-posts(limit=0): ${blogZero}`
+      )
+    })
   }, [])
 
   return (
@@ -29,11 +50,14 @@ export function AdminDiagnostics() {
       color: 'white',
       padding: '12px 16px',
       fontFamily: 'monospace',
-      fontSize: '13px',
+      fontSize: '12px',
       whiteSpace: 'pre-wrap',
       wordBreak: 'break-all',
+      maxHeight: '40vh',
+      overflow: 'auto',
     }}>
-      {info} | {url}
+      {results}
+      {'\n'}URL: {url}
     </div>
   )
 }
