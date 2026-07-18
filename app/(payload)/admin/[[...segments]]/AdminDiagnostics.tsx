@@ -11,10 +11,15 @@ export function AdminDiagnostics() {
     fetch('/api/test-blog')
       .then(async r => {
         const data = await r.json()
-        if (data.success) {
-          setInfo(`API OK: totalDocs=${data.totalDocs}, docs=${data.docs}`)
+        if (data.error) {
+          setInfo(`ERROR: ${data.error}\n${data.stack || ''}`)
+        } else if (data.registeredCollections) {
+          setInfo(
+            `Collections(${data.registeredCollections.length}): ${data.registeredCollections.join(', ')}\n` +
+            `Blog: ${data.blogError || JSON.stringify(data.blogResult)}`
+          )
         } else {
-          setInfo(`API FAILED: ${data.error}\nStack: ${data.stack}`)
+          setInfo(JSON.stringify(data).substring(0, 500))
         }
       })
       .catch(err => {
@@ -36,6 +41,8 @@ export function AdminDiagnostics() {
       fontSize: '12px',
       whiteSpace: 'pre-wrap',
       wordBreak: 'break-all',
+      maxHeight: '50vh',
+      overflow: 'auto',
     }}>
       {info} | {url}
     </div>
