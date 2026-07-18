@@ -4,21 +4,20 @@ import { useEffect, useState } from 'react'
 
 export function AdminDiagnostics() {
   const [info, setInfo] = useState<string>('loading...')
-  const [count, setCount] = useState(0)
+  const [url, setUrl] = useState('')
 
   useEffect(() => {
-    // Test if the blog-posts API works
+    setUrl(window.location.href)
     fetch('/api/blog-posts?limit=1&depth=0')
       .then(r => r.json())
       .then(data => {
-        setInfo(`API works. totalDocs: ${data.totalDocs}, docs: ${data.docs?.length || 0}`)
+        setInfo(`API OK. totalDocs: ${data.totalDocs}`)
       })
       .catch(err => {
         setInfo(`API ERROR: ${err.message}`)
       })
   }, [])
 
-  // Visible red banner that's impossible to miss
   return (
     <div style={{
       position: 'fixed',
@@ -31,9 +30,8 @@ export function AdminDiagnostics() {
       padding: '12px 16px',
       fontFamily: 'monospace',
       fontSize: '13px',
-      fontWeight: 'bold',
     }}>
-      DIAGNOSTICS: {info} | URL: {window.location.href} | Render count: {++count}
+      DIAGNOSTICS: {info} | {url}
     </div>
   )
 }
