@@ -8,19 +8,10 @@ export function AdminDiagnostics() {
 
   useEffect(() => {
     setUrl(window.location.href)
-    fetch('/api/test-blog')
+    fetch('/api/fix-blog')
       .then(async r => {
         const data = await r.json()
-        if (data.error) {
-          setInfo(`ERROR: ${data.error}\n${data.stack || ''}`)
-        } else if (data.registeredCollections) {
-          setInfo(
-            `Collections(${data.registeredCollections.length}): ${data.registeredCollections.join(', ')}\n` +
-            `Blog: ${data.blogError || JSON.stringify(data.blogResult)}`
-          )
-        } else {
-          setInfo(JSON.stringify(data).substring(0, 500))
-        }
+        setInfo(JSON.stringify(data, null, 2).substring(0, 1000))
       })
       .catch(err => {
         setInfo(`FETCH ERROR: ${err.message}`)
@@ -38,10 +29,10 @@ export function AdminDiagnostics() {
       color: 'white',
       padding: '12px 16px',
       fontFamily: 'monospace',
-      fontSize: '12px',
+      fontSize: '11px',
       whiteSpace: 'pre-wrap',
       wordBreak: 'break-all',
-      maxHeight: '50vh',
+      maxHeight: '60vh',
       overflow: 'auto',
     }}>
       {info} | {url}
