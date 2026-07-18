@@ -27,6 +27,7 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
   const isRTL = lang === "fa" || lang === "ar";
   const t = translations[lang];
   const stats = companyInfo?.aboutStats?.length > 0 ? companyInfo.aboutStats : defaultStats;
+  const hero = companyInfo?.hero;
 
   return (
     <section
@@ -40,16 +41,16 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
               className="eyebrow mb-4 text-brand-navy opacity-0 translate-y-6"
               data-animate
             >
-              {t.pages.about.heroEyebrow}
+              {hero?.eyebrow || t.pages.about.heroEyebrow}
             </p>
             <h1
               className="font-semibold text-[clamp(2.2rem,2.45vw+1.05rem,3.75rem)] leading-[1.18] sm:leading-[1.16] md:leading-[1.14] tracking-normal text-primary mb-5 max-w-5xl mx-auto opacity-0 translate-y-6"
               data-animate
             >
-              {t.pages.about.heroHeadline}
+              {hero?.headline || t.pages.about.heroHeadline}
             </h1>
             <p className="text-responsive-body text-foreground/70 max-w-3xl mx-auto opacity-0 translate-y-6" data-animate>
-              {heroDescription[lang]}
+              {hero?.description || heroDescription[lang]}
             </p>
             <Link
               href={`/${lang}/contact`}
@@ -63,8 +64,8 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
           <div>
             <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/optimized/about-hero.webp"
-                alt={t.pages.about.heroImageAlt}
+                src={hero?.image?.url || "/optimized/about-hero.webp"}
+                alt={hero?.imageAlt || t.pages.about.heroImageAlt}
                 fill
                 priority
                 sizes="100vw"
@@ -75,7 +76,7 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <h2 className="text-responsive-title text-primary">
-              {t.pages.about.foodSecurityPractical}
+              {hero?.foodSecurityPractical || t.pages.about.foodSecurityPractical}
             </h2>
 
             <div
@@ -88,11 +89,11 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
               }}
             >
               <p className="text-base md:text-lg font-semibold text-foreground leading-relaxed max-w-xl">
-                {t.pages.about.storyP1}
+                {hero?.storyP1 || t.pages.about.storyP1}
               </p>
 
               <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-xl">
-                {t.pages.about.storyP2}
+                {hero?.storyP2 || t.pages.about.storyP2}
               </p>
             </div>
           </div>
@@ -100,15 +101,15 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div>
               <p className="text-xs font-semibold text-primary uppercase tracking-wide mb-3">
-                {t.pages.about.missionLabel}
+                {hero?.missionLabel || t.pages.about.missionLabel}
               </p>
               <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-xl">
-                {t.pages.about.missionText}
+                {hero?.missionText || t.pages.about.missionText}
               </p>
             </div>
 
             <blockquote className="text-2xl md:text-3xl font-bold text-primary leading-tight max-w-xl">
-              {t.pages.about.blockquote}
+              {hero?.blockquote || t.pages.about.blockquote}
             </blockquote>
           </div>
 

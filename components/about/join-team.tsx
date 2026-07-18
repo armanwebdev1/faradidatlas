@@ -8,8 +8,15 @@ interface JoinTeamProps {
   companyInfo?: any;
 }
 
-export function JoinTeam({ lang }: JoinTeamProps) {
+export function JoinTeam({ lang, companyInfo }: JoinTeamProps) {
   const t = translations[lang];
+  const joinTeam = companyInfo?.joinTeam;
+
+  const title = joinTeam?.title || t.pages.about.workWithUs;
+  const description = joinTeam?.description || t.pages.about.workWithUsDescription;
+  const ctaText = joinTeam?.ctaText || t.pages.about.startConversation;
+  const ctaUrl = joinTeam?.ctaUrl || `/${lang}/contact`;
+
   return (
     <section className="relative py-16 md:py-24 px-4 sm:px-6 bg-background overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-border" />
@@ -17,7 +24,7 @@ export function JoinTeam({ lang }: JoinTeamProps) {
       <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight tracking-tight">
-            {t.pages.about.workWithUs}
+            {title}
           </h2>
 
           <div
@@ -29,14 +36,14 @@ export function JoinTeam({ lang }: JoinTeamProps) {
             }}
           >
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-              {t.pages.about.workWithUsDescription}
+              {description}
             </p>
 
             <Link
-              href={`/${lang}/contact`}
+              href={ctaUrl}
               className="inline-flex items-center text-foreground hover:text-accent font-medium transition-colors"
             >
-              {t.pages.about.startConversation}
+              {ctaText}
               <span className="ml-1" aria-hidden="true">
                 <ArrowRight className="h-4 w-4 inline" />
                 <span className="sr-only">→</span>

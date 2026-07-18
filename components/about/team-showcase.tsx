@@ -123,7 +123,10 @@ export function TeamShowcase({ lang, companyInfo }: TeamShowcaseProps) {
     : fallbackList;
   const isRTL = lang === "fa" || lang === "ar";
   const t = translations[lang];
-  const sectionIntro = t.pages.about.valuesIntro;
+  
+  const sectionTitle = companyInfo?.valuesSection?.title || t.pages.about.coreValues;
+  const sectionSubtitle = companyInfo?.valuesSection?.subtitle || t.pages.about.principlesTitle;
+  const sectionIntro = companyInfo?.valuesSection?.intro || t.pages.about.valuesIntro;
 
   return (
     <AnimatedSection className="relative overflow-hidden bg-white px-4 py-20 sm:px-6 md:py-28">
@@ -134,10 +137,10 @@ export function TeamShowcase({ lang, companyInfo }: TeamShowcaseProps) {
         <div className="mx-auto mb-14 max-w-3xl text-center md:mb-16">
           <div>
             <p className="eyebrow mb-4 text-brand-navy">
-            {t.pages.about.coreValues}
+            {sectionTitle}
             </p>
             <h2 className="max-w-4xl text-responsive-title text-primary">
-            {t.pages.about.principlesTitle}
+            {sectionSubtitle}
             </h2>
           </div>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-foreground/70">

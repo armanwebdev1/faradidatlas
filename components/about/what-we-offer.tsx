@@ -94,6 +94,9 @@ export function WhatWeOffer({ lang, companyInfo }: WhatWeOfferProps) {
       }))
     : fallback;
 
+  const sectionTitle = companyInfo?.offeringsSection?.title || t.pages.about.whatWeOffer;
+  const sectionDescription = companyInfo?.offeringsSection?.description || t.pages.about.whatWeOfferDescription;
+
   return (
     <AnimatedSection className="relative py-24 md:py-32 px-4 sm:px-6 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto">
@@ -102,10 +105,10 @@ export function WhatWeOffer({ lang, companyInfo }: WhatWeOfferProps) {
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary leading-tight tracking-tight font-hero mb-8"
             style={{ fontFamily: "var(--font-hero)" }}
           >
-            {t.pages.about.whatWeOffer}
+            {sectionTitle}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            {t.pages.about.whatWeOfferDescription}
+            {sectionDescription}
           </p>
         </div>
 

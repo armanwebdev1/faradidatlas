@@ -67,7 +67,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
         <CEOProfile lang={lang} companyInfo={ci} />
         <WhatWeOffer lang={lang} companyInfo={ci} />
         <TeamShowcase lang={lang} companyInfo={ci} />
-        <JoinTeam lang={lang} />
+        <JoinTeam lang={lang} companyInfo={ci} />
       </main>
       <script
         type="application/ld+json"

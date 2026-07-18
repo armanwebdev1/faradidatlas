@@ -83,7 +83,7 @@ export function CEOProfile({ lang, companyInfo }: CEOProfileProps) {
 
             <div className="mt-10 opacity-0 translate-y-6" data-animate>
               <p className="text-sm font-semibold uppercase tracking-[0.25em] text-foreground">
-                {role} {lang === "en" ? "of" : lang === "fa" ? "شرکت" : "لشركة"}{" "}
+                {role} {getLocalized(ceo?.connectorWord, lang) || (lang === "en" ? "of" : lang === "fa" ? "شرکت" : "لشركة")}{" "}
                 {companyName}
               </p>
 
