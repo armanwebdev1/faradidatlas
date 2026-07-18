@@ -18,12 +18,6 @@ export const BlogPosts: CollectionConfig = {
     group: { en: 'Content', fa: 'محتوا' },
     defaultColumns: ['title', 'author', 'status'],
     description: { en: 'Blog articles with multilingual content, authors, and publishing workflow', fa: 'مقالات وبلاگ با محتوای چندزبانه، نویسندگان و فرآیند انتشار' },
-    preview: (doc, { locale }) => {
-      const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://faradidatlas.com'
-      const lang = locale || 'en'
-      const slug = doc?.slug || ''
-      return `${base}/${lang}/blog/${slug}`
-    },
   },
   versions: {
     drafts: true,
