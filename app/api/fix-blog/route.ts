@@ -10,74 +10,76 @@ export async function GET() {
     const pool = (payload.db as any).pool
     const steps: string[] = []
 
-    // Step 1: Drop broken table if it exists (FK was wrong type)
-    try {
-      await pool.query(`DROP TABLE IF EXISTS "blog_posts_tags_locales" CASCADE;`)
-      steps.push('dropped old table')
-    } catch (e: any) {
-      steps.push(`drop failed: ${e.message}`)
+    // Create ALL missing locales tables that Payload's drizzle schema expects
+
+    const tablesToCreate = [
+      {
+        name: 'blog_posts_tags_locales',
+        fkTable: 'blog_posts_tags',
+        fkCol: 'id',
+        fkColType: 'varchar',
+        fields: '"tag" varchar',
+      },
+      {
+        name: '_blog_posts_v_version_tags_locales',
+        fkTable: '_blog_posts_v_version_tags',
+        fkCol: 'id',
+        fkColType: 'varchar',
+        fields: '"tag" varchar',
+      },
+    ]
+
+    for (const t of tablesToCreate) {
+      try {
+        // Drop if broken
+        await pool.query(`DROP TABLE IF EXISTS "${t.name}" CASCADE;`)
+
+        // Create
+        await pool.query(`
+          CREATE TABLE "${t.name}" (
+            "id" serial PRIMARY KEY,
+            "_locale" "_locales" NOT NULL,
+            "_parent_id" ${t.fkColType} NOT NULL,
+            ${t.fields}
+          );
+        `)
+
+        // FK
+        await pool.query(`
+          ALTER TABLE "${t.name}"
+            ADD CONSTRAINT "${t.name}_parent_id_fk"
+            FOREIGN KEY ("_parent_id") REFERENCES "${t.fkTable}"("${t.fkCol}")
+            ON DELETE cascade ON UPDATE no action;
+        `)
+
+        // Unique index
+        await pool.query(`
+          CREATE UNIQUE INDEX IF NOT EXISTS "${t.name}_locale_parent_id_unique"
+            ON "${t.name}" USING btree ("_locale", "_parent_id");
+        `)
+
+        // Seed data from parent table
+        await pool.query(`
+          INSERT INTO "${t.name}" ("_locale", "_parent_id", "tag")
+          SELECT 'en', "id", "tag" FROM "${t.fkTable}"
+          ON CONFLICT DO NOTHING;
+        `)
+
+        steps.push(`${t.name}: created`)
+      } catch (e: any) {
+        steps.push(`${t.name}: ${e.message}`)
+      }
     }
 
-    // Step 2: Create table with correct types (_parent_id must be varchar to match blog_posts_tags.id)
-    try {
-      await pool.query(`
-        CREATE TABLE "blog_posts_tags_locales" (
-          "id" serial PRIMARY KEY,
-          "_locale" "_locales" NOT NULL,
-          "_parent_id" varchar NOT NULL,
-          "tag" varchar
-        );
-      `)
-      steps.push('table created')
-    } catch (e: any) {
-      steps.push(`create failed: ${e.message}`)
+    // Also drop any stale _locale columns from main tag tables
+    for (const tbl of ['blog_posts_tags', '_blog_posts_v_version_tags']) {
+      try {
+        await pool.query(`ALTER TABLE "${tbl}" DROP COLUMN IF EXISTS "_locale";`)
+        steps.push(`${tbl}._locale dropped`)
+      } catch {}
     }
 
-    // Step 3: Add FK (parent_id is varchar matching blog_posts_tags.id which is varchar)
-    try {
-      await pool.query(`
-        ALTER TABLE "blog_posts_tags_locales"
-          ADD CONSTRAINT "blog_posts_tags_locales_parent_id_fk"
-          FOREIGN KEY ("_parent_id") REFERENCES "blog_posts_tags"("id")
-          ON DELETE cascade ON UPDATE no action;
-      `)
-      steps.push('FK added')
-    } catch (e: any) {
-      steps.push(`FK failed: ${e.message}`)
-    }
-
-    // Step 4: Add unique index
-    try {
-      await pool.query(`
-        CREATE UNIQUE INDEX IF NOT EXISTS "blog_posts_tags_locales_locale_parent_id_unique"
-          ON "blog_posts_tags_locales" USING btree ("_locale", "_parent_id");
-      `)
-      steps.push('index created')
-    } catch (e: any) {
-      steps.push(`index failed: ${e.message}`)
-    }
-
-    // Step 5: Migrate existing tag data
-    try {
-      await pool.query(`
-        INSERT INTO "blog_posts_tags_locales" ("_locale", "_parent_id", "tag")
-        SELECT 'en', "id", "tag" FROM "blog_posts_tags"
-        ON CONFLICT DO NOTHING;
-      `)
-      steps.push('data migrated')
-    } catch (e: any) {
-      steps.push(`migrate failed: ${e.message}`)
-    }
-
-    // Step 6: Remove _locale from blog_posts_tags
-    try {
-      await pool.query(`ALTER TABLE "blog_posts_tags" DROP COLUMN IF EXISTS "_locale";`)
-      steps.push('dropped _locale from tags')
-    } catch (e: any) {
-      steps.push(`drop _locale failed: ${e.message}`)
-    }
-
-    // Step 7: Test the query
+    // Test both queries
     let testResult: string | null = null
     try {
       const result = await payload.find({

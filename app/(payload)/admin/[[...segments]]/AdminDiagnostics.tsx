@@ -3,19 +3,34 @@
 import { useEffect, useState } from 'react'
 
 export function AdminDiagnostics() {
-  const [info, setInfo] = useState<string>('testing...')
+  const [info, setInfo] = useState<string>('scanning...')
   const [url, setUrl] = useState('')
 
   useEffect(() => {
     setUrl(window.location.href)
-    fetch('/api/fix-blog')
-      .then(async r => {
-        const data = await r.json()
-        setInfo(JSON.stringify(data, null, 2).substring(0, 1000))
-      })
-      .catch(err => {
-        setInfo(`FETCH ERROR: ${err.message}`)
-      })
+
+    // Scan the DOM for Payload admin elements
+    setTimeout(() => {
+      const wrap = document.querySelector('.template-default__wrap')
+      const listHeader = document.querySelector('.list-header')
+      const editView = document.querySelector('.edit-view')
+      const collectionDashboard = document.querySelector('.collection-dashboard')
+      const payloadEmpty = document.querySelector('.payload-empty-state')
+      const allDivs = wrap ? wrap.querySelectorAll('div') : []
+      const wrapHTML = wrap ? wrap.innerHTML.substring(0, 500) : 'NO .template-default__wrap FOUND'
+      const wrapStyle = wrap ? window.getComputedStyle(wrap).cssText.substring(0, 300) : 'N/A'
+      const bodyClasses = document.body.className
+
+      setInfo(
+        `wrap: ${wrap ? 'YES' : 'NO'}\n` +
+        `listHeader: ${listHeader ? 'YES' : 'NO'}\n` +
+        `editView: ${editView ? 'YES' : 'NO'}\n` +
+        `emptyState: ${payloadEmpty ? 'YES' : 'NO'}\n` +
+        `wrap children: ${allDivs.length}\n` +
+        `bodyClasses: ${bodyClasses}\n` +
+        `wrapHTML: ${wrapHTML}`
+      )
+    }, 3000)
   }, [])
 
   return (
