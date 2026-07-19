@@ -660,7 +660,7 @@ const productBrandMenuItems = useMemo(
                       aria-current={isActive ? "page" : undefined}
                       aria-haspopup="true"
                       className={`relative flex h-full items-center gap-2.5 text-sm transition-colors group ${
-                        isActive ? "text-brand-navy font-semibold" : "font-medium"
+                        isActive ? "text-brand-navy font-semibold" : "font-medium group-hover:font-semibold"
                       }`}
                     >
                       <Icon
@@ -708,7 +708,7 @@ const productBrandMenuItems = useMemo(
                   href={href}
                   aria-current={isActive ? "page" : undefined}
                   className={`relative flex items-center gap-2.5 h-full text-sm transition-colors group ${
-                    isActive ? "text-brand-navy font-semibold" : "font-medium"
+                    isActive ? "text-brand-navy font-semibold" : "font-medium group-hover:font-semibold"
                   }`}
                 >
                   <Icon
