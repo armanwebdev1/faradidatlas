@@ -11,6 +11,18 @@ export async function POST(request: Request) {
 
   const payload = await getPayload({ config })
 
+  // 1. Ensure the columns exist (in case push didn't run)
+  const sql = (payload.db as any).drizzle
+  if (sql) {
+    try {
+      await sql.execute(`ALTER TABLE "products_locales" ADD COLUMN IF NOT EXISTS "how_we_supply_description" varchar`)
+    } catch {}
+    try {
+      await sql.execute(`ALTER TABLE "_products_v_locales" ADD COLUMN IF NOT EXISTS "version_how_we_supply_description" varchar`)
+    } catch {}
+  }
+
+  // 2. Seed the data
   const enText = translations.en.pages.products.howWeSupplyDescription
   const faText = translations.fa.pages.products.howWeSupplyDescription
   const arText = translations.ar.pages.products.howWeSupplyDescription

@@ -25,10 +25,6 @@ export const Products: CollectionConfig = {
       return `${base}/${lang}/products/${slug}`
     },
   },
-  versions: {
-    drafts: true,
-    maxPerDoc: 10,
-  },
   fields: [
     {
       name: 'name',
