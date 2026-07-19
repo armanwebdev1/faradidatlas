@@ -19,10 +19,6 @@ export const Jobs: CollectionConfig = {
     defaultColumns: ['title', 'department', 'location', 'status'],
     description: { en: 'Job listings with multilingual titles, descriptions, and application requirements', fa: 'آگهی‌های استخدام با عناوین، توضیحات و الزامات درخواست چندزبانه' },
   },
-  versions: {
-    drafts: true,
-    maxPerDoc: 10,
-  },
   fields: [
     {
       name: 'title',
