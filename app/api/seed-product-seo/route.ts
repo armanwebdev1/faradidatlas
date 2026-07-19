@@ -10,6 +10,8 @@ export async function POST(request: Request) {
 
   const payload = await getPayload({ config })
 
+  const locales = ['en', 'fa', 'ar'] as const
+
   const products = await payload.find({
     collection: 'products',
     limit: 100,
@@ -26,7 +28,7 @@ export async function POST(request: Request) {
     sugar: { en: 'Sugar', fa: 'شکر', ar: 'سكر' },
   }
 
-  const updated = []
+  let count = 0
 
   for (const product of products.docs) {
     const name = product.name as any
@@ -34,43 +36,41 @@ export async function POST(request: Request) {
     const catSlug = (product.category as any)?.slug ?? ''
     const cat = categoryLabels[catSlug] ?? { en: '', fa: '', ar: '' }
 
-    const nameEn = name?.en ?? ''
-    const nameFa = name?.fa ?? ''
-    const nameAr = name?.ar ?? ''
+    for (const locale of locales) {
+      const nameVal = name?.[locale] ?? ''
+      const descVal = desc?.[locale] ?? ''
+      const catLabel = cat[locale] ?? ''
 
-    const descEn = desc?.en ?? ''
-    const descFa = desc?.fa ?? ''
-    const descAr = desc?.ar ?? ''
+      const title = catLabel
+        ? `${nameVal} | Wholesale ${catLabel} Supplier | Faradid Atlas`
+        : `${nameVal} | Faradid Atlas Products`
 
-    // Build SEO title: "{Name} | Wholesale {Category} Supplier | Faradid Atlas"
-    const titleEn = cat.en
-      ? `${nameEn} | Wholesale ${cat.en} Supplier | Faradid Atlas`
-      : `${nameEn} | Faradid Atlas Products`
-    const titleFa = cat.fa
-      ? `${nameFa} | تأمین عمده ${cat.fa} | فرادید اطلس`
-      : `${nameFa} | محصولات فرادید اطلس`
-    const titleAr = cat.ar
-      ? `${nameAr} | مورّد ${cat.ar} بالجملة | فراديد أطلس`
-      : `${nameAr} | منتجات فراديد أطلس`
+      const titleFa = cat.fa
+        ? `${name?.fa ?? ''} | تأمین عمده ${cat.fa} | فرادید اطلس`
+        : `${name?.fa ?? ''} | محصولات فرادید اطلس`
 
-    // SEO description: use first 155 chars of product description
-    const seoDescEn = descEn ? descEn.slice(0, 155) : titleEn
-    const seoDescFa = descFa ? descFa.slice(0, 155) : titleFa
-    const seoDescAr = descAr ? descAr.slice(0, 155) : titleAr
+      const titleAr = cat.ar
+        ? `${name?.ar ?? ''} | مورّد ${cat.ar} بالجملة | فراديد أطلس`
+        : `${name?.ar ?? ''} | منتجات فراديد أطلس`
 
-    await payload.update({
-      collection: 'products',
-      id: product.id,
-      data: {
-        seo: {
-          title: { en: titleEn, fa: titleFa, ar: titleAr },
-          description: { en: seoDescEn, fa: seoDescFa, ar: seoDescAr },
+      const titleLocalized = locale === 'en' ? title : locale === 'fa' ? titleFa : titleAr
+      const descLocalized = descVal ? descVal.slice(0, 155) : titleLocalized
+
+      await payload.update({
+        collection: 'products',
+        id: product.id,
+        locale,
+        data: {
+          seo: {
+            title: titleLocalized,
+            description: descLocalized,
+          },
         },
-      },
-    })
+      })
+    }
 
-    updated.push(`${product.id}: ${nameEn}`)
+    count++
   }
 
-  return NextResponse.json({ success: true, count: updated.length, products: updated })
+  return NextResponse.json({ success: true, count })
 }
