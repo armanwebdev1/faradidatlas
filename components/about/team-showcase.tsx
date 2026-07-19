@@ -134,12 +134,12 @@ export function TeamShowcase({ lang, companyInfo }: TeamShowcaseProps) {
         className="relative z-10 mx-auto max-w-7xl"
         dir={isRTL ? "rtl" : "ltr"}
       >
-        <div className="mx-auto mb-14 max-w-3xl text-center md:mb-16">
+        <div className="mx-auto mb-14 max-w-5xl text-center md:mb-16">
           <div>
             <p className="eyebrow mb-4 text-brand-navy">
             {sectionTitle}
             </p>
-            <h2 className="max-w-4xl text-responsive-title text-primary">
+            <h2 className="max-w-5xl text-responsive-title text-primary">
             {sectionSubtitle}
             </h2>
           </div>

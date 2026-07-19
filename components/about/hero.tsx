@@ -19,7 +19,7 @@ const heroDescription: Record<Language, string> = {
 const defaultStats = [
   { value: 2009, labelEn: "Established", labelFa: "سال آغاز فعالیت", labelAr: "سنة التأسيس" },
   { value: 4, labelEn: "Rice brands", labelFa: "برند برنج", labelAr: "علامات أرز تجارية" },
-  { value: 4, labelEn: "Company offices", labelFa: "دفتر شرکت", labelAr: "مكاتب الشركة" },
+  { value: 5, labelEn: "Company offices", labelFa: "دفتر شرکت", labelAr: "مكاتب الشركة" },
   { value: 25, labelEn: "Portfolio products", labelFa: "محصول در سبد تامین", labelAr: "منتجات المحفظة" },
 ];
 

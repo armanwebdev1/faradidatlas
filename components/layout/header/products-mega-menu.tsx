@@ -62,8 +62,8 @@ export function ProductsMegaMenu({
               <h3
                 className={`mt-4 font-hero font-semibold text-foreground ${
                   isRTL
-                    ? "max-w-60 text-[1.45rem] leading-[1.35]"
-                    : "max-w-52 text-[1.7rem] leading-[1.08]"
+                    ? "max-w-64 text-[1.45rem] leading-[1.35]"
+                    : "max-w-60 text-[1.7rem] leading-[1.08]"
                 }`}
                 style={{
                   fontFamily: isRTL

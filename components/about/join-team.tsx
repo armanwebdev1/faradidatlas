@@ -23,7 +23,7 @@ export function JoinTeam({ lang, companyInfo }: JoinTeamProps) {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight tracking-tight">
+          <h2 className="max-w-5xl text-3xl md:text-4xl font-bold text-foreground leading-tight tracking-tight">
             {title}
           </h2>
 
@@ -44,7 +44,7 @@ export function JoinTeam({ lang, companyInfo }: JoinTeamProps) {
               className="inline-flex items-center text-foreground hover:text-accent font-medium transition-colors"
             >
               {ctaText}
-              <span className="ml-1" aria-hidden="true">
+              <span className={`${lang === "fa" || lang === "ar" ? "mr-1 rotate-180" : "ml-1"}`} aria-hidden="true">
                 <ArrowRight className="h-4 w-4 inline" />
                 <span className="sr-only">→</span>
               </span>

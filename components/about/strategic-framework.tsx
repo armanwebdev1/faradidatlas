@@ -150,13 +150,13 @@ export function StrategicFramework({ lang, companyInfo }: StrategicFrameworkProp
     <AnimatedSection className="relative overflow-hidden bg-background-alt px-4 py-20 sm:px-6 md:py-28">
       <div className="mx-auto max-w-7xl">
         <div
-          className="mx-auto max-w-4xl py-10 text-center md:py-14"
+          className="mx-auto max-w-5xl py-10 text-center md:py-14"
           dir={isRTL ? "rtl" : "ltr"}
         >
           <p className="eyebrow mb-4 text-brand-navy">
             {t.pages.about.visionMission}
           </p>
-          <h2 className="mx-auto max-w-4xl text-center text-responsive-title text-primary">
+          <h2 className="mx-auto max-w-5xl text-center text-responsive-title text-primary">
             {data.title}
           </h2>
           <p className="mx-auto mt-5 max-w-3xl text-center text-responsive-body leading-relaxed text-foreground/70 md:mt-6">
