@@ -99,17 +99,14 @@ function buildData(locale: string) {
     },
     offerings: [
       {
-        image: '/what-we-offer/optimized/sourcing-import.webp',
         title: t(locale, 'Sourcing & Import', 'تأمین و واردات', 'التوريد والاستيراد'),
         description: t(locale, 'Direct supplier coordination for rice, legumes, spices, nuts, seeds, sugar, and other essentials.', 'هماهنگی مستقیم با تأمین‌کنندگان معتبر برای تأمین برنج، حبوبات، ادویه‌ها، مغزها، دانه‌ها، شکر و سایر اقلام غذایی اساسی.', 'التنسيق المباشر مع الموردين الموثوقين لتوريد الأرز والبقوليات والتوابل والمكسرات والبذور والسكر والسلع الغذائية الأساسية الأخرى.'),
       },
       {
-        image: '/what-we-offer/optimized/featured2.webp',
         title: t(locale, 'Quality & Documentation', 'کنترل کیفیت و مستندات', 'مراقبة الجودة والتوثيق'),
-        description: t(locale, 'Quality checks, hygiene standards, import documentation, and ISO-led operating discipline.', 'بررسی کیفیت، رعایت معیارهای بهداشتی، آماده‌سازی اسناد واردات و پیشبرد فرایندها بر پایه نظم عملیاتی و استانداردهای معتبر', 'فحوصات الجودة والالتزام بمعايير النظافة وإعداد وثائق الاستيراد ودفع العمليات بناءً على نظام تشغيل راقب ومعايير موثوقة.'),
+        description: t(locale, 'Quality checks, hygiene standards, import documentation, and ISO-led operating discipline.', 'بررسی کیفیت، رعایت معیارهای بهداشتی، آماده‌سازی اسناد واردات و پیشبرد فرایندها بر پایه نظم عملیاتی و استانداردهای معتبر.', 'فحوصات الجودة والالتزام بمعايير النظافة وإعداد وثائق الاستيراد ودفع العمليات بناءً على نظام تشغيل راقب ومعايير موثوقة.'),
       },
       {
-        image: '/what-we-offer/optimized/quality-documentation.webp',
         title: t(locale, 'Distribution & Access', 'توزیع و دسترسی', 'التوزيع والوصول'),
         description: t(locale, 'Regional offices, branches, and warehouses that support retailers, wholesalers, and institutions.', 'دفاتر، شعب و پشتیبانی انبار در منطقه، برای پاسخ‌گویی به نیاز خرده‌فروشان، عمده‌فروشان، سازمان‌ها و خریداران تجاری.', 'المكاتب والفرع والمستودعات الإقليمية لدعم تجار التجزئة والجملة والمؤسسات والمشترين التجاريين.'),
       },
