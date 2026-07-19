@@ -17,7 +17,7 @@ function resolveMediaUrl(media: any): string {
 
 export function CompanyPresence({ lang, companyInfo }: CompanyPresenceProps) {
   const isRTL = lang === "fa" || lang === "ar";
-  const gc = companyInfo?.companyPresence;
+  const gc = companyInfo?.getConnected;
 
   const imageSrc = resolveMediaUrl(gc?.image);
   const altText = getLocalized(gc?.alt, lang) || (
