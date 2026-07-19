@@ -7,7 +7,6 @@ import * as migration_20260718_100000 from './20260718_100000';
 import * as migration_20260718_110000 from './20260718_110000';
 import * as migration_20260718_120000 from './20260718_120000';
 import * as migration_20260718_130000 from './20260718_130000';
-import * as migration_20260719_090000 from './20260719_090000';
 
 export const migrations = [
   {
