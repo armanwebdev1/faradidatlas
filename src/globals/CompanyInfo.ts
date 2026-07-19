@@ -137,7 +137,7 @@ export const CompanyInfo: GlobalConfig = {
           label: { en: 'Company Presence', fa: 'حضور شرکت' },
           fields: [
             {
-              name: 'companyPresence',
+              name: 'getConnected',
               type: 'group',
               label: { en: 'Company Presence', fa: 'حضور شرکت' },
               admin: {
