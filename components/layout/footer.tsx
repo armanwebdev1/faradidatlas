@@ -169,7 +169,7 @@ function FooterColumn({ title, links }: { title: string; links: FooterLinkItem[]
 }
 
 function FooterTextLink({ link }: { link: FooterLinkItem }) {
-  const className = "text-sm font-semibold text-white/70 hover:text-accent transition-colors duration-300 relative group";
+  const className = "text-sm font-bold text-white/70 hover:text-accent transition-colors duration-300 relative group";
   const content = (
     <span className="relative">
       {link.label}
