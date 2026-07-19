@@ -274,7 +274,7 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
 
               <div className="mb-8">
                 <h2 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">{t.pages.products.howWeSupply}</h2>
-                <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">{t.pages.products.howWeSupplyDescription}</p>
+                <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">{(product as any).howWeSupplyDescription?.[lang] || (product as any).howWeSupplyDescription?.en || t.pages.products.howWeSupplyDescription}</p>
               </div>
 
               <div className="mb-8">

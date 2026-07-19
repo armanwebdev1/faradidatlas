@@ -194,6 +194,15 @@ export const Products: CollectionConfig = {
       ],
     },
     {
+      name: 'howWeSupplyDescription',
+      type: 'textarea',
+      label: { en: 'How We Supply Description', fa: 'توضیح نحوه تامین' },
+      localized: true,
+      admin: {
+        description: { en: 'Description shown under "How Faradid Atlas Supplies It" on the product detail page', fa: 'توضیحات نمایش داده شده در بخش "نحوه تامین توسط فرادید اطلس" در صفحه جزئیات محصول' },
+      },
+    },
+    {
       name: 'seo',
       type: 'group',
       label: { en: 'SEO', fa: 'سئو' },
