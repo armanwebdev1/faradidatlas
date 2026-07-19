@@ -35,6 +35,7 @@ const detailSelect = {
   alias: true,
   description: true,
   specs: true,
+  seo: true,
 } as const;
 
 export const getProducts = cache(async function getProducts(locale: string = "en") {

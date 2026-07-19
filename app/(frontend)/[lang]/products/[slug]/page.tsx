@@ -87,15 +87,22 @@ export async function generateMetadata({ params }: ProductDetailProps) {
   }
 
 
+  const seoTitleEn = (product as any).seo?.title?.en;
+  const seoTitleFa = (product as any).seo?.title?.fa;
+  const seoTitleAr = (product as any).seo?.title?.ar;
+  const seoDescEn = (product as any).seo?.description?.en;
+  const seoDescFa = (product as any).seo?.description?.fa;
+  const seoDescAr = (product as any).seo?.description?.ar;
+
   return buildPageMetadata({
     lang,
     path: `products/${product.slug}`,
-    titleEn: `${product.nameEn} | Faradid Atlas Products`,
-    titleFa: `${product.nameFa} | محصولات فرادید اطلس`,
-    titleAr: `${product.nameAr} | منتجات فراديد أطلس`,
-    descriptionEn: product.descriptionEn,
-    descriptionFa: product.descriptionFa,
-    descriptionAr: product.descriptionAr,
+    titleEn: seoTitleEn || `${product.nameEn} | Faradid Atlas Products`,
+    titleFa: seoTitleFa || `${product.nameFa} | محصولات فرادید اطلس`,
+    titleAr: seoTitleAr || `${product.nameAr} | منتجات فراديد أطلس`,
+    descriptionEn: seoDescEn || product.descriptionEn,
+    descriptionFa: seoDescFa || product.descriptionFa,
+    descriptionAr: seoDescAr || product.descriptionAr,
     image: product.image,
   });
 }
