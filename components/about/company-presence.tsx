@@ -1,7 +1,7 @@
 import type { Language } from "@/lib/i18n";
 import Image from "next/image";
 
-interface GetConnectedProps {
+interface CompanyPresenceProps {
   lang: Language;
   companyInfo?: any;
 }
@@ -15,9 +15,9 @@ function resolveMediaUrl(media: any): string {
   return "/optimized/featured2.webp"
 }
 
-export function GetConnected({ lang, companyInfo }: GetConnectedProps) {
+export function CompanyPresence({ lang, companyInfo }: CompanyPresenceProps) {
   const isRTL = lang === "fa" || lang === "ar";
-  const gc = companyInfo?.getConnected;
+  const gc = companyInfo?.companyPresence;
 
   const imageSrc = resolveMediaUrl(gc?.image);
   const altText = getLocalized(gc?.alt, lang) || (

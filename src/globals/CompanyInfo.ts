@@ -10,7 +10,7 @@ export const CompanyInfo: GlobalConfig = {
   },
   admin: {
     group: { en: 'Company', fa: 'شرکت' },
-    description: { en: 'Company information for the About page: CEO profile, values, strategic framework, offerings, and get-connected section', fa: 'اطلاعات شرکت برای صفحه درباره ما: پروفایل مدیرعامل، ارزش‌ها، چارچوب استراتژیک، خدمات و بخش ارتباط' },
+    description: { en: 'Company information for the About page: hero stats, company presence, strategic framework, CEO profile, offerings, core values, and join team section', fa: 'اطلاعات شرکت برای صفحه درباره ما: آمار هیرو، حضور شرکت، چارچوب استراتژیک، پروفایل مدیرعامل، خدمات، ارزش‌های اصلی و بخش پیوستن به تیم' },
   },
   fields: [
     {
@@ -134,14 +134,14 @@ export const CompanyInfo: GlobalConfig = {
           ],
         },
         {
-          label: { en: 'Get Connected', fa: 'ارتباط با ما' },
+          label: { en: 'Company Presence', fa: 'حضور شرکت' },
           fields: [
             {
-              name: 'getConnected',
+              name: 'companyPresence',
               type: 'group',
-              label: { en: 'Get Connected', fa: 'ارتباط با ما' },
+              label: { en: 'Company Presence', fa: 'حضور شرکت' },
               admin: {
-                description: { en: 'Get Connected section on the About page', fa: 'بخش ارتباط با ما در صفحه درباره ما' },
+                description: { en: 'Company presence section on the About page', fa: 'بخش حضور شرکت در صفحه درباره ما' },
               },
               fields: [
                 {
@@ -343,14 +343,14 @@ export const CompanyInfo: GlobalConfig = {
                 {
                   name: 'name',
                   type: 'text',
-                  label: { en: 'Company Name', fa: 'نام شرکت' },
+                  label: { en: 'CEO Name', fa: 'نام مدیرعامل' },
                   required: true,
                   localized: true,
                 },
                 {
                   name: 'title',
                   type: 'text',
-                  label: { en: 'Title', fa: 'سمت' },
+                  label: { en: 'CEO Role', fa: 'سمت مدیرعامل' },
                   required: true,
                   localized: true,
                 },

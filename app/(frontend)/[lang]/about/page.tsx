@@ -1,7 +1,7 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { AboutHero } from "@/components/about/hero";
-import { GetConnected } from "@/components/about/get-connected";
+import { CompanyPresence } from "@/components/about/company-presence";
 import { WhatWeOffer } from "@/components/about/what-we-offer";
 import { CEOProfile } from "@/components/about/ceo-profile";
 import { StrategicFramework } from "@/components/about/strategic-framework";
@@ -62,7 +62,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
       <Header lang={lang} />
       <main id="main-content">
         <AboutHero lang={lang} companyInfo={ci} />
-        <GetConnected lang={lang} companyInfo={ci} />
+        <CompanyPresence lang={lang} companyInfo={ci} />
         <StrategicFramework lang={lang} companyInfo={ci} />
         <CEOProfile lang={lang} companyInfo={ci} />
         <WhatWeOffer lang={lang} companyInfo={ci} />
