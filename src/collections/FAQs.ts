@@ -18,9 +18,7 @@ export const FAQs: CollectionConfig = {
     group: { en: 'Content', fa: 'محتوا' },
     description: { en: 'Frequently asked questions organized by category for the FAQ page', fa: 'سوالات متداول دسته‌بندی شده برای صفحه سوالات متداول' },
   },
-  versions: {
-    drafts: true,
-  },
+
   fields: [
     {
       name: 'question',
