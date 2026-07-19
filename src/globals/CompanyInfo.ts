@@ -402,6 +402,7 @@ export const CompanyInfo: GlobalConfig = {
               name: 'offerings',
               type: 'array',
               label: { en: 'Offerings', fa: 'خدمات' },
+              localized: true,
               admin: {
                 description: { en: 'What We Offer section on the About page', fa: 'بخش خدمات ما در صفحه درباره ما' },
               },
@@ -417,14 +418,12 @@ export const CompanyInfo: GlobalConfig = {
                   type: 'text',
                   label: { en: 'Title', fa: 'عنوان' },
                   required: true,
-                  localized: true,
                 },
                 {
                   name: 'description',
                   type: 'textarea',
                   label: { en: 'Description', fa: 'توضیحات' },
                   required: true,
-                  localized: true,
                 },
               ],
             },
