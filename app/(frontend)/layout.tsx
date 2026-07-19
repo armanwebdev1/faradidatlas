@@ -23,7 +23,7 @@ const playfair = localFont({
   ],
   variable: "--font-serif",
   display: "swap",
-  preload: false,
+  preload: true,
 });
 
 const notoSansArabic = localFont({
@@ -34,7 +34,7 @@ const notoSansArabic = localFont({
   ],
   variable: "--font-noto-arabic",
   display: "swap",
-  preload: false,
+  preload: true,
 });
 
 const tajawal = localFont({
@@ -46,7 +46,7 @@ const tajawal = localFont({
   ],
   variable: "--font-tajawal",
   display: "swap",
-  preload: false,
+  preload: true,
 });
 
 const cairo = localFont({
@@ -76,7 +76,7 @@ const estedad = localFont({
   ],
   variable: "--font-estedad",
   display: "swap",
-  preload: false,
+  preload: true,
 });
 
 const shabnam = localFont({
@@ -94,7 +94,7 @@ const shabnam = localFont({
   ],
   variable: "--font-shabnam",
   display: "swap",
-  preload: false,
+  preload: true,
 });
 
 export default function FrontendLayout({
