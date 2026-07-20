@@ -95,11 +95,11 @@ export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) 
         >
           {eyebrow}
         </p>
-        <div className={`grid items-center gap-4 md:grid-cols-2 ${isRTL ? "[direction:ltr]" : ""}`}>
+        <div className={`flex flex-col md:flex-row items-center gap-6 md:gap-10 ${isRTL ? "[direction:ltr]" : ""}`}>
           <div
-            className={`reveal-side mx-auto max-w-md text-center md:mx-0 ${
+            className={`reveal-side w-full md:w-auto md:flex-1 max-w-lg text-center ${
               isVisible ? "is-visible" : ""
-            } md:order-1 ${isRTL ? "md:text-right" : "md:text-left"}`}
+            } ${isRTL ? "md:text-right" : "md:text-left"}`}
             style={{ ["--reveal-x" as string]: isRTL ? "48px" : "-48px" }}
           >
             <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 text-balance">
@@ -145,7 +145,7 @@ export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) 
           </div>
 
           <div
-            className={`reveal-side md:order-2 ${
+            className={`reveal-side shrink-0 ${
               isVisible ? "is-visible" : ""
             }`}
             style={{
@@ -153,7 +153,7 @@ export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) 
               transitionDelay: "0.12s",
             }}
           >
-            <div className="relative mx-auto w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-border/40 bg-background shadow-lg">
+            <div className="relative w-full max-w-sm overflow-hidden rounded-2xl sm:rounded-3xl border border-border/40 bg-background shadow-lg">
               <Image
                 src={bannerImage}
                 alt={alt}
