@@ -91,7 +91,7 @@ export async function Footer({ lang }: FooterProps) {
               </div>
             </div>
 
-            <FooterColumn title={t_trans.footer.navigation} links={navigationLinks} />
+            <FooterColumn title={t_trans.footer.navigation} links={navigationLinks} bold />
             <FooterColumn title={t_trans.footer.products} links={productLinks} />
             <FooterColumn title={t_trans.footer.company} links={companyLinks} />
             <FooterColumn title={t_trans.footer.resources} links={resourceLinks} />
@@ -153,14 +153,14 @@ export async function Footer({ lang }: FooterProps) {
   );
 }
 
-function FooterColumn({ title, links }: { title: string; links: FooterLinkItem[] }) {
+function FooterColumn({ title, links, bold }: { title: string; links: FooterLinkItem[]; bold?: boolean }) {
   return (
     <div>
       <p className="text-xs font-semibold uppercase tracking-widest mb-4 sm:mb-6 text-accent/90">{title}</p>
       <ul className="space-y-4">
         {links.map((link) => (
           <li key={`${link.href}-${link.label}`}>
-            <FooterTextLink link={link} />
+            <FooterTextLink link={link} bold={bold} />
           </li>
         ))}
       </ul>
@@ -168,8 +168,8 @@ function FooterColumn({ title, links }: { title: string; links: FooterLinkItem[]
   );
 }
 
-function FooterTextLink({ link }: { link: FooterLinkItem }) {
-  const className = "text-sm font-bold text-white/70 hover:text-accent transition-colors duration-300 relative group";
+function FooterTextLink({ link, bold }: { link: FooterLinkItem; bold?: boolean }) {
+  const className = `text-sm ${bold ? "font-bold" : "font-normal"} text-white/70 hover:text-accent transition-colors duration-300 relative group`;
   const content = (
     <span className="relative">
       {link.label}
