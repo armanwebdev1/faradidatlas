@@ -89,7 +89,7 @@ export const Products: CollectionConfig = {
         { label: { en: "Nuts", fa: "آجیل" }, value: "nuts" },
         { label: { en: "Spices", fa: "ادویه‌ها" }, value: "spices" },
         {
-          label: { en: "Sweeteners", fa: "شیرین‌کننده‌ها" },
+          label: { en: "Sweeteners", fa: "شکر" },
           value: "sweeteners",
         },
       ],
