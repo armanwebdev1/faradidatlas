@@ -72,8 +72,8 @@ export function BlogHero({ lang, t }: BlogHeroProps) {
             <div
               className={`mt-8 flex flex-col sm:flex-row gap-4 ${revealClass} ${
                 isRTL
-                  ? "sm:flex-row-reverse sm:justify-end items-end"
-                  : "sm:justify-start items-start"
+                  ? "items-start sm:flex-row-reverse sm:justify-end sm:items-center"
+                  : "items-start sm:justify-start sm:items-center"
               }`}
               style={{ animationDelay: "270ms" }}
             >

@@ -23,17 +23,16 @@ export function JoinTeam({ lang, companyInfo }: JoinTeamProps) {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-          <h2 className="max-w-5xl text-2xl md:text-3xl font-bold text-foreground leading-tight tracking-tight">
+          <h2 className="max-w-5xl text-2xl md:text-3xl font-bold text-foreground leading-tight tracking-tight text-center lg:text-left">
             {title}
           </h2>
 
           <div
             dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}
-            className={lang === "fa" || lang === "ar" ? "text-right" : "text-left"}
-            style={{
-              direction: lang === "fa" || lang === "ar" ? "rtl" : "ltr",
-              textAlign: lang === "fa" || lang === "ar" ? "right" : "left",
-            }}
+            className={lang === "fa" || lang === "ar"
+              ? "text-center lg:text-right"
+              : "text-center lg:text-left"
+            }
           >
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
               {description}

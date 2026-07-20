@@ -66,7 +66,7 @@ export function CEOProfile({ lang, companyInfo }: CEOProfileProps) {
             </div>
           </div>
 
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 text-center lg:text-left">
             <div className="opacity-0 translate-y-6" data-animate>
               <p className="eyebrow mb-4 text-brand-navy">{eyebrow}</p>
               <h2 className="text-responsive-subheading text-primary">
@@ -75,7 +75,7 @@ export function CEOProfile({ lang, companyInfo }: CEOProfileProps) {
             </div>
 
             <div className="mt-10 opacity-0 translate-y-6" data-animate>
-              <p className="max-w-3xl text-base leading-8 text-foreground/75">
+              <p className="max-w-3xl text-base leading-8 text-foreground/75 mx-auto">
                 {bio}
               </p>
             </div>
