@@ -7,12 +7,24 @@ import type { Language } from "./i18n";
  */
 export function getLocalized(value: any, lang: Language): string {
   if (!value) return "";
-  if (typeof value === "string") return value;
-  if (typeof value === "object") {
-    if (value[lang]) return value[lang];
-    if (value.en) return value.en;
+  // Try to parse JSON strings that represent localized objects (Payload group fields)
+  let resolved = value;
+  if (typeof value === "string") {
+    try {
+      const parsed = JSON.parse(value);
+      if (typeof parsed === "object" && parsed !== null && (parsed.en || parsed[lang])) {
+        resolved = parsed;
+      }
+    } catch {
+      // Not JSON — plain string value, return as-is
+      return value;
+    }
   }
-  return "";
+  if (typeof resolved === "object") {
+    if (resolved[lang]) return resolved[lang];
+    if (resolved.en) return resolved.en;
+  }
+  return typeof resolved === "string" ? resolved : "";
 }
 
 /**
@@ -25,11 +37,21 @@ export function getLocalizedWithArFallback(
   arFallback: string,
 ): string {
   if (!value) return lang === "ar" ? arFallback : "";
-  if (typeof value === "string") return value;
-  if (typeof value === "object") {
-    if (value[lang]) return value[lang];
-    if (lang === "ar" && arFallback) return arFallback;
-    if (value.en) return value.en;
+  let resolved = value;
+  if (typeof value === "string") {
+    try {
+      const parsed = JSON.parse(value);
+      if (typeof parsed === "object" && parsed !== null && (parsed.en || parsed[lang])) {
+        resolved = parsed;
+      }
+    } catch {
+      return value;
+    }
   }
-  return lang === "ar" ? arFallback : "";
+  if (typeof resolved === "object") {
+    if (resolved[lang]) return resolved[lang];
+    if (lang === "ar" && arFallback) return arFallback;
+    if (resolved.en) return resolved.en;
+  }
+  return typeof resolved === "string" ? resolved : lang === "ar" ? arFallback : "";
 }
