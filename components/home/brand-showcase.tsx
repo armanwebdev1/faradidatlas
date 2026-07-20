@@ -95,7 +95,7 @@ export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) 
         >
           {eyebrow}
         </p>
-        <div className={`grid items-center gap-4 md:gap-6 lg:gap-8 md:grid-cols-[1fr_auto] ${isRTL ? "[direction:ltr]" : ""}`}>
+        <div className={`grid items-center gap-4 md:grid-cols-2 ${isRTL ? "[direction:ltr]" : ""}`}>
           <div
             className={`reveal-side mx-auto max-w-md text-center md:mx-0 ${
               isVisible ? "is-visible" : ""
@@ -153,7 +153,7 @@ export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) 
               transitionDelay: "0.12s",
             }}
           >
-            <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-2xl sm:rounded-3xl border border-border/40 bg-background shadow-lg">
+            <div className="relative mx-auto w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-border/40 bg-background shadow-lg">
               <Image
                 src={bannerImage}
                 alt={alt}
