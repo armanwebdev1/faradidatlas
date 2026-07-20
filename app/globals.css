@@ -412,6 +412,10 @@
   --font-body: var(--font-shabnam);
   --font-hero: var(--font-estedad);
   --font-label: var(--font-shabnam);
+  --text-hero: clamp(2.25rem, 3vw + 1rem, 3.75rem);
+  --text-display: clamp(1.85rem, 2.2vw + 1rem, 3rem);
+  --text-title: clamp(1.5rem, 1.5vw + 0.85rem, 2.15rem);
+  --text-subtitle: clamp(1.1rem, 0.9vw + 0.8rem, 1.5rem);
 }
 
 /* Arabic font overrides */
