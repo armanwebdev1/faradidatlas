@@ -55,10 +55,16 @@ export async function POST(request: NextRequest) {
           { country: { en: 'Key Sourcing Origins', fa: 'مسیر تأمین' }, description: { en: 'Direct sourcing focus across India and Pakistan', fa: 'تمرکز بر تأمین مستقیم از مبدأهای معتبر مانند هند و پاکستان' }, value: 30, isActive: true },
           { country: { en: 'Product Portfolio', fa: 'گروه کالایی' }, description: { en: 'Rice, legumes, seeds, nuts, spices, and sugar', fa: 'از برنج و حبوبات تا آجیل، خشکبار، ادویه‌جات، و شکر' }, value: 25, isActive: true },
         ],
+        cta: {
+          headline: { en: 'Start Your Supply Conversation', fa: 'مکالمه تأمین خود را آغاز کنید' },
+          description: { en: 'Tell us what you need — we will respond with options, pricing, and documentation.', fa: 'نیاز خود را بگویید — ما با گزینه‌ها، قیمت و مستندات پاسخ می‌دهیم.' },
+          buttonText: { en: 'Contact Us', fa: 'تماس با ما' },
+          buttonUrl: '/en/contact',
+        },
       },
     })
 
-    return NextResponse.json({ success: true, id: result.doc.id })
+    return NextResponse.json({ success: true, docId: (result as any)?.doc?.id ?? (result as any)?.id ?? 'unknown' })
   } catch (err) {
     console.error('Seed failed:', err)
     return NextResponse.json({ error: 'Seed failed', details: String(err) }, { status: 500 })
