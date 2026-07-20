@@ -588,6 +588,13 @@
 
 /* Responsive design */
 
+/* Scoped fix: center CTA text on mobile in RTL layout */
+@media (max-width: 1023px) {
+  .cta-mobile-center {
+    text-align: center !important;
+  }
+}
+
 /* Container utilities */
 @layer components {
   .container-responsive,

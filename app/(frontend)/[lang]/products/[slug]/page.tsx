@@ -414,9 +414,7 @@ export default async function ProductDetailPage({
                       href={`/${lang}/products/${cat.slug}`}
                       className="px-3 py-1.5 text-xs sm:text-sm font-medium text-primary border border-primary/20 rounded-full hover:bg-primary/5 transition-colors"
                     >
-                      {(cat.name as any)?.[lang] ??
-                        (cat.name as any)?.en ??
-                        cat.slug}
+                      {cat.name || cat.slug}
                     </Link>
                   ))}
                 </div>
