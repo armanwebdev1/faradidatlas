@@ -58,7 +58,7 @@ export const categorySEOContent: Record<
   seeds: {
     title: {
       en: "Seeds & Kernels — Sunflower, Pumpkin & Sesame",
-      fa: "دانه‌ها و مغزها — آفتابگردان، کدو و کنجد",
+      fa: "آجیل و خشکبار — آفتابگردان، کدو و کنجد",
       ar: "البذور واللبّ — عباد الشمس، يقطين وسمسم",
     },
     subtitle: {

@@ -421,6 +421,11 @@
   --font-label: var(--font-tajawal);
 }
 
+/* Reset letter-spacing for RTL scripts to preserve cursive connections */
+[dir="rtl"] .eyebrow {
+  letter-spacing: normal;
+}
+
 [dir="ltr"] {
   direction: ltr;
   text-align: left;

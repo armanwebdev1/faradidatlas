@@ -2,7 +2,10 @@ import type { ProductCategory } from "./product-types";
 
 export const categoryDescriptions: Record<
   ProductCategory,
-  { h2: { en: string; fa: string; ar: string }; description: { en: string; fa: string; ar: string } }
+  {
+    h2: { en: string; fa: string; ar: string };
+    description: { en: string; fa: string; ar: string };
+  }
 > = {
   rice: {
     h2: {
@@ -31,7 +34,7 @@ export const categoryDescriptions: Record<
   seeds: {
     h2: {
       en: "Seeds & Kernels",
-      fa: "دانه‌ها و مغزها",
+      fa: "آجیل و خشکبار",
       ar: "البذور واللوزيات",
     },
     description: {

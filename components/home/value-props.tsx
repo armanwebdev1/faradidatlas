@@ -22,22 +22,93 @@ const iconMap: Record<string, any> = {
 
 const defaultItems = {
   en: [
-    { icon: 'Globe', title: 'Direct Global Sourcing', description: 'First-tier supplier relationships in key food-producing markets, including India and Pakistan.', accentColor: 'accent-warm-gold' },
-    { icon: 'CheckCircle', title: 'Quality Before Volume', description: 'Products are selected against international hygiene and quality standards such as ISO 22000.', accentColor: 'accent-warm-red' },
-    { icon: 'Route', title: 'Stable Supply Channels', description: 'Regional branches, offices, and warehouses support continuous supply for B2B buyers.', accentColor: 'accent' },
-    { icon: 'Package', title: 'Accessible Buyer Channels', description: 'Offices, regional operations, and digital sales channels support individuals, wholesalers, organizations, and foodservice buyers.', accentColor: 'accent-warm-orange' },
+    {
+      icon: "Globe",
+      title: "Direct Global Sourcing",
+      description:
+        "First-tier supplier relationships in key food-producing markets, including India and Pakistan.",
+      accentColor: "accent-warm-gold",
+    },
+    {
+      icon: "CheckCircle",
+      title: "Quality Before Volume",
+      description:
+        "Products are selected against international hygiene and quality standards such as ISO 22000.",
+      accentColor: "accent-warm-red",
+    },
+    {
+      icon: "Route",
+      title: "Stable Supply Channels",
+      description:
+        "Regional branches, offices, and warehouses support continuous supply for B2B buyers.",
+      accentColor: "accent",
+    },
+    {
+      icon: "Package",
+      title: "Accessible Buyer Channels",
+      description:
+        "Offices, regional operations, and digital sales channels support individuals, wholesalers, organizations, and foodservice buyers.",
+      accentColor: "accent-warm-orange",
+    },
   ],
   fa: [
-    { icon: 'Globe', title: 'تأمین مستقیم از مبدا', description: 'با تأمین‌کنندگان معتبر در بازارهای اصلی تولید غذا، از جمله هند و پاکستان، همکاری می‌کنیم.', accentColor: 'accent-warm-gold' },
-    { icon: 'CheckCircle', title: 'کیفیت؛ شرط اول همکاری', description: 'پیش از هر همکاری، محصول از نظر سلامت، کیفیت و ثبات بررسی می‌شود.', accentColor: 'accent-warm-red' },
-    { icon: 'Route', title: 'تأمین منظم برای خرید عمده', description: 'با شبکه منطقه‌ای دفتر، شعبه و انبار، سفارش‌های عمده و سازمانی را پشتیبانی می‌کنیم.', accentColor: 'accent' },
-    { icon: 'Package', title: 'مسیر ساده‌تر برای خرید', description: 'از تماس حضوری تا فروش دیجیتال، مسیر خرید را ساده و سریع نگه می‌داریم.', accentColor: 'accent-warm-orange' },
+    {
+      icon: "Globe",
+      title: "تأمین مستقیم از مبدا",
+      description:
+        "با تأمین‌کنندگان معتبر در بازارهای اصلی تولید غذا، از جمله چین، هند، و پاکستان، همکاری می‌کنیم.",
+      accentColor: "accent-warm-gold",
+    },
+    {
+      icon: "CheckCircle",
+      title: "کیفیت؛ شرط اول همکاری",
+      description:
+        "پیش از هر همکاری، محصول از نظر سلامت، کیفیت و ثبات بررسی می‌شود.",
+      accentColor: "accent-warm-red",
+    },
+    {
+      icon: "Route",
+      title: "تأمین منظم برای خرید عمده",
+      description:
+        "با شبکه منطقه‌ای دفتر، شعبه و انبار، سفارش‌های عمده و سازمانی را پشتیبانی می‌کنیم.",
+      accentColor: "accent",
+    },
+    {
+      icon: "Package",
+      title: "مسیر ساده‌تر برای خرید",
+      description:
+        "از تماس حضوری تا فروش دیجیتال، مسیر خرید را ساده و سریع نگه می‌داریم.",
+      accentColor: "accent-warm-orange",
+    },
   ],
   ar: [
-    { icon: 'Globe', title: 'توريد مباشر من المصدر', description: 'نتعاون مع موردين موثوقين في أسواق إنتاج الغذاء الرئيسية.', accentColor: 'accent-warm-gold' },
-    { icon: 'CheckCircle', title: 'الجودة شرط التعاون الأول', description: 'قبل أي تعاون، يتم فحص المنتج من حيث السلامة والجودة والاستقرار.', accentColor: 'accent-warm-red' },
-    { icon: 'Route', title: 'توريد منتظم للشراء بالجملة', description: 'بشبكة إقليمية من المكاتب والفرع والمستودعات، ندعم طلبات الجملة والمؤسسات.', accentColor: 'accent' },
-    { icon: 'Package', title: 'مسار أبسط للشراء', description: 'من الاتصال المباشر إلى المبيعات الرقمية، نحافظ على مسار شراء بسيط وسريع.', accentColor: 'accent-warm-orange' },
+    {
+      icon: "Globe",
+      title: "توريد مباشر من المصدر",
+      description: "نتعاون مع موردين موثوقين في أسواق إنتاج الغذاء الرئيسية.",
+      accentColor: "accent-warm-gold",
+    },
+    {
+      icon: "CheckCircle",
+      title: "الجودة شرط التعاون الأول",
+      description:
+        "قبل أي تعاون، يتم فحص المنتج من حيث السلامة والجودة والاستقرار.",
+      accentColor: "accent-warm-red",
+    },
+    {
+      icon: "Route",
+      title: "توريد منتظم للشراء بالجملة",
+      description:
+        "بشبكة إقليمية من المكاتب والفرع والمستودعات، ندعم طلبات الجملة والمؤسسات.",
+      accentColor: "accent",
+    },
+    {
+      icon: "Package",
+      title: "مسار أبسط للشراء",
+      description:
+        "من الاتصال المباشر إلى المبيعات الرقمية، نحافظ على مسار شراء بسيط وسريع.",
+      accentColor: "accent-warm-orange",
+    },
   ],
 };
 
@@ -49,7 +120,7 @@ export function ValueProps({ lang, items: payloadItems }: ValuePropsProps) {
     ? payloadItems
         .filter((item: any) => item.isActive !== false)
         .map((item) => {
-          const iconName = item.icon ?? 'Globe';
+          const iconName = item.icon ?? "Globe";
           const IconComponent = iconMap[iconName] ?? Globe;
           return {
             icon: IconComponent,
