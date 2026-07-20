@@ -102,7 +102,7 @@ const defaultProducts = [
     image: { src: "/signature-products/optimized/red-lentil.webp" },
     description: {
       en: "Legumes, spices, nuts, seeds, sugar, and other essentials selected for dependable B2B supply.",
-      fa: "حبوبات، ادویه‌ها، مغزها، دانه‌ها، شکر و سایر اقلام ضروری برای تأمین قابل اتکا.",
+      fa: "حبوبات، ادویه‌ها، آجیل، خشکبار، شکر، و سایر اقلام ضروری برای تأمین قابل اتکا.",
       ar: "بقوليات وتوابل ومكسرات وبذور وسكر وأساسيات أخرى مختارة لتوريد B2B موثوق.",
     },
   },
@@ -126,7 +126,8 @@ export function SignatureProducts({
     ? payloadProducts
         .filter((p: any) => p.isActive !== false)
         .map((p: any) => {
-          const resolved = p.product && typeof p.product === 'object' ? p.product : p;
+          const resolved =
+            p.product && typeof p.product === "object" ? p.product : p;
           return {
             id: resolved.id ?? p.id,
             name: resolved.name ?? p.name,
@@ -257,13 +258,13 @@ export function SignatureProducts({
                   (effectiveLang === "en"
                     ? "Nuts"
                     : effectiveLang === "fa"
-                      ? "مغزها"
+                      ? "آجیل"
                       : "مكسرات")}
                 {cat === "seeds" &&
                   (effectiveLang === "en"
                     ? "Seeds"
                     : effectiveLang === "fa"
-                      ? "دانه‌ها"
+                      ? "خشکبار"
                       : "بذور")}
                 {cat === "spices" &&
                   (effectiveLang === "en"
@@ -298,15 +299,19 @@ export function SignatureProducts({
                 >
                   {hasEntered && index === currentIndex && (
                     <Image
-                      src={localize(product.image) || (typeof product.image === 'object' ? product.image?.src : '') || "/signature-products/optimized/twenty-one.webp"}
+                      src={
+                        localize(product.image) ||
+                        (typeof product.image === "object"
+                          ? product.image?.src
+                          : "") ||
+                        "/signature-products/optimized/twenty-one.webp"
+                      }
                       alt={localize(product.name)}
                       fill
                       loading="lazy"
                       sizes="(min-width: 1024px) 48vw, 100vw"
                       className={`absolute inset-0 h-full w-full object-cover transition-transform duration-700 ${
-                        !isTransitioning
-                          ? "scale-100"
-                          : "scale-105"
+                        !isTransitioning ? "scale-100" : "scale-105"
                       }`}
                     />
                   )}

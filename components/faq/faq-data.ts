@@ -38,7 +38,7 @@ export const faqs: FAQItem[] = [
     answerEn:
       "The portfolio includes rice, legumes and pulses, seeds and kernels, nuts, spices and seasonings, and sugar.",
     answerFa:
-      "سبد محصولات فرادید اطلس شامل برنج، حبوبات، دانه‌ها، مغزها، ادویه‌ها، چاشنی‌ها و شکر است.",
+      "سبد محصولات فرادید اطلس شامل برنج، حبوبات، آجیل، خشکبار، ادویه‌جات، چاشنی‌ها و شکر است.",
     answerAr:
       "تتضمن المحفظة الأرز والبقوليات والبذور والمكسرات والتوابل والسكر.",
     category: "products",

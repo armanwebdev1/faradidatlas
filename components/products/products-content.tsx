@@ -157,7 +157,7 @@ export function ProductsContent({
       window.cancelAnimationFrame(frame);
       window.removeEventListener("popstate", syncQueryFromUrl);
     };
-  }, [initialQuery]);
+  }, [initialQuery, initialCategory, initialBrand, initialType]);
 
   const handleFiltersChange = (filters: ProductFilterSelection) => {
     setSelectedCategory(filters.category);

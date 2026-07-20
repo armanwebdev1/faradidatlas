@@ -45,12 +45,12 @@ export async function generateMetadata({ params }: ProductsPageProps) {
     path: "products",
     titleEn:
       "Wholesale Food Products — Rice, Legumes, Nuts, Spices | Faradid Atlas",
-    titleFa: "محصولات غذایی عمده؛ برنج، حبوبات، مغزها، ادویه | فرادید اطلس",
+    titleFa: "محصولات غذایی عمده؛ برنج، حبوبات، آجیل، ادویه | فرادید اطلس",
     titleAr: "منتجات غذائية بالجملة — أرز، بقول، مكسرات، بهارات | فراديد أطلس",
     descriptionEn:
       "Browse Faradid Atlas wholesale food products: branded basmati rice, legumes, seeds, nuts, spices, and sugar for B2B buyers across Iran, UAE, and Oman.",
     descriptionFa:
-      "سبد محصولات غذایی عمده فرادید اطلس را ببینید؛ برنج باسماتی برنددار، حبوبات، دانه‌ها، مغزها، ادویه و شکر برای خریداران B2B در ایران، امارات و عمان.",
+      "سبد محصولات غذایی عمده فرادید اطلس را ببینید؛ برنج باسماتی برنددار، حبوبات، آجیل و خشکبار، ادویه و شکر برای خریداران B2B در ایران، امارات و عمان.",
     descriptionAr:
       "تصفح منتجات فراديد أطلس الغذائية بالجملة: أرز بسمتي بตรา تجاري، بقول، بذور، مكسرات، بهارات وسكر لمشتريات B2B عبر إيران والإمارات وعمان.",
   });
@@ -73,7 +73,7 @@ async function ProductGridSection({
   try {
     products = await getProducts(lang);
   } catch (err) {
-    console.error('[Products] list query failed:', err);
+    console.error("[Products] list query failed:", err);
   }
   const t = translations[lang];
   const pageUrl = absoluteUrl(localizedPath(lang, "products"));
@@ -81,7 +81,7 @@ async function ProductGridSection({
     lang === "en"
       ? "Browse Faradid Atlas food products, including branded rice, legumes, seeds, nuts, spices, and sugar for wholesale and B2B supply needs."
       : lang === "fa"
-        ? "سبد محصولات فرادید اطلس را ببینید؛ از برنج‌های برنددار و حبوبات تا دانه‌ها، مغزها، ادویه و شکر برای نیازهای عمده و سازمانی."
+        ? "سبد محصولات فرادید اطلس را ببینید؛ از برنج‌های برنددار و حبوبات تا آجیل، خشکبار، ادویه‌جات، و شکر برای نیازهای عمده و سازمانی."
         : "تصفّح منتجات فراديد أطلس الغذائية، بما في ذلك الأرز والبقوليات والبذور والمكسرات والتوابل والسكر لتوريد بالجملة واحتياجات B2B.";
 
   return (
@@ -176,7 +176,10 @@ function ProductGridSkeleton() {
             <div className="lg:sticky lg:top-32 space-y-4">
               <div className="h-3 w-16 bg-foreground/10 rounded animate-pulse" />
               {[...Array(3)].map((_, i) => (
-                <div key={i} className="h-10 bg-foreground/5 rounded-lg animate-pulse" />
+                <div
+                  key={i}
+                  className="h-10 bg-foreground/5 rounded-lg animate-pulse"
+                />
               ))}
             </div>
           </div>
@@ -184,7 +187,10 @@ function ProductGridSkeleton() {
             <div className="h-3 w-32 bg-foreground/10 rounded animate-pulse mb-10" />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="bg-white rounded-2xl overflow-hidden border border-border">
+                <div
+                  key={i}
+                  className="bg-white rounded-2xl overflow-hidden border border-border"
+                >
                   <div className="aspect-square bg-secondary/40 animate-pulse" />
                   <div className="p-4 sm:p-5 space-y-2.5">
                     <div className="h-2 w-16 bg-foreground/8 rounded animate-pulse" />
@@ -207,7 +213,9 @@ export default async function ProductsPage({
   searchParams,
 }: ProductsPageProps) {
   const { lang } = await params;
-  const resolvedSearchParams = searchParams ? await searchParams : {} as ProductSearchParams;
+  const resolvedSearchParams = searchParams
+    ? await searchParams
+    : ({} as ProductSearchParams);
   const isRTL = lang === "fa" || lang === "ar";
   const t = translations[lang];
   const rawSearchQuery = resolvedSearchParams.q;

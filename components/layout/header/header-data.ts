@@ -30,12 +30,12 @@ export const categoryDescriptions: Record<
   },
   seeds: {
     en: "Snack, bakery, and ingredient-ready kernels.",
-    fa: "دانه‌ها و مغز تخمه‌ها برای مصرف، تنقلات و تولید.",
+    fa: "آجیل و خشکبار برای مصرف، تنقلات و تولید.",
     ar: "بذور جاهزة للوجبات الخفيفة والمخابز والمكونات.",
   },
   nuts: {
     en: "Packaged nut products for reliable commercial channels.",
-    fa: "مغزها و آجیل بسته‌بندی‌شده برای کانال‌های تجاری.",
+    fa: "خشکبار و آجیل بسته‌بندی‌شده برای کانال‌های تجاری.",
     ar: "منتجات مكسرات معبأة لقنوات تجارية موثوقة.",
   },
   spices: {
@@ -45,7 +45,7 @@ export const categoryDescriptions: Record<
   },
   sugar: {
     en: "Sweetener supply options for staple food procurement.",
-    fa: "گزینه‌های تأمین شکر و شیرین‌کننده‌ها.",
+    fa: "گزینه‌های تأمین شکر.",
     ar: "خيارات توريد السكر والمحليات للأغذية الأساسية.",
   },
 };

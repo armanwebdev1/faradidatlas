@@ -39,19 +39,19 @@ export const categoryDescriptions: Record<
     },
     description: {
       en: "Faradid Atlas provides sunflower seeds, pumpkin kernels, and other seed varieties for wholesale distribution. Our products are carefully selected and processed to maintain freshness and nutritional value throughout the supply chain.",
-      fa: "فرادید اطلس تخمه آفتابگردان، تخمه کدو و سایر انواع دانه‌ها را للتویع عمده عرضه می‌کند. محصولات ما با دقت انتخاب و فرآوری می‌شوند تا تازگی و ارزش غذایی آن‌ها در طول زنجیره تأمین حفظ شود.",
+      fa: "فرادید اطلس تخمه آفتابگردان، تخمه کدو و سایر انواع خشکبار را بصورت عمده عرضه می‌کند. محصولات ما با دقت انتخاب و فرآوری می‌شوند تا تازگی و ارزش غذایی آن‌ها در طول زنجیره تأمین حفظ شود.",
       ar: "يوفر فراديد اطلس بذور عباد الشمس وبذور اليقطين وأنواع البذور الأخرى للتوزيع بالجملة. يتم اختيار منتجاتنا ومعالجتها بعناية للحفاظ على النضال والقيمة الغذائية طوال سلسلة التوريد.",
     },
   },
   nuts: {
     h2: {
       en: "Premium Nuts",
-      fa: "مغزهای مرغوب",
+      fa: "آجیل مرغوب",
       ar: "المكسرات الممتازة",
     },
     description: {
       en: "Our nut portfolio features walnut kernels, cashews, and other premium varieties. Each product is sourced from trusted origins and processed under strict quality controls to meet the demands of wholesale buyers and food manufacturers.",
-      fa: "سبد مغزهای فرادید اطلس شامل مغز گردو، بادام هندی و سایر انواع مرغوب است. هر محصول از مبادی معتبر تأمین و تحت کنترل کیفیت دقیق فرآوری می‌شود تا نیازهای خریداران عمده و تولیدکنندگان غذا را برآورده کند.",
+      fa: "سبد آجیل فرادید اطلس شامل مغز گردو، بادام هندی و سایر انواع مرغوب است. هر محصول از مبادی معتبر تأمین و تحت کنترل کیفیت دقیق فرآوری می‌شود تا نیازهای خریداران عمده و تولیدکنندگان غذا را برآورده کند.",
       ar: "تتضمن مجموعتنا من المكسرات لب الجوز والكاجيو وأنواعاً ممتازة أخرى. يتم توريد كل منتج من مصادر موثوقة ومعالجتها تحت ضوابط صارمة للجودة لتلبية متطلبات المشترين بالجملة والمصنعين الغذائيين.",
     },
   },
@@ -70,12 +70,12 @@ export const categoryDescriptions: Record<
   sugar: {
     h2: {
       en: "Sweeteners",
-      fa: "شکر و شیرین‌کننده‌ها",
+      fa: "شکر",
       ar: "المحليات والسكر",
     },
     description: {
       en: "Our sweeteners category includes refined and specialty sugar products for industrial and commercial use. Faradid Atlas ensures consistent supply and competitive pricing for B2B buyers across the region.",
-      fa: "دسته شیرین‌کننده‌های فرادید اطلس شامل شکر تصفیه‌شده و تخصصی برای مصارف صنعتی و تجاری است. فرادید اطلس تأمین پایدار و قیمت رقابتی را برای خریداران عمده در سراسر منطقه تضمین می‌کند.",
+      fa: "دسته‌بندی شکر فرادید اطلس شامل شکر تصفیه‌شده و تخصصی برای مصارف صنعتی و تجاری است. فرادید اطلس تأمین پایدار و قیمت رقابتی را برای خریداران عمده در سراسر منطقه تضمین می‌کند.",
       ar: "يشمل فئة المحليات لدينا منتجات السكر المكرر والمتخصصة للاستخدام الصناعي والتجاري. يضمن فراديد اطلس توريداً مستمراً وتنافسية الأسعار للمشترين بالجملة في المنطقة.",
     },
   },

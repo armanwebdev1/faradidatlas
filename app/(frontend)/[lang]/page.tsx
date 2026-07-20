@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: HomePageProps) {
     descriptionEn:
       "Faradid Atlas sources, imports, and distributes essential foods — branded rice, legumes, nuts, seeds, spices, and sugar — across Iran, UAE, and Oman. B2B food supply since 2009.",
     descriptionFa:
-      "فرادید اطلس تأمین، واردات و توزیع مواد غذایی اساسی شامل برنج برنددار، حبوبات، مغزها، دانه‌ها، ادویه و شکر را در ایران، امارات و عمان انجام می‌دهد. عرضه B2B از سال ۲۰۰۹.",
+      "فرادید اطلس تأمین، واردات و توزیع مواد غذایی اساسی شامل برنج برنددار، حبوبات، آجیل و خشکبار، ادویه و شکر را در ایران، امارات و عمان انجام می‌دهد. عرضه B2B از سال ۲۰۰۹.",
     descriptionAr:
       "يقوم فراديد أطلس بتزوين واستيراد وتوزيع الغذاء الأساسي — أرز بตรา تجاري، بقول، مكسرات، بذور، بهارات وسكر — عبر إيران والإمارات وعمان. تزوين غذائي B2B منذ عام 2009.",
   });
@@ -58,11 +58,17 @@ export default async function HomePage({ params }: HomePageProps) {
   const { homepage, contactInfo, siteSettings } = globals;
 
   const publicContactEmail = contactInfo?.email ?? "";
-  const publicPhoneNumbers = (contactInfo?.phones ?? []).map((p: { value?: string | null; display?: string | null; whatsappHref?: string | null }) => ({
-    value: p.value ?? "",
-    display: p.display ?? "",
-    whatsappHref: p.whatsappHref ?? "",
-  }));
+  const publicPhoneNumbers = (contactInfo?.phones ?? []).map(
+    (p: {
+      value?: string | null;
+      display?: string | null;
+      whatsappHref?: string | null;
+    }) => ({
+      value: p.value ?? "",
+      display: p.display ?? "",
+      whatsappHref: p.whatsappHref ?? "",
+    }),
+  );
 
   const heroSlides = homepage?.heroSlides ?? [];
   const valueProps = homepage?.valueProps ?? [];
@@ -71,9 +77,14 @@ export default async function HomePage({ params }: HomePageProps) {
   const globalMarkets = homepage?.globalMarkets ?? [];
   const cta = homepage?.cta ?? {};
 
-  const heroImageUrls = heroSlides.length > 0
-    ? heroSlides.map((slide) => resolveMediaUrl(slide.image))
-    : ["/hero/optimized/home-hero-1.webp", "/hero/optimized/home-hero-2.webp", "/hero/optimized/home-hero-3.webp"];
+  const heroImageUrls =
+    heroSlides.length > 0
+      ? heroSlides.map((slide) => resolveMediaUrl(slide.image))
+      : [
+          "/hero/optimized/home-hero-1.webp",
+          "/hero/optimized/home-hero-2.webp",
+          "/hero/optimized/home-hero-3.webp",
+        ];
 
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
@@ -99,8 +110,7 @@ export default async function HomePage({ params }: HomePageProps) {
               "@id": organizationId,
               name: siteSettings?.siteName ?? "Faradid Atlas",
               alternateName: siteSettings?.siteNameFa ?? "فرادید اطلس",
-              legalName:
-                siteSettings?.legalName ?? "Faradid Atlas Trading LLC",
+              legalName: siteSettings?.legalName ?? "Faradid Atlas Trading LLC",
               url: absoluteUrl(),
               logo:
                 resolveMediaUrl(siteSettings?.logo) ??
@@ -170,11 +180,10 @@ export default async function HomePage({ params }: HomePageProps) {
                   },
                 },
               ],
-              ...(siteSettings?.socialLinks && siteSettings.socialLinks.length > 0
+              ...(siteSettings?.socialLinks &&
+              siteSettings.socialLinks.length > 0
                 ? {
-                    sameAs: siteSettings.socialLinks.map(
-                      (l) => l.url,
-                    ),
+                    sameAs: siteSettings.socialLinks.map((l) => l.url),
                   }
                 : {}),
             },

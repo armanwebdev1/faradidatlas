@@ -1,6 +1,10 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { getProductBySlug, getRelatedProducts, getCategories } from "@/lib/fetch/products";
+import {
+  getProductBySlug,
+  getRelatedProducts,
+  getCategories,
+} from "@/lib/fetch/products";
 import {
   CategoryLanding,
   categorySEOContent,
@@ -16,8 +20,8 @@ import { translations } from "@/lib/i18n";
 import { permanentRedirect } from "next/navigation";
 import Link from "next/link";
 
-export const revalidate = 300
-export const dynamicParams = true
+export const revalidate = 300;
+export const dynamicParams = true;
 
 interface ProductDetailProps {
   params: Promise<{
@@ -26,7 +30,14 @@ interface ProductDetailProps {
   }>;
 }
 
-const validCategorySlugs = new Set(["rice", "legumes", "seeds", "nuts", "spices", "sugar"]);
+const validCategorySlugs = new Set([
+  "rice",
+  "legumes",
+  "seeds",
+  "nuts",
+  "spices",
+  "sugar",
+]);
 
 function isCategorySlug(slug: string): boolean {
   return validCategorySlugs.has(slug);
@@ -37,21 +48,30 @@ function isNumericProductParam(value: string) {
 }
 
 export async function generateStaticParams() {
-  return []
+  return [];
 }
 
 export async function generateMetadata({ params }: ProductDetailProps) {
   const { lang, slug } = await params;
 
   if (isCategorySlug(slug)) {
-    const fallbackSeo = categorySEOContent[slug as keyof typeof categorySEOContent];
+    const fallbackSeo =
+      categorySEOContent[slug as keyof typeof categorySEOContent];
     const catLabels: Record<string, { en: string; fa: string; ar: string }> = {
       rice: { en: "Rice", fa: "برنج", ar: "أرز" },
       legumes: { en: "Legumes & Pulses", fa: "حبوبات", ar: "بقوليات" },
-      seeds: { en: "Seeds & Kernels", fa: "دانه‌ها و مغز تخمه‌ها", ar: "بذور ولب" },
-      nuts: { en: "Nuts", fa: "مغزها", ar: "مكسرات" },
-      spices: { en: "Spices & Seasonings", fa: "ادویه‌ها و چاشنی‌ها", ar: "توابل وبهارات" },
-      sugar: { en: "Sweeteners", fa: "شکر و شیرین‌کننده‌ها", ar: "سكر ومحليات" },
+      seeds: { en: "Seeds & Kernels", fa: "خشکبار", ar: "بذور ولب" },
+      nuts: { en: "Nuts", fa: "آجیل", ar: "مكسرات" },
+      spices: {
+        en: "Spices & Seasonings",
+        fa: "ادویه‌ها و چاشنی‌ها",
+        ar: "توابل وبهارات",
+      },
+      sugar: {
+        en: "Sweeteners",
+        fa: "شکر",
+        ar: "سكر ومحليات",
+      },
     };
     const catLabel = catLabels[slug] ?? catLabels.rice;
     return buildPageMetadata({
@@ -70,7 +90,7 @@ export async function generateMetadata({ params }: ProductDetailProps) {
   try {
     product = await getProductBySlug(slug, lang);
   } catch (err) {
-    console.error('[Products] metadata fetch failed:', err);
+    console.error("[Products] metadata fetch failed:", err);
   }
 
   if (!product) {
@@ -85,7 +105,6 @@ export async function generateMetadata({ params }: ProductDetailProps) {
       descriptionAr: "لم يتم العثور على المنتج",
     });
   }
-
 
   const seoTitleEn = (product as any).seo?.title?.en;
   const seoTitleFa = (product as any).seo?.title?.fa;
@@ -107,16 +126,25 @@ export async function generateMetadata({ params }: ProductDetailProps) {
   });
 }
 
-const categoryLabelsLocal: Record<string, { en: string; fa: string; ar: string }> = {
+const categoryLabelsLocal: Record<
+  string,
+  { en: string; fa: string; ar: string }
+> = {
   rice: { en: "Rice", fa: "برنج", ar: "أرز" },
   legumes: { en: "Legumes & Pulses", fa: "حبوبات", ar: "بقوليات" },
-  seeds: { en: "Seeds & Kernels", fa: "دانه‌ها و مغز تخمه‌ها", ar: "بذور ولب" },
-  nuts: { en: "Nuts", fa: "مغزها", ar: "مكسرات" },
-  spices: { en: "Spices & Seasonings", fa: "ادویه‌ها و چاشنی‌ها", ar: "توابل وبهارات" },
-  sugar: { en: "Sweeteners", fa: "شکر و شیرین‌کننده‌ها", ar: "سكر ومحليات" },
+  seeds: { en: "Seeds & Kernels", fa: "خشکبار", ar: "بذور ولب" },
+  nuts: { en: "Nuts", fa: "آجیل", ar: "مكسرات" },
+  spices: {
+    en: "Spices & Seasonings",
+    fa: "ادویه‌ها و چاشنی‌ها",
+    ar: "توابل وبهارات",
+  },
+  sugar: { en: "Sweeteners", fa: "شکر", ar: "سكر ومحليات" },
 };
 
-export default async function ProductDetailPage({ params }: ProductDetailProps) {
+export default async function ProductDetailPage({
+  params,
+}: ProductDetailProps) {
   const { lang, slug } = await params;
   const t = translations[lang];
 
@@ -132,7 +160,11 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
       <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
         <Header lang={lang} />
         <main>
-          <CategoryLanding category={slug as any} lang={lang} categoryData={categoryData} />
+          <CategoryLanding
+            category={slug as any}
+            lang={lang}
+            categoryData={categoryData}
+          />
         </main>
         <Footer lang={lang} />
       </div>
@@ -159,8 +191,12 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
         <div className="text-center py-16">
           {dbError ? (
             <>
-              <p className="text-lg font-semibold text-red-600 mb-2">Something went wrong</p>
-              <p className="text-sm text-muted-foreground">Please try again later.</p>
+              <p className="text-lg font-semibold text-red-600 mb-2">
+                Something went wrong
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Please try again later.
+              </p>
             </>
           ) : (
             <p>{t.pages.products.productNotFound}</p>
@@ -171,34 +207,67 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
     );
   }
 
-  const name = lang === "en" ? product.nameEn : lang === "fa" ? product.nameFa : product.nameAr;
-  const alias = lang === "en" ? product.aliasEn : lang === "fa" ? product.aliasFa : product.aliasAr;
-  const description = lang === "en" ? product.descriptionEn : lang === "fa" ? product.descriptionFa : product.descriptionAr;
-  const catLabel = categoryLabelsLocal[product.category] ?? categoryLabelsLocal.rice;
+  const name =
+    lang === "en"
+      ? product.nameEn
+      : lang === "fa"
+        ? product.nameFa
+        : product.nameAr;
+  const alias =
+    lang === "en"
+      ? product.aliasEn
+      : lang === "fa"
+        ? product.aliasFa
+        : product.aliasAr;
+  const description =
+    lang === "en"
+      ? product.descriptionEn
+      : lang === "fa"
+        ? product.descriptionFa
+        : product.descriptionAr;
+  const catLabel =
+    categoryLabelsLocal[product.category] ?? categoryLabelsLocal.rice;
   const category = catLabel[lang as keyof typeof catLabel] ?? catLabel.en;
-  const gallery = (product.images && product.images.length > 0) ? product.images : product.image ? [product.image] : [];
-  const productUrl = absoluteUrl(localizedPath(lang, `products/${product.slug}`));
+  const gallery =
+    product.images && product.images.length > 0
+      ? product.images
+      : product.image
+        ? [product.image]
+        : [];
+  const productUrl = absoluteUrl(
+    localizedPath(lang, `products/${product.slug}`),
+  );
 
   let categories: any[] = [];
   let relatedProducts: any[] = [];
   try {
     categories = await getCategories(lang);
-    const matchedCategory = categories.find((c: any) => c.slug === product.category);
+    const matchedCategory = categories.find(
+      (c: any) => c.slug === product.category,
+    );
     if (matchedCategory) {
-      relatedProducts = await getRelatedProducts(matchedCategory.id, product.id, lang);
+      relatedProducts = await getRelatedProducts(
+        matchedCategory.id,
+        product.id,
+        lang,
+      );
     }
   } catch (err) {
     console.error(`[Products] related data fetch failed:`, err);
     // Related data is non-critical — page still renders with product info
   }
-  const otherCategories = categories.filter((c: any) => c.slug !== product.category);
+  const otherCategories = categories.filter(
+    (c: any) => c.slug !== product.category,
+  );
 
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
       <main>
         <nav
-          aria-label={lang === "ar" ? "التنقل" : lang === "fa" ? "ناوبری" : "Breadcrumb"}
+          aria-label={
+            lang === "ar" ? "التنقل" : lang === "fa" ? "ناوبری" : "Breadcrumb"
+          }
           className="container-wide px-4 sm:px-6 pt-6 sm:pt-8"
         >
           <div className="inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-foreground/10 bg-white/80 px-4 py-2 text-xs sm:text-sm text-foreground/70 shadow-sm backdrop-blur">
@@ -208,22 +277,33 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
             >
               {t.breadcrumbs.home}
             </Link>
-            <span className="h-1.5 w-1.5 rounded-full bg-foreground/30" aria-hidden="true" />
+            <span
+              className="h-1.5 w-1.5 rounded-full bg-foreground/30"
+              aria-hidden="true"
+            />
             <Link
               href={`/${lang}/products`}
               className="line-accent transition-colors hover:text-primary"
             >
               {t.breadcrumbs.products}
             </Link>
-            <span className="h-1.5 w-1.5 rounded-full bg-foreground/30" aria-hidden="true" />
+            <span
+              className="h-1.5 w-1.5 rounded-full bg-foreground/30"
+              aria-hidden="true"
+            />
             <Link
               href={`/${lang}/products/${product.category}`}
               className="line-accent transition-colors hover:text-primary"
             >
               {category}
             </Link>
-            <span className="h-1.5 w-1.5 rounded-full bg-foreground/30" aria-hidden="true" />
-            <span className="text-foreground font-medium line-clamp-1">{name}</span>
+            <span
+              className="h-1.5 w-1.5 rounded-full bg-foreground/30"
+              aria-hidden="true"
+            />
+            <span className="text-foreground font-medium line-clamp-1">
+              {name}
+            </span>
           </div>
         </nav>
 
@@ -233,7 +313,12 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
               <ProductGallery images={gallery} alt={name} lang={lang} />
             ) : (
               <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-[5/4] max-h-[520px] lg:max-h-[560px] bg-white/80 rounded-3xl overflow-hidden border border-foreground/10 shadow-[0_30px_80px_-60px_rgba(15,15,15,0.45)]">
-                <ProductPlaceholder product={product as any} lang={lang} t={t} variant="detail" />
+                <ProductPlaceholder
+                  product={product as any}
+                  lang={lang}
+                  t={t}
+                  variant="detail"
+                />
               </div>
             )}
 
@@ -242,36 +327,61 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
                 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-primary tracking-tight font-hero leading-tight motion-safe:animate-fade-in-up"
                 style={{
                   animationDelay: "0.05s",
-                  fontFamily: lang === "en" ? "var(--font-hero)" : "Estedad, var(--font-hero)",
+                  fontFamily:
+                    lang === "en"
+                      ? "var(--font-hero)"
+                      : "Estedad, var(--font-hero)",
                 }}
               >
                 {name}
               </h1>
               {alias && (
-                <p className="mt-3 text-sm sm:text-base font-medium text-accent-warm-gold motion-safe:animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+                <p
+                  className="mt-3 text-sm sm:text-base font-medium text-accent-warm-gold motion-safe:animate-fade-in-up"
+                  style={{ animationDelay: "0.1s" }}
+                >
                   {alias}
                 </p>
               )}
-              <p className="mt-4 text-sm sm:text-base text-foreground/70 leading-relaxed motion-safe:animate-fade-in-up" style={{ animationDelay: "0.12s" }}>
+              <p
+                className="mt-4 text-sm sm:text-base text-foreground/70 leading-relaxed motion-safe:animate-fade-in-up"
+                style={{ animationDelay: "0.12s" }}
+              >
                 {description}
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6 mt-6 mb-8 sm:mb-10 p-4 sm:p-6 bg-secondary/30 rounded-2xl border border-foreground/10">
                 <div>
-                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">{t.pages.products.category}</p>
-                  <p className="text-base sm:text-lg font-semibold text-primary">{category}</p>
+                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
+                    {t.pages.products.category}
+                  </p>
+                  <p className="text-base sm:text-lg font-semibold text-primary">
+                    {category}
+                  </p>
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">{t.pages.products.portfolio}</p>
-                  <p className="text-base sm:text-lg font-semibold text-primary">{t.pages.products.portfolioValue}</p>
+                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
+                    {t.pages.products.portfolio}
+                  </p>
+                  <p className="text-base sm:text-lg font-semibold text-primary">
+                    {t.pages.products.portfolioValue}
+                  </p>
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">{t.pages.products.supplyRole}</p>
-                  <p className="text-base sm:text-lg font-semibold text-primary">{t.pages.products.supplyRoleValue}</p>
+                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
+                    {t.pages.products.supplyRole}
+                  </p>
+                  <p className="text-base sm:text-lg font-semibold text-primary">
+                    {t.pages.products.supplyRoleValue}
+                  </p>
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">{t.pages.products.inquiry}</p>
-                  <p className="text-base sm:text-lg font-semibold text-primary">{t.pages.products.inquiryValue}</p>
+                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1 sm:mb-2">
+                    {t.pages.products.inquiry}
+                  </p>
+                  <p className="text-base sm:text-lg font-semibold text-primary">
+                    {t.pages.products.inquiryValue}
+                  </p>
                 </div>
               </div>
 
@@ -280,13 +390,23 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
               )}
 
               <div className="mb-8">
-                <h2 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">{t.pages.products.howWeSupply}</h2>
-                <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">{(product as any).howWeSupplyDescription?.[lang] || (product as any).howWeSupplyDescription?.en || t.pages.products.howWeSupplyDescription}</p>
+                <h2 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">
+                  {t.pages.products.howWeSupply}
+                </h2>
+                <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">
+                  {(product as any).howWeSupplyDescription?.[lang] ||
+                    (product as any).howWeSupplyDescription?.en ||
+                    t.pages.products.howWeSupplyDescription}
+                </p>
               </div>
 
               <div className="mb-8">
-                <h2 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">{t.pages.products.relatedCategories}</h2>
-                <p className="text-sm sm:text-base text-foreground/70 leading-relaxed mb-4">{t.pages.products.relatedCategoriesDescription}</p>
+                <h2 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4">
+                  {t.pages.products.relatedCategories}
+                </h2>
+                <p className="text-sm sm:text-base text-foreground/70 leading-relaxed mb-4">
+                  {t.pages.products.relatedCategoriesDescription}
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {otherCategories.map((cat: any) => (
                     <Link
@@ -294,7 +414,9 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
                       href={`/${lang}/products/${cat.slug}`}
                       className="px-3 py-1.5 text-xs sm:text-sm font-medium text-primary border border-primary/20 rounded-full hover:bg-primary/5 transition-colors"
                     >
-                      {(cat.name as any)?.[lang] ?? (cat.name as any)?.en ?? cat.slug}
+                      {(cat.name as any)?.[lang] ??
+                        (cat.name as any)?.en ??
+                        cat.slug}
                     </Link>
                   ))}
                 </div>
@@ -319,7 +441,12 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
         </section>
         <section className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-gradient-to-b from-background to-secondary/30">
           <div className="max-w-7xl mx-auto">
-            <RelatedProducts lang={lang} t={t} currentProduct={product as any} allProducts={relatedProducts as any[]} />
+            <RelatedProducts
+              lang={lang}
+              t={t}
+              currentProduct={product as any}
+              allProducts={relatedProducts as any[]}
+            />
           </div>
         </section>
         <script
@@ -343,9 +470,26 @@ export default async function ProductDetailPage({ params }: ProductDetailProps) 
                 "@context": "https://schema.org",
                 "@type": "BreadcrumbList",
                 itemListElement: [
-                  { "@type": "ListItem", position: 1, name: t.breadcrumbs.home, item: absoluteUrl(localizedPath(lang)) },
-                  { "@type": "ListItem", position: 2, name: t.breadcrumbs.products, item: absoluteUrl(localizedPath(lang, "products")) },
-                  { "@type": "ListItem", position: 3, name: category, item: absoluteUrl(localizedPath(lang, `products/${product.category}`)) },
+                  {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: t.breadcrumbs.home,
+                    item: absoluteUrl(localizedPath(lang)),
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: t.breadcrumbs.products,
+                    item: absoluteUrl(localizedPath(lang, "products")),
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 3,
+                    name: category,
+                    item: absoluteUrl(
+                      localizedPath(lang, `products/${product.category}`),
+                    ),
+                  },
                   { "@type": "ListItem", position: 4, name, item: productUrl },
                 ],
               },

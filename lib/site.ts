@@ -20,7 +20,7 @@ export const siteConfig = {
   description:
     "Faradid Atlas helps businesses source, import, and distribute essential foods such as rice, legumes, nuts, seeds, spices, and sugar through reliable regional supply channels.",
   descriptionFa:
-    "فرادید اطلس به کسب‌وکارها کمک می‌کند مواد غذایی اساسی مانند برنج، حبوبات، مغزها، دانه‌ها، ادویه و شکر را از مسیرهای تأمین قابل اتکا تهیه، وارد و توزیع کنند.",
+    "فرادید اطلس به کسب‌وکارها کمک می‌کند مواد غذایی اساسی مانند برنج، حبوبات، آجیل، خشکبار، ادویه، و شکر را از مسیرهای تأمین قابل اتکا تهیه، وارد و توزیع کنند.",
   descriptionAr:
     "تساعد فرادید اطلس الشركات على توريد واستيراد وتوزيع الأغذية الأساسية مثل الأرز والبقوليات والمكسرات والبذور والتوابل والسكر من خلال قنوات توريد إقليمية موثوقة.",
   sameAs: [] as string[],

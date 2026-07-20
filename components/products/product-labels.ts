@@ -1,4 +1,8 @@
-import type { ProductCategory, ProductBrand, ProductType } from "./product-types";
+import type {
+  ProductCategory,
+  ProductBrand,
+  ProductType,
+} from "./product-types";
 
 export const productBrandLabels: Record<
   ProductBrand,
@@ -19,10 +23,18 @@ export const productTypeLabels: Record<
   beans: { en: "Beans", fa: "لوبیا و ماش", ar: "فاصوليا و عدس" },
   lentils: { en: "Lentils", fa: "عدس", ar: "عدس" },
   chickpeas: { en: "Chickpeas", fa: "نخود", ar: "حمص" },
-  "seeds-kernels": { en: "Seeds & Kernels", fa: "دانه‌ها و مغز تخمه‌ها", ar: "بذور ولب" },
-  nuts: { en: "Nuts", fa: "مغزها", ar: "مكسرات" },
+  "seeds-kernels": {
+    en: "Seeds & Kernels",
+    fa: "آجیل و خشکبار",
+    ar: "بذور ولب",
+  },
+  nuts: { en: "Nuts", fa: "آجیل", ar: "مكسرات" },
   spices: { en: "Spices", fa: "ادویه‌ها", ar: "توابل" },
-  sweeteners: { en: "Sweeteners", fa: "شکر و شیرین‌کننده‌ها", ar: "سكر و محليات" },
+  sweeteners: {
+    en: "Sweeteners",
+    fa: "شکر",
+    ar: "سكر و محليات",
+  },
 };
 
 export const categoryLabels: Record<
@@ -31,8 +43,12 @@ export const categoryLabels: Record<
 > = {
   rice: { en: "Rice", fa: "برنج", ar: "أرز" },
   legumes: { en: "Legumes & Pulses", fa: "حبوبات", ar: "بقوليات" },
-  seeds: { en: "Seeds & Kernels", fa: "دانه‌ها و مغز تخمه‌ها", ar: "بذور ولب" },
-  nuts: { en: "Nuts", fa: "مغزها", ar: "مكسرات" },
-  spices: { en: "Spices & Seasonings", fa: "ادویه‌ها و چاشنی‌ها", ar: "توابل وبهارات" },
-  sugar: { en: "Sweeteners", fa: "شکر و شیرین‌کننده‌ها", ar: "سكر ومحليات" },
+  seeds: { en: "Seeds & Kernels", fa: "خشکبار", ar: "بذور ولب" },
+  nuts: { en: "Nuts", fa: "آجیل", ar: "مكسرات" },
+  spices: {
+    en: "Spices & Seasonings",
+    fa: "ادویه‌ها و چاشنی‌ها",
+    ar: "توابل وبهارات",
+  },
+  sugar: { en: "Sweeteners", fa: "شکر", ar: "سكر ومحليات" },
 };
