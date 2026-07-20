@@ -593,6 +593,9 @@
   .cta-mobile-center {
     text-align: center !important;
   }
+  .cta-mobile-center .eyebrow {
+    margin-inline: auto;
+  }
 }
 
 /* Container utilities */
