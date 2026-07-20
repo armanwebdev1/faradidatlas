@@ -95,7 +95,7 @@ export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) 
         >
           {eyebrow}
         </p>
-        <div className="grid items-center gap-10 md:gap-12 lg:gap-16 md:grid-cols-2">
+        <div className={`grid items-center gap-10 md:gap-12 lg:gap-16 md:grid-cols-2 ${isRTL ? "[direction:ltr]" : ""}`}>
           <div
             className={`reveal-side mx-auto max-w-md text-center md:mx-0 ${
               isVisible ? "is-visible" : ""
