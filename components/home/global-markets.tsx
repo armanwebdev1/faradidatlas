@@ -12,6 +12,11 @@ interface GlobalMarketsProps {
     value?: number | null;
     isActive?: boolean | null;
   }>;
+  section?: {
+    eyebrow?: any;
+    title?: any;
+    description?: any;
+  };
 }
 
 const defaultMarkets = {
@@ -104,8 +109,13 @@ const defaultMarkets = {
 export function GlobalMarkets({
   lang,
   markets: payloadMarkets,
+  section,
 }: GlobalMarketsProps) {
   const t = translations[lang];
+
+  const eyebrow = getLocalized(section?.eyebrow, lang) || t.pages.home.marketsEyebrow;
+  const title = getLocalized(section?.title, lang) || t.pages.home.marketsRegional;
+  const description = getLocalized(section?.description, lang) || t.pages.home.marketsDescription;
 
   const marketList = payloadMarkets?.length
     ? payloadMarkets
@@ -133,14 +143,14 @@ export function GlobalMarkets({
       <div className="relative container-wide">
         <div className="text-center mb-14 sm:mb-16 md:mb-20">
           <p className="eyebrow text-brand-navy mb-4 sm:mb-5 md:mb-6">
-            {t.pages.home.marketsEyebrow}
+            {eyebrow}
           </p>
           <h2 className="text-responsive-title text-primary mb-5 sm:mb-6 md:mb-8 animate-fade-in-up">
-            <span className="inline-block">{t.pages.home.marketsRegional}</span>
+            <span className="inline-block">{title}</span>
           </h2>
 
           <p className="text-responsive-body text-foreground/70 max-w-2xl mx-auto animate-fade-in-up">
-            {t.pages.home.marketsDescription}
+            {description}
           </p>
         </div>
 

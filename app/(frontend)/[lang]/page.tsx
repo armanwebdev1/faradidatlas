@@ -94,10 +94,10 @@ export default async function HomePage({ params }: HomePageProps) {
       <Header lang={lang} />
       <main id="main-content">
         <Hero lang={lang} t={t} slides={heroSlides} />
-        <ValueProps lang={lang} items={valueProps} />
-        <BrandShowcase lang={lang} t={t} brands={brandShowcase} />
+        <ValueProps lang={lang} items={valueProps} section={homepage?.valuePropsSection} />
+        <BrandShowcase lang={lang} t={t} brands={brandShowcase} section={homepage?.brandsSection} />
         <SignatureProducts lang={lang} t={t} products={signatureProducts} />
-        <GlobalMarkets lang={lang} markets={globalMarkets} />
+        <GlobalMarkets lang={lang} markets={globalMarkets} section={homepage?.marketsSection} />
         <CTASection lang={lang} cta={cta} brandShowcase={brandShowcase} />
       </main>
       <script

@@ -92,6 +92,31 @@ export const Homepage: GlobalConfig = {
           label: { en: 'Value Props', fa: 'مزایا' },
           fields: [
             {
+              name: 'valuePropsSection',
+              type: 'group',
+              label: { en: 'Value Props Section', fa: 'بخش مزایا' },
+              fields: [
+                {
+                  name: 'eyebrow',
+                  type: 'text',
+                  label: { en: 'Eyebrow', fa: 'تیتر بالا' },
+                  localized: true,
+                },
+                {
+                  name: 'title',
+                  type: 'text',
+                  label: { en: 'Title', fa: 'عنوان' },
+                  localized: true,
+                },
+                {
+                  name: 'description',
+                  type: 'textarea',
+                  label: { en: 'Description', fa: 'توضیحات' },
+                  localized: true,
+                },
+              ],
+            },
+            {
               name: 'valueProps',
               type: 'array',
               label: { en: 'Value Propositions', fa: 'پیشنهادات ارزش' },
@@ -134,6 +159,37 @@ export const Homepage: GlobalConfig = {
         {
           label: { en: 'Brands & Products', fa: 'برندها و محصولات' },
           fields: [
+            {
+              name: 'brandsSection',
+              type: 'group',
+              label: { en: 'Brands Section', fa: 'بخش برندها' },
+              fields: [
+                {
+                  name: 'eyebrow',
+                  type: 'text',
+                  label: { en: 'Eyebrow', fa: 'تیتر بالا' },
+                  localized: true,
+                },
+                {
+                  name: 'title',
+                  type: 'text',
+                  label: { en: 'Title', fa: 'عنوان' },
+                  localized: true,
+                },
+                {
+                  name: 'description',
+                  type: 'textarea',
+                  label: { en: 'Description', fa: 'توضیحات' },
+                  localized: true,
+                },
+                {
+                  name: 'bannerImage',
+                  type: 'upload',
+                  label: { en: 'Banner Image', fa: 'تصویر بنر' },
+                  relationTo: 'media',
+                },
+              ],
+            },
             {
               name: 'brandShowcase',
               type: 'array',
@@ -199,6 +255,31 @@ export const Homepage: GlobalConfig = {
         {
           label: { en: 'Markets & CTA', fa: 'بازارها و CTA' },
           fields: [
+            {
+              name: 'marketsSection',
+              type: 'group',
+              label: { en: 'Markets Section', fa: 'بخش بازارها' },
+              fields: [
+                {
+                  name: 'eyebrow',
+                  type: 'text',
+                  label: { en: 'Eyebrow', fa: 'تیتر بالا' },
+                  localized: true,
+                },
+                {
+                  name: 'title',
+                  type: 'text',
+                  label: { en: 'Title', fa: 'عنوان' },
+                  localized: true,
+                },
+                {
+                  name: 'description',
+                  type: 'textarea',
+                  label: { en: 'Description', fa: 'توضیحات' },
+                  localized: true,
+                },
+              ],
+            },
             {
               name: 'globalMarkets',
               type: 'array',

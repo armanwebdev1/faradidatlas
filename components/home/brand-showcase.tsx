@@ -13,7 +13,14 @@ interface BrandShowcaseProps {
     brandName?: any;
     logo?: any;
     description?: any;
+    isActive?: boolean | null;
   }>;
+  section?: {
+    eyebrow?: any;
+    title?: any;
+    description?: any;
+    bannerImage?: any;
+  };
 }
 
 function resolveMediaUrl(media: any): string {
@@ -28,7 +35,7 @@ function resolveMediaUrl(media: any): string {
   return "/brands/brands-banner/brands-showcase-banner-en.jpeg";
 }
 
-export function BrandShowcase({ lang, t, brands }: BrandShowcaseProps) {
+export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) {
   const isRTL = lang === "fa" || lang === "ar";
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -55,12 +62,17 @@ export function BrandShowcase({ lang, t, brands }: BrandShowcaseProps) {
 
   const alt = t.pages.home.brandsImageAlt;
 
-  const image =
-    lang === "ar"
+  const bannerImage = section?.bannerImage
+    ? resolveMediaUrl(section.bannerImage)
+    : lang === "ar"
       ? "/brands/brands-banner/brands-showcase-banner-ar.jpeg"
       : lang === "en"
         ? "/brands/brands-banner/brands-showcase-banner-en.jpeg"
         : "/brands/brands-banner/brands-showcase-banner-fa.jpeg";
+
+  const eyebrow = getLocalized(section?.eyebrow, lang) || t.pages.home.brandsEyebrow;
+  const title = getLocalized(section?.title, lang) || t.pages.home.brandsTitle;
+  const description = getLocalized(section?.description, lang) || t.pages.home.brandsDescription;
 
   return (
     <section
@@ -76,7 +88,7 @@ export function BrandShowcase({ lang, t, brands }: BrandShowcaseProps) {
             isVisible ? "is-visible" : ""
           }`}
         >
-          {t.pages.home.brandsEyebrow}
+          {eyebrow}
         </p>
         <div className="grid items-center gap-10 md:gap-12 lg:gap-16 md:grid-cols-2">
           <div
@@ -86,10 +98,10 @@ export function BrandShowcase({ lang, t, brands }: BrandShowcaseProps) {
             style={{ ["--reveal-x" as string]: isRTL ? "48px" : "-48px" }}
           >
             <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 text-balance">
-              {t.pages.home.brandsTitle}
+              {title}
             </h2>
             <p className="text-responsive-body text-foreground/70 text-pretty">
-              {t.pages.home.brandsDescription}
+              {description}
             </p>
           </div>
 
@@ -104,7 +116,7 @@ export function BrandShowcase({ lang, t, brands }: BrandShowcaseProps) {
           >
             <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-2xl sm:rounded-3xl border border-border/40 bg-background shadow-lg">
               <Image
-                src={image}
+                src={bannerImage}
                 alt={alt}
                 width={1270}
                 height={1239}

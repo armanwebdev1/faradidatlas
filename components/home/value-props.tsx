@@ -11,6 +11,11 @@ interface ValuePropsProps {
     description?: any;
     isActive?: boolean | null;
   }>;
+  section?: {
+    eyebrow?: any;
+    title?: any;
+    description?: any;
+  };
 }
 
 const iconMap: Record<string, any> = {
@@ -112,9 +117,13 @@ const defaultItems = {
   ],
 };
 
-export function ValueProps({ lang, items: payloadItems }: ValuePropsProps) {
+export function ValueProps({ lang, items: payloadItems, section }: ValuePropsProps) {
   const t = translations[lang];
   const isRTL = lang === "fa" || lang === "ar";
+
+  const eyebrow = getLocalized(section?.eyebrow, lang) || t.pages.home.valuePropsEyebrow;
+  const title = getLocalized(section?.title, lang) || t.pages.home.valuePropsTitle;
+  const description = getLocalized(section?.description, lang) || t.pages.home.valuePropsDescription;
 
   const items = payloadItems?.length
     ? payloadItems
@@ -143,13 +152,13 @@ export function ValueProps({ lang, items: payloadItems }: ValuePropsProps) {
       <div className="container-wide relative z-10">
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
           <p className="eyebrow text-brand-navy mb-4 sm:mb-5 md:mb-6">
-            {t.pages.home.valuePropsEyebrow}
+            {eyebrow}
           </p>
           <h2 className="text-responsive-title mb-5 sm:mb-7 md:mb-8 text-foreground">
-            {t.pages.home.valuePropsTitle}
+            {title}
           </h2>
           <p className="text-responsive-body text-foreground/70 max-w-2xl mx-auto">
-            {t.pages.home.valuePropsDescription}
+            {description}
           </p>
         </div>
 
