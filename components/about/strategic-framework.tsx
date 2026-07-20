@@ -147,13 +147,13 @@ export function StrategicFramework({ lang, companyInfo }: StrategicFrameworkProp
   const t = translations[lang];
 
   return (
-    <AnimatedSection className="relative overflow-hidden bg-background-alt px-4 py-20 sm:px-6 md:py-28">
+    <AnimatedSection className="relative overflow-hidden bg-background-alt px-4 py-12 sm:px-6 md:py-16">
       <div className="mx-auto max-w-7xl">
         <div
           className="mx-auto max-w-5xl py-10 text-center md:py-14"
           dir={isRTL ? "rtl" : "ltr"}
         >
-          <p className="eyebrow mb-4 text-brand-navy">
+          <p className="eyebrow mb-7 text-brand-navy">
             {t.pages.about.visionMission}
           </p>
           <h2 className="mx-auto max-w-5xl text-center text-responsive-title text-primary">
