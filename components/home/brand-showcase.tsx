@@ -87,14 +87,7 @@ export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) 
       <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-brand-navy/25 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-foreground/10 to-transparent" />
 
-      <div className="relative z-10 container-wide">
-        <p
-          className={`reveal-side eyebrow text-brand-navy mx-auto mb-8 sm:mb-10 ${
-            isVisible ? "is-visible" : ""
-          }`}
-        >
-          {eyebrow}
-        </p>
+      <div className="relative z-10 container-compact">
         <div className={`flex flex-col md:flex-row items-center gap-6 md:gap-12 lg:gap-16 xl:gap-20 ${isRTL ? "[direction:ltr]" : ""}`}>
           <div
             className={`reveal-side w-full md:w-auto md:flex-1 max-w-2xl text-center ${
@@ -102,6 +95,13 @@ export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) 
             } ${isRTL ? "md:text-right" : "md:text-left"}`}
             style={{ ["--reveal-x" as string]: isRTL ? "48px" : "-48px" }}
           >
+            <p
+              className={`reveal-side eyebrow text-brand-navy mb-4 sm:mb-5 ${
+                isVisible ? "is-visible" : ""
+              }`}
+            >
+              {eyebrow}
+            </p>
             <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 text-balance">
               {title}
             </h2>
