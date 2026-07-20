@@ -97,7 +97,7 @@ export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) 
         </p>
         <div className={`flex flex-col md:flex-row items-center gap-6 md:gap-12 lg:gap-16 xl:gap-20 ${isRTL ? "[direction:ltr]" : ""}`}>
           <div
-            className={`reveal-side w-full md:w-auto md:flex-1 max-w-lg text-center ${
+            className={`reveal-side w-full md:w-auto md:flex-1 max-w-2xl text-center ${
               isVisible ? "is-visible" : ""
             } ${isRTL ? "md:text-right" : "md:text-left"}`}
             style={{ ["--reveal-x" as string]: isRTL ? "48px" : "-48px" }}
@@ -153,7 +153,7 @@ export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) 
               transitionDelay: "0.12s",
             }}
           >
-            <div className="relative w-full max-w-sm overflow-hidden rounded-2xl sm:rounded-3xl border border-border/40 bg-background shadow-lg">
+            <div className="relative w-full max-w-lg overflow-hidden rounded-2xl sm:rounded-3xl border border-border/40 bg-background shadow-lg">
               <Image
                 src={bannerImage}
                 alt={alt}
