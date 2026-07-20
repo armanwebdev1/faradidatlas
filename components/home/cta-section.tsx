@@ -85,12 +85,6 @@ export function CTASection({ lang, cta, brandShowcase }: CTASectionProps) {
   return (
     <section className="section relative overflow-hidden bg-background-alt">
       <div className="relative container-wide">
-        <div className="text-center mb-8 sm:mb-12 md:mb-16">
-          <p className="eyebrow text-brand-navy">
-            {t.pages.home.ctaEyebrow}
-          </p>
-        </div>
-
         <div
           className="flex flex-col lg:flex-row items-stretch gap-6 md:gap-12 lg:gap-16 xl:gap-20 mb-12 md:mb-20"
         >
@@ -118,6 +112,9 @@ export function CTASection({ lang, cta, brandShowcase }: CTASectionProps) {
           <div
             className={`flex-1 lg:w-1/2 flex flex-col justify-center py-4 sm:py-6 lg:py-8 text-center ${isRTL ? "order-1 lg:order-1" : "order-2 lg:order-2"}`}
           >
+            <p className="eyebrow mb-4 text-brand-navy">
+              {t.pages.home.ctaEyebrow}
+            </p>
             <h2 className="text-responsive-title mb-4 sm:mb-6 md:mb-8">
               {ctaHeadline || (
                 lang === "en" ? (
