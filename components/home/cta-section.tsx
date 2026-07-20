@@ -132,7 +132,7 @@ export function CTASection({ lang, cta, brandShowcase }: CTASectionProps) {
               {ctaDescription || t.pages.home.ctaDescription}
             </p>
 
-            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center ${isRTL ? "lg:justify-end" : "lg:justify-start"}`}>
+            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 ${isRTL ? "justify-end" : "justify-center lg:justify-start"}`}>
               <Link
                 href={ctaButtonUrl}
                 className="btn btn-primary btn-lg w-full sm:w-auto"
