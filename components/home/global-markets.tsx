@@ -136,10 +136,7 @@ export function GlobalMarkets({
             {t.pages.home.marketsEyebrow}
           </p>
           <h2 className="text-responsive-title text-primary mb-5 sm:mb-6 md:mb-8 animate-fade-in-up">
-            <span className="inline-block">
-              {t.pages.home.marketsRegional}
-              {t.pages.home.marketsReach}
-            </span>
+            <span className="inline-block">{t.pages.home.marketsRegional}</span>
           </h2>
 
           <p className="text-responsive-body text-foreground/70 max-w-2xl mx-auto animate-fade-in-up">
