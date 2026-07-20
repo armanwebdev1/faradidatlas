@@ -112,7 +112,7 @@ export function CTASection({ lang, cta, brandShowcase }: CTASectionProps) {
           <div
             className={`flex-1 lg:w-1/2 flex flex-col justify-center py-4 sm:py-6 lg:py-8 ${isRTL ? "" : "text-center"}`}
           >
-            <p className="eyebrow mb-4 text-brand-navy">
+            <p className="eyebrow mb-7 text-brand-navy">
               {t.pages.home.ctaEyebrow}
             </p>
             <h2 className="text-responsive-title mb-4 sm:mb-6 md:mb-8">
