@@ -38,7 +38,7 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
         <div className="space-y-28">
           <AnimatedHeadline className="text-center">
             <p
-              className="eyebrow mb-4 text-brand-navy opacity-0 translate-y-6"
+              className="eyebrow mb-8 text-brand-navy opacity-0 translate-y-6"
               data-animate
             >
               {hero?.eyebrow || t.pages.about.heroEyebrow}

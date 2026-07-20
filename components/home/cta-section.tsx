@@ -92,11 +92,9 @@ export function CTASection({ lang, cta, brandShowcase }: CTASectionProps) {
         </div>
 
         <div
-          className={`flex flex-col lg:flex-row items-stretch gap-6 md:gap-12 lg:gap-16 xl:gap-20 mb-12 md:mb-20 ${
-            isRTL ? "lg:flex-row-reverse" : ""
-          }`}
+          className="flex flex-col lg:flex-row items-stretch gap-6 md:gap-12 lg:gap-16 xl:gap-20 mb-12 md:mb-20"
         >
-          <div className="flex-1 lg:w-1/2 h-64 sm:h-80 md:h-96 lg:min-h-[26rem]">
+          <div className={`flex-1 lg:w-1/2 h-64 sm:h-80 md:h-96 lg:min-h-[26rem] ${isRTL ? "order-2 lg:order-2" : "order-1 lg:order-1"}`}>
             <div className="relative group overflow-hidden rounded-lg sm:rounded-2xl shadow-xl md:shadow-2xl h-full">
               {ctaImageUrl ? (
                 <NextImage
@@ -118,9 +116,7 @@ export function CTASection({ lang, cta, brandShowcase }: CTASectionProps) {
           </div>
 
           <div
-            className={`flex-1 lg:w-1/2 flex flex-col justify-center py-4 sm:py-6 lg:py-8 text-center ${
-              isRTL ? "lg:text-right" : "lg:text-left"
-            }`}
+            className={`flex-1 lg:w-1/2 flex flex-col justify-center py-4 sm:py-6 lg:py-8 text-center ${isRTL ? "order-1 lg:order-1" : "order-2 lg:order-2"}`}
           >
             <h2 className="text-responsive-title mb-4 sm:mb-6 md:mb-8">
               {ctaHeadline || (
