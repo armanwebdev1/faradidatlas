@@ -348,6 +348,22 @@ export const CompanyInfo: GlobalConfig = {
                   localized: true,
                 },
                 {
+                  name: 'title',
+                  type: 'text',
+                  label: { en: 'CEO Role', fa: 'سمت مدیرعامل' },
+                  defaultValue: 'CEO',
+                  localized: true,
+                  admin: { hidden: true },
+                },
+                {
+                  name: 'connectorWord',
+                  type: 'text',
+                  label: { en: 'Connector Word', fa: 'کلمه ربط' },
+                  defaultValue: 'of',
+                  localized: true,
+                  admin: { hidden: true },
+                },
+                {
                   name: 'bio',
                   type: 'textarea',
                   label: { en: 'Bio', fa: 'بیوگرافی' },
