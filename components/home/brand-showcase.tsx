@@ -95,7 +95,7 @@ export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) 
         >
           {eyebrow}
         </p>
-        <div className={`flex flex-col md:flex-row items-center gap-6 md:gap-10 ${isRTL ? "[direction:ltr]" : ""}`}>
+        <div className={`flex flex-col md:flex-row items-center gap-6 md:gap-12 lg:gap-16 xl:gap-20 ${isRTL ? "[direction:ltr]" : ""}`}>
           <div
             className={`reveal-side w-full md:w-auto md:flex-1 max-w-lg text-center ${
               isVisible ? "is-visible" : ""
