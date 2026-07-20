@@ -23,17 +23,25 @@ interface BrandShowcaseProps {
   };
 }
 
-function resolveMediaUrl(media: any): string {
-  if (!media) return "/brands/brands-banner/brands-showcase-banner-en.jpeg";
+function resolveMediaUrl(media: any): string | null {
+  if (!media) return null;
   if (typeof media === "string") return media;
-  if (typeof media === "object")
-    return (
-      media.url ??
-      media.filename ??
-      "/brands/brands-banner/brands-showcase-banner-en.jpeg"
-    );
-  return "/brands/brands-banner/brands-showcase-banner-en.jpeg";
+  if (typeof media === "object") return media.url ?? media.filename ?? null;
+  return null;
 }
+
+const defaultBrandLogos: Record<string, string> = {
+  Hayat: "/brands/hayat-4k.webp",
+  Golbanoo: "/brands/golbanoo-4k.webp",
+  "Twenty One": "/brands/twenty-one-4k.webp",
+  Mizban: "/brands/mizban-4k.webp",
+};
+
+const defaultBannerByLang: Record<string, string> = {
+  ar: "/brands/brands-banner/brands-showcase-banner-ar.jpeg",
+  en: "/brands/brands-banner/brands-showcase-banner-en.jpeg",
+  fa: "/brands/brands-banner/brands-showcase-banner-fa.jpeg",
+};
 
 export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) {
   const isRTL = lang === "fa" || lang === "ar";
@@ -62,17 +70,14 @@ export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) 
 
   const alt = t.pages.home.brandsImageAlt;
 
-  const bannerImage = section?.bannerImage
-    ? resolveMediaUrl(section.bannerImage)
-    : lang === "ar"
-      ? "/brands/brands-banner/brands-showcase-banner-ar.jpeg"
-      : lang === "en"
-        ? "/brands/brands-banner/brands-showcase-banner-en.jpeg"
-        : "/brands/brands-banner/brands-showcase-banner-fa.jpeg";
-
   const eyebrow = getLocalized(section?.eyebrow, lang) || t.pages.home.brandsEyebrow;
   const title = getLocalized(section?.title, lang) || t.pages.home.brandsTitle;
   const description = getLocalized(section?.description, lang) || t.pages.home.brandsDescription;
+
+  const activeBrands = brands?.filter((b) => b.isActive !== false) ?? [];
+  const hasBrands = activeBrands.length > 0;
+
+  const bannerImage = resolveMediaUrl(section?.bannerImage) ?? defaultBannerByLang[lang] ?? defaultBannerByLang.en;
 
   return (
     <section
@@ -103,6 +108,40 @@ export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) 
             <p className="text-responsive-body text-foreground/70 text-pretty">
               {description}
             </p>
+
+            {hasBrands && (
+              <div className={`mt-8 grid grid-cols-2 gap-4 ${isRTL ? "text-right" : ""}`}>
+                {activeBrands.map((brand, idx) => {
+                  const name = getLocalized(brand.brandName, lang);
+                  const logoUrl = resolveMediaUrl(brand.logo) ?? defaultBrandLogos[name] ?? null;
+
+                  return (
+                    <div
+                      key={`${name}-${idx}`}
+                      className="flex flex-col items-center gap-2 rounded-xl border border-foreground/8 bg-background/60 p-4 transition-all duration-300 hover:border-brand-navy/20 hover:shadow-sm"
+                    >
+                      {logoUrl ? (
+                        <Image
+                          src={logoUrl}
+                          alt={name}
+                          width={120}
+                          height={60}
+                          loading="lazy"
+                          className="h-12 w-auto object-contain"
+                        />
+                      ) : (
+                        <span className="text-lg font-semibold text-foreground">{name}</span>
+                      )}
+                      {brand.description && (
+                        <p className="text-xs text-foreground/50 text-center leading-relaxed">
+                          {getLocalized(brand.description, lang)}
+                        </p>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           <div
