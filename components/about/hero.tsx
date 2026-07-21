@@ -63,7 +63,7 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
           >
             {hero?.description || heroDescription[lang]}
           </p>
-          <div className="pt-2 pb-8 opacity-0 translate-y-6" data-animate>
+          <div className="pt-2 pb-12 md:pb-16 opacity-0 translate-y-6" data-animate>
             <Link
               href={`/${lang}/contact`}
               className="btn btn-primary btn-md"
