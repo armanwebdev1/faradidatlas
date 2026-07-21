@@ -3,6 +3,7 @@ import { translations } from "@/lib/i18n";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatedHeadline } from "./animated-headline";
+import { AnimatedSection } from "./animated-section";
 import { CountUpValue } from "./count-up-value";
 
 interface AboutHeroProps {
@@ -14,6 +15,18 @@ const heroDescription: Record<Language, string> = {
   en: "With over fifteen years of experience in food sourcing and trading, Faradid Atlas provide reliable import and distribution solutions through a strong network of suppliers and business partners.",
   fa: "با بیش از پانزده سال تجربه در تأمین و تجارت مواد غذایی، فرادید اطلس راهکارهای قابل اعتماد واردات و توزیع را از طریق شبکه‌ای قوی از تأمین‌کنندگان و شرکای تجاری ارائه می‌دهد.",
   ar: "بخبرة تمتد لأكثر من خمسة عشر عامًا في تزوين وتجارة المواد الغذائية، توفر فراديد أطلس حلول استيراد وتوزيع موثوقة من خلال شبكة قوية من الموردين وشركاء الأعمال.",
+};
+
+const impactTitle: Record<Language, string> = {
+  en: "Our Impact",
+  fa: "دستاوردهای ما",
+  ar: "تأثيرنا",
+};
+
+const visionLabel: Record<Language, string> = {
+  en: "Vision",
+  fa: "چشم‌انداز",
+  ar: "الرؤية",
 };
 
 const defaultStats = [
@@ -30,106 +43,131 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
   const hero = companyInfo?.hero;
 
   return (
-    <section
-      className="section-hero relative w-full overflow-hidden bg-background"
-      dir={isRTL ? "rtl" : "ltr"}
-    >
-      <div className="container-full">
-        <div className="space-y-28">
-          <AnimatedHeadline className="text-center">
-            <p
-              className="eyebrow mb-8 text-brand-navy opacity-0 translate-y-6"
-              data-animate
-            >
-              {hero?.eyebrow || t.pages.about.heroEyebrow}
-            </p>
-            <h1
-              className="font-semibold text-[clamp(2.2rem,2.45vw+1.05rem,3.75rem)] leading-[1.18] sm:leading-[1.16] md:leading-[1.14] tracking-normal text-primary mb-5 max-w-5xl mx-auto opacity-0 translate-y-6"
-              data-animate
-            >
-              {hero?.headline || t.pages.about.heroHeadline}
-            </h1>
-            <p className="text-responsive-body text-foreground/70 max-w-3xl mx-auto opacity-0 translate-y-6" data-animate>
-              {hero?.description || heroDescription[lang]}
-            </p>
-            <Link
-              href={`/${lang}/contact`}
-              className="btn btn-primary btn-md mt-8 opacity-0 translate-y-6"
-              data-animate
-            >
-              {t.nav.contact}
-            </Link>
-          </AnimatedHeadline>
+    <>
+      {/* ─── SECTION 1: Two-Column Hero ─── */}
+      <section
+        className="relative w-full overflow-hidden bg-background"
+        dir={isRTL ? "rtl" : "ltr"}
+      >
+        <div className="container-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center py-16 md:py-24">
+            {/* LEFT: Text */}
+            <AnimatedHeadline className="space-y-6">
+              <p
+                className="eyebrow text-brand-navy opacity-0 translate-y-6"
+                data-animate
+              >
+                {hero?.eyebrow || t.pages.about.heroEyebrow}
+              </p>
+              <h1
+                className="font-semibold text-[clamp(2rem,2.2vw+1rem,3.25rem)] leading-[1.15] tracking-normal text-primary opacity-0 translate-y-6"
+                data-animate
+              >
+                {hero?.headline || t.pages.about.heroHeadline}
+              </h1>
+              <p
+                className="text-responsive-body text-foreground/70 max-w-lg opacity-0 translate-y-6"
+                dir={isRTL ? "rtl" : "ltr"}
+                style={{ unicodeBidi: "plaintext" }}
+                data-animate
+              >
+                {hero?.description || heroDescription[lang]}
+              </p>
+              <div className="pt-2 opacity-0 translate-y-6" data-animate>
+                <Link
+                  href={`/${lang}/contact`}
+                  className="btn btn-primary btn-md"
+                >
+                  {t.nav.contact}
+                </Link>
+              </div>
+            </AnimatedHeadline>
 
-          <div>
-            <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
+            {/* RIGHT: Image */}
+            <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden opacity-0 translate-y-6" data-animate>
               <Image
                 src={hero?.image?.url || "/optimized/about-hero.webp"}
                 alt={hero?.imageAlt || t.pages.about.heroImageAlt}
                 fill
                 priority
-                sizes="100vw"
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
               />
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <h2 className="text-responsive-title text-primary">
-              {hero?.foodSecurityPractical || t.pages.about.foodSecurityPractical}
-            </h2>
-
+      {/* ─── SECTION 2: Mission & Values ─── */}
+      <AnimatedSection className="w-full bg-surface-muted">
+        <div className="container-full" dir={isRTL ? "rtl" : "ltr"}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-16 md:py-20">
+            {/* Card 1: Mission */}
             <div
-              dir={isRTL ? "rtl" : "ltr"}
-              className="space-y-6"
-              style={{
-                unicodeBidi: "plaintext",
-                direction: isRTL ? "rtl" : "ltr",
-                textAlign: isRTL ? "right" : "left",
-              }}
+              className="group rounded-2xl border border-border bg-surface p-8 md:p-10 transition-shadow duration-300 hover:shadow-sm opacity-0 translate-y-6"
+              data-animate
             >
-              <p className="text-base md:text-lg font-semibold text-foreground leading-relaxed max-w-xl">
-                {hero?.storyP1 || t.pages.about.storyP1}
-              </p>
-
-              <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-xl">
-                {hero?.storyP2 || t.pages.about.storyP2}
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div>
-              <p className="text-xs font-semibold text-primary uppercase tracking-wide mb-3">
+              <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-4">
                 {hero?.missionLabel || t.pages.about.missionLabel}
               </p>
-              <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-xl">
+              <p
+                className="text-base md:text-lg text-foreground/80 leading-relaxed"
+                dir={isRTL ? "rtl" : "ltr"}
+                style={{ unicodeBidi: "plaintext" }}
+              >
                 {hero?.missionText || t.pages.about.missionText}
               </p>
             </div>
 
-            <blockquote className="text-2xl md:text-3xl font-bold text-primary leading-tight max-w-xl">
-              {hero?.blockquote || t.pages.about.blockquote}
-            </blockquote>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-            {stats.map((stat: any, idx: number) => (
-              <Stat
-                key={idx}
-                value={stat.value}
-                suffix={stat.suffix}
-                decimals={0}
-                labelEn={stat.labelEn}
-                labelFa={stat.labelFa}
-                labelAr={stat.labelAr}
-                lang={lang}
-              />
-            ))}
+            {/* Card 2: Vision */}
+            <div
+              className="group rounded-2xl border border-border bg-surface p-8 md:p-10 transition-shadow duration-300 hover:shadow-sm opacity-0 translate-y-6"
+              data-animate
+            >
+              <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-4">
+                {visionLabel[lang]}
+              </p>
+              <blockquote
+                className="text-lg md:text-xl font-semibold text-foreground leading-relaxed"
+                dir={isRTL ? "rtl" : "ltr"}
+                style={{ unicodeBidi: "plaintext" }}
+              >
+                {hero?.blockquote || t.pages.about.blockquote}
+              </blockquote>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </AnimatedSection>
+
+      {/* ─── SECTION 3: Statistics ─── */}
+      <AnimatedSection className="w-full bg-background">
+        <div className="container-full" dir={isRTL ? "rtl" : "ltr"}>
+          <div className="py-16 md:py-20">
+            <div className="text-center mb-12 opacity-0 translate-y-6" data-animate>
+              <h2 className="text-responsive-title text-primary">
+                {impactTitle[lang]}
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+              {stats.map((stat: any, idx: number) => (
+                <div key={idx} className="text-center space-y-2 opacity-0 translate-y-6" data-animate>
+                  <Stat
+                    value={stat.value}
+                    suffix={stat.suffix}
+                    decimals={0}
+                    labelEn={stat.labelEn}
+                    labelFa={stat.labelFa}
+                    labelAr={stat.labelAr}
+                    lang={lang}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
+    </>
   );
 }
 
@@ -151,11 +189,11 @@ function Stat({
   lang: Language;
 }) {
   return (
-    <div>
+    <>
       <CountUpValue target={value} suffix={suffix} decimals={decimals} />
-      <p className="text-xs text-muted-foreground">
+      <p className="text-sm text-muted-foreground">
         {lang === "en" ? labelEn : lang === "fa" ? labelFa : labelAr}
       </p>
-    </div>
+    </>
   );
 }
