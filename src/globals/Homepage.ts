@@ -273,11 +273,40 @@ export const Homepage: GlobalConfig = {
               label: { en: 'Carousel Slides', fa: 'اسلایدهای کروسل' },
               fields: [
                 {
+                  name: 'image',
+                  type: 'upload',
+                  label: { en: 'Slide Image', fa: 'تصویر اسلاید' },
+                  relationTo: 'media',
+                  admin: {
+                    description: { en: 'Wide image shown as the slide background', fa: 'تصویر پس‌زمینه اسلاید' },
+                  },
+                },
+                {
+                  name: 'eyebrow',
+                  type: 'text',
+                  label: { en: 'Eyebrow', fa: 'تیتر بالا' },
+                  localized: true,
+                },
+                {
+                  name: 'title',
+                  type: 'text',
+                  label: { en: 'Title', fa: 'عنوان' },
+                  localized: true,
+                },
+                {
+                  name: 'description',
+                  type: 'textarea',
+                  label: { en: 'Description', fa: 'توضیحات' },
+                  localized: true,
+                },
+                {
                   name: 'product',
                   type: 'relationship',
-                  label: { en: 'Product', fa: 'محصول' },
+                  label: { en: 'Link to Product (optional)', fa: 'لینک محصول (اختیاری)' },
                   relationTo: 'products',
-                  required: true,
+                  admin: {
+                    description: { en: 'Optional: link this slide to a product page', fa: 'اختیاری: لینک اسلاید به صفحه محصول' },
+                  },
                 },
                 {
                   name: 'isActive',
@@ -285,7 +314,7 @@ export const Homepage: GlobalConfig = {
                   label: { en: 'Active', fa: 'فعال' },
                   defaultValue: true,
                   admin: {
-                    description: { en: 'Show/hide this product', fa: 'نمایش/مخفی‌کردن این محصول' },
+                    description: { en: 'Show/hide this slide', fa: 'نمایش/مخفی‌کردن این اسلاید' },
                     position: 'sidebar',
                   },
                 },

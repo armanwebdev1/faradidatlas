@@ -63,6 +63,15 @@ async function main() {
   }
 
   await pool.end()
+  console.log('Dropping NOT NULL on product_id...')
+  try {
+    const pool2 = new Pool({ connectionString })
+    await pool2.query('ALTER TABLE "homepage_signature_products" ALTER COLUMN "product_id" DROP NOT NULL')
+    console.log('  ✓ Done')
+    await pool2.end()
+  } catch (err: any) {
+    console.warn(`  ⚠ Skipped: ${err.message}`)
+  }
   console.log('Schema check completed')
   process.exit(0)
 }

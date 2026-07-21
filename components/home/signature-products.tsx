@@ -141,13 +141,13 @@ export function SignatureProducts({
         .filter((p: any) => p.isActive !== false)
         .map((p: any) => {
           const resolved =
-            p.product && typeof p.product === "object" ? p.product : p;
+            p.product && typeof p.product === "object" ? p.product : null;
           return {
-            id: resolved.id ?? p.id,
-            name: resolved.name ?? p.name,
-            category: resolved.category ?? p.category,
-            image: resolved.featuredImage ?? resolved.image ?? p.image,
-            description: resolved.description ?? p.description,
+            id: p.id ?? resolved?.id,
+            name: p.name || resolved?.name,
+            category: p.category || resolved?.category,
+            image: p.image || resolved?.featuredImage || resolved?.image,
+            description: p.description || resolved?.description,
           };
         })
     : defaultProducts;
@@ -323,11 +323,12 @@ export function SignatureProducts({
                   {hasEntered && index === currentIndex && (
                     <Image
                       src={
-                        localize(product.image) ||
-                        (typeof product.image === "object"
-                          ? product.image?.src
-                          : "") ||
-                        "/signature-products/optimized/twenty-one.webp"
+                        (typeof product.image === "object" && product.image?.url)
+                          ? product.image.url
+                          : (typeof product.image === "object" && product.image?.src)
+                            ? product.image.src
+                            : (typeof product.image === "string" ? product.image : "") ||
+                              "/signature-products/optimized/twenty-one.webp"
                       }
                       alt={localize(product.name)}
                       fill
