@@ -59,25 +59,25 @@ export default async function FAQPage({ params }: FAQPageProps) {
           <div className="max-w-4xl mx-auto">
             <FAQContent items={faqs} lang={lang} t={t} />
 
-            <div className="relative mt-20 p-12 bg-gradient-to-br from-background to-secondary/30 rounded-2xl border border-border text-center overflow-hidden shadow-lg animate-fade-in-up">
-              <h2 className="text-3xl font-bold text-primary mb-4 tracking-tight">
+            <div className="relative mt-20 p-8 sm:p-10 bg-gradient-to-br from-background to-secondary/30 rounded-2xl border border-border text-center overflow-hidden shadow-lg animate-fade-in-up">
+              <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-4 tracking-tight">
                 {t.faqPage.needProductAnswer}
               </h2>
-              <p className="text-muted-foreground mb-8 text-lg">
+              <p className="text-muted-foreground mb-8 text-base sm:text-lg">
                 {t.faqPage.needProductAnswerDesc}
               </p>
-              <div className="flex justify-center gap-4">
-                <a
-                  href={`/${lang}/products`}
-                  className="inline-block px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 hover:shadow-lg transition-all duration-300 group"
-                >
-                  {lang === "en" ? "Browse Products" : lang === "fa" ? "مشاهده محصولات" : "تصفح المنتجات"}
-                </a>
+              <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
                 <a
                   href={`/${lang}/contact`}
-                  className="inline-block px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 hover:shadow-lg transition-all duration-300 group"
+                  className="inline-block px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-primary/90 hover:shadow-lg transition-all duration-300 group order-1 sm:order-none"
                 >
                   {t.faqPage.contactUs}
+                </a>
+                <a
+                  href={`/${lang}/products`}
+                  className="inline-block px-8 py-3 bg-muted text-foreground font-semibold rounded-full hover:bg-muted/80 hover:shadow-lg transition-all duration-300 group order-2 sm:order-none"
+                >
+                  {lang === "en" ? "Browse Products" : lang === "fa" ? "مشاهده محصولات" : "تصفح المنتجات"}
                 </a>
               </div>
             </div>
