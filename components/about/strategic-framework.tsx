@@ -147,7 +147,7 @@ export function StrategicFramework({ lang, companyInfo }: StrategicFrameworkProp
   const t = translations[lang];
 
   return (
-    <AnimatedSection className="relative overflow-hidden bg-background-alt px-4 py-12 sm:px-6 md:py-16">
+    <AnimatedSection className="section relative overflow-hidden bg-background-alt px-4 sm:px-6">
       <div className="mx-auto max-w-7xl">
         <div
           className="mx-auto max-w-5xl py-10 text-center md:py-14"

@@ -129,7 +129,7 @@ export function TeamShowcase({ lang, companyInfo }: TeamShowcaseProps) {
   const sectionIntro = companyInfo?.valuesSection?.intro || t.pages.about.valuesIntro;
 
   return (
-    <AnimatedSection className="relative overflow-hidden bg-white px-4 py-20 sm:px-6 md:py-28">
+    <AnimatedSection className="section relative overflow-hidden bg-white px-4 sm:px-6">
       <div
         className="relative z-10 mx-auto max-w-7xl"
         dir={isRTL ? "rtl" : "ltr"}

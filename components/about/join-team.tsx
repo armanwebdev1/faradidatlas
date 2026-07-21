@@ -18,7 +18,7 @@ export function JoinTeam({ lang, companyInfo }: JoinTeamProps) {
   const ctaUrl = joinTeam?.ctaUrl || `/${lang}/contact`;
 
   return (
-    <section className="relative py-16 md:py-24 px-4 sm:px-6 bg-background overflow-hidden">
+    <section className="section relative px-4 sm:px-6 bg-background overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-border" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12">

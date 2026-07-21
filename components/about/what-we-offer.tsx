@@ -103,7 +103,7 @@ export function WhatWeOffer({ lang, companyInfo }: WhatWeOfferProps) {
     t.pages.about.whatWeOfferDescription;
 
   return (
-    <AnimatedSection className="relative py-24 md:py-32 px-4 sm:px-6 bg-background overflow-hidden">
+    <AnimatedSection className="section relative px-4 sm:px-6 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2
