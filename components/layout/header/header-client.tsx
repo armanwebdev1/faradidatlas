@@ -616,10 +616,10 @@ const productBrandMenuItems = useMemo(
         </div>
 
         <nav
-          className={`relative z-10 hidden border-b backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-500 ease-[var(--ease-decelerate)] lg:block ${
+          className={`relative z-10 hidden border-b backdrop-blur-md transition-[background-color,border-color] duration-500 ease-[var(--ease-decelerate)] lg:block ${
             effectiveHeaderMode === "compact"
               ? "border-border/40 bg-background/92 shadow-md"
-              : "border-border/30 bg-background/70 shadow-none"
+              : "border-border/30 bg-background/70 shadow-md"
           }`}
         >
           <div className="w-full px-6 h-12 flex items-center justify-center gap-4 lg:gap-8">
