@@ -87,7 +87,7 @@ export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) 
       <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-brand-navy/25 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-foreground/10 to-transparent" />
 
-      <div className="relative z-10 container-responsive">
+      <div className="relative z-10 container-wide">
         <div className={`flex flex-col md:flex-row items-center gap-6 md:gap-12 lg:gap-16 xl:gap-20 ${isRTL ? "[direction:ltr]" : ""}`}>
           <div
             className={`reveal-side w-full md:w-auto md:flex-1 max-w-2xl text-center ${
