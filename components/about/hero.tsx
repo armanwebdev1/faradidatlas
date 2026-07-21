@@ -1,6 +1,5 @@
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
-import Image from "next/image";
 import Link from "next/link";
 import { AnimatedHeadline } from "./animated-headline";
 import { AnimatedSection } from "./animated-section";
@@ -74,18 +73,6 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
           </div>
         </AnimatedHeadline>
 
-        <div className="mx-auto max-w-5xl px-4 mt-8 pb-10 md:mt-12 md:pb-16 opacity-0 translate-y-6" data-animate>
-          <div className="relative w-full aspect-[4/3] md:aspect-[16/9] rounded-2xl overflow-hidden">
-            <Image
-              src={hero?.image?.url || "/optimized/about-hero.webp"}
-              alt={hero?.imageAlt || t.pages.about.heroImageAlt}
-              fill
-              priority
-              sizes="(min-width: 1024px) 1024px, 100vw"
-              className="object-cover"
-            />
-          </div>
-        </div>
       </section>
 
       {/* ─── Statistics ─── */}

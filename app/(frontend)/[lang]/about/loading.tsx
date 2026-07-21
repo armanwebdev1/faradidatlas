@@ -12,9 +12,6 @@ export default function AboutLoading() {
             <div className="h-4 w-5/6 bg-foreground/5 rounded mx-auto animate-pulse" />
             <div className="h-10 w-32 bg-primary/20 rounded-full mx-auto mt-4 animate-pulse" />
           </div>
-          <div className="mx-auto max-w-5xl px-4 mt-8 pb-10 md:mt-12 md:pb-16">
-            <div className="w-full aspect-[4/3] md:aspect-[16/9] bg-foreground/10 rounded-2xl animate-pulse" />
-          </div>
         </section>
 
         {/* Statistics skeleton */}
