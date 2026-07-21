@@ -267,7 +267,7 @@ const productBrandMenuItems = useMemo(
         dir={dir}
         className={`fixed top-0 inset-x-0 z-60 transform-gpu will-change-transform transition-[opacity,transform] duration-700 ease-[var(--ease-decelerate)] ${headerVisibilityClass}`}
       >
-        <div className="relative z-50 border-b border-border/35 bg-background/85 shadow-md backdrop-blur-xl">
+        <div className="relative z-50 border-b border-border/35 bg-background/85 backdrop-blur-xl">
           <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between">
             <a
               href={`/${lang}`}
