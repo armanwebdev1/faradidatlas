@@ -608,6 +608,16 @@
   }
 }
 
+/* Generic mobile centering that beats dir="rtl" inherited text-align */
+@media (max-width: 1023px) {
+  .mobile-center {
+    text-align: center !important;
+  }
+  .mobile-center .eyebrow {
+    margin-inline: auto !important;
+  }
+}
+
 /* Container utilities */
 @layer components {
   .container-responsive,

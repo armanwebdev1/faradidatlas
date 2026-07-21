@@ -66,7 +66,7 @@ export function CEOProfile({ lang, companyInfo }: CEOProfileProps) {
             </div>
           </div>
 
-          <div className="lg:col-span-7 text-center lg:text-left">
+          <div className={`lg:col-span-7 mobile-center ${isRTL ? "lg:text-right" : "lg:text-left"}`}>
             <div className="opacity-0 translate-y-6" data-animate>
               <p className="eyebrow mb-4 text-brand-navy">{eyebrow}</p>
               <h2 className="text-responsive-subheading text-primary">
