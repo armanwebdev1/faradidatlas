@@ -598,6 +598,16 @@
   }
 }
 
+/* Scoped fix: center brand showcase text on mobile in RTL layout */
+@media (max-width: 767px) {
+  .brands-mobile-center {
+    text-align: center !important;
+  }
+  .brands-mobile-center .eyebrow {
+    margin-inline: auto !important;
+  }
+}
+
 /* Container utilities */
 @layer components {
   .container-responsive,
