@@ -39,7 +39,7 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
     <>
       {/* ─── Hero ─── */}
       <section
-        className="w-full bg-background"
+        className="w-full bg-background px-4"
         dir={isRTL ? "rtl" : "ltr"}
       >
         <AnimatedHeadline className="mx-auto max-w-5xl space-y-8 pt-12 text-center md:space-y-10 md:pt-20">
