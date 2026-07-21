@@ -11,6 +11,13 @@ import type { translations } from "@/lib/i18n";
 interface SignatureProductsProps {
   lang: Language;
   t: (typeof translations)[Language];
+  section?: {
+    eyebrow?: any;
+    title?: any;
+    description?: any;
+    ctaText?: any;
+    ctaUrl?: string | null;
+  };
   products?: Array<{
     id?: number | string | null;
     product?: any;
@@ -111,6 +118,7 @@ const defaultProducts = [
 export function SignatureProducts({
   lang,
   t,
+  section,
   products: payloadProducts,
 }: SignatureProductsProps) {
   const router = useRouter();
@@ -118,6 +126,12 @@ export function SignatureProducts({
   const effectiveLang = lang ?? (params?.lang as Language) ?? "en";
   const isRTL = effectiveLang === "fa" || effectiveLang === "ar";
   const localize = (value: any) => getLocalized(value, effectiveLang);
+
+  const eyebrow = localize(section?.eyebrow) || t.pages.home.recognizedPortfolio;
+  const title = localize(section?.title) || t.pages.home.brandsAndCoreProducts;
+  const description = localize(section?.description) || t.pages.home.portfolioDescription;
+  const ctaText = localize(section?.ctaText) || t.pages.home.exploreAllProducts;
+  const ctaUrl = section?.ctaUrl;
   const textShiftClass = isRTL
     ? "-translate-x-4 sm:-translate-x-6 md:-translate-x-8 -translate-y-4 sm:-translate-y-6 md:-translate-y-8"
     : "translate-x-4 sm:translate-x-6 md:translate-x-8 -translate-y-4 sm:-translate-y-6 md:-translate-y-8";
@@ -215,21 +229,30 @@ export function SignatureProducts({
       <div className="relative z-10 container-wide">
         <div className="text-center mb-10 sm:mb-12 md:mb-14 animate-fade-in">
           <p className="eyebrow text-brand-navy mb-4 sm:mb-5 md:mb-6">
-            {t.pages.home.recognizedPortfolio}
+            {eyebrow}
           </p>
           <h2 className="text-responsive-title text-foreground mb-5 sm:mb-6 md:mb-8">
-            {t.pages.home.brandsAndCoreProducts}
+            {title}
           </h2>
           <p className="text-responsive-body text-foreground/70 max-w-2xl mx-auto mb-8">
-            {t.pages.home.portfolioDescription}
+            {description}
           </p>
 
-          <button
-            onClick={() => router.push(`/${effectiveLang}/products`)}
-            className="btn btn-outline btn-md"
-          >
-            {t.pages.home.exploreAllProducts}
-          </button>
+          {ctaUrl ? (
+            <a
+              href={ctaUrl}
+              className="btn btn-outline btn-md"
+            >
+              {ctaText}
+            </a>
+          ) : (
+            <button
+              onClick={() => router.push(`/${effectiveLang}/products`)}
+              className="btn btn-outline btn-md"
+            >
+              {ctaText}
+            </button>
+          )}
 
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-6">
             {(

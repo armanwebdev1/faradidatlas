@@ -232,9 +232,45 @@ export const Homepage: GlobalConfig = {
           label: { en: 'Signature Products', fa: 'محصولات ویژه' },
           fields: [
             {
+              name: 'signatureProductsSection',
+              type: 'group',
+              label: { en: 'Section Settings', fa: 'تنظیمات بخش' },
+              fields: [
+                {
+                  name: 'eyebrow',
+                  type: 'text',
+                  label: { en: 'Eyebrow', fa: 'تیتر بالا' },
+                  localized: true,
+                },
+                {
+                  name: 'title',
+                  type: 'text',
+                  label: { en: 'Title', fa: 'عنوان' },
+                  localized: true,
+                },
+                {
+                  name: 'description',
+                  type: 'textarea',
+                  label: { en: 'Description', fa: 'توضیحات' },
+                  localized: true,
+                },
+                {
+                  name: 'ctaText',
+                  type: 'text',
+                  label: { en: 'CTA Button Text', fa: 'متن دکمه' },
+                  localized: true,
+                },
+                {
+                  name: 'ctaUrl',
+                  type: 'text',
+                  label: { en: 'CTA Button URL', fa: 'آدرس دکمه' },
+                },
+              ],
+            },
+            {
               name: 'signatureProducts',
               type: 'array',
-              label: { en: 'Signature Products', fa: 'محصولات ویژه' },
+              label: { en: 'Carousel Slides', fa: 'اسلایدهای کروسل' },
               fields: [
                 {
                   name: 'product',
