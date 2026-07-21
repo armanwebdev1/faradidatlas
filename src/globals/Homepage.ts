@@ -157,7 +157,7 @@ export const Homepage: GlobalConfig = {
           ],
         },
         {
-          label: { en: 'Brands & Products', fa: 'برندها و محصولات' },
+          label: { en: 'Brand Showcase', fa: 'نمایش برندها' },
           fields: [
             {
               name: 'brandsSection',
@@ -226,6 +226,11 @@ export const Homepage: GlobalConfig = {
                 },
               ],
             },
+          ],
+        },
+        {
+          label: { en: 'Signature Products', fa: 'محصولات ویژه' },
+          fields: [
             {
               name: 'signatureProducts',
               type: 'array',
@@ -253,7 +258,7 @@ export const Homepage: GlobalConfig = {
           ],
         },
         {
-          label: { en: 'Markets & CTA', fa: 'بازارها و CTA' },
+          label: { en: 'Markets', fa: 'بازارها' },
           fields: [
             {
               name: 'marketsSection',
@@ -318,10 +323,15 @@ export const Homepage: GlobalConfig = {
                 },
               ],
             },
+          ],
+        },
+        {
+          label: { en: 'CTA', fa: 'دعوت به اقدام' },
+          fields: [
             {
               name: 'cta',
               type: 'group',
-              label: { en: 'CTA', fa: ' دعوت به اقدام' },
+              label: { en: 'CTA', fa: 'دعوت به اقدام' },
               fields: [
                 {
                   name: 'headline',

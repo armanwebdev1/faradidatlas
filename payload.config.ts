@@ -52,6 +52,15 @@ export default buildConfig({
     },
   },
 
+  globals: [
+    Homepage,
+    CompanyInfo,
+    ContactInfo,
+    CareersInfo,
+    SiteSettings,
+    Redirects,
+  ],
+
   collections: [
     Products,
     Categories,
@@ -63,15 +72,6 @@ export default buildConfig({
     Certificates,
     Media,
     Users,
-  ],
-
-  globals: [
-    Homepage,
-    CompanyInfo,
-    ContactInfo,
-    CareersInfo,
-    SiteSettings,
-    Redirects,
   ],
 
   editor: lexicalEditor({

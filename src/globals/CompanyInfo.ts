@@ -3,13 +3,13 @@ import { isRole } from '../access/isRole'
 
 export const CompanyInfo: GlobalConfig = {
   slug: 'company-info',
-  label: { en: 'Company Info', fa: 'اطلاعات شرکت' },
+  label: { en: 'About Us', fa: 'درباره ما' },
   access: {
     read: () => true,
     update: isRole('super-admin', 'company-admin'),
   },
   admin: {
-    group: { en: 'Company', fa: 'شرکت' },
+    group: { en: 'Website', fa: 'وبسایت' },
     description: { en: 'Company information for the About page: hero stats, company presence, strategic framework, CEO profile, offerings, core values, and join team section', fa: 'اطلاعات شرکت برای صفحه درباره ما: آمار هیرو، حضور شرکت، چارچوب استراتژیک، پروفایل مدیرعامل، خدمات، ارزش‌های اصلی و بخش پیوستن به تیم' },
   },
   fields: [
@@ -40,54 +40,6 @@ export const CompanyInfo: GlobalConfig = {
                   name: 'description',
                   type: 'textarea',
                   label: { en: 'Description', fa: 'توضیحات' },
-                  localized: true,
-                },
-                {
-                  name: 'image',
-                  type: 'upload',
-                  label: { en: 'Image', fa: 'تصویر' },
-                  relationTo: 'media',
-                },
-                {
-                  name: 'imageAlt',
-                  type: 'text',
-                  label: { en: 'Image Alt Text', fa: 'متن جایگزین تصویر' },
-                  localized: true,
-                },
-                {
-                  name: 'foodSecurityPractical',
-                  type: 'text',
-                  label: { en: 'Food Security Practical', fa: 'امنیت غذایی عملی' },
-                  localized: true,
-                },
-                {
-                  name: 'storyP1',
-                  type: 'textarea',
-                  label: { en: 'Story Paragraph 1', fa: 'پاراگراف اول داستان' },
-                  localized: true,
-                },
-                {
-                  name: 'storyP2',
-                  type: 'textarea',
-                  label: { en: 'Story Paragraph 2', fa: 'پاراگراف دوم داستان' },
-                  localized: true,
-                },
-                {
-                  name: 'missionLabel',
-                  type: 'text',
-                  label: { en: 'Mission Label', fa: 'برچسب ماموریت' },
-                  localized: true,
-                },
-                {
-                  name: 'missionText',
-                  type: 'textarea',
-                  label: { en: 'Mission Text', fa: 'متن ماموریت' },
-                  localized: true,
-                },
-                {
-                  name: 'blockquote',
-                  type: 'textarea',
-                  label: { en: 'Blockquote', fa: 'نقل قول' },
                   localized: true,
                 },
               ],

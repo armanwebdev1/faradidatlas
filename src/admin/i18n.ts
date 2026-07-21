@@ -41,7 +41,7 @@ export const adminTranslations: Record<AdminLang, Record<string, string>> = {
     'quickLinks.productsDesc': 'Catalog with specs and images',
     'quickLinks.blog': 'Blog',
     'quickLinks.blogDesc': 'Articles and content',
-    'quickLinks.companyInfo': 'Company Info',
+    'quickLinks.companyInfo': 'About Us',
     'quickLinks.companyInfoDesc': 'About page content',
     'quickLinks.settings': 'Settings',
     'quickLinks.settingsDesc': 'Site config and SEO',
@@ -86,7 +86,7 @@ export const adminTranslations: Record<AdminLang, Record<string, string>> = {
 
     // ── Global Labels ──────────────────────────────────────
     'global.homepage': 'Homepage',
-    'global.companyInfo': 'Company Info',
+    'global.companyInfo': 'About Us',
     'global.contactInfo': 'Contact Info',
     'global.careersInfo': 'Careers Info',
     'global.siteSettings': 'Site Settings',
@@ -157,8 +157,10 @@ export const adminTranslations: Record<AdminLang, Record<string, string>> = {
     // ── Global Tab Labels ──────────────────────────────────
     'tab.hero': 'Hero',
     'tab.valueProps': 'Value Props',
-    'tab.brandsProducts': 'Brands & Products',
-    'tab.marketsCta': 'Markets & CTA',
+    'tab.brandsProducts': 'Brand Showcase',
+    'tab.signatureProducts': 'Signature Products',
+    'tab.marketsCta': 'Markets',
+    'tab.cta': 'CTA',
     'tab.about': 'About',
     'tab.ceo': 'CEO',
     'tab.values': 'Values',
@@ -256,7 +258,7 @@ export const adminTranslations: Record<AdminLang, Record<string, string>> = {
     'quickLinks.productsDesc': 'کاتالوگ با مشخصات و تصاویر',
     'quickLinks.blog': 'وبلاگ',
     'quickLinks.blogDesc': 'مقالات و محتوا',
-    'quickLinks.companyInfo': 'اطلاعات شرکت',
+    'quickLinks.companyInfo': 'درباره ما',
     'quickLinks.companyInfoDesc': 'محتوای صفحه درباره ما',
     'quickLinks.settings': 'تنظیمات',
     'quickLinks.settingsDesc': 'پیکربندی سایت و SEO',
@@ -301,7 +303,7 @@ export const adminTranslations: Record<AdminLang, Record<string, string>> = {
 
     // ── برچسب متغیرهای سراسری ──────────────────────────────
     'global.homepage': 'صفحه اصلی',
-    'global.companyInfo': 'اطلاعات شرکت',
+    'global.companyInfo': 'درباره ما',
     'global.contactInfo': 'اطلاعات تماس',
     'global.careersInfo': 'اطلاعات استخدام',
     'global.siteSettings': 'تنظیمات سایت',
@@ -372,8 +374,10 @@ export const adminTranslations: Record<AdminLang, Record<string, string>> = {
     // ── برچسب تب‌های متغیرهای سراسری ──────────────────────
     'tab.hero': 'هیرو',
     'tab.valueProps': 'مزایا',
-    'tab.brandsProducts': 'برندها و محصولات',
-    'tab.marketsCta': 'بازارها و CTA',
+    'tab.brandsProducts': 'نمایش برندها',
+    'tab.signatureProducts': 'محصولات ویژه',
+    'tab.marketsCta': 'بازارها',
+    'tab.cta': 'دعوت به اقدام',
     'tab.about': 'درباره ما',
     'tab.ceo': 'مدیرعامل',
     'tab.values': 'ارزش‌ها',
