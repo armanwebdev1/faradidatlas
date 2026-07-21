@@ -5,7 +5,7 @@ export default function AboutLoading() {
       <main>
         {/* Hero skeleton — centered */}
         <section className="w-full bg-background">
-          <div className="mx-auto max-w-5xl py-16 text-center md:py-24 space-y-6">
+          <div className="mx-auto max-w-5xl py-16 text-center md:py-24 space-y-8 md:space-y-10">
             <div className="h-4 w-32 bg-foreground/10 rounded mx-auto animate-pulse" />
             <div className="h-12 w-3/4 bg-foreground/10 rounded mx-auto animate-pulse" />
             <div className="h-4 w-full bg-foreground/5 rounded mx-auto animate-pulse" />

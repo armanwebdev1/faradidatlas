@@ -43,7 +43,7 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
         className="w-full bg-background"
         dir={isRTL ? "rtl" : "ltr"}
       >
-        <AnimatedHeadline className="mx-auto max-w-5xl py-16 text-center md:py-24">
+        <AnimatedHeadline className="mx-auto max-w-5xl space-y-8 py-16 text-center md:space-y-10 md:py-24">
           <p
             className="eyebrow text-brand-navy opacity-0 translate-y-6"
             data-animate
