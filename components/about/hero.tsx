@@ -23,12 +23,6 @@ const impactTitle: Record<Language, string> = {
   ar: "تأثيرنا",
 };
 
-const visionLabel: Record<Language, string> = {
-  en: "Vision",
-  fa: "چشم‌انداز",
-  ar: "الرؤية",
-};
-
 const defaultStats = [
   { value: 2009, labelEn: "Established", labelFa: "سال آغاز فعالیت", labelAr: "سنة التأسيس" },
   { value: 4, labelEn: "Rice brands", labelFa: "برند برنج", labelAr: "علامات أرز تجارية" },
@@ -51,8 +45,8 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
       >
         <div className="container-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center py-16 md:py-24">
-            {/* LEFT: Text */}
-            <AnimatedHeadline className="space-y-6">
+            {/* LEFT: Centered text */}
+            <AnimatedHeadline className="space-y-6 text-center">
               <p
                 className="eyebrow text-brand-navy opacity-0 translate-y-6"
                 data-animate
@@ -66,7 +60,7 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
                 {hero?.headline || t.pages.about.heroHeadline}
               </h1>
               <p
-                className="text-responsive-body text-foreground/70 max-w-lg opacity-0 translate-y-6"
+                className="text-responsive-body text-foreground/70 max-w-lg mx-auto opacity-0 translate-y-6"
                 dir={isRTL ? "rtl" : "ltr"}
                 style={{ unicodeBidi: "plaintext" }}
                 data-animate
@@ -98,49 +92,8 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
         </div>
       </section>
 
-      {/* ─── SECTION 2: Mission & Values ─── */}
+      {/* ─── SECTION 2: Statistics ─── */}
       <AnimatedSection className="w-full bg-surface-muted">
-        <div className="container-full" dir={isRTL ? "rtl" : "ltr"}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-16 md:py-20">
-            {/* Card 1: Mission */}
-            <div
-              className="group rounded-2xl border border-border bg-surface p-8 md:p-10 transition-shadow duration-300 hover:shadow-sm opacity-0 translate-y-6"
-              data-animate
-            >
-              <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-4">
-                {hero?.missionLabel || t.pages.about.missionLabel}
-              </p>
-              <p
-                className="text-base md:text-lg text-foreground/80 leading-relaxed"
-                dir={isRTL ? "rtl" : "ltr"}
-                style={{ unicodeBidi: "plaintext" }}
-              >
-                {hero?.missionText || t.pages.about.missionText}
-              </p>
-            </div>
-
-            {/* Card 2: Vision */}
-            <div
-              className="group rounded-2xl border border-border bg-surface p-8 md:p-10 transition-shadow duration-300 hover:shadow-sm opacity-0 translate-y-6"
-              data-animate
-            >
-              <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-4">
-                {visionLabel[lang]}
-              </p>
-              <blockquote
-                className="text-lg md:text-xl font-semibold text-foreground leading-relaxed"
-                dir={isRTL ? "rtl" : "ltr"}
-                style={{ unicodeBidi: "plaintext" }}
-              >
-                {hero?.blockquote || t.pages.about.blockquote}
-              </blockquote>
-            </div>
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* ─── SECTION 3: Statistics ─── */}
-      <AnimatedSection className="w-full bg-background">
         <div className="container-full" dir={isRTL ? "rtl" : "ltr"}>
           <div className="py-16 md:py-20">
             <div className="text-center mb-12 opacity-0 translate-y-6" data-animate>
@@ -151,7 +104,11 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
               {stats.map((stat: any, idx: number) => (
-                <div key={idx} className="text-center space-y-2 opacity-0 translate-y-6" data-animate>
+                <div
+                  key={idx}
+                  className="rounded-2xl border border-border bg-surface p-6 md:p-8 text-center space-y-2 opacity-0 translate-y-6 transition-shadow duration-300 hover:shadow-sm"
+                  data-animate
+                >
                   <Stat
                     value={stat.value}
                     suffix={stat.suffix}
