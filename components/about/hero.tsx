@@ -43,7 +43,7 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
         className="w-full bg-background"
         dir={isRTL ? "rtl" : "ltr"}
       >
-        <AnimatedHeadline className="mx-auto max-w-5xl space-y-8 py-12 text-center md:space-y-10 md:py-20">
+        <AnimatedHeadline className="mx-auto max-w-5xl space-y-8 pt-12 text-center md:space-y-10 md:pt-20">
           <p
             className="eyebrow text-brand-navy opacity-0 translate-y-6"
             data-animate
@@ -74,7 +74,7 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
           </div>
         </AnimatedHeadline>
 
-        <div className="mx-auto max-w-5xl px-4 pb-10 md:pb-16 opacity-0 translate-y-6" data-animate>
+        <div className="mx-auto max-w-5xl px-4 mt-8 pb-10 md:mt-12 md:pb-16 opacity-0 translate-y-6" data-animate>
           <div className="relative w-full aspect-[4/3] md:aspect-[16/9] rounded-2xl overflow-hidden">
             <Image
               src={hero?.image?.url || "/optimized/about-hero.webp"}
