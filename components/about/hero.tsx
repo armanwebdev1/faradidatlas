@@ -38,15 +38,27 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
 
   return (
     <>
-      {/* ─── SECTION 1: Two-Column Hero ─── */}
+      {/* ─── SECTION 1: Hero ─── */}
       <section
         className="relative w-full overflow-hidden bg-background"
         dir={isRTL ? "rtl" : "ltr"}
       >
         <div className="container-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center py-16 md:py-24">
-            {/* LEFT: Centered text */}
-            <AnimatedHeadline className="space-y-6 text-center">
+          <div className="relative flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16 py-16 md:py-24">
+            {/* Image — decorative side element */}
+            <div className="relative w-full lg:w-2/5 aspect-[4/3] rounded-2xl overflow-hidden opacity-0 translate-y-6 shrink-0 order-2 lg:order-1" data-animate>
+              <Image
+                src={hero?.image?.url || "/optimized/about-hero.webp"}
+                alt={hero?.imageAlt || t.pages.about.heroImageAlt}
+                fill
+                priority
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+
+            {/* Text — centered block */}
+            <AnimatedHeadline className="flex-1 max-w-xl text-center order-1 lg:order-2">
               <p
                 className="eyebrow text-brand-navy opacity-0 translate-y-6"
                 data-animate
@@ -60,7 +72,7 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
                 {hero?.headline || t.pages.about.heroHeadline}
               </h1>
               <p
-                className="text-responsive-body text-foreground/70 max-w-lg mx-auto opacity-0 translate-y-6"
+                className="text-responsive-body text-foreground/70 max-w-md mx-auto opacity-0 translate-y-6"
                 dir={isRTL ? "rtl" : "ltr"}
                 style={{ unicodeBidi: "plaintext" }}
                 data-animate
@@ -76,18 +88,6 @@ export function AboutHero({ lang, companyInfo }: AboutHeroProps) {
                 </Link>
               </div>
             </AnimatedHeadline>
-
-            {/* RIGHT: Image */}
-            <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden opacity-0 translate-y-6" data-animate>
-              <Image
-                src={hero?.image?.url || "/optimized/about-hero.webp"}
-                alt={hero?.imageAlt || t.pages.about.heroImageAlt}
-                fill
-                priority
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </div>
           </div>
         </div>
       </section>

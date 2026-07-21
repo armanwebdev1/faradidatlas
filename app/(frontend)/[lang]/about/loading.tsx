@@ -3,18 +3,18 @@ export default function AboutLoading() {
     <div>
       <div className="h-16 bg-white/80 border-b border-border" />
       <main>
-        {/* Hero skeleton - two-column with centered text */}
+        {/* Hero skeleton - centered text with side image */}
         <section className="w-full bg-background">
           <div className="container-full">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center py-16 md:py-24">
-              <div className="space-y-6 text-center">
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16 py-16 md:py-24">
+              <div className="w-full lg:w-2/5 aspect-[4/3] bg-foreground/10 rounded-2xl animate-pulse shrink-0 order-2 lg:order-1" />
+              <div className="flex-1 max-w-xl text-center space-y-6 order-1 lg:order-2">
                 <div className="h-4 w-32 bg-foreground/10 rounded mx-auto animate-pulse" />
                 <div className="h-12 w-3/4 bg-foreground/10 rounded mx-auto animate-pulse" />
                 <div className="h-4 w-full bg-foreground/5 rounded mx-auto animate-pulse" />
                 <div className="h-4 w-5/6 bg-foreground/5 rounded mx-auto animate-pulse" />
                 <div className="h-10 w-32 bg-primary/20 rounded-full mx-auto mt-4 animate-pulse" />
               </div>
-              <div className="aspect-[4/3] bg-foreground/10 rounded-2xl animate-pulse" />
             </div>
           </div>
         </section>
