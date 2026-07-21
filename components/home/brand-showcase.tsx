@@ -90,7 +90,7 @@ export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) 
       <div className="relative z-10 container-wide">
         <div className={`flex flex-col items-center gap-6 md:gap-12 lg:gap-16 xl:gap-20 ${isRTL ? "md:flex-row-reverse" : "md:flex-row"}`}>
           <div
-            className={`reveal-side w-full md:w-auto md:flex-1 max-w-2xl text-center ${
+            className={`reveal-side w-full md:w-auto md:flex-1 max-w-2xl max-md:text-center ${
               isRTL ? "md:text-right" : "md:text-left"
             } ${
               isVisible ? "is-visible" : ""
@@ -98,7 +98,7 @@ export function BrandShowcase({ lang, t, brands, section }: BrandShowcaseProps) 
             style={{ ["--reveal-x" as string]: isRTL ? "48px" : "-48px" }}
           >
             <p
-              className={`reveal-side eyebrow text-brand-navy mb-4 sm:mb-5 text-center ${
+              className={`reveal-side eyebrow text-brand-navy mb-4 sm:mb-5 ${
                 isRTL ? "md:text-right" : ""
               } ${
                 isVisible ? "is-visible" : ""
