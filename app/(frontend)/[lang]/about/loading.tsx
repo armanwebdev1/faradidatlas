@@ -3,23 +3,21 @@ export default function AboutLoading() {
     <div>
       <div className="h-16 bg-white/80 border-b border-border" />
       <main>
-        {/* Hero skeleton - centered text with side image */}
+        {/* Hero skeleton — centered */}
         <section className="w-full bg-background">
-          <div className="container-full">
-            <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16 py-16 md:py-24">
-              <div className="w-full lg:w-2/5 aspect-[4/3] bg-foreground/10 rounded-2xl animate-pulse shrink-0 order-2 lg:order-1" />
-              <div className="flex-1 max-w-xl text-center space-y-6 order-1 lg:order-2">
-                <div className="h-4 w-32 bg-foreground/10 rounded mx-auto animate-pulse" />
-                <div className="h-12 w-3/4 bg-foreground/10 rounded mx-auto animate-pulse" />
-                <div className="h-4 w-full bg-foreground/5 rounded mx-auto animate-pulse" />
-                <div className="h-4 w-5/6 bg-foreground/5 rounded mx-auto animate-pulse" />
-                <div className="h-10 w-32 bg-primary/20 rounded-full mx-auto mt-4 animate-pulse" />
-              </div>
-            </div>
+          <div className="mx-auto max-w-5xl py-16 text-center md:py-24 space-y-6">
+            <div className="h-4 w-32 bg-foreground/10 rounded mx-auto animate-pulse" />
+            <div className="h-12 w-3/4 bg-foreground/10 rounded mx-auto animate-pulse" />
+            <div className="h-4 w-full bg-foreground/5 rounded mx-auto animate-pulse" />
+            <div className="h-4 w-5/6 bg-foreground/5 rounded mx-auto animate-pulse" />
+            <div className="h-10 w-32 bg-primary/20 rounded-full mx-auto mt-4 animate-pulse" />
+          </div>
+          <div className="mx-auto max-w-5xl px-4 pb-12 md:pb-20">
+            <div className="w-full aspect-[4/3] md:aspect-[16/9] bg-foreground/10 rounded-2xl animate-pulse" />
           </div>
         </section>
 
-        {/* Statistics skeleton - rounded cards */}
+        {/* Statistics skeleton */}
         <section className="w-full bg-surface-muted">
           <div className="container-full">
             <div className="py-16 md:py-20">
