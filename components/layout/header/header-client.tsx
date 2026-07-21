@@ -481,7 +481,7 @@ const productBrandMenuItems = useMemo(
                                       : "bg-muted text-muted-foreground"
                                   }`}
                                 >
-                                  <Icon size={18} strokeWidth={1.7} />
+                                  <Icon size={18} strokeWidth={2.5} />
                                 </span>
                                 <span className="truncate font-semibold">
                                   {label}
@@ -602,7 +602,7 @@ const productBrandMenuItems = useMemo(
                                 : "bg-muted text-muted-foreground group-hover/mobile-link:bg-background group-hover/mobile-link:text-brand-navy"
                             }`}
                           >
-                            <Icon size={18} strokeWidth={1.7} />
+                            <Icon size={18} strokeWidth={2.5} />
                           </span>
                           <span className="font-semibold">{label}</span>
                         </a>
@@ -677,7 +677,7 @@ const productBrandMenuItems = useMemo(
                       </span>
                       <ChevronDown
                         size={16}
-                        strokeWidth={1.7}
+                        strokeWidth={2.5}
                         className="shrink-0 origin-center transform-gpu text-muted-foreground transition-[transform,color] duration-500 ease-[var(--ease-decelerate)] will-change-transform group-hover:text-brand-navy group-hover/products:rotate-180"
                       />
                       <span
