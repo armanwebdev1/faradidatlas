@@ -99,7 +99,7 @@ export function CompanyPresence({ lang, companyInfo }: CompanyPresenceProps) {
 
             <div
               className={`border-accent-warm-gold mt-8 ${
-                isRTL ? "border-r-2 pr-8" : "border-l-2 pl-6"
+                isRTL ? "border-r-2 pl-8" : "border-l-2 pl-6"
               }`}
             >
               <p className="text-sm md:text-base text-muted-foreground leading-relaxed italic">
