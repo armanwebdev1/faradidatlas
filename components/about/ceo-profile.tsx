@@ -49,8 +49,8 @@ export function CEOProfile({ lang, companyInfo }: CEOProfileProps) {
   const heading = getLocalized(ceo?.heading, lang) || fallback.heading;
 
   return (
-    <AnimatedSection className="section relative overflow-hidden bg-background px-4 sm:px-6">
-      <div className="mx-auto max-w-7xl" dir={isRTL ? "rtl" : "ltr"}>
+    <AnimatedSection className="relative overflow-hidden bg-background py-20 md:py-28">
+      <div className="container-wide" dir={isRTL ? "rtl" : "ltr"}>
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="opacity-0 translate-y-6 lg:col-span-5" data-animate>
             <div className="overflow-hidden rounded-2xl border border-foreground/10 bg-white shadow-sm">

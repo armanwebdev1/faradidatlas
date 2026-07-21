@@ -147,8 +147,8 @@ export function StrategicFramework({ lang, companyInfo }: StrategicFrameworkProp
   const t = translations[lang];
 
   return (
-    <AnimatedSection className="section relative overflow-hidden bg-background-alt px-4 sm:px-6">
-      <div className="mx-auto max-w-7xl">
+    <AnimatedSection className="relative overflow-hidden bg-background-alt py-12 md:py-16">
+      <div className="container-wide">
         <div
           className="mx-auto max-w-5xl py-10 text-center md:py-14"
           dir={isRTL ? "rtl" : "ltr"}

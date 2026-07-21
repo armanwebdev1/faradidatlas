@@ -57,8 +57,8 @@ export function CompanyPresence({ lang, companyInfo }: CompanyPresenceProps) {
   );
 
   return (
-    <section className="section relative bg-background overflow-hidden">
-      <div className="w-full px-4 sm:px-6">
+    <section className="relative bg-background overflow-hidden">
+      <div className="container-wide">
         <div className="max-w-6xl mx-auto">
           <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
             <Image
@@ -72,7 +72,7 @@ export function CompanyPresence({ lang, companyInfo }: CompanyPresenceProps) {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <h2
             className="lg:col-span-5 text-4xl md:text-5xl font-bold font-hero text-primary leading-tight tracking-tight"

@@ -18,10 +18,10 @@ export function JoinTeam({ lang, companyInfo }: JoinTeamProps) {
   const ctaUrl = joinTeam?.ctaUrl || `/${lang}/contact`;
 
   return (
-    <section className="section relative px-4 sm:px-6 bg-background overflow-hidden">
+    <section className="relative py-16 md:py-24 bg-background overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-border" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12">
+      <div className="container-wide">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           <h2 className="max-w-5xl text-2xl md:text-3xl font-bold text-foreground leading-tight tracking-tight text-center lg:text-left">
             {title}
