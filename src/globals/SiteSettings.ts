@@ -3,9 +3,6 @@ import { isRole } from '../access/isRole'
 
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
-  versions: {
-    drafts: true,
-  },
   label: { en: 'Site Settings', fa: 'تنظیمات سایت' },
   access: {
     read: () => true,

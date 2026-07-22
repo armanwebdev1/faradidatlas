@@ -51,37 +51,8 @@ async function main() {
     { table: 'homepage_locales', column: 'markets_section_description', type: 'text' },
     // Non-localized fields on homepage table
     { table: 'homepage', column: 'brands_section_banner_image_id', type: 'integer' },
-    // _status columns for versions.drafts enabled globals
-    { table: 'homepage', column: '_status', type: 'varchar' },
-    { table: 'company_info', column: '_status', type: 'varchar' },
-    { table: 'contact_info', column: '_status', type: 'varchar' },
-    { table: 'careers_info', column: '_status', type: 'varchar' },
-    { table: 'site_settings', column: '_status', type: 'varchar' },
-    // _status columns for versions.drafts enabled collections
-    { table: 'products', column: '_status', type: 'varchar' },
-    { table: 'product_brands', column: '_status', type: 'varchar' },
-    { table: 'faqs', column: '_status', type: 'varchar' },
-    { table: 'jobs', column: '_status', type: 'varchar' },
-    // updated_at and created_at for collections that now have versions
-    { table: 'products', column: 'updated_at', type: 'timestamp(3) with time zone' },
-    { table: 'products', column: 'created_at', type: 'timestamp(3) with time zone' },
-    { table: 'product_brands', column: 'updated_at', type: 'timestamp(3) with time zone' },
-    { table: 'product_brands', column: 'created_at', type: 'timestamp(3) with time zone' },
-    { table: 'faqs', column: 'updated_at', type: 'timestamp(3) with time zone' },
-    { table: 'faqs', column: 'created_at', type: 'timestamp(3) with time zone' },
-    { table: 'jobs', column: 'updated_at', type: 'timestamp(3) with time zone' },
-    { table: 'jobs', column: 'created_at', type: 'timestamp(3) with time zone' },
-    // updated_at and created_at for globals that now have versions
-    { table: 'homepage', column: 'updated_at', type: 'timestamp(3) with time zone' },
-    { table: 'homepage', column: 'created_at', type: 'timestamp(3) with time zone' },
-    { table: 'company_info', column: 'updated_at', type: 'timestamp(3) with time zone' },
-    { table: 'company_info', column: 'created_at', type: 'timestamp(3) with time zone' },
-    { table: 'contact_info', column: 'updated_at', type: 'timestamp(3) with time zone' },
-    { table: 'contact_info', column: 'created_at', type: 'timestamp(3) with time zone' },
-    { table: 'careers_info', column: 'updated_at', type: 'timestamp(3) with time zone' },
-    { table: 'careers_info', column: 'created_at', type: 'timestamp(3) with time zone' },
-    { table: 'site_settings', column: 'updated_at', type: 'timestamp(3) with time zone' },
-    { table: 'site_settings', column: 'created_at', type: 'timestamp(3) with time zone' },
+      // Non-localized fields on homepage table
+    { table: 'homepage', column: 'brands_section_banner_image_id', type: 'integer' },
   ]
 
   for (const { table, column, type } of columns) {
@@ -107,88 +78,6 @@ async function main() {
   }
 
   await pool.end()
-
-  // Create _versions tables for collections with versions.drafts enabled.
-  // Payload's push: true doesn't run during next build on Vercel, so we
-  // must create these tables here. The admin list view queries these tables.
-  console.log('Ensuring _versions tables exist for draft-enabled collections...')
-  const poolVersions = new Pool({ connectionString })
-
-  const versionsTables = [
-    {
-      name: '_product_brands_v',
-      parentTable: 'product_brands',
-      parentIdType: 'integer',
-      localizedFields: '"name" varchar',
-      uniqueFields: '"slug" varchar',
-      otherFields: '"logo_id" integer',
-    },
-    {
-      name: '_faqs_v',
-      parentTable: 'faqs',
-      parentIdType: 'integer',
-      localizedFields: '"question" varchar, "answer" varchar',
-      uniqueFields: '"category" varchar',
-      otherFields: '"ordering" integer, "is_active" boolean DEFAULT true',
-    },
-    {
-      name: '_jobs_v',
-      parentTable: 'jobs',
-      parentIdType: 'integer',
-      localizedFields: '"title" varchar, "department" varchar, "location" varchar, "salary" varchar, "description" varchar',
-      uniqueFields: '"type" varchar, "job_status" varchar',
-      otherFields: '"responsibilities" jsonb, "requirements" jsonb, "benefits" jsonb',
-    },
-    {
-      name: '_products_v',
-      parentTable: 'products',
-      parentIdType: 'varchar',
-      localizedFields: '"name" varchar, "description" varchar, "how_we_supply_description" varchar, "alias" varchar, "specs" jsonb',
-      uniqueFields: '"slug" varchar, "category_id" integer, "brand_id" integer, "type" varchar, "featured" boolean DEFAULT false, "ordering" integer DEFAULT 0',
-      otherFields: '"featured_image_id" integer, "gallery" jsonb, "downloadable_files" jsonb, "seo" jsonb',
-    },
-  ]
-
-  for (const vt of versionsTables) {
-    try {
-      const exists = await poolVersions.query(
-        `SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = $1) as exists`,
-        [vt.name],
-      )
-      if (!exists.rows[0].exists) {
-        await poolVersions.query(`
-          CREATE TABLE "${vt.name}" (
-            "id" serial PRIMARY KEY,
-            "_parent_id" ${vt.parentIdType} NOT NULL,
-            "_locale" "_locales" NOT NULL,
-            "latest" boolean NOT NULL DEFAULT true,
-            ${vt.localizedFields},
-            ${vt.uniqueFields},
-            ${vt.otherFields},
-            "updated_at" timestamp(3) with time zone,
-            "created_at" timestamp(3) with time zone
-          )
-        `)
-        // Add FK constraint separately to handle type mismatches
-        try {
-          await poolVersions.query(`
-            ALTER TABLE "${vt.name}" ADD CONSTRAINT "${vt.name}_parent_id_fk"
-            FOREIGN KEY ("_parent_id") REFERENCES "${vt.parentTable}"("id") ON DELETE CASCADE
-          `)
-        } catch (fkErr: any) {
-          console.warn(`  ⚠ ${vt.name} FK skip: ${fkErr.message}`)
-        }
-        await poolVersions.query(`CREATE INDEX "${vt.name}_parent_id_idx" ON "${vt.name}" USING btree ("_parent_id")`)
-        await poolVersions.query(`CREATE INDEX "${vt.name}_latest_idx" ON "${vt.name}" USING btree ("latest")`)
-        console.log(`  ✓ Created ${vt.name}`)
-      } else {
-        console.log(`  ✓ ${vt.name} already exists`)
-      }
-    } catch (err: any) {
-      console.warn(`  ⚠ ${vt.name} skip: ${err.message}`)
-    }
-  }
-  await poolVersions.end()
 
   // Fix homepage_signature_products_locales missing 'id' primary key column.
   // Payload's Drizzle schema ALWAYS includes "id serial PRIMARY KEY" in locale tables

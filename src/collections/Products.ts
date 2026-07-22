@@ -3,10 +3,6 @@ import { isRole } from "../access/isRole";
 
 export const Products: CollectionConfig = {
   slug: "products",
-  versions: {
-    drafts: true,
-    maxPerDoc: 10,
-  },
   labels: {
     singular: { en: "Product", fa: "محصول" },
     plural: { en: "Products", fa: "محصولات" },

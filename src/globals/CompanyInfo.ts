@@ -3,9 +3,6 @@ import { isRole } from '../access/isRole'
 
 export const CompanyInfo: GlobalConfig = {
   slug: 'company-info',
-  versions: {
-    drafts: true,
-  },
   label: { en: 'About Us', fa: 'درباره ما' },
   access: {
     read: () => true,

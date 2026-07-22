@@ -3,9 +3,6 @@ import { isRole } from '../access/isRole'
 
 export const ProductBrands: CollectionConfig = {
   slug: 'product-brands',
-  versions: {
-    drafts: true,
-  },
   labels: {
     singular: { en: 'Product Brand', fa: 'برند محصول' },
     plural: { en: 'Product Brands', fa: 'برندهای محصول' },

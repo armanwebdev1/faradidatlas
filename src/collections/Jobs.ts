@@ -3,9 +3,6 @@ import { isRole } from '../access/isRole'
 
 export const Jobs: CollectionConfig = {
   slug: 'jobs',
-  versions: {
-    drafts: true,
-  },
   labels: {
     singular: { en: 'Job', fa: 'شغل' },
     plural: { en: 'Jobs', fa: 'مشاغل' },

@@ -3,9 +3,6 @@ import { isRole } from '../access/isRole'
 
 export const ContactInfo: GlobalConfig = {
   slug: 'contact-info',
-  versions: {
-    drafts: true,
-  },
   label: { en: 'Contact Info', fa: 'اطلاعات تماس' },
   access: {
     read: () => true,

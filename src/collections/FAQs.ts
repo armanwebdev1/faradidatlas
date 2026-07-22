@@ -3,9 +3,6 @@ import { isRole } from '../access/isRole'
 
 export const FAQs: CollectionConfig = {
   slug: 'faqs',
-  versions: {
-    drafts: true,
-  },
   labels: {
     singular: { en: 'FAQ', fa: 'سوال متداول' },
     plural: { en: 'FAQs', fa: 'سوالات متداول' },
