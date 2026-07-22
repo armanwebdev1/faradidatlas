@@ -40,12 +40,12 @@ export default buildConfig({
     livePreview: {
       url: ({ data, locale, collectionConfig, globalConfig }: {
         data: Record<string, any>
-        locale?: string
+        locale?: string | { code: string }
         collectionConfig?: any
         globalConfig?: any
       }) => {
         const base = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-        const lang = locale || 'en'
+        const lang = typeof locale === 'string' ? locale : locale?.code || 'en'
 
         if (collectionConfig) {
           switch (collectionConfig.slug) {

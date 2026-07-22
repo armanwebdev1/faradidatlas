@@ -12,7 +12,7 @@ export const Homepage: GlobalConfig = {
     group: { en: 'Website', fa: 'وبسایت' },
     preview: (_doc, { locale }) => {
       const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://faradidatlas.com'
-      const lang = locale || 'en'
+      const lang = typeof locale === 'string' ? locale : (locale as any)?.code || 'en'
       return `${base}/api/preview?secret=${process.env.PAYLOAD_SECRET}&slug=/${lang}&global=homepage&locale=${lang}`
     },
   },

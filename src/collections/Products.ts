@@ -24,7 +24,7 @@ export const Products: CollectionConfig = {
     preview: (doc, { locale }) => {
       const base =
         process.env.NEXT_PUBLIC_SITE_URL || "https://faradidatlas.com";
-      const lang = locale || "en";
+      const lang = typeof locale === 'string' ? locale : (locale as any)?.code || "en";
       const slug = doc?.slug || "";
       return `${base}/api/preview?secret=${process.env.PAYLOAD_SECRET}&slug=/products/${slug}&collection=products&locale=${lang}`;
     },
