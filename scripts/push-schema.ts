@@ -108,6 +108,75 @@ async function main() {
 
   await pool.end()
 
+  // Create _versions tables for collections with versions.drafts enabled.
+  // Payload's push: true doesn't run during next build on Vercel, so we
+  // must create these tables here. The admin list view queries these tables.
+  console.log('Ensuring _versions tables exist for draft-enabled collections...')
+  const poolVersions = new Pool({ connectionString })
+
+  const versionsTables = [
+    {
+      name: '_product_brands_v',
+      parentTable: 'product_brands',
+      localizedFields: '"name" varchar',
+      uniqueFields: '"slug" varchar',
+      otherFields: '"logo_id" integer',
+    },
+    {
+      name: '_faqs_v',
+      parentTable: 'faqs',
+      localizedFields: '"question" varchar, "answer" varchar',
+      uniqueFields: '"category" varchar',
+      otherFields: '"ordering" integer, "is_active" boolean DEFAULT true',
+    },
+    {
+      name: '_jobs_v',
+      parentTable: 'jobs',
+      localizedFields: '"title" varchar, "department" varchar, "location" varchar, "salary" varchar, "description" varchar',
+      uniqueFields: '"type" varchar, "job_status" varchar',
+      otherFields: '"responsibilities" jsonb, "requirements" jsonb, "benefits" jsonb',
+    },
+    {
+      name: '_products_v',
+      parentTable: 'products',
+      localizedFields: '"name" varchar, "description" varchar, "how_we_supply_description" varchar, "alias" varchar, "specs" jsonb',
+      uniqueFields: '"slug" varchar, "category_id" integer, "brand_id" integer, "type" varchar, "featured" boolean DEFAULT false, "ordering" integer DEFAULT 0',
+      otherFields: '"featured_image_id" integer, "gallery" jsonb, "downloadable_files" jsonb, "seo" jsonb',
+    },
+  ]
+
+  for (const vt of versionsTables) {
+    try {
+      const exists = await poolVersions.query(
+        `SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = $1) as exists`,
+        [vt.name],
+      )
+      if (!exists.rows[0].exists) {
+        await poolVersions.query(`
+          CREATE TABLE "${vt.name}" (
+            "id" serial PRIMARY KEY,
+            "_parent_id" varchar NOT NULL REFERENCES "${vt.parentTable}"("id") ON DELETE CASCADE,
+            "_locale" "_locales" NOT NULL,
+            "latest" boolean NOT NULL DEFAULT true,
+            ${vt.localizedFields},
+            ${vt.uniqueFields},
+            ${vt.otherFields},
+            "updated_at" timestamp(3) with time zone,
+            "created_at" timestamp(3) with time zone
+          )
+        `)
+        await poolVersions.query(`CREATE INDEX "${vt.name}_parent_id_idx" ON "${vt.name}" USING btree ("_parent_id")`)
+        await poolVersions.query(`CREATE INDEX "${vt.name}_latest_idx" ON "${vt.name}" USING btree ("latest")`)
+        console.log(`  ✓ Created ${vt.name}`)
+      } else {
+        console.log(`  ✓ ${vt.name} already exists`)
+      }
+    } catch (err: any) {
+      console.warn(`  ⚠ ${vt.name} skip: ${err.message}`)
+    }
+  }
+  await poolVersions.end()
+
   // Fix homepage_signature_products_locales missing 'id' primary key column.
   // Payload's Drizzle schema ALWAYS includes "id serial PRIMARY KEY" in locale tables
   // (hardcoded in @payloadcms/drizzle/dist/schema/build.js lines 95-99).
