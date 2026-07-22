@@ -13,6 +13,7 @@ import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import { draftMode } from "next/headers";
+import { LivePreviewWrapper } from "@/components/live-preview/LivePreviewWrapper";
 
 export const revalidate = 300
 
@@ -62,15 +63,19 @@ export default async function AboutPage({ params }: AboutPageProps) {
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
-      <main id="main-content">
-        <AboutHero lang={lang} companyInfo={ci} />
-        <CompanyPresence lang={lang} companyInfo={ci} />
-        <StrategicFramework lang={lang} companyInfo={ci} />
-        <CEOProfile lang={lang} companyInfo={ci} />
-        <WhatWeOffer lang={lang} companyInfo={ci} />
-        <TeamShowcase lang={lang} companyInfo={ci} />
-        <JoinTeam lang={lang} companyInfo={ci} />
-      </main>
+      <LivePreviewWrapper initialData={companyInfo ?? {}}>
+        {(liveInfo) => (
+          <main id="main-content">
+            <AboutHero lang={lang} companyInfo={liveInfo} />
+            <CompanyPresence lang={lang} companyInfo={liveInfo} />
+            <StrategicFramework lang={lang} companyInfo={liveInfo} />
+            <CEOProfile lang={lang} companyInfo={liveInfo} />
+            <WhatWeOffer lang={lang} companyInfo={liveInfo} />
+            <TeamShowcase lang={lang} companyInfo={liveInfo} />
+            <JoinTeam lang={lang} companyInfo={liveInfo} />
+          </main>
+        )}
+      </LivePreviewWrapper>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

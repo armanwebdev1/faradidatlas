@@ -20,6 +20,7 @@ import { translations } from "@/lib/i18n";
 import { permanentRedirect } from "next/navigation";
 import Link from "next/link";
 import { draftMode } from "next/headers";
+import { LivePreviewWrapper } from "@/components/live-preview/LivePreviewWrapper";
 
 export const revalidate = 300;
 export const dynamicParams = true;
@@ -265,6 +266,14 @@ export default async function ProductDetailPage({
   return (
     <div lang={lang} dir={lang === "fa" || lang === "ar" ? "rtl" : "ltr"}>
       <Header lang={lang} />
+      <LivePreviewWrapper initialData={product}>
+        {(liveProduct) => {
+          const lp = liveProduct ?? product;
+          const liveName = lang === "en" ? lp.nameEn : lang === "fa" ? lp.nameFa : lp.nameAr;
+          const liveAlias = lang === "en" ? lp.aliasEn : lang === "fa" ? lp.aliasFa : lp.aliasAr;
+          const liveDescription = lang === "en" ? lp.descriptionEn : lang === "fa" ? lp.descriptionFa : lp.descriptionAr;
+          const liveGallery = lp.images && lp.images.length > 0 ? lp.images : lp.image ? [lp.image] : gallery;
+          return (
       <main>
         <nav
           aria-label={
@@ -311,8 +320,8 @@ export default async function ProductDetailPage({
 
         <section className="space-responsive px-4 sm:px-6 bg-gradient-to-b from-background via-background to-secondary/30">
           <div className="container-wide grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-10 lg:gap-16 items-start">
-            {gallery.length > 0 ? (
-              <ProductGallery images={gallery} alt={name} lang={lang} />
+            {liveGallery.length > 0 ? (
+              <ProductGallery images={liveGallery} alt={liveName} lang={lang} />
             ) : (
               <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-[5/4] max-h-[520px] lg:max-h-[560px] bg-white/80 rounded-3xl overflow-hidden border border-foreground/10 shadow-[0_30px_80px_-60px_rgba(15,15,15,0.45)]">
                 <ProductPlaceholder
@@ -335,21 +344,21 @@ export default async function ProductDetailPage({
                       : "Estedad, var(--font-hero)",
                 }}
               >
-                {name}
+                {liveName}
               </h1>
-              {alias && (
+              {liveAlias && (
                 <p
                   className="mt-3 text-sm sm:text-base font-medium text-accent-warm-gold motion-safe:animate-fade-in-up"
                   style={{ animationDelay: "0.1s" }}
                 >
-                  {alias}
+                  {liveAlias}
                 </p>
               )}
               <p
                 className="mt-4 text-sm sm:text-base text-foreground/70 leading-relaxed motion-safe:animate-fade-in-up"
                 style={{ animationDelay: "0.12s" }}
               >
-                {description}
+                {liveDescription}
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6 mt-6 mb-8 sm:mb-10 p-4 sm:p-6 bg-secondary/30 rounded-2xl border border-foreground/10">
@@ -387,8 +396,8 @@ export default async function ProductDetailPage({
                 </div>
               </div>
 
-              {product.specs && product.specs.length > 0 && (
-                <ProductSpecs lang={lang} t={t} specs={product.specs} />
+              {lp.specs && lp.specs.length > 0 && (
+                <ProductSpecs lang={lang} t={t} specs={lp.specs} />
               )}
 
               <div className="mb-8">
@@ -497,6 +506,9 @@ export default async function ProductDetailPage({
           }}
         />
       </main>
+          );
+        }}
+      </LivePreviewWrapper>
       <Footer lang={lang} />
     </div>
   );
