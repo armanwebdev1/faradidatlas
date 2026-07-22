@@ -38,9 +38,41 @@ export default buildConfig({
       description: "Content management for faradidatlas.com",
     },
     livePreview: {
-      url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
-      collections: ['products', 'blog-posts', 'categories', 'faqs', 'jobs'],
-      globals: ['homepage', 'company-info', 'contact-info', 'careers-info', 'site-settings'],
+      url: ({ data, locale, collectionConfig, globalConfig }: {
+        data: Record<string, any>
+        locale?: string
+        collectionConfig?: any
+        globalConfig?: any
+      }) => {
+        const base = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+        const lang = locale || 'en'
+
+        if (collectionConfig) {
+          switch (collectionConfig.slug) {
+            case 'products':
+              return `${base}/${lang}/products/${data.slug || ''}`
+            case 'blog-posts':
+              return `${base}/${lang}/blog/${data.slug || ''}`
+            default:
+              return base
+          }
+        }
+
+        if (globalConfig) {
+          switch (globalConfig.slug) {
+            case 'homepage':
+              return `${base}/${lang}`
+            case 'company-info':
+              return `${base}/${lang}/about`
+            default:
+              return base
+          }
+        }
+
+        return base
+      },
+      collections: ['products', 'blog-posts'],
+      globals: ['homepage', 'company-info'],
       breakpoints: [
         { label: 'Mobile', width: 375, height: 667 },
         { label: 'Tablet', width: 768, height: 1024 },
