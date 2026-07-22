@@ -78,17 +78,32 @@ async function main() {
   await pool.end()
 
   // Fix homepage_signature_products_locales missing 'id' primary key column.
-  // Payload's push: true created the table without it, causing save failures.
+  // Payload's Drizzle schema ALWAYS includes "id serial PRIMARY KEY" in locale tables
+  // (hardcoded in @payloadcms/drizzle/dist/schema/build.js lines 95-99).
+  // But DrizzleKit's push sometimes creates the table without it.
   console.log('Ensuring homepage_signature_products_locales has id column...')
   const poolFix = new Pool({ connectionString })
   try {
-    const check = await poolFix.query(
+    // Check if the column exists
+    const colCheck = await poolFix.query(
       `SELECT EXISTS (
         SELECT 1 FROM information_schema.columns
         WHERE table_name = 'homepage_signature_products_locales' AND column_name = 'id'
       ) as exists`,
     )
-    if (!check.rows[0].exists) {
+    if (!colCheck.rows[0].exists) {
+      // Drop any existing PK constraint — DrizzleKit may have created the table
+      // with a different PK, which blocks adding id as PK
+      const pkCheck = await poolFix.query(`
+        SELECT conname FROM pg_constraint
+        WHERE conrelid = 'homepage_signature_products_locales'::regclass
+          AND contype = 'p'
+      `)
+      for (const row of pkCheck.rows) {
+        console.log(`  Dropping existing PK constraint: ${row.conname}`)
+        await poolFix.query(`ALTER TABLE "homepage_signature_products_locales" DROP CONSTRAINT "${row.conname}"`)
+      }
+      // Now add the id column as serial PRIMARY KEY
       await poolFix.query(
         'ALTER TABLE "homepage_signature_products_locales" ADD COLUMN "id" serial PRIMARY KEY',
       )
@@ -97,7 +112,9 @@ async function main() {
       console.log('  ✓ homepage_signature_products_locales.id already exists')
     }
   } catch (err: any) {
-    console.warn(`  ⚠ homepage_signature_products_locales fix: ${err.message}`)
+    console.error(`  ✗ homepage_signature_products_locales fix FAILED: ${err.message}`)
+    // Don't swallow — throw so the build fails visibly if this critical fix fails
+    throw err
   }
   await poolFix.end()
 

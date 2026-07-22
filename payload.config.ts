@@ -26,6 +26,7 @@ import { ContactInfo } from "./src/globals/ContactInfo";
 import { CareersInfo } from "./src/globals/CareersInfo";
 import { SiteSettings } from "./src/globals/SiteSettings";
 import { Redirects } from "./src/globals/Redirects";
+import { migrations } from "./src/migrations";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -84,7 +85,8 @@ export default buildConfig({
   }),
 
   db: postgresAdapter({
-    push: false,
+    push: true,
+    prodMigrations: migrations,
     pool: {
       connectionString: process.env.DATABASE_URL || "",
       max: 5,
