@@ -20,10 +20,9 @@ interface SignatureProductsProps {
   };
   products?: Array<{
     id?: number | string | null;
-    product?: any;
     isActive?: boolean | null;
-    name?: any;
-    category?: any;
+    eyebrow?: any;
+    title?: any;
     image?: any;
     description?: any;
   }>;
@@ -52,8 +51,8 @@ import { getLocalized } from "@/lib/localized";
 const defaultProducts = [
   {
     id: 1,
-    name: { en: "21 Rice Brand", fa: "برنج ۲۱", ar: "أرز ٢١" },
-    category: { en: "Rice Portfolio", fa: "برندهای برنج", ar: "سلسلة الأرز" },
+    eyebrow: { en: "Rice Portfolio", fa: "برندهای برنج", ar: "سلسلة الأرز" },
+    title: { en: "21 Rice Brand", fa: "برنج ۲۱", ar: "أرز ٢١" },
     image: { src: "/signature-products/optimized/twenty-one.webp" },
     description: {
       en: "One of Faradid Atlas' recognized rice brands, built around dependable quality and everyday availability.",
@@ -63,8 +62,8 @@ const defaultProducts = [
   },
   {
     id: 2,
-    name: { en: "Mizban Rice", fa: "برنج میزبان", ar: "أرز ميزبان" },
-    category: { en: "Rice Portfolio", fa: "برندهای برنج", ar: "سلسلة الأرز" },
+    eyebrow: { en: "Rice Portfolio", fa: "برندهای برنج", ar: "سلسلة الأرز" },
+    title: { en: "Mizban Rice", fa: "برنج میزبان", ar: "أرز ميزبان" },
     image: { src: "/signature-products/optimized/mizban.webp" },
     description: {
       en: "A trusted rice line designed for households, retailers, and foodservice partners.",
@@ -74,8 +73,8 @@ const defaultProducts = [
   },
   {
     id: 3,
-    name: { en: "Hayat Rice", fa: "برنج حیات", ar: "أرز حياة" },
-    category: { en: "Rice Portfolio", fa: "برندهای برنج", ar: "سلسلة الأرز" },
+    eyebrow: { en: "Rice Portfolio", fa: "برندهای برنج", ar: "سلسلة الأرز" },
+    title: { en: "Hayat Rice", fa: "برنج حیات", ar: "أرز حياة" },
     image: { src: "/signature-products/optimized/hayat.webp" },
     description: {
       en: "Selected for consistent cooking quality, clear sourcing, and steady market supply.",
@@ -85,8 +84,8 @@ const defaultProducts = [
   },
   {
     id: 4,
-    name: { en: "Golbanou Rice", fa: "برنج گلبانو", ar: "أرز گلبنو" },
-    category: { en: "Rice Portfolio", fa: "برندهای برنج", ar: "سلسلة الأرز" },
+    eyebrow: { en: "Rice Portfolio", fa: "برندهای برنج", ar: "سلسلة الأرز" },
+    title: { en: "Golbanou Rice", fa: "برنج گلبانو", ar: "أرز گلبنو" },
     image: { src: "/signature-products/optimized/golbanoo.webp" },
     description: {
       en: "A familiar rice brand serving demand across Iran and the wider Middle East region.",
@@ -96,15 +95,15 @@ const defaultProducts = [
   },
   {
     id: 5,
-    name: {
-      en: "Essential Food Staples",
-      fa: "مواد غذایی اساسی",
-      ar: "الأساسيات الغذائية",
-    },
-    category: {
+    eyebrow: {
       en: "Core Products",
       fa: "محصولات اصلی",
       ar: "المنتجات الأساسية",
+    },
+    title: {
+      en: "Essential Food Staples",
+      fa: "مواد غذایی اساسی",
+      ar: "الأساسيات الغذائية",
     },
     image: { src: "/signature-products/optimized/red-lentil.webp" },
     description: {
@@ -139,17 +138,13 @@ export function SignatureProducts({
   const products = payloadProducts?.length
     ? payloadProducts
         .filter((p: any) => p.isActive !== false)
-        .map((p: any) => {
-          const resolved =
-            p.product && typeof p.product === "object" ? p.product : null;
-          return {
-            id: p.id ?? resolved?.id,
-            name: p.name || resolved?.name,
-            category: p.category || resolved?.category,
-            image: p.image || resolved?.featuredImage || resolved?.image,
-            description: p.description || resolved?.description,
-          };
-        })
+        .map((p: any) => ({
+          id: p.id,
+          eyebrow: p.eyebrow,
+          title: p.title,
+          image: p.image,
+          description: p.description,
+        }))
     : defaultProducts;
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -318,7 +313,7 @@ export function SignatureProducts({
                 <button
                   onClick={handleProductClick}
                   className="relative h-full w-full bg-muted overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-                  aria-label={`${t.pages.home.viewProductAria} ${localize(product.name)}`}
+                  aria-label={`${t.pages.home.viewProductAria} ${localize(product.title)}`}
                 >
                   {hasEntered && index === currentIndex && (
                     <Image
@@ -330,7 +325,7 @@ export function SignatureProducts({
                             : (typeof product.image === "string" ? product.image : "") ||
                               "/signature-products/optimized/twenty-one.webp"
                       }
-                      alt={localize(product.name)}
+                      alt={localize(product.title)}
                       fill
                       loading="lazy"
                       sizes="(min-width: 1024px) 48vw, 100vw"
@@ -353,10 +348,10 @@ export function SignatureProducts({
                     }`}
                   >
                     <span className="eyebrow text-accent">
-                      {localize(product.category)}
+                      {localize(product.eyebrow)}
                     </span>
                     <h3 className="text-responsive-subheading text-white my-3 sm:my-4">
-                      {localize(product.name)}
+                      {localize(product.title)}
                     </h3>
                     <p className="text-primary-foreground/80 text-sm sm:text-base md:text-base leading-relaxed max-w-2xl">
                       {localize(product.description)}

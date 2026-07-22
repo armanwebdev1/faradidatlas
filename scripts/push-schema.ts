@@ -63,15 +63,30 @@ async function main() {
   }
 
   await pool.end()
-  console.log('Dropping NOT NULL on product_id...')
+
+  // Remove product_id column from homepage_signature_products (no longer needed)
+  console.log('Removing product_id column from homepage_signature_products...')
+  const pool2 = new Pool({ connectionString })
   try {
-    const pool2 = new Pool({ connectionString })
-    await pool2.query('ALTER TABLE "homepage_signature_products" ALTER COLUMN "product_id" DROP NOT NULL')
-    console.log('  ✓ Done')
-    await pool2.end()
+    await pool2.query('ALTER TABLE "homepage_signature_products" DROP CONSTRAINT IF EXISTS "homepage_signature_products_product_id_products_id_fk"')
+    console.log('  ✓ Dropped foreign key constraint')
   } catch (err: any) {
-    console.warn(`  ⚠ Skipped: ${err.message}`)
+    console.warn(`  ⚠ FK skip: ${err.message}`)
   }
+  try {
+    await pool2.query('DROP INDEX IF EXISTS "homepage_signature_products_product_idx"')
+    console.log('  ✓ Dropped product_id index')
+  } catch (err: any) {
+    console.warn(`  ⚠ Index skip: ${err.message}`)
+  }
+  try {
+    await pool2.query('ALTER TABLE "homepage_signature_products" DROP COLUMN IF EXISTS "product_id"')
+    console.log('  ✓ Dropped product_id column')
+  } catch (err: any) {
+    console.warn(`  ⚠ Column skip: ${err.message}`)
+  }
+  await pool2.end()
+
   console.log('Schema check completed')
   process.exit(0)
 }

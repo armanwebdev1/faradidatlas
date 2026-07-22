@@ -300,15 +300,6 @@ export const Homepage: GlobalConfig = {
                   localized: true,
                 },
                 {
-                  name: 'product',
-                  type: 'relationship',
-                  label: { en: 'Link to Product (optional)', fa: 'لینک محصول (اختیاری)' },
-                  relationTo: 'products',
-                  admin: {
-                    description: { en: 'Optional: link this slide to a product page', fa: 'اختیاری: لینک اسلاید به صفحه محصول' },
-                  },
-                },
-                {
                   name: 'isActive',
                   type: 'checkbox',
                   label: { en: 'Active', fa: 'فعال' },
