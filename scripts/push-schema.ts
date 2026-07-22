@@ -77,6 +77,30 @@ async function main() {
 
   await pool.end()
 
+  // Fix homepage_signature_products_locales missing 'id' primary key column.
+  // Payload's push: true created the table without it, causing save failures.
+  console.log('Ensuring homepage_signature_products_locales has id column...')
+  const poolFix = new Pool({ connectionString })
+  try {
+    const check = await poolFix.query(
+      `SELECT EXISTS (
+        SELECT 1 FROM information_schema.columns
+        WHERE table_name = 'homepage_signature_products_locales' AND column_name = 'id'
+      ) as exists`,
+    )
+    if (!check.rows[0].exists) {
+      await poolFix.query(
+        'ALTER TABLE "homepage_signature_products_locales" ADD COLUMN "id" serial PRIMARY KEY',
+      )
+      console.log('  ✓ Added id column to homepage_signature_products_locales')
+    } else {
+      console.log('  ✓ homepage_signature_products_locales.id already exists')
+    }
+  } catch (err: any) {
+    console.warn(`  ⚠ homepage_signature_products_locales fix: ${err.message}`)
+  }
+  await poolFix.end()
+
   // Remove product_id column from homepage_signature_products (no longer needed)
   console.log('Removing product_id column from homepage_signature_products...')
   const pool2 = new Pool({ connectionString })
