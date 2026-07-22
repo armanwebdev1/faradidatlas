@@ -4,12 +4,8 @@
  * explicitly add any missing columns before next build.
  */
 import { Pool } from 'pg'
-import { getPayloadClient } from '../lib/payload'
 
 async function main() {
-  console.log('Initializing Payload...')
-  const payload = await getPayloadClient()
-
   const connectionString = process.env.DATABASE_URL
   if (!connectionString) {
     console.error('DATABASE_URL not set')
