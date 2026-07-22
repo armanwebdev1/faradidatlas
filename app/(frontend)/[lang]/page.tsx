@@ -13,7 +13,6 @@ import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import { draftMode } from "next/headers";
-import { LivePreviewWrapper } from "@/components/live-preview/LivePreviewWrapper";
 
 export const revalidate = 300;
 
@@ -95,21 +94,14 @@ export default async function HomePage({ params }: HomePageProps) {
         <link key={url} rel="preload" as="image" href={url} />
       ))}
       <Header lang={lang} />
-      <LivePreviewWrapper initialData={globals}>
-        {(liveGlobals) => {
-          const lh = liveGlobals.homepage;
-          return (
-            <main id="main-content">
-              <Hero lang={lang} t={t} slides={lh?.heroSlides ?? heroSlides} />
-              <ValueProps lang={lang} items={lh?.valueProps ?? valueProps} section={lh?.valuePropsSection ?? homepage?.valuePropsSection} />
-              <BrandShowcase lang={lang} t={t} brands={lh?.brandShowcase ?? brandShowcase} section={lh?.brandsSection ?? homepage?.brandsSection} />
-              <SignatureProducts lang={lang} t={t} section={lh?.signatureProductsSection ?? homepage?.signatureProductsSection} products={lh?.signatureProducts ?? signatureProducts} />
-              <GlobalMarkets lang={lang} markets={lh?.globalMarkets ?? globalMarkets} section={lh?.marketsSection ?? homepage?.marketsSection} />
-              <CTASection lang={lang} cta={lh?.cta ?? cta} brandShowcase={lh?.brandShowcase ?? brandShowcase} />
-            </main>
-          );
-        }}
-      </LivePreviewWrapper>
+      <main id="main-content">
+        <Hero lang={lang} t={t} slides={heroSlides} />
+        <ValueProps lang={lang} items={valueProps} section={homepage?.valuePropsSection} />
+        <BrandShowcase lang={lang} t={t} brands={brandShowcase} section={homepage?.brandsSection} />
+        <SignatureProducts lang={lang} t={t} section={homepage?.signatureProductsSection} products={signatureProducts} />
+        <GlobalMarkets lang={lang} markets={globalMarkets} section={homepage?.marketsSection} />
+        <CTASection lang={lang} cta={cta} brandShowcase={brandShowcase} />
+      </main>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

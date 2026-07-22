@@ -118,6 +118,7 @@ async function main() {
     {
       name: '_product_brands_v',
       parentTable: 'product_brands',
+      parentIdType: 'integer',
       localizedFields: '"name" varchar',
       uniqueFields: '"slug" varchar',
       otherFields: '"logo_id" integer',
@@ -125,6 +126,7 @@ async function main() {
     {
       name: '_faqs_v',
       parentTable: 'faqs',
+      parentIdType: 'integer',
       localizedFields: '"question" varchar, "answer" varchar',
       uniqueFields: '"category" varchar',
       otherFields: '"ordering" integer, "is_active" boolean DEFAULT true',
@@ -132,6 +134,7 @@ async function main() {
     {
       name: '_jobs_v',
       parentTable: 'jobs',
+      parentIdType: 'integer',
       localizedFields: '"title" varchar, "department" varchar, "location" varchar, "salary" varchar, "description" varchar',
       uniqueFields: '"type" varchar, "job_status" varchar',
       otherFields: '"responsibilities" jsonb, "requirements" jsonb, "benefits" jsonb',
@@ -139,6 +142,7 @@ async function main() {
     {
       name: '_products_v',
       parentTable: 'products',
+      parentIdType: 'varchar',
       localizedFields: '"name" varchar, "description" varchar, "how_we_supply_description" varchar, "alias" varchar, "specs" jsonb',
       uniqueFields: '"slug" varchar, "category_id" integer, "brand_id" integer, "type" varchar, "featured" boolean DEFAULT false, "ordering" integer DEFAULT 0',
       otherFields: '"featured_image_id" integer, "gallery" jsonb, "downloadable_files" jsonb, "seo" jsonb',
@@ -155,7 +159,7 @@ async function main() {
         await poolVersions.query(`
           CREATE TABLE "${vt.name}" (
             "id" serial PRIMARY KEY,
-            "_parent_id" varchar NOT NULL REFERENCES "${vt.parentTable}"("id") ON DELETE CASCADE,
+            "_parent_id" ${vt.parentIdType} NOT NULL,
             "_locale" "_locales" NOT NULL,
             "latest" boolean NOT NULL DEFAULT true,
             ${vt.localizedFields},
@@ -165,6 +169,15 @@ async function main() {
             "created_at" timestamp(3) with time zone
           )
         `)
+        // Add FK constraint separately to handle type mismatches
+        try {
+          await poolVersions.query(`
+            ALTER TABLE "${vt.name}" ADD CONSTRAINT "${vt.name}_parent_id_fk"
+            FOREIGN KEY ("_parent_id") REFERENCES "${vt.parentTable}"("id") ON DELETE CASCADE
+          `)
+        } catch (fkErr: any) {
+          console.warn(`  ⚠ ${vt.name} FK skip: ${fkErr.message}`)
+        }
         await poolVersions.query(`CREATE INDEX "${vt.name}_parent_id_idx" ON "${vt.name}" USING btree ("_parent_id")`)
         await poolVersions.query(`CREATE INDEX "${vt.name}_latest_idx" ON "${vt.name}" USING btree ("latest")`)
         console.log(`  ✓ Created ${vt.name}`)
