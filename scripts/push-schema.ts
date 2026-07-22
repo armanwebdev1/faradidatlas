@@ -51,6 +51,37 @@ async function main() {
     { table: 'homepage_locales', column: 'markets_section_description', type: 'text' },
     // Non-localized fields on homepage table
     { table: 'homepage', column: 'brands_section_banner_image_id', type: 'integer' },
+    // _status columns for versions.drafts enabled globals
+    { table: 'homepage', column: '_status', type: 'varchar' },
+    { table: 'company_info', column: '_status', type: 'varchar' },
+    { table: 'contact_info', column: '_status', type: 'varchar' },
+    { table: 'careers_info', column: '_status', type: 'varchar' },
+    { table: 'site_settings', column: '_status', type: 'varchar' },
+    // _status columns for versions.drafts enabled collections
+    { table: 'products', column: '_status', type: 'varchar' },
+    { table: 'product_brands', column: '_status', type: 'varchar' },
+    { table: 'faqs', column: '_status', type: 'varchar' },
+    { table: 'jobs', column: '_status', type: 'varchar' },
+    // updated_at and created_at for collections that now have versions
+    { table: 'products', column: 'updated_at', type: 'timestamp(3) with time zone' },
+    { table: 'products', column: 'created_at', type: 'timestamp(3) with time zone' },
+    { table: 'product_brands', column: 'updated_at', type: 'timestamp(3) with time zone' },
+    { table: 'product_brands', column: 'created_at', type: 'timestamp(3) with time zone' },
+    { table: 'faqs', column: 'updated_at', type: 'timestamp(3) with time zone' },
+    { table: 'faqs', column: 'created_at', type: 'timestamp(3) with time zone' },
+    { table: 'jobs', column: 'updated_at', type: 'timestamp(3) with time zone' },
+    { table: 'jobs', column: 'created_at', type: 'timestamp(3) with time zone' },
+    // updated_at and created_at for globals that now have versions
+    { table: 'homepage', column: 'updated_at', type: 'timestamp(3) with time zone' },
+    { table: 'homepage', column: 'created_at', type: 'timestamp(3) with time zone' },
+    { table: 'company_info', column: 'updated_at', type: 'timestamp(3) with time zone' },
+    { table: 'company_info', column: 'created_at', type: 'timestamp(3) with time zone' },
+    { table: 'contact_info', column: 'updated_at', type: 'timestamp(3) with time zone' },
+    { table: 'contact_info', column: 'created_at', type: 'timestamp(3) with time zone' },
+    { table: 'careers_info', column: 'updated_at', type: 'timestamp(3) with time zone' },
+    { table: 'careers_info', column: 'created_at', type: 'timestamp(3) with time zone' },
+    { table: 'site_settings', column: 'updated_at', type: 'timestamp(3) with time zone' },
+    { table: 'site_settings', column: 'created_at', type: 'timestamp(3) with time zone' },
   ]
 
   for (const { table, column, type } of columns) {
