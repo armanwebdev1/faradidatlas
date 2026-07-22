@@ -16,6 +16,7 @@ import { absoluteUrl, localizedPath } from "@/lib/site";
 import { translations, type Language } from "@/lib/i18n";
 import Image from "next/image";
 import { Suspense } from "react";
+import { draftMode } from "next/headers";
 
 export const revalidate = 300;
 
@@ -70,8 +71,9 @@ async function ProductGridSection({
   initialType: ProductType | null;
 }) {
   let products: Product[] = [];
+  const draft = (await draftMode()).isEnabled;
   try {
-    products = await getProducts(lang);
+    products = await getProducts(lang, draft);
   } catch (err) {
     console.error("[Products] list query failed:", err);
   }

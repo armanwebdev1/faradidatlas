@@ -8,14 +8,14 @@ export interface AllGlobals {
   siteSettings: SiteSetting
 }
 
-export const getAllGlobals = cache(async function getAllGlobals(locale: string = 'en'): Promise<AllGlobals> {
+export const getAllGlobals = cache(async function getAllGlobals(locale: string = 'en', draft: boolean = false): Promise<AllGlobals> {
   const payload = await getPayloadClient()
   const loc = locale as 'en' | 'fa' | 'ar'
 
   const [homepage, contactInfo, siteSettings] = await Promise.all([
-    payload.findGlobal({ slug: 'homepage', locale: loc, depth: 1 }) as Promise<Homepage>,
-    payload.findGlobal({ slug: 'contact-info', locale: loc, depth: 0 }) as Promise<ContactInfo>,
-    payload.findGlobal({ slug: 'site-settings', locale: loc, depth: 0 }) as Promise<SiteSetting>,
+    payload.findGlobal({ slug: 'homepage', locale: loc, depth: 1, draft }) as Promise<Homepage>,
+    payload.findGlobal({ slug: 'contact-info', locale: loc, depth: 0, draft }) as Promise<ContactInfo>,
+    payload.findGlobal({ slug: 'site-settings', locale: loc, depth: 0, draft }) as Promise<SiteSetting>,
   ])
 
   return { homepage, contactInfo, siteSettings }

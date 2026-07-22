@@ -11,6 +11,7 @@ import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import Link from "next/link";
+import { draftMode } from "next/headers";
 
 const ContactForm = dynamic(
   () => import("@/components/contact/contact-form").then((m) => m.ContactForm),
@@ -73,11 +74,12 @@ export default async function ContactPage({ params, searchParams }: ContactPageP
   let selectedProduct = null;
   let contactInfo = null;
   let categories: any[] = [];
+  const draft = (await draftMode()).isEnabled;
   try {
     [selectedProduct, contactInfo, categories] = await Promise.all([
-      productParam ? getProductBySlug(productParam, lang).catch(() => null) : null,
-      getContactInfo(lang).catch(() => null),
-      getCategories(lang).catch(() => []),
+      productParam ? getProductBySlug(productParam, lang, draft).catch(() => null) : null,
+      getContactInfo(lang, draft).catch(() => null),
+      getCategories(lang, draft).catch(() => []),
     ]);
   } catch (err) {
     console.error('[Contact] fetch failed:', err);

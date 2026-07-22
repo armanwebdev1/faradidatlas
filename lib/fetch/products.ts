@@ -38,7 +38,7 @@ const detailSelect = {
   seo: true,
 } as const;
 
-export const getProducts = cache(async function getProducts(locale: string = "en") {
+export const getProducts = cache(async function getProducts(locale: string = "en", draft: boolean = false) {
   const payload = await getPayloadClient();
 
   const products = await payload.find({
@@ -46,6 +46,7 @@ export const getProducts = cache(async function getProducts(locale: string = "en
     locale: "all",
     limit: 100,
     depth: 1,
+    draft,
     select: listingSelect,
   });
 
@@ -68,7 +69,7 @@ export const getProducts = cache(async function getProducts(locale: string = "en
   })) as Product[];
 });
 
-export const getProductBySlug = cache(async function getProductBySlug(slug: string, locale: string = "en") {
+export const getProductBySlug = cache(async function getProductBySlug(slug: string, locale: string = "en", draft: boolean = false) {
   const payload = await getPayloadClient();
 
   const products = await payload.find({
@@ -77,6 +78,7 @@ export const getProductBySlug = cache(async function getProductBySlug(slug: stri
     where: { slug: { equals: slug } },
     limit: 1,
     depth: 1,
+    draft,
     select: detailSelect,
   });
 
@@ -109,6 +111,7 @@ export const getProductBySlug = cache(async function getProductBySlug(slug: stri
 export async function getProductsByCategory(
   category: string,
   locale: string = "en",
+  draft: boolean = false,
 ) {
   const payload = await getPayloadClient();
 
@@ -118,6 +121,7 @@ export async function getProductsByCategory(
     where: { "category.slug": { equals: category } },
     limit: 100,
     depth: 1,
+    draft,
     select: listingSelect,
   });
 
@@ -140,7 +144,7 @@ export async function getProductsByCategory(
   })) as Product[];
 }
 
-export const getCategories = cache(async function getCategories(locale: string = "en") {
+export const getCategories = cache(async function getCategories(locale: string = "en", draft: boolean = false) {
   const payload = await getPayloadClient();
 
   const categories = await payload.find({
@@ -148,6 +152,7 @@ export const getCategories = cache(async function getCategories(locale: string =
     locale: locale as "en" | "fa" | "ar",
     limit: 100,
     depth: 0,
+    draft,
     select: {
       id: true,
       name: true,
@@ -167,6 +172,7 @@ export const getRelatedProducts = cache(async function getRelatedProducts(
   categoryId: number,
   excludeId: number,
   locale: string = "en",
+  draft: boolean = false,
 ) {
   const payload = await getPayloadClient();
 
@@ -181,6 +187,7 @@ export const getRelatedProducts = cache(async function getRelatedProducts(
     },
     limit: 4,
     depth: 1,
+    draft,
     select: listingSelect,
   });
 

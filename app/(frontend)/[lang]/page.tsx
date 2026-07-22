@@ -12,6 +12,7 @@ import { resolveMediaUrl } from "@/lib/media-url";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
+import { draftMode } from "next/headers";
 
 export const revalidate = 300;
 
@@ -52,8 +53,9 @@ export default async function HomePage({ params }: HomePageProps) {
   const organizationId = absoluteUrl("/#organization");
   const websiteId = absoluteUrl("/#website");
   const pageDescription = t.pages.home.description;
+  const draft = (await draftMode()).isEnabled;
 
-  const [globals] = await Promise.all([getAllGlobals(lang)]);
+  const [globals] = await Promise.all([getAllGlobals(lang, draft)]);
 
   const { homepage, contactInfo, siteSettings } = globals;
 

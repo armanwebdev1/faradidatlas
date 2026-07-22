@@ -7,6 +7,7 @@ import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import Link from "next/link";
+import { draftMode } from "next/headers";
 
 export const revalidate = 300
 export const dynamicParams = true
@@ -59,9 +60,10 @@ export async function generateMetadata({ params }: JobDetailPageProps) {
 export default async function JobDetailPage({ params }: JobDetailPageProps) {
   const { lang, id } = await params;
   const t = translations[lang];
+  const draft = (await draftMode()).isEnabled;
   let job = null;
   try {
-    job = await getJobById(Number.parseInt(id), lang);
+    job = await getJobById(Number.parseInt(id), lang, draft);
   } catch (err) {
     console.error('[Job Detail] fetch failed:', err);
   }

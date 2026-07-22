@@ -12,6 +12,7 @@ import { getCompanyInfo } from "@/lib/fetch/company-info";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
+import { draftMode } from "next/headers";
 
 export const revalidate = 300
 
@@ -50,8 +51,9 @@ export default async function AboutPage({ params }: AboutPageProps) {
   const organizationId = absoluteUrl("/#organization");
 
   let companyInfo: any = null;
+  const draft = (await draftMode()).isEnabled;
   try {
-    companyInfo = await getCompanyInfo(lang);
+    companyInfo = await getCompanyInfo(lang, draft);
   } catch (err) {
     console.error('[About] company info fetch failed:', err);
   }

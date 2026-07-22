@@ -1,13 +1,14 @@
 import { cache } from 'react'
 import { getPayloadClient } from '../payload'
 
-export const getHomepage = cache(async function getHomepage(locale: string = 'en') {
+export const getHomepage = cache(async function getHomepage(locale: string = 'en', draft: boolean = false) {
   const payload = await getPayloadClient()
 
   const homepage = await payload.findGlobal({
     slug: 'homepage',
     locale: locale as 'en' | 'fa' | 'ar',
     depth: 0,
+    draft,
   })
 
   return homepage

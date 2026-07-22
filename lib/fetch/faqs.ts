@@ -2,7 +2,7 @@ import { cache } from 'react'
 import { getPayloadClient } from '../payload'
 import type { FAQItem } from '../../components/faq/faq-data'
 
-export const getFAQs = cache(async function getFAQs(locale: string = 'en') {
+export const getFAQs = cache(async function getFAQs(locale: string = 'en', draft: boolean = false) {
   const payload = await getPayloadClient()
 
   const faqs = await payload.find({
@@ -10,6 +10,7 @@ export const getFAQs = cache(async function getFAQs(locale: string = 'en') {
     limit: 100,
     locale: 'all',
     depth: 0,
+    draft,
     select: {
       id: true,
       question: true,
@@ -33,6 +34,7 @@ export const getFAQs = cache(async function getFAQs(locale: string = 'en') {
 export const getFAQsByCategory = cache(async function getFAQsByCategory(
   category: string,
   locale: string = 'en',
+  draft: boolean = false,
 ) {
   const payload = await getPayloadClient()
 
@@ -42,6 +44,7 @@ export const getFAQsByCategory = cache(async function getFAQsByCategory(
     limit: 100,
     locale: 'all',
     depth: 0,
+    draft,
     select: {
       id: true,
       question: true,

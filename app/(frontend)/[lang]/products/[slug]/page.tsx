@@ -19,6 +19,7 @@ import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
 import { permanentRedirect } from "next/navigation";
 import Link from "next/link";
+import { draftMode } from "next/headers";
 
 export const revalidate = 300;
 export const dynamicParams = true;
@@ -147,11 +148,12 @@ export default async function ProductDetailPage({
 }: ProductDetailProps) {
   const { lang, slug } = await params;
   const t = translations[lang];
+  const draft = (await draftMode()).isEnabled;
 
   if (isCategorySlug(slug)) {
     let categoryData: any = null;
     try {
-      const cats = await getCategories(lang);
+      const cats = await getCategories(lang, draft);
       categoryData = cats.find((c: any) => c.slug === slug) ?? null;
     } catch (err) {
       // Category data is non-critical
@@ -174,7 +176,7 @@ export default async function ProductDetailPage({
   let product;
   let dbError = false;
   try {
-    product = await getProductBySlug(slug, lang);
+    product = await getProductBySlug(slug, lang, draft);
   } catch (err) {
     dbError = true;
     console.error(`[Products] database error for slug="${slug}":`, err);

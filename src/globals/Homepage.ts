@@ -3,6 +3,9 @@ import { isRole } from '../access/isRole'
 
 export const Homepage: GlobalConfig = {
   slug: 'homepage',
+  versions: {
+    drafts: true,
+  },
   label: { en: 'Homepage', fa: 'صفحه اصلی' },
   access: {
     read: () => true,
@@ -13,7 +16,7 @@ export const Homepage: GlobalConfig = {
     preview: (_doc, { locale }) => {
       const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://faradidatlas.com'
       const lang = locale || 'en'
-      return `${base}/${lang}`
+      return `${base}/api/preview?secret=${process.env.PAYLOAD_SECRET}&slug=/${lang}&global=homepage&locale=${lang}`
     },
   },
   fields: [

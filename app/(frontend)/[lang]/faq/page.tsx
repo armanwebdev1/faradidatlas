@@ -7,6 +7,7 @@ import { buildPageMetadata } from "@/lib/metadata";
 import { absoluteUrl, localizedPath } from "@/lib/site";
 import type { Language } from "@/lib/i18n";
 import { translations } from "@/lib/i18n";
+import { draftMode } from "next/headers";
 
 export const revalidate = 300
 
@@ -43,8 +44,9 @@ export default async function FAQPage({ params }: FAQPageProps) {
   const t = translations[lang];
   const pageUrl = absoluteUrl(localizedPath(lang, "faq"));
   let faqs: any[] = [];
+  const draft = (await draftMode()).isEnabled;
   try {
-    faqs = await getFAQs(lang);
+    faqs = await getFAQs(lang, draft);
   } catch (err) {
     console.error('[FAQ] fetch failed:', err);
   }

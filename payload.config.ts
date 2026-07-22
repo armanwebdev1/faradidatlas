@@ -37,6 +37,16 @@ export default buildConfig({
       titleSuffix: " | Faradid Atlas CMS",
       description: "Content management for faradidatlas.com",
     },
+    livePreview: {
+      url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+      collections: ['products', 'blog-posts', 'categories', 'faqs', 'jobs'],
+      globals: ['homepage', 'company-info', 'contact-info', 'careers-info', 'site-settings'],
+      breakpoints: [
+        { label: 'Mobile', width: 375, height: 667 },
+        { label: 'Tablet', width: 768, height: 1024 },
+        { label: 'Desktop', width: 1440, height: 900 },
+      ],
+    },
     components: {
       graphics: {
         Logo: "@/src/admin/components/CustomLogo#CustomLogo",

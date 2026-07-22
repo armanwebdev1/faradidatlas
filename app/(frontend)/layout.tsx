@@ -1,8 +1,10 @@
 import type React from "react";
 import localFont from "next/font/local";
 import "../globals.css";
-import { LivePreviewHandler } from "./[lang]/live-preview-handler";
+import { RefreshRouteOnSave } from "@/components/live-preview/RefreshRouteOnSave";
+import { DraftModeBanner } from "@/components/live-preview/DraftModeBanner";
 import { ScrollRestoration } from "@/components/scroll-restoration";
+import { draftMode } from "next/headers";
 
 const geistSans = localFont({
   src: [
@@ -97,18 +99,21 @@ const shabnam = localFont({
   preload: true,
 });
 
-export default function FrontendLayout({
+export default async function FrontendLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { isEnabled: isDraftMode } = await draftMode();
+
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${playfair.variable} ${estedad.variable} ${shabnam.variable} ${notoSansArabic.variable} ${tajawal.variable} ${cairo.variable}`}
     >
       <body className="antialiased">
-        <LivePreviewHandler />
+        <RefreshRouteOnSave />
+        {isDraftMode && <DraftModeBanner />}
         <ScrollRestoration />
         <a
           href="#main-content"

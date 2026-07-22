@@ -1,7 +1,7 @@
 import { cache } from 'react'
 import { getPayloadClient } from '../payload'
 
-export const getBlogPosts = cache(async function getBlogPosts(locale: string = 'en') {
+export const getBlogPosts = cache(async function getBlogPosts(locale: string = 'en', draft: boolean = false) {
   const payload = await getPayloadClient()
 
   const posts = await payload.find({
@@ -9,6 +9,7 @@ export const getBlogPosts = cache(async function getBlogPosts(locale: string = '
     locale: locale as 'en' | 'fa' | 'ar',
     limit: 100,
     depth: 0,
+    draft,
     select: {
       id: true,
       title: true,
@@ -28,6 +29,7 @@ export const getBlogPosts = cache(async function getBlogPosts(locale: string = '
 export const getBlogPostBySlug = cache(async function getBlogPostBySlug(
   slug: string,
   locale: string = 'en',
+  draft: boolean = false,
 ) {
   const payload = await getPayloadClient()
 
@@ -37,6 +39,7 @@ export const getBlogPostBySlug = cache(async function getBlogPostBySlug(
     where: { slug: { equals: slug } },
     limit: 1,
     depth: 0,
+    draft,
     select: {
       id: true,
       title: true,

@@ -3,6 +3,10 @@ import { isRole } from "../access/isRole";
 
 export const Products: CollectionConfig = {
   slug: "products",
+  versions: {
+    drafts: true,
+    maxPerDoc: 10,
+  },
   labels: {
     singular: { en: "Product", fa: "محصول" },
     plural: { en: "Products", fa: "محصولات" },
@@ -26,7 +30,7 @@ export const Products: CollectionConfig = {
         process.env.NEXT_PUBLIC_SITE_URL || "https://faradidatlas.com";
       const lang = locale || "en";
       const slug = doc?.slug || "";
-      return `${base}/${lang}/products/${slug}`;
+      return `${base}/api/preview?secret=${process.env.PAYLOAD_SECRET}&slug=/products/${slug}&collection=products&locale=${lang}`;
     },
   },
   fields: [

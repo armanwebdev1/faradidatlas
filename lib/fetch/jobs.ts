@@ -2,7 +2,7 @@ import { cache } from 'react'
 import { getPayloadClient } from '../payload'
 import type { Job } from '../../components/careers/job-data'
 
-export const getJobs = cache(async function getJobs(locale: string = 'en') {
+export const getJobs = cache(async function getJobs(locale: string = 'en', draft: boolean = false) {
   const payload = await getPayloadClient()
 
   const jobs = await payload.find({
@@ -10,6 +10,7 @@ export const getJobs = cache(async function getJobs(locale: string = 'en') {
     limit: 100,
     locale: 'all',
     depth: 0,
+    draft,
     select: {
       id: true,
       title: true,
@@ -53,6 +54,7 @@ export const getJobs = cache(async function getJobs(locale: string = 'en') {
 export const getJobById = cache(async function getJobById(
   id: number,
   locale: string = 'en',
+  draft: boolean = false,
 ) {
   const payload = await getPayloadClient()
 
@@ -62,6 +64,7 @@ export const getJobById = cache(async function getJobById(
     limit: 1,
     locale: 'all',
     depth: 0,
+    draft,
     select: {
       id: true,
       title: true,
