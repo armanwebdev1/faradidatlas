@@ -12,37 +12,75 @@ interface OfficeInfoProps {
 export function OfficeInfo({ lang, t, contactInfo }: OfficeInfoProps) {
   const ci = contactInfo as any;
 
-  const email = ci?.email ?? '';
+  const email = ci?.email ?? "";
   const phones = ci?.phones ?? [];
   const payloadOffices = ci?.offices ?? [];
 
   const fallbackOffices = {
     en: [
-      { city: "Tehran", role: "Company office supporting sales coordination and access to Iran's essential food market." },
-      { city: "Isfahan", role: "Company office supporting regional coordination and distribution access in Iran." },
-      { city: "Dubai", role: "Company office supporting regional trade access through the United Arab Emirates." },
-      { city: "Oman", role: "Company office supporting regional presence and market expansion." },
+      {
+        city: "Tehran",
+        role: "Company office supporting sales coordination and access to Iran's essential food market.",
+      },
+      {
+        city: "Isfahan",
+        role: "Company office supporting regional coordination and distribution access in Iran.",
+      },
+      {
+        city: "Dubai",
+        role: "Company office supporting regional trade access through the United Arab Emirates.",
+      },
+      {
+        city: "Oman",
+        role: "Company office supporting regional presence and market expansion.",
+      },
     ],
     fa: [
-      { city: "تهران", role: "دفتر تهران، هماهنگی فروش و ارتباط با بازار مواد غذایی اساسی ایران را پشتیبانی می‌کند." },
-      { city: "اصفهان", role: "دفتر اصفهان، به هماهنگی منطقه‌ای و دسترسی منظم‌تر به مسیرهای توزیع در ایران کمک می‌کند." },
-      { city: "دبی", role: "دفتر دبی، مسیر ارتباطات تجاری و فعالیت‌های منطقه‌ای فرادید اطلس در امارات متحده عربی را پشتیبانی می‌کند." },
-      { city: "عمان", role: "دفتر عمان، بخشی از حضور منطقه‌ای شرکت و مسیر توسعه همکاری‌های تجاری در بازارهای نزدیک است." },
+      {
+        city: "تهران",
+        role: "دفتر تهران، هماهنگی فروش و ارتباط با بازار کالاهای اساسی و محصولات غذایی ایران را پشتیبانی می‌کند.",
+      },
+      {
+        city: "اصفهان",
+        role: "دفتر اصفهان، به هماهنگی منطقه‌ای و دسترسی منظم‌تر به مسیرهای توزیع در ایران کمک می‌کند.",
+      },
+      {
+        city: "دبی",
+        role: "دفتر دبی، مسیر ارتباطات تجاری و فعالیت‌های منطقه‌ای فرادید اطلس در امارات متحده عربی را پشتیبانی می‌کند.",
+      },
+      {
+        city: "عمان",
+        role: "دفتر عمان، بخشی از حضور منطقه‌ای شرکت و مسیر توسعه همکاری‌های تجاری در بازارهای نزدیک است.",
+      },
     ],
     ar: [
-      { city: "طهران", role: "مكتب طهران يدعم تنسيق المبيعات والوصول إلى سوق الأغذية الأساسية في إيران." },
-      { city: "أصفهان", role: "مكتب أصفهان يساعد في التنسيق الإقليمي وتحسين الوصول إلى قنوات التوزيع في إيران." },
-      { city: "دبي", role: "مكتب دبي يدعم مسار التواصل التجاري والأنشطة الإقليمية لفراديد أطلس في الإمارات العربية المتحدة." },
-      { city: "مسقط", role: "مكتب مسقط جزء من الحضور الإقليمية للشركة ومسار تطوير التعاون التجاري في الأسواق القريبة." },
+      {
+        city: "طهران",
+        role: "مكتب طهران يدعم تنسيق المبيعات والوصول إلى سوق الأغذية الأساسية في إيران.",
+      },
+      {
+        city: "أصفهان",
+        role: "مكتب أصفهان يساعد في التنسيق الإقليمي وتحسين الوصول إلى قنوات التوزيع في إيران.",
+      },
+      {
+        city: "دبي",
+        role: "مكتب دبي يدعم مسار التواصل التجاري والأنشطة الإقليمية لفراديد أطلس في الإمارات العربية المتحدة.",
+      },
+      {
+        city: "مسقط",
+        role: "مكتب مسقط جزء من الحضور الإقليمية للشركة ومسار تطوير التعاون التجاري في الأسواق القريبة.",
+      },
     ],
   };
 
-  const officeList = payloadOffices.length > 0
-    ? payloadOffices.map((o: any) => ({
-        city: getLocalized(o.city, lang) || o.city || '',
-        role: getLocalized(o.address, lang) || '',
-      }))
-    : (fallbackOffices[lang as keyof typeof fallbackOffices] || fallbackOffices.en);
+  const officeList =
+    payloadOffices.length > 0
+      ? payloadOffices.map((o: any) => ({
+          city: getLocalized(o.city, lang) || o.city || "",
+          role: getLocalized(o.address, lang) || "",
+        }))
+      : fallbackOffices[lang as keyof typeof fallbackOffices] ||
+        fallbackOffices.en;
 
   return (
     <div className="space-y-6">
@@ -74,7 +112,13 @@ export function OfficeInfo({ lang, t, contactInfo }: OfficeInfoProps) {
                     href={phone.whatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={lang === "ar" ? `تحدث مع ${phone.display} عبر WhatsApp` : lang === "fa" ? `چت با ${phone.display} در WhatsApp` : `Chat with ${phone.display} on WhatsApp`}
+                    aria-label={
+                      lang === "ar"
+                        ? `تحدث مع ${phone.display} عبر WhatsApp`
+                        : lang === "fa"
+                          ? `چت با ${phone.display} در WhatsApp`
+                          : `Chat with ${phone.display} on WhatsApp`
+                    }
                     className="transition-colors hover:text-[#25D366]"
                   >
                     <WhatsAppIcon className="w-4 h-4 shrink-0" />
