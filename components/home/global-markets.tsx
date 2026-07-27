@@ -29,7 +29,7 @@ const defaultMarkets = {
     },
     {
       region: "Offices & Regional Presence",
-      countries: "Tehran, Isfahan, Dubai, and Oman",
+      countries: "Tehran, Isfahan, Dubai, and Muscat",
       value: 4,
       suffix: "",
     },
@@ -57,7 +57,7 @@ const defaultMarkets = {
     {
       region: "دفاتر شرکت",
       countries:
-        "تهران، اصفهان، دبی و عمان؛ برای پیگیری بهتر، پاسخ سریع‌تر و پشتیبانی مطمئن‌تر",
+        "تهران، اصفهان، دبی، و مسقط برای پیگیری بهتر، پاسخ سریع‌تر و پشتیبانی مطمئن‌تر",
       value: 5,
       suffix: "",
     },
@@ -113,9 +113,12 @@ export function GlobalMarkets({
 }: GlobalMarketsProps) {
   const t = translations[lang];
 
-  const eyebrow = getLocalized(section?.eyebrow, lang) || t.pages.home.marketsEyebrow;
-  const title = getLocalized(section?.title, lang) || t.pages.home.marketsRegional;
-  const description = getLocalized(section?.description, lang) || t.pages.home.marketsDescription;
+  const eyebrow =
+    getLocalized(section?.eyebrow, lang) || t.pages.home.marketsEyebrow;
+  const title =
+    getLocalized(section?.title, lang) || t.pages.home.marketsRegional;
+  const description =
+    getLocalized(section?.description, lang) || t.pages.home.marketsDescription;
 
   const marketList = payloadMarkets?.length
     ? payloadMarkets

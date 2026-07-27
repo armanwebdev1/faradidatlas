@@ -31,7 +31,7 @@ export function OfficeInfo({ lang, t, contactInfo }: OfficeInfoProps) {
         role: "Company office supporting regional trade access through the United Arab Emirates.",
       },
       {
-        city: "Oman",
+        city: "Muscat",
         role: "Company office supporting regional presence and market expansion.",
       },
     ],
@@ -49,7 +49,7 @@ export function OfficeInfo({ lang, t, contactInfo }: OfficeInfoProps) {
         role: "دفتر دبی، مسیر ارتباطات تجاری و فعالیت‌های منطقه‌ای فرادید اطلس در امارات متحده عربی را پشتیبانی می‌کند.",
       },
       {
-        city: "عمان",
+        city: "مسقط",
         role: "دفتر عمان، بخشی از حضور منطقه‌ای شرکت و مسیر توسعه همکاری‌های تجاری در بازارهای نزدیک است.",
       },
     ],

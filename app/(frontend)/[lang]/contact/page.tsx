@@ -15,22 +15,22 @@ import { draftMode } from "next/headers";
 
 const ContactForm = dynamic(
   () => import("@/components/contact/contact-form").then((m) => m.ContactForm),
-  { ssr: true }
+  { ssr: true },
 );
 
 const TrustStats = dynamic(
   () => import("@/components/contact/trust-stats").then((m) => m.TrustStats),
-  { ssr: true }
+  { ssr: true },
 );
 
-export const revalidate = 300
+export const revalidate = 300;
 
 function getLocalized(value: any, lang: Language): string {
-  if (!value) return ""
-  if (typeof value === "string") return value
-  if (typeof value === "object" && value[lang]) return value[lang]
-  if (typeof value === "object" && value.en) return value.en
-  return ""
+  if (!value) return "";
+  if (typeof value === "string") return value;
+  if (typeof value === "object" && value[lang]) return value[lang];
+  if (typeof value === "object" && value.en) return value.en;
+  return "";
 }
 
 interface ContactSearchParams {
@@ -54,11 +54,13 @@ export async function generateMetadata({ params }: ContactPageProps) {
   return buildPageMetadata({
     lang,
     path: "contact",
-    titleEn: "Contact Faradid Atlas — B2B Food Supply Inquiries | Iran, UAE, Oman",
+    titleEn:
+      "Contact Faradid Atlas — B2B Food Supply Inquiries | Iran, UAE, Oman",
     titleFa: "با فرادید اطلس در تماس باشید | تأمین و توزیع مواد غذایی",
-    titleAr: "اتصل بـ فراديد أطلس — استفسارات تزوين الغذاء B2B | إيران، الإمارات، عمان",
+    titleAr:
+      "اتصل بـ فراديد أطلس — استفسارات تزوين الغذاء B2B | إيران، الإمارات، عمان",
     descriptionEn:
-      "Contact Faradid Atlas for wholesale food sourcing, import, and distribution inquiries. Offices in Tehran, Isfahan, Dubai, and Oman.",
+      "Contact Faradid Atlas for wholesale food sourcing, import, and distribution inquiries. Offices in Tehran, Isfahan, Dubai, and Muscat.",
     descriptionFa:
       "برای استفسارات تأمین، واردات و توزیع عمده مواد غذایی با فرادید اطلس تماس بگیرید.",
     descriptionAr:
@@ -66,9 +68,14 @@ export async function generateMetadata({ params }: ContactPageProps) {
   });
 }
 
-export default async function ContactPage({ params, searchParams }: ContactPageProps) {
+export default async function ContactPage({
+  params,
+  searchParams,
+}: ContactPageProps) {
   const { lang } = await params;
-  const resolvedSearchParams: ContactSearchParams = searchParams ? await searchParams : {};
+  const resolvedSearchParams: ContactSearchParams = searchParams
+    ? await searchParams
+    : {};
   const productParam = resolvedSearchParams.product;
 
   let selectedProduct = null;
@@ -77,47 +84,60 @@ export default async function ContactPage({ params, searchParams }: ContactPageP
   const draft = (await draftMode()).isEnabled;
   try {
     [selectedProduct, contactInfo, categories] = await Promise.all([
-      productParam ? getProductBySlug(productParam, lang, draft).catch(() => null) : null,
+      productParam
+        ? getProductBySlug(productParam, lang, draft).catch(() => null)
+        : null,
       getContactInfo(lang, draft).catch(() => null),
       getCategories(lang, draft).catch(() => []),
     ]);
   } catch (err) {
-    console.error('[Contact] fetch failed:', err);
+    console.error("[Contact] fetch failed:", err);
   }
 
   const ci = contactInfo as any;
   const initialProductInterest = selectedProduct
-    ? lang === "en" ? selectedProduct.nameEn : lang === "fa" ? selectedProduct.nameFa : selectedProduct.nameAr
+    ? lang === "en"
+      ? selectedProduct.nameEn
+      : lang === "fa"
+        ? selectedProduct.nameFa
+        : selectedProduct.nameAr
     : undefined;
 
-  const productOptions = categories.length > 0
-    ? [
-        ...categories.map((c: any) => ({
-          value: c.slug,
-          labelEn: (c.name as any)?.en ?? c.slug,
-          labelFa: (c.name as any)?.fa ?? c.slug,
-          labelAr: (c.name as any)?.ar ?? c.slug,
-        })),
-        { value: "multiple", labelEn: "Multiple Products", labelFa: "چند محصول", labelAr: "منتجات متعددة" },
-      ]
-    : undefined;
+  const productOptions =
+    categories.length > 0
+      ? [
+          ...categories.map((c: any) => ({
+            value: c.slug,
+            labelEn: (c.name as any)?.en ?? c.slug,
+            labelFa: (c.name as any)?.fa ?? c.slug,
+            labelAr: (c.name as any)?.ar ?? c.slug,
+          })),
+          {
+            value: "multiple",
+            labelEn: "Multiple Products",
+            labelFa: "چند محصول",
+            labelAr: "منتجات متعددة",
+          },
+        ]
+      : undefined;
 
-  const trustStats = ci?.trustStats?.length > 0
-    ? ci.trustStats.map((s: any) => ({
-        value: s.value,
-        suffix: s.suffix ?? undefined,
-        label: getLocalized(s.label, lang) || "",
-      }))
-    : [];
+  const trustStats =
+    ci?.trustStats?.length > 0
+      ? ci.trustStats.map((s: any) => ({
+          value: s.value,
+          suffix: s.suffix ?? undefined,
+          label: getLocalized(s.label, lang) || "",
+        }))
+      : [];
 
   const t = translations[lang];
   const pageUrl = absoluteUrl(localizedPath(lang, "contact"));
 
-  const publicContactEmail = ci?.email ?? '';
+  const publicContactEmail = ci?.email ?? "";
   const publicPhoneNumbers = (ci?.phones ?? []).map((p: any) => ({
-    value: p.value ?? '',
-    display: p.display ?? '',
-    whatsappHref: p.whatsappHref ?? '',
+    value: p.value ?? "",
+    display: p.display ?? "",
+    whatsappHref: p.whatsappHref ?? "",
   }));
 
   return (
@@ -132,7 +152,12 @@ export default async function ContactPage({ params, searchParams }: ContactPageP
         >
           <div className="container-wide grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
             <div className="lg:col-span-2">
-              <ContactForm lang={lang} t={t} initialProductInterest={initialProductInterest} productOptions={productOptions} />
+              <ContactForm
+                lang={lang}
+                t={t}
+                initialProductInterest={initialProductInterest}
+                productOptions={productOptions}
+              />
             </div>
 
             <div id="contact-offices" className="lg:sticky lg:top-32">
@@ -196,7 +221,9 @@ export default async function ContactPage({ params, searchParams }: ContactPageP
                   "@type": "ContactPoint",
                   contactType: "customer service",
                   email: publicContactEmail,
-                  telephone: publicPhoneNumbers.map((phone: any) => phone.value),
+                  telephone: publicPhoneNumbers.map(
+                    (phone: any) => phone.value,
+                  ),
                   availableLanguage: ["English", "Persian"],
                 },
               },
@@ -205,8 +232,18 @@ export default async function ContactPage({ params, searchParams }: ContactPageP
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
-                { "@type": "ListItem", position: 1, name: t.breadcrumbs.home, item: absoluteUrl(localizedPath(lang)) },
-                { "@type": "ListItem", position: 2, name: t.breadcrumbs.contact, item: pageUrl },
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: t.breadcrumbs.home,
+                  item: absoluteUrl(localizedPath(lang)),
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: t.breadcrumbs.contact,
+                  item: pageUrl,
+                },
               ],
             },
           ]),

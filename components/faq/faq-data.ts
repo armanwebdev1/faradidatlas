@@ -62,11 +62,11 @@ export const faqs: FAQItem[] = [
     questionFa: "دفاتر فرادید اطلس در کجا قرار دارند؟",
     questionAr: "أين تقع مكاتب الشركة؟",
     answerEn:
-      "The company has offices in Tehran, Isfahan, Dubai, and Oman, with Shahrekord supporting operations and warehousing in Iran.",
+      "The company has offices in Tehran, Isfahan, Dubai, and Muscat, with Shahrekord supporting operations and warehousing in Iran.",
     answerFa:
-      "دفاتر شرکت در تهران، اصفهان، دبی و عمان قرار دارند. شهرکرد نیز به‌عنوان پشتیبانی عملیاتی و انباری در ایران در نظر گرفته می‌شود.",
+      "دفاتر شرکت در تهران، اصفهان، دبی، و مسقط قرار دارند. شهرکرد نیز به‌عنوان پشتیبانی عملیاتی و انباری در ایران در نظر گرفته می‌شود.",
     answerAr:
-      "لدى الشركة مكاتب في طهران وأصفهان ودبي وعمان، مع دعم الشيركات للعمليات والتخزين في إيران.",
+      "لدى الشركة مكاتب في طهران وأصفهان ودبي و مسقط مع دعم الشيركات للعمليات والتخزين في إيران.",
     category: "company",
   },
   {
