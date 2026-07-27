@@ -125,8 +125,8 @@ async function seed() {
         {
           country: { en: "Offices & Regional Presence", fa: "دفاتر شرکت" },
           description: {
-            en: "Tehran, Isfahan, Dubai, and Oman",
-            fa: "تهران، اصفهان، دبی و عمان",
+            en: "Tehran, Isfahan, Dubai, and Muscat",
+            fa: "تهران، اصفهان، دبی، و مسقط",
           },
           value: 4,
           isActive: true,

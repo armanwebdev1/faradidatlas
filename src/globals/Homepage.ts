@@ -3,6 +3,9 @@ import { isRole } from '../access/isRole'
 
 export const Homepage: GlobalConfig = {
   slug: 'homepage',
+  versions: {
+    drafts: true,
+  },
   label: { en: 'Homepage', fa: 'صفحه اصلی' },
   access: {
     read: () => true,

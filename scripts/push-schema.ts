@@ -51,8 +51,16 @@ async function main() {
     { table: 'homepage_locales', column: 'markets_section_description', type: 'text' },
     // Non-localized fields on homepage table
     { table: 'homepage', column: 'brands_section_banner_image_id', type: 'integer' },
-      // Non-localized fields on homepage table
-    { table: 'homepage', column: 'brands_section_banner_image_id', type: 'integer' },
+    // _status and timestamps for versions.drafts enabled collections/globals
+    { table: 'homepage', column: '_status', type: 'varchar' },
+    { table: 'homepage', column: 'updated_at', type: 'timestamp(3) with time zone' },
+    { table: 'homepage', column: 'created_at', type: 'timestamp(3) with time zone' },
+    { table: 'company_info', column: '_status', type: 'varchar' },
+    { table: 'company_info', column: 'updated_at', type: 'timestamp(3) with time zone' },
+    { table: 'company_info', column: 'created_at', type: 'timestamp(3) with time zone' },
+    { table: 'products', column: '_status', type: 'varchar' },
+    { table: 'products', column: 'updated_at', type: 'timestamp(3) with time zone' },
+    { table: 'products', column: 'created_at', type: 'timestamp(3) with time zone' },
   ]
 
   for (const { table, column, type } of columns) {

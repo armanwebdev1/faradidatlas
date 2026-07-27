@@ -43,7 +43,11 @@ import {
   categoryFallbackImages,
   typeFallbackImages,
 } from "./header-data";
-import { normalizeSearchText, productSearchText, searchProducts } from "./search-utils";
+import {
+  normalizeSearchText,
+  productSearchText,
+  searchProducts,
+} from "./search-utils";
 import { useHeaderScroll } from "./use-header-scroll";
 import { LanguagePicker } from "./language-picker";
 import { SearchResultsPopover } from "./search-results";
@@ -62,10 +66,21 @@ export function Header({ lang, t, products: payloadProducts }: HeaderProps) {
   const isRTL = lang === "fa" || lang === "ar";
   const dir = isRTL ? "rtl" : "ltr";
   const brandHomeLabel =
-    lang === "en" ? "Faradid Atlas home" : lang === "fa" ? "خانه فرادید اطلس" : "الرئيسية فراديد اطلس";
-  const brandPrimary = lang === "en" ? "Faradid" : lang === "fa" ? "فرادید" : "فراديد";
-  const brandSecondary = lang === "en" ? "Atlas" : lang === "fa" ? "اطلس" : "اطلس";
-  const brandFullName = lang === "en" ? "Faradid Atlas" : lang === "fa" ? "فرادید اطلس" : "فراديد اطلس";
+    lang === "en"
+      ? "Faradid Atlas home"
+      : lang === "fa"
+        ? "خانه فرادید اطلس"
+        : "الرئيسية فراديد اطلس";
+  const brandPrimary =
+    lang === "en" ? "Faradid" : lang === "fa" ? "فرادید" : "فراديد";
+  const brandSecondary =
+    lang === "en" ? "Atlas" : lang === "fa" ? "اطلس" : "اطلس";
+  const brandFullName =
+    lang === "en"
+      ? "Faradid Atlas"
+      : lang === "fa"
+        ? "فرادید اطلس"
+        : "فراديد اطلس";
 
   const navItems = [
     { href: `/${lang}`, label: t.nav.home, key: "home", Icon: Home },
@@ -93,7 +108,10 @@ export function Header({ lang, t, products: payloadProducts }: HeaderProps) {
   ];
 
   const numberFormatter = useMemo(
-    () => new Intl.NumberFormat(lang === "fa" ? "fa-IR" : lang === "ar" ? "ar-SA" : "en-US"),
+    () =>
+      new Intl.NumberFormat(
+        lang === "fa" ? "fa-IR" : lang === "ar" ? "ar-SA" : "en-US",
+      ),
     [lang],
   );
   const productCategoryMenuItems = useMemo(
@@ -112,13 +130,15 @@ export function Header({ lang, t, products: payloadProducts }: HeaderProps) {
             count,
             countLabel: `${numberFormatter.format(count)} ${t.header.productCountLabel}`,
             href: `/${lang}/products?category=${category}#product-catalog`,
-          image: categoryProducts.find((product) => product.image)?.image ?? categoryFallbackImages[category],
-        };
-      })
-      .filter((item) => item.count > 0),
-  [lang, numberFormatter],
-);
-const productBrandMenuItems = useMemo(
+            image:
+              categoryProducts.find((product) => product.image)?.image ??
+              categoryFallbackImages[category],
+          };
+        })
+        .filter((item) => item.count > 0),
+    [lang, numberFormatter],
+  );
+  const productBrandMenuItems = useMemo(
     () =>
       productBrands
         .map((brand) => {
@@ -154,7 +174,9 @@ const productBrandMenuItems = useMemo(
             count,
             countLabel: `${numberFormatter.format(count)} ${t.header.productCountLabel}`,
             href: `/${lang}/products?type=${type}#product-catalog`,
-            image: typeProducts.find((product) => product.image)?.image ?? typeFallbackImages[type],
+            image:
+              typeProducts.find((product) => product.image)?.image ??
+              typeFallbackImages[type],
             imageFit: "cover" as const,
           };
         })
@@ -371,17 +393,18 @@ const productBrandMenuItems = useMemo(
               </div>
             </form>
 
-            <LanguagePicker
-              lang={lang}
-              isRTL={isRTL}
-              dir={dir}
-              t={t}
-            />
+            <LanguagePicker lang={lang} isRTL={isRTL} dir={dir} t={t} />
 
             <details className="group/mobile-menu lg:hidden">
               <summary
                 className="relative inline-flex h-11 w-11 shrink-0 cursor-pointer list-none items-center justify-center rounded-full border border-border/60 bg-background/75 text-foreground shadow-sm backdrop-blur-md transition-all duration-300 hover:border-brand-navy/25 hover:bg-brand-navy/5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25 [&::-webkit-details-marker]:hidden"
-                aria-label={lang === "ar" ? "تبديل القائمة" : lang === "fa" ? "تغییر منو" : "Toggle menu"}
+                aria-label={
+                  lang === "ar"
+                    ? "تبديل القائمة"
+                    : lang === "fa"
+                      ? "تغییر منو"
+                      : "Toggle menu"
+                }
               >
                 <Menu className="h-5 w-5 transition-transform duration-300 group-open/mobile-menu:rotate-90 group-open/mobile-menu:scale-0" />
                 <X className="absolute h-5 w-5 transition-transform duration-300 -rotate-90 scale-0 group-open/mobile-menu:rotate-0 group-open/mobile-menu:scale-100" />
@@ -498,9 +521,7 @@ const productBrandMenuItems = useMemo(
                                 href={href}
                                 className="mb-2 flex items-center justify-between rounded-lg px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:bg-muted/45 hover:text-foreground"
                               >
-                                <span>
-                                  {t.header.allProducts}
-                                </span>
+                                <span>{t.header.allProducts}</span>
                               </a>
 
                               <div className="divide-y divide-border/50 overflow-hidden rounded-lg border border-border/50 bg-background/80">
@@ -659,7 +680,7 @@ const productBrandMenuItems = useMemo(
                       href={href}
                       aria-current={isActive ? "page" : undefined}
                       aria-haspopup="true"
-                      className="relative flex h-full items-center gap-2.5 text-sm font-semibold transition-colors group"
+                      className="relative flex h-full items-center gap-2.5 text-sm font-medium transition-colors group"
                     >
                       <Icon
                         size={20}
@@ -705,7 +726,7 @@ const productBrandMenuItems = useMemo(
                   key={key}
                   href={href}
                   aria-current={isActive ? "page" : undefined}
-                  className="relative flex items-center gap-2.5 h-full text-sm font-semibold transition-colors group"
+                  className="relative flex items-center gap-2.5 h-full text-sm font-medium transition-colors group"
                 >
                   <Icon
                     size={20}

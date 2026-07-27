@@ -149,9 +149,9 @@ BEGIN
     INSERT INTO "homepage_global_markets" ("_order", "_parent_id", "id", "value", "is_active")
     VALUES (1, 1, 'gm2', 4, true);
     INSERT INTO "homepage_global_markets_locales" ("country", "description", "_locale", "_parent_id")
-    VALUES ('Offices & Regional Presence', 'Tehran, Isfahan, Dubai, and Oman', 'en', 'gm2');
+    VALUES ('Offices & Regional Presence', 'Tehran, Isfahan, Dubai, and Muscat', 'en', 'gm2');
     INSERT INTO "homepage_global_markets_locales" ("country", "description", "_locale", "_parent_id")
-    VALUES ('دفاتر شرکت', 'تهران، اصفهان، دبی و عمان', 'fa', 'gm2');
+    VALUES ('دفاتر شرکت', 'تهران، اصفهان، دبی، و مسقط', 'fa', 'gm2');
 
     INSERT INTO "homepage_global_markets" ("_order", "_parent_id", "id", "value", "is_active")
     VALUES (2, 1, 'gm3', 30, true);
