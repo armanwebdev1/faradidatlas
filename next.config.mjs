@@ -25,6 +25,9 @@ const nextConfig = {
     optimizePackageImports: ["lucide-react"],
   },
   images: {
+    // Serve source files directly so the site does not depend on Vercel's
+    // metered Image Optimization service.
+    unoptimized: true,
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,
     // Added: Allows Next.js <Image /> to display images hosted on Vercel Blob
