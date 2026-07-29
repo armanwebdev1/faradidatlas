@@ -25,9 +25,10 @@ const nextConfig = {
     optimizePackageImports: ["lucide-react"],
   },
   images: {
+    unoptimized: true,
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,
-    // Added: Allows Next.js <Image /> to display images hosted on Vercel Blob
+
     remotePatterns: [
       {
         protocol: "https",
