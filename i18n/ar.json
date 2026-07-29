@@ -97,8 +97,7 @@
         "label": "ترتيب حسب:",
         "relevance": "الأكثر صلة",
         "newest": "الأحدث",
-        "nameAsc": "الاسم (أ - ي)",
-        "nameDesc": "الاسم (ي - أ)"
+        "brand": "العلامة التجارية"
       },
       "filters": "التصفيات",
       "filterCategory": "الفئة",

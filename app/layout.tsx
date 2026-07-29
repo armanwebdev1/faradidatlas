@@ -1,5 +1,6 @@
 import type React from "react";
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { absoluteUrl, localizedAlternates, siteConfig } from "@/lib/site";
 
 const defaultTitle = `${siteConfig.name} | Food Sourcing, Import & Distribution`;
@@ -80,5 +81,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children;
+  return (
+    <>
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-XRB2EQVW89"
+      />
+
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-XRB2EQVW89');
+        `}
+      </Script>
+
+      {children}
+    </>
+  );
 }

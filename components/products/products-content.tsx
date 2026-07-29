@@ -70,34 +70,26 @@ function productSearchText(product: Product) {
     .join(" ");
 }
 
-function sortProducts(
-  products: Product[],
-  sortValue: ProductSortValue,
-  lang: Language,
-) {
+function sortProducts(products: Product[], sortValue: ProductSortValue) {
   const sorted = [...products];
 
   switch (sortValue) {
-    case "name-asc":
-      return sorted.sort((a, b) => {
-        const aName = lang === "en" ? a.nameEn : lang === "fa" ? a.nameFa : a.nameAr;
-        const bName = lang === "en" ? b.nameEn : lang === "fa" ? b.nameFa : b.nameAr;
-        return aName.localeCompare(bName);
-      });
-    case "name-desc":
-      return sorted.sort((a, b) => {
-        const aName = lang === "en" ? a.nameEn : lang === "fa" ? a.nameFa : a.nameAr;
-        const bName = lang === "en" ? b.nameEn : lang === "fa" ? b.nameFa : b.nameAr;
-        return bName.localeCompare(aName);
-      });
     case "newest":
       return sorted.sort((a, b) => b.id - a.id);
+
+    case "brand":
+      return sorted.sort((a, b) => {
+        const brandA = productBrandLabels[getProductBrand(a)].en;
+        const brandB = productBrandLabels[getProductBrand(b)].en;
+
+        return brandA.localeCompare(brandB);
+      });
+
     case "relevance":
     default:
       return sorted;
   }
 }
-
 function readCategoryFromUrl(searchParams: URLSearchParams) {
   const category = searchParams.get("category");
 
@@ -134,10 +126,12 @@ export function ProductsContent({
   const [clientQuery, setClientQuery] = useState(initialQuery);
   const [selectedCategory, setSelectedCategory] =
     useState<ProductCategory | null>(initialCategory);
-  const [selectedBrand, setSelectedBrand] =
-    useState<ProductBrand | null>(initialBrand);
-  const [selectedType, setSelectedType] =
-    useState<ProductType | null>(initialType);
+  const [selectedBrand, setSelectedBrand] = useState<ProductBrand | null>(
+    initialBrand,
+  );
+  const [selectedType, setSelectedType] = useState<ProductType | null>(
+    initialType,
+  );
   const [sortValue, setSortValue] = useState<ProductSortValue>("relevance");
   const deferredQuery = useDeferredValue(clientQuery);
 
@@ -245,8 +239,8 @@ export function ProductsContent({
     [searchedProducts, selectedBrand, selectedCategory, selectedType],
   );
   const visibleProducts = useMemo(
-    () => sortProducts(filteredProducts, sortValue, lang),
-    [filteredProducts, lang, sortValue],
+    () => sortProducts(filteredProducts, sortValue),
+    [filteredProducts, sortValue],
   );
   const activeFilterLabels = [
     selectedCategory ? categoryLabels[selectedCategory][lang] : null,
@@ -257,11 +251,11 @@ export function ProductsContent({
   return (
     <section
       id="product-catalog"
-      className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-gradient-to-b from-background to-secondary/30"
+      className="px-4 sm:px-6 py-10 sm:py-12 md:py-16 bg-linear-to-b from-background to-secondary/30"
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-10 md:gap-14 lg:gap-16">
-          <div className="w-full lg:w-64 flex-shrink-0">
+          <div className="w-full lg:w-64 shrink-0">
             <div className="lg:sticky lg:top-32">
               <h2 className="text-sm font-bold text-primary mb-8 uppercase tracking-widest">
                 {t.common.filter}
@@ -295,9 +289,7 @@ export function ProductsContent({
                 {query && (
                   <p className="mt-2 text-sm text-foreground/65">
                     {t.common.search}:{" "}
-                    <span className="font-medium text-foreground">
-                      {query}
-                    </span>
+                    <span className="font-medium text-foreground">{query}</span>
                   </p>
                 )}
                 {activeFilterLabels.length > 0 && (

@@ -97,8 +97,7 @@
         "label": "Sort by:",
         "relevance": "Relevance",
         "newest": "Newest",
-        "nameAsc": "Name (A-Z)",
-        "nameDesc": "Name (Z-A)"
+        "brand": "Brand"
       },
       "filters": "Filters",
       "filterCategory": "Category",
