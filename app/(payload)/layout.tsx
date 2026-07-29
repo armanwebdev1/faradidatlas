@@ -3,7 +3,7 @@
 import config from "@payload-config";
 import "@payloadcms/next/css";
 import React from "react";
-import { importMap } from "./importMap.js";
+import { importMap } from "./admin/importMap.js";
 import { RootLayout } from "@payloadcms/next/layouts";
 import { serverFunction } from "./serverFunctions";
 
