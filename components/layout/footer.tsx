@@ -5,6 +5,10 @@ import { translations } from "@/lib/i18n";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { getContactInfo } from "@/lib/fetch/contact-info";
+import {
+  categoryLabels,
+  productCategories,
+} from "@/components/products/product-data";
 
 interface FooterProps {
   lang: Language;
@@ -15,31 +19,6 @@ type FooterLinkItem = {
   label: string;
   external?: boolean;
 };
-
-const categoryLabelsLocal: Record<
-  string,
-  { en: string; fa: string; ar: string }
-> = {
-  rice: { en: "Rice", fa: "برنج", ar: "أرز" },
-  legumes: { en: "Legumes & Pulses", fa: "حبوبات", ar: "بقوليات" },
-  seeds: { en: "Seeds & Kernels", fa: "خشکبار", ar: "بذور ولب" },
-  nuts: { en: "Nuts", fa: "آجیل", ar: "مكسرات" },
-  spices: {
-    en: "Spices & Seasonings",
-    fa: "ادویه‌ها و چاشنی‌ها",
-    ar: "توابل وبهارات",
-  },
-  sugar: { en: "Sweeteners", fa: "شکر", ar: "سكر ومحليات" },
-};
-
-const productCategoriesLocal = [
-  "rice",
-  "legumes",
-  "seeds",
-  "nuts",
-  "spices",
-  "sugar",
-];
 
 export async function Footer({ lang }: FooterProps) {
   const t_trans = translations[lang];
@@ -68,9 +47,9 @@ export async function Footer({ lang }: FooterProps) {
   const brandSecondary =
     lang === "en" ? "Atlas" : lang === "fa" ? "اطلس" : "اطلس";
 
-  const productCategoryLinks = productCategoriesLocal.map((category) => ({
+  const productCategoryLinks = productCategories.map((category) => ({
     href: `/${lang}/products?category=${category}#product-catalog`,
-    label: categoryLabelsLocal[category]?.[lang] ?? category,
+    label: categoryLabels[category]?.[lang] ?? category,
   }));
 
   const productLinks: FooterLinkItem[] = [
@@ -113,8 +92,8 @@ export async function Footer({ lang }: FooterProps) {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-brand-navy/35" />
       <div className="relative z-10 w-full px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24">
         <div className="container-wide">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 sm:gap-8 lg:gap-10 mb-12 sm:mb-16">
-            <div className="lg:col-span-1 flex flex-col justify-between">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-6 sm:gap-8 md:gap-6 lg:gap-10 mb-12 sm:mb-16">
+            <div className="flex flex-col justify-between">
               <div className="mb-8">
                 <Link
                   href={`/${lang}`}
