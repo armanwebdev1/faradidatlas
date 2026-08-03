@@ -18,6 +18,9 @@ export async function POST(request: NextRequest) {
 
     const result = await payload.updateGlobal({
       slug: "homepage",
+      locale: "all",
+      // Localized fields accept per-locale objects at runtime (locale: 'all'),
+      // but the generated Payload types declare them as plain strings.
       data: {
         valuePropsSection: {
           eyebrow: { en: "Why Faradid Atlas", fa: "چرا فرادید اطلس" },
@@ -165,7 +168,7 @@ export async function POST(request: NextRequest) {
           buttonText: { en: "Contact Us", fa: "تماس با ما" },
           buttonUrl: "/en/contact",
         },
-      },
+      } as any,
     });
 
     return NextResponse.json({
