@@ -35,8 +35,8 @@ export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
   const activeImage = gallery[Math.min(activeIndex, gallery.length - 1)];
   const canNavigate = gallery.length > 1;
   const isRTL = lang === "fa" || lang === "ar";
-  const PrevIcon = isRTL ? ChevronRight : ChevronLeft;
-  const NextIcon = isRTL ? ChevronLeft : ChevronRight;
+  const PrevIcon = ChevronLeft;
+  const NextIcon = ChevronRight;
 
   const goToPrev = () => {
     if (!canNavigate) return;
@@ -69,7 +69,7 @@ export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
           onClick={goToPrev}
           aria-label={lang === "ar" ? "الصورة السابقة" : lang === "fa" ? "تصویر قبلی" : "Previous image"}
           aria-disabled={!canNavigate}
-          className={`absolute ${isRTL ? "right-0" : "left-0"} top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
+          className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
             canNavigate
               ? "hover:-translate-y-[52%]"
               : "cursor-not-allowed opacity-40 pointer-events-none"
@@ -120,7 +120,7 @@ export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
           onClick={goToNext}
           aria-label={lang === "ar" ? "الصورة التالية" : lang === "fa" ? "تصویر بعدی" : "Next image"}
           aria-disabled={!canNavigate}
-          className={`absolute ${isRTL ? "left-0" : "right-0"} top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
+          className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
             canNavigate
               ? "hover:-translate-y-[52%]"
               : "cursor-not-allowed opacity-40 pointer-events-none"
