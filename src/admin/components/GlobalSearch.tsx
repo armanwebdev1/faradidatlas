@@ -17,8 +17,16 @@ export const GlobalSearch: React.FC = () => {
   const [results, setResults] = useState<SearchResult[]>([])
   const [isOpen, setIsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 768)
+    onResize()
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
 
   useEffect(() => {
     const stored = localStorage.getItem('admin-lang') as AdminLang
@@ -108,6 +116,7 @@ export const GlobalSearch: React.FC = () => {
           border: '1px solid var(--theme-elevation-150)',
           fontSize: '0.8125rem',
           cursor: 'text',
+          maxWidth: isMobile ? '170px' : undefined,
         }}
         onClick={() => { inputRef.current?.focus(); setIsOpen(true) }}
       >
@@ -131,17 +140,19 @@ export const GlobalSearch: React.FC = () => {
             fontFamily: 'inherit',
           }}
         />
-        <kbd style={{
-          fontSize: '0.6875rem',
-          color: 'var(--theme-elevation-400)',
-          background: 'var(--theme-elevation-100)',
-          padding: '0.125rem 0.375rem',
-          borderRadius: '3px',
-          fontFamily: 'inherit',
-          flexShrink: 0,
-        }}>
-          Ctrl+K
-        </kbd>
+        {!isMobile && (
+          <kbd style={{
+            fontSize: '0.6875rem',
+            color: 'var(--theme-elevation-400)',
+            background: 'var(--theme-elevation-100)',
+            padding: '0.125rem 0.375rem',
+            borderRadius: '3px',
+            fontFamily: 'inherit',
+            flexShrink: 0,
+          }}>
+            Ctrl+K
+          </kbd>
+        )}
       </div>
 
       {isOpen && (query.length >= 2 || results.length > 0) && (

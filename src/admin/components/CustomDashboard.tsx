@@ -40,11 +40,21 @@ const quickActionBtn: React.CSSProperties = {
   fontFamily: 'inherit',
 }
 
-const grid: React.CSSProperties = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
-  gap: '0.75rem',
+const useViewport = () => {
+  const [width, setWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 1024)
+  useEffect(() => {
+    const onResize = () => setWidth(window.innerWidth)
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+  return width
 }
+
+const grid = (minWidth = 180): React.CSSProperties => ({
+  display: 'grid',
+  gridTemplateColumns: `repeat(auto-fill, minmax(${minWidth}px, 1fr))`,
+  gap: '0.75rem',
+})
 
 interface CountResult {
   totalDocs: number
@@ -80,6 +90,8 @@ const PlusIcon: React.FC = () => (
 )
 
 export const CustomDashboard: React.FC = () => {
+  const viewportWidth = useViewport()
+  const isMobile = viewportWidth < 768
   const [lang, setLang] = useState<AdminLang>('en')
   const [counts, setCounts] = useState({ products: 0, blogPosts: 0, jobs: 0, downloads: 0, certificates: 0, categories: 0, faqs: 0, media: 0, total: 0 })
   const [recentEdits, setRecentEdits] = useState<RecentItem[]>([])
@@ -189,9 +201,15 @@ export const CustomDashboard: React.FC = () => {
     fetchData()
   }, [])
 
+  const containerStyle: React.CSSProperties = {
+    padding: isMobile ? '1rem' : '2rem',
+    maxWidth: '1100px',
+    boxSizing: 'border-box',
+  }
+
   if (isLoading) {
     return (
-      <div style={{ padding: '2rem', maxWidth: '1100px' }}>
+      <div style={containerStyle}>
         <div style={{ color: 'var(--theme-elevation-400)', fontSize: '0.9rem' }}>
           {t('misc.loading')}
         </div>
@@ -200,11 +218,11 @@ export const CustomDashboard: React.FC = () => {
   }
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '1100px' }}>
+    <div style={containerStyle}>
       {/* Header */}
-      <div style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
+      <div style={{ marginBottom: isMobile ? '1.25rem' : '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <h1 style={{ margin: '0 0 0.25rem 0', fontSize: '1.5rem', fontWeight: 600 }}>
+          <h1 style={{ margin: '0 0 0.25rem 0', fontSize: isMobile ? '1.25rem' : '1.5rem', fontWeight: 600 }}>
             {t('dashboard.title')}
           </h1>
           <p style={{ color: 'var(--theme-elevation-450)', margin: 0, fontSize: '0.9rem' }}>
@@ -215,25 +233,25 @@ export const CustomDashboard: React.FC = () => {
       </div>
 
       {/* Quick Actions */}
-      <div style={{ marginBottom: '2rem' }}>
+      <div style={{ marginBottom: isMobile ? '1.25rem' : '2rem' }}>
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-          <a href="/admin/collections/products/create" style={quickActionBtn}>
+          <a href="/admin/collections/products/create" style={{ ...quickActionBtn, ...(isMobile ? { flex: '1 1 45%', justifyContent: 'center' } : {}) }}>
             <PlusIcon /> {t('quickActions.product')}
           </a>
-          <a href="/admin/collections/blog-posts/create" style={quickActionBtn}>
+          <a href="/admin/collections/blog-posts/create" style={{ ...quickActionBtn, ...(isMobile ? { flex: '1 1 45%', justifyContent: 'center' } : {}) }}>
             <PlusIcon /> {t('quickActions.blogPost')}
           </a>
-          <a href="/admin/collections/jobs/create" style={quickActionBtn}>
+          <a href="/admin/collections/jobs/create" style={{ ...quickActionBtn, ...(isMobile ? { flex: '1 1 45%', justifyContent: 'center' } : {}) }}>
             <PlusIcon /> {t('quickActions.job')}
           </a>
-          <a href="/admin/collections/downloads/create" style={quickActionBtn}>
+          <a href="/admin/collections/downloads/create" style={{ ...quickActionBtn, ...(isMobile ? { flex: '1 1 45%', justifyContent: 'center' } : {}) }}>
             <PlusIcon /> {t('quickActions.download')}
           </a>
         </div>
       </div>
 
       {/* Stat Cards */}
-      <div style={{ ...grid, gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', marginBottom: '2rem' }}>
+      <div style={{ ...grid(isMobile ? 110 : 150), marginBottom: isMobile ? '1.25rem' : '2rem' }}>
         <StatCard label={t('stats.products')} value={counts.products} href="/admin/collections/products" />
         <StatCard label={t('stats.blogPosts')} value={counts.blogPosts} href="/admin/collections/blog-posts" />
         <StatCard label={t('stats.jobs')} value={counts.jobs} href="/admin/collections/jobs" />
@@ -267,19 +285,19 @@ export const CustomDashboard: React.FC = () => {
                   background: 'var(--theme-elevation-0)',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', minWidth: 0 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', minWidth: 0, flex: '1 1 auto' }}>
                   <span style={{
                     fontSize: '0.6875rem',
                     fontWeight: 600,
                     color: 'var(--theme-elevation-400)',
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em',
-                    minWidth: '5rem',
+                    minWidth: isMobile ? '3.5rem' : '5rem',
                     flexShrink: 0,
                   }}>
                     {t(item.typeKey)}
                   </span>
-                  <span style={{ fontSize: '0.875rem', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  <span style={{ fontSize: '0.875rem', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1, minWidth: 0 }}>
                     {item.name}
                   </span>
                   {item.status && item.status === 'draft' && (
@@ -309,7 +327,7 @@ export const CustomDashboard: React.FC = () => {
         <h2 style={{ margin: '0 0 0.75rem 0', fontSize: '1rem', fontWeight: 600 }}>
           {t('quickLinks.title')}
         </h2>
-        <div style={grid}>
+        <div style={grid(isMobile ? 140 : 180)}>
           <QuickLink href="/admin/globals/homepage" title={t('quickLinks.homepage')} description={t('quickLinks.homepageDesc')} />
           <QuickLink href="/admin/collections/products" title={t('quickLinks.products')} description={t('quickLinks.productsDesc')} />
           <QuickLink href="/admin/collections/blog-posts" title={t('quickLinks.blog')} description={t('quickLinks.blogDesc')} />
