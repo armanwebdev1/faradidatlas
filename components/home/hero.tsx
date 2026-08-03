@@ -201,7 +201,7 @@ export function Hero({ lang, t, slides: rawSlides }: HeroProps) {
       <div className="absolute bottom-0 inset-x-0 z-20">
         <div
           key={activeSlide?.id ?? activeIndex}
-          className={`max-w-5xl px-8 md:px-12 lg:px-20 pb-16 sm:pb-20 md:pb-24 transform-gpu ${textShiftClass}`}
+          className={`max-w-5xl px-8 md:px-12 lg:px-20 pb-16 sm:pb-20 md:pb-16 transform-gpu ${textShiftClass}`}
           dir={isRTL ? "rtl" : "ltr"}
           aria-live="polite"
         >
