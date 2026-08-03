@@ -569,6 +569,20 @@
   transform-origin: left;
 }
 
+/* Rtl gradient direction flips
+   Horizontal linear gradients are directional: their direction must track the
+   reading direction. Tailwind v4 funnels any `--tw-gradient-position` override
+   through `--tw-gradient-stops`, so flipping that one variable is enough. */
+[dir="rtl"] .bg-linear-to-r,
+[dir="rtl"] .bg-gradient-to-r {
+  --tw-gradient-position: to left !important;
+}
+
+[dir="rtl"] .bg-linear-to-l,
+[dir="rtl"] .bg-gradient-to-l {
+  --tw-gradient-position: to right !important;
+}
+
 /* Rtl responsive margin adjustments */
 [dir="rtl"] :is(.space-x-4, .space-x-6, .space-x-8) > * + * {
   margin-right: 0;
