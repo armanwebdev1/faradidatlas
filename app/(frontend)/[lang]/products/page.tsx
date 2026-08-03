@@ -267,7 +267,7 @@ export default async function ProductsPage({
             priority
           />
 
-          <div className="absolute inset-0 bg-linear-to-r from-black/55 to-black/10" />
+          <div className="absolute inset-0 bg-black/40" />
 
           <div className="absolute inset-0 px-4 sm:px-6 py-8 sm:py-10 md:py-12 flex items-center">
             <div className="max-w-7xl w-full mx-auto">
