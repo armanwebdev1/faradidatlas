@@ -36,6 +36,7 @@ export interface Product {
   image?: string;
   images?: string[];
   specs?: ProductSpec[];
+  howWeSupplyDescription?: { en?: string; fa?: string; ar?: string };
 }
 
 export type ProductBrand = "twenty-one" | "mizban" | "golbanoo" | "hayat";

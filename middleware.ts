@@ -21,7 +21,7 @@ export function middleware(req: NextRequest) {
   if (VALID_LANGS.includes(firstSegment)) {
     if (segments.length >= 2) {
       const secondSegment = segments[1];
-      if (!KNOWN_PATHS.includes(secondSegment) && secondSegment !== "products") {
+      if (!KNOWN_PATHS.includes(secondSegment)) {
         return NextResponse.next();
       }
     }

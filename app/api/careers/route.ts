@@ -16,7 +16,7 @@ const allowedMimeTypes = new Set([
 const allowedExtensions = new Set(["pdf", "doc", "docx"]);
 
 const careerSchema = z.object({
-  lang: z.enum(["en", "fa"]),
+  lang: z.enum(["en", "fa", "ar"]),
   jobId: z.coerce.number().int().positive(),
   jobTitle: z.string().trim().min(2).max(180),
   firstName: z.string().trim().min(2).max(120),
@@ -31,7 +31,10 @@ const careerSchema = z.object({
 
 async function verifyTurnstile(token?: string) {
   const secret = process.env.TURNSTILE_SECRET_KEY;
-  if (!secret) return true;
+  if (!secret) {
+    console.error("[Turnstile] TURNSTILE_SECRET_KEY is not set; rejecting verification.");
+    return false;
+  }
   if (!token) return false;
 
   const formData = new FormData();

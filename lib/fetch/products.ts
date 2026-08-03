@@ -5,15 +5,7 @@ import type {
   ProductCategory,
   ProductSpec,
 } from "../../components/products/product-data";
-
-const categorySlugMap: Record<string, ProductCategory> = {
-  rice: "rice",
-  legumes: "legumes",
-  seeds: "seeds",
-  nuts: "nuts",
-  spices: "spices",
-  sugar: "sugar",
-};
+import { productCategories } from "../../components/products/product-data";
 
 const listingSelect = {
   name: true,
@@ -34,6 +26,7 @@ const detailSelect = {
   gallery: true,
   alias: true,
   description: true,
+  howWeSupplyDescription: true,
   specs: true,
   seo: true,
 } as const;
@@ -103,6 +96,7 @@ export const getProductBySlug = cache(async function getProductBySlug(slug: stri
       ?.map((g: any) => resolveImageUrl(g.image))
       .filter(Boolean) ?? []) as string[],
     specs: resolveSpecs(p.specs),
+    howWeSupplyDescription: (p as any).howWeSupplyDescription ?? undefined,
   } as Product;
 
   return mapped;
@@ -214,9 +208,14 @@ export const getRelatedProducts = cache(async function getRelatedProducts(
 
 function resolveCategory(category: any): ProductCategory {
   if (!category) return "rice";
-  if (typeof category === "string") return categorySlugMap[category] ?? "rice";
+  if (typeof category === "string")
+    return (productCategories as string[]).includes(category)
+      ? (category as ProductCategory)
+      : "rice";
   if (typeof category === "object" && category.slug)
-    return categorySlugMap[category.slug] ?? "rice";
+    return (productCategories as string[]).includes(category.slug)
+      ? (category.slug as ProductCategory)
+      : "rice";
   return "rice";
 }
 

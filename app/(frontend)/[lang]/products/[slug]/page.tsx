@@ -9,6 +9,7 @@ import {
   CategoryLanding,
   categorySEOContent,
 } from "@/components/products/category-landing";
+import { categoryLabels } from "@/components/products/product-data";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { ProductPlaceholder } from "@/components/products/product-placeholder";
 import { ProductSpecs } from "@/components/products/product-specs";
@@ -58,23 +59,7 @@ export async function generateMetadata({ params }: ProductDetailProps) {
   if (isCategorySlug(slug)) {
     const fallbackSeo =
       categorySEOContent[slug as keyof typeof categorySEOContent];
-    const catLabels: Record<string, { en: string; fa: string; ar: string }> = {
-      rice: { en: "Rice", fa: "برنج", ar: "أرز" },
-      legumes: { en: "Legumes & Pulses", fa: "حبوبات", ar: "بقوليات" },
-      seeds: { en: "Seeds & Kernels", fa: "خشکبار", ar: "بذور ولب" },
-      nuts: { en: "Nuts", fa: "آجیل", ar: "مكسرات" },
-      spices: {
-        en: "Spices & Seasonings",
-        fa: "ادویه‌ها و چاشنی‌ها",
-        ar: "توابل وبهارات",
-      },
-      sugar: {
-        en: "Sweeteners",
-        fa: "شکر",
-        ar: "سكر ومحليات",
-      },
-    };
-    const catLabel = catLabels[slug] ?? catLabels.rice;
+    const catLabel = categoryLabels[slug as keyof typeof categoryLabels] ?? categoryLabels.rice;
     return buildPageMetadata({
       lang,
       path: `products/${slug}`,
@@ -126,22 +111,6 @@ export async function generateMetadata({ params }: ProductDetailProps) {
     image: product.image,
   });
 }
-
-const categoryLabelsLocal: Record<
-  string,
-  { en: string; fa: string; ar: string }
-> = {
-  rice: { en: "Rice", fa: "برنج", ar: "أرز" },
-  legumes: { en: "Legumes & Pulses", fa: "حبوبات", ar: "بقوليات" },
-  seeds: { en: "Seeds & Kernels", fa: "خشکبار", ar: "بذور ولب" },
-  nuts: { en: "Nuts", fa: "آجیل", ar: "مكسرات" },
-  spices: {
-    en: "Spices & Seasonings",
-    fa: "ادویه‌ها و چاشنی‌ها",
-    ar: "توابل وبهارات",
-  },
-  sugar: { en: "Sweeteners", fa: "شکر", ar: "سكر ومحليات" },
-};
 
 export default async function ProductDetailPage({
   params,
@@ -228,7 +197,7 @@ export default async function ProductDetailPage({
         ? product.descriptionFa
         : product.descriptionAr;
   const catLabel =
-    categoryLabelsLocal[product.category] ?? categoryLabelsLocal.rice;
+    categoryLabels[product.category] ?? categoryLabels.rice;
   const category = catLabel[lang as keyof typeof catLabel] ?? catLabel.en;
   const gallery =
     product.images && product.images.length > 0
@@ -396,8 +365,8 @@ export default async function ProductDetailPage({
                   {t.pages.products.howWeSupply}
                 </h2>
                 <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">
-                  {(product as any).howWeSupplyDescription?.[lang] ||
-                    (product as any).howWeSupplyDescription?.en ||
+                  {product.howWeSupplyDescription?.[lang] ||
+                    product.howWeSupplyDescription?.en ||
                     t.pages.products.howWeSupplyDescription}
                 </p>
               </div>

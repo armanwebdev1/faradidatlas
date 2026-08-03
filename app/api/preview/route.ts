@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
   const globalSlug = searchParams.get('global')
   const locale = searchParams.get('locale') || 'en'
 
-  if (secret !== process.env.PAYLOAD_SECRET) {
+  if (secret !== process.env.PREVIEW_SECRET) {
     return NextResponse.json({ error: 'Invalid secret' }, { status: 401 })
   }
 

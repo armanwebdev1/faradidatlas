@@ -24,6 +24,8 @@ NEXT_PUBLIC_SITE_URL=https://your-domain.com
 NEXT_PUBLIC_ENABLE_BACKEND=false
 ```
 
+`PREVIEW_SECRET` must also be set: it guards the draft-mode preview endpoint (`/api/preview`) and is embedded in Payload admin preview URLs.
+
 Keep `NEXT_PUBLIC_ENABLE_BACKEND=false` until email delivery is ready. When backend/email is enabled later, set:
 
 ```bash

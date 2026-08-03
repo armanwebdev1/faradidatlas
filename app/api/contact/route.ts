@@ -9,7 +9,7 @@ export const runtime = "nodejs";
 const defaultLeadToEmail = "ahmadpour.web@gmail.com,info.faradidco@gmail.com";
 
 const contactSchema = z.object({
-  lang: z.enum(["en", "fa"]),
+  lang: z.enum(["en", "fa", "ar"]),
   company: z.string().trim().min(1).max(160),
   name: z.string().trim().min(2).max(160),
   email: z.string().trim().email().max(220),
@@ -26,7 +26,10 @@ const contactSchema = z.object({
 
 async function verifyTurnstile(token?: string) {
   const secret = process.env.TURNSTILE_SECRET_KEY;
-  if (!secret) return true;
+  if (!secret) {
+    console.error("[Turnstile] TURNSTILE_SECRET_KEY is not set; rejecting verification.");
+    return false;
+  }
   if (!token) return false;
 
   const formData = new FormData();

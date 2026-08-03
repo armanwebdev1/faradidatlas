@@ -15,6 +15,11 @@ function revalidateLocalized(path: string, slug?: string) {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
+
+    if (body.secret !== process.env.WEBHOOK_SECRET) {
+      return NextResponse.json({ error: 'Invalid secret' }, { status: 401 })
+    }
+
     const { collection, doc, global } = body
 
     if (collection) {
