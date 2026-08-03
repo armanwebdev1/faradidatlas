@@ -168,7 +168,7 @@ export function CategoryLanding({
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/55" />
         <div className="absolute inset-0 px-4 sm:px-6 py-8 sm:py-10 md:py-12 flex items-center">
           <div className="max-w-7xl w-full mx-auto">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6 sm:gap-8">
