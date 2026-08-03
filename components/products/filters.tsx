@@ -67,7 +67,7 @@ export function Filters({
 
   return (
     <div
-      className="rounded-lg border border-border bg-white p-5 shadow-sm sm:p-6 lg:sticky lg:top-24"
+      className="rounded-lg border border-border bg-white p-5 shadow-sm sm:p-6 lg:sticky lg:top-16 lg:max-h-[calc(100svh-7rem)] lg:overflow-y-auto"
       dir={isRTL ? "rtl" : "ltr"}
     >
       <h3 className="mb-6 text-lg font-semibold text-primary">

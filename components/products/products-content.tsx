@@ -256,7 +256,7 @@ export function ProductsContent({
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-10 md:gap-14 lg:gap-16">
           <div className="w-full lg:w-64 shrink-0">
-            <div className="lg:sticky lg:top-32">
+            <div className="lg:sticky lg:top-16">
               <h2 className="text-sm font-bold text-primary mb-8 uppercase tracking-widest">
                 {t.common.filter}
               </h2>
