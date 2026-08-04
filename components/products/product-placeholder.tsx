@@ -1,7 +1,11 @@
 import type { CSSProperties } from "react";
 import type { Language } from "@/lib/i18n";
 import type { translations } from "@/lib/i18n";
-import { categoryLabels, type Product, type ProductCategory } from "./product-data";
+import {
+  categoryLabels,
+  type Product,
+  type ProductCategory,
+} from "./product-data";
 
 interface ProductPlaceholderProps {
   product: Product;
@@ -61,8 +65,18 @@ export function ProductPlaceholder({
   variant = "card",
 }: ProductPlaceholderProps) {
   const isRTL = lang === "fa" || lang === "ar";
-  const name = lang === "en" ? product.nameEn : lang === "fa" ? product.nameFa : product.nameAr;
-  const alias = lang === "en" ? product.aliasEn : lang === "fa" ? product.aliasFa : product.aliasAr;
+  const name =
+    lang === "en"
+      ? product.nameEn
+      : lang === "fa"
+        ? product.nameFa
+        : product.nameAr;
+  const alias =
+    lang === "en"
+      ? product.aliasEn
+      : lang === "fa"
+        ? product.aliasFa
+        : product.aliasAr;
   const category =
     lang === "en"
       ? categoryLabels[product.category].en
@@ -94,11 +108,11 @@ export function ProductPlaceholder({
         aria-hidden="true"
       />
       <div
-        className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/55 to-transparent"
+        className="absolute inset-x-0 top-0 h-24 bg-linear-to-b from-white/55 to-transparent"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/18 to-transparent"
+        className="absolute inset-x-0 bottom-0 h-28 bg-linear-to-t from-black/18 to-transparent"
         aria-hidden="true"
       />
 

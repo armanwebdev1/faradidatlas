@@ -34,7 +34,10 @@ export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
 
   const activeImage = gallery[Math.min(activeIndex, gallery.length - 1)];
   const canNavigate = gallery.length > 1;
-  const isRTL = lang === "fa" || lang === "ar";
+  // These chevrons represent fixed physical directions, so the buttons use
+  // inline left/right styles: the global [dir="rtl"] rules swap the .left-0/
+  // .right-0 utilities, which would visually swap (appear to "mirror") the
+  // navigation buttons under RTL. Inline styles are unaffected by that swap.
   const PrevIcon = ChevronLeft;
   const NextIcon = ChevronRight;
 
@@ -69,7 +72,8 @@ export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
           onClick={goToPrev}
           aria-label={lang === "ar" ? "الصورة السابقة" : lang === "fa" ? "تصویر قبلی" : "Previous image"}
           aria-disabled={!canNavigate}
-          className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
+          style={{ left: 0 }}
+          className={`absolute top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
             canNavigate
               ? "hover:-translate-y-[52%]"
               : "cursor-not-allowed opacity-40 pointer-events-none"
@@ -120,7 +124,8 @@ export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
           onClick={goToNext}
           aria-label={lang === "ar" ? "الصورة التالية" : lang === "fa" ? "تصویر بعدی" : "Next image"}
           aria-disabled={!canNavigate}
-          className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
+          style={{ right: 0 }}
+          className={`absolute top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
             canNavigate
               ? "hover:-translate-y-[52%]"
               : "cursor-not-allowed opacity-40 pointer-events-none"
