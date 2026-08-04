@@ -163,13 +163,24 @@ export function ValueProps({ lang, items: payloadItems, section }: ValuePropsPro
         </div>
 
         <div className="relative">
+          {/* Inline gradients keep the physical fade direction fixed: the global
+              [dir="rtl"] rules flip bg-linear-to-r/l, which would put the
+              transparent end on the wrong side under RTL. */}
           <div
-            className="absolute top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-linear-to-r from-surface via-surface/70 to-transparent z-20 pointer-events-none"
-            style={{ left: 0 }}
+            className="absolute top-0 bottom-0 w-24 sm:w-32 md:w-40 z-20 pointer-events-none"
+            style={{
+              left: 0,
+              backgroundImage:
+                "linear-gradient(to right, var(--surface) 0%, var(--surface-90) 50%, transparent 100%)",
+            }}
           />
           <div
-            className="absolute top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-linear-to-l from-surface via-surface/70 to-transparent z-20 pointer-events-none"
-            style={{ right: 0 }}
+            className="absolute top-0 bottom-0 w-24 sm:w-32 md:w-40 z-20 pointer-events-none"
+            style={{
+              right: 0,
+              backgroundImage:
+                "linear-gradient(to left, var(--surface) 0%, var(--surface-90) 50%, transparent 100%)",
+            }}
           />
 
           <div className="overflow-hidden rounded-lg" dir="ltr">
