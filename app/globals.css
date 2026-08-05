@@ -238,8 +238,12 @@
     @apply border-border outline-ring/50;
   }
   html {
-    scroll-behavior: smooth;
     scroll-padding-top: 120px;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
   body {
     @apply bg-background text-foreground antialiased;
@@ -828,6 +832,10 @@
     box-shadow: var(--shadow-sm);
     border-color: var(--accent);
   }
+  .card-hover:active {
+    transform: translateY(0) scale(0.98);
+    transition-duration: var(--duration-fast);
+  }
 
   /* Buttons */
   .btn {
@@ -845,7 +853,11 @@
   }
   .btn:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px var(--foreground-20);
+    box-shadow: 0 0 0 2px var(--brand-navy-28);
+  }
+  .btn:active {
+    transform: scale(0.98);
+    transition-duration: var(--duration-fast);
   }
   .btn-sm {
     padding: 0.45rem 1rem;
@@ -1017,7 +1029,7 @@
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(15px);
     }
     to {
       opacity: 1;
@@ -1027,13 +1039,13 @@
 
   .animate-fade-in-up {
     opacity: 0;
-    animation: fadeInUp var(--duration-slow) var(--ease-emphasized) forwards;
+    animation: fadeInUp var(--duration-slow) var(--ease-decelerate) forwards;
   }
 
   /* Stagger animation for children */
   .stagger-children > * {
     opacity: 0;
-    animation: fadeInUp var(--duration-slow) var(--ease-emphasized) forwards;
+    animation: fadeInUp var(--duration-slow) var(--ease-decelerate) forwards;
   }
 
   .stagger-children > *:nth-child(1) {

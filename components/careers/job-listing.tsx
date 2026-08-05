@@ -35,7 +35,7 @@ export function JobListing({ job, lang, t }: JobListingProps) {
 
   return (
     <Link href={`/${lang}/careers/${job.id}`} className="block h-full">
-      <div className="group relative h-full rounded-2xl border border-foreground/10 bg-white/90 p-6 sm:p-7 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-foreground/5">
+      <div className="group relative h-full rounded-2xl border border-foreground/10 bg-white/90 p-6 sm:p-7 shadow-sm transition-all duration-300 active:scale-[0.98] active:duration-150 hover:-translate-y-1 hover:shadow-lg hover:shadow-foreground/5">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <h3
             className="min-w-0 text-xl sm:text-2xl font-semibold text-foreground tracking-tight"

@@ -106,7 +106,7 @@ export async function Footer({ lang }: FooterProps) {
                     width={56}
                     height={56}
                     sizes="56px"
-                    className="h-11 w-11 object-contain opacity-95 transition duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_18px_rgba(48,59,112,0.55)] sm:h-12 sm:w-12"
+                    className="h-11 w-11 object-contain opacity-95 transition duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_18px_rgba(48,59,112,0.55)] sm:h-12 sm:w-12"
                   />
                   <span className="flex flex-col leading-none">
                     <span className="text-xl font-bold text-white transition-colors duration-300 group-hover:text-accent sm:text-2xl">

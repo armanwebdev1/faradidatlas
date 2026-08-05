@@ -132,7 +132,7 @@ export function WhatWeOffer({ lang, companyInfo }: WhatWeOfferProps) {
                   data-animate
                   style={{ animationDelay: `${idx * 0.1}s` }}
                 >
-                  <div className="relative bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-500 border border-border h-full flex flex-col md:hover:border-accent-warm-gold md:hover:shadow-xl">
+                  <div className="relative bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-300 border border-border h-full flex flex-col md:hover:border-accent-warm-gold md:hover:shadow-xl">
                     <div className="relative h-64 overflow-hidden bg-linear-to-br from-secondary/40 to-secondary/60">
                       <Image
                         src={offer.image}

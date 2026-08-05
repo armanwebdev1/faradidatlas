@@ -40,6 +40,7 @@ export const getProducts = cache(async function getProducts(locale: string = "en
     limit: 100,
     depth: 1,
     draft,
+    where: draft ? undefined : { _status: { equals: "published" } },
     select: listingSelect,
   });
 
@@ -68,7 +69,12 @@ export const getProductBySlug = cache(async function getProductBySlug(slug: stri
   const products = await payload.find({
     collection: "products",
     locale: "all",
-    where: { slug: { equals: slug } },
+    where: {
+      and: [
+        { slug: { equals: slug } },
+        ...(draft ? [] : [{ _status: { equals: "published" } }]),
+      ],
+    },
     limit: 1,
     depth: 1,
     draft,
@@ -112,7 +118,12 @@ export async function getProductsByCategory(
   const products = await payload.find({
     collection: "products",
     locale: "all",
-    where: { "category.slug": { equals: category } },
+    where: {
+      and: [
+        { "category.slug": { equals: category } },
+        ...(draft ? [] : [{ _status: { equals: "published" } }]),
+      ],
+    },
     limit: 100,
     depth: 1,
     draft,
@@ -177,6 +188,7 @@ export const getRelatedProducts = cache(async function getRelatedProducts(
       and: [
         { category: { equals: categoryId } },
         { id: { not_equals: excludeId } },
+        ...(draft ? [] : [{ _status: { equals: "published" } }]),
       ],
     },
     limit: 4,

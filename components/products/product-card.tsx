@@ -41,7 +41,7 @@ export function ProductCard({ product, lang, t }: ProductCardProps) {
 
   return (
     <Link href={`/${lang}/products/${product.slug}`}>
-      <div className="group relative h-full bg-white rounded-2xl overflow-hidden border border-border transition-all duration-500 md:hover:border-accent-warm-gold/60 md:hover:shadow-lg md:hover:-translate-y-1 cursor-pointer">
+      <div className="group relative h-full bg-white rounded-2xl overflow-hidden border border-border transition-all duration-300 active:scale-[0.98] active:duration-150 md:hover:border-accent-warm-gold/60 md:hover:shadow-lg md:hover:-translate-y-1 cursor-pointer">
         <div className="absolute inset-0 bg-linear-to-br from-accent-warm-gold/3 to-transparent opacity-0 transition-opacity duration-500 md:group-hover:opacity-100 -z-10" />
 
         <div className="relative aspect-square bg-linear-to-br from-secondary/40 to-secondary/60 overflow-hidden">

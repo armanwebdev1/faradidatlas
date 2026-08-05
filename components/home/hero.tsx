@@ -174,7 +174,7 @@ export function Hero({ lang, t, slides: rawSlides }: HeroProps) {
         <button
           type="button"
           onClick={goToPrevious}
-          className="pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white shadow-xl backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-brand-navy/70 hover:bg-brand-navy/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white/20 md:h-12 md:w-12"
+          className="pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white shadow-xl backdrop-blur-md transition-all duration-300 active:scale-[0.98] active:duration-150 hover:scale-105 hover:border-brand-navy/70 hover:bg-brand-navy/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white/20 md:h-12 md:w-12"
           aria-label={t.pages.home.prevSlide}
         >
           {isRTL ? (
@@ -187,7 +187,7 @@ export function Hero({ lang, t, slides: rawSlides }: HeroProps) {
         <button
           type="button"
           onClick={goToNext}
-          className="pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white shadow-xl backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-brand-navy/70 hover:bg-brand-navy/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white/20 md:h-12 md:w-12"
+          className="pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white shadow-xl backdrop-blur-md transition-all duration-300 active:scale-[0.98] active:duration-150 hover:scale-105 hover:border-brand-navy/70 hover:bg-brand-navy/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white/20 md:h-12 md:w-12"
           aria-label={t.pages.home.nextSlide}
         >
           {isRTL ? (
@@ -254,7 +254,7 @@ export function Hero({ lang, t, slides: rawSlides }: HeroProps) {
             <button
               type="button"
               onClick={goToPrevious}
-              className="mx-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/12 text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:border-brand-navy/70 hover:bg-brand-navy/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/50 sm:hidden"
+              className="mx-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/12 text-white shadow-lg backdrop-blur-md transition-all duration-300 active:scale-[0.98] active:duration-150 hover:border-brand-navy/70 hover:bg-brand-navy/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/50 sm:hidden"
               aria-label={t.pages.home.prevSlide}
             >
               {isRTL ? (
@@ -268,7 +268,7 @@ export function Hero({ lang, t, slides: rawSlides }: HeroProps) {
                 key={slide.id ?? index}
                 type="button"
                 onClick={() => goToSlide(index)}
-                className={`h-1.5 rounded-full transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white/20 ${
+                className={`h-1.5 rounded-full transition-all duration-500 active:scale-[0.98] active:duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white/20 ${
                   index === activeIndex
                     ? "w-12 bg-brand-navy shadow-[0_0_0_1px_rgba(255,255,255,0.38),0_0_18px_rgba(48,59,112,0.45)]"
                     : "w-6 bg-white/40 hover:bg-white/65"
@@ -279,7 +279,7 @@ export function Hero({ lang, t, slides: rawSlides }: HeroProps) {
             <button
               type="button"
               onClick={goToNext}
-              className="mx-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/12 text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:border-brand-navy/70 hover:bg-brand-navy/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/50 sm:hidden"
+              className="mx-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/12 text-white shadow-lg backdrop-blur-md transition-all duration-300 active:scale-[0.98] active:duration-150 hover:border-brand-navy/70 hover:bg-brand-navy/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/50 sm:hidden"
               aria-label={t.pages.home.nextSlide}
             >
               {isRTL ? (

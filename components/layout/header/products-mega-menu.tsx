@@ -77,7 +77,7 @@ export function ProductsMegaMenu({
 
             <a
               href={`/${lang}/products#product-catalog`}
-              className={`inline-flex w-fit items-center gap-2 rounded-full bg-background px-4 py-2.5 text-sm font-semibold text-foreground shadow-sm ring-1 ring-border/50 transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/15 ${
+              className={`inline-flex w-fit items-center gap-2 rounded-full bg-background px-4 py-2.5 text-sm font-semibold text-foreground shadow-sm ring-1 ring-border/50 transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25 ${
                 isRTL ? "flex-row-reverse" : ""
               }`}
             >
@@ -101,7 +101,7 @@ export function ProductsMegaMenu({
                       key={item.category}
                       href={item.href}
                       title={item.description}
-                      className="group/category flex min-w-0 items-center gap-3 rounded-lg p-1.5 transition-colors duration-200 hover:bg-muted/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/15"
+                      className="group/category flex min-w-0 items-center gap-3 rounded-lg p-1.5 transition-colors duration-200 hover:bg-muted/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25"
                     >
                       <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-md bg-muted shadow-sm ring-1 ring-border/50">
                         {item.image ? (
@@ -164,7 +164,7 @@ function MegaMenuFilterColumn({
           <a
             key={item.key}
             href={item.href}
-            className="flex min-w-0 items-center gap-3 rounded-lg px-2.5 py-2 text-sm font-medium text-foreground transition-colors duration-200 hover:bg-muted/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/15"
+            className="flex min-w-0 items-center gap-3 rounded-lg px-2.5 py-2 text-sm font-medium text-foreground transition-colors duration-200 hover:bg-muted/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25"
           >
             <MenuFilterThumbnail item={item} />
             <span className="min-w-0 flex-1 truncate">{item.label}</span>

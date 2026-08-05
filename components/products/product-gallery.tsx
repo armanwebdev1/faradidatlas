@@ -73,7 +73,7 @@ export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
           aria-label={lang === "ar" ? "الصورة السابقة" : lang === "fa" ? "تصویر قبلی" : "Previous image"}
           aria-disabled={!canNavigate}
           style={{ left: 0 }}
-          className={`absolute top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
+          className={`absolute top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 active:scale-[0.98] active:duration-150 hover:text-foreground hover:shadow-md pointer-events-auto ${
             canNavigate
               ? "hover:-translate-y-[52%]"
               : "cursor-not-allowed opacity-40 pointer-events-none"
@@ -98,7 +98,7 @@ export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
                 }}
                 aria-pressed={isActive}
                 aria-current={isActive ? "true" : "false"}
-                className={`relative h-20 w-20 sm:h-24 sm:w-24 flex-shrink-0 snap-start rounded-2xl overflow-hidden border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${
+                className={`relative h-20 w-20 sm:h-24 sm:w-24 flex-shrink-0 snap-start rounded-2xl overflow-hidden border transition-all duration-300 active:scale-[0.98] active:duration-150 hover:-translate-y-0.5 hover:shadow-md ${
                   isActive
                     ? "border-accent-warm-gold/60 ring-2 ring-accent-warm-gold/50"
                     : "border-foreground/10"
@@ -125,7 +125,7 @@ export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
           aria-label={lang === "ar" ? "الصورة التالية" : lang === "fa" ? "تصویر بعدی" : "Next image"}
           aria-disabled={!canNavigate}
           style={{ right: 0 }}
-          className={`absolute top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 hover:text-foreground hover:shadow-md pointer-events-auto ${
+          className={`absolute top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full border border-foreground/10 bg-white/90 text-foreground/70 shadow-sm transition-all duration-300 active:scale-[0.98] active:duration-150 hover:text-foreground hover:shadow-md pointer-events-auto ${
             canNavigate
               ? "hover:-translate-y-[52%]"
               : "cursor-not-allowed opacity-40 pointer-events-none"

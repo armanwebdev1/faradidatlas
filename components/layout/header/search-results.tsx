@@ -95,7 +95,7 @@ function SearchResult({
     <a
       href={`/${lang}/products/${product.slug}`}
       onClick={onSelect}
-      className={`flex gap-3 rounded-md border border-transparent p-2.5 transition-colors hover:border-border/70 hover:bg-muted/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 ${
+      className={`flex gap-3 rounded-md border border-transparent p-2.5 transition-colors hover:border-border/70 hover:bg-muted/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25 ${
         isRTL ? "flex-row-reverse text-right" : ""
       }`}
     >

@@ -34,7 +34,7 @@ export function FAQAccordion({ items, lang }: FAQAccordionProps) {
           >
             <button
               onClick={() => setOpenId(isOpen ? null : item.id)}
-              className={`w-full px-4 sm:px-6 py-4 sm:py-5 flex justify-between items-start gap-3 sm:gap-4 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25 ${
+              className={`w-full px-4 sm:px-6 py-4 sm:py-5 flex justify-between items-start gap-3 sm:gap-4 transition-colors duration-300 active:scale-[0.98] active:duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/25 ${
                 isRTL ? "text-right" : "text-left"
               }`}
               aria-expanded={isOpen}

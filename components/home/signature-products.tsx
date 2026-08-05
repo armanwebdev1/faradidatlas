@@ -312,7 +312,7 @@ export function SignatureProducts({
               >
                 <button
                   onClick={handleProductClick}
-                  className="relative h-full w-full bg-muted overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                  className="relative h-full w-full bg-muted overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white/20"
                   aria-label={`${t.pages.home.viewProductAria} ${localize(product.title)}`}
                 >
                   {hasEntered && index === currentIndex && (
@@ -427,7 +427,7 @@ export function SignatureProducts({
               <button
                 key={index}
                 onClick={() => handleNavigation(index)}
-                className={`transition-all duration-500 rounded-full ${
+                className={`transition-all duration-500 active:scale-[0.98] active:duration-150 rounded-full ${
                   index === currentIndex
                     ? "w-8 sm:w-10 md:w-12 h-2 bg-foreground"
                     : "w-2 h-2 bg-foreground/25 hover:bg-foreground/40"

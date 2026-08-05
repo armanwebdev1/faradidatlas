@@ -180,7 +180,7 @@ export function CTASection({ lang, cta, brandShowcase }: CTASectionProps) {
                     {brandLogoLoop.map((brand, brandIndex) => (
                       <div
                         key={`${groupIndex}-${brand.name}-${brandIndex}`}
-                        className="group/brand shrink-0 transition-transform duration-500 hover:-translate-y-1"
+                        className="group/brand shrink-0 transition-transform duration-300 hover:-translate-y-1"
                       >
                         <NextImage
                           src={brand.src}
@@ -193,7 +193,7 @@ export function CTASection({ lang, cta, brandShowcase }: CTASectionProps) {
                           height={brand.height}
                           loading="lazy"
                           sizes="200px"
-                          className="h-14 w-auto object-contain drop-shadow-[0_10px_16px_rgba(30,35,39,0.10)] transition duration-500 group-hover/brand:scale-[1.04] group-hover/brand:drop-shadow-[0_0_18px_rgba(201,169,97,0.42)] sm:h-16 md:h-20"
+                          className="h-14 w-auto object-contain drop-shadow-[0_10px_16px_rgba(30,35,39,0.10)] transition duration-300 group-hover/brand:scale-[1.04] group-hover/brand:drop-shadow-[0_0_18px_rgba(201,169,97,0.42)] sm:h-16 md:h-20"
                         />
                       </div>
                     ))}

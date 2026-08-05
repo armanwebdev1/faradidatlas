@@ -63,7 +63,7 @@ function TrustStatCard({ stat, start, index }: TrustStatCardProps) {
   const formattedValue = value.toLocaleString("en-US")
 
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-foreground/10 bg-white/90 px-5 py-6 sm:px-6 sm:py-7 shadow-sm backdrop-blur transition-all duration-500 hover:-translate-y-1 hover:shadow-lg">
+    <div className="group relative overflow-hidden rounded-2xl border border-foreground/10 bg-white/90 px-5 py-6 sm:px-6 sm:py-7 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
       <div className="relative">
         <p className="text-3xl sm:text-4xl font-semibold text-primary tracking-tight">
           {formattedValue}

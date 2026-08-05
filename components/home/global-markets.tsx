@@ -164,8 +164,8 @@ export function GlobalMarkets({
               className="group relative animate-fade-in-up h-full"
               style={{ animationDelay: `${idx * 100}ms` }}
             >
-              <div className="relative h-full p-6 sm:p-8 md:p-10 rounded-2xl bg-background border border-foreground/8 shadow-sm transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:shadow-md group-hover:border-accent-warm-gold/40 flex flex-col">
-                <div className="absolute top-0 left-6 right-6 h-px bg-linear-to-r from-transparent via-accent-warm-gold/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative h-full p-6 sm:p-8 md:p-10 rounded-2xl bg-background border border-foreground/8 shadow-sm transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:shadow-md group-hover:border-accent-warm-gold/40 flex flex-col">
+                <div className="absolute top-0 left-6 right-6 h-px bg-linear-to-r from-transparent via-accent-warm-gold/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 <div className="mb-6 relative">
                   <CountUp
