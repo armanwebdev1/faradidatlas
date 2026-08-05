@@ -167,7 +167,7 @@ export function Hero({ lang, t, slides: rawSlides }: HeroProps) {
         })}
 
         <div className="hero-premium-sheen" aria-hidden="true" />
-        <div className="absolute inset-0 bg-linear-to-b from-black/5 via-black/45 to-black/90" />
+        <div className="absolute inset-0 bg-black/55" />
       </div>
 
       <div className="absolute inset-x-0 top-[40%] z-30 hidden -translate-y-1/2 items-center justify-between px-4 sm:flex sm:px-6 md:px-8 pointer-events-none">
