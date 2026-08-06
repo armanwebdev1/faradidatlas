@@ -18,8 +18,16 @@ export function ProductGallery({ images, alt, lang }: ProductGalleryProps) {
   );
   const [activeIndex, setActiveIndex] = useState(0);
   const thumbRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const hasMounted = useRef(false);
 
   useEffect(() => {
+    // Skip the first run: scrolling the initial thumbnail into view on mount
+    // also scrolls the window down to the gallery when the page loads with a
+    // restored (non-zero) scroll position.
+    if (!hasMounted.current) {
+      hasMounted.current = true;
+      return;
+    }
     const current = thumbRefs.current[activeIndex];
     current?.scrollIntoView({
       behavior: "smooth",
