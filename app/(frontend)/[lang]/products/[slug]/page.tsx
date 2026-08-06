@@ -283,7 +283,7 @@ export default async function ProductDetailPage({
             {gallery.length > 0 ? (
               <ProductGallery images={gallery} alt={name} lang={lang} />
             ) : (
-              <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-[5/4] max-h-[520px] lg:max-h-[560px] bg-white/80 rounded-3xl overflow-hidden border border-foreground/10 shadow-[0_30px_80px_-60px_rgba(15,15,15,0.45)]">
+              <div className="relative aspect-square max-h-[520px] lg:max-h-[560px] bg-white/80 rounded-3xl overflow-hidden border border-foreground/10 shadow-[0_30px_80px_-60px_rgba(15,15,15,0.45)]">
                 <ProductPlaceholder
                   product={product as any}
                   lang={lang}
